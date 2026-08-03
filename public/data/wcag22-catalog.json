@@ -2128,5 +2128,595 @@
       ],
       "evolutionNote": "WCAG 3 covers error prevention under going-back-supported and progress-saved outcomes."
     }
+  },
+  {
+    "id": "1.2.9",
+    "num": "1.2.9",
+    "name": "Audio-only (Live)",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "plainEnglish": {
+      "summary": "Live audio-only content provides a live text alternative (such as real-time CART captions or live transcript text).",
+      "whyItMatters": "Deaf users listening to live radio webcasts or press conferences need live text representations.",
+      "realWorldExample": "A live audio broadcast stream displays an integrated live text transcript feed."
+    },
+    "personaBreakdown": {
+      "designer": "Design live transcript overlay containers for live audio players.",
+      "developer": "Stream CART or live speech-to-text API outputs into live `aria-live=\"polite\"` containers.",
+      "qa": "Test live audio streams with real-time text transcription feeds.",
+      "productManager": "Contract live CART transcribers for major live audio events."
+    },
+    "testingGuide": {
+      "automated": "Manual live stream audit.",
+      "manualKeyboard": "Verify live transcript toggle is keyboard focusable.",
+      "screenReader": "Verify aria-live region updates speak live transcript text.",
+      "codeSnippetGood": "<div role=\"region\" aria-live=\"polite\">[Live Audio Transcript]: Welcome...</div>",
+      "codeSnippetBad": "<audio src=\"live-broadcast\"></audio>"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "media-alternatives-available"
+      ],
+      "evolutionNote": "WCAG 3 integrates live audio alternatives into media outcomes."
+    }
+  },
+  {
+    "id": "1.3.6",
+    "num": "1.3.6",
+    "name": "Identify Purpose",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "plainEnglish": {
+      "summary": "In content implemented using markup languages, the purpose of UI components and icons can be programmatically determined.",
+      "whyItMatters": "Allows assistive tools to substitute standard icons (like a home icon) with personalized symbol sets for users with cognitive or speech disabilities.",
+      "realWorldExample": "Navigation links use standard microdata or HTML autocomplete/purpose attributes allowing custom symbol overlays."
+    },
+    "personaBreakdown": {
+      "designer": "Use consistent icon semantics across UI design components.",
+      "developer": "Annotate UI controls with standard microdata/ARIA purpose attributes.",
+      "qa": "Inspect markup for standardized purpose attributes.",
+      "productManager": "Specify symbol-overlay compatibility in design system specs."
+    },
+    "testingGuide": {
+      "automated": "axe-core purpose attribute validation.",
+      "manualKeyboard": "Inspect navigation element markup.",
+      "screenReader": "Confirm screen reader identifies element purpose.",
+      "codeSnippetGood": "<a href=\"/\" aria-label=\"Home page\"><svg aria-hidden=\"true\"><use href=\"#home-icon\"></use></svg> Home</a>",
+      "codeSnippetBad": "<a href=\"/\"><i class=\"icon-12\"></i></a>"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "interactive-element-names-available"
+      ],
+      "evolutionNote": "WCAG 3 maps 1.3.6 to element identification and name outcomes."
+    }
+  },
+  {
+    "id": "2.2.5",
+    "num": "2.2.5",
+    "name": "Re-authenticating",
+    "level": "AAA",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "When an authenticated session expires, the user can continue the activity without loss of data after re-authenticating.",
+      "whyItMatters": "Users who take extra time to complete forms due to motor or cognitive disabilities do not lose their typed work if logged out.",
+      "realWorldExample": "A banking session times out, but after logging back in, the user's filled-out wire transfer form is completely restored."
+    },
+    "personaBreakdown": {
+      "designer": "Design re-authentication modal dialogs that preserve current page state.",
+      "developer": "Store form state locally in encrypted sessionStorage during re-auth.",
+      "qa": "Let session expire while filling out form, log back in, and verify data remains intact.",
+      "productManager": "Require state preservation across re-authentication flows."
+    },
+    "testingGuide": {
+      "automated": "Manual session expiration audit.",
+      "manualKeyboard": "Test re-authentication modal using keyboard.",
+      "screenReader": "Verify screen reader announces saved state restoration.",
+      "codeSnippetGood": "/* Form data saved securely to sessionStorage and restored after login */",
+      "codeSnippetBad": "/* Session expires and redirects to home page, wiping 30 minutes of typed form data */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "progress-saved"
+      ],
+      "evolutionNote": "WCAG 3 handles re-authentication under progress-saved outcomes."
+    }
+  },
+  {
+    "id": "2.2.6",
+    "num": "2.2.6",
+    "name": "Timeouts",
+    "level": "AAA",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "Users are warned about the duration of any user inactivity that could cause data loss.",
+      "whyItMatters": "Prevents surprise session expirations for users taking extra time to complete forms.",
+      "realWorldExample": "A session timeout modal appears 5 minutes before expiration, explicitly stating 'Your session will expire in 5 minutes due to inactivity.'"
+    },
+    "personaBreakdown": {
+      "designer": "Design prominent session timeout warning dialogs.",
+      "developer": "Implement inactivity timer events that display Accessible Warning Modals before session expiration.",
+      "qa": "Wait for inactivity threshold and verify warning dialog pops up with extension option.",
+      "productManager": "Require timeout warnings across all authenticated user workflows."
+    },
+    "testingGuide": {
+      "automated": "Manual timeout alert audit.",
+      "manualKeyboard": "Focus extend button in timeout warning modal.",
+      "screenReader": "Verify alert role announces timeout warning asynchronously.",
+      "codeSnippetGood": "<div role=\"alertdialog\" aria-label=\"Session Timeout Warning\">Session expires in 5 mins...</div>",
+      "codeSnippetBad": "/* System times out silently with zero advance warning */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "no-artificial-time-limits"
+      ],
+      "evolutionNote": "WCAG 3 integrates timeout warnings under time limit outcomes."
+    }
+  },
+  {
+    "id": "2.3.3",
+    "num": "2.3.3",
+    "name": "Animation from Interactions",
+    "level": "AAA",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "Motion animation triggered by user interaction can be disabled, unless the animation is essential.",
+      "whyItMatters": "Users with vestibular spectrum disorders experience severe nausea or dizziness from parallax scrolling or zoom animations.",
+      "realWorldExample": "A website respects `prefers-reduced-motion: reduce` by disabling scroll parallax and hover zoom effects."
+    },
+    "personaBreakdown": {
+      "designer": "Design alternative static states for all interaction animations.",
+      "developer": "Wrap all CSS animations in `@media (prefers-reduced-motion: reduce)` media queries.",
+      "qa": "Enable 'Reduce Motion' in OS settings and verify UI animations are suppressed.",
+      "productManager": "Require reduced motion compliance in design system animation guidelines."
+    },
+    "testingGuide": {
+      "automated": "axe-core checks for prefers-reduced-motion queries.",
+      "manualKeyboard": "Trigger hover/focus effects with reduced motion enabled.",
+      "screenReader": "Confirm visual stability.",
+      "codeSnippetGood": "@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }",
+      "codeSnippetBad": "/* Parallax scrolling animations play regardless of OS motion preferences */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "animation-and-movement"
+      ],
+      "evolutionNote": "WCAG 3 maintains motion controls under animation-and-movement outcomes."
+    }
+  },
+  {
+    "id": "2.4.5",
+    "num": "2.4.5",
+    "name": "Multiple Ways",
+    "level": "AA",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "Provide more than one way to locate a web page within a set of web pages (e.g. site search, sitemap, main navigation).",
+      "whyItMatters": "Different users have different preferences for finding information; some prefer top navigation menus, while others rely on search bars or sitemaps.",
+      "realWorldExample": "A corporate website provides top header navigation menus, a header search input, and a footer sitemap link."
+    },
+    "personaBreakdown": {
+      "designer": "Design persistent search bars and sitemap footers across all site layouts.",
+      "developer": "Implement header search inputs and semantic footer sitemap links.",
+      "qa": "Verify users can find pages using both main menu and search/sitemap.",
+      "productManager": "Require multi-path navigation across site architecture."
+    },
+    "testingGuide": {
+      "automated": "axe-core checks for navigation landmarks.",
+      "manualKeyboard": "Tab through search bar, navigation menu, and footer sitemap links.",
+      "screenReader": "Confirm screen reader announces search and navigation landmarks.",
+      "codeSnippetGood": "<!-- Top Nav + Search Bar + Footer Sitemap link provided -->",
+      "codeSnippetBad": "<!-- Site only offers a single nested hamburger menu with zero search or sitemap option -->"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "navigating-content"
+      ],
+      "evolutionNote": "WCAG 3 incorporates multiple ways under navigating-content outcomes."
+    }
+  },
+  {
+    "id": "2.4.12",
+    "num": "2.4.12",
+    "name": "Focus Not Obscured (Minimum)",
+    "level": "AA",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "When an item receives keyboard focus, the item is at least partially visible and not entirely hidden behind sticky headers, banners, or popups.",
+      "whyItMatters": "Keyboard users must see what element is currently focused to navigate confidently.",
+      "realWorldExample": "When tabbing down a long page, focused links scroll into view below sticky top navigation bars."
+    },
+    "personaBreakdown": {
+      "designer": "Design scroll padding for sticky header regions.",
+      "developer": "Apply `scroll-margin-top` in CSS to account for fixed header heights.",
+      "qa": "Tab through long form pages with sticky header active; verify focus box is never hidden behind header.",
+      "productManager": "Include focus margin specs in header component design specs."
+    },
+    "testingGuide": {
+      "automated": "axe-core focus visibility rules.",
+      "manualKeyboard": "Tab through page with sticky header pinned.",
+      "screenReader": "Confirm focused item stays visible.",
+      "codeSnippetGood": "html { scroll-padding-top: 80px; } /* Ensures focused element stays below sticky header */",
+      "codeSnippetBad": "/* Fixed header covers focused form inputs as user tabs down page */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "focus-indicator-visible"
+      ],
+      "evolutionNote": "WCAG 3 handles focus obscuration under focus-indicator-visible outcomes."
+    }
+  },
+  {
+    "id": "2.4.13",
+    "num": "2.4.13",
+    "name": "Focus Not Obscured (Enhanced)",
+    "level": "AAA",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "When an item receives keyboard focus, no part of the item is obscured by author-created content (100% of focus box is completely visible).",
+      "whyItMatters": "Provides maximum visibility for keyboard users so zero pixels of the focused element are covered.",
+      "realWorldExample": "A sticky chat widget automatically repositions or hides if keyboard focus lands on a link behind it."
+    },
+    "personaBreakdown": {
+      "designer": "Design floating widgets to avoid overlapping focusable elements.",
+      "developer": "Dynamically adjust floating overlay positions on element focus.",
+      "qa": "Tab through all page elements and verify 100% of focused boundary box is visible.",
+      "productManager": "Require zero focus obscuration across floating UI components."
+    },
+    "testingGuide": {
+      "automated": "Manual focus visibility audit.",
+      "manualKeyboard": "Tab through page and inspect floating widget overlaps.",
+      "screenReader": "Confirm full visibility.",
+      "codeSnippetGood": "/* Floating widgets reposition to avoid overlapping focused content elements */",
+      "codeSnippetBad": "/* Sticky chat widget covers bottom half of focused button */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "focus-indicator-visible"
+      ],
+      "evolutionNote": "WCAG 3 maps 2.4.13 to enhanced focus visibility outcomes."
+    }
+  },
+  {
+    "id": "2.5.1",
+    "num": "2.5.1",
+    "name": "Pointer Gestures",
+    "level": "A",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "All functionality that operates using multipoint or path-based gestures (like pinch-zoom, swiping, or two-finger drag) can be operated with a single pointer without a path-based gesture.",
+      "whyItMatters": "Users with motor disabilities or users using head pointers/eye trackers cannot perform complex multi-finger gestures.",
+      "realWorldExample": "An interactive map allows two-finger pinch-zooming but ALSO provides accessible '+' and '-' zoom buttons."
+    },
+    "personaBreakdown": {
+      "designer": "Include single-tap alternative buttons for all gesture-based controls.",
+      "developer": "Provide click event handlers on visible button controls alongside touch gesture handlers.",
+      "qa": "Test gesture widgets using single mouse clicks or single-finger taps.",
+      "productManager": "Require single-pointer button alternatives for gesture features."
+    },
+    "testingGuide": {
+      "automated": "axe-core checks pointer event handlers.",
+      "manualKeyboard": "Verify single-tap button controls.",
+      "screenReader": "Verify accessible names for single-tap gesture buttons.",
+      "codeSnippetGood": "<button aria-label=\"Zoom in\" onclick=\"zoomIn()\"><svg>...</svg></button>",
+      "codeSnippetBad": "/* Map view can only be zoomed by performing a two-finger pinch gesture */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "interactive-elements-distinguishable"
+      ],
+      "evolutionNote": "WCAG 3 includes pointer gesture alternatives under gesture outcomes."
+    }
+  },
+  {
+    "id": "2.5.2",
+    "num": "2.5.2",
+    "name": "Pointer Cancellation",
+    "level": "A",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "For functionality that can be operated using a single pointer, completion of the function is on the up-event (like mouseup or touchend), or a mechanism is available to abort the function before completion.",
+      "whyItMatters": "Prevents accidental clicks when users accidentally touch an screen element and want to drag their finger away before releasing.",
+      "realWorldExample": "A button action triggers on `click` (mouseup), allowing users to slide off the button to cancel the press."
+    },
+    "personaBreakdown": {
+      "designer": "Design interactive controls expecting standard up-event triggers.",
+      "developer": "Use standard `click` or `mouseup` event handlers instead of `mousedown` or `touchstart`.",
+      "qa": "Press down mouse on button, drag cursor outside button, release mouse; verify action did NOT execute.",
+      "productManager": "Prohibit mousedown/touchstart action triggers in technical specs."
+    },
+    "testingGuide": {
+      "automated": "axe-core checks pointer event listener types.",
+      "manualKeyboard": "Inspect event listener bindings.",
+      "screenReader": "Confirm standard click activation.",
+      "codeSnippetGood": "<button onclick=\"submitForm()\">Submit</button>",
+      "codeSnippetBad": "<button onmousedown=\"submitForm()\">Submit</button> /* Triggers instantly on down-press */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "interactive-elements-distinguishable"
+      ],
+      "evolutionNote": "WCAG 3 handles pointer cancellation under input operation outcomes."
+    }
+  },
+  {
+    "id": "2.5.4",
+    "num": "2.5.4",
+    "name": "Motion Actuation",
+    "level": "A",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "Functionality triggered by device motion (like shaking or tilting a phone) can also be operated by conventional user interface components, and motion can be disabled.",
+      "whyItMatters": "Users with motor impairments who have mobile devices mounted to wheelchairs cannot shake or tilt their device.",
+      "realWorldExample": "A mobile app allows shaking device to undo typing, but ALSO provides an 'Undo' button and an option to turn off shake-to-undo."
+    },
+    "personaBreakdown": {
+      "designer": "Include UI button fallbacks for all device-motion features.",
+      "developer": "Provide accessible button triggers and a setting to disable `devicemotion` listeners.",
+      "qa": "Disable device motion in app settings and verify UI button triggers operate feature.",
+      "productManager": "Require motion actuation toggles and button fallbacks in mobile app specs."
+    },
+    "testingGuide": {
+      "automated": "Manual mobile device testing.",
+      "manualKeyboard": "Verify UI undo button is keyboard focusable.",
+      "screenReader": "Confirm screen reader announces undo button.",
+      "codeSnippetGood": "<button onclick=\"undo()\">Undo Typing</button>",
+      "codeSnippetBad": "/* App undo feature ONLY works by physically shaking device */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "user-control"
+      ],
+      "evolutionNote": "WCAG 3 includes motion actuation fallbacks under user-control outcomes."
+    }
+  },
+  {
+    "id": "2.5.6",
+    "num": "2.5.6",
+    "name": "Concurrent Input Mechanisms",
+    "level": "AAA",
+    "principle": "Operable",
+    "plainEnglish": {
+      "summary": "Web content does not restrict use of input mechanisms available on a device (e.g. allowing users to switch freely between mouse, keyboard, touch, and stylus).",
+      "whyItMatters": "Users frequently switch between touchscreens, external mice, and keyboards depending on task context.",
+      "realWorldExample": "A user tabs using keyboard, then taps a touchscreen button, and then uses a mouse without the app blocking any input mode."
+    },
+    "personaBreakdown": {
+      "designer": "Design components supporting simultaneous touch, hover, and focus states.",
+      "developer": "Avoid locking input modes based on initial device touch detection.",
+      "qa": "Switch between mouse, touchscreen, and keyboard on touchscreen laptop during single session.",
+      "productManager": "Prohibit single-input lockouts in device support guidelines."
+    },
+    "testingGuide": {
+      "automated": "axe-core pointer input validation.",
+      "manualKeyboard": "Test switching between input devices.",
+      "screenReader": "Confirm seamless input switching.",
+      "codeSnippetGood": "/* Event listeners support click, touch, and keydown seamlessly */",
+      "codeSnippetBad": "/* App detects touchscreen on load and disables mouse hover listeners entirely */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "user-control"
+      ],
+      "evolutionNote": "WCAG 3 integrates input mode flexibility under user-control outcomes."
+    }
+  },
+  {
+    "id": "3.1.6",
+    "num": "3.1.6",
+    "name": "Pronunciation",
+    "level": "AAA",
+    "principle": "Understandable",
+    "plainEnglish": {
+      "summary": "A mechanism is available for identifying specific pronunciation of words where meaning is ambiguous without knowing pronunciation.",
+      "whyItMatters": "Helps screen readers and cognitive readers pronounce heteronyms correctly (e.g., 'read' past vs present, 'desert' verb vs noun).",
+      "realWorldExample": "Ambiguous words use ruby annotations or explicit IPA pronunciation guides."
+    },
+    "personaBreakdown": {
+      "designer": "Design inline pronunciation tooltips for ambiguous words.",
+      "developer": "Use HTML `<ruby>` / `<rt>` tags or SSML annotations.",
+      "qa": "Test pronunciation guides in NVDA/VoiceOver.",
+      "productManager": "Provide pronunciation specs for complex medical/legal terminology."
+    },
+    "testingGuide": {
+      "automated": "Manual pronunciation audit.",
+      "manualKeyboard": "Tab to pronunciation indicators.",
+      "screenReader": "Verify screen reader speaks correct pronunciation.",
+      "codeSnippetGood": "<ruby>desert<rt>/dɪˈzɜːrt/</rt></ruby>",
+      "codeSnippetBad": "<!-- Using heteronym words with zero context or pronunciation guidance -->"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "clear-language"
+      ],
+      "evolutionNote": "WCAG 3 covers pronunciation under clear-language outcomes."
+    }
+  },
+  {
+    "id": "3.2.3",
+    "num": "3.2.3",
+    "name": "Consistent Navigation",
+    "level": "AA",
+    "principle": "Understandable",
+    "plainEnglish": {
+      "summary": "Navigational mechanisms that are repeated on multiple web pages occur in the same relative order each time they are repeated.",
+      "whyItMatters": "Users with cognitive disabilities or visual impairments rely on predictable navigation locations across pages.",
+      "realWorldExample": "The main navigation bar header appears in identical order (Home, About, Products, Contact) on every page."
+    },
+    "personaBreakdown": {
+      "designer": "Design global header and footer navigation components used consistently across all template views.",
+      "developer": "Use shared layout components for headers, nav bars, and footers.",
+      "qa": "Navigate across 10 pages and verify navigation order remains 100% identical.",
+      "productManager": "Enforce global template header reuse across all team repositories."
+    },
+    "testingGuide": {
+      "automated": "axe-core checks navigation landmark order.",
+      "manualKeyboard": "Tab through top nav across multiple pages.",
+      "screenReader": "Confirm navigation menu structure remains predictable.",
+      "codeSnippetGood": "<!-- Shared layout component renders identical header menu on all routes -->",
+      "codeSnippetBad": "<!-- Header navigation order changes arbitrarily between Home and Contact pages -->"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "consistency-across-views"
+      ],
+      "evolutionNote": "WCAG 3 maps 3.2.3 directly to consistency-across-views outcomes."
+    }
+  },
+  {
+    "id": "3.2.4",
+    "num": "3.2.4",
+    "name": "Consistent Identification",
+    "level": "AA",
+    "principle": "Understandable",
+    "plainEnglish": {
+      "summary": "Components that have the same functionality within a set of web pages are identified consistently.",
+      "whyItMatters": "Users recognize functional elements (like a Search icon or Help button) when they look and act consistently site-wide.",
+      "realWorldExample": "A magnifying glass icon always represents 'Search' and uses `aria-label=\"Search\"` across every page."
+    },
+    "personaBreakdown": {
+      "designer": "Create shared design system icon components.",
+      "developer": "Reuse standardized UI component libraries across app modules.",
+      "qa": "Inspect buttons across site to verify identical names and icons for identical functions.",
+      "productManager": "Enforce component design system reuse across engineering teams."
+    },
+    "testingGuide": {
+      "automated": "axe-core checks accessible name consistency.",
+      "manualKeyboard": "Inspect icon button labels across pages.",
+      "screenReader": "Confirm screen reader hears consistent accessible names.",
+      "codeSnippetGood": "<button aria-label=\"Search\"><svg>...</svg></button>",
+      "codeSnippetBad": "<!-- Search button labeled 'Search' on page 1, 'Find' on page 2, and 'Go' on page 3 -->"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "consistency-across-views"
+      ],
+      "evolutionNote": "WCAG 3 handles consistent identification under consistency-across-views outcomes."
+    }
+  },
+  {
+    "id": "3.3.3",
+    "num": "3.3.3",
+    "name": "Error Suggestion",
+    "level": "AA",
+    "principle": "Understandable",
+    "plainEnglish": {
+      "summary": "If an input error is automatically detected and suggestions for correction are known, the suggestion is provided to the user.",
+      "whyItMatters": "Users with cognitive disabilities or dyslexic readers benefit from explicit correction suggestions rather than generic error messages.",
+      "realWorldExample": "When a user types an invalid date format '13/25/2026', the error text states 'Invalid month. Enter month between 01 and 12 (MM/DD/YYYY)'."
+    },
+    "personaBreakdown": {
+      "designer": "Design detailed error message text patterns with correction suggestions.",
+      "developer": "Provide explicit error text tied to inputs via `aria-describedby`.",
+      "qa": "Enter common invalid data into form fields; verify error message tells user how to fix it.",
+      "productManager": "Require actionable error suggestions in form validation guidelines."
+    },
+    "testingGuide": {
+      "automated": "axe-core checks aria-describedby error message links.",
+      "manualKeyboard": "Tab to invalid input and inspect error text.",
+      "screenReader": "Verify screen reader reads helpful error correction message.",
+      "codeSnippetGood": "<input id=\"date\" aria-invalid=\"true\" aria-describedby=\"date-err\"><span id=\"date-err\">Please enter MM/DD/YYYY format.</span>",
+      "codeSnippetBad": "<input id=\"date\"><span class=\"red-text\">Invalid input</span>"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "error-handling"
+      ],
+      "evolutionNote": "WCAG 3 maps 3.3.3 to error-handling outcomes."
+    }
+  },
+  {
+    "id": "3.3.4",
+    "num": "3.3.4",
+    "name": "Error Prevention (Legal, Financial, Data)",
+    "level": "AA",
+    "principle": "Understandable",
+    "plainEnglish": {
+      "summary": "For web pages that cause legal commitments or financial transactions, submissions are reversible, verified, or confirmed before final submission.",
+      "whyItMatters": "Prevents accidental bank transfers, order purchases, or legal contract agreements.",
+      "realWorldExample": "An e-commerce checkout displays an explicit 'Review Order' step before final payment authorization."
+    },
+    "personaBreakdown": {
+      "designer": "Design confirmation review steps for financial and legal forms.",
+      "developer": "Require explicit confirmation step before processing POST actions.",
+      "qa": "Test order checkout flow; confirm user can review and edit cart data before final purchase.",
+      "productManager": "Mandate confirmation review steps for all transaction workflows."
+    },
+    "testingGuide": {
+      "automated": "Manual workflow audit.",
+      "manualKeyboard": "Tab through confirmation review screen.",
+      "screenReader": "Confirm screen reader announces transaction summary details.",
+      "codeSnippetGood": "<!-- Review & Confirm step required before final payment execution -->",
+      "codeSnippetBad": "<!-- One-click button executes non-refundable $1000 bank transfer with zero confirmation -->"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "going-back-supported",
+        "progress-saved"
+      ],
+      "evolutionNote": "WCAG 3 includes 3.3.4 in transaction safety outcomes."
+    }
+  },
+  {
+    "id": "3.3.9",
+    "num": "3.3.9",
+    "name": "Accessible Authentication (Enhanced)",
+    "level": "AAA",
+    "principle": "Understandable",
+    "plainEnglish": {
+      "summary": "A cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process.",
+      "whyItMatters": "Eliminates all cognitive memory traps during login by supporting password managers, WebAuthn passkeys, or magic link emails.",
+      "realWorldExample": "Login screen fully supports copy-pasting passwords, browser autofill, and biometrics (Touch ID / Face ID)."
+    },
+    "personaBreakdown": {
+      "designer": "Design login screens supporting biometrics and passkeys.",
+      "developer": "Avoid blocking copy-paste or autofill on password fields.",
+      "qa": "Verify password manager can autofill credentials without script blocking.",
+      "productManager": "Require WebAuthn/Passkey support in authentication architecture."
+    },
+    "testingGuide": {
+      "automated": "axe-core autocomplete validation.",
+      "manualKeyboard": "Paste password from clipboard into password field.",
+      "screenReader": "Confirm accessible login flow.",
+      "codeSnippetGood": "<input type=\"password\" id=\"pwd\" autocomplete=\"current-password\">",
+      "codeSnippetBad": "<input type=\"password\" onpaste=\"return false;\"> /* Blocks password manager paste */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "cognitive-test-alternatives-available"
+      ],
+      "evolutionNote": "WCAG 3 maps 3.3.9 to cognitive-test-alternatives-available outcomes."
+    }
+  },
+  {
+    "id": "4.1.1",
+    "num": "4.1.1",
+    "name": "Parsing (Obsolete)",
+    "level": "A",
+    "principle": "Robust",
+    "plainEnglish": {
+      "summary": "In WCAG 2.0/2.1, required well-formed HTML. Officially obsolete and removed in WCAG 2.2 because modern browsers handle parsing errors automatically.",
+      "whyItMatters": "Modern web browsers and assistive technologies build DOM trees reliably without relying on HTML 4 syntax rules.",
+      "realWorldExample": "WCAG 2.2 errata formally retired 4.1.1. Focus on semantic HTML tags and valid ARIA attributes instead."
+    },
+    "personaBreakdown": {
+      "designer": "N/A - Technical parser rule.",
+      "developer": "Rely on standard HTML validation tools; focus accessibility efforts on ARIA and semantics.",
+      "qa": "Parsing bugs are no longer scored as WCAG 2.2 accessibility failures unless they affect ARIA roles.",
+      "productManager": "Update accessibility policy to reflect 4.1.1 removal in WCAG 2.2."
+    },
+    "testingGuide": {
+      "automated": "axe-core ignores 4.1.1 in WCAG 2.2 ruleset.",
+      "manualKeyboard": "N/A.",
+      "screenReader": "N/A.",
+      "codeSnippetGood": "<div id=\"example\">Semantic Content</div>",
+      "codeSnippetBad": "<!-- Duplicate IDs are now audited under 1.3.1 / 4.1.2 rather than 4.1.1 -->"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "text-detectable"
+      ],
+      "evolutionNote": "WCAG 3 omits parsing completely in favor of outcome-based DOM state testing."
+    }
   }
 ]
