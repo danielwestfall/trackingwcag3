@@ -1,0 +1,31 @@
+{
+  "slug": "interactive-element-names-available",
+  "plainEnglish": {
+    "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+    "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+    "realWorldExample": "An icon-only magnifying glass button must have a persistent name like 'Search' via `aria-label` or visible text plus tooltip."
+  },
+  "personaBreakdown": {
+    "designer": "Pair icon-only buttons with persistent text labels or visible tooltips.",
+    "developer": "Provide unique text or `aria-label` for every interactive control.",
+    "qa": "Verify that screen readers announce a meaningful name for every button and link.",
+    "productManager": "Ensure design assets include accessible names for icon controls."
+  },
+  "statusSummary": {
+    "inclusionLikelihood": "High (90%+)",
+    "workingGroupDebate": "W3C consensus is strong on requiring persistent names; discussions focus on icon-only controls and dynamic aria-labels.",
+    "keyChallenges": "Ensuring icon-only interfaces remain accessible without cluttering visual layouts."
+  },
+  "testingGuide": {
+    "automated": "axe-core `button-name` and `link-name` rules.",
+    "manualKeyboard": "Tab to control, verify outline and visual label.",
+    "screenReader": "Screen reader speaks label upon focus.",
+    "codeSnippetGood": "<button aria-label=\"Search Products\"><svg></svg></button>",
+    "codeSnippetBad": "<button><svg></svg></button>"
+  },
+  "wcag22Comparison": {
+    "matchingCriteria": ["1.1.1 Non-text Content", "2.5.3 Label in Name", "4.1.2 Name, Role, Value"],
+    "strictnessDelta": "More Strict",
+    "deltaExplanation": "WCAG 3 unifies visual and programmatic naming rules and strongly recommends persistent visible text pairing over aria-label alone."
+  }
+}

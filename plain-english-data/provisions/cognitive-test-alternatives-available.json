@@ -1,0 +1,31 @@
+{
+  "slug": "cognitive-test-alternatives-available",
+  "plainEnglish": {
+    "summary": "Users must not be forced to solve puzzles, recall passwords, or perform mental math to complete tasks unless an alternative login/verification method exists.",
+    "whyItMatters": "Cognitive tests like CAPTCHAs lock out users with memory loss, dyslexia, or brain injuries.",
+    "realWorldExample": "Offering passkeys, SMS single-use codes, or email magic links alongside standard password login."
+  },
+  "personaBreakdown": {
+    "designer": "Design passwordless login options (passkeys, magic links).",
+    "developer": "Ensure input fields allow copy-pasting passwords and integrate WebAuthn API.",
+    "qa": "Verify CAPTCHA alternatives (like Cloudflare Turnstile or audio/email options) work.",
+    "productManager": "Incorporate WebAuthn passkey support in product roadmap."
+  },
+  "statusSummary": {
+    "inclusionLikelihood": "High (90%+)",
+    "workingGroupDebate": "W3C consensus is high due to the rise of WebAuthn and passkeys replacing traditional passwords.",
+    "keyChallenges": "Ensuring security compliance while eliminating cognitive friction."
+  },
+  "testingGuide": {
+    "automated": "Check for `onpaste=\"return false\"` on input fields.",
+    "manualKeyboard": "Test copy-pasting into password inputs.",
+    "screenReader": "Test screen reader speech during authentication flows.",
+    "codeSnippetGood": "<input type=\"password\" autocomplete=\"current-password\">",
+    "codeSnippetBad": "<input type=\"password\" onpaste=\"return false;\">"
+  },
+  "wcag22Comparison": {
+    "matchingCriteria": ["3.3.8 Accessible Authentication (Minimum)"],
+    "strictnessDelta": "Equivalent",
+    "deltaExplanation": "Directly carries forward WCAG 2.2 3.3.8 into the cognitive task outcome area."
+  }
+}

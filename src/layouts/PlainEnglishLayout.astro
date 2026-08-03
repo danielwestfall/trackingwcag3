@@ -1,0 +1,254 @@
+---
+interface Props {
+  title: string;
+  activeTab?: "wcag3" | "wcag22" | "removals";
+}
+
+const { title, activeTab = "wcag3" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Plain English WCAG Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header class="hub-header">
+      <div class="header-container">
+        <div class="brand">
+          <span class="brand-badge">a11y teacher edition</span>
+          <h1 class="brand-title"><a href="/plain-english/">Plain English Accessibility Hub</a></h1>
+          <p class="brand-subtitle">Translating W3C Standards for Designers, Developers, QA & Product teams</p>
+        </div>
+
+        <nav class="hub-nav" aria-label="Standard Version Selection">
+          <a href="/plain-english/" class={`nav-tab ${activeTab === "wcag3" ? "active" : ""}`}>
+            <span class="tab-icon">✨</span>
+            <span class="tab-text">WCAG 3 Explorer</span>
+            <span class="status-pill status-draft">W3C Draft</span>
+          </a>
+          <a href="/plain-english/wcag22/" class={`nav-tab ${activeTab === "wcag22" ? "active" : ""}`}>
+            <span class="tab-icon">📘</span>
+            <span class="tab-text">WCAG 2.2 Reference</span>
+            <span class="status-pill status-standard">Current Standard</span>
+          </a>
+          <a href="/plain-english/removals/" class={`nav-tab ${activeTab === "removals" ? "active" : ""}`}>
+            <span class="tab-icon">🔄</span>
+            <span class="tab-text">Removals & Shifts</span>
+            <span class="status-pill status-removed">2.2 vs 3</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="hub-main" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="hub-footer">
+      <div class="footer-container">
+        <p>Decoupled Updatable Plain English Layer &copy; 2026. Built on W3C WCAG 3 source repo. Run <code>npm run sync:plain-english</code> after <code>git pull</code> to update dataset.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-blue: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-purple: #c084fc;
+    --status-mature: #34d399;
+    --status-developing: #fbbf24;
+    --status-exploratory: #f43f5e;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-blue);
+    color: #0f172a;
+    padding: 12px 24px;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    z-index: 1000;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 16px;
+  }
+
+  .hub-header {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 20px 0;
+  }
+
+  .header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .brand-badge {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+  }
+
+  .brand-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .brand-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .brand-title a:hover {
+    color: var(--accent-blue);
+  }
+
+  .brand-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .hub-nav {
+    display: flex;
+    gap: 12px;
+    background: rgba(30, 41, 59, 0.8);
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+  }
+
+  .nav-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+
+  .nav-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-tab.active {
+    background: var(--accent-blue);
+    color: #0f172a;
+  }
+  .nav-tab.active .status-pill {
+    background: rgba(15, 23, 42, 0.2);
+    color: #0f172a;
+  }
+
+  .status-pill {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+  .status-draft {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+  }
+  .status-standard {
+    background: rgba(52, 211, 153, 0.2);
+    color: #34d399;
+  }
+  .status-removed {
+    background: rgba(192, 132, 252, 0.2);
+    color: #c084fc;
+  }
+
+  .hub-main {
+    flex: 1;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .hub-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 24px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    background: #090d16;
+  }
+
+  .footer-container code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent-blue);
+    font-family: var(--font-mono);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 3px;
+  }
+</style>

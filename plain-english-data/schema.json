@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WCAG3ProvisionAnnotation",
+  "type": "object",
+  "required": [
+    "slug",
+    "plainEnglish",
+    "personaBreakdown",
+    "statusSummary",
+    "testingGuide",
+    "wcag22Comparison"
+  ],
+  "properties": {
+    "slug": { "type": "string" },
+    "plainEnglish": {
+      "type": "object",
+      "required": ["summary", "whyItMatters", "realWorldExample"],
+      "properties": {
+        "summary": { "type": "string" },
+        "whyItMatters": { "type": "string" },
+        "realWorldExample": { "type": "string" }
+      }
+    },
+    "personaBreakdown": {
+      "type": "object",
+      "required": ["designer", "developer", "qa", "productManager"],
+      "properties": {
+        "designer": { "type": "string" },
+        "developer": { "type": "string" },
+        "qa": { "type": "string" },
+        "productManager": { "type": "string" }
+      }
+    },
+    "statusSummary": {
+      "type": "object",
+      "required": ["inclusionLikelihood", "workingGroupDebate", "keyChallenges"],
+      "properties": {
+        "inclusionLikelihood": {
+          "type": "string",
+          "enum": ["High (90%+)", "Medium (60-89%)", "Low/Exploratory (<60%)", "Under Discussion"]
+        },
+        "workingGroupDebate": { "type": "string" },
+        "keyChallenges": { "type": "string" }
+      }
+    },
+    "testingGuide": {
+      "type": "object",
+      "required": ["automated", "manualKeyboard", "screenReader", "codeSnippetGood", "codeSnippetBad"],
+      "properties": {
+        "automated": { "type": "string" },
+        "manualKeyboard": { "type": "string" },
+        "screenReader": { "type": "string" },
+        "codeSnippetGood": { "type": "string" },
+        "codeSnippetBad": { "type": "string" }
+      }
+    },
+    "wcag22Comparison": {
+      "type": "object",
+      "required": ["matchingCriteria", "strictnessDelta", "deltaExplanation"],
+      "properties": {
+        "matchingCriteria": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "strictnessDelta": {
+          "type": "string",
+          "enum": ["More Strict", "Less Strict", "Equivalent", "New / Broader Scope"]
+        },
+        "deltaExplanation": { "type": "string" }
+      }
+    }
+  }
+}

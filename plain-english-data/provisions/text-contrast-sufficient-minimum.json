@@ -1,0 +1,31 @@
+{
+  "slug": "text-contrast-sufficient-minimum",
+  "plainEnglish": {
+    "summary": "Text must maintain strong visual contrast against its background so it can be easily read by everyone, including people with low vision or under bright light.",
+    "whyItMatters": "Faint or low-contrast text forces users to strain their eyes and makes reading impossible for low-vision users.",
+    "realWorldExample": "Dark grey text (#333333) on a white background (#ffffff) provides a high 12.6:1 contrast ratio."
+  },
+  "personaBreakdown": {
+    "designer": "Test all typography colors against backgrounds using APCA and WCAG contrast tools.",
+    "developer": "Ensure CSS custom properties enforce compliant foreground and background hex values.",
+    "qa": "Audit text elements across light and dark themes using Chrome DevTools Color Picker.",
+    "productManager": "Reject brand color choices that cause accessibility failures."
+  },
+  "statusSummary": {
+    "inclusionLikelihood": "High (90%+)",
+    "workingGroupDebate": "W3C working group is transitioning from WCAG 2 ratio formulas to APCA (Advanced Perceptual Contrast Algorithm) for better perceptual accuracy.",
+    "keyChallenges": "Balancing dark mode aesthetics with high perceptual readability."
+  },
+  "testingGuide": {
+    "automated": "axe-core color contrast audit; Lighthouse contrast test.",
+    "manualKeyboard": "Inspect text readability across viewport zoom levels (up to 400%).",
+    "screenReader": "Visual readability check for sighted screen reader users.",
+    "codeSnippetGood": ".body-text { color: #2d3748; background: #ffffff; }",
+    "codeSnippetBad": ".body-text { color: #a0aec0; background: #ffffff; }"
+  },
+  "wcag22Comparison": {
+    "matchingCriteria": ["1.4.3 Contrast (Minimum)"],
+    "strictnessDelta": "More Strict",
+    "deltaExplanation": "WCAG 3 incorporates visual context (font weight, spatial frequency, ambient light) rather than fixed static ratios."
+  }
+}
