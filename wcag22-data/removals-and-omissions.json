@@ -4,7 +4,7 @@
     "title": "Conforming Alternate Versions & Page Variations",
     "wcag22Concept": "WCAG 2.2 Conformance Requirement 5.2.2 permitted non-accessible web pages if an accessible 'Conforming Alternate Version' (a secondary accessible page with identical information) was provided.",
     "wcag3Status": "Phased Out / Under Active Redesign",
-    "plainEnglishSummary": "In WCAG 2.2, developers could legally comply by creating a hidden, text-only alternate version of a non-accessible page. WCAG 3 eliminates this 'separate but equal' approach. The primary digital product itself must be accessible.",
+    "plainEnglishSummary": "WCAG 2.2 Conformance Requirement 5.2.2 permitted a qualifying Conforming Alternate Version under defined W3C conditions (see W3C CAV Definition). WCAG 3 draft proposals phase out secondary fallback pages in favor of requiring the primary digital asset itself to be natively accessible across user variations.",
     "workingGroupDebate": "W3C AGWG members broadly agree that alternate versions lead to stale, poorly maintained secondary experiences that stigmatize disabled users. Current W3C discussions focus on page variations (e.g. responsive breakpoints) rather than allowing separate fallback pages.",
     "debateLinks": [
       {

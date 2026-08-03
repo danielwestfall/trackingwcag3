@@ -48,6 +48,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           </a>
         </nav>
       </div>
+
+      {activeTab === "wcag3" && (
+        <div class="working-draft-banner">
+          <span class="draft-badge">⚠️ W3C Working Draft Notice</span>
+          <p>WCAG 3.0 is an active W3C Working Draft in development by the AGWG. Proposed outcomes, scoring models, and assertions represent current design directions subject to ongoing revision. See <a href="https://www.w3.org/TR/wcag-3.0/" target="_blank" rel="noopener noreferrer">official W3C WCAG 3.0 Draft</a>.</p>
+        </div>
+      )}
     </header>
 
     <main id="main-content" class="hub-main" tabindex="-1">
@@ -56,7 +63,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     <footer class="hub-footer">
       <div class="footer-container">
-        <p>Decoupled Updatable Plain English Layer &copy; 2026. Built on W3C WCAG 3 source repo. Run <code>npm run sync:plain-english</code> after <code>git pull</code> to update dataset.</p>
+        <div class="footer-disclaimer">
+          <strong>⚖️ Educational Guidance Disclaimer:</strong>
+          <p>This site provides plain-English analysis and educational summaries of W3C accessibility specifications and working drafts. It does not constitute formal legal advice. Consult qualified accessibility counsel and regional statutory regulations for legal compliance requirements.</p>
+        </div>
+        <p class="footer-copy">Decoupled Updatable Plain English Layer &copy; 2026. Built on W3C WCAG source repositories.</p>
       </div>
     </footer>
   </body>
@@ -224,29 +235,59 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     color: #c084fc;
   }
 
-  .hub-main {
-    flex: 1;
-    max-width: 1280px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 32px 24px;
-  }
-
-  .hub-footer {
-    border-top: 1px solid var(--border-color);
-    padding: 24px 0;
-    text-align: center;
-    color: var(--text-muted);
+  .working-draft-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: var(--radius-md);
+    padding: 10px 18px;
+    margin: 16px 24px 0 24px;
     font-size: 0.85rem;
-    background: #090d16;
+  }
+  .draft-badge {
+    background: #fbbf24;
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .working-draft-banner p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .working-draft-banner a {
+    color: #fbbf24;
+    text-decoration: underline;
   }
 
-  .footer-container code {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
+  .footer-disclaimer {
+    max-width: 900px;
+    margin: 0 auto 16px auto;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px 20px;
+    text-align: left;
+  }
+  .footer-disclaimer strong {
     color: var(--accent-blue);
-    font-family: var(--font-mono);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.88rem;
+  }
+  .footer-disclaimer p {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .footer-copy {
+    color: var(--text-muted);
+    font-size: 0.8rem;
   }
 
   :focus-visible {

@@ -1479,20 +1479,20 @@ const allCriteria = [
   },
   {
     id: "4.1.1", num: "4.1.1", name: "Parsing (Obsolete)", level: "A", principle: "Robust",
-    summary: "In WCAG 2.0/2.1, required well-formed HTML. Officially obsolete and removed in WCAG 2.2 because modern browsers handle parsing errors automatically.",
-    whyItMatters: "Modern web browsers and assistive technologies build DOM trees reliably without relying on HTML 4 syntax rules.",
-    realWorldExample: "WCAG 2.2 errata formally retired 4.1.1. Focus on semantic HTML tags and valid ARIA attributes instead.",
+    summary: "In WCAG 2.0/2.1, SC 4.1.1 (Parsing) required valid HTML syntax. As documented in W3C WCAG 2.2 Section 4.1.1 (https://www.w3.org/TR/WCAG22/#parsing), 4.1.1 was retired as obsolete in WCAG 2.2 because modern user agents build DOM trees automatically.",
+    whyItMatters: "Modern web browsers and assistive technologies build DOM trees reliably without relying on legacy HTML 4 parsing rules.",
+    realWorldExample: "W3C WCAG 2.2 errata formally retired SC 4.1.1. Accessibility audits focus on semantic HTML elements and ARIA roles instead.",
     designer: "N/A - Technical parser rule.",
-    developer: "Rely on standard HTML validation tools; focus accessibility efforts on ARIA and semantics.",
-    qa: "Parsing bugs are no longer scored as WCAG 2.2 accessibility failures unless they affect ARIA roles.",
-    productManager: "Update accessibility policy to reflect 4.1.1 removal in WCAG 2.2.",
-    automated: "axe-core ignores 4.1.1 in WCAG 2.2 ruleset.",
+    developer: "Rely on standard HTML validation tools; focus accessibility efforts on semantic elements and valid ARIA.",
+    qa: "Refer to W3C WCAG 2.2 Section 4.1.1 regarding retired parsing checks; audit semantics under 1.3.1 and 4.1.2.",
+    productManager: "Update internal accessibility testing policies to reflect W3C WCAG 2.2 errata regarding SC 4.1.1.",
+    automated: "Automated testing engines (such as axe-core 4.x) omit automated rules for 4.1.1 in WCAG 2.2 audit presets. Refer to active testing engine documentation.",
     manualKeyboard: "N/A.",
     screenReader: "N/A.",
     codeGood: "<div id=\"example\">Semantic Content</div>",
-    codeBad: "<!-- Duplicate IDs are now audited under 1.3.1 / 4.1.2 rather than 4.1.1 -->",
+    codeBad: "<!-- Duplicate IDs are audited under 1.3.1 / 4.1.2 rather than 4.1.1 -->",
     wcag3Provisions: ["text-detectable"],
-    evolutionNote: "WCAG 3 omits parsing completely in favor of outcome-based DOM state testing."
+    evolutionNote: "WCAG 3 draft omits parsing completely in favor of outcome-based DOM state testing."
   }
 ];
 
