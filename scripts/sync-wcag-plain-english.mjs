@@ -171,15 +171,25 @@ async function sync() {
     console.log(`✅ Loaded ${removalsCatalog.length} WCAG 2.2 vs 3 Removals/Omissions entries`);
   }
 
+  // 4. Load Hottest Debates Data
+  const debatesPath = path.join(rootDir, 'wcag22-data', 'hottest-debates.json');
+  let debatesCatalog = [];
+  if (fs.existsSync(debatesPath)) {
+    debatesCatalog = JSON.parse(fs.readFileSync(debatesPath, 'utf8'));
+    console.log(`🔥 Loaded ${debatesCatalog.length} Hottest W3C Debates entries`);
+  }
+
   // Write outputs to public/data/
   fs.writeFileSync(path.join(publicDataDir, 'wcag3-catalog.json'), JSON.stringify(wcag3Catalog, null, 2));
   fs.writeFileSync(path.join(publicDataDir, 'wcag22-catalog.json'), JSON.stringify(wcag22Catalog, null, 2));
   fs.writeFileSync(path.join(publicDataDir, 'wcag3-removals.json'), JSON.stringify(removalsCatalog, null, 2));
+  fs.writeFileSync(path.join(publicDataDir, 'wcag3-debates.json'), JSON.stringify(debatesCatalog, null, 2));
 
   console.log(`\n🎉 Sync Complete! Output written to public/data/`);
   console.log(`   - WCAG 3 Provisions: ${wcag3Catalog.length}`);
   console.log(`   - WCAG 2.2 Criteria: ${wcag22Catalog.length}`);
   console.log(`   - Removals & Omissions: ${removalsCatalog.length}`);
+  console.log(`   - Hottest W3C Debates: ${debatesCatalog.length}`);
   console.log(`   - Custom Annotations Found: ${wcag3Catalog.length - missingAnnotations.length}`);
   console.log(`   - Fallback Annotations Used: ${missingAnnotations.length}`);
 }

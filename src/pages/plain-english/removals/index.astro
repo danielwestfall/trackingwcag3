@@ -8,6 +8,12 @@ let removalsList: any[] = [];
 if (fs.existsSync(removalsPath)) {
   removalsList = JSON.parse(fs.readFileSync(removalsPath, "utf8"));
 }
+
+const debatesPath = path.join(process.cwd(), "public", "data", "wcag3-debates.json");
+let debatesList: any[] = [];
+if (fs.existsSync(debatesPath)) {
+  debatesList = JSON.parse(fs.readFileSync(debatesPath, "utf8"));
+}
 ---
 
 <PlainEnglishLayout title="WCAG 2.2 vs 3 Removals & Architectural Shifts" activeTab="removals">
@@ -116,6 +122,55 @@ if (fs.existsSync(removalsPath)) {
                   </a>
                 ))}
               </div>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Top 10 Hottest WCAG 3 Working Group Debates & Most Likely Outcomes -->
+  <section class="hottest-debates-section">
+    <div class="debates-header">
+      <h3>🔥 Top 10 Hottest WCAG 3 Working Group Debates & Most Likely Outcomes</h3>
+      <p>Tracking the biggest controversies, working group debates, and active consensus trajectories across the W3C AGWG and Silver Task Force.</p>
+    </div>
+
+    <div class="debates-grid">
+      {debatesList.map((dItem: any, index: number) => (
+        <article class="debate-item-card">
+          <div class="dcard-top">
+            <span class="debate-number">#{index + 1}</span>
+            <span class="debate-category">{dItem.category}</span>
+            <span class="w3c-status-tag">{dItem.w3cStatus}</span>
+          </div>
+
+          <h4 class="debate-topic-title">{dItem.topic}</h4>
+
+          <div class="debate-box">
+            <strong>The Debate:</strong>
+            <p>{dItem.debateSummary}</p>
+          </div>
+
+          <div class="heated-box">
+            <strong>Why It Is Heated:</strong>
+            <p>{dItem.whyItIsHeated}</p>
+          </div>
+
+          <div class="outcome-box">
+            <strong>🎯 Most Likely Outcome as of Now:</strong>
+            <p>{dItem.mostLikelyOutcome}</p>
+          </div>
+
+          {dItem.links && dItem.links.length > 0 && (
+            <div class="dcard-links">
+              {dItem.links.map((l: any) => (
+                <a href={l.url} target="_blank" rel="noopener noreferrer" class="dcard-link-item">
+                  <span class="d-icon">🔗</span>
+                  <span>{l.title}</span>
+                  <span class="ext-sm">&nearr;</span>
+                </a>
+              ))}
             </div>
           )}
         </article>
@@ -406,4 +461,136 @@ if (fs.existsSync(removalsPath)) {
   .link-icon { font-size: 1rem; }
   .link-title { flex: 1; }
   .ext-icon { color: var(--accent-blue); font-weight: 700; }
+
+  /* Hottest Debates Section Styling */
+  .hottest-debates-section {
+    margin-top: 48px;
+    border-top: 2px dashed var(--border-color);
+    padding-top: 36px;
+  }
+  .debates-header h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent-purple);
+    margin-bottom: 6px;
+  }
+  .debates-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .debates-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .debate-item-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.2s ease;
+  }
+  .debate-item-card:hover {
+    border-color: var(--accent-purple);
+  }
+
+  .dcard-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .debate-number {
+    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+  .debate-category {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.1);
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+  .w3c-status-tag {
+    font-size: 0.78rem;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    margin-left: auto;
+  }
+
+  .debate-topic-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .debate-box strong, .heated-box strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .debate-box p, .heated-box p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .outcome-box {
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+  }
+  .outcome-box strong {
+    color: #34d399;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .outcome-box p {
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .dcard-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 12px;
+  }
+  .dcard-link-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+  .dcard-link-item:hover {
+    text-decoration: underline;
+    transform: translateX(3px);
+  }
 </style>

@@ -1,0 +1,127 @@
+[
+  {
+    "id": "apca-vs-legacy-contrast",
+    "topic": "🎨 APCA vs. Legacy 4.5:1 Color Contrast",
+    "category": "Visual & Appearance",
+    "debateSummary": "WCAG 2.x 4.5:1 contrast math fails in dark mode and modern OLED displays. WCAG 3 proposes APCA (Accessible Perceptual Contrast Algorithm), which calculates contrast based on visual perception, font weight, font size, and light-on-dark context.",
+    "whyItIsHeated": "Designers love APCA because it fixes 2.x color flaws. However, developers and automated scanners (axe-core, Lighthouse) struggle because APCA contrast targets change dynamically based on font size and weight rather than a single static ratio.",
+    "mostLikelyOutcome": "Hybrid Dual-Compliance Model: APCA will be recommended as the primary modern method for Bronze/Silver scoring, with a legacy 4.5:1 fallback mapping provided for automated tools and legacy design systems.",
+    "w3cStatus": "Active Draft / Algorithmic Refinement",
+    "links": [
+      { "title": "W3C WCAG 3 Repository: APCA Contrast Discussions", "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+apca" },
+      { "title": "W3C WAI Explainer: Visual Contrast in WCAG 3", "url": "https://www.w3.org/TR/wcag-3.0-explainer/" }
+    ]
+  },
+  {
+    "id": "organizational-assertions",
+    "topic": "📝 Organizational Assertions & Process Self-Reporting",
+    "category": "Conformance & Evaluation",
+    "debateSummary": "Automated tools can only test ~30-40% of accessibility rules. To evaluate qualitative rules (like plain language or clear instructions), WCAG 3 introduces Organizational Assertions—formal statements where an organization documents its testing processes.",
+    "whyItIsHeated": "Proponents argue assertions incentivize real usability testing with disabled users. Critics and legal teams fear corporate self-reporting could become a legal loophole where companies write boilerplate statements to claim compliance without fixing bugs.",
+    "mostLikelyOutcome": "Silver & Gold Tiers Only: Assertions will NOT grant Bronze (base compliance), preventing self-reporting loopholes. Assertions will unlock higher Silver and Gold ratings when paired with verifiable user testing logs.",
+    "w3cStatus": "Under Active Redesign",
+    "links": [
+      { "title": "W3C WCAG 3 Repository: Assertions Framework Discussions", "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+assertions" },
+      { "title": "W3C Silver Subgroup Wiki: Assertions Template & Guidelines", "url": "https://www.w3.org/WAI/GL/task-forces/silver/wiki/Subgroups/Assertions" }
+    ]
+  },
+  {
+    "id": "continuous-points-scoring",
+    "topic": "⚖️ Continuous Points-Based Scoring vs. Binary Pass/Fail",
+    "category": "Conformance & Evaluation",
+    "debateSummary": "In WCAG 2.2, a single missing alt tag on a 1px spacer image technically causes an entire enterprise URL to fail AA compliance. WCAG 3 replaces this with continuous percentage scores (0 to 4 points per outcome) averaged across user task flows.",
+    "whyItIsHeated": "How do you prevent high scores on easy pages (like a homepage) from averaging out or hiding a severe blocker on a critical page (like an un-clickable Checkout button)?",
+    "mostLikelyOutcome": "Points-Based Scoring with Critical Failure Flags: A continuous 0-4 point scale will determine overall score, but 'Critical Failure Flags' will immediately block Bronze if a core user task (like Login or Checkout) is uncompletable.",
+    "w3cStatus": "Consensus Reached on Critical Flags",
+    "links": [
+      { "title": "W3C WCAG 3 Repository: Task-Based Scoring Issues", "url": "https://github.com/w3c/wcag3/issues/125" },
+      { "title": "W3C WCAG 3 Explainer: Outcomes & Scoring System", "url": "https://www.w3.org/TR/wcag-3.0-explainer/#outcomes" }
+    ]
+  },
+  {
+    "id": "eliminating-alternate-versions",
+    "topic": "🚫 Eliminating Conforming Alternate Versions (CAV)",
+    "category": "Architecture & Compliance",
+    "debateSummary": "WCAG 2.2 permitted non-accessible web pages if a secondary accessible 'text-only' alternate version was provided.",
+    "whyItIsHeated": "The W3C Silver Task Force strongly advocates eliminating CAV to end 'separate but equal' digital experiences that stigmatize disabled users. However, enterprise teams with legacy WebGL 3D canvases or complex data visualizations argue that some experiences cannot easily be made natively accessible.",
+    "mostLikelyOutcome": "Complete Elimination of Alternate Pages: Separate text-only fallback sites will be banned. Responsive 'Page Variations' (breakpoints, orientation shifts) within the primary digital product will be the only permitted variation.",
+    "w3cStatus": "Strong Consensus to Exclude CAV",
+    "links": [
+      { "title": "W3C WCAG 3 Discussion #623: Conforming Alternate Versions in WCAG 3", "url": "https://github.com/w3c/wcag3/discussions/623" },
+      { "title": "W3C WCAG 3 Issue #682: Page Variations Conformance Requirement", "url": "https://github.com/w3c/wcag3/issues/682" }
+    ]
+  },
+  {
+    "id": "regulatory-statutory-mapping",
+    "topic": "🏛️ Regulatory & Statutory Mapping (Legal Adoption)",
+    "category": "Legal & Regulatory",
+    "debateSummary": "Laws worldwide (US ADA Title II/III, US Section 508, EU European Accessibility Act, UK Public Sector Regulations) are written specifically around WCAG 2.1 / 2.2 Level AA.",
+    "whyItIsHeated": "Regulators require unambiguous, legally enforceable thresholds. Legal scholars and W3C members are actively debating how governments will legally map WCAG 3's Bronze Level (or specific point thresholds) into statutory law without creating years of legal ambiguity.",
+    "mostLikelyOutcome": "Bronze Level as Statutory Baseline: Global regulators (US DOJ, EU EAA) will adopt Bronze Level as the statutory legal replacement for WCAG 2.2 Level AA.",
+    "w3cStatus": "Active Working Group & Regulatory Advisory Discussion",
+    "links": [
+      { "title": "W3C WCAG 3 Discussion #210: Regulatory Mapping of Bronze Rating Level", "url": "https://github.com/w3c/wcag3/discussions/210" },
+      { "title": "W3C WAI Overview: WCAG 3.0 Development Roadmap", "url": "https://www.w3.org/WAI/wcag3/" }
+    ]
+  },
+  {
+    "id": "target-size-spacing",
+    "topic": "👆 Target Size & Spacing (24x24px vs. 44x44px)",
+    "category": "Input & Operation",
+    "debateSummary": "WCAG 2.2 added 24x24px (AA) and 44x44px (AAA) target size requirements. Modern touchscreens need generous tap targets, but dense desktop data tables struggle with 44px padding.",
+    "whyItIsHeated": "Mobile usability experts push for mandatory 44x44px across all controls, while desktop UI designers argue 44px ruins dense enterprise dashboards and data grids.",
+    "mostLikelyOutcome": "24x24px Minimum Baseline with Spacing Offsets: 24x24px with target spacing will be the Bronze baseline requirement, while 44x44px targets will earn bonus Silver/Gold outcome points.",
+    "w3cStatus": "Active Draft Refinement",
+    "links": [
+      { "title": "W3C WCAG 3 Repository: Target Size & Spacing Guidelines", "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+target+size" }
+    ]
+  },
+  {
+    "id": "cognitive-plain-language",
+    "topic": "📖 Cognitive Accessibility & Plain Language Metrics",
+    "category": "Text & Understanding",
+    "debateSummary": "Plain language is essential for cognitive accessibility, but mathematical readability formulas (like Flesch-Kincaid or Lexile) struggle across technical, legal, and multi-language content.",
+    "whyItIsHeated": "Cognitive advocates want strict readability caps. Content creators and legal teams argue complex medical or legal text cannot be rewritten to a 6th-grade reading level without losing legal precision.",
+    "mostLikelyOutcome": "Mandatory Plain English Summaries at Bronze: Requiring plain-English summary callouts for complex technical/legal documents will be mandatory at Bronze, while full readability scoring will be evaluated under Silver user testing.",
+    "w3cStatus": "Active Working Group Discussion",
+    "links": [
+      { "title": "W3C Cognitive Accessibility Task Force (COGA) Guidelines", "url": "https://www.w3.org/WAI/cognitive/" }
+    ]
+  },
+  {
+    "id": "focus-obscuration",
+    "topic": "🔍 Focus Obscuration & Floating UI Overlays",
+    "category": "Navigation & Focus",
+    "debateSummary": "Sticky top headers, bottom cookie banners, and floating chat widgets frequently cover focused input fields, disorienting keyboard users.",
+    "whyItIsHeated": "WCAG 2.2 introduced Focus Not Obscured (2.4.12 AA / 2.4.13 AAA). Developers argue scroll padding and z-index layers are difficult to automate across responsive breakpoints.",
+    "mostLikelyOutcome": "Zero Focus Obscuration Requirement at Bronze: Focus obscuration will be strictly prohibited at Bronze. CSS `scroll-margin-top` and `scroll-padding` patterns will be standard requirements across all responsive layouts.",
+    "w3cStatus": "High Consensus for Strict Focus Visibility",
+    "links": [
+      { "title": "W3C WCAG 3 Repository: Focus Obscuration Issues", "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+focus+obscured" }
+    ]
+  },
+  {
+    "id": "os-user-preferences",
+    "topic": "⚙️ OS User Preference Interoperability (`prefers-*`)",
+    "category": "User Control & Settings",
+    "debateSummary": "Users configure OS-level preferences for motion reduction (`prefers-reduced-motion`), high contrast (`prefers-contrast`), dark scheme (`prefers-color-scheme`), and reduced transparency (`prefers-reduced-transparency`).",
+    "whyItIsHeated": "Should web apps be mandated to automatically honor all OS media queries, or should sites be allowed to provide manual in-page toggle buttons instead?",
+    "mostLikelyOutcome": "Mandatory OS Preference Respect: Digital products must automatically honor OS media queries at Bronze, eliminating redundant manual site-level toggles.",
+    "w3cStatus": "High Working Group Consensus",
+    "links": [
+      { "title": "W3C WCAG 3 Repository: User Preferences & Media Features", "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+prefers" }
+    ]
+  },
+  {
+    "id": "automated-vs-manual-testing",
+    "topic": "🤖 Automated vs. Manual Expert Testing Ratio",
+    "category": "Conformance & Evaluation",
+    "debateSummary": "Automated scanners (axe-core, Lighthouse) test fast but only catch ~30-40% of accessibility issues. Manual expert testing catches 100% of barriers but is slower and more expensive.",
+    "whyItIsHeated": "Software companies want 100% automated CI/CD pipeline gating, while accessibility auditors argue automated tools miss critical logical flow barriers.",
+    "mostLikelyOutcome": "Two-Tiered Evaluation Model: Automated testing will remain mandatory for automated rules (like alt text, markup, landmarks), but manual expert testing of complete user journeys will be required to pass Bronze.",
+    "w3cStatus": "Consensus in Evaluation Methodology Subgroup",
+    "links": [
+      { "title": "W3C WCAG 3 Explainer: Testing Methodology & Assertions", "url": "https://www.w3.org/TR/wcag-3.0-explainer/#outcomes" }
+    ]
+  }
+]
