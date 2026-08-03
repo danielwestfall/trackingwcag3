@@ -78,6 +78,9 @@ async function sync() {
     const fileContent = fs.readFileSync(fullPath, 'utf8');
     const { frontmatter, body } = parseFrontmatter(fileContent);
 
+    // Clean W3C custom directive markup like :term[Content] or :term[Word]{#dfn-id}
+    const cleanBodyText = body.replace(/:[a-z]+\[([^\]]+)\](\{[^}]*\})?/gi, '$1');
+
     const rel = path.relative(groupsDir, fullPath);
     const parts = rel.split(/[/\\]/);
     const groupSlug = parts[0];
@@ -92,7 +95,7 @@ async function sync() {
       annotation = JSON.parse(fs.readFileSync(annotationPath, 'utf8'));
     } else {
       missingAnnotations.push(provisionSlug);
-      const cleanBody = body.replace(/:::[a-z]+[\s\S]*?:::/gi, '').replace(/[#*`_]/g, '').trim();
+      const cleanBody = cleanBodyText.replace(/:::[a-z]+[\s\S]*?:::/gi, '').replace(/[#*`_]/g, '').trim();
       const firstSentence = cleanBody.split(/(?<=[.!?])\s+/)[0] || cleanBody;
       const formattedTitle = frontmatter.title || provisionSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
       const statusStr = frontmatter.status || 'exploratory';
@@ -148,7 +151,7 @@ async function sync() {
       issueLabel: frontmatter.issueLabel || '',
       needsAdditionalResearch: frontmatter.needsAdditionalResearch === 'true',
       tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : (frontmatter.tags ? [frontmatter.tags] : []),
-      rawBody: body,
+      rawBody: cleanBodyText,
       annotation
     });
   }
