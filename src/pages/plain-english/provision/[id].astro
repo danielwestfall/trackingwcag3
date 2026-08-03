@@ -22,12 +22,15 @@ const ann = item?.annotation || {};
 const likelihood = ann?.statusSummary?.inclusionLikelihood || "Under Discussion";
 const delta = ann?.wcag22Comparison?.strictnessDelta || "Equivalent";
 const status = item?.status || "exploratory";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
 ---
 
 <PlainEnglishLayout title={`${item.title} - WCAG 3 Plain English`} activeTab="wcag3">
   <!-- Back Button & Header -->
   <div class="detail-header">
-    <a href="/plain-english/" class="back-link">&larr; Back to WCAG 3 Explorer</a>
+    <a href={link("/plain-english/")} class="back-link">&larr; Back to WCAG 3 Explorer</a>
     
     <div class="header-badges">
       <span class={`status-badge status-${status}`}>{status}</span>

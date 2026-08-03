@@ -5,6 +5,8 @@ interface Props {
 }
 
 const { title, activeTab = "wcag3" } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
 ---
 
 <!doctype html>
@@ -24,22 +26,22 @@ const { title, activeTab = "wcag3" } = Astro.props;
       <div class="header-container">
         <div class="brand">
           <span class="brand-badge">a11y teacher edition</span>
-          <h1 class="brand-title"><a href="/plain-english/">Plain English Accessibility Hub</a></h1>
+          <h1 class="brand-title"><a href={link("/plain-english/")}>Plain English Accessibility Hub</a></h1>
           <p class="brand-subtitle">Translating W3C Standards for Designers, Developers, QA & Product teams</p>
         </div>
 
         <nav class="hub-nav" aria-label="Standard Version Selection">
-          <a href="/plain-english/" class={`nav-tab ${activeTab === "wcag3" ? "active" : ""}`}>
+          <a href={link("/plain-english/")} class={`nav-tab ${activeTab === "wcag3" ? "active" : ""}`}>
             <span class="tab-icon">✨</span>
             <span class="tab-text">WCAG 3 Explorer</span>
             <span class="status-pill status-draft">W3C Draft</span>
           </a>
-          <a href="/plain-english/wcag22/" class={`nav-tab ${activeTab === "wcag22" ? "active" : ""}`}>
+          <a href={link("/plain-english/wcag22/")} class={`nav-tab ${activeTab === "wcag22" ? "active" : ""}`}>
             <span class="tab-icon">📘</span>
             <span class="tab-text">WCAG 2.2 Reference</span>
             <span class="status-pill status-standard">Current Standard</span>
           </a>
-          <a href="/plain-english/removals/" class={`nav-tab ${activeTab === "removals" ? "active" : ""}`}>
+          <a href={link("/plain-english/removals/")} class={`nav-tab ${activeTab === "removals" ? "active" : ""}`}>
             <span class="tab-icon">🔄</span>
             <span class="tab-text">Removals & Shifts</span>
             <span class="status-pill status-removed">2.2 vs 3</span>

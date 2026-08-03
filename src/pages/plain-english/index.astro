@@ -14,9 +14,85 @@ const totalCount = catalog.length;
 const matureCount = catalog.filter((item) => item.status === "mature" || item.status === "refining").length;
 const highInclusionCount = catalog.filter((item) => item.annotation?.statusSummary?.inclusionLikelihood?.startsWith("High")).length;
 const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.annotation.plainEnglish?.summary?.endsWith("...")).length;
+
+const GROUP_NAMES: Record<string, string> = {
+  'animation-and-movement': '🎬 Animation & Movement',
+  'consistency-across-views': '🔄 Consistency Across Views',
+  'error-handling': '⚠️ Error Handling',
+  'help-and-feedback': '❓ Help & Feedback',
+  'images-and-media': '🖼️ Images & Media',
+  'input-operation': '⌨️ Input & Operation',
+  'interactive-components': '🎛️ Interactive Components',
+  'layout': '📐 Layout & Structure',
+  'policy-and-protection': '🛡️ Policy & Protection',
+  'process-and-task-completion': '📋 Process & Task Completion',
+  'text-and-wording': '📝 Text & Wording',
+  'user-control': '⚙️ User Control & Settings'
+};
+
+const groupedCategories: { slug: string; name: string; items: any[] }[] = [];
+const groupMap: Record<string, any[]> = {};
+
+catalog.forEach((item) => {
+  const gSlug = item.groupSlug || 'general';
+  if (!groupMap[gSlug]) groupMap[gSlug] = [];
+  groupMap[gSlug].push(item);
+});
+
+Object.keys(groupMap).sort().forEach((gSlug) => {
+  groupedCategories.push({
+    slug: gSlug,
+    name: GROUP_NAMES[gSlug] || gSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+    items: groupMap[gSlug]
+  });
+});
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
 ---
 
 <PlainEnglishLayout title="WCAG 3 Plain English Explorer" activeTab="wcag3">
+  <!-- Quick Nav TOC Floating Toggle & Drawer -->
+  <button id="toc-toggle-btn" class="toc-toggle-btn" aria-expanded="false" aria-controls="toc-drawer" aria-label="Toggle Quick Navigation Table of Contents">
+    <span class="toc-btn-icon">📋</span>
+    <span class="toc-btn-text">Quick Nav (TOC)</span>
+    <span id="toc-count-badge" class="toc-count-badge">{totalCount}</span>
+  </button>
+
+  <aside id="toc-drawer" class="toc-drawer" aria-label="Table of Contents Quick Navigation" hidden>
+    <div class="toc-header">
+      <div class="toc-title-group">
+        <h3>📋 Table of Contents</h3>
+        <span class="toc-subtitle">Jump to any of the {totalCount} provisions</span>
+      </div>
+      <button id="toc-close-btn" class="toc-close-btn" aria-label="Close Table of Contents">&times;</button>
+    </div>
+
+    <div class="toc-search-box">
+      <input type="text" id="toc-search-input" placeholder="Filter 219 items..." aria-label="Filter Table of Contents items" />
+    </div>
+
+    <div class="toc-categories-list">
+      {groupedCategories.map((group) => (
+        <details class="toc-category-details" open data-cat-block={group.slug}>
+          <summary class="toc-category-summary">
+            <span class="cat-name">{group.name}</span>
+            <span class="cat-count-badge" data-cat-slug={group.slug}>{group.items.length}</span>
+          </summary>
+          <ul class="toc-items-list">
+            {group.items.map((item) => (
+              <li data-toc-item-slug={item.slug}>
+                <a href={`#provision-${item.slug}`} class="toc-item-link" data-slug={item.slug}>
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ))}
+    </div>
+  </aside>
+
   <!-- Stats Header -->
   <section class="dashboard-banner">
     <div class="banner-content">
@@ -207,6 +283,7 @@ const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.a
         
         return (
           <article 
+            id={`provision-${item.slug}`}
             class="provision-card" 
             data-slug={item.slug}
             data-title={item.title.toLowerCase()}
@@ -227,7 +304,7 @@ const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.a
             </div>
 
             <h4 class="card-title">
-              <a href={`/plain-english/provision/${item.slug}/`}>{item.title}</a>
+              <a href={link(`/plain-english/provision/${item.slug}/`)}>{item.title}</a>
             </h4>
 
             <p class="plain-english-text">{ann?.plainEnglish?.summary}</p>
@@ -245,7 +322,7 @@ const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.a
                   <span>New WCAG 3 Outcome</span>
                 )}
               </div>
-              <a href={`/plain-english/provision/${item.slug}/`} class="read-more-btn">
+              <a href={link(`/plain-english/provision/${item.slug}/`)} class="read-more-btn">
                 Full Guide & Tests &rarr;
               </a>
             </div>
@@ -322,8 +399,80 @@ const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.a
         }
       });
 
-      resultCount.textContent = `Showing ${visible} Provisions`;
+      resultCount.textContent = `Showing ${visible} of ${cards.length} Provisions`;
+      updateTocVisibility();
     }
+
+    // TOC Elements
+    const tocToggleBtn = document.getElementById('toc-toggle-btn');
+    const tocCloseBtn = document.getElementById('toc-close-btn');
+    const tocDrawer = document.getElementById('toc-drawer');
+    const tocSearchInput = document.getElementById('toc-search-input');
+    const tocCountBadge = document.getElementById('toc-count-badge');
+    const tocItemLinks = document.querySelectorAll('.toc-item-link');
+
+    function toggleToc(show) {
+      const isVisible = show !== undefined ? show : tocDrawer.hasAttribute('hidden');
+      if (isVisible) {
+        tocDrawer.removeAttribute('hidden');
+        tocToggleBtn.setAttribute('aria-expanded', 'true');
+        tocSearchInput.focus();
+      } else {
+        tocDrawer.setAttribute('hidden', '');
+        tocToggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (tocToggleBtn) tocToggleBtn.addEventListener('click', () => toggleToc());
+    if (tocCloseBtn) tocCloseBtn.addEventListener('click', () => toggleToc(false));
+
+    // Jump Link Smooth Scroll & Pulse Highlight
+    tocItemLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const slug = link.getAttribute('data-slug');
+        const targetCard = document.getElementById(`provision-${slug}`);
+        if (targetCard) {
+          e.preventDefault();
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetCard.classList.add('pulse-highlight');
+          setTimeout(() => targetCard.classList.remove('pulse-highlight'), 2000);
+        }
+      });
+    });
+
+    // Filter TOC Items with main search & TOC inner search
+    function updateTocVisibility() {
+      const innerQuery = tocSearchInput ? tocSearchInput.value.toLowerCase().trim() : '';
+      let visibleTocCount = 0;
+
+      document.querySelectorAll('[data-cat-block]').forEach(catBlock => {
+        let catVisible = 0;
+        catBlock.querySelectorAll('[data-toc-item-slug]').forEach(itemLi => {
+          const slug = itemLi.getAttribute('data-toc-item-slug');
+          const card = document.getElementById(`provision-${slug}`);
+          const linkText = itemLi.textContent.toLowerCase();
+          
+          const cardIsVisible = card && card.style.display !== 'none';
+          const matchesInnerSearch = !innerQuery || linkText.includes(innerQuery);
+
+          if (cardIsVisible && matchesInnerSearch) {
+            itemLi.style.display = 'block';
+            catVisible++;
+            visibleTocCount++;
+          } else {
+            itemLi.style.display = 'none';
+          }
+        });
+
+        const countBadge = catBlock.querySelector('.cat-count-badge');
+        if (countBadge) countBadge.textContent = catVisible;
+        catBlock.style.display = catVisible > 0 ? 'block' : 'none';
+      });
+
+      if (tocCountBadge) tocCountBadge.textContent = visibleTocCount;
+    }
+
+    if (tocSearchInput) tocSearchInput.addEventListener('input', updateTocVisibility);
 
     searchInput.addEventListener('input', filterCards);
     statusFilter.addEventListener('change', filterCards);
@@ -842,5 +991,172 @@ const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.a
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+
+  /* Floating Quick Nav TOC Toggle Button */
+  .toc-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 9999px;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .toc-toggle-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+  }
+
+  .toc-count-badge {
+    background: rgba(15, 23, 42, 0.6);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+  }
+
+  /* Quick Nav Drawer Panel */
+  .toc-drawer {
+    position: fixed;
+    top: 80px;
+    right: 24px;
+    width: 380px;
+    max-width: calc(100vw - 48px);
+    max-height: calc(100vh - 120px);
+    z-index: 101;
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: drawerSlide 0.25s ease-out;
+  }
+  .toc-drawer[hidden] {
+    display: none !important;
+  }
+
+  @keyframes drawerSlide {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .toc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(30, 41, 59, 0.8);
+  }
+  .toc-title-group h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent-purple);
+    margin: 0;
+  }
+  .toc-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .toc-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+  }
+  .toc-close-btn:hover { color: var(--text-primary); }
+
+  .toc-search-box {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .toc-search-box input {
+    width: 100%;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+  }
+
+  .toc-categories-list {
+    overflow-y: auto;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .toc-category-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    cursor: pointer;
+    padding: 6px 0;
+  }
+  .cat-count-badge {
+    font-size: 0.75rem;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-blue);
+    padding: 2px 6px;
+    border-radius: 9999px;
+  }
+
+  .toc-items-list {
+    list-style: none;
+    padding-left: 10px;
+    margin: 6px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .toc-item-link {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: var(--radius-md);
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .toc-item-link:hover {
+    background: rgba(168, 85, 247, 0.15);
+    color: var(--accent-purple);
+  }
+
+  /* Target Card Pulse Highlight */
+  .provision-card.pulse-highlight {
+    animation: cardPulse 2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes cardPulse {
+    0%, 100% { border-color: var(--border-color); box-shadow: none; }
+    25%, 75% { border-color: var(--accent-purple); box-shadow: 0 0 25px rgba(168, 85, 247, 0.5); }
   }
 </style>

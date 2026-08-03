@@ -12,6 +12,9 @@ if (fs.existsSync(wcag22Path)) {
 const levelACount = wcag22List.filter(item => item.level === "A").length;
 const levelAACount = wcag22List.filter(item => item.level === "AA").length;
 const levelAAACount = wcag22List.filter(item => item.level === "AAA").length;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
 ---
 
 <PlainEnglishLayout title="WCAG 2.2 Plain English Reference" activeTab="wcag22">
@@ -99,7 +102,7 @@ const levelAAACount = wcag22List.filter(item => item.level === "AAA").length;
           </div>
 
           <h4 class="card-title">
-            <a href={`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`}>{sc.name}</a>
+            <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)}>{sc.name}</a>
           </h4>
 
           <p class="summary-text">{sc.plainEnglish.summary}</p>
@@ -114,11 +117,11 @@ const levelAAACount = wcag22List.filter(item => item.level === "AAA").length;
               <span>WCAG 3 Mapping:</span>
               <div class="provision-tags">
                 {sc.wcag3Mapping.provisions.map((p: string) => (
-                  <a href={`/plain-english/provision/${p}/`} class="prov-link">{p}</a>
+                  <a href={link(`/plain-english/provision/${p}/`)} class="prov-link">{p}</a>
                 ))}
               </div>
             </div>
-            <a href={`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`} class="detail-link">
+            <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)} class="detail-link">
               Testing Guide &rarr;
             </a>
           </div>
