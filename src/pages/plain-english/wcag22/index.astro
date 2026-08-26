@@ -21,6 +21,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <section class="dashboard-banner">
     <div class="banner-content">
       <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle">📘</span>
+          <span>Official W3C Standard</span>
+        </div>
         <h2>WCAG 2.2 Plain English Reference</h2>
         <p>A plain-English guide to the official W3C WCAG 2.2 standard for non-a11y professionals, with practical testing guides and direct links to WCAG 3 evolution.</p>
       </div>
@@ -29,15 +33,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="stat-value">{wcag22List.length}</span>
           <span class="stat-label">Total Criteria</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-level-a">
           <span class="stat-value highlight-levela">{levelACount}</span>
           <span class="stat-label">Level A</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-level-aa">
           <span class="stat-value highlight-levelaa">{levelAACount}</span>
           <span class="stat-label">Level AA</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-level-aaa">
           <span class="stat-value highlight-levelaaa">{levelAAACount}</span>
           <span class="stat-label">Level AAA</span>
         </div>
@@ -46,31 +50,31 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   </section>
 
   <!-- Controls -->
-  <section class="controls-section">
+  <section class="controls-section" aria-label="Filters and Search">
     <div class="search-box">
-      <span class="search-icon">🔍</span>
+      <span class="search-icon" aria-hidden="true">🔍</span>
       <input type="text" id="wcag22-search" placeholder="Search WCAG 2.2 criteria by number (e.g. 1.4.3, 2.4.7, 3.3.8) or keywords..." aria-label="Search WCAG 2.2 criteria" />
     </div>
 
     <div class="filter-bar">
       <div class="filter-group">
-        <span class="filter-label">Level:</span>
-        <div class="level-pills" id="level-pills">
-          <button type="button" class="pill active" data-level="all">All Levels</button>
-          <button type="button" class="pill" data-level="A">Level A</button>
-          <button type="button" class="pill" data-level="AA">Level AA</button>
-          <button type="button" class="pill" data-level="AAA">Level AAA</button>
+        <span class="filter-label">Filter Level:</span>
+        <div class="level-pills" id="level-pills" role="radiogroup" aria-label="Filter by conformance level">
+          <button type="button" class="pill active" data-level="all" role="radio" aria-checked="true">All Levels</button>
+          <button type="button" class="pill pill-a" data-level="A" role="radio" aria-checked="false">Level A</button>
+          <button type="button" class="pill pill-aa" data-level="AA" role="radio" aria-checked="false">Level AA</button>
+          <button type="button" class="pill pill-aaa" data-level="AAA" role="radio" aria-checked="false">Level AAA</button>
         </div>
       </div>
 
       <div class="filter-group">
         <label for="principle-select" class="sr-only">Filter by Principle</label>
-        <select id="principle-select" class="filter-select">
-          <option value="all">All Principles</option>
-          <option value="Perceivable">Perceivable</option>
-          <option value="Operable">Operable</option>
-          <option value="Understandable">Understandable</option>
-          <option value="Robust">Robust</option>
+        <select id="principle-select" class="filter-select" aria-label="Filter by WCAG Principle">
+          <option value="all">All 4 Principles</option>
+          <option value="Perceivable">1. Perceivable</option>
+          <option value="Operable">2. Operable</option>
+          <option value="Understandable">3. Understandable</option>
+          <option value="Robust">4. Robust</option>
         </select>
       </div>
     </div>
@@ -91,7 +95,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           data-name={sc.name.toLowerCase()}
           data-level={sc.level}
           data-principle={sc.principle}
-          data-summary={sc.plainEnglish.summary.toLowerCase()}
+          data-summary={sc.plainEnglish?.summary?.toLowerCase() || ""}
         >
           <div class="card-header">
             <div class="header-badges">
@@ -105,24 +109,28 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)}>{sc.name}</a>
           </h4>
 
-          <p class="summary-text">{sc.plainEnglish.summary}</p>
+          <p class="summary-text">{sc.plainEnglish?.summary}</p>
 
           <div class="example-box">
             <strong>Real-World Example:</strong>
-            <p>{sc.plainEnglish.realWorldExample}</p>
+            <p>{sc.plainEnglish?.realWorldExample}</p>
           </div>
 
           <div class="card-footer">
             <div class="wcag3-evolution">
-              <span>WCAG 3 Mapping:</span>
+              <span class="evo-label">WCAG 3 Mapping:</span>
               <div class="provision-tags">
-                {sc.wcag3Mapping.provisions.map((p: string) => (
-                  <a href={link(`/plain-english/provision/${p}/`)} class="prov-link">{p}</a>
-                ))}
+                {sc.wcag3Mapping?.provisions?.length > 0 ? (
+                  sc.wcag3Mapping.provisions.map((p: string) => (
+                    <a href={link(`/plain-english/provision/${p}/`)} class="prov-link">{p}</a>
+                  ))
+                ) : (
+                  <span class="no-map">Equivalent In-Progress</span>
+                )}
               </div>
             </div>
             <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)} class="detail-link">
-              Testing Guide &rarr;
+              Full Guide & Tests &rarr;
             </a>
           </div>
         </article>
@@ -143,8 +151,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     levelPills.forEach(pill => {
       pill.addEventListener('click', () => {
-        levelPills.forEach(p => p.classList.remove('active'));
+        levelPills.forEach(p => {
+          p.classList.remove('active');
+          p.setAttribute('aria-checked', 'false');
+        });
         pill.classList.add('active');
+        pill.setAttribute('aria-checked', 'true');
         selectedLevel = pill.getAttribute('data-level');
         filterCards();
       });
@@ -175,7 +187,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         }
       });
 
-      resultCount.textContent = `Showing ${visible} Success Criteria`;
+      resultCount.textContent = `Showing ${visible} of ${cards.length} Success Criteria`;
     }
 
     searchInput.addEventListener('input', filterCards);
@@ -185,11 +197,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
 <style>
   .dashboard-banner {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, rgba(19, 29, 49, 0.9) 0%, rgba(11, 17, 32, 0.95) 100%);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
-    padding: 32px;
-    margin-bottom: 32px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
   }
 
   .banner-content {
@@ -200,56 +213,82 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     flex-wrap: wrap;
   }
 
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(52, 211, 153, 0.28);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+
   .banner-title-group h2 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 800;
     margin-bottom: 8px;
-    background: linear-gradient(90deg, #f8fafc, #34d399);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
   }
 
   .banner-title-group p {
     color: var(--text-secondary);
     max-width: 600px;
+    font-size: 0.98rem;
+    line-height: 1.6;
   }
 
   .stats-grid {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
   }
 
   .stat-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 16px 20px;
+    padding: 14px 18px;
     text-align: center;
     min-width: 110px;
+    transition: var(--transition-fast);
+  }
+  .stat-card:hover {
+    border-color: var(--accent-emerald);
+    transform: translateY(-2px);
   }
 
   .stat-value {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.75rem;
     font-weight: 800;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    margin-bottom: 2px;
   }
   .highlight-levela { color: #38bdf8; }
   .highlight-levelaa { color: #34d399; }
   .highlight-levelaaa { color: #c084fc; }
 
   .stat-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .controls-section {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   .search-box {
@@ -263,17 +302,24 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
+    font-size: 1.1rem;
   }
 
   .search-box input {
     width: 100%;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 16px 16px 16px 48px;
     color: var(--text-primary);
     font-size: 1rem;
     font-family: var(--font-sans);
+    transition: var(--transition-normal);
+  }
+  .search-box input:focus {
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2);
+    outline: none;
   }
 
   .filter-bar {
@@ -288,6 +334,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
   }
 
   .level-pills {
@@ -296,58 +349,73 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .pill {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     color: var(--text-secondary);
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: 7px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.84rem;
     font-weight: 600;
     cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .pill:hover {
+    border-color: var(--accent-emerald);
+    color: var(--text-primary);
   }
   .pill.active {
-    background: #34d399;
-    color: #0f172a;
-    border-color: #34d399;
+    background: var(--accent-emerald);
+    color: #070b14;
+    border-color: var(--accent-emerald);
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(52, 211, 153, 0.35);
   }
 
   .filter-select {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     color: var(--text-primary);
-    padding: 10px 14px;
+    padding: 9px 14px;
     border-radius: var(--radius-md);
-    font-size: 0.875rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: var(--font-sans);
+  }
+  .filter-select:focus {
+    border-color: var(--accent-emerald);
+    outline: none;
   }
 
   .criteria-section {
-    margin-top: 16px;
+    margin-top: 12px;
   }
 
   .grid-header {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     color: var(--text-secondary);
+    font-size: 0.92rem;
   }
 
   .criteria-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 24px;
+    gap: 22px;
   }
 
   .criterion-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
     padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.25s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .criterion-card:hover {
-    border-color: #34d399;
+    border-color: var(--accent-emerald);
     transform: translateY(-3px);
+    box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(52, 211, 153, 0.12);
   }
 
   .card-header {
@@ -358,74 +426,85 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     display: flex;
     gap: 8px;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   .num-badge {
     font-family: var(--font-mono);
-    font-weight: 700;
-    color: var(--accent-blue);
-    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--accent-emerald);
+    font-size: 0.9rem;
+    background: rgba(52, 211, 153, 0.1);
+    padding: 2px 7px;
+    border-radius: 4px;
   }
 
   .level-badge {
     font-size: 0.7rem;
     font-weight: 700;
     padding: 2px 8px;
-    border-radius: 6px;
+    border-radius: 4px;
   }
-  .level-A { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-  .level-AA { background: rgba(52, 211, 153, 0.2); color: #34d399; }
-  .level-AAA { background: rgba(192, 132, 252, 0.2); color: #c084fc; }
+  .level-A { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+  .level-AA { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+  .level-AAA { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
 
   .principle-badge {
     font-size: 0.7rem;
     color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     padding: 2px 8px;
-    border-radius: 6px;
+    border-radius: 4px;
   }
 
   .card-title {
-    font-size: 1.2rem;
+    font-size: 1.18rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    line-height: 1.35;
   }
   .card-title a {
-    color: var(--text-primary);
+    color: var(--text-pure);
     text-decoration: none;
+    transition: var(--transition-fast);
   }
   .card-title a:hover {
-    color: #34d399;
+    color: var(--accent-emerald);
   }
 
   .summary-text {
     color: var(--text-secondary);
-    font-size: 0.92rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.55;
     margin-bottom: 16px;
   }
 
   .example-box {
-    background: rgba(15, 23, 42, 0.6);
-    border-left: 3px solid #34d399;
-    padding: 12px;
+    background: rgba(7, 11, 20, 0.65);
+    border-left: 3px solid var(--accent-emerald);
+    padding: 12px 14px;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    margin-bottom: 20px;
-    font-size: 0.85rem;
+    margin-bottom: 18px;
+    font-size: 0.84rem;
   }
   .example-box strong {
-    color: #34d399;
+    color: var(--accent-emerald);
     display: block;
     margin-bottom: 2px;
+  }
+  .example-box p {
+    color: var(--text-secondary);
+    line-height: 1.5;
   }
 
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-top: 1px solid var(--border-color);
-    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 14px;
     font-size: 0.8rem;
+    gap: 12px;
   }
 
   .wcag3-evolution {
@@ -435,6 +514,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     color: var(--text-muted);
   }
 
+  .evo-label {
+    font-size: 0.72rem;
+  }
+
+  .provision-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
   .prov-link {
     display: inline-block;
     background: rgba(56, 189, 248, 0.1);
@@ -442,16 +531,30 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     padding: 2px 6px;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 0.75rem;
-    margin-right: 4px;
-    margin-top: 2px;
+    font-size: 0.74rem;
+    transition: var(--transition-fast);
+  }
+  .prov-link:hover {
+    background: rgba(56, 189, 248, 0.2);
+  }
+
+  .no-map {
+    font-size: 0.72rem;
+    color: var(--text-muted);
   }
 
   .detail-link {
-    color: #34d399;
+    color: var(--accent-emerald);
     text-decoration: none;
     font-weight: 700;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s ease;
+  }
+  .detail-link:hover {
+    gap: 8px;
   }
 
   .sr-only {
@@ -464,5 +567,30 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+
+  /* Light Theme Overrides */
+  :global(html[data-theme="light"]) .dashboard-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  }
+  :global(html[data-theme="light"]) .stat-card,
+  :global(html[data-theme="light"]) .example-box {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .prov-link {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .principle-badge {
+    background: #e2e8f0;
+    color: #334155;
+  }
+  :global(html[data-theme="light"]) .example-box strong {
+    color: #047857;
+  }
+  :global(html[data-theme="light"]) .example-box p {
+    color: #1e293b;
   }
 </style>

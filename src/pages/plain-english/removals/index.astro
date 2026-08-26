@@ -20,6 +20,10 @@ if (fs.existsSync(debatesPath)) {
   <section class="dashboard-banner">
     <div class="banner-content">
       <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle" aria-hidden="true">🔄</span>
+          <span>Architectural Evolution</span>
+        </div>
         <h2>WCAG 2.2 vs 3 Removals & Architectural Shifts</h2>
         <p>A plain-English guide to concepts allowed or present in WCAG 2.2 that are omitted, phased out, or fundamentally redesigned in WCAG 3.</p>
       </div>
@@ -28,7 +32,7 @@ if (fs.existsSync(debatesPath)) {
           <span class="stat-value">{removalsList.length}</span>
           <span class="stat-label">Tracked Shift Topics</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-zero">
           <span class="stat-value highlight-shift">0%</span>
           <span class="stat-label">Alternate Versions in WCAG 3</span>
         </div>
@@ -37,11 +41,11 @@ if (fs.existsSync(debatesPath)) {
   </section>
 
   <!-- Introductory Alert -->
-  <section class="intro-alert">
-    <div class="alert-icon">💡</div>
+  <section class="intro-alert" aria-label="Core shift summary">
+    <div class="alert-icon" aria-hidden="true">💡</div>
     <div class="alert-body">
-      <h4>Key Paradigm Shift</h4>
-      <p>WCAG 3 moves away from single-page binary pass/fail checklists and exemptions like "Conforming Alternate Versions". The goal of WCAG 3 is universal primary accessibility evaluated across complete user tasks.</p>
+      <h4>Key Paradigm Shift: Universal Primary Conformance</h4>
+      <p>WCAG 3 moves decisively away from single-page binary pass/fail checklists and exemptions like "Conforming Alternate Versions" (CAV). The goal of WCAG 3 is universal primary accessibility evaluated across complete user tasks, preventing secondary "accessible text-only" segregation.</p>
     </div>
   </section>
 
@@ -81,9 +85,9 @@ if (fs.existsSync(debatesPath)) {
                   {item.debateLinks.map((dLink: any) => (
                     <li>
                       <a href={dLink.url} target="_blank" rel="noopener noreferrer" class="debate-link-item">
-                        <span class="d-icon">💬</span>
+                        <span class="d-icon" aria-hidden="true">💬</span>
                         <span>{dLink.title}</span>
-                        <span class="ext-sm">&nearr;</span>
+                        <span class="ext-sm" aria-hidden="true">&nearr;</span>
                       </a>
                     </li>
                   ))}
@@ -96,16 +100,16 @@ if (fs.existsSync(debatesPath)) {
             <h4>Role Impact</h4>
             <div class="persona-impact-grid">
               <div class="impact-item designer">
-                <strong>🎨 Designer:</strong> {item.personaImpact.designer}
+                <strong>🎨 Designer:</strong> {item.personaImpact?.designer}
               </div>
               <div class="impact-item developer">
-                <strong>💻 Developer:</strong> {item.personaImpact.developer}
+                <strong>💻 Developer:</strong> {item.personaImpact?.developer}
               </div>
               <div class="impact-item qa">
-                <strong>🧪 QA / Tester:</strong> {item.personaImpact.qa}
+                <strong>🧪 QA / Tester:</strong> {item.personaImpact?.qa}
               </div>
               <div class="impact-item pm">
-                <strong>📋 Product Manager:</strong> {item.personaImpact.productManager}
+                <strong>📋 Product Manager:</strong> {item.personaImpact?.productManager}
               </div>
             </div>
           </div>
@@ -116,9 +120,9 @@ if (fs.existsSync(debatesPath)) {
               <div class="links-list">
                 {item.supportingLinks.map((link: any) => (
                   <a href={link.url} target="_blank" rel="noopener noreferrer" class="support-link-card">
-                    <span class="link-icon">📄</span>
+                    <span class="link-icon" aria-hidden="true">📄</span>
                     <span class="link-title">{link.title}</span>
-                    <span class="ext-icon">&nearr;</span>
+                    <span class="ext-icon" aria-hidden="true">&nearr;</span>
                   </a>
                 ))}
               </div>
@@ -130,62 +134,65 @@ if (fs.existsSync(debatesPath)) {
   </section>
 
   <!-- Top 10 Hottest WCAG 3 Working Group Debates & Most Likely Outcomes -->
-  <section class="hottest-debates-section">
-    <div class="debates-header">
-      <h3>🔥 Top 10 Hottest WCAG 3 Working Group Debates & Most Likely Outcomes</h3>
-      <p>Tracking the biggest controversies, working group debates, and active consensus trajectories across the W3C AGWG and Silver Task Force.</p>
-    </div>
+  {debatesList && debatesList.length > 0 && (
+    <section class="hottest-debates-section">
+      <div class="debates-header">
+        <h3>🔥 Top 10 Hottest WCAG 3 Working Group Debates & Most Likely Outcomes</h3>
+        <p>Tracking the biggest controversies, working group debates, and active consensus trajectories across the W3C AGWG and Silver Task Force.</p>
+      </div>
 
-    <div class="debates-grid">
-      {debatesList.map((dItem: any, index: number) => (
-        <article class="debate-item-card">
-          <div class="dcard-top">
-            <span class="debate-number">#{index + 1}</span>
-            <span class="debate-category">{dItem.category}</span>
-            <span class="w3c-status-tag">{dItem.w3cStatus}</span>
-          </div>
-
-          <h4 class="debate-topic-title">{dItem.topic}</h4>
-
-          <div class="debate-box">
-            <strong>The Debate:</strong>
-            <p>{dItem.debateSummary}</p>
-          </div>
-
-          <div class="heated-box">
-            <strong>Why It Is Heated:</strong>
-            <p>{dItem.whyItIsHeated}</p>
-          </div>
-
-          <div class="outcome-box">
-            <strong>🎯 Most Likely Outcome as of Now:</strong>
-            <p>{dItem.mostLikelyOutcome}</p>
-          </div>
-
-          {dItem.links && dItem.links.length > 0 && (
-            <div class="dcard-links">
-              {dItem.links.map((l: any) => (
-                <a href={l.url} target="_blank" rel="noopener noreferrer" class="dcard-link-item">
-                  <span class="d-icon">🔗</span>
-                  <span>{l.title}</span>
-                  <span class="ext-sm">&nearr;</span>
-                </a>
-              ))}
+      <div class="debates-grid">
+        {debatesList.map((dItem: any, index: number) => (
+          <article class="debate-item-card">
+            <div class="dcard-top">
+              <span class="debate-number">#{index + 1}</span>
+              <span class="debate-category">{dItem.category}</span>
+              <span class="w3c-status-tag">{dItem.w3cStatus}</span>
             </div>
-          )}
-        </article>
-      ))}
-    </div>
-  </section>
+
+            <h4 class="debate-topic-title">{dItem.topic}</h4>
+
+            <div class="debate-box">
+              <strong>The Debate:</strong>
+              <p>{dItem.debateSummary}</p>
+            </div>
+
+            <div class="heated-box">
+              <strong>Why It Is Heated:</strong>
+              <p>{dItem.whyItIsHeated}</p>
+            </div>
+
+            <div class="outcome-box">
+              <strong>🎯 Most Likely Outcome as of Now:</strong>
+              <p>{dItem.mostLikelyOutcome}</p>
+            </div>
+
+            {dItem.links && dItem.links.length > 0 && (
+              <div class="dcard-links">
+                {dItem.links.map((l: any) => (
+                  <a href={l.url} target="_blank" rel="noopener noreferrer" class="dcard-link-item">
+                    <span class="d-icon">🔗</span>
+                    <span>{l.title}</span>
+                    <span class="ext-sm">&nearr;</span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
 </PlainEnglishLayout>
 
 <style>
   .dashboard-banner {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, rgba(19, 29, 49, 0.95) 0%, rgba(11, 17, 32, 0.98) 100%);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
-    padding: 32px;
+    padding: 32px 36px;
     margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
   }
 
   .banner-content {
@@ -196,81 +203,114 @@ if (fs.existsSync(debatesPath)) {
     flex-wrap: wrap;
   }
 
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(192, 132, 252, 0.18);
+    color: #e9d5ff;
+    border: 1px solid rgba(192, 132, 252, 0.4);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+
   .banner-title-group h2 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 800;
     margin-bottom: 8px;
-    background: linear-gradient(90deg, #f8fafc, #c084fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
   }
 
   .banner-title-group p {
     color: var(--text-secondary);
     max-width: 650px;
+    font-size: 0.98rem;
+    line-height: 1.6;
   }
 
   .stats-grid {
     display: flex;
-    gap: 16px;
+    gap: 14px;
+    flex-wrap: wrap;
   }
 
   .stat-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.8);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 16px 20px;
+    padding: 14px 18px;
     text-align: center;
+    min-width: 120px;
   }
 
   .stat-value {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.75rem;
     font-weight: 800;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    margin-bottom: 2px;
+    color: var(--text-pure);
   }
   .highlight-shift { color: #c084fc; }
 
   .stat-label {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .intro-alert {
-    background: rgba(192, 132, 252, 0.08);
-    border: 1px solid rgba(192, 132, 252, 0.3);
+    background: rgba(192, 132, 252, 0.1);
+    border: 1px solid rgba(192, 132, 252, 0.35);
     border-radius: var(--radius-md);
-    padding: 20px;
+    padding: 20px 24px;
     display: flex;
     gap: 16px;
     align-items: flex-start;
     margin-bottom: 32px;
   }
 
-  .alert-icon { font-size: 1.5rem; }
+  .alert-icon { font-size: 1.5rem; flex-shrink: 0; }
 
   .alert-body h4 {
-    color: #c084fc;
+    color: #e9d5ff;
     font-weight: 700;
-    margin-bottom: 4px;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
   }
   .alert-body p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin: 0;
   }
 
   .removals-grid {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 28px;
   }
 
   .removal-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
-    padding: 32px;
+    padding: 30px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+  }
+  .removal-card:hover {
+    border-color: var(--accent-purple);
+    box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(192, 132, 252, 0.12);
   }
 
   .card-top {
@@ -284,82 +324,110 @@ if (fs.existsSync(debatesPath)) {
 
   .status-tag {
     background: rgba(192, 132, 252, 0.2);
-    color: #c084fc;
-    font-size: 0.8rem;
+    color: #f3e8ff;
+    font-size: 0.78rem;
     font-weight: 700;
     padding: 4px 12px;
-    border-radius: 20px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(192, 132, 252, 0.45);
   }
 
+  /* High Contrast Likelihood Pill */
   .likelihood-pill {
-    background: rgba(15, 23, 42, 0.7);
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    border: 1px solid var(--border-color);
+    background: rgba(15, 23, 42, 0.95);
+    padding: 6px 14px;
+    border-radius: var(--radius-md);
+    font-size: 0.82rem;
+    border: 1.5px solid rgba(148, 163, 184, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
-  .pill-label { color: var(--text-muted); margin-right: 6px; }
-  .pill-val { color: #f43f5e; font-weight: 700; }
+  .pill-label { 
+    color: #e2e8f0; 
+    font-weight: 700; 
+  }
+  .pill-val { 
+    color: #fda4af; 
+    font-weight: 800; 
+    letter-spacing: 0.01em;
+  }
 
   .card-title {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
     font-weight: 800;
     margin-bottom: 20px;
-    color: var(--text-primary);
+    color: var(--text-pure);
+    letter-spacing: -0.02em;
   }
 
   .comparison-block {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
+    gap: 18px;
     margin-bottom: 24px;
   }
 
   .wcag22-box {
-    background: rgba(15, 23, 42, 0.6);
-    border-left: 4px solid #38bdf8;
-    padding: 16px;
+    background: rgba(7, 11, 20, 0.75);
+    border-left: 4px solid var(--accent-blue);
+    padding: 18px;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
   }
-  .wcag22-box .box-label { color: #38bdf8; font-weight: 700; display: block; margin-bottom: 4px; }
+  .wcag22-box .box-label { 
+    color: var(--accent-blue); 
+    font-weight: 700; 
+    font-size: 0.9rem; 
+    display: block; 
+    margin-bottom: 6px; 
+  }
 
   .wcag3-box {
-    background: rgba(15, 23, 42, 0.6);
-    border-left: 4px solid #c084fc;
-    padding: 16px;
+    background: rgba(7, 11, 20, 0.75);
+    border-left: 4px solid var(--accent-purple);
+    padding: 18px;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
   }
-  .wcag3-box .box-label { color: #c084fc; font-weight: 700; display: block; margin-bottom: 4px; }
+  .wcag3-box .box-label { 
+    color: var(--accent-purple); 
+    font-weight: 700; 
+    font-size: 0.9rem; 
+    display: block; 
+    margin-bottom: 6px; 
+  }
 
   .comparison-block p {
     color: var(--text-secondary);
     font-size: 0.92rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    margin: 0;
   }
 
   .debate-card {
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.75);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 16px 20px;
+    padding: 18px 22px;
     margin-bottom: 24px;
   }
   .debate-card h4 {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     font-weight: 700;
     color: var(--accent-blue);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .debate-card p {
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 12px;
+    line-height: 1.6;
   }
 
   .debate-links-subgroup {
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    border-top: 1px dashed var(--border-subtle);
     padding-top: 12px;
-    margin-top: 8px;
+    margin-top: 10px;
   }
   .subgroup-title {
     font-size: 0.8rem;
@@ -373,7 +441,7 @@ if (fs.existsSync(debatesPath)) {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
   .debate-link-item {
     display: inline-flex;
@@ -381,51 +449,52 @@ if (fs.existsSync(debatesPath)) {
     gap: 8px;
     color: var(--accent-blue);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 600;
     transition: transform 0.2s ease;
   }
   .debate-link-item:hover {
     text-decoration: underline;
-    transform: translateX(3px);
+    transform: translateX(4px);
   }
   .d-icon { font-size: 0.85rem; }
-  .ext-sm { font-size: 0.8rem; color: var(--text-muted); }
+  .ext-sm { font-size: 0.8rem; color: var(--text-secondary); }
 
   .persona-impact-section h4 {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--text-primary);
+    margin-bottom: 14px;
+    color: var(--text-pure);
   }
 
   .persona-impact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 12px;
+    gap: 14px;
   }
 
   .impact-item {
-    background: rgba(15, 23, 42, 0.7);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.75);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 12px;
+    padding: 16px;
     font-size: 0.88rem;
     color: var(--text-secondary);
+    line-height: 1.55;
   }
-  .impact-item strong { display: block; margin-bottom: 2px; }
-  .designer strong { color: #f472b6; }
-  .developer strong { color: #38bdf8; }
-  .qa strong { color: #34d399; }
-  .pm strong { color: #fbbf24; }
+  .impact-item strong { display: block; margin-bottom: 4px; font-size: 0.92rem; }
+  .designer strong { color: var(--role-designer); }
+  .developer strong { color: var(--role-developer); }
+  .qa strong { color: var(--role-qa); }
+  .pm strong { color: var(--role-pm); }
 
   .supporting-links-section {
     margin-top: 24px;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-subtle);
     padding-top: 20px;
   }
   .supporting-links-section h4 {
-    font-size: 1rem;
+    font-size: 0.98rem;
     font-weight: 700;
     margin-bottom: 12px;
     color: var(--accent-blue);
@@ -441,19 +510,19 @@ if (fs.existsSync(debatesPath)) {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.75);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 12px 16px;
+    padding: 12px 18px;
     color: var(--text-primary);
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 600;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
   }
   .support-link-card:hover {
     border-color: var(--accent-blue);
-    background: rgba(56, 189, 248, 0.05);
+    background: rgba(56, 189, 248, 0.08);
     color: var(--accent-blue);
     transform: translateX(4px);
   }
@@ -462,10 +531,12 @@ if (fs.existsSync(debatesPath)) {
   .link-title { flex: 1; }
   .ext-icon { color: var(--accent-blue); font-weight: 700; }
 
-  /* Hottest Debates Section Styling */
+  /* ==========================================================================
+     Hottest Debates Section Styling
+     ========================================================================== */
   .hottest-debates-section {
     margin-top: 48px;
-    border-top: 2px dashed var(--border-color);
+    border-top: 2px dashed var(--border-default);
     padding-top: 36px;
   }
   .debates-header h3 {
@@ -487,14 +558,14 @@ if (fs.existsSync(debatesPath)) {
   }
 
   .debate-item-card {
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
     padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    transition: border-color 0.2s ease;
+    transition: var(--transition-normal);
   }
   .debate-item-card:hover {
     border-color: var(--accent-purple);
@@ -518,23 +589,24 @@ if (fs.existsSync(debatesPath)) {
     font-size: 0.8rem;
     font-weight: 700;
     color: var(--accent-blue);
-    background: rgba(56, 189, 248, 0.1);
+    background: rgba(56, 189, 248, 0.12);
     padding: 4px 10px;
     border-radius: 9999px;
   }
   .w3c-status-tag {
     font-size: 0.78rem;
     color: #fbbf24;
-    background: rgba(251, 191, 36, 0.1);
+    background: rgba(251, 191, 36, 0.15);
     padding: 4px 10px;
     border-radius: 9999px;
     margin-left: auto;
+    font-weight: 700;
   }
 
   .debate-topic-title {
     font-size: 1.25rem;
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--text-pure);
     margin: 0;
   }
 
@@ -563,6 +635,7 @@ if (fs.existsSync(debatesPath)) {
     font-size: 0.95rem;
     display: block;
     margin-bottom: 4px;
+    font-weight: 700;
   }
   .outcome-box p {
     color: var(--text-primary);
@@ -576,7 +649,7 @@ if (fs.existsSync(debatesPath)) {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border-top: 1px dashed var(--border-color);
+    border-top: 1px dashed var(--border-subtle);
     padding-top: 12px;
   }
   .dcard-link-item {
@@ -592,5 +665,93 @@ if (fs.existsSync(debatesPath)) {
   .dcard-link-item:hover {
     text-decoration: underline;
     transform: translateX(3px);
+  }
+
+  /* ==========================================================================
+     Light Theme Overrides (High Contrast WCAG 2.2 AA / AAA Compliant)
+     ========================================================================== */
+  :global(html[data-theme="light"]) .dashboard-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  }
+  :global(html[data-theme="light"]) .banner-badge {
+    background: #f3e8ff;
+    color: #581c87;
+    border-color: #d8b4fe;
+  }
+  :global(html[data-theme="light"]) .highlight-shift {
+    color: #7e22ce;
+  }
+  :global(html[data-theme="light"]) .intro-alert {
+    background: #fdf4ff;
+    border-color: #f0abfc;
+  }
+  :global(html[data-theme="light"]) .alert-body h4 {
+    color: #701a75;
+  }
+  :global(html[data-theme="light"]) .status-tag {
+    background: #f3e8ff;
+    color: #581c87;
+    border-color: #c084fc;
+  }
+  :global(html[data-theme="light"]) .likelihood-pill {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .pill-label {
+    color: #1e293b;
+  }
+  :global(html[data-theme="light"]) .pill-val {
+    color: #9f1239;
+  }
+  :global(html[data-theme="light"]) .stat-card,
+  :global(html[data-theme="light"]) .wcag22-box,
+  :global(html[data-theme="light"]) .wcag3-box,
+  :global(html[data-theme="light"]) .debate-card,
+  :global(html[data-theme="light"]) .impact-item,
+  :global(html[data-theme="light"]) .support-link-card,
+  :global(html[data-theme="light"]) .debate-item-card {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .wcag22-box {
+    border-left: 4px solid #0284c7;
+  }
+  :global(html[data-theme="light"]) .wcag22-box .box-label {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .wcag3-box {
+    border-left: 4px solid #7c3aed;
+  }
+  :global(html[data-theme="light"]) .wcag3-box .box-label {
+    color: #6b21a8;
+  }
+  :global(html[data-theme="light"]) .debate-card h4,
+  :global(html[data-theme="light"]) .supporting-links-section h4 {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .subgroup-title {
+    color: #6b21a8;
+  }
+  :global(html[data-theme="light"]) .debate-link-item,
+  :global(html[data-theme="light"]) .dcard-link-item {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .debates-header h3 {
+    color: #6b21a8;
+  }
+  :global(html[data-theme="light"]) .outcome-box {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+  :global(html[data-theme="light"]) .outcome-box strong {
+    color: #047857;
+  }
+  :global(html[data-theme="light"]) .w3c-status-tag {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  :global(html[data-theme="light"]) .debate-category {
+    color: #0369a1;
+    background: #e0f2fe;
   }
 </style>

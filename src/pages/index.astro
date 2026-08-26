@@ -1,27 +1,689 @@
 ---
-const title = "Web Content Accessibility Guidelines 3.0";
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import fs from "fs";
+import path from "path";
+
+// Load catalogs for live metrics
+const wcag3CatalogPath = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
+const wcag22CatalogPath = path.join(process.cwd(), "public", "data", "wcag22-catalog.json");
+const removalsCatalogPath = path.join(process.cwd(), "public", "data", "wcag3-removals.json");
+
+let wcag3Count = 219;
+let wcag22Count = 68;
+let removalsCount = 4;
+
+if (fs.existsSync(wcag3CatalogPath)) {
+  try {
+    const list = JSON.parse(fs.readFileSync(wcag3CatalogPath, "utf8"));
+    wcag3Count = list.length;
+  } catch (e) {}
+}
+
+if (fs.existsSync(wcag22CatalogPath)) {
+  try {
+    const list = JSON.parse(fs.readFileSync(wcag22CatalogPath, "utf8"));
+    wcag22Count = list.length;
+  } catch (e) {}
+}
+
+if (fs.existsSync(removalsCatalogPath)) {
+  try {
+    const list = JSON.parse(fs.readFileSync(removalsCatalogPath, "utf8"));
+    removalsCount = list.length;
+  } catch (e) {}
+}
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
 ---
 
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <h1>{title}</h1>
-    <ul>
-      <li><a href="guidelines/">Guidelines</a></li>
-      <li><a href="explainer/">Explainer</a></li>
-      <li><a href="requirements/">Requirements</a></li>
-      <li><a href="informative/">Informative Docs</a></li>
-      {
-        import.meta.env.DEV && (
-          <li>
-            <a href="dev/">Dev Tools</a> (local dev only)
-          </li>
-        )
-      }
-    </ul>
-  </body>
-</html>
+<PlainEnglishLayout title="Welcome to the WCAG 3 & 2.2 Plain English Reference Hub" activeTab="home">
+  <!-- Hero Section -->
+  <section class="portal-hero">
+    <div class="hero-badge">
+      <span class="badge-spark">✨</span>
+      <span>Accessibility Knowledge Platform</span>
+    </div>
+    <h1 class="hero-headline">
+      Demystifying Web Accessibility <span class="gradient-text">for Everyone</span>
+    </h1>
+    <p class="hero-subtext">
+      Actionable, plain-English translations of W3C WCAG 3.0 draft provisions and WCAG 2.2 standards, tailored specifically for Designers, Developers, QA Specialists, and Product Managers.
+    </p>
+
+    <!-- Global Quick Jump Search -->
+    <div class="hero-search-wrapper">
+      <form action={link("/plain-english/")} method="GET" class="hero-search-form" id="portal-search-form">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input 
+          type="text" 
+          name="q" 
+          id="portal-search-input" 
+          placeholder="Search 219 WCAG 3 provisions & 68 WCAG 2.2 criteria (e.g., color contrast, focus visible, forms)..." 
+          aria-label="Search WCAG provisions and criteria"
+          autocomplete="off"
+        />
+        <button type="submit" class="search-submit-btn">Explore</button>
+      </form>
+      <div class="search-hints">
+        <span>Popular:</span>
+        <a href={link("/plain-english/provision/focus-visible-enhanced/")}>Focus Visible</a>
+        <a href={link("/plain-english/wcag22/1-4-3/")}>Contrast Minimum</a>
+        <a href={link("/plain-english/provision/text-alternatives/")}>Text Alternatives</a>
+        <a href={link("/plain-english/removals/")}>Conforming Alternate Versions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Flagship Portal Cards -->
+  <section class="feature-portals-section">
+    <div class="section-header">
+      <h2>Explore Knowledge Hubs</h2>
+      <p>Choose your entry point into current standards, next-generation drafts, and architectural shifts.</p>
+    </div>
+
+    <div class="portals-grid">
+      <!-- Portal 1: WCAG 3 -->
+      <a href={link("/plain-english/")} class="portal-card portal-wcag3">
+        <div class="portal-card-glow"></div>
+        <div class="portal-card-header">
+          <div class="portal-icon-wrap icon-wcag3">✨</div>
+          <span class="portal-tag tag-draft">W3C Draft Explorer</span>
+        </div>
+        <h3>WCAG 3 Plain English Explorer</h3>
+        <p>Breakdown of all 219 draft provisions across functional categories, W3C release likelihood estimates, and Bronze/Silver/Gold continuous scoring model.</p>
+        <div class="portal-metrics">
+          <span class="metric-pill"><strong>{wcag3Count}</strong> Provisions</span>
+          <span class="metric-pill">Bronze / Silver / Gold</span>
+          <span class="metric-pill">Role Advice</span>
+        </div>
+        <span class="portal-cta">Launch WCAG 3 Explorer &rarr;</span>
+      </a>
+
+      <!-- Portal 2: WCAG 2.2 -->
+      <a href={link("/plain-english/wcag22/")} class="portal-card portal-wcag22">
+        <div class="portal-card-glow"></div>
+        <div class="portal-card-header">
+          <div class="portal-icon-wrap icon-wcag22">📘</div>
+          <span class="portal-tag tag-standard">Current Official Standard</span>
+        </div>
+        <h3>WCAG 2.2 Reference Guide</h3>
+        <p>Complete plain-English translations of all 68 Level A, AA, and AAA success criteria with practical test checklists and Good vs. Bad accessible code examples.</p>
+        <div class="portal-metrics">
+          <span class="metric-pill"><strong>{wcag22Count}</strong> Success Criteria</span>
+          <span class="metric-pill">Level A / AA / AAA</span>
+          <span class="metric-pill">Testing Checklists</span>
+        </div>
+        <span class="portal-cta">Browse WCAG 2.2 Reference &rarr;</span>
+      </a>
+
+      <!-- Portal 3: Removals & Shifts -->
+      <a href={link("/plain-english/removals/")} class="portal-card portal-removals">
+        <div class="portal-card-glow"></div>
+        <div class="portal-card-header">
+          <div class="portal-icon-wrap icon-removals">🔄</div>
+          <span class="portal-tag tag-shift">2.2 vs 3 Evolution</span>
+        </div>
+        <h3>Removals & Architectural Shifts</h3>
+        <p>In-depth analysis of concepts allowed in WCAG 2.2 that are phased out or omitted in WCAG 3 (such as Conforming Alternate Versions) with direct W3C debate links.</p>
+        <div class="portal-metrics">
+          <span class="metric-pill"><strong>{removalsCount}</strong> Major Shifts</span>
+          <span class="metric-pill">No Alternate Versions</span>
+          <span class="metric-pill">GitHub Debate Links</span>
+        </div>
+        <span class="portal-cta">Inspect Architectural Shifts &rarr;</span>
+      </a>
+
+      <!-- Portal 4: W3C Normative Specs -->
+      <a href={link("/guidelines/")} class="portal-card portal-normative">
+        <div class="portal-card-glow"></div>
+        <div class="portal-card-header">
+          <div class="portal-icon-wrap icon-normative">📜</div>
+          <span class="portal-tag tag-normative">Upstream Standards View</span>
+        </div>
+        <h3>Official W3C Normative Specs</h3>
+        <p>Read the raw, formal W3C working group specifications, informative guidelines, ACT test rules, and technical method documentation as drafted by W3C AGWG.</p>
+        <div class="portal-metrics">
+          <span class="metric-pill">Normative Guidelines</span>
+          <span class="metric-pill">ACT Rules Catalog</span>
+          <span class="metric-pill">Methods Registry</span>
+        </div>
+        <span class="portal-cta">View Raw W3C Specifications &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Explore by Role Section -->
+  <section class="role-launch-section">
+    <div class="section-header">
+      <h2>Explore Tailored Guidance by Role</h2>
+      <p>Select your discipline to see how accessibility requirements directly impact your daily workflow.</p>
+    </div>
+
+    <div class="role-cards-grid">
+      <!-- Designer -->
+      <a href={link("/plain-english/?persona=designer")} class="role-card role-designer-card">
+        <div class="role-header">
+          <span class="role-icon">🎨</span>
+          <h3>Designers</h3>
+        </div>
+        <p>Master color contrast ratios, focus indicator visibility, tap target dimensions, typography readability, dark mode tokens, and responsive layout reflow.</p>
+        <div class="role-tag-list">
+          <span>APCA Contrast</span>
+          <span>Target Sizes (24x24 / 44x44)</span>
+          <span>Motion Controls</span>
+        </div>
+        <span class="role-action-link">View Designer Guidance &rarr;</span>
+      </a>
+
+      <!-- Developer -->
+      <a href={link("/plain-english/?persona=developer")} class="role-card role-developer-card">
+        <div class="role-header">
+          <span class="role-icon">💻</span>
+          <h3>Developers</h3>
+        </div>
+        <p>Implement semantic HTML elements, manage ARIA live regions and attributes, avoid keyboard traps, ensure programmatic labels, and prevent focus obscuration.</p>
+        <div class="role-tag-list">
+          <span>Semantic HTML</span>
+          <span>ARIA Patterns</span>
+          <span>Keyboard Navigation</span>
+        </div>
+        <span class="role-action-link">View Developer Guidance &rarr;</span>
+      </a>
+
+      <!-- QA -->
+      <a href={link("/plain-english/?persona=qa")} class="role-card role-qa-card">
+        <div class="role-header">
+          <span class="role-icon">🧪</span>
+          <h3>QA & Accessibility Testers</h3>
+        </div>
+        <p>Execute automated audits with axe-core & Lighthouse, manual keyboard-only verification, and assistive technology testing with NVDA, JAWS, and VoiceOver.</p>
+        <div class="role-tag-list">
+          <span>Automated Scans</span>
+          <span>Screen Reader Audits</span>
+          <span>Keyboard Traversal</span>
+        </div>
+        <span class="role-action-link">View QA Guidance &rarr;</span>
+      </a>
+
+      <!-- PM -->
+      <a href={link("/plain-english/?persona=productManager")} class="role-card role-pm-card">
+        <div class="role-header">
+          <span class="role-icon">📋</span>
+          <h3>Product Managers</h3>
+        </div>
+        <p>Understand legal compliance requirements (DOJ Title II, European Accessibility Act), evaluate Bronze/Silver/Gold scoring, and prioritize inclusive sprint backlogs.</p>
+        <div class="role-tag-list">
+          <span>Legal Compliance</span>
+          <span>Scoring Tiers</span>
+          <span>Roadmap Planning</span>
+        </div>
+        <span class="role-action-link">View PM Guidance &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Live Status & Stats Bar -->
+  <section class="live-metrics-bar">
+    <div class="metric-item">
+      <span class="metric-number">{wcag3Count}</span>
+      <span class="metric-label">WCAG 3 Provisions</span>
+    </div>
+    <div class="metric-divider" aria-hidden="true"></div>
+    <div class="metric-item">
+      <span class="metric-number">{wcag22Count}</span>
+      <span class="metric-label">WCAG 2.2 Criteria</span>
+    </div>
+    <div class="metric-divider" aria-hidden="true"></div>
+    <div class="metric-item">
+      <span class="metric-number">{removalsCount}</span>
+      <span class="metric-label">Tracked Shifts</span>
+    </div>
+    <div class="metric-divider" aria-hidden="true"></div>
+    <div class="metric-item">
+      <span class="metric-number">4</span>
+      <span class="metric-label">Tailored Roles</span>
+    </div>
+    <div class="metric-divider" aria-hidden="true"></div>
+    <div class="metric-item">
+      <span class="metric-number highlight-sync">Up-to-Date</span>
+      <span class="metric-label">Decoupled W3C Sync</span>
+    </div>
+  </section>
+</PlainEnglishLayout>
+
+<style>
+  /* Portal Hero */
+  .portal-hero {
+    text-align: center;
+    padding: 48px 16px 64px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--accent-blue);
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--text-pure);
+    margin-bottom: 20px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #38bdf8 0%, #a78bfa 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(56, 189, 248, 0.2));
+  }
+
+  :root[data-theme="light"] .gradient-text {
+    background: linear-gradient(135deg, #0369a1 0%, #4338ca 50%, #6b21a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px rgba(15, 23, 42, 0.45);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+  }
+
+  .hero-subtext {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 780px;
+    margin: 0 auto 36px;
+  }
+
+  /* Global Search */
+  .hero-search-wrapper {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  .hero-search-form {
+    display: flex;
+    align-items: center;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: 8px 10px 8px 20px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: var(--transition-normal);
+  }
+
+  .hero-search-form:focus-within {
+    border-color: var(--accent-blue);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.35);
+  }
+
+  .search-icon {
+    font-size: 1.25rem;
+    margin-right: 12px;
+    opacity: 0.8;
+  }
+
+  .hero-search-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    font-family: var(--font-sans);
+  }
+
+  .hero-search-form input::placeholder {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .search-submit-btn {
+    background: var(--accent-blue);
+    color: #070b14;
+    border: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 12px 24px;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+
+  .search-submit-btn:hover {
+    background: #7dd3fc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+  }
+
+  .search-hints {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+  }
+
+  .search-hints a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    transition: var(--transition-fast);
+  }
+
+  .search-hints a:hover {
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+  }
+
+  /* Section Headers */
+  .section-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .section-header h2 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-pure);
+    margin-bottom: 8px;
+  }
+
+  .section-header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+  }
+
+  /* Feature Portals */
+  .feature-portals-section {
+    margin-bottom: 72px;
+  }
+
+  .portals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .portal-card {
+    position: relative;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .portal-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(56, 189, 248, 0.18);
+  }
+
+  .portal-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .portal-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .icon-wcag3 { background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); }
+  .icon-wcag22 { background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.3); }
+  .icon-removals { background: rgba(192, 132, 252, 0.15); border: 1px solid rgba(192, 132, 252, 0.3); }
+  .icon-normative { background: rgba(251, 191, 36, 0.15); border: 1px solid rgba(251, 191, 36, 0.3); }
+
+  .portal-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .tag-draft { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+  .tag-standard { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+  .tag-shift { background: rgba(192, 132, 252, 0.15); color: #c084fc; }
+  .tag-normative { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+
+  .portal-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-pure);
+    margin-bottom: 10px;
+    letter-spacing: -0.015em;
+  }
+
+  .portal-card p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .portal-metrics {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .metric-pill {
+    font-size: 0.78rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+  }
+  .metric-pill strong {
+    color: var(--text-primary);
+  }
+
+  .portal-cta {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--accent-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s ease;
+  }
+
+  .portal-card:hover .portal-cta {
+    gap: 8px;
+  }
+
+  /* Role Launch Section */
+  .role-launch-section {
+    margin-bottom: 72px;
+  }
+
+  .role-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .role-card {
+    background: var(--surface-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border-default);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .role-designer-card { border-top: 4px solid var(--role-designer); }
+  .role-developer-card { border-top: 4px solid var(--role-developer); }
+  .role-qa-card { border-top: 4px solid var(--role-qa); }
+  .role-pm-card { border-top: 4px solid var(--role-pm); }
+
+  .role-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .role-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .role-icon {
+    font-size: 1.4rem;
+  }
+
+  .role-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-pure);
+  }
+
+  .role-card p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+
+  .role-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .role-tag-list span {
+    font-size: 0.72rem;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+
+  .role-action-link {
+    font-weight: 700;
+    font-size: 0.86rem;
+    color: var(--accent-blue);
+  }
+
+  /* Live Metrics Bar */
+  .live-metrics-bar {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .metric-item {
+    text-align: center;
+  }
+
+  .metric-number {
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--text-pure);
+    font-family: var(--font-mono);
+    letter-spacing: -0.02em;
+  }
+
+  .highlight-sync {
+    color: var(--accent-emerald);
+    font-size: 1.3rem;
+  }
+
+  .metric-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .metric-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border-subtle);
+  }
+
+  @media (max-width: 768px) {
+    .metric-divider {
+      display: none;
+    }
+    .portal-hero {
+      padding: 32px 12px 48px;
+    }
+    .hero-search-form {
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px;
+    }
+    .hero-search-form input {
+      width: 100%;
+    }
+    .search-submit-btn {
+      width: 100%;
+    }
+  }
+
+  /* Light Theme Overrides */
+  :global(html[data-theme="light"]) .search-submit-btn {
+    color: #ffffff;
+  }
+  :global(html[data-theme="light"]) .hero-search-form {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  :global(html[data-theme="light"]) .search-hints a {
+    background: #f1f5f9;
+  }
+</style>

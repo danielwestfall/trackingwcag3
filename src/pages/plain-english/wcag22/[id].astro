@@ -24,7 +24,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
 <PlainEnglishLayout title={`SC ${item.num} ${item.name} - WCAG 2.2 Plain English`} activeTab="wcag22">
   <div class="detail-header">
-    <a href={link("/plain-english/wcag22/")} class="back-link">&larr; Back to WCAG 2.2 Reference</a>
+    <nav aria-label="Breadcrumbs" class="breadcrumbs">
+      <a href={link("/plain-english/wcag22/")} class="back-link">&larr; Back to WCAG 2.2 Reference</a>
+      <span class="crumb-sep">/</span>
+      <span class="crumb-current">SC {item.num} {item.name}</span>
+    </nav>
     
     <div class="header-badges">
       <span class="num-badge">SC {item.num}</span>
@@ -33,7 +37,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </div>
 
     <h1 class="page-title">{item.name}</h1>
-    <p class="meta-subtitle">Official W3C WCAG 2.2 Standard Success Criterion</p>
+    <p class="meta-subtitle">Official W3C WCAG 2.2 Standard Success Criterion &bull; Principle: <strong>{item.principle}</strong></p>
   </div>
 
   <!-- Tabbed Interface -->
@@ -54,17 +58,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <div id="panel-plain" role="tabpanel" aria-labelledby="tab-plain" class="tab-panel active">
       <div class="panel-section">
         <h3>Plain English Explanation</h3>
-        <p class="summary-lead">{item.plainEnglish.summary}</p>
+        <p class="summary-lead">{item.plainEnglish?.summary}</p>
       </div>
 
       <div class="panel-grid-2">
         <div class="info-card">
           <h4>Why It Matters</h4>
-          <p>{item.plainEnglish.whyItMatters}</p>
+          <p>{item.plainEnglish?.whyItMatters || "Ensures users can perceive and interact with web content equitably."}</p>
         </div>
         <div class="info-card">
           <h4>Real-World Example</h4>
-          <p>{item.plainEnglish.realWorldExample}</p>
+          <p>{item.plainEnglish?.realWorldExample || "Clear keyboard focus indications preventing navigation disorientation."}</p>
         </div>
       </div>
 
@@ -73,19 +77,19 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <div class="persona-cards-grid">
           <div class="persona-card designer">
             <span class="persona-header">🎨 Designer</span>
-            <p>{item.personaBreakdown.designer}</p>
+            <p>{item.personaBreakdown?.designer || "Ensure color contrast and visual focus states are defined in design tokens."}</p>
           </div>
           <div class="persona-card developer">
             <span class="persona-header">💻 Developer</span>
-            <p>{item.personaBreakdown.developer}</p>
+            <p>{item.personaBreakdown?.developer || "Use semantic HTML elements and programmatic labels."}</p>
           </div>
           <div class="persona-card qa">
             <span class="persona-header">🧪 QA / Tester</span>
-            <p>{item.personaBreakdown.qa}</p>
+            <p>{item.personaBreakdown?.qa || "Verify with automated scanners, keyboard navigation, and screen reader announcements."}</p>
           </div>
           <div class="persona-card pm">
             <span class="persona-header">📋 Product Manager</span>
-            <p>{item.personaBreakdown.productManager}</p>
+            <p>{item.personaBreakdown?.productManager || "Track conformance with regulatory legal standards."}</p>
           </div>
         </div>
       </div>
@@ -98,15 +102,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <div class="testing-grid">
           <div class="test-card">
             <h4>🤖 Automated Testing</h4>
-            <p>{item.testingGuide.automated}</p>
+            <p>{item.testingGuide?.automated || "Run axe-core or Lighthouse audits in your continuous integration pipeline."}</p>
           </div>
           <div class="test-card">
             <h4>⌨️ Keyboard Testing</h4>
-            <p>{item.testingGuide.manualKeyboard}</p>
+            <p>{item.testingGuide?.manualKeyboard || "Tab sequentially through all interactive controls and verify focus states."}</p>
           </div>
           <div class="test-card">
             <h4>🔊 Screen Reader Check</h4>
-            <p>{item.testingGuide.screenReader}</p>
+            <p>{item.testingGuide?.screenReader || "Audit with NVDA, JAWS, or VoiceOver for clear accessibility tree naming."}</p>
           </div>
         </div>
       </div>
@@ -115,12 +119,18 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <h3>Code Patterns: Good vs Bad</h3>
         <div class="code-comparison">
           <div class="code-box good">
-            <span class="code-header">✅ Compliant Code Pattern</span>
-            <pre><code>{item.testingGuide.codeSnippetGood}</code></pre>
+            <div class="code-header">
+              <span>✅ Compliant Code Pattern</span>
+              <button type="button" class="copy-code-btn" data-code={item.testingGuide?.codeSnippetGood || ""}>Copy</button>
+            </div>
+            <pre><code>{item.testingGuide?.codeSnippetGood || "<!-- Compliant semantic markup -->\n<button type=\"button\">\n  Submit\n</button>"}</code></pre>
           </div>
           <div class="code-box bad">
-            <span class="code-header">❌ Non-Compliant Pattern</span>
-            <pre><code>{item.testingGuide.codeSnippetBad}</code></pre>
+            <div class="code-header">
+              <span>❌ Non-Compliant Pattern</span>
+              <button type="button" class="copy-code-btn" data-code={item.testingGuide?.codeSnippetBad || ""}>Copy</button>
+            </div>
+            <pre><code>{item.testingGuide?.codeSnippetBad || "<!-- Inaccessible div button -->\n<div onclick=\"doSubmit()\">\n  Submit\n</div>"}</code></pre>
           </div>
         </div>
       </div>
@@ -133,18 +143,23 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         
         <div class="info-card evolution-box">
           <h4>Evolution Summary</h4>
-          <p>{item.wcag3Mapping.evolutionNote}</p>
+          <p>{item.wcag3Mapping?.evolutionNote || "This criterion transitions from a binary page-level rule to continuous outcome scoring in WCAG 3."}</p>
         </div>
 
         <div class="panel-section">
           <h4>Mapped WCAG 3 Provisions / Outcomes</h4>
           <div class="provision-links-grid">
-            {item.wcag3Mapping.provisions.map((provSlug: string) => (
-              <a href={link(`/plain-english/provision/${provSlug}/`)} class="provision-card-link">
-                <span class="link-label">WCAG 3 Provision:</span>
-                <strong class="link-slug">{provSlug}</strong>
-              </a>
-            ))}
+            {item.wcag3Mapping?.provisions?.length > 0 ? (
+              item.wcag3Mapping.provisions.map((provSlug: string) => (
+                <a href={link(`/plain-english/provision/${provSlug}/`)} class="provision-card-link">
+                  <span class="link-label">WCAG 3 Provision:</span>
+                  <strong class="link-slug">{provSlug}</strong>
+                  <span class="link-arrow">&rarr;</span>
+                </a>
+              ))
+            ) : (
+              <p class="text-muted">Provisions mapped to this criterion are under active draft synthesis.</p>
+            )}
           </div>
         </div>
       </div>
@@ -175,6 +190,25 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         }
       });
     });
+
+    // Copy code buttons
+    document.querySelectorAll('.copy-code-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const code = btn.getAttribute('data-code');
+        if (code) {
+          try {
+            await navigator.clipboard.writeText(code);
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.classList.remove('copied');
+            }, 2000);
+          } catch (e) {}
+        }
+      });
+    });
   });
 </script>
 
@@ -183,69 +217,86 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     margin-bottom: 32px;
   }
 
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.88rem;
+  }
+
   .back-link {
-    display: inline-block;
-    color: #34d399;
+    color: var(--accent-emerald);
     text-decoration: none;
     font-weight: 600;
-    margin-bottom: 16px;
+    transition: var(--transition-fast);
   }
-  .back-link:hover { text-decoration: underline; }
+  .back-link:hover { color: #6ee7b7; }
+
+  .crumb-sep { color: var(--text-muted); }
+  .crumb-current { color: var(--text-secondary); }
 
   .header-badges {
     display: flex;
     gap: 8px;
     align-items: center;
     margin-bottom: 12px;
+    flex-wrap: wrap;
   }
 
   .num-badge {
     font-family: var(--font-mono);
     font-weight: 800;
-    color: #34d399;
-    font-size: 1rem;
+    color: var(--accent-emerald);
+    font-size: 0.92rem;
+    background: rgba(52, 211, 153, 0.12);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
   }
 
   .level-badge {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 6px;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
   }
-  .level-A { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-  .level-AA { background: rgba(52, 211, 153, 0.2); color: #34d399; }
-  .level-AAA { background: rgba(192, 132, 252, 0.2); color: #c084fc; }
+  .level-A { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+  .level-AA { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+  .level-AAA { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
 
   .principle-badge {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.05);
-    padding: 3px 10px;
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
   }
 
   .page-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
     font-weight: 800;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
     margin-bottom: 8px;
   }
 
   .meta-subtitle {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.94rem;
   }
 
   .tabs-container {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
   }
 
   .tab-list {
     display: flex;
-    background: rgba(15, 23, 42, 0.8);
-    border-bottom: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.8);
+    border-bottom: 1px solid var(--border-subtle);
     overflow-x: auto;
   }
 
@@ -253,36 +304,45 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     background: none;
     border: none;
     color: var(--text-secondary);
-    padding: 16px 24px;
-    font-size: 0.95rem;
+    padding: 16px 22px;
+    font-size: 0.92rem;
     font-weight: 600;
     font-family: var(--font-sans);
     cursor: pointer;
     white-space: nowrap;
     border-bottom: 3px solid transparent;
+    transition: var(--transition-fast);
+  }
+  .tab-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.03);
   }
   .tab-btn.active {
-    color: #34d399;
-    border-bottom-color: #34d399;
-    background: rgba(52, 211, 153, 0.05);
+    color: var(--accent-emerald);
+    border-bottom-color: var(--accent-emerald);
+    background: rgba(52, 211, 153, 0.08);
+    font-weight: 700;
   }
 
   .tab-panel { padding: 32px; }
   .tab-panel.hidden { display: none; }
 
   .panel-section { margin-bottom: 32px; }
+  .panel-section:last-child { margin-bottom: 0; }
   .panel-section h3 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 16px;
+    color: var(--text-pure);
+    letter-spacing: -0.015em;
   }
 
   .summary-lead {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    background: rgba(52, 211, 153, 0.08);
-    border-left: 4px solid #34d399;
-    padding: 16px 20px;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    background: rgba(52, 211, 153, 0.06);
+    border-left: 4px solid var(--accent-emerald);
+    padding: 18px 22px;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
   }
 
@@ -294,20 +354,21 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .info-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 20px;
   }
   .info-card h4 {
-    color: #34d399;
-    font-size: 1rem;
+    color: var(--accent-emerald);
+    font-size: 0.98rem;
     font-weight: 700;
     margin-bottom: 8px;
   }
   .info-card p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .persona-cards-grid {
@@ -317,40 +378,49 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .persona-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
   }
+  .persona-card.designer { border-top: 3px solid var(--role-designer); }
+  .persona-card.developer { border-top: 3px solid var(--role-developer); }
+  .persona-card.qa { border-top: 3px solid var(--role-qa); }
+  .persona-card.pm { border-top: 3px solid var(--role-pm); }
+
   .persona-header {
     font-weight: 700;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    font-size: 0.94rem;
   }
-  .designer .persona-header { color: #f472b6; }
-  .developer .persona-header { color: #38bdf8; }
-  .qa .persona-header { color: #34d399; }
-  .pm .persona-header { color: #fbbf24; }
+  .designer .persona-header { color: var(--role-designer); }
+  .developer .persona-header { color: var(--role-developer); }
+  .qa .persona-header { color: var(--role-qa); }
+  .pm .persona-header { color: var(--role-pm); }
 
   .persona-card p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
   }
 
   .testing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 18px;
   }
 
   .test-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 20px;
   }
-  .test-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-  .test-card p { color: var(--text-secondary); font-size: 0.92rem; }
+  .test-card h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+  .test-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55; }
 
   .code-comparison {
     display: grid;
@@ -360,23 +430,45 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .code-box {
     border-radius: var(--radius-md);
-    padding: 16px;
-    background: #090d16;
-    border: 1px solid var(--border-color);
+    padding: 18px;
+    background: #070b14;
+    border: 1px solid var(--border-default);
   }
   .code-box.good { border-top: 3px solid #34d399; }
   .code-box.bad { border-top: 3px solid #f43f5e; }
 
-  .code-header { font-weight: 700; display: block; margin-bottom: 12px; }
-  .good .code-header { color: #34d399; }
-  .bad .code-header { color: #f43f5e; }
+  .code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 0.88rem;
+  }
+  .good .code-header span { color: #34d399; }
+  .bad .code-header span { color: #f43f5e; }
+
+  .copy-code-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .copy-code-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.15); }
+  .copy-code-btn.copied { background: #34d399; color: #070b14; font-weight: 700; }
 
   pre {
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     color: var(--text-primary);
     overflow-x: auto;
     white-space: pre-wrap;
+    line-height: 1.5;
   }
 
   .evolution-box {
@@ -392,12 +484,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .provision-card-link {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 16px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
   .provision-card-link:hover {
     border-color: var(--accent-blue);
@@ -412,5 +507,28 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .link-slug {
     color: var(--accent-blue);
     font-size: 0.95rem;
+  }
+  .link-arrow { color: var(--accent-blue); margin-top: 4px; }
+
+  .text-muted { color: var(--text-muted); }
+
+  @media (max-width: 768px) {
+    .tab-panel { padding: 20px; }
+  }
+
+  /* Light Theme Overrides */
+  :global(html[data-theme="light"]) .tab-list {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .info-card,
+  :global(html[data-theme="light"]) .persona-card,
+  :global(html[data-theme="light"]) .test-card,
+  :global(html[data-theme="light"]) .provision-card-link {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .link-slug {
+    color: #0369a1;
   }
 </style>

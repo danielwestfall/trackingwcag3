@@ -30,12 +30,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 <PlainEnglishLayout title={`${item.title} - WCAG 3 Plain English`} activeTab="wcag3">
   <!-- Back Button & Header -->
   <div class="detail-header">
-    <a href={link("/plain-english/")} class="back-link">&larr; Back to WCAG 3 Explorer</a>
+    <nav aria-label="Breadcrumbs" class="breadcrumbs">
+      <a href={link("/plain-english/")} class="back-link">&larr; Back to WCAG 3 Explorer</a>
+      <span class="crumb-sep">/</span>
+      <span class="crumb-current">{item.title}</span>
+    </nav>
     
     <div class="header-badges">
       <span class={`status-badge status-${status}`}>{status}</span>
       <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>
-      <span class="type-badge">{item.type}</span>
+      <span class="type-badge">{item.type || "Provision"}</span>
     </div>
 
     <h1 class="page-title">{item.title}</h1>
@@ -45,17 +49,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     <!-- Final Release Likelihood Banner -->
     <div class="likelihood-banner">
-      <div class="likelihood-info">
-        <span class="banner-label">W3C Final Release Estimation:</span>
+      <div class="likelihood-header">
+        <span class="banner-label">W3C Final Recommendation Likelihood:</span>
         <span class="banner-value">{likelihood}</span>
       </div>
-      <p class="banner-desc">{ann?.statusSummary?.workingGroupDebate}</p>
+      <p class="banner-desc">{ann?.statusSummary?.workingGroupDebate || "Active W3C AGWG exploration topic."}</p>
     </div>
   </div>
 
   <!-- Tabbed Interface -->
   <section class="tabs-container">
-    <div class="tab-list" role="tablist" aria-label="Provision details">
+    <div class="tab-list" role="tablist" aria-label="Provision detailed analysis">
       <button role="tab" aria-selected="true" aria-controls="panel-plain" id="tab-plain" class="tab-btn active">
         💬 Plain English & Persona Tips
       </button>
@@ -63,7 +67,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         🧪 Testing Guide & Code
       </button>
       <button role="tab" aria-selected="false" aria-controls="panel-estimation" id="tab-estimation" class="tab-btn">
-        📊 Discussion & Release Estimation
+        📊 Discussion & Estimation
       </button>
       <button role="tab" aria-selected="false" aria-controls="panel-wcag22" id="tab-wcag22" class="tab-btn">
         ⚖️ WCAG 2.2 Comparison
@@ -83,11 +87,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       <div class="panel-grid-2">
         <div class="info-card">
           <h4>Why It Matters</h4>
-          <p>{ann?.plainEnglish?.whyItMatters}</p>
+          <p>{ann?.plainEnglish?.whyItMatters || "Ensures equitable access for users with various disabilities."}</p>
         </div>
         <div class="info-card">
           <h4>Real-World Example</h4>
-          <p>{ann?.plainEnglish?.realWorldExample}</p>
+          <p>{ann?.plainEnglish?.realWorldExample || "Navigating complex components without cognitive or physical barriers."}</p>
         </div>
       </div>
 
@@ -96,19 +100,19 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <div class="persona-cards-grid">
           <div class="persona-card designer">
             <span class="persona-header">🎨 Designer</span>
-            <p>{ann?.personaBreakdown?.designer}</p>
+            <p>{ann?.personaBreakdown?.designer || "Design high-contrast visual cues and consistent component states."}</p>
           </div>
           <div class="persona-card developer">
             <span class="persona-header">💻 Developer</span>
-            <p>{ann?.personaBreakdown?.developer}</p>
+            <p>{ann?.personaBreakdown?.developer || "Use semantic HTML elements and programmatic accessibility attributes."}</p>
           </div>
           <div class="persona-card qa">
             <span class="persona-header">🧪 QA / Tester</span>
-            <p>{ann?.personaBreakdown?.qa}</p>
+            <p>{ann?.personaBreakdown?.qa || "Verify with automated rules, keyboard tab navigation, and screen readers."}</p>
           </div>
           <div class="persona-card pm">
             <span class="persona-header">📋 Product Manager</span>
-            <p>{ann?.personaBreakdown?.productManager}</p>
+            <p>{ann?.personaBreakdown?.productManager || "Incorporate accessible acceptance criteria in sprint user stories."}</p>
           </div>
         </div>
       </div>
@@ -121,15 +125,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <div class="testing-grid">
           <div class="test-card">
             <h4>🤖 Automated Testing</h4>
-            <p>{ann?.testingGuide?.automated}</p>
+            <p>{ann?.testingGuide?.automated || "Run axe-core or Lighthouse accessibility audits in CI/CD pipeline."}</p>
           </div>
           <div class="test-card">
             <h4>⌨️ Keyboard Testing</h4>
-            <p>{ann?.testingGuide?.manualKeyboard}</p>
+            <p>{ann?.testingGuide?.manualKeyboard || "Tab through all interactive controls and verify focus states."}</p>
           </div>
           <div class="test-card">
             <h4>🔊 Screen Reader Verification</h4>
-            <p>{ann?.testingGuide?.screenReader}</p>
+            <p>{ann?.testingGuide?.screenReader || "Audit with NVDA, JAWS, or VoiceOver to check verbalized announcements."}</p>
           </div>
         </div>
       </div>
@@ -138,12 +142,18 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <h3>Code Patterns: Good vs Bad</h3>
         <div class="code-comparison">
           <div class="code-box good">
-            <span class="code-header">✅ Good Implementation</span>
-            <pre><code>{ann?.testingGuide?.codeSnippetGood}</code></pre>
+            <div class="code-header">
+              <span>✅ Good Accessible Implementation</span>
+              <button type="button" class="copy-code-btn" data-code={ann?.testingGuide?.codeSnippetGood || ""}>Copy</button>
+            </div>
+            <pre><code>{ann?.testingGuide?.codeSnippetGood || "<!-- Accessible semantic implementation -->\n<button type=\"button\" aria-expanded=\"false\">\n  Toggle Navigation\n</button>"}</code></pre>
           </div>
           <div class="code-box bad">
-            <span class="code-header">❌ Bad Implementation</span>
-            <pre><code>{ann?.testingGuide?.codeSnippetBad}</code></pre>
+            <div class="code-header">
+              <span>❌ Inaccessible Anti-Pattern</span>
+              <button type="button" class="copy-code-btn" data-code={ann?.testingGuide?.codeSnippetBad || ""}>Copy</button>
+            </div>
+            <pre><code>{ann?.testingGuide?.codeSnippetBad || "<!-- Inaccessible div button -->\n<div onclick=\"toggleNav()\">\n  Toggle Navigation\n</div>"}</code></pre>
           </div>
         </div>
       </div>
@@ -152,30 +162,30 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 3: Discussion & Release Estimation -->
     <div id="panel-estimation" role="tabpanel" aria-labelledby="tab-estimation" class="tab-panel hidden">
       <div class="panel-section">
-        <h3>W3C Working Group Discussion Summary</h3>
+        <h3>W3C Working Group Status & Discussion</h3>
         <div class="discussion-box">
           <div class="metric-row">
             <span class="metric-label">Estimated Release Likelihood:</span>
-            <span class="metric-val">{ann?.statusSummary?.inclusionLikelihood}</span>
+            <span class="metric-val">{likelihood}</span>
           </div>
           <div class="metric-row">
             <span class="metric-label">W3C Maturity Status:</span>
-            <span class="metric-val">{item.status}</span>
+            <span class="metric-val status-val">{item.status}</span>
           </div>
           <div class="metric-row">
-            <span class="metric-label">Issue Label / W3C Track:</span>
-            <span class="metric-val">{item.issueLabel || 'Standard W3C Track'}</span>
+            <span class="metric-label">Track / Group:</span>
+            <span class="metric-val">{item.groupSlug}</span>
           </div>
         </div>
 
         <div class="info-card">
-          <h4>Debate & Discussion Rationale</h4>
-          <p>{ann?.statusSummary?.workingGroupDebate}</p>
+          <h4>Working Group Debate & Consensus</h4>
+          <p>{ann?.statusSummary?.workingGroupDebate || "Currently under active review by the W3C Accessibility Guidelines Working Group."}</p>
         </div>
 
         <div class="info-card">
           <h4>Key Implementation Challenges</h4>
-          <p>{ann?.statusSummary?.keyChallenges}</p>
+          <p>{ann?.statusSummary?.keyChallenges || "Balancing flexible platform capabilities with standardized scoring formulas."}</p>
         </div>
       </div>
     </div>
@@ -189,21 +199,31 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <span class="delta-title">Strictness Delta:</span>
             <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>
           </div>
-          <p class="delta-desc">{ann?.wcag22Comparison?.deltaExplanation}</p>
+          <p class="delta-desc">{ann?.wcag22Comparison?.deltaExplanation || "Evolution from WCAG 2.2 binary rule."}</p>
         </div>
 
         <div class="panel-section">
           <h4>Matching WCAG 2.2 Success Criteria</h4>
           {ann?.wcag22Comparison?.matchingCriteria?.length > 0 ? (
             <ul class="matching-list">
-              {ann.wcag22Comparison.matchingCriteria.map((scStr: string) => (
-                <li>
-                  <a href="/plain-english/wcag22/ " class="sc-link">{scStr}</a>
-                </li>
-              ))}
+              {ann.wcag22Comparison.matchingCriteria.map((scStr: string) => {
+                const scNum = scStr.replace(/[^0-9.]/g, '');
+                const scSlug = scNum.replace(/\./g, '-');
+                return (
+                  <li>
+                    <a href={link(`/plain-english/wcag22/${scSlug}/`)} class="sc-link">
+                      <span>📘</span>
+                      <strong>{scStr}</strong>
+                      <span class="link-arrow">&rarr;</span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
-            <p class="text-muted">This provision introduces a brand new outcome framework in WCAG 3 without a direct 1:1 predecessor in WCAG 2.2.</p>
+            <div class="new-outcome-box">
+              <p>✨ <strong>New WCAG 3 Outcome:</strong> This provision introduces a brand new outcome framework in WCAG 3 without a direct 1:1 predecessor in WCAG 2.2.</p>
+            </div>
           )}
         </div>
       </div>
@@ -244,6 +264,25 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         }
       });
     });
+
+    // Copy code button handler
+    document.querySelectorAll('.copy-code-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const code = btn.getAttribute('data-code');
+        if (code) {
+          try {
+            await navigator.clipboard.writeText(code);
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.classList.remove('copied');
+            }, 2000);
+          } catch (e) {}
+        }
+      });
+    });
   });
 </script>
 
@@ -252,92 +291,117 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     margin-bottom: 32px;
   }
 
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.88rem;
+  }
+
   .back-link {
-    display: inline-block;
     color: var(--accent-blue);
     text-decoration: none;
     font-weight: 600;
-    margin-bottom: 16px;
+    transition: var(--transition-fast);
   }
   .back-link:hover {
-    text-decoration: underline;
+    color: #7dd3fc;
+  }
+
+  .crumb-sep {
+    color: var(--text-muted);
+  }
+
+  .crumb-current {
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px;
   }
 
   .header-badges {
     display: flex;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
   }
 
   .status-badge {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 6px;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
   }
-  .status-mature { background: rgba(52, 211, 153, 0.2); color: #34d399; }
-  .status-refining { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-  .status-developing { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
-  .status-exploratory { background: rgba(244, 63, 94, 0.2); color: #f43f5e; }
+  .status-mature { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+  .status-refining { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+  .status-developing { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+  .status-exploratory { background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
 
   .delta-badge {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
   }
-  .delta-morestrict { background: rgba(192, 132, 252, 0.2); color: #c084fc; }
-  .delta-equivalent { background: rgba(148, 163, 184, 0.2); color: #94a3b8; }
-  .delta-newbroaderscope { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+  .delta-morestrict { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+  .delta-equivalent { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+  .delta-newbroaderscope { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
 
   .type-badge {
-    font-size: 0.75rem;
-    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.72rem;
+    background: rgba(255, 255, 255, 0.06);
     color: var(--text-secondary);
-    padding: 4px 10px;
-    border-radius: 6px;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
   }
 
   .page-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
     font-weight: 800;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
     margin-bottom: 8px;
   }
 
   .meta-subtitle {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.94rem;
     margin-bottom: 24px;
   }
 
   .likelihood-banner {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, rgba(19, 29, 49, 0.85) 0%, rgba(11, 17, 32, 0.95) 100%);
+    border: 1px solid var(--border-default);
     border-left: 4px solid var(--accent-blue);
     border-radius: var(--radius-md);
-    padding: 16px 20px;
+    padding: 18px 24px;
+    box-shadow: var(--shadow-sm);
   }
-  .likelihood-info {
+  .likelihood-header {
     font-size: 1rem;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .banner-label { color: var(--text-secondary); font-weight: 600; margin-right: 8px; }
   .banner-value { color: var(--accent-blue); font-weight: 800; }
-  .banner-desc { color: var(--text-muted); font-size: 0.88rem; }
+  .banner-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; }
 
   /* Tabs */
   .tabs-container {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
   }
 
   .tab-list {
     display: flex;
-    background: rgba(15, 23, 42, 0.8);
-    border-bottom: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.8);
+    border-bottom: 1px solid var(--border-subtle);
     overflow-x: auto;
   }
 
@@ -345,14 +409,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     background: none;
     border: none;
     color: var(--text-secondary);
-    padding: 16px 24px;
-    font-size: 0.95rem;
+    padding: 16px 22px;
+    font-size: 0.92rem;
     font-weight: 600;
     font-family: var(--font-sans);
     cursor: pointer;
     white-space: nowrap;
     border-bottom: 3px solid transparent;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
   }
   .tab-btn:hover {
     color: var(--text-primary);
@@ -361,7 +425,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .tab-btn.active {
     color: var(--accent-blue);
     border-bottom-color: var(--accent-blue);
-    background: rgba(56, 189, 248, 0.05);
+    background: rgba(56, 189, 248, 0.08);
+    font-weight: 700;
   }
 
   .tab-panel {
@@ -374,20 +439,24 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .panel-section {
     margin-bottom: 32px;
   }
+  .panel-section:last-child {
+    margin-bottom: 0;
+  }
   .panel-section h3 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 16px;
-    color: var(--text-primary);
+    color: var(--text-pure);
+    letter-spacing: -0.015em;
   }
 
   .summary-lead {
-    font-size: 1.15rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.65;
     color: var(--text-primary);
-    background: rgba(56, 189, 248, 0.08);
+    background: rgba(56, 189, 248, 0.06);
     border-left: 4px solid var(--accent-blue);
-    padding: 16px 20px;
+    padding: 18px 22px;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
   }
 
@@ -399,20 +468,22 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .info-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 20px;
+    margin-bottom: 16px;
   }
   .info-card h4 {
-    font-size: 1rem;
+    font-size: 0.98rem;
     font-weight: 700;
     margin-bottom: 8px;
     color: var(--accent-blue);
   }
   .info-card p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .persona-cards-grid {
@@ -422,48 +493,57 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .persona-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
   }
+  .persona-card.designer { border-top: 3px solid var(--role-designer); }
+  .persona-card.developer { border-top: 3px solid var(--role-developer); }
+  .persona-card.qa { border-top: 3px solid var(--role-qa); }
+  .persona-card.pm { border-top: 3px solid var(--role-pm); }
+
   .persona-header {
     font-weight: 700;
     display: block;
-    margin-bottom: 6px;
-    font-size: 0.95rem;
+    margin-bottom: 8px;
+    font-size: 0.94rem;
   }
-  .designer .persona-header { color: #f472b6; }
-  .developer .persona-header { color: #38bdf8; }
-  .qa .persona-header { color: #34d399; }
-  .pm .persona-header { color: #fbbf24; }
+  .designer .persona-header { color: var(--role-designer); }
+  .developer .persona-header { color: var(--role-developer); }
+  .qa .persona-header { color: var(--role-qa); }
+  .pm .persona-header { color: var(--role-pm); }
 
   .persona-card p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
   }
 
   .testing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 18px;
   }
 
   .test-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 20px;
   }
   .test-card h4 {
-    font-size: 1rem;
+    font-size: 0.98rem;
     font-weight: 700;
     margin-bottom: 8px;
     color: var(--text-primary);
   }
   .test-card p {
     color: var(--text-secondary);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   .code-comparison {
@@ -474,33 +554,57 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .code-box {
     border-radius: var(--radius-md);
-    padding: 16px;
-    background: #090d16;
-    border: 1px solid var(--border-color);
+    padding: 18px;
+    background: #070b14;
+    border: 1px solid var(--border-default);
   }
   .code-box.good { border-top: 3px solid #34d399; }
   .code-box.bad { border-top: 3px solid #f43f5e; }
 
   .code-header {
-    font-weight: 700;
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 12px;
-    font-size: 0.9rem;
+    font-weight: 700;
+    font-size: 0.88rem;
   }
-  .good .code-header { color: #34d399; }
-  .bad .code-header { color: #f43f5e; }
+  .good .code-header span { color: #34d399; }
+  .bad .code-header span { color: #f43f5e; }
+
+  .copy-code-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .copy-code-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.15);
+  }
+  .copy-code-btn.copied {
+    background: #34d399;
+    color: #070b14;
+    font-weight: 700;
+  }
 
   pre {
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     color: var(--text-primary);
     overflow-x: auto;
     white-space: pre-wrap;
+    line-height: 1.5;
   }
 
   .discussion-box {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 20px;
     margin-bottom: 24px;
@@ -509,16 +613,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .metric-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-subtle);
   }
   .metric-row:last-child { border-bottom: none; }
-  .metric-label { color: var(--text-secondary); }
-  .metric-val { color: var(--accent-blue); font-weight: 700; }
+  .metric-label { color: var(--text-secondary); font-size: 0.9rem; }
+  .metric-val { color: var(--accent-blue); font-weight: 700; font-size: 0.9rem; }
+  .status-val { text-transform: capitalize; }
 
   .delta-summary-box {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 20px;
     margin-bottom: 24px;
@@ -531,27 +636,81 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     margin-bottom: 12px;
   }
   .delta-title { font-weight: 700; color: var(--text-primary); }
+  .delta-desc { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; }
 
   .matching-list {
     list-style-type: none;
     padding: 0;
-  }
-  .matching-list li {
-    margin: 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   .sc-link {
-    color: var(--accent-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
     text-decoration: none;
-    font-weight: 600;
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+    font-size: 0.9rem;
   }
-  .sc-link:hover { text-decoration: underline; }
+  .sc-link:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateX(4px);
+  }
+  .link-arrow { color: var(--accent-blue); margin-left: auto; }
+
+  .new-outcome-box {
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
 
   .raw-body-box pre {
-    background: #090d16;
+    background: #070b14;
     padding: 20px;
     border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-default);
   }
 
-  .text-muted { color: var(--text-muted); }
+  @media (max-width: 768px) {
+    .tab-panel {
+      padding: 20px;
+    }
+  }
+
+  /* Light Theme Overrides */
+  :global(html[data-theme="light"]) .likelihood-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  }
+  :global(html[data-theme="light"]) .tab-list {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .info-card,
+  :global(html[data-theme="light"]) .persona-card,
+  :global(html[data-theme="light"]) .test-card,
+  :global(html[data-theme="light"]) .discussion-box,
+  :global(html[data-theme="light"]) .delta-summary-box,
+  :global(html[data-theme="light"]) .sc-link {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .metric-label {
+    color: #475569;
+  }
+  :global(html[data-theme="light"]) .metric-val {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .delta-desc {
+    color: #1e293b;
+  }
 </style>

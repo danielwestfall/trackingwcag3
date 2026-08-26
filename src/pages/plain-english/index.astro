@@ -54,7 +54,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 <PlainEnglishLayout title="WCAG 3 Plain English Explorer" activeTab="wcag3">
   <!-- Quick Nav TOC Floating Toggle & Drawer -->
   <button id="toc-toggle-btn" class="toc-toggle-btn" aria-expanded="false" aria-controls="toc-drawer" aria-label="Toggle Quick Navigation Table of Contents">
-    <span class="toc-btn-icon">📋</span>
+    <span class="toc-btn-icon" aria-hidden="true">📋</span>
     <span class="toc-btn-text">Quick Nav (TOC)</span>
     <span id="toc-count-badge" class="toc-count-badge">{totalCount}</span>
   </button>
@@ -93,27 +93,32 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </div>
   </aside>
 
-  <!-- Stats Header -->
+  <!-- Hero Dashboard Banner -->
   <section class="dashboard-banner">
     <div class="banner-content">
       <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle">✨</span>
+          <span>Draft Standards Intelligence</span>
+        </div>
         <h2>WCAG 3 Plain English Explorer</h2>
-        <p>A plain-English educational view of the W3C WCAG 3 draft standards with estimations, testing guides, and WCAG 2.2 comparisons.</p>
+        <p>A plain-English educational view of the W3C WCAG 3 draft standards with release estimations, testing guides, and WCAG 2.2 comparison mappings.</p>
       </div>
+      
       <div class="stats-grid">
         <div class="stat-card">
           <span class="stat-value">{totalCount}</span>
           <span class="stat-label">W3C Provisions</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-mature">
           <span class="stat-value highlight-mature">{matureCount}</span>
           <span class="stat-label">Refining / Mature</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-high">
           <span class="stat-value highlight-high">{highInclusionCount}</span>
           <span class="stat-label">High Final Likelihood</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-annotated">
           <span class="stat-value highlight-annotated">{customAnnotatedCount}</span>
           <span class="stat-label">Plain English Guides</span>
         </div>
@@ -125,13 +130,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <section class="rating-model-banner">
     <div class="rating-header">
       <div class="rating-title-group">
-        <h3>🏅 How WCAG 3 Scoring Works: Bronze, Silver & Gold</h3>
+        <div class="rating-title-row">
+          <span class="rating-icon" aria-hidden="true">🏅</span>
+          <h3>How WCAG 3 Scoring Works: Bronze, Silver & Gold</h3>
+        </div>
         <p>WCAG 3 replaces rigid A/AA/AAA checklists with a continuous points-based outcome model and multi-tier rating system.</p>
       </div>
     </div>
 
     <div class="rating-qa-box">
-      <div class="qa-icon">💡</div>
+      <div class="qa-icon" aria-hidden="true">💡</div>
       <div class="qa-text">
         <strong>Do provisions belong exclusively to Bronze, Silver, or Gold?</strong>
         <p><strong>No!</strong> Provisions do <em>not</em> belong to fixed tiers like WCAG 2.2's A/AA/AAA buckets. Every provision contributes points to an overall score. Silver and Gold levels are achieved by earning higher overall scores <strong>and</strong> completing specific evaluation methods (like testing with disabled users & documenting organizational assertions), not by adding separate "Gold-only" requirements.</p>
@@ -140,32 +148,50 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     <div class="rating-tiers-grid">
       <div class="tier-card tier-bronze">
-        <div class="tier-badge">🥉 Bronze</div>
-        <h4>Base Conformance</h4>
+        <div class="tier-top">
+          <div class="tier-badge">🥉 Bronze</div>
+          <span class="tier-score-target">Base Score (100% Core)</span>
+        </div>
+        <h4>Base Regulatory Conformance</h4>
+        <div class="tier-progress-bar">
+          <div class="tier-progress-fill fill-bronze"></div>
+        </div>
         <ul class="tier-features">
           <li><strong>Requirement:</strong> Must pass 100% of Core Guidelines across all functional categories.</li>
           <li><strong>Evaluation:</strong> Automated testing + Expert manual inspection.</li>
-          <li><strong>Role:</strong> Baseline threshold for legal and regulatory compliance.</li>
+          <li><strong>Role:</strong> Baseline threshold for legal and regulatory compliance (DOJ Title II, EAA).</li>
         </ul>
       </div>
 
       <div class="tier-card tier-silver">
-        <div class="tier-badge">🥈 Silver</div>
+        <div class="tier-top">
+          <div class="tier-badge">🥈 Silver</div>
+          <span class="tier-score-target">Higher Score + User Tests</span>
+        </div>
         <h4>User-Tested Excellence</h4>
+        <div class="tier-progress-bar">
+          <div class="tier-progress-fill fill-silver"></div>
+        </div>
         <ul class="tier-features">
-          <li><strong>Requirement:</strong> Reaches Bronze score + higher overall percentage threshold.</li>
+          <li><strong>Requirement:</strong> Reaches Bronze score + higher overall percentage score threshold.</li>
           <li><strong>Evaluation:</strong> Requires mandatory <strong>User Testing with Disabled Users</strong>.</li>
-          <li><strong>Role:</strong> Proves real disabled users can navigate and complete tasks friction-free.</li>
+          <li><strong>Role:</strong> Proves real disabled users can navigate and complete user flows friction-free.</li>
         </ul>
       </div>
 
       <div class="tier-card tier-gold">
-        <div class="tier-badge">🥇 Gold</div>
+        <div class="tier-top">
+          <div class="tier-badge">🥇 Gold</div>
+          <span class="tier-score-target">Max Score + Assertions</span>
+        </div>
         <h4>Organizational Maturity</h4>
+        <div class="tier-progress-bar">
+          <div class="tier-progress-fill fill-gold"></div>
+        </div>
         <ul class="tier-features">
           <li><strong>Requirement:</strong> Reaches Silver score + maximum overall score percentage.</li>
           <li><strong>Evaluation:</strong> Ongoing automated monitoring + Multi-disability panel testing + Assertions.</li>
-          <li><strong>Role:</strong> Represents industry-leading inclusive design and continuous monitoring.</li>
+          <li><strong>Role:</strong> Industry-leading inclusive design, culture, and continuous monitoring.</li>
         </ul>
       </div>
     </div>
@@ -173,20 +199,20 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Accordion: Current W3C Status on Base Requirements -->
     <details class="w3c-status-accordion">
       <summary class="accordion-summary">
-        <span class="summary-icon">🔍</span>
+        <span class="summary-icon" aria-hidden="true">🔍</span>
         <span class="summary-title">Are the WCAG 3 base requirements finalized yet? (Current W3C Working Group Status)</span>
-        <span class="accordion-chevron">&darr;</span>
+        <span class="accordion-chevron" aria-hidden="true">&darr;</span>
       </summary>
       <div class="accordion-body">
-        <p><strong>Short Answer: No, they are still actively in progress by the W3C AGWG.</strong></p>
+        <p class="accordion-lead"><strong>Short Answer: No, they are still actively in progress by the W3C AGWG.</strong></p>
         
         <div class="status-table-container">
           <table class="w3c-status-table">
             <thead>
               <tr>
-                <th>Component</th>
-                <th>W3C Development Status</th>
-                <th>Details</th>
+                <th scope="col">Component</th>
+                <th scope="col">W3C Development Status</th>
+                <th scope="col">Details</th>
               </tr>
             </thead>
             <tbody>
@@ -228,27 +254,36 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   </section>
 
   <!-- Controls & Filters -->
-  <section class="controls-section">
+  <section class="controls-section" aria-label="Filters and Search Controls">
     <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="search-input" placeholder="Search WCAG 3 provisions by keyword, topic, or code..." aria-label="Search provisions" />
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input type="text" id="search-input" placeholder="Search WCAG 3 provisions by keyword, topic, or code... (Press '/' to focus)" aria-label="Search provisions" />
+      <span class="search-key-badge"><kbd>/</kbd></span>
     </div>
 
     <div class="filter-bar">
       <div class="filter-group">
-        <span class="filter-label">Target Role:</span>
-        <div class="persona-pills" id="persona-pills">
-          <button type="button" class="persona-pill active" data-persona="all">All Roles</button>
-          <button type="button" class="persona-pill" data-persona="designer">🎨 Designer</button>
-          <button type="button" class="persona-pill" data-persona="developer">💻 Developer</button>
-          <button type="button" class="persona-pill" data-persona="qa">🧪 QA / Tester</button>
-          <button type="button" class="persona-pill" data-persona="productManager">📋 Product Mgr</button>
+        <span class="filter-label">Filter Role Tips:</span>
+        <div class="persona-pills" id="persona-pills" role="radiogroup" aria-label="Filter role tips">
+          <button type="button" class="persona-pill active" data-persona="all" role="radio" aria-checked="true">All Roles</button>
+          <button type="button" class="persona-pill pill-designer" data-persona="designer" role="radio" aria-checked="false">🎨 Designer</button>
+          <button type="button" class="persona-pill pill-developer" data-persona="developer" role="radio" aria-checked="false">💻 Developer</button>
+          <button type="button" class="persona-pill pill-qa" data-persona="qa" role="radio" aria-checked="false">🧪 QA / Tester</button>
+          <button type="button" class="persona-pill pill-pm" data-persona="productManager" role="radio" aria-checked="false">📋 Product Mgr</button>
         </div>
       </div>
 
       <div class="filter-group select-filters">
+        <label for="category-filter" class="sr-only">Filter by Category</label>
+        <select id="category-filter" class="filter-select" aria-label="Filter by Functional Category">
+          <option value="all">All Categories ({groupedCategories.length})</option>
+          {groupedCategories.map((g) => (
+            <option value={g.slug}>{g.name} ({g.items.length})</option>
+          ))}
+        </select>
+
         <label for="status-filter" class="sr-only">Filter by Status</label>
-        <select id="status-filter" class="filter-select">
+        <select id="status-filter" class="filter-select" aria-label="Filter by W3C Status">
           <option value="all">All W3C Statuses</option>
           <option value="mature">Mature</option>
           <option value="refining">Refining</option>
@@ -257,7 +292,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </select>
 
         <label for="delta-filter" class="sr-only">Filter by WCAG 2.2 Comparison</label>
-        <select id="delta-filter" class="filter-select">
+        <select id="delta-filter" class="filter-select" aria-label="Filter by WCAG 2.2 Comparison Strictness">
           <option value="all">All 2.2 Strictness</option>
           <option value="More Strict">More Strict than 2.2</option>
           <option value="Equivalent">Equivalent to 2.2</option>
@@ -280,12 +315,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         const likelihood = ann?.statusSummary?.inclusionLikelihood || "Under Discussion";
         const delta = ann?.wcag22Comparison?.strictnessDelta || "Equivalent";
         const status = item.status || "exploratory";
+        const groupSlug = item.groupSlug || "general";
         
         return (
           <article 
             id={`provision-${item.slug}`}
             class="provision-card" 
             data-slug={item.slug}
+            data-group={groupSlug}
             data-title={item.title.toLowerCase()}
             data-body={item.rawBody.toLowerCase()}
             data-status={status}
@@ -296,9 +333,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <div class="badge-group">
                 <span class={`status-badge status-${status}`}>{status}</span>
                 <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>
+                <span class="group-tag">{GROUP_NAMES[groupSlug] || groupSlug}</span>
               </div>
               <div class="estimation-pill" title="Estimated likelihood of reaching final WCAG 3 Recommendation">
-                <span class="est-label">Final Release:</span>
+                <span class="est-label">Final Likelihood:</span>
                 <span class="est-value">{likelihood}</span>
               </div>
             </div>
@@ -310,14 +348,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <p class="plain-english-text">{ann?.plainEnglish?.summary}</p>
 
             <div class="persona-tip-box" data-persona-container>
-              <span class="tip-role">Designer Tip:</span>
-              <p class="tip-content">{ann?.personaBreakdown?.designer}</p>
+              <span class="tip-role">🎨 Designer Tip:</span>
+              <p class="tip-content">{ann?.personaBreakdown?.designer || "Review design tokens and ensure clear visual states."}</p>
             </div>
 
             <div class="card-footer">
               <div class="wcag22-links">
                 {ann?.wcag22Comparison?.matchingCriteria?.length > 0 ? (
-                  <span>Refers to: <strong>{ann.wcag22Comparison.matchingCriteria.join(", ")}</strong></span>
+                  <span>Maps to: <strong>{ann.wcag22Comparison.matchingCriteria.join(", ")}</strong></span>
                 ) : (
                   <span>New WCAG 3 Outcome</span>
                 )}
@@ -335,9 +373,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    const catalogData = JSON.parse(document.getElementById('provisions-grid').getAttribute('data-raw') || '[]');
     const searchInput = document.getElementById('search-input');
     const personaPills = document.querySelectorAll('.persona-pill');
+    const categoryFilter = document.getElementById('category-filter');
     const statusFilter = document.getElementById('status-filter');
     const deltaFilter = document.getElementById('delta-filter');
     const cards = document.querySelectorAll('.provision-card');
@@ -345,36 +383,81 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     let activePersona = 'all';
 
+    // Parse URL params (?q=... and ?persona=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialQuery = urlParams.get('q');
+    const initialPersona = urlParams.get('persona');
+
+    if (initialQuery && searchInput) {
+      searchInput.value = initialQuery;
+    }
+
+    if (initialPersona) {
+      personaPills.forEach(pill => {
+        if (pill.getAttribute('data-persona') === initialPersona) {
+          personaPills.forEach(p => {
+            p.classList.remove('active');
+            p.setAttribute('aria-checked', 'false');
+          });
+          pill.classList.add('active');
+          pill.setAttribute('aria-checked', 'true');
+          activePersona = initialPersona;
+        }
+      });
+    }
+
+    // Role Persona Pills Click
     personaPills.forEach(pill => {
       pill.addEventListener('click', () => {
-        personaPills.forEach(p => p.classList.remove('active'));
+        personaPills.forEach(p => {
+          p.classList.remove('active');
+          p.setAttribute('aria-checked', 'false');
+        });
         pill.classList.add('active');
+        pill.setAttribute('aria-checked', 'true');
         activePersona = pill.getAttribute('data-persona');
         updatePersonaTips();
-        filterCards();
       });
+    });
+
+    // Keyboard shortcut '/' to search
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput && document.activeElement !== tocSearchInput) {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+      if (e.key === 'Escape') {
+        toggleToc(false);
+      }
     });
 
     function updatePersonaTips() {
       cards.forEach(card => {
-        const slug = card.getAttribute('data-slug');
         const tipContainer = card.querySelector('[data-persona-container]');
         if (!tipContainer) return;
 
+        tipContainer.className = 'persona-tip-box';
+
         if (activePersona === 'all' || activePersona === 'designer') {
           tipContainer.querySelector('.tip-role').textContent = '🎨 Designer Tip:';
+          tipContainer.classList.add('tip-designer');
         } else if (activePersona === 'developer') {
           tipContainer.querySelector('.tip-role').textContent = '💻 Developer Tip:';
+          tipContainer.classList.add('tip-developer');
         } else if (activePersona === 'qa') {
           tipContainer.querySelector('.tip-role').textContent = '🧪 QA / Tester Tip:';
+          tipContainer.classList.add('tip-qa');
         } else if (activePersona === 'productManager') {
           tipContainer.querySelector('.tip-role').textContent = '📋 Product Manager Tip:';
+          tipContainer.classList.add('tip-pm');
         }
       });
     }
 
     function filterCards() {
       const query = searchInput.value.toLowerCase().trim();
+      const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
       const selectedStatus = statusFilter.value;
       const selectedDelta = deltaFilter.value;
 
@@ -384,14 +467,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         const title = card.getAttribute('data-title') || '';
         const body = card.getAttribute('data-body') || '';
         const summary = card.getAttribute('data-summary') || '';
+        const group = card.getAttribute('data-group') || '';
         const status = card.getAttribute('data-status') || '';
         const delta = card.getAttribute('data-delta') || '';
 
         const matchesQuery = !query || title.includes(query) || body.includes(query) || summary.includes(query);
+        const matchesCategory = selectedCategory === 'all' || group === selectedCategory;
         const matchesStatus = selectedStatus === 'all' || status === selectedStatus;
         const matchesDelta = selectedDelta === 'all' || delta === selectedDelta;
 
-        if (matchesQuery && matchesStatus && matchesDelta) {
+        if (matchesQuery && matchesCategory && matchesStatus && matchesDelta) {
           card.style.display = 'flex';
           visible++;
         } else {
@@ -416,7 +501,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       if (isVisible) {
         tocDrawer.removeAttribute('hidden');
         tocToggleBtn.setAttribute('aria-expanded', 'true');
-        tocSearchInput.focus();
+        if (tocSearchInput) tocSearchInput.focus();
       } else {
         tocDrawer.setAttribute('hidden', '');
         tocToggleBtn.setAttribute('aria-expanded', 'false');
@@ -436,6 +521,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
           targetCard.classList.add('pulse-highlight');
           setTimeout(() => targetCard.classList.remove('pulse-highlight'), 2000);
+          if (window.innerWidth < 768) {
+            toggleToc(false);
+          }
         }
       });
     });
@@ -475,18 +563,25 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     if (tocSearchInput) tocSearchInput.addEventListener('input', updateTocVisibility);
 
     searchInput.addEventListener('input', filterCards);
+    if (categoryFilter) categoryFilter.addEventListener('change', filterCards);
     statusFilter.addEventListener('change', filterCards);
     deltaFilter.addEventListener('change', filterCards);
+
+    // Initial trigger
+    updatePersonaTips();
+    filterCards();
   });
 </script>
 
 <style>
+  /* Dashboard Banner */
   .dashboard-banner {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, rgba(19, 29, 49, 0.9) 0%, rgba(11, 17, 32, 0.95) 100%);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
-    padding: 32px;
-    margin-bottom: 32px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
   }
 
   .banner-content {
@@ -497,131 +592,198 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     flex-wrap: wrap;
   }
 
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--accent-blue);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+
   .banner-title-group h2 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 800;
     margin-bottom: 8px;
-    background: linear-gradient(90deg, #f8fafc, #38bdf8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
   }
 
   .banner-title-group p {
     color: var(--text-secondary);
-    max-width: 600px;
-    font-size: 1rem;
+    max-width: 620px;
+    font-size: 0.98rem;
+    line-height: 1.6;
   }
 
   .stats-grid {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
   }
 
   .stat-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 16px 20px;
+    padding: 14px 18px;
     text-align: center;
-    min-width: 120px;
+    min-width: 125px;
+    transition: var(--transition-fast);
+  }
+  .stat-card:hover {
+    border-color: var(--border-active);
+    transform: translateY(-2px);
   }
 
   .stat-value {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.75rem;
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--text-pure);
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    margin-bottom: 2px;
   }
-  .highlight-mature { color: var(--status-mature); }
+  .highlight-mature { color: var(--accent-emerald); }
   .highlight-high { color: var(--accent-blue); }
   .highlight-annotated { color: var(--accent-purple); }
 
   .stat-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   /* Rating Model Breakdown Styling */
   .rating-model-banner {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, rgba(19, 29, 49, 0.75) 0%, rgba(11, 17, 32, 0.9) 100%);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
-    padding: 24px 32px;
-    margin-bottom: 24px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
   }
-  .rating-header h3 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--accent-blue);
+
+  .rating-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 4px;
   }
+
+  .rating-icon {
+    font-size: 1.5rem;
+  }
+
+  .rating-header h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-pure);
+    letter-spacing: -0.015em;
+  }
+
   .rating-header p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-bottom: 16px;
+    font-size: 0.92rem;
+    margin-bottom: 18px;
   }
 
   .rating-qa-box {
     display: flex;
     gap: 14px;
     background: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.25);
+    border: 1px solid rgba(56, 189, 248, 0.22);
     border-radius: var(--radius-md);
     padding: 16px 20px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
-  .qa-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .qa-icon { font-size: 1.4rem; flex-shrink: 0; }
   .qa-text strong {
     display: block;
     color: var(--accent-blue);
-    font-size: 0.98rem;
+    font-size: 0.96rem;
     margin-bottom: 4px;
   }
   .qa-text p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
   .rating-tiers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
+    gap: 18px;
   }
 
   .tier-card {
-    background: rgba(15, 23, 42, 0.7);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.75);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 20px;
+    padding: 22px;
     position: relative;
-    transition: transform 0.2s ease;
+    transition: var(--transition-normal);
   }
   .tier-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    border-color: var(--border-active);
   }
 
-  .tier-bronze { border-top: 4px solid #cd7f32; }
-  .tier-silver { border-top: 4px solid #c0c0c0; }
-  .tier-gold { border-top: 4px solid #ffd700; }
+  .tier-bronze { border-top: 4px solid var(--tier-bronze); }
+  .tier-silver { border-top: 4px solid var(--tier-silver); }
+  .tier-gold { border-top: 4px solid var(--tier-gold); }
+
+  .tier-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
 
   .tier-badge {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 800;
-    margin-bottom: 6px;
   }
-  .tier-bronze .tier-badge { color: #cd7f32; }
-  .tier-silver .tier-badge { color: #e2e8f0; }
-  .tier-gold .tier-badge { color: #ffd700; }
+  .tier-bronze .tier-badge { color: var(--tier-bronze); }
+  .tier-silver .tier-badge { color: var(--tier-silver); }
+  .tier-gold .tier-badge { color: var(--tier-gold); }
+
+  .tier-score-target {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .tier-progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+
+  .tier-progress-fill {
+    height: 100%;
+    border-radius: 9999px;
+  }
+  .fill-bronze { width: 65%; background: var(--tier-bronze); }
+  .fill-silver { width: 85%; background: var(--tier-silver); }
+  .fill-gold { width: 100%; background: var(--tier-gold); }
 
   .tier-card h4 {
-    font-size: 1rem;
+    font-size: 1.02rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--text-pure);
     margin-bottom: 12px;
   }
 
@@ -632,16 +794,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     display: flex;
     flex-direction: column;
     gap: 8px;
-    font-size: 0.86rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
+    line-height: 1.5;
   }
   .tier-features strong { color: var(--text-primary); }
 
   /* W3C Status Accordion Styling */
   .w3c-status-accordion {
-    margin-top: 20px;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    margin-top: 22px;
+    background: rgba(7, 11, 20, 0.65);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     overflow: hidden;
   }
@@ -652,15 +815,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     gap: 10px;
     padding: 14px 18px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.94rem;
     font-weight: 700;
     color: var(--accent-purple);
     user-select: none;
-    background: rgba(168, 85, 247, 0.05);
-    transition: background 0.2s ease;
+    background: rgba(192, 132, 252, 0.06);
+    transition: var(--transition-fast);
   }
   .accordion-summary:hover {
-    background: rgba(168, 85, 247, 0.1);
+    background: rgba(192, 132, 252, 0.12);
   }
   .accordion-summary::-webkit-details-marker { display: none; }
   
@@ -677,10 +840,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .accordion-body {
     padding: 20px;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.9rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.88rem;
     color: var(--text-secondary);
     line-height: 1.6;
+  }
+
+  .accordion-lead {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
   }
 
   .status-table-container {
@@ -691,24 +860,24 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .w3c-status-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
   .w3c-status-table th, .w3c-status-table td {
     padding: 10px 14px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-default);
     text-align: left;
   }
   .w3c-status-table th {
-    background: rgba(30, 41, 59, 0.9);
-    color: var(--text-primary);
+    background: rgba(19, 29, 49, 0.9);
+    color: var(--text-pure);
     font-weight: 700;
   }
 
   .status-badge {
     display: inline-block;
-    padding: 4px 10px;
-    border-radius: 9999px;
-    font-size: 0.78rem;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    font-size: 0.72rem;
     font-weight: 700;
   }
   .badge-wip {
@@ -724,20 +893,20 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .w3c-notice-box {
     margin-top: 16px;
-    background: rgba(239, 68, 68, 0.08);
-    border: 1px solid rgba(239, 68, 68, 0.25);
+    background: rgba(244, 63, 94, 0.08);
+    border: 1px solid rgba(244, 63, 94, 0.25);
     border-radius: var(--radius-md);
     padding: 14px 18px;
   }
   .w3c-notice-box strong {
-    color: #f87171;
+    color: #fb7185;
     display: block;
     margin-bottom: 4px;
   }
   .w3c-notice-box p {
     margin: 0;
     color: var(--text-secondary);
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
 
   /* Controls Section */
@@ -745,7 +914,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   .search-box {
@@ -759,22 +928,31 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  .search-key-badge {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .search-box input {
     width: 100%;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
-    padding: 16px 16px 16px 48px;
+    padding: 16px 50px 16px 50px;
     color: var(--text-primary);
     font-size: 1rem;
     font-family: var(--font-sans);
-    transition: all 0.2s ease;
+    transition: var(--transition-normal);
   }
   .search-box input:focus {
     border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+    outline: none;
   }
 
   .filter-bar {
@@ -789,11 +967,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap;
   }
 
   .filter-label {
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 700;
     color: var(--text-secondary);
   }
 
@@ -804,15 +983,18 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .persona-pill {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     color: var(--text-secondary);
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: 7px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.84rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
   .persona-pill:hover {
     border-color: var(--accent-blue);
@@ -820,55 +1002,70 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   .persona-pill.active {
     background: var(--accent-blue);
-    color: #0f172a;
+    color: #070b14;
     border-color: var(--accent-blue);
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35);
   }
+
+  .persona-pill.pill-designer.active { background: var(--role-designer); color: #070b14; border-color: var(--role-designer); }
+  .persona-pill.pill-developer.active { background: var(--role-developer); color: #070b14; border-color: var(--role-developer); }
+  .persona-pill.pill-qa.active { background: var(--role-qa); color: #070b14; border-color: var(--role-qa); }
+  .persona-pill.pill-pm.active { background: var(--role-pm); color: #070b14; border-color: var(--role-pm); }
 
   .select-filters {
     display: flex;
-    gap: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .filter-select {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     color: var(--text-primary);
-    padding: 10px 14px;
+    padding: 9px 14px;
     border-radius: var(--radius-md);
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     cursor: pointer;
+    font-family: var(--font-sans);
+    transition: var(--transition-fast);
+  }
+  .filter-select:focus {
+    border-color: var(--accent-blue);
+    outline: none;
   }
 
   /* Grid */
   .provisions-section {
-    margin-top: 16px;
+    margin-top: 12px;
   }
 
   .grid-header {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     color: var(--text-secondary);
+    font-size: 0.92rem;
   }
 
   .provisions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 24px;
+    gap: 22px;
   }
 
   .provision-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
     padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.25s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .provision-card:hover {
     border-color: var(--accent-blue);
     transform: translateY(-3px);
-    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.12);
   }
 
   .card-top {
@@ -876,57 +1073,68 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     justify-content: space-between;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .badge-group {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .status-badge {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     text-transform: uppercase;
     padding: 3px 8px;
-    border-radius: 6px;
+    border-radius: 4px;
   }
-  .status-mature { background: rgba(52, 211, 153, 0.2); color: #34d399; }
-  .status-refining { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-  .status-developing { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
-  .status-exploratory { background: rgba(244, 63, 94, 0.2); color: #f43f5e; }
+  .status-mature { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+  .status-refining { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+  .status-developing { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+  .status-exploratory { background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
 
   .delta-badge {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     padding: 3px 8px;
-    border-radius: 6px;
+    border-radius: 4px;
   }
-  .delta-morestrict { background: rgba(192, 132, 252, 0.2); color: #c084fc; }
-  .delta-equivalent { background: rgba(148, 163, 184, 0.2); color: #94a3b8; }
-  .delta-newbroaderscope { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+  .delta-morestrict { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+  .delta-equivalent { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+  .delta-newbroaderscope { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+
+  .group-tag {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 3px 7px;
+    border-radius: 4px;
+  }
 
   .estimation-pill {
-    font-size: 0.75rem;
-    background: rgba(15, 23, 42, 0.7);
-    padding: 4px 8px;
+    font-size: 0.72rem;
+    background: rgba(7, 11, 20, 0.7);
+    padding: 3px 8px;
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
     white-space: nowrap;
   }
   .est-label { color: var(--text-muted); margin-right: 4px; }
   .est-value { color: var(--accent-blue); font-weight: 700; }
 
   .card-title {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     font-weight: 700;
-    margin-bottom: 12px;
-    line-height: 1.4;
+    margin-bottom: 10px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
   }
   .card-title a {
-    color: var(--text-primary);
+    color: var(--text-pure);
     text-decoration: none;
+    transition: var(--transition-fast);
   }
   .card-title a:hover {
     color: var(--accent-blue);
@@ -934,19 +1142,32 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .plain-english-text {
     color: var(--text-secondary);
-    font-size: 0.92rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.55;
     margin-bottom: 16px;
   }
 
   .persona-tip-box {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(7, 11, 20, 0.6);
     border-left: 3px solid var(--accent-blue);
     padding: 12px 14px;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    margin-bottom: 20px;
-    font-size: 0.85rem;
+    margin-bottom: 18px;
+    font-size: 0.84rem;
+    transition: var(--transition-fast);
   }
+  .tip-designer { border-left-color: var(--role-designer); }
+  .tip-designer .tip-role { color: var(--role-designer); }
+
+  .tip-developer { border-left-color: var(--role-developer); }
+  .tip-developer .tip-role { color: var(--role-developer); }
+
+  .tip-qa { border-left-color: var(--role-qa); }
+  .tip-qa .tip-role { color: var(--role-qa); }
+
+  .tip-pm { border-left-color: var(--role-pm); }
+  .tip-pm .tip-role { color: var(--role-pm); }
+
   .tip-role {
     font-weight: 700;
     color: var(--accent-blue);
@@ -955,14 +1176,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   .tip-content {
     color: var(--text-secondary);
+    line-height: 1.5;
   }
 
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--border-color);
-    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 14px;
     font-size: 0.8rem;
     color: var(--text-muted);
   }
@@ -975,10 +1197,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     color: var(--accent-blue);
     text-decoration: none;
     font-weight: 700;
-    transition: transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s ease;
   }
   .read-more-btn:hover {
-    transform: translateX(4px);
+    gap: 8px;
   }
 
   .sr-only {
@@ -1002,28 +1227,29 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     display: flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
-    color: #ffffff;
+    background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-blue) 100%);
+    color: #070b14;
     border: none;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
     padding: 12px 20px;
-    font-size: 0.95rem;
-    font-weight: 700;
+    font-size: 0.92rem;
+    font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.4);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .toc-toggle-btn:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+    box-shadow: 0 15px 30px rgba(56, 189, 248, 0.5);
   }
 
   .toc-count-badge {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(7, 11, 20, 0.5);
     color: #ffffff;
     padding: 2px 8px;
-    border-radius: 9999px;
-    font-size: 0.8rem;
+    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
   }
 
   /* Quick Nav Drawer Panel */
@@ -1031,26 +1257,26 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     position: fixed;
     top: 80px;
     right: 24px;
-    width: 380px;
+    width: 400px;
     max-width: calc(100vw - 48px);
     max-height: calc(100vh - 120px);
     z-index: 101;
-    background: rgba(15, 23, 42, 0.96);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--border-color);
+    background: rgba(11, 17, 32, 0.96);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(56, 189, 248, 0.15);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    animation: drawerSlide 0.25s ease-out;
+    animation: drawerSlide 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .toc-drawer[hidden] {
     display: none !important;
   }
 
   @keyframes drawerSlide {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -1059,17 +1285,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     justify-content: space-between;
     align-items: center;
     padding: 16px 20px;
-    border-bottom: 1px solid var(--border-color);
-    background: rgba(30, 41, 59, 0.8);
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(19, 29, 49, 0.85);
   }
   .toc-title-group h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 800;
-    color: var(--accent-purple);
+    color: var(--text-pure);
     margin: 0;
   }
   .toc-subtitle {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
   }
 
@@ -1081,21 +1307,27 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     cursor: pointer;
     line-height: 1;
     padding: 4px;
+    border-radius: 4px;
   }
   .toc-close-btn:hover { color: var(--text-primary); }
 
   .toc-search-box {
     padding: 12px 16px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-subtle);
   }
   .toc-search-box input {
     width: 100%;
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(7, 11, 20, 0.7);
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 8px 12px;
     color: var(--text-primary);
     font-size: 0.85rem;
+    font-family: var(--font-sans);
+  }
+  .toc-search-box input:focus {
+    border-color: var(--accent-blue);
+    outline: none;
   }
 
   .toc-categories-list {
@@ -1117,11 +1349,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     padding: 6px 0;
   }
   .cat-count-badge {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     background: rgba(56, 189, 248, 0.15);
     color: var(--accent-blue);
-    padding: 2px 6px;
-    border-radius: 9999px;
+    padding: 2px 7px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
   }
 
   .toc-items-list {
@@ -1138,16 +1371,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     font-size: 0.82rem;
     color: var(--text-secondary);
     text-decoration: none;
-    padding: 4px 8px;
-    border-radius: var(--radius-md);
-    transition: background 0.15s ease, color 0.15s ease;
+    padding: 5px 8px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   .toc-item-link:hover {
-    background: rgba(168, 85, 247, 0.15);
-    color: var(--accent-purple);
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--accent-blue);
   }
 
   /* Target Card Pulse Highlight */
@@ -1156,7 +1389,54 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   @keyframes cardPulse {
-    0%, 100% { border-color: var(--border-color); box-shadow: none; }
-    25%, 75% { border-color: var(--accent-purple); box-shadow: 0 0 25px rgba(168, 85, 247, 0.5); }
+    0%, 100% { border-color: var(--border-default); box-shadow: none; }
+    25%, 75% { border-color: var(--accent-blue); box-shadow: 0 0 25px rgba(56, 189, 248, 0.6); }
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-banner {
+      padding: 24px;
+    }
+    .banner-title-group h2 {
+      font-size: 1.5rem;
+    }
+    .stats-grid {
+      width: 100%;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 110px;
+    }
+  }
+
+  /* Light Theme Specific Overrides */
+  :global(html[data-theme="light"]) .dashboard-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  }
+  :global(html[data-theme="light"]) .rating-model-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  }
+  :global(html[data-theme="light"]) .stat-card,
+  :global(html[data-theme="light"]) .tier-card,
+  :global(html[data-theme="light"]) .w3c-status-accordion,
+  :global(html[data-theme="light"]) .estimation-pill,
+  :global(html[data-theme="light"]) .persona-tip-box,
+  :global(html[data-theme="light"]) .toc-drawer {
+    background: #ffffff;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .toc-header {
+    background: #f1f5f9;
+  }
+  :global(html[data-theme="light"]) .toc-search-box input {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+  }
+  :global(html[data-theme="light"]) .tier-progress-bar {
+    background: rgba(0, 0, 0, 0.08);
+  }
+  :global(html[data-theme="light"]) .qa-text strong {
+    color: #0369a1;
   }
 </style>
