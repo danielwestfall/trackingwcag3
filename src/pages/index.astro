@@ -8,8 +8,8 @@ const wcag3CatalogPath = path.join(process.cwd(), "public", "data", "wcag3-catal
 const wcag22CatalogPath = path.join(process.cwd(), "public", "data", "wcag22-catalog.json");
 const removalsCatalogPath = path.join(process.cwd(), "public", "data", "wcag3-removals.json");
 
-let wcag3Count = 219;
-let wcag22Count = 68;
+let wcag3Count = 245;
+let wcag22Count = 87;
 let removalsCount = 4;
 
 if (fs.existsSync(wcag3CatalogPath)) {
@@ -59,7 +59,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           type="text" 
           name="q" 
           id="portal-search-input" 
-          placeholder="Search 219 WCAG 3 provisions & 68 WCAG 2.2 criteria (e.g., color contrast, focus visible, forms)..." 
+          placeholder={`Search ${wcag3Count} WCAG 3 provisions & ${wcag22Count} WCAG 2.2 criteria (e.g., color contrast, focus visible, forms)...`} 
           aria-label="Search WCAG provisions and criteria"
           autocomplete="off"
         />
@@ -91,10 +91,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="portal-tag tag-draft">W3C Draft Explorer</span>
         </div>
         <h3>WCAG 3 Plain English Explorer</h3>
-        <p>Breakdown of all 219 draft provisions across functional categories, W3C release likelihood estimates, and Bronze/Silver/Gold continuous scoring model.</p>
+        <p>Breakdown of all {wcag3Count} draft provisions across functional categories, W3C release likelihood estimates, and how the conformance model now works.</p>
         <div class="portal-metrics">
           <span class="metric-pill"><strong>{wcag3Count}</strong> Provisions</span>
-          <span class="metric-pill">Bronze / Silver / Gold</span>
+          <span class="metric-pill">Reporting Tiers</span>
           <span class="metric-pill">Role Advice</span>
         </div>
         <span class="portal-cta">Launch WCAG 3 Explorer &rarr;</span>
@@ -117,7 +117,24 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <span class="portal-cta">Browse WCAG 2.2 Reference &rarr;</span>
       </a>
 
-      <!-- Portal 3: Removals & Shifts -->
+      <!-- Portal 3: Conformance -->
+      <a href={link("/plain-english/conformance/")} class="portal-card portal-removals">
+        <div class="portal-card-glow"></div>
+        <div class="portal-card-header">
+          <div class="portal-icon-wrap icon-removals">⚖️</div>
+          <span class="portal-tag tag-shift">Conformance Model</span>
+        </div>
+        <h3>Conformance: What Changed &amp; Readiness</h3>
+        <p>WCAG 3 moved leveling off conformance and onto reporting. What that means against WCAG 2.2, and a checklist of what to start now versus what to wait on.</p>
+        <div class="portal-metrics">
+          <span class="metric-pill"><strong>6</strong> Reporting Tiers</span>
+          <span class="metric-pill">One Conformance Bar</span>
+          <span class="metric-pill">Readiness Checklist</span>
+        </div>
+        <span class="portal-cta">See What Changed &rarr;</span>
+      </a>
+
+      <!-- Portal 4: Removals & Shifts -->
       <a href={link("/plain-english/removals/")} class="portal-card portal-removals">
         <div class="portal-card-glow"></div>
         <div class="portal-card-header">
@@ -134,7 +151,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <span class="portal-cta">Inspect Architectural Shifts &rarr;</span>
       </a>
 
-      <!-- Portal 4: W3C Normative Specs -->
+      <!-- Portal 5: W3C Normative Specs -->
       <a href={link("/guidelines/")} class="portal-card portal-normative">
         <div class="portal-card-glow"></div>
         <div class="portal-card-header">
@@ -212,7 +229,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="role-icon">📋</span>
           <h3>Product Managers</h3>
         </div>
-        <p>Understand legal compliance requirements (DOJ Title II, European Accessibility Act), evaluate Bronze/Silver/Gold scoring, and prioritize inclusive sprint backlogs.</p>
+        <p>Understand legal compliance requirements (DOJ Title II, European Accessibility Act), follow how WCAG 3 conformance and reporting tiers are taking shape, and prioritize inclusive sprint backlogs.</p>
         <div class="role-tag-list">
           <span>Legal Compliance</span>
           <span>Scoring Tiers</span>

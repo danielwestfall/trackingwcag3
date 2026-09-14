@@ -69,7 +69,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </div>
 
     <div class="toc-search-box">
-      <input type="text" id="toc-search-input" placeholder="Filter 219 items..." aria-label="Filter Table of Contents items" />
+      <input type="text" id="toc-search-input" placeholder={`Filter ${totalCount} items...`} aria-label="Filter Table of Contents items" />
     </div>
 
     <div class="toc-categories-list">
@@ -244,9 +244,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
                 <td>Agreed 3-tier hierarchy: <em>Guideline &rarr; Outcome &rarr; Method (Testable Rules)</em>.</td>
               </tr>
               <tr>
-                <td><strong>219 Draft Provisions</strong></td>
+                <td><strong>{totalCount} Draft Provisions</strong></td>
                 <td><span class="status-badge badge-done">✅ Drafted</span></td>
-                <td>The 219 provisions in this app reflect W3C's current active draft repository work.</td>
+                <td>The {totalCount} provisions in this app are synced from W3C's active draft repository. None have reached <em>refining</em> or <em>mature</em> status yet.</td>
               </tr>
             </tbody>
           </table>
