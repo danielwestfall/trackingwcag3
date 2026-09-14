@@ -57,10 +57,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available",
-        "media-alternatives-controllable"
+        "descriptive-transcripts-available",
+        "dialogue-transcripts-available-prerecorded"
       ],
-      "evolutionNote": "WCAG 3 unifies media alternatives into controllable media alternative outcomes."
+      "evolutionNote": "WCAG 3 splits media alternatives apart: prerecorded audio-only and video-only are covered by the transcripts guideline rather than one combined outcome."
     }
   },
   {
@@ -89,9 +89,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available"
+        "captions-available-prerecorded",
+        "captions-equivalent-prerecorded"
       ],
-      "evolutionNote": "WCAG 3 includes captions in comprehensive media accessibility outcomes."
+      "evolutionNote": "WCAG 3 separates whether captions exist from whether they are equivalent, and adds further provisions for speaker identification, sounds and non-verbal cues."
     }
   },
   {
@@ -120,9 +121,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available"
+        "audio-descriptions-available-prerecorded",
+        "descriptive-transcripts-available"
       ],
-      "evolutionNote": "WCAG 3 integrates audio description into media outcomes."
+      "evolutionNote": "WCAG 3 keeps the either/or shape of 1.2.3: an audio description, or a descriptive transcript."
     }
   },
   {
@@ -151,9 +153,9 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available"
+        "captions-available-live"
       ],
-      "evolutionNote": "WCAG 3 maintains live captioning as a key media requirement."
+      "evolutionNote": "WCAG 3 gives live captions their own provision under the captions guideline."
     }
   },
   {
@@ -182,9 +184,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available"
+        "audio-descriptions-available-prerecorded",
+        "audio-descriptions-equivalent-prerecorded"
       ],
-      "evolutionNote": "WCAG 3 maps 1.2.5 to media alternative guidelines."
+      "evolutionNote": "WCAG 3 separates the existence of audio description from whether it conveys equivalent information."
     }
   },
   {
@@ -780,9 +783,11 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "animation-and-movement"
+        "no-visual-motion",
+        "audio-shifting-adjustable",
+        "haptic-stimulation-adjustable"
       ],
-      "evolutionNote": "WCAG 3 handles moving content under animation-and-movement outcomes."
+      "evolutionNote": "WCAG 3 breaks pause/stop/hide apart by the kind of motion: visual motion, audio shifting, and haptic stimulation each get their own provision."
     }
   },
   {
@@ -811,9 +816,9 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "animation-and-movement"
+        "no-flashing-over-threshold"
       ],
-      "evolutionNote": "WCAG 3 maintains seizure prevention as a core health requirement."
+      "evolutionNote": "WCAG 3 restated this around explicit thresholds: flashes must stay below the general flash and red flash thresholds. A stricter no-exceptions variant and an exploratory single-flash provision sit alongside it."
     }
   },
   {
@@ -999,9 +1004,11 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "keyboard-focus-appearance"
+        "default-focus-indicator-used",
+        "focus-indicator-contrast-sufficient",
+        "focus-indicator-size-sufficient"
       ],
-      "evolutionNote": "WCAG 3 provides quantitative metrics for focus area size and contrast ratio."
+      "evolutionNote": "WCAG 3 replaces the binary focus-visible check with measurable provisions for focus indicator contrast and size."
     }
   },
   {
@@ -1030,9 +1037,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "keyboard-focus-appearance"
+        "focus-indicator-contrast-sufficient",
+        "focus-indicator-size-sufficient"
       ],
-      "evolutionNote": "WCAG 3 builds directly on 2.4.11's quantitative focus measurement rules."
+      "evolutionNote": "WCAG 3 carries the quantitative focus appearance metrics into separate contrast and size provisions."
     }
   },
   {
@@ -1479,32 +1487,33 @@
   {
     "id": "1.2.6",
     "num": "1.2.6",
-    "name": "Audio-only (Live)",
+    "name": "Sign Language (Prerecorded)",
     "level": "AAA",
     "principle": "Perceivable",
     "plainEnglish": {
-      "summary": "Live audio-only broadcasts must provide a live text transcript or live caption stream.",
-      "whyItMatters": "Deaf users listening to live radio or audio webcasts need real-time text descriptions.",
-      "realWorldExample": "A live radio interview stream provides real-time text transcript streaming."
+      "summary": "Sign language interpretation is provided for all prerecorded audio content in synchronized media.",
+      "whyItMatters": "For many Deaf people a signed language is their first language and written captions are a second language, so captions alone do not give equal access.",
+      "realWorldExample": "A prerecorded training video carries a picture-in-picture sign language interpreter alongside the captions."
     },
     "personaBreakdown": {
-      "designer": "Reserve space for live text stream overlays.",
-      "developer": "Connect live speech-to-text API streams to live audio player components.",
-      "qa": "Test live audio streams with real-time text transcription.",
-      "productManager": "Contract live CART transcribers for major live audio broadcasts."
+      "designer": "Reserve a stable region of the video frame for the interpreter and keep it clear of captions and controls.",
+      "developer": "Ship the interpreter as a selectable track or a synchronized second video rather than burning it into one rendition.",
+      "qa": "Confirm the interpretation is present, synchronized, and can be shown and hidden without losing playback position.",
+      "productManager": "Budget interpreters for prerecorded media and decide which sign language each audience region needs."
     },
     "testingGuide": {
-      "automated": "Manual live stream audit required.",
-      "manualKeyboard": "Verify live transcript toggle is keyboard focusable.",
-      "screenReader": "Verify live transcript aria-live region announcements.",
-      "codeSnippetGood": "<div role=\"region\" aria-live=\"polite\">[Live Audio Transcript]: Hello...</div>",
-      "codeSnippetBad": "<audio src=\"live-stream\"></audio>"
+      "automated": "No automated check; presence of an interpretation must be confirmed manually.",
+      "manualKeyboard": "Verify any show/hide control for the interpretation is keyboard operable.",
+      "screenReader": "Verify the interpretation track is announced and labelled.",
+      "codeSnippetGood": "<video><track kind=\"sign\" src=\"asl.vtt\" srclang=\"ase\" label=\"American Sign Language\"></video>",
+      "codeSnippetBad": "<video src=\"training.mp4\"></video> <!-- captions only, no signed interpretation -->"
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available"
+        "sign-language-available-prerecorded",
+        "sign-language-controllable"
       ],
-      "evolutionNote": "WCAG 3 incorporates live audio alternatives into media outcomes."
+      "evolutionNote": "WCAG 3 gives sign language its own guideline, and adds a provision for showing and hiding the interpretation."
     }
   },
   {
@@ -1533,9 +1542,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available"
+        "extended-audio-descriptions-available",
+        "extended-audio-descriptions-equivalent"
       ],
-      "evolutionNote": "WCAG 3 integrates extended description into media outcomes."
+      "evolutionNote": "WCAG 3 splits extended audio description into availability and equivalence."
     }
   },
   {
@@ -1564,9 +1574,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available"
+        "descriptive-transcripts-available",
+        "transcripts-equivalent-prerecorded"
       ],
-      "evolutionNote": "WCAG 3 maps media text alternatives to media alternative outcomes."
+      "evolutionNote": "The WCAG 2.2 media alternative becomes the descriptive transcript in WCAG 3, with a separate equivalence provision."
     }
   },
   {
@@ -1813,9 +1824,9 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "animation-and-movement"
+        "no-flashing-over-threshold-no-exceptions"
       ],
-      "evolutionNote": "WCAG 3 maintains 2.3.2 under animation outcomes."
+      "evolutionNote": "The AAA no-exceptions variant survives in WCAG 3 as a separate provision that drops the minimum-size allowance."
     }
   },
   {
@@ -2155,9 +2166,9 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-alternatives-available"
+        "dialogue-transcripts-available-live"
       ],
-      "evolutionNote": "WCAG 3 integrates live audio alternatives into media outcomes."
+      "evolutionNote": "WCAG 3 covers live audio-only under live dialogue transcripts."
     }
   },
   {
@@ -2341,9 +2352,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "focus-indicator-visible"
+        "overlay-content-dismissible",
+        "hover-or-focus-content-dismissible"
       ],
-      "evolutionNote": "WCAG 3 handles focus obscuration under focus-indicator-visible outcomes."
+      "evolutionNote": "No direct successor yet. The Sep 2026 draft has no provision that states focus must remain visible when obscured; the closest requirements make obscuring content dismissible. Treat this as a genuine gap and watch it."
     }
   },
   {
@@ -2372,9 +2384,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "focus-indicator-visible"
+        "overlay-content-dismissible",
+        "hover-or-focus-content-dismissible"
       ],
-      "evolutionNote": "WCAG 3 maps 2.4.13 to enhanced focus visibility outcomes."
+      "evolutionNote": "No direct successor yet, as with 2.4.12. The enhanced (fully unobscured) variant has no counterpart in the Sep 2026 draft at all."
     }
   },
   {
@@ -2558,9 +2571,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "consistency-across-views"
+        "consistent-navigation-order",
+        "consistent-navigation-labels"
       ],
-      "evolutionNote": "WCAG 3 maps 3.2.3 directly to consistency-across-views outcomes."
+      "evolutionNote": "WCAG 3 separates the order of repeated navigation from the labelling of it."
     }
   },
   {
@@ -2589,9 +2603,10 @@
     },
     "wcag3Mapping": {
       "provisions": [
-        "consistency-across-views"
+        "consistent-structural-order",
+        "consistent-navigation-labels"
       ],
-      "evolutionNote": "WCAG 3 handles consistent identification under consistency-across-views outcomes."
+      "evolutionNote": "WCAG 3 covers consistent identification through consistent structural order and consistent labelling."
     }
   },
   {
@@ -2695,28 +2710,28 @@
     "level": "A",
     "principle": "Robust",
     "plainEnglish": {
-      "summary": "In WCAG 2.0/2.1, required well-formed HTML. Officially obsolete and removed in WCAG 2.2 because modern browsers handle parsing errors automatically.",
-      "whyItMatters": "Modern web browsers and assistive technologies build DOM trees reliably without relying on HTML 4 syntax rules.",
-      "realWorldExample": "WCAG 2.2 errata formally retired 4.1.1. Focus on semantic HTML tags and valid ARIA attributes instead."
+      "summary": "In WCAG 2.0/2.1, SC 4.1.1 (Parsing) required valid HTML syntax. As documented in W3C WCAG 2.2 Section 4.1.1 (https://www.w3.org/TR/WCAG22/#parsing), 4.1.1 was retired as obsolete in WCAG 2.2 because modern user agents build DOM trees automatically.",
+      "whyItMatters": "Modern web browsers and assistive technologies build DOM trees reliably without relying on legacy HTML 4 parsing rules.",
+      "realWorldExample": "W3C WCAG 2.2 errata formally retired SC 4.1.1. Accessibility audits focus on semantic HTML elements and ARIA roles instead."
     },
     "personaBreakdown": {
       "designer": "N/A - Technical parser rule.",
-      "developer": "Rely on standard HTML validation tools; focus accessibility efforts on ARIA and semantics.",
-      "qa": "Parsing bugs are no longer scored as WCAG 2.2 accessibility failures unless they affect ARIA roles.",
-      "productManager": "Update accessibility policy to reflect 4.1.1 removal in WCAG 2.2."
+      "developer": "Rely on standard HTML validation tools; focus accessibility efforts on semantic elements and valid ARIA.",
+      "qa": "Refer to W3C WCAG 2.2 Section 4.1.1 regarding retired parsing checks; audit semantics under 1.3.1 and 4.1.2.",
+      "productManager": "Update internal accessibility testing policies to reflect W3C WCAG 2.2 errata regarding SC 4.1.1."
     },
     "testingGuide": {
-      "automated": "axe-core ignores 4.1.1 in WCAG 2.2 ruleset.",
+      "automated": "Automated testing engines (such as axe-core 4.x) omit automated rules for 4.1.1 in WCAG 2.2 audit presets. Refer to active testing engine documentation.",
       "manualKeyboard": "N/A.",
       "screenReader": "N/A.",
       "codeSnippetGood": "<div id=\"example\">Semantic Content</div>",
-      "codeSnippetBad": "<!-- Duplicate IDs are now audited under 1.3.1 / 4.1.2 rather than 4.1.1 -->"
+      "codeSnippetBad": "<!-- Duplicate IDs are audited under 1.3.1 / 4.1.2 rather than 4.1.1 -->"
     },
     "wcag3Mapping": {
       "provisions": [
         "text-detectable"
       ],
-      "evolutionNote": "WCAG 3 omits parsing completely in favor of outcome-based DOM state testing."
+      "evolutionNote": "WCAG 3 draft omits parsing completely in favor of outcome-based DOM state testing."
     }
   }
 ]
