@@ -1,0 +1,196 @@
+{
+  "draftState": {
+    "baselineCommit": "1ac7ded",
+    "baselineDate": "2026-09-10",
+    "generatedAt": "2026-09-14",
+    "provisionCount": 245,
+    "byType": {
+      "foundational": 114,
+      "supplemental": 86,
+      "assertion": 36,
+      "recommended practice": 1,
+      "untyped": 8
+    },
+    "byStatus": {
+      "developing": 216,
+      "exploratory": 29,
+      "refining": 0,
+      "mature": 0
+    },
+    "taggedForTiers": 0,
+    "needsAdditionalResearch": 13
+  },
+  "headline": {
+    "quote": "This update to WCAG 3 moves the concept of leveling from conformance to reporting.",
+    "source": "W3C Accessibility Guidelines 3.0 editors' draft, conformance section",
+    "summary": "A/AA/AAA has no successor. WCAG 3 has one conformance bar — all core requirements met — and wraps it in six reporting tiers that describe progress toward it and achievement beyond it.",
+    "caveat": "The working group is running a competing proposal alongside this one: scoring toward conformance, then Bronze/Silver/Gold awards afterwards. They have explicitly asked for public comment on which approach to keep. Treat the tier table as the current direction, not a settled outcome."
+  },
+  "tiers": [
+    {
+      "n": 1,
+      "name": "Avoid physical harm",
+      "requires": "Physical harm and risk requirements are met",
+      "role": "progress"
+    },
+    {
+      "n": 2,
+      "name": "Foundational access",
+      "requires": "…plus barrier requirements",
+      "role": "progress"
+    },
+    {
+      "n": 3,
+      "name": "Conformance",
+      "requires": "…plus friction requirements — all core requirements are met",
+      "role": "conformance"
+    },
+    {
+      "n": 4,
+      "name": "Bronze",
+      "requires": "…plus [TBD number of] supplemental requirements and assertions about content",
+      "role": "beyond"
+    },
+    {
+      "n": 5,
+      "name": "Silver",
+      "requires": "…plus [TBD greater number of] supplemental requirements and assertions about content",
+      "role": "beyond"
+    },
+    {
+      "n": 6,
+      "name": "Gold",
+      "requires": "…plus [TBD number of] the assertions about the organization",
+      "role": "beyond"
+    }
+  ],
+  "requirementKinds": [
+    {
+      "label": "Physical harm",
+      "definition": "Not meeting the requirement can cause someone with a disability immediate physical harm."
+    },
+    {
+      "label": "Barrier",
+      "definition": "Not meeting the requirement can prevent someone with a disability from proceeding."
+    },
+    {
+      "label": "Friction",
+      "definition": "Not meeting the requirement can hinder someone with a disability. When multiple failures occur, they can prevent someone from proceeding."
+    }
+  ],
+  "shifts": [
+    {
+      "id": "leveling",
+      "title": "Leveling moved off conformance and onto reporting",
+      "was": "Three conformance levels — A, AA, AAA — and you picked one to claim.",
+      "now": "One conformance bar at tier 3: all core requirements met. Tiers 1–2 describe progress toward it; tiers 4–6 describe achievement beyond it.",
+      "soWhat": "There is no AA any more. A programme built around \"we do A and AA, not AAA\" has no direct translation — the equivalent question becomes whether every core requirement is met."
+    },
+    {
+      "id": "assertions",
+      "title": "Assertions: a requirement class with no WCAG 2.2 equivalent",
+      "was": "Every success criterion was a test against rendered output.",
+      "now": "36 of 245 provisions are assertions — statements that your organization did something, backed by evidence: who asserted it, when the review or usability testing happened, what scope it covered.",
+      "soWhat": "No automated tool will ever satisfy one, and neither will clean markup. They are satisfied by style guides, documented reviews, and usability testing with disabled participants. This is the longest-lead item in the whole draft."
+    },
+    {
+      "id": "scope",
+      "title": "Conformance scope replaces the page",
+      "was": "Conformance was per-page, with conforming alternate versions as the escape hatch.",
+      "now": "Claims apply to a conformance scope — \"a clearly defined part of your content\". Claims are also optional: content can conform without anyone claiming it does.",
+      "soWhat": "The unit of audit becomes a product, a flow, or a defined slice of a site. Per-page pass/fail spreadsheets do not port over, and deciding your scope boundaries is a product and legal question as much as a technical one."
+    },
+    {
+      "id": "accessibility-support",
+      "title": "Accessibility support became a claim obligation",
+      "was": "\"Accessibility supported\" was a definition that mostly sat in the background.",
+      "now": "Methods MUST be accessibility supported, WCAG 3 defines accessibility support sets naming which browsers and assistive technologies count, and the support set MUST be included in conformance claims.",
+      "soWhat": "If you make claims you will have to state your AT and browser baseline in them. Most teams hold this as tribal knowledge or a stale QA matrix. Writing it down is cheap and useful regardless."
+    },
+    {
+      "id": "requirement-kinds",
+      "title": "Requirements split three ways, plus advisory material",
+      "was": "Success criteria at three levels, and nothing else normative.",
+      "now": "Core requirements (MUST, and the whole of conformance), supplemental requirements, and assertions — plus recommended practices, renamed from \"best practices\", which are explicitly not necessary to conform.",
+      "soWhat": "The AAA instinct — nice if we get to it — maps roughly onto supplemental, but not cleanly. Eight provisions still carry no type at all."
+    }
+  ],
+  "carryOver": {
+    "quote": "Content that conforms to WCAG 2.2 Level A and Level AA is expected to meet most of the minimum conformance level of this new standard but, since WCAG 3 includes additional tests and different scoring mechanics, additional work will be needed to reach full conformance.",
+    "reading": "Read \"most of\" carefully. A clean 2.2 AA programme is a strong head start on tier 3 and no guarantee of it. The gap comes from three places: provisions with no 2.2 ancestor, provisions that restate a 2.2 criterion more broadly, and the evidence that assertions require.",
+    "transition": "W3C has committed to transition support materials that may use mapping to ease migration. Those do not exist yet, so every 2.2 → 3 mapping on this site — and anywhere else — is an interpretation, not an authority."
+  },
+  "readiness": {
+    "now": [
+      {
+        "action": "Start usability testing with disabled participants, and keep records of it",
+        "why": "36 assertions are waiting for exactly this evidence, and it cannot be retrofitted after the fact."
+      },
+      {
+        "action": "Write down your accessibility support set",
+        "why": "The browser and AT versions you actually test against, dated and owned. Claims will have to state it, and it is useful on its own."
+      },
+      {
+        "action": "Write the style guides the assertions ask for",
+        "why": "Alt text, captions, transcripts, audio description, focus indicators. Several assertions are satisfied by a documented style guide plus evidence it is followed."
+      },
+      {
+        "action": "Decide what your conformance scopes would be",
+        "why": "Products, flows, or defined slices — not pages. Worth settling before anyone has to declare one."
+      }
+    ],
+    "next": [
+      {
+        "action": "Audit your media pipeline against the new images-and-media structure",
+        "why": "68 of 245 provisions are media. If you publish video, this is where the new work is concentrated."
+      },
+      {
+        "action": "Sweep for same-outcome adjacent interactive elements",
+        "why": "The reworked provision is broader than the old repetitive-links one, and the fix is a real usability improvement either way."
+      }
+    ],
+    "wait": [
+      {
+        "action": "Anything tier-specific",
+        "why": "Zero of 245 provisions carry the harm/barrier/friction tags that drive tier placement, and the tier model has a live competing proposal."
+      },
+      {
+        "action": "Anything resting on the exploratory provisions",
+        "why": "29 provisions are exploratory and 13 are flagged as needing more research. Single Flash is the one most likely to surprise people."
+      },
+      {
+        "action": "Rewriting a WCAG 2.2 audit programme",
+        "why": "2.2 is still the standard, WCAG 3 does not deprecate it, and nothing in the draft has reached refining maturity."
+      }
+    ]
+  },
+  "stretched": [
+    {
+      "title": "Media alternatives fragmented",
+      "criteria": "1.2.1 – 1.2.9",
+      "detail": "The single media-alternatives guideline was dissolved into captions, audio descriptions, transcripts, sign language and accessible media player. Nine criteria that used to point at one outcome now fan out across roughly forty provisions, each with its own speaker identification, non-verbal cues, equivalence, style guide and usability testing requirements."
+    },
+    {
+      "title": "Flashing rebuilt around thresholds",
+      "criteria": "2.3.1, 2.3.2",
+      "detail": "No Flashing became No Flashing Over Threshold, plus a no-exceptions variant. A new exploratory Single Flash provision has no 2.2 equivalent at all: content must not change contrast by more than 4.5:1 light-to-dark across more than 30% of the viewport. That is a constraint on ordinary page transitions and dark-mode toggles, not just on video."
+    },
+    {
+      "title": "Adjacent interactive elements generalized",
+      "criteria": "no direct 2.2 criterion",
+      "detail": "No Repetitive Links became No Repetitive Adjacent Interactive Elements, and the wording widened from repeated links with the same destination to any adjacent interactive elements that achieve the same outcome. The common card pattern — thumbnail link, title link and Read more link all pointing at the same page — fails the new wording and passes most 2.2 audits today."
+    },
+    {
+      "title": "Focus Not Obscured has no successor yet",
+      "criteria": "2.4.12, 2.4.13",
+      "detail": "The Sep 2026 draft contains no provision requiring that focus stay visible when content would obscure it. The nearest requirements make obscuring content dismissible, which is not the same obligation. Treat this as a genuine gap rather than a mapping we have not found."
+    }
+  ],
+  "watchList": [
+    "Changes to the conformance section — especially anything resolving reporting tiers versus scoring, or a Call for Consensus",
+    "The tier tag count moving off zero, which makes tier placement predictable for the first time",
+    "The first provision reaching refining status",
+    "Provisions added, removed or renamed, and the WCAG 2.2 mappings they break",
+    "Glossary changes, which ripple silently into every provision that uses a defined term"
+  ]
+}

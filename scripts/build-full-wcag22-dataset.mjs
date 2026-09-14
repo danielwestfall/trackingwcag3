@@ -39,8 +39,8 @@ const allCriteria = [
     screenReader: "Confirm screen reader can read the transcript content line by line.",
     codeGood: "<a href=\"transcript.html\">Read full transcript of Podcast Episode 4</a>",
     codeBad: "<audio src=\"podcast.mp3\" controls></audio> <!-- No transcript provided -->",
-    wcag3Provisions: ["media-alternatives-available", "media-alternatives-controllable"],
-    evolutionNote: "WCAG 3 unifies media alternatives into controllable media alternative outcomes."
+    wcag3Provisions: ["descriptive-transcripts-available", "dialogue-transcripts-available-prerecorded"],
+    evolutionNote: "WCAG 3 splits media alternatives apart: prerecorded audio-only and video-only are covered by the transcripts guideline rather than one combined outcome."
   },
   {
     id: "1.2.2", num: "1.2.2", name: "Captions (Prerecorded)", level: "A", principle: "Perceivable",
@@ -56,8 +56,8 @@ const allCriteria = [
     screenReader: "Verify screen reader announces caption track status.",
     codeGood: "<video controls><track kind=\"captions\" src=\"captions.vtt\" srclang=\"en\"></video>",
     codeBad: "<video src=\"promo.mp4\" controls></video>",
-    wcag3Provisions: ["media-alternatives-available"],
-    evolutionNote: "WCAG 3 includes captions in comprehensive media accessibility outcomes."
+    wcag3Provisions: ["captions-available-prerecorded", "captions-equivalent-prerecorded"],
+    evolutionNote: "WCAG 3 separates whether captions exist from whether they are equivalent, and adds further provisions for speaker identification, sounds and non-verbal cues."
   },
   {
     id: "1.2.3", num: "1.2.3", name: "Audio Description or Media Alternative (Prerecorded)", level: "A", principle: "Perceivable",
@@ -73,8 +73,8 @@ const allCriteria = [
     screenReader: "Verify description track status announcements.",
     codeGood: "<video controls><track kind=\"descriptions\" src=\"desc.vtt\"></video>",
     codeBad: "<video src=\"demo.mp4\"></video>",
-    wcag3Provisions: ["media-alternatives-available"],
-    evolutionNote: "WCAG 3 integrates audio description into media outcomes."
+    wcag3Provisions: ["audio-descriptions-available-prerecorded", "descriptive-transcripts-available"],
+    evolutionNote: "WCAG 3 keeps the either/or shape of 1.2.3: an audio description, or a descriptive transcript."
   },
   {
     id: "1.2.4", num: "1.2.4", name: "Captions (Live)", level: "AA", principle: "Perceivable",
@@ -90,8 +90,8 @@ const allCriteria = [
     screenReader: "Verify live caption aria-live region announcements.",
     codeGood: "<div aria-live=\"polite\" id=\"live-captions\">[Speaker]: Welcome to the webcast</div>",
     codeBad: "<video id=\"live-stream\"></video> <!-- No live captions -->",
-    wcag3Provisions: ["media-alternatives-available"],
-    evolutionNote: "WCAG 3 maintains live captioning as a key media requirement."
+    wcag3Provisions: ["captions-available-live"],
+    evolutionNote: "WCAG 3 gives live captions their own provision under the captions guideline."
   },
   {
     id: "1.2.5", num: "1.2.5", name: "Audio Description (Prerecorded)", level: "AA", principle: "Perceivable",
@@ -107,8 +107,8 @@ const allCriteria = [
     screenReader: "Verify screen reader announces selected audio track.",
     codeGood: "<audio src=\"video-ad-track.mp3\" controls></audio>",
     codeBad: "<video src=\"video.mp4\"></video>",
-    wcag3Provisions: ["media-alternatives-available"],
-    evolutionNote: "WCAG 3 maps 1.2.5 to media alternative guidelines."
+    wcag3Provisions: ["audio-descriptions-available-prerecorded", "audio-descriptions-equivalent-prerecorded"],
+    evolutionNote: "WCAG 3 separates the existence of audio description from whether it conveys equivalent information."
   },
   {
     id: "1.3.1", num: "1.3.1", name: "Info and Relationships", level: "A", principle: "Perceivable",
@@ -432,8 +432,8 @@ const allCriteria = [
     screenReader: "Confirm screen reader user can pause live tickers.",
     codeGood: "<button aria-label=\"Pause slide animation\" onclick=\"pauseCarousel()\">Pause</button>",
     codeBad: "/* Auto-advancing image slider with no pause button */",
-    wcag3Provisions: ["animation-and-movement"],
-    evolutionNote: "WCAG 3 handles moving content under animation-and-movement outcomes."
+    wcag3Provisions: ["no-visual-motion", "audio-shifting-adjustable", "haptic-stimulation-adjustable"],
+    evolutionNote: "WCAG 3 breaks pause/stop/hide apart by the kind of motion: visual motion, audio shifting, and haptic stimulation each get their own provision."
   },
   {
     id: "2.3.1", num: "2.3.1", name: "Three Flashes or Below Threshold", level: "A", principle: "Operable",
@@ -449,8 +449,8 @@ const allCriteria = [
     screenReader: "N/A directly; critical for physical user health.",
     codeGood: "/* Smooth CSS fade transition (0.3s) instead of rapid flash */",
     codeBad: "/* Rapid strobe effect flashing red/white 5 times a second */",
-    wcag3Provisions: ["animation-and-movement"],
-    evolutionNote: "WCAG 3 maintains seizure prevention as a core health requirement."
+    wcag3Provisions: ["no-flashing-over-threshold"],
+    evolutionNote: "WCAG 3 restated this around explicit thresholds: flashes must stay below the general flash and red flash thresholds. A stricter no-exceptions variant and an exploratory single-flash provision sit alongside it."
   },
   {
     id: "2.4.1", num: "2.4.1", name: "Bypass Blocks", level: "A", principle: "Operable",
@@ -551,8 +551,8 @@ const allCriteria = [
     screenReader: "N/A directly; visual focus is vital for sighted keyboard users.",
     codeGood: ":focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }",
     codeBad: "button:focus { outline: none; }",
-    wcag3Provisions: ["keyboard-focus-appearance"],
-    evolutionNote: "WCAG 3 provides quantitative metrics for focus area size and contrast ratio."
+    wcag3Provisions: ["default-focus-indicator-used", "focus-indicator-contrast-sufficient", "focus-indicator-size-sufficient"],
+    evolutionNote: "WCAG 3 replaces the binary focus-visible check with measurable provisions for focus indicator contrast and size."
   },
   {
     id: "2.4.11", num: "2.4.11", name: "Focus Appearance", level: "AA", principle: "Operable",
@@ -568,8 +568,8 @@ const allCriteria = [
     screenReader: "Verify focus announcements match focused controls.",
     codeGood: "button:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }",
     codeBad: "button:focus-visible { outline: 1px solid #cccccc; } /* Too faint */",
-    wcag3Provisions: ["keyboard-focus-appearance"],
-    evolutionNote: "WCAG 3 builds directly on 2.4.11's quantitative focus measurement rules."
+    wcag3Provisions: ["focus-indicator-contrast-sufficient", "focus-indicator-size-sufficient"],
+    evolutionNote: "WCAG 3 carries the quantitative focus appearance metrics into separate contrast and size provisions."
   },
   {
     id: "2.5.3", num: "2.5.3", name: "Label in Name", level: "A", principle: "Operable",
@@ -815,21 +815,21 @@ const allCriteria = [
   },
   // Level AAA Criteria
   {
-    id: "1.2.6", num: "1.2.6", name: "Audio-only (Live)", level: "AAA", principle: "Perceivable",
-    summary: "Live audio-only broadcasts must provide a live text transcript or live caption stream.",
-    whyItMatters: "Deaf users listening to live radio or audio webcasts need real-time text descriptions.",
-    realWorldExample: "A live radio interview stream provides real-time text transcript streaming.",
-    designer: "Reserve space for live text stream overlays.",
-    developer: "Connect live speech-to-text API streams to live audio player components.",
-    qa: "Test live audio streams with real-time text transcription.",
-    productManager: "Contract live CART transcribers for major live audio broadcasts.",
-    automated: "Manual live stream audit required.",
-    manualKeyboard: "Verify live transcript toggle is keyboard focusable.",
-    screenReader: "Verify live transcript aria-live region announcements.",
-    codeGood: "<div role=\"region\" aria-live=\"polite\">[Live Audio Transcript]: Hello...</div>",
-    codeBad: "<audio src=\"live-stream\"></audio>",
-    wcag3Provisions: ["media-alternatives-available"],
-    evolutionNote: "WCAG 3 incorporates live audio alternatives into media outcomes."
+    id: "1.2.6", num: "1.2.6", name: "Sign Language (Prerecorded)", level: "AAA", principle: "Perceivable",
+    summary: "Sign language interpretation is provided for all prerecorded audio content in synchronized media.",
+    whyItMatters: "For many Deaf people a signed language is their first language and written captions are a second language, so captions alone do not give equal access.",
+    realWorldExample: "A prerecorded training video carries a picture-in-picture sign language interpreter alongside the captions.",
+    designer: "Reserve a stable region of the video frame for the interpreter and keep it clear of captions and controls.",
+    developer: "Ship the interpreter as a selectable track or a synchronized second video rather than burning it into one rendition.",
+    qa: "Confirm the interpretation is present, synchronized, and can be shown and hidden without losing playback position.",
+    productManager: "Budget interpreters for prerecorded media and decide which sign language each audience region needs.",
+    automated: "No automated check; presence of an interpretation must be confirmed manually.",
+    manualKeyboard: "Verify any show/hide control for the interpretation is keyboard operable.",
+    screenReader: "Verify the interpretation track is announced and labelled.",
+    codeGood: "<video><track kind=\"sign\" src=\"asl.vtt\" srclang=\"ase\" label=\"American Sign Language\"></video>",
+    codeBad: "<video src=\"training.mp4\"></video> <!-- captions only, no signed interpretation -->",
+    wcag3Provisions: ["sign-language-available-prerecorded", "sign-language-controllable"],
+    evolutionNote: "WCAG 3 gives sign language its own guideline, and adds a provision for showing and hiding the interpretation."
   },
   {
     id: "1.2.7", num: "1.2.7", name: "Extended Audio Description (Prerecorded)", level: "AAA", principle: "Perceivable",
@@ -845,8 +845,8 @@ const allCriteria = [
     screenReader: "Confirm screen reader announces extended description status.",
     codeGood: "/* Media player auto-pauses main video track during extended audio narration */",
     codeBad: "/* Audio description is truncated because main video track dialogue does not pause */",
-    wcag3Provisions: ["media-alternatives-available"],
-    evolutionNote: "WCAG 3 integrates extended description into media outcomes."
+    wcag3Provisions: ["extended-audio-descriptions-available", "extended-audio-descriptions-equivalent"],
+    evolutionNote: "WCAG 3 splits extended audio description into availability and equivalence."
   },
   {
     id: "1.2.8", num: "1.2.8", name: "Media Alternative (Prerecorded)", level: "AAA", principle: "Perceivable",
@@ -862,8 +862,8 @@ const allCriteria = [
     screenReader: "Read transcript via braille display or screen reader speech.",
     codeGood: "<a href=\"video-transcript.html\">Read full descriptive text transcript</a>",
     codeBad: "<video src=\"promo.mp4\"></video>",
-    wcag3Provisions: ["media-alternatives-available"],
-    evolutionNote: "WCAG 3 maps media text alternatives to media alternative outcomes."
+    wcag3Provisions: ["descriptive-transcripts-available", "transcripts-equivalent-prerecorded"],
+    evolutionNote: "The WCAG 2.2 media alternative becomes the descriptive transcript in WCAG 3, with a separate equivalence provision."
   },
   {
     id: "1.4.6", num: "1.4.6", name: "Contrast (Enhanced)", level: "AAA", principle: "Perceivable",
@@ -998,8 +998,8 @@ const allCriteria = [
     screenReader: "N/A directly.",
     codeGood: "/* Smooth fade animation (0.5s) */",
     codeBad: "/* Rapid strobe flashing 4 times a second */",
-    wcag3Provisions: ["animation-and-movement"],
-    evolutionNote: "WCAG 3 maintains 2.3.2 under animation outcomes."
+    wcag3Provisions: ["no-flashing-over-threshold-no-exceptions"],
+    evolutionNote: "The AAA no-exceptions variant survives in WCAG 3 as a separate provision that drops the minimum-size allowance."
   },
   {
     id: "2.4.8", num: "2.4.8", name: "Location", level: "AAA", principle: "Operable",
@@ -1185,8 +1185,8 @@ const allCriteria = [
     screenReader: "Verify aria-live region updates speak live transcript text.",
     codeGood: "<div role=\"region\" aria-live=\"polite\">[Live Audio Transcript]: Welcome...</div>",
     codeBad: "<audio src=\"live-broadcast\"></audio>",
-    wcag3Provisions: ["media-alternatives-available"],
-    evolutionNote: "WCAG 3 integrates live audio alternatives into media outcomes."
+    wcag3Provisions: ["dialogue-transcripts-available-live"],
+    evolutionNote: "WCAG 3 covers live audio-only under live dialogue transcripts."
   },
   {
     id: "1.3.6", num: "1.3.6", name: "Identify Purpose", level: "AAA", principle: "Perceivable",
@@ -1287,8 +1287,8 @@ const allCriteria = [
     screenReader: "Confirm focused item stays visible.",
     codeGood: "html { scroll-padding-top: 80px; } /* Ensures focused element stays below sticky header */",
     codeBad: "/* Fixed header covers focused form inputs as user tabs down page */",
-    wcag3Provisions: ["focus-indicator-visible"],
-    evolutionNote: "WCAG 3 handles focus obscuration under focus-indicator-visible outcomes."
+    wcag3Provisions: ["overlay-content-dismissible", "hover-or-focus-content-dismissible"],
+    evolutionNote: "No direct successor yet. The Sep 2026 draft has no provision that states focus must remain visible when obscured; the closest requirements make obscuring content dismissible. Treat this as a genuine gap and watch it."
   },
   {
     id: "2.4.13", num: "2.4.13", name: "Focus Not Obscured (Enhanced)", level: "AAA", principle: "Operable",
@@ -1304,8 +1304,8 @@ const allCriteria = [
     screenReader: "Confirm full visibility.",
     codeGood: "/* Floating widgets reposition to avoid overlapping focused content elements */",
     codeBad: "/* Sticky chat widget covers bottom half of focused button */",
-    wcag3Provisions: ["focus-indicator-visible"],
-    evolutionNote: "WCAG 3 maps 2.4.13 to enhanced focus visibility outcomes."
+    wcag3Provisions: ["overlay-content-dismissible", "hover-or-focus-content-dismissible"],
+    evolutionNote: "No direct successor yet, as with 2.4.12. The enhanced (fully unobscured) variant has no counterpart in the Sep 2026 draft at all."
   },
   {
     id: "2.5.1", num: "2.5.1", name: "Pointer Gestures", level: "A", principle: "Operable",
@@ -1406,8 +1406,8 @@ const allCriteria = [
     screenReader: "Confirm navigation menu structure remains predictable.",
     codeGood: "<!-- Shared layout component renders identical header menu on all routes -->",
     codeBad: "<!-- Header navigation order changes arbitrarily between Home and Contact pages -->",
-    wcag3Provisions: ["consistency-across-views"],
-    evolutionNote: "WCAG 3 maps 3.2.3 directly to consistency-across-views outcomes."
+    wcag3Provisions: ["consistent-navigation-order", "consistent-navigation-labels"],
+    evolutionNote: "WCAG 3 separates the order of repeated navigation from the labelling of it."
   },
   {
     id: "3.2.4", num: "3.2.4", name: "Consistent Identification", level: "AA", principle: "Understandable",
@@ -1423,8 +1423,8 @@ const allCriteria = [
     screenReader: "Confirm screen reader hears consistent accessible names.",
     codeGood: "<button aria-label=\"Search\"><svg>...</svg></button>",
     codeBad: "<!-- Search button labeled 'Search' on page 1, 'Find' on page 2, and 'Go' on page 3 -->",
-    wcag3Provisions: ["consistency-across-views"],
-    evolutionNote: "WCAG 3 handles consistent identification under consistency-across-views outcomes."
+    wcag3Provisions: ["consistent-structural-order", "consistent-navigation-labels"],
+    evolutionNote: "WCAG 3 covers consistent identification through consistent structural order and consistent labelling."
   },
   {
     id: "3.3.3", num: "3.3.3", name: "Error Suggestion", level: "AA", principle: "Understandable",
