@@ -26,3 +26,6 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+# Local secrets (GitHub token for the discussions fetcher)
+.env

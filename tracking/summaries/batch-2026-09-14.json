@@ -1,0 +1,183 @@
+{
+  "text-style-readable-minimum": {
+    "headline": "The most contested provision in the draft: what counts as readable text, how to measure it, and in which unit.",
+    "positions": [
+      {
+        "label": "Testability first",
+        "who": "GreggVan, alastc",
+        "detail": "A requirement is only useful if authors can apply it and two testers reach the same verdict. CSS px is defensible as the anchor because it is defined by visual angle rather than physical pixels, so it is device-independent. Browser zoom — the default control, persistent across sites — is the user's route to larger text, so a minimum size plus available magnification is judged sufficient."
+      },
+      {
+        "label": "The metric does not measure the thing",
+        "who": "Myndex, sdw32, TestPartners, patrickhlauke",
+        "detail": "CSS font-size is a poor proxy for legibility: x-height and stroke weight vary enormously between typefaces at the same nominal size, and rendering differs by OS and font cut. sdw32 points to EN 301 549, which specifies x-height in CSS px (8 CSS px minimum), and proposes handling weight by pixel density rather than the binary normal/bold split. Myndex argues a test that is merely testable, without being useful, gets codified into law with unintended consequences."
+      },
+      {
+        "label": "User autonomy over layout stability",
+        "who": "graphic-designer, chaals",
+        "detail": "px ignores a user's configured root font size while rem respects it, so anchoring the standard in px effectively tells the market that overriding user preference is acceptable. chaals lands in the middle: provide both a baseline that conveys a commonly legible absolute size and clear guidance that resizing must actually work — and reports from browsing ~100 pages at 64px that most sites, news sites especially, become unusable."
+      },
+      {
+        "label": "Scope is too broad as written",
+        "who": "detlevhfischer, Myndex, Finnberrys, julierawe",
+        "detail": "\"Does not use a decorative or cursive font face\" is called subjective and over-broad. Finnberrys, a voice-recognition user, wants underlining restricted to links because randomly underlined text repeatedly reads as a link. julierawe wants \"most text\" defined before the requirement can be tested."
+      },
+      {
+        "label": "Validate beyond Latin scripts",
+        "who": "tsmd",
+        "detail": "x-height does not translate to Japanese, Chinese or Korean, so any text-appearance metric has to be checked against non-Latin writing systems before it ships in a global standard."
+      }
+    ],
+    "agreed": [
+      "WCAG 2's binary normal/bold font-weight classification is inadequate — weight 600 is common in practice and the spec must say how intermediate values are treated.",
+      "Any size metric has to be density-neutral, not \"as measured on screen\", because authors cannot control or test physical rendering.",
+      "The \"decorative or cursive font face\" wording is too restrictive to stand as a requirement.",
+      "GreggVan's framing that a requirement must be objective enough for different evaluators to reach the same conclusion, though it need not be machine-testable, went unchallenged."
+    ],
+    "open": [
+      "Whether there is any minimum size requirement for default text presentation at all. sdw32 registered deep concern that it was removed; GreggVan's position is that if a size is legible for typical vision, OS magnification covers low vision.",
+      "px versus rem versus x-height as the anchoring unit.",
+      "Whether APCA replaces the 4.5:1 contrast ratio. sydneycolemanfromgoogle challenged the disruption to tooling, design systems and existing UIs and asked for research showing the benefit outweighs it.",
+      "Whether accessible typeface guidance belongs in WCAG 3 at all, given there is no CSS-queryable way to assess a font and font choice is effectively unbounded (issue #245)."
+    ],
+    "note": "Issue #642 became contentious enough that the chair stepped in to clarify that GitHub threads are individual discussion, not a formal working-group response channel."
+  },
+
+  "text-reflow-supported": {
+    "headline": "Whether WCAG 3 should anchor sizing in CSS px or rem, and how far text-only resizing has to work.",
+    "positions": [
+      {
+        "label": "CSS px is already relative",
+        "who": "alastc, GreggVan",
+        "detail": "CSS px is relative to assumed viewing distance, which is what lets a requirement say how large something must appear across platforms. alastc notes WCAG 3 does not currently use px or rem for text sizing at all, and drafted a response proposing the issue be closed without changing any provision. GreggVan adds that px has only ever been cited as a minimum, not a fixed size."
+      },
+      {
+        "label": "rem respects the user, px does not",
+        "who": "graphic-designer",
+        "detail": "A user who sets a larger default font size sees rem-based layouts adapt and px-based layouts stay rigid. Argues this makes px a technical regression against user autonomy, and that calling it a user-agent problem shifts responsibility away from the standard."
+      },
+      {
+        "label": "Both, and widen the resize range",
+        "who": "chaals",
+        "detail": "Neither layout stability nor user scalability is the goal — people being able to read what is published is. Tested the disputed demo across Vivaldi, Avast, Safari and Firefox and found the px box adapts in some Chromium builds and not others, so the behaviour is not uniform. Proposes a separate issue: content should support text-size adjustment well beyond the current 100–200% range."
+      },
+      {
+        "label": "Density is the user's call, not the author's",
+        "who": "patrickhlauke",
+        "detail": "On the related question of high-DPI viewports, authors cannot predict or test the physical resolution a user runs, so a guideline cannot introduce that variability. A user running a small monitor at very high resolution has made that choice and can adapt their device."
+      }
+    ],
+    "agreed": [
+      "Zoom currently works better across real sites than text-only resizing — chaals concedes this after surveying roughly 100 pages.",
+      "Requirements should avoid technology-specific language at the provision level and push metrics down into technology-specific methods.",
+      "Large headings scaling proportionally is a real layout problem, which is why the draft asks for 200% of default body size rather than 200% of starting size."
+    ],
+    "open": [
+      "Whether content must support text-size adjustment beyond 200%.",
+      "Whether the spec should state a reasonable, commonly legible default text size.",
+      "Whether px-based layouts breaking under user font scaling is an author obligation or a user-agent gap.",
+      "alastc's draft response has not been through the group, so the issue is not resolved."
+    ]
+  },
+
+  "no-visual-motion": {
+    "headline": "Whether honouring prefers-reduced-motion can satisfy the requirement, and whether motion harm belongs at the base level rather than as an optional extra.",
+    "positions": [
+      {
+        "label": "Not hurting users should be the floor",
+        "who": "MarjaE2, CharlesBelov, guyhickling, mgifford",
+        "detail": "The WCAG 2 equivalent sits at AAA, which in practice means it is ignored. If a user has set prefers-reduced-motion, respecting it should be required, not aspirational. guyhickling argues a mechanism to stop animation is no help when the harm lands before the user reaches the control — particularly for keyboard users."
+      },
+      {
+        "label": "\"Reduced\" is not \"none\"",
+        "who": "patrickhlauke",
+        "detail": "prefers-reduced-motion is a single binary flag, but users are usually affected by specific kinds of motion, and the setting is sometimes enabled accidentally. Treating it as \"turn off all animation\" is too draconian for a normative requirement and risks developers writing WCAG off entirely."
+      },
+      {
+        "label": "The group has stalled on measurement before",
+        "who": "alastc",
+        "detail": "Defining size and duration across devices and zoom levels is where this previously broke down, and duration is undefined when the motion is triggered by user action such as scrolling. Moving it to a base level requires evidence of impact at a given size and speed, and a consensus process means persuading those who objected last time."
+      },
+      {
+        "label": "The evidence cannot ethically be gathered",
+        "who": "CharlesBelov",
+        "detail": "A study demonstrating harm from motion would harm its participants. Also argues the need is broader than vestibular illness: hyper-vigilance and attention impairments mean even small, sub-second animation costs time and mental energy to recover from."
+      }
+    ],
+    "agreed": [
+      "\"Pseudo-motion\" needs examples in its definition. julierawe proposed parallax scrolling, sharp colour changes and dynamically updating content; rachaelbradley added decoy fonts and julierawe added gamma-oscillation and sliced images.",
+      "Real-world icon jiggle on hover and focus is a genuine problem, with mraccess77 supplying a live example.",
+      "Windows' reduced-motion setting is too coarse — mraccess77 reports it blocks animations they want along with those they do not."
+    ],
+    "open": [
+      "Whether a user preference can be relied on to satisfy the requirement at all.",
+      "How to define a size and duration threshold that is testable without a screen ruler, which patrickhlauke raised as a reductio and mgifford answered by pointing out 4.5:1 looked equally arbitrary in 2008.",
+      "julierawe's separate objection (#733) that naming the guideline \"Avoid Physical Harm\" excludes the cognitive harm — lost focus, fatigue, re-orientation cost — that motion also causes."
+    ]
+  },
+
+  "no-flashing-over-threshold": {
+    "headline": "Whether the flash size threshold has to hold under magnification, and whether user preferences or warnings can stand in for the requirement.",
+    "positions": [
+      {
+        "label": "Zoom must be accounted for",
+        "who": "gundulaniemann, WilcoFiers, mraccess77",
+        "detail": "WCAG's philosophy is that criteria hold simultaneously, so a user who needs magnification must still be protected from seizure triggers; on a phone, 470 CSS px is most of the screen already. WilcoFiers proposes splitting the requirement in two — full-screen content such as video and games, where magnification is not expected, and everything else, where it is. mraccess77 adds that browser zoom is not assistive technology and that authors can read viewport scale."
+      },
+      {
+        "label": "Zoom cannot be accounted for",
+        "who": "GreggVan, bruce-usab, alastc",
+        "detail": "GreggVan, who drove flashing into WCAG originally, states the intent was never that content be safe at arbitrary zoom — people with low vision also lean toward the screen, and no requirement can survive unbounded magnification. alastc's concern is false positives: failing content that harms nobody, which may be an acceptable trade against seizures but is the main cost."
+      },
+      {
+        "label": "A warning is not a remedy",
+        "who": "GreggVan, nattarnoff, mraccess77",
+        "detail": "GreggVan's reductio — that WCAG could otherwise be replaced by a single site-wide \"may not be safe for anyone with a disability\" notice — went unrebutted on the substance. nattarnoff, who experiences these effects, says a warning makes them leave and look for an alternative rather than granting access. mraccess77 notes timestamps on a flashing video still do not deliver the missed information."
+      }
+    ],
+    "agreed": [
+      "Warnings supplement the requirement; they do not satisfy it.",
+      "The flashing requirements and the separate flash-and-motion warning requirement have to be reconciled — #632 exists specifically to do that.",
+      "Some users deliberately want flashing — a Deaf user may want an audio alert mirrored visually — so a blanket prohibition is not the shape of the answer."
+    ],
+    "open": [
+      "Whether the size threshold accounts for zoom, and whether to split full-screen from inline content.",
+      "Whether a user preference to prevent flashing can be relied on. alastc raised it and julierawe called relying on it dangerous; no accessibility-supported mechanism exists today, which the note in the draft currently presumes.",
+      "Whether responsibility for detecting and suppressing flashing sits with authors or with browsers — nattarnoff raised it, alastc noted the animation requirements have the same question."
+    ]
+  },
+
+  "trigger-warning-available": {
+    "headline": "How far content warnings should reach beyond seizure and motion triggers into mood and mental health, and whether that is auditable at all.",
+    "positions": [
+      {
+        "label": "Add a mood outcome",
+        "who": "SuzanneKTaylor",
+        "detail": "Content can create a mood without containing any item identifiable as a trigger. Proposes that information about the mood content is likely to encourage be available or user-selectable, so that someone managing anxiety can decide before committing to long-form or XR content."
+      },
+      {
+        "label": "There is a connotation gap",
+        "who": "medeaoblongata",
+        "detail": "The current outcomes address denotative content and purely decorative content, but nothing addresses connotative aspects — what content implies or evokes as distinct from what it states."
+      },
+      {
+        "label": "This is not auditable",
+        "who": "patrickhlauke",
+        "detail": "Dreads a future where judging conformance requires auditors to check subjective mood metadata alongside everything else."
+      },
+      {
+        "label": "Make it opt-in metadata, or leave it to AT",
+        "who": "detlevhfischer, SuzanneKTaylor",
+        "detail": "If mood annotations surface only through a user-agent or OS setting the user has turned on, they add no noise for anyone else. SuzanneKTaylor goes further: assistive technology may be the right place to pre-screen content, leaving WCAG responsible only for ensuring AT has the access it needs."
+      }
+    ],
+    "agreed": [
+      "If such information exists it should be exposed on user request rather than presented to everyone by default."
+    ],
+    "open": [
+      "Whether mood belongs in WCAG at all, or is properly an assistive-technology concern.",
+      "How to scope it so a conformance claim can be assessed.",
+      "How AT would evaluate long-form content — SuzanneKTaylor's own question is whether it could judge a whole film or would stop at the first scene."
+    ]
+  }
+}

@@ -3,15 +3,17 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "astro": "astro",
     "build": "astro build --force",
     "check": "astro check",
     "cspell": "cspell .",
+    "fetch:discussions": "node scripts/fetch-provision-discussions.mjs",
+    "merge:summaries": "node scripts/merge-discussion-summaries.mjs",
     "preview": "astro preview",
     "publish-w3c": "WCAG_PUBLISH=1 astro build --force",
     "start": "astro dev",
     "sync": "astro sync --force",
-    "sync:plain-english": "node scripts/sync-wcag-plain-english.mjs",
-    "astro": "astro"
+    "sync:plain-english": "node scripts/sync-wcag-plain-english.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^6.3.11",
