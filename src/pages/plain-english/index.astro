@@ -126,75 +126,82 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </div>
   </section>
 
-  <!-- Rating Model Breakdown (Bronze, Silver, Gold) -->
+  <!-- Conformance model: reporting tiers (replaced the old Bronze/Silver/Gold rating framing) -->
   <section class="rating-model-banner">
     <div class="rating-header">
       <div class="rating-title-group">
         <div class="rating-title-row">
-          <span class="rating-icon" aria-hidden="true">🏅</span>
-          <h3>How WCAG 3 Scoring Works: Bronze, Silver & Gold</h3>
+          <span class="rating-icon" aria-hidden="true">⚖️</span>
+          <h3>How WCAG 3 Conformance Works: One Bar, Six Reporting Tiers</h3>
         </div>
-        <p>WCAG 3 replaces rigid A/AA/AAA checklists with a continuous points-based outcome model and multi-tier rating system.</p>
+        <p>The Sep 2026 draft moved leveling off conformance and onto reporting. There is no A/AA/AAA successor — you either meet all core requirements or you do not.</p>
       </div>
     </div>
 
     <div class="rating-qa-box">
       <div class="qa-icon" aria-hidden="true">💡</div>
       <div class="qa-text">
-        <strong>Do provisions belong exclusively to Bronze, Silver, or Gold?</strong>
-        <p><strong>No!</strong> Provisions do <em>not</em> belong to fixed tiers like WCAG 2.2's A/AA/AAA buckets. Every provision contributes points to an overall score. Silver and Gold levels are achieved by earning higher overall scores <strong>and</strong> completing specific evaluation methods (like testing with disabled users & documenting organizational assertions), not by adding separate "Gold-only" requirements.</p>
+        <strong>Are Bronze, Silver and Gold the conformance levels?</strong>
+        <p><strong>Not any more.</strong> In this draft they are reporting tiers that sit <em>above</em> conformance. Conformance is tier 3 — all core requirements met. Tiers 1–2 describe progress toward it; tiers 4–6 describe achievement beyond it. The working group is also weighing a competing proposal that would score progress and then award Bronze/Silver/Gold, and has asked for public comment on which to keep, so treat the table below as the current direction rather than a settled outcome.</p>
       </div>
     </div>
 
     <div class="rating-tiers-grid">
       <div class="tier-card tier-bronze">
         <div class="tier-top">
-          <div class="tier-badge">🥉 Bronze</div>
-          <span class="tier-score-target">Base Score (100% Core)</span>
+          <div class="tier-badge">🛡️ Tiers 1–2</div>
+          <span class="tier-score-target">Progress toward conformance</span>
         </div>
-        <h4>Base Regulatory Conformance</h4>
+        <h4>Avoid Physical Harm, then Foundational Access</h4>
         <div class="tier-progress-bar">
           <div class="tier-progress-fill fill-bronze"></div>
         </div>
         <ul class="tier-features">
-          <li><strong>Requirement:</strong> Must pass 100% of Core Guidelines across all functional categories.</li>
-          <li><strong>Evaluation:</strong> Automated testing + Expert manual inspection.</li>
-          <li><strong>Role:</strong> Baseline threshold for legal and regulatory compliance (DOJ Title II, EAA).</li>
+          <li><strong>Tier 1:</strong> Physical harm and risk requirements are met.</li>
+          <li><strong>Tier 2:</strong> …plus barrier requirements — things that stop someone proceeding.</li>
+          <li><strong>Role:</strong> Reportable milestones on the way to conformance, not conformance itself.</li>
         </ul>
       </div>
 
       <div class="tier-card tier-silver">
         <div class="tier-top">
-          <div class="tier-badge">🥈 Silver</div>
-          <span class="tier-score-target">Higher Score + User Tests</span>
+          <div class="tier-badge">✅ Tier 3</div>
+          <span class="tier-score-target">This is conformance</span>
         </div>
-        <h4>User-Tested Excellence</h4>
+        <h4>Conformance</h4>
         <div class="tier-progress-bar">
           <div class="tier-progress-fill fill-silver"></div>
         </div>
         <ul class="tier-features">
-          <li><strong>Requirement:</strong> Reaches Bronze score + higher overall percentage score threshold.</li>
-          <li><strong>Evaluation:</strong> Requires mandatory <strong>User Testing with Disabled Users</strong>.</li>
-          <li><strong>Role:</strong> Proves real disabled users can navigate and complete user flows friction-free.</li>
+          <li><strong>Requirement:</strong> …plus friction requirements — all core requirements are met.</li>
+          <li><strong>Evaluation:</strong> Methods used must be accessibility supported, and the accessibility support set must be stated in any claim.</li>
+          <li><strong>Role:</strong> The single conformance bar. Claims are optional; content can conform without one.</li>
         </ul>
       </div>
 
       <div class="tier-card tier-gold">
         <div class="tier-top">
-          <div class="tier-badge">🥇 Gold</div>
-          <span class="tier-score-target">Max Score + Assertions</span>
+          <div class="tier-badge">🏅 Tiers 4–6</div>
+          <span class="tier-score-target">Beyond conformance</span>
         </div>
-        <h4>Organizational Maturity</h4>
+        <h4>Bronze, Silver, Gold</h4>
         <div class="tier-progress-bar">
           <div class="tier-progress-fill fill-gold"></div>
         </div>
         <ul class="tier-features">
-          <li><strong>Requirement:</strong> Reaches Silver score + maximum overall score percentage.</li>
-          <li><strong>Evaluation:</strong> Ongoing automated monitoring + Multi-disability panel testing + Assertions.</li>
-          <li><strong>Role:</strong> Industry-leading inclusive design, culture, and continuous monitoring.</li>
+          <li><strong>Bronze / Silver:</strong> …plus a to-be-decided number of supplemental requirements and assertions about content.</li>
+          <li><strong>Gold:</strong> …plus assertions about the organization itself.</li>
+          <li><strong>Role:</strong> Not required to conform, but the substance a regulator or procurement process is most likely to ask for.</li>
         </ul>
       </div>
     </div>
+
+    <p class="rating-tier-caveat">
+      Tier placement is driven by tagging each core requirement as <em>physical harm</em>, <em>barrier</em> or <em>friction</em>.
+      <strong>No provision in the draft carries such a tag yet</strong>, so no one — including this site — can currently tell you which tier a given provision falls into.
+      <a href={link("/plain-english/conformance/")}>See the full conformance breakdown and readiness checklist &rarr;</a>
+    </p>
+
 
     <!-- Accordion: Current W3C Status on Base Requirements -->
     <details class="w3c-status-accordion">
@@ -219,17 +226,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <tr>
                 <td><strong>Mandatory "Core" List</strong></td>
                 <td><span class="status-badge badge-wip">🛠️ In Progress</span></td>
-                <td>W3C has not finalized which guidelines will be mandatory "Core" vs optional "Supplemental".</td>
+                <td>Of 245 provisions: 114 foundational, 86 supplemental, 36 assertions, 8 still untyped. Nothing has reached <em>refining</em> maturity.</td>
               </tr>
               <tr>
-                <td><strong>Scoring Thresholds</strong></td>
+                <td><strong>Tier Tagging</strong></td>
                 <td><span class="status-badge badge-wip">🛠️ In Progress</span></td>
-                <td>Exact point values, weighting formulas, and Bronze passing percentages are under active refinement.</td>
+                <td>Core requirements must be tagged <em>physical harm</em>, <em>barrier</em> or <em>friction</em> to place them in reporting tiers. Zero of 245 provisions carry a tag so far.</td>
               </tr>
               <tr>
-                <td><strong>Legal Mapping</strong></td>
+                <td><strong>Policy Guidance</strong></td>
                 <td><span class="status-badge badge-wip">🛠️ In Progress</span></td>
-                <td>Regulatory enforcement rules (DOJ, EAA) mapping to Bronze level are under working group discussion.</td>
+                <td>AG WG plans separate informative advice for policymakers on using reporting tiers in regulation. Not yet written.</td>
               </tr>
               <tr>
                 <td><strong>Structural Framework</strong></td>
@@ -718,6 +725,27 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     font-size: 0.88rem;
     margin: 0;
     line-height: 1.55;
+  }
+
+  .rating-tier-caveat {
+    margin: 1.25rem 0 0;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border-default);
+    border-radius: 10px;
+    background: var(--surface-subtle);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 0.94rem;
+  }
+
+  .rating-tier-caveat strong {
+    color: var(--text-primary);
+  }
+
+  .rating-tier-caveat a {
+    color: var(--border-active);
+    font-weight: 600;
+    white-space: nowrap;
   }
 
   .rating-tiers-grid {

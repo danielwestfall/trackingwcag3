@@ -14,10 +14,10 @@ An accessible, fast, decoupled educational web application built with **Astro**,
 - **Accessible Text Enhancements**: Custom letter-stroke rendering and drop-shadows on gradient text headings to ensure strict $7:1+$ readability against light surfaces.
 
 ### 2. 📘 WCAG 3.0 Explorer (`/plain-english/`)
-- **219 W3C Draft Provisions**: Educational breakdowns across all functional categories (*Text*, *Navigation*, *Media*, *Interactivity*, *Forms*, *Assistive Tech Control*, etc.).
+- **245 W3C Draft Provisions**: Educational breakdowns across all functional categories (*Text*, *Navigation*, *Media*, *Interactivity*, *Forms*, *Assistive Tech Control*, etc.). Tracked against the W3C editors' draft; the count updates when upstream changes.
 - **Role-Tailored Guidance**: Persona tabs for **🎨 Designers**, **💻 Developers**, **🧪 QA Engineers**, and **📋 Product Managers**.
 - **W3C Working Group Estimations**: Live estimates on whether provisions are mature or under active discussion, plus W3C release likelihood meters (`High 90%+`, `Medium 70-89%`, `Under Discussion`).
-- **Rating Model Breakdown (Bronze, Silver & Gold)**: Explanations of continuous points-based outcome scoring compared to legacy WCAG 2.x binary checklists.
+- **Conformance Model Breakdown**: How WCAG 3 replaced A/AA/AAA with a single conformance bar wrapped in six reporting tiers. Bronze, Silver and Gold are tiers *above* conformance in the current draft, not the conformance levels — and the working group has a competing scoring proposal open for comment, which the site says plainly.
 - **Interactive Quick Nav Drawer**: Keyboard-operable (`Esc` to close) table of contents with instant text filtering.
 
 ### 3. 📗 100% Complete WCAG 2.2 Reference (`/plain-english/wcag22/`)
@@ -34,7 +34,19 @@ An accessible, fast, decoupled educational web application built with **Astro**,
   4. *Page-Level 'Accessibility Supported' Baseline Exemptions*
 - **🔥 Top 10 Hottest WCAG 3 Working Group Debates**: Real-time tracking of AGWG and Silver Task Force debates (e.g. APCA vs. WCAG 2 contrast algorithms, Cognitive Accessibility testability, Assertion-based conformance claims, Third-party widget responsibility) with direct links to W3C GitHub issues.
 
-### 5. 🔄 Decoupled Upstream Sync Engine (`npm run sync:plain-english`)
+### 5. ⚖️ Conformance: What Changed & Readiness (`/plain-english/conformance/`)
+- **The headline shift**: leveling moved off conformance and onto reporting in the Sep 2026 draft, with the six-tier table and what drives tier placement.
+- **Five structural differences from WCAG 2.2**: reporting tiers, assertions, conformance scope, accessibility support sets, and the three-way requirement split — each as a *was / now / so what*.
+- **A readiness checklist**: split into *start now* (work that pays off regardless of how the draft lands), *cheap hedges*, and *wait for the draft*.
+- **Live draft figures**: provision counts, type and maturity breakdowns, and the reporting-tier tag count are read from `public/data/wcag3-conformance.json`, which `npm run track:upstream` refreshes on every run.
+
+### 6. 🔍 Upstream Change Tracker (`npm run track:upstream`)
+- Diffs the W3C editors' draft (`w3c/wcag3`) since the last tracked commit and writes a dated report to `tracking/reports/`.
+- Separates real normative wording changes from the periodic `:term[]` markup and punctuation passes upstream runs before each publication.
+- Checks every WCAG 2.2 → 3 mapping against what actually exists upstream, flagging broken slugs, references that resolve only to a guideline or group, and provisions missing from the local catalog.
+- Runs weekly as a scheduled task. See [`tracking/README.md`](tracking/README.md) and the gap analysis in [`tracking/wcag22-to-wcag3-plan.md`](tracking/wcag22-to-wcag3-plan.md).
+
+### 7. 🔄 Decoupled Upstream Sync Engine (`npm run sync:plain-english`)
 - Fully decoupled from upstream `w3c/wcag3` markdown repositories.
 - Combines raw W3C spec documents with local educational annotations into zero-dependency compiled JSON catalogs in `public/data/`.
 
@@ -114,7 +126,7 @@ trackingwcag3/
 │   └── pages/
 │       ├── index.astro               # Flagship Welcome Portal & Global Search
 │       └── plain-english/
-│           ├── index.astro           # WCAG 3 Explorer & Rating Model visualizer
+│           ├── index.astro           # WCAG 3 Explorer & conformance model overview
 │           ├── provision/[id].astro  # 5-tab WCAG 3 provision detail view
 │           ├── wcag22/index.astro    # 87 SC WCAG 2.2 Reference index
 │           ├── wcag22/[id].astro     # WCAG 2.2 criterion detail view

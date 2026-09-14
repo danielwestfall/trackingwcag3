@@ -1,0 +1,687 @@
+---
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import fs from "fs";
+import path from "path";
+
+const dataPath = path.join(process.cwd(), "public", "data", "wcag3-conformance.json");
+const d = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
+
+const s = d.draftState;
+const matureCount = (s.byStatus.refining ?? 0) + (s.byStatus.mature ?? 0);
+const roleLabel: Record<string, string> = {
+  progress: "Progress toward conformance",
+  conformance: "Conformance",
+  beyond: "Beyond conformance",
+};
+---
+
+<PlainEnglishLayout title="Conformance: What Changed & How to Get Ready" activeTab="conformance">
+  <section class="dashboard-banner">
+    <div class="banner-content">
+      <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle" aria-hidden="true">⚖️</span>
+          <span>Conformance Model</span>
+        </div>
+        <h2>Conformance: What Changed &amp; How to Get Ready</h2>
+        <p>
+          Conformance is where WCAG 3 departs from WCAG 2.2 most sharply — and where it
+          changed again in the {s.baselineDate} draft. This page covers what moved, what it
+          means for a team conforming to 2.2 today, and what is worth doing now versus
+          waiting on.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">{s.provisionCount}</span>
+          <span class="stat-label">Draft provisions</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{s.byType.assertion}</span>
+          <span class="stat-label">Assertions (no 2.2 equivalent)</span>
+        </div>
+        <div class="stat-card stat-zero">
+          <span class="stat-value highlight-shift">{matureCount}</span>
+          <span class="stat-label">At refining or mature</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Draft state strip: refreshed by npm run track:upstream -->
+  <section class="draft-state" aria-label="State of the draft being tracked">
+    <p class="draft-state-lead">
+      Tracking W3C editors' draft <code>{s.baselineCommit}</code> ({s.baselineDate}).
+      Every figure on this page comes from that commit and is refreshed by the upstream tracker.
+    </p>
+    <ul class="draft-state-list">
+      <li><strong>{s.byType.foundational}</strong> foundational</li>
+      <li><strong>{s.byType.supplemental}</strong> supplemental</li>
+      <li><strong>{s.byType.assertion}</strong> assertions</li>
+      <li><strong>{s.byStatus.developing}</strong> developing</li>
+      <li><strong>{s.byStatus.exploratory}</strong> exploratory</li>
+      <li><strong>{s.taggedForTiers}</strong> tagged for reporting tiers</li>
+    </ul>
+  </section>
+
+  <!-- The headline shift -->
+  <section class="headline-shift" aria-labelledby="headline-h">
+    <h3 id="headline-h">The headline change</h3>
+    <blockquote class="spec-quote">
+      <p>{d.headline.quote}</p>
+      <cite>{d.headline.source}</cite>
+    </blockquote>
+    <p class="headline-summary">{d.headline.summary}</p>
+    <div class="caveat-box" role="note">
+      <div class="caveat-icon" aria-hidden="true">⚠️</div>
+      <div>
+        <strong>This is not settled.</strong>
+        <p>{d.headline.caveat}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reporting tiers -->
+  <section class="tiers-section" aria-labelledby="tiers-h">
+    <h3 id="tiers-h">Reporting tiers</h3>
+    <p class="section-lead">
+      Each tier is cumulative, building on and including everything in the tiers before it.
+      Only tier 3 is conformance — the tiers below it describe progress toward it, and the
+      tiers above it describe achievement beyond it.
+    </p>
+    <div class="tier-table-wrap">
+      <table class="tier-table">
+        <caption class="visually-hidden">WCAG 3 reporting tiers and what each requires</caption>
+        <thead>
+          <tr>
+            <th scope="col">Tier</th>
+            <th scope="col">Provisions required</th>
+            <th scope="col">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {d.tiers.map((t: any) => (
+            <tr class={t.role === "conformance" ? "tier-row is-conformance" : "tier-row"}>
+              <th scope="row">
+                <span class="tier-num">{t.n}</span>
+                <span class="tier-name">{t.name}</span>
+              </th>
+              <td>{t.requires}</td>
+              <td><span class={`role-pill role-${t.role}`}>{roleLabel[t.role]}</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="kinds-grid">
+      <h4>What drives tier placement</h4>
+      <p class="section-lead">
+        Core requirements are tagged by the kind of harm that not meeting them causes.
+        Those tags are what sort a requirement into tier 1, 2 or 3.
+      </p>
+      <dl class="kinds-list">
+        {d.requirementKinds.map((k: any) => (
+          <div class="kind-item">
+            <dt>{k.label}</dt>
+            <dd>{k.definition}</dd>
+          </div>
+        ))}
+      </dl>
+      {s.taggedForTiers === 0 && (
+        <p class="kinds-warning" role="note">
+          <strong>None of the {s.provisionCount} provisions carry these tags yet.</strong>
+          The tier model is described in the draft, but the tagging that makes it operable has
+          not been applied. Until that changes, no one can tell you which tier a given
+          provision lands in — including this site.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <!-- What 2.2 work carries over -->
+  <section class="carryover-section" aria-labelledby="carry-h">
+    <h3 id="carry-h">Does your WCAG 2.2 work carry over?</h3>
+    <blockquote class="spec-quote">
+      <p>{d.carryOver.quote}</p>
+      <cite>W3C Accessibility Guidelines 3.0 editors' draft</cite>
+    </blockquote>
+    <p>{d.carryOver.reading}</p>
+    <p class="transition-note">{d.carryOver.transition}</p>
+  </section>
+
+  <!-- Structural differences -->
+  <section class="shifts-section" aria-labelledby="shifts-h">
+    <h3 id="shifts-h">The five structural differences from WCAG 2.2</h3>
+    <p class="section-lead">
+      These are the parts of WCAG 3 that are not a restatement of WCAG 2.2 in new words.
+    </p>
+    <div class="shift-grid">
+      {d.shifts.map((sh: any, i: number) => (
+        <article class="shift-card" id={sh.id}>
+          <div class="shift-num" aria-hidden="true">{i + 1}</div>
+          <h4>{sh.title}</h4>
+          <div class="shift-compare">
+            <div class="shift-side shift-was">
+              <span class="shift-label">WCAG 2.2</span>
+              <p>{sh.was}</p>
+            </div>
+            <div class="shift-side shift-now">
+              <span class="shift-label">WCAG 3 draft</span>
+              <p>{sh.now}</p>
+            </div>
+          </div>
+          <div class="shift-sowhat">
+            <span class="sowhat-label">So what</span>
+            <p>{sh.soWhat}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Readiness -->
+  <section class="readiness-section" aria-labelledby="ready-h">
+    <h3 id="ready-h">What to do to be ready</h3>
+    <p class="section-lead">
+      Ordered by whether the work depends on the draft settling. The first column does not —
+      which is why it is the first column.
+    </p>
+    <div class="readiness-grid">
+      <div class="ready-col ready-now">
+        <div class="ready-head">
+          <span class="ready-icon" aria-hidden="true">✅</span>
+          <h4>Start now</h4>
+          <p class="ready-sub">Useful regardless of how the draft lands</p>
+        </div>
+        <ol class="ready-list">
+          {d.readiness.now.map((r: any) => (
+            <li>
+              <strong>{r.action}</strong>
+              <p>{r.why}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="ready-col ready-next">
+        <div class="ready-head">
+          <span class="ready-icon" aria-hidden="true">🔜</span>
+          <h4>Cheap hedges</h4>
+          <p class="ready-sub">Low cost, likely to pay off</p>
+        </div>
+        <ol class="ready-list">
+          {d.readiness.next.map((r: any) => (
+            <li>
+              <strong>{r.action}</strong>
+              <p>{r.why}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="ready-col ready-wait">
+        <div class="ready-head">
+          <span class="ready-icon" aria-hidden="true">⏸️</span>
+          <h4>Wait for the draft</h4>
+          <p class="ready-sub">Building for this now is premature</p>
+        </div>
+        <ol class="ready-list">
+          {d.readiness.wait.map((r: any) => (
+            <li>
+              <strong>{r.action}</strong>
+              <p>{r.why}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where 2.2 stretched -->
+  <section class="stretched-section" aria-labelledby="stretch-h">
+    <h3 id="stretch-h">Where WCAG 2.2 requirements visibly stretched</h3>
+    <p class="section-lead">
+      Cases where a WCAG 2.2 success criterion does not cover the new provision cleanly.
+    </p>
+    <div class="stretched-grid">
+      {d.stretched.map((x: any) => (
+        <article class="stretched-card">
+          <div class="stretched-top">
+            <h4>{x.title}</h4>
+            <span class="sc-pill">{x.criteria}</span>
+          </div>
+          <p>{x.detail}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Watch list -->
+  <section class="watch-section" aria-labelledby="watch-h">
+    <h3 id="watch-h">What this site watches from here</h3>
+    <p class="section-lead">
+      The upstream tracker checks the W3C editors' draft weekly. These are the signals it
+      reports first, in priority order.
+    </p>
+    <ol class="watch-list">
+      {d.watchList.map((w: string) => <li>{w}</li>)}
+    </ol>
+    <p class="watch-foot">
+      Last checked against <code>{s.baselineCommit}</code> ({s.baselineDate}).
+      Explore the provisions themselves in the
+      <a href={link("/plain-english/")}>WCAG 3 Explorer</a>, or compare against the
+      <a href={link("/plain-english/wcag22/")}>WCAG 2.2 Reference</a>.
+    </p>
+  </section>
+
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 0.75rem;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 0.5rem;
+    }
+
+    .section-lead {
+      color: var(--text-secondary);
+      max-width: 72ch;
+      margin: 0 0 1.25rem;
+      line-height: 1.6;
+    }
+
+    /* Draft state strip */
+    .draft-state {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+    }
+    .draft-state-lead {
+      margin: 0 0 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .draft-state-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .draft-state-list strong {
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Quotes */
+    .spec-quote {
+      margin: 0 0 1rem;
+      padding: 1rem 1.25rem;
+      border-left: 4px solid var(--border-active);
+      background: var(--surface-subtle);
+      border-radius: 0 10px 10px 0;
+    }
+    .spec-quote p {
+      margin: 0 0 0.5rem;
+      color: var(--text-primary);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .spec-quote cite {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-style: normal;
+    }
+
+    .headline-summary {
+      color: var(--text-secondary);
+      max-width: 72ch;
+      line-height: 1.7;
+    }
+
+    .caveat-box {
+      display: flex;
+      gap: 0.85rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border-default);
+      border-radius: 12px;
+      background: var(--surface-card);
+      margin-top: 1rem;
+    }
+    .caveat-box p {
+      margin: 0.35rem 0 0;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .caveat-box strong {
+      color: var(--text-primary);
+    }
+    .caveat-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    /* Tier table */
+    .tier-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+    }
+    .tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 44rem;
+      background: var(--surface-card);
+    }
+    .tier-table th,
+    .tier-table td {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .tier-table thead th {
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--surface-elevated);
+    }
+    .tier-table tbody th {
+      color: var(--text-primary);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .tier-table tbody tr:last-child th,
+    .tier-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+    .tier-row.is-conformance {
+      background: var(--surface-card-hover);
+    }
+    .tier-row.is-conformance th,
+    .tier-row.is-conformance td {
+      color: var(--text-primary);
+    }
+    .tier-num {
+      display: inline-block;
+      min-width: 1.6rem;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+    .role-pill {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
+      border: 1px solid var(--border-default);
+      color: var(--text-secondary);
+    }
+    .role-conformance {
+      border-color: var(--border-active);
+      color: var(--text-primary);
+    }
+
+    /* Requirement kinds */
+    .kinds-grid {
+      margin-top: 1.75rem;
+    }
+    .kinds-list {
+      margin: 0;
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    }
+    .kind-item {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+    }
+    .kind-item dt {
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    .kind-item dd {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .kinds-warning {
+      margin-top: 1rem;
+      padding: 0.9rem 1.1rem;
+      border: 1px solid var(--border-default);
+      border-radius: 10px;
+      background: var(--surface-subtle);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 78ch;
+    }
+    .kinds-warning strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .carryover-section p {
+      color: var(--text-secondary);
+      max-width: 76ch;
+      line-height: 1.7;
+    }
+    .transition-note {
+      font-size: 0.95rem;
+    }
+
+    /* Shifts */
+    .shift-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .shift-card {
+      position: relative;
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.25rem 1.35rem;
+    }
+    .shift-num {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.25rem;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--border-subtle);
+      line-height: 1;
+    }
+    .shift-card h4 {
+      padding-right: 2.5rem;
+    }
+    .shift-compare {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      margin: 0.85rem 0;
+    }
+    .shift-side {
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0.8rem 0.95rem;
+      background: var(--surface-subtle);
+    }
+    .shift-side p {
+      margin: 0.35rem 0 0;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+    .shift-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-secondary);
+    }
+    .shift-now {
+      border-color: var(--border-active);
+    }
+    .shift-sowhat {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.8rem;
+    }
+    .sowhat-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-primary);
+    }
+    .shift-sowhat p {
+      margin: 0.35rem 0 0;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Readiness */
+    .readiness-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+    }
+    .ready-col {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+    }
+    .ready-now {
+      border-color: var(--border-active);
+    }
+    .ready-head {
+      margin-bottom: 0.9rem;
+    }
+    .ready-head h4 {
+      display: inline;
+      margin: 0;
+    }
+    .ready-icon {
+      margin-right: 0.4rem;
+    }
+    .ready-sub {
+      margin: 0.35rem 0 0;
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+    }
+    .ready-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .ready-list li strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .ready-list li p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    /* Stretched */
+    .stretched-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+    }
+    .stretched-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+    }
+    .stretched-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .sc-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-default);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .stretched-card p {
+      margin: 0.6rem 0 0;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+
+    /* Watch list */
+    .watch-list {
+      margin: 0 0 1rem;
+      padding-left: 1.3rem;
+      display: grid;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 80ch;
+    }
+    .watch-foot {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .watch-foot a {
+      color: var(--border-active);
+    }
+
+    @media (max-width: 640px) {
+      .shift-num {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</PlainEnglishLayout>
