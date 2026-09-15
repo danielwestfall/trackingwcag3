@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-14T04:09:58.325Z",
+  "generatedAt": "2026-09-15T01:17:54.732Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 470,
-    "issuesWithProvisionLabel": 232,
-    "provisionsWithDiscussion": 150,
+    "issuesTotal": 471,
+    "issuesWithProvisionLabel": 233,
+    "provisionsWithDiscussion": 152,
     "generalIssues": 238,
     "summarized": 5,
-    "awaitingSummary": 145
+    "awaitingSummary": 147
   },
   "provisions": {
     "audio-shifting-adjustable": {
@@ -5550,12 +5550,23 @@
       "guideline": "adequate-time",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "865@2026-09-14T15:20:06Z",
+      "threads": [
+        {
+          "number": 865,
+          "title": "'No time limits' should be assertion instead of requirement",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/865",
+          "created": "2026-09-14",
+          "updated": "2026-09-14",
+          "comments": 0,
+          "labels": []
+        }
+      ]
     },
     "no-unnecessary-time-limits": {
       "slug": "no-unnecessary-time-limits",
@@ -5671,12 +5682,25 @@
       "guideline": "avoid-deception",
       "status": "developing",
       "type": "assertion",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "440@2026-03-29T22:48:52Z",
+      "threads": [
+        {
+          "number": 440,
+          "title": "Rename 2.9.4 assertions?",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/440",
+          "created": "2025-12-22",
+          "updated": "2026-03-29",
+          "comments": 0,
+          "labels": [
+            "Path: Errors⹁ task completion and help"
+          ]
+        }
+      ]
     },
     "no-artificial-time-limits": {
       "slug": "no-artificial-time-limits",
@@ -7599,7 +7623,5 @@
       ]
     }
   },
-  "unmatchedLabels": {
-    "P - Deceptive messaging expert review": 1
-  }
+  "unmatchedLabels": {}
 }
