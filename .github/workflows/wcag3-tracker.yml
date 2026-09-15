@@ -1,4 +1,4 @@
-﻿name: WCAG 3 upstream check
+name: WCAG 3 upstream check
 
 on:
   schedule:

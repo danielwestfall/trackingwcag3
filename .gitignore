@@ -29,3 +29,5 @@ vendor
 
 # Local secrets (GitHub token for the discussions fetcher)
 .env
+
+Claude outputs/
