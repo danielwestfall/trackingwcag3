@@ -1,0 +1,504 @@
+{
+  "layout-reflow-supported": {
+    "headline": "Whether fixed and sticky chrome that swallows the reflowed viewport should be a normative failure rather than an advisory technique, and in what unit such a limit could be written.",
+    "positions": [
+      {
+        "label": "Sticky chrome makes pages non-functional",
+        "who": "WayneEDick, StommePoes, mraccess77",
+        "detail": "WayneEDick opened #198 with screenshots of content squished between a fixed header and footer, arguing the low-resolution assumption is a phone in portrait while a low-vision user is actually in landscape, and that non-collapsible vertical panes growing with zoom leave no usable space. StommePoes says these are simply non-functional pages: at 150% on a 12-inch laptop she gets about three lines of text, and she names Medium.com and news sites as the worst offenders, failing them under text-resize in her own audits. mraccess77 adds breakages with the same cause — hover content that appears off-screen and vanishes when you scroll to it, snap scrolling that jumps past content you are trying to reach at zoom, and scroll jacking that takes away ctrl plus mouse wheel. All three treat the fix as cheap and known — WayneEDick's three techniques are switch fixed to static at low resolution, replace the bar with a control limited to 10% of the screen, or make it collapsible, and StommePoes adds that developers already write width-based media queries, so a height-based one in ems can simply drop the stickiness, since the sticky content is usually the site name or social buttons."
+      },
+      {
+        "label": "A ratio threshold, worded 'down to'",
+        "who": "patrickhlauke, StommePoes",
+        "detail": "patrickhlauke would support a percentage or ratio rule — roughly, sticky and fixed elements not covering more than a third of the visible viewport — with the understanding doc requiring testing in both portrait and landscape, down to 320 CSS px width and 256 CSS px height. He insists on \"down to\" rather than mandating that exact viewport dimension, because otherwise the requirement is pointless. StommePoes agrees, citing content that passed at 400% on a 1280 px viewport but broke around 250% when a media query did not fire, leaving the user to choose between 175% (too small) and 300% (larger than needed); she also reports that showing designers sticky elements eating a quarter to a half of viewport height draws no pushback, because they find it ridiculous too."
+      },
+      {
+        "label": "Measurement is the blocker",
+        "who": "mraccess77",
+        "detail": "Sticky headers create reading viewports that are too short, but mraccess77 doubts the group can reach consensus on what height is acceptable: is the metric percent of viewport height, or the number of lines of text that fit? Full coverage is clearly a failure, but two or three visible lines forcing the user to read through a slot is harder to draw a line around. He notes the LVTF concluded these issues were too challenging for WCAG 2.2's framework and belonged in Silver, and that the working group's impression is that low-vision issues are already solved — leaving him unsure which spec is the right home. alastc was more optimistic, suggesting a limit could build on reflow's existing 256 px minimum height and tie in with device orientation."
+      },
+      {
+        "label": "Authors cannot be held to device density",
+        "who": "patrickhlauke, alastc",
+        "detail": "PAFaieta opened #156 asking that the standard name a baseline native viewport resolution and DPI, or a baseline minimum magnification such as 200% as a satisfactory technique, on the grounds that vague language invites compliance arguments. patrickhlauke answered that CSS px is already density-independent and that authors cannot predict or test the physical resolution and dimensions users run — a person on a physically small monitor at very high resolution has chosen that, and adapting the device is their call, not the author's. alastc added that WCAG 3 deliberately avoids technology-specific language at the provision level and expects metrics to live in technology-specific methods, and asked for concrete ground-level examples of the \"liberties\" being taken; PAFaieta left the thread without supplying them."
+      },
+      {
+        "label": "Layouts set in px are the root cause",
+        "who": "chaals, graphic-designer",
+        "detail": "chaals set font-size to 64px in Safari and browsed roughly 100 pages: news sites were generally unusable (abc.net.au the least bad), search engines were terrible, whitehouse.gov and un.org worked reasonably, and idealista was the one usable shopping site. He reports that pretty much every serious problem traced to layouts set in pixels — most commonly line-heights derived from the screen's pixel width and far below 64px, then large text squeezed into too-small boxes. His proposal is to trigger breakpoints on character counts rather than screen width in px, and to express any measure larger than half the expected font-size in rem, with layouts expected to work between 4px and 72px (about 1.5mm to 25mm). graphic-designer (#642) argues the same conclusion from user autonomy: px ignores a user's configured root font size, so a px-based architecture is rigid by construction while rem lets the layout breathe."
+      },
+      {
+        "label": "Reflow itself is the barrier",
+        "who": "alastc",
+        "detail": "An emailed objection alastc posted on the group’s behalf as #664 argues that forcing a 320 px mobile-style layout on a desktop display at 400% zoom increases cognitive load for older users by hiding familiar navigation and breaking established mental models. It claims this breaks complex interfaces such as legal document portals, preventing citizens from accessing documents, and characterises the mobile-first target as favouring the ecosystems of major W3C corporate members. The request is for a Desktop-Preservation Mode or a reduced requirement — 200% — that does not trigger a full layout change. Nobody has replied."
+      }
+    ],
+    "agreed": [
+      "Fixed headers, footers and non-collapsible side panes that stay put under zoom render pages non-functional. StommePoes's flat \"absolutely\" to WayneEDick's question went unchallenged in eight years of thread.",
+      "The fixes are not technically hard — un-fixing via vertical media queries, collapsing, or allowing dismissal after reading — and no one argued they are expensive. StommePoes notes developers do not think of them but implement them readily once shown.",
+      "CSS px is density-independent, so a separate DPI or native-resolution baseline is not needed; patrickhlauke's point in #156 went unrebutted.",
+      "Technology-specific metrics belong in methods, not in provision text — alastc's framing, unchallenged."
+    ],
+    "open": [
+      "Whether any limit on sticky and fixed chrome becomes normative in WCAG 3 or stays advisory as C34. alastc said in 2019 it needed volunteers; none stepped forward in the thread.",
+      "How to measure it at all — mraccess77's question of percent of viewport height versus number of readable lines remains unanswered.",
+      "What alastc's 2019 idea of building on the 256 px reflow minimum height and tying it to device orientation actually was. jake-abma asked him to lift the veil and got no reply.",
+      "Whether #198 belongs in WCAG 3 at all. scottaohara asked whether it should have been transferred rather than cloned, since his reflow understanding-doc PR would likely have addressed it in WCAG 2; cwadamsoforacle said the chairs made a blanket decision to move wcag.next issues into WCAG 3 and would review it with alastc. No further word in the thread.",
+      "Whether the 400% / 320 CSS px reflow target itself harms desktop users who do not want a mobile layout (#664), which has drawn no response.",
+      "chaals's proposed workable range of 4px to 72px is explicitly a guess; he asks for systematic research across more scripts, screen sizes, font sizes and content types, noting he covered only a handful of Chinese and Russian pages and nothing in Japanese or Arabic."
+    ],
+    "note": "#198 dates from 2018 (transferred from wcag21#846) and is still open with no normative outcome. #642 turned procedural: rachaelbradley intervened as chair to say GitHub discussion is between individuals, that a formal response on units may take months, and to ask for polite professionalism — after graphic-designer filed a DMCA counter-notification over his test-case file, published mirrored \"audit log\" copies, and reported the thread to Open Web Advocacy and Open Digital Design over other participants deleting their own comments. alastc has drafted a response closing #642 without changing any provision, but it has not been through the AG group. #664 arrived by email and has no comments at all."
+  },
+  "relationships-detectable": {
+    "headline": "Whether \"relationships detectable\" is purely a programmatic requirement, and how to bound it — the two substantive threads behind it are both stalled proposals inherited from WCAG 2.x, one on element nesting and one on visual label proximity.",
+    "positions": [
+      {
+        "label": "A new provision for role nesting",
+        "who": "cstrobbe, JAWS-test",
+        "detail": "cstrobbe's proposal in #166 would require that elements used with their native roles be nested according to the content models in their specifications, plus a fourth clause barring links, interactive elements and keyboard-focusable elements as descendants of links. He worked through nineteen numbered code examples showing where a syntax reading of 4.1.1, a validation reading, and the proposal each land — button wrapping an anchor, li inside a div inside a ul, p as a sibling of li, h2 wrapping p. JAWS-test called it exactly what was needed and asked that it also cover ARIA and PDF tags, noting that correct nesting is what lets a screen reader report that a table has 3 columns and 2 rows and that you are in column 2, row 1. JAWS-test cited EN 301 549 clause 11.5.2.9 and Section 508 502.3.7, both of which already require parent-child relationships to be programmatically determinable."
+      },
+      {
+        "label": "Fix or retire 4.1.1 instead of adding a provision",
+        "who": "patrickhlauke, yatil, scottaohara",
+        "detail": "patrickhlauke would rather see 4.1.1 updated normatively in a backwards-compatible way than patch around a poorly interpreted criterion, warning of weird overlaps where one SC is a stricter special case of another. yatil proposes extending 4.1.1 to \"markup languages and associated extensions as they relate to accessibility features\" and dropping the well-formedness framing from the Understanding document, or alternatively removing 4.1.1 entirely per w3c/wcag#2676. scottaohara agrees: use 4.1.1 for what people think it is for, unless \"elements are nested according to their specifications\" does not actually mean that. patrickhlauke also argues the singling out of links is arbitrary, since buttons and other controls have the same problem."
+      },
+      {
+        "label": "Do not reinterpret 4.1.1 after the fact",
+        "who": "bruce-usab, GreggVan",
+        "detail": "bruce-usab says it is bad to retcon a standard and refuses the \"use it for what people think it's for\" framing; GreggVan agrees and adds that 4.1.1 should be clarified to mean what the working group meant when it was written, not what people later want it to mean. bruce-usab separately notes the proposal arrived too late for WCAG 2.2. cstrobbe's own reply is that the intents differ: 4.1.1 is about a user agent building an unambiguous parse tree, while his proposal is about name, role, state and value being exposed unambiguously through an accessibility API, which puts it closer to 4.1.2."
+      },
+      {
+        "label": "Measure the label gap",
+        "who": "detlevhfischer, mraccess77",
+        "detail": "detlevhfischer's #194 proposal caps the gap between a label and the element it labels at twice the smaller of the labelled element's width or height, illustrated with a 16 px-tall field passing at a 32 px gap and failing at 33 px. He later revised it to four times the smaller dimension of the label itself, to escape the problem that the original formula breaks for textarea. mraccess77 defends the need against demands for evidence, pointing out that the SC 3.3.2 Understanding document said in 2008 that labels close to their field help screen-magnifier users, that G162 already exists, and citing Nielsen Norman Group material on proximity and form white space; his answer to \"this is a common pattern\" is that a common pattern is not necessarily a correct one."
+      },
+      {
+        "label": "The gap metric breaks real designs and lacks evidence",
+        "who": "jake-abma, awkawk, alastc, patrickhlauke",
+        "detail": "jake-abma checked with designers and reported that almost all current forms would fail and that the calculation is too prescriptive for design aesthetics, and that the measurement scheme — four times, three times, widths, heights, mixed elements — is too complicated for designers, developers and testers alike. awkawk points to the very common pattern of left-aligned labels against aligned fields, where varying label length forces varying gaps, and says disallowing a common pattern requires clear evidence. alastc notes the proposal would fail the GOV.UK Design System text input with hint text, and asks what happens when an error message is inserted. patrickhlauke finds the loophole immediately: a designer could make fields excessively tall purely to buy leeway to push the label further away, defeating the point while passing; he also asks for hard proof that larger gaps harm particular users rather than the working group making things up. detlevhfischer concedes the exception list grows until the original requirement is lost, and that focusing on label-to-control catches only a subset of the proximity problems he has seen in low-vision user testing."
+      },
+      {
+        "label": "The requirement is unbounded as written",
+        "who": "GreggVan, giacomo-petri, adampage",
+        "detail": "In #451 GreggVan argues that if a relationship is not presented to anybody, it is unclear what the requirement is getting at, and that without scoping there are a million ways elements can be related and all of them would have to be conveyed programmatically; he proposes narrowing it to \"when relationships of meaning between elements are presented visually, they are also conveyed programmatically.\" giacomo-petri opened the issue acknowledging the tests are incomplete and that the requirement must either gain sufficient tests or state its applicability clearly. adampage's specific gaps are error messages and help text for form controls, and tables with headers, bodies, footers, data cells and header cells — questions that arise precisely because the written tests are so narrow."
+      }
+    ],
+    "agreed": [
+      "Validation errors involving no element with a native role cause no accessibility problem — cstrobbe's examples of span wrapping h6 and a span carrying an href attribute fail validation, harm nobody, and went unchallenged as cases the provision should not catch.",
+      "Proximity of a label to its control genuinely matters for low-vision and magnifier users; awkawk, the main sceptic on #194, states outright that he does not dispute the concept and that the challenge is only deciding how close is close enough so it can be tested.",
+      "A whole class of parent-child relationships is not expressible as element nesting at all — JAWS-test's list of aria-owns, radio buttons grouped by the name attribute, and aria-level on treegrids drew no rebuttal, and cstrobbe conceded the requirement should be framed around what reaches the accessibility API rather than around nesting."
+    ],
+    "open": [
+      "Whether the provision stays limited to programmatic relationships or additionally requires visually clear ones. adampage raised it on #194 against the current draft text; patrickhlauke's objection is that defining how to represent something \"clearly\" in visual terms lands you in arbitrary graphic design statements.",
+      "Whether the requirement should apply only where a relationship is presented visually, per GreggVan's proposed rewording in #451.",
+      "What the tests must cover: error messages and help text for form controls, and table headers, bodies, footers and cells — adampage's list, carried into #451 by giacomo-petri.",
+      "What artefact is evaluated — source code, DOM or accessibility tree. JAWS-test raised this on #166: source often has no bearing after JS and CSS, while DOM and accessibility tree reflect browser repair that is not consistent across browsers, which is why 4.1.1 existed in the first place.",
+      "Whether roles overridden by ARIA are in scope, and how to word that technology-independently. This is cstrobbe's own unanswered question on #166; JAWS-test argues ARIA is exactly where the problems are, since it is widely misused, hard to validate and not consistently repaired by browsers.",
+      "Whether any testable proximity metric is achievable at all. jake-abma and patrickhlauke floated a reflow-style alternative — label and input both at least partly visible in a 320 CSS px viewport — and jake-abma noted it leaves desktop zoom-tool users, where the label is simply too far right, unaddressed.",
+      "Whether a programmatic relationship should serve as an escape hatch from a visual proximity requirement. alastc proposed it; patrickhlauke called it a cop-out that shifts the burden to user agents and makes the provision redundant, since programmatic association is already required by 1.3.1 and in most cases 4.1.2."
+    ],
+    "note": "Both substantive threads are inherited and largely dormant. #194 was opened in 2019 as a WCAG 2.2 proposal, had its real debate over two weeks in March and April 2019, drew one comment in 2022 from anevins12 that went unanswered, then sat untouched until adampage reopened the question in May 2026 against the WCAG 3 draft text. #166 dates from 2022 and its last exchange is bruce-usab and GreggVan on retconning, with cstrobbe's promised rewording never posted. #271 is alastc's requirement-tracking stub listing five requirements and a Google doc link, with no discussion at all."
+  },
+  "decorative-images-hidden": {
+    "headline": "Whether WCAG 3's \"decorative\" has quietly widened WCAG 2's \"pure decoration\" into a loophole, and whether the fix is a tighter definition, a second tier of decorative images that may carry alt text, or abolishing the exemption entirely.",
+    "positions": [
+      {
+        "label": "Abolish the exemption",
+        "who": "brett-oppegaard, ericwbailey",
+        "detail": "ericwbailey's framing in #238 is that an abled content author deciding what counts as decorative removes agency from the person using assistive technology, and he supplies a case he met in the wild: photos of amenities for luxury housing classed as decorative even though they communicate the benefit of living there. brett-oppegaard escalates this in #369 — a designer told him a stock photo of a diverse group reading books in front of a university building was decorative and therefore not legally required to be described, and he has heard the same claim made about portrait photos of organizational leaders. His argument is that visual designers always have the option not to include an image, so every included image has a rhetorical purpose; that a screen reader user can skip alt text with a single keypress, so the audience should decide, not millions of decentralized, busy, often untrained site managers; and that the loophole is why Instagram alone emits 70,000 mostly undescribed images a minute. He also wants the term \"alt text\" retired in favour of static Audio Description, which he argues separately in #371 (see image-alternatives-available)."
+      },
+      {
+        "label": "Over-description is its own barrier",
+        "who": "TestPartners, patrickhlauke, bruce-usab",
+        "detail": "TestPartners reports content creators over-compensating with literal descriptions of decorative images running to several sentences and as much as 50 words, which a screen reader user must sit through a large proportion of before concluding it is fluff they did not need; he puts community opinion at roughly 50:50 and says a substantial majority should exist before anything changes. He half-seriously proposed a CSS prefers-reduced-fluff property as the only way to satisfy both camps, and rejects the premise that undescribed decorative images discriminate — you may as well argue that hanging wallpaper discriminates against people who cannot see it. patrickhlauke's reductio in #238 is that if every non-text piece of information must be conveyed, authors would have to describe colour and sizing choices and ultimately the entire CSS of the page, so a pragmatic and admittedly subjective cut-off is unavoidable; he adds that where a flourish exists to convey a mood, prose carrying the same tone can already be an acceptable alternative. bruce-usab makes the placement argument against Myndex's paisley example: the fact that paisley patterns descend from Jacquard-loom punch cards is compelling trivia that belongs in the footer or on an About page available to everyone, not buried in an alt attribute forced only on screen reader users."
+      },
+      {
+        "label": "Hold the WCAG 2 line",
+        "who": "yatil, lauracarlson, bruce-usab",
+        "detail": "yatil's objection in #369 is that WCAG has said \"pure decoration\" since 2008 and merely being decorative never qualified for the exception — WCAG comes from the era of image-rendered container shadows and image-replacement headings, and most genuinely pure decoration can now be done in CSS. He argues the draft's test, whether removing the image would impact how people understand the page, is far too low a bar: under it a portrait in a staff index is decorative and so is a news article photo, and neither \"impact\" nor \"understand\" is defined. lauracarlson opened #238 on the narrower charge that \"Decorative Images\" is broader than \"Pure Decoration\" and that conflating them is a mistake; her specific target is the Method's \"Illustrative of adjacent text but not contributing information (eye-candy)\" line, and she proposed renaming \"Decorative\" to \"Purely Decorative\" throughout. Both she and bruce-usab call null alt overused and a hangover from the spacer-gif era, though bruce-usab says his own sampling shows missing alt and low-information alt attempted as textual equivalence remain the bigger problems."
+      },
+      {
+        "label": "Two tiers, with alt optional on the softer one",
+        "who": "MakotoUeki, fstrr",
+        "detail": "MakotoUeki opened #466 proposing an explicit split: purely decorative images (an icon alongside text, a thumbnail inside a link) need no text alternative and should have no accessible name, while decorative images (a photo, an illustration) may usefully carry one as a best practice. The user need he cites is a person who lost their sight later in life and wants the description in order to picture the image, and his position in #238 is that the user, not the author, should decide whether something is meaningless. fstrr points at a ready-made middle category: the HTML spec's ancillary images, where an image is neither purely decorative nor entirely redundant with the text, the alt attribute must be present, its value may be the empty string or a textual representation, and it must not be empty when the image has a caption."
+      },
+      {
+        "label": "One category, defined properly",
+        "who": "grace-snow, Finnberrys",
+        "detail": "grace-snow's reply in #466 is that if an image adds meaning it is not decorative at all, so naming a class of \"decorative\" images that do need alternative text is highly likely to confuse; whether a photo or illustration is decorative depends on the surrounding content and context, not on the image type. Finnberrys agrees and offers the substitution test she applies: a swirly line at the bottom of a page could be swapped for a wiggly rainbow line with no effect on content, whereas a photo of her dog on a page about assistance dogs could not be swapped for a unicorn without becoming confusing and weird. sydneycolemanfromgoogle filed the same objection independently in #518 — the distinction is not useful without a clear and mostly objective means of telling the two apart."
+      },
+      {
+        "label": "The gap is in user agents, not author judgement",
+        "who": "Myndex, mraccess77",
+        "detail": "mraccess77 reports that Internet Explorer's exposure of alt as a tooltip let him learn things about images he could not distinguish visually — essentially audio description for the web, the nuances low-vision users miss — and notes that captions today are available to everyone rather than only to deaf users, while accessible name and description are not. Myndex makes the adoption argument: alt text is effectively unreachable outside screen reader use, and if it surfaced through a standard user-agent affordance it would serve people with prosopagnosia or other cognitive and contextual needs, reader mode, and failed image loads, and the broader demand would drive adoption. bruce-usab counters from history that IE's tooltip behaviour is precisely what trained authors to write tooltips into alt for years, that the TITLE attribute only partly separated them, and that the practice only corrected when touch UIs removed the tooltip. Myndex also flags that CSS background images accept no alt text at all, which he treats as a missing platform property rather than an author failing."
+      }
+    ],
+    "agreed": [
+      "Null alt is overused and \"decorative\" gets stretched to cover images that inform — bruce-usab and MakotoUeki both concede this to lauracarlson, and no one in nine threads defends the current breadth.",
+      "yatil's asymmetry argument went unrebutted: information that is present can be skipped by the user, information that was never provided cannot be recovered.",
+      "Applying the exemption is a judgement call with no single right answer. jake-abma's evidence is the WCAG 2.1 CSS-fitting-images working example, which shipped with alt=\"\" and which mraccess77 said during sanity-checking he would rather have had described.",
+      "The drafted test procedure is defective and nobody has argued otherwise. grace-snow (#573) shows it is written only for img, ignores svg and role=\"img\", omits that role=\"img\" must be absent from a decorative image, and omits aria-hidden=\"true\" as a technique; JasonAment (#607) shows the first procedure's help text duplicates a condition of the second; janBeniaminKwiek (#614) asks that \"add no information to the content\" become \"add no information or functionality\".",
+      "The self-contradiction WilcoFiers raises in #495 is unanswered: if content is what is communicated to the user and a decorative image is by definition not that, then a decorative image cannot have programmatically determinable properties and therefore cannot be programmatically hidden. He recommends reverting to WCAG 2.0's definition of programmatically determined, which lacks the word \"important\".",
+      "The overlap with Images detectable that scottaohara raised via #357 — how can an image be hidden and detectable at once, and where do CSS background images land — was resolved editorially; scottaohara accepted the reworked text in the Jan 5 draft preview and adampage closed the issue on 2026-04-01."
+    ],
+    "open": [
+      "Whether \"decorative\" should be one category or two. MakotoUeki (#466) wants the split; grace-snow, Finnberrys and sydneycolemanfromgoogle want one term defined well. adampage closed sydneycolemanfromgoogle's #518 as a duplicate of #466 rather than answering it, so the question sits entirely in #466.",
+      "Whether the exemption should exist at all. brett-oppegaard's #369 poses it as five direct questions — what the exemption is for, who it serves, what the downside of removing it is, whether the old page-weight rationale still applies, and whether WCAG is obliged to define \"decorative\" in a legal sense — and none has been answered on the record.",
+      "Whether the author or the user decides an image is meaningless. ericwbailey, MakotoUeki and jake-abma all land on the user; nobody has proposed a mechanism that would let them.",
+      "What research supports widening \"pure decoration\" to \"decorative\". lauracarlson asked for the data in January 2022 and again in her follow-up; jake-abma's answer was that data is not always available and the judgement is inherently subjective. No study has been cited in either direction.",
+      "Whether CSS background images can carry alternatives at all — Myndex raised it in #238 and it is the same hole scottaohara found from the Images detectable side in #357.",
+      "Whether authors should be describing emotionally rich images and, if so, how. lauracarlson pointed at Léonie Watson's and Jake Archibald's writing on emotion in text descriptions; the thread did not take it up.",
+      "WilcoFiers' definitional contradiction (#495) and grace-snow's test rewrite (#573) both need an editorial decision; neither has drawn a single reply."
+    ],
+    "note": "This provision's history runs in two disconnected halves. #238 was argued out in January 2022, bruce-usab took the concrete fix to EOWG as a pull request against the WAI tutorial (wai-tutorials#635), it was considered and declined, and he asked lauracarlson to close; she declined in September 2022 on the grounds that the full AG Working Group should consider it and that WCAG 3 should not inherit the tutorial's examples. The issue then sat untouched for three years until brett-oppegaard revived the argument in September 2025. Several of the more consequential recent filings — #495, #573, #607, #614 — are single unanswered comments, so the quality of the current draft text has had far less scrutiny than the definition has. Note also that brett-oppegaard participates by email, so his comments arrive with quoted reply chains attached."
+  },
+  "interactive-element-names-available": {
+    "headline": "Whether the visual gap between a label and the control it labels can be written as a testable numeric requirement at all — argued out on one 2019 thread while the two issues about accessible names themselves sit unanswered.",
+    "positions": [
+      {
+        "label": "Iterate until the gap is measurable",
+        "who": "detlevhfischer",
+        "detail": "Proposed \"Label gaps\" in #194: when one element acts as a label of another, the gap between them is no larger than twice the smaller of the labelled element's width or height, measurable with a browser ruler or a script comparing absolute positions. When textareas broke that formula he reworked it to four times the smaller dimension of the label itself, so an icon or short text label sets the budget rather than a large field. He cites repeated findings in his own user testing with low vision users — drop-down menus on accessuse.eu and the incobs tablet tests — while conceding the label-to-control pair catches only a subset of the proximity problem, and that the exception list may grow until the requirement is lost, as happened with target size."
+      },
+      {
+        "label": "Any arbitrary line will be gamed and cannot be justified",
+        "who": "patrickhlauke",
+        "detail": "Found the loophole immediately: a designer could make fields unnecessarily tall purely to buy leeway to push the label further away, conforming while defeating the point for low vision users. detlevhfischer answered \"not likely to happen\"; patrickhlauke replied that creative interpretations of normative text to do the minimum necessary to pass are routine. His broader position is that layout and design questions resist rigid binary pass/fail rules, that Apple's own iOS guidance is couched as could and should and Apple ignores it freely, and that this belongs in a non-normative best-practice note or at AAA rather than as a hard requirement. He also asked that the measurement drop mm for px to avoid reopening the CSS-versus-physical-units confusion, which detlevhfischer did immediately."
+      },
+      {
+        "label": "Do not fail a common pattern without evidence",
+        "who": "awkawk, jake-abma",
+        "detail": "awkawk points to left-aligned label columns with aligned fields, where varying label lengths necessarily produce varying gaps, and argues this is common enough that the working group needs clear evidence before proposing a criterion against it — this is not an absolute like page title or programmatic label association. He wants the goal stated first: at what magnification must the user see the full label and the full input, or the full label and part of the input, and what happens when the label is long. jake-abma checked with designers and reported back that almost all current forms would fail the proposed calculation, which he called too prescriptive for design aesthetics, and later that mixed 3x and 4x width-or-height measurements are simply too complicated for designers, developers and testers."
+      },
+      {
+        "label": "Commonality is not correctness, and the evidence already exists",
+        "who": "mraccess77",
+        "detail": "Answers awkawk that clear evidence only ever comes from research, and the group has a chicken-and-egg problem when practitioner experience outruns formal study. Cites the Understanding document for SC 3.3.2, which stated in 2008 that labels in close proximity assist screen magnifier users because field and label are more likely to be visible within the magnified area, plus technique G162 and two Nielsen Norman Group articles on closeness of actions to objects and form white space. Turns the evidence demand back on existing criteria by questioning whether page titles are still demonstrably useful when browsers truncate or hide them. Calls awkawk's own screenshot a prime example of the problem: a common pattern is not thereby a correct one."
+      },
+      {
+        "label": "Reframe it as a viewport test instead of a ruler",
+        "who": "patrickhlauke, jake-abma",
+        "detail": "patrickhlauke suggested a minimum built on reflow rather than ratios: the related element must be at least partly present in the viewport even at 320 CSS px width. jake-abma picked this up as the direction most likely to work — label and input visible in a 320 CSS px viewport at the same time, easy to test, with exceptions. He also supplied its limits: whether the label is visible depends on how far you have scrolled, something can be inside the viewport and still too far to read, and desktop zoom tools push the label off to the right and force horizontal scrolling, so the desktop case stays unsolved."
+      },
+      {
+        "label": "Widen the scope, or leave the gap to AT",
+        "who": "alastc, jake-abma",
+        "detail": "alastc showed the formula failing a usable pattern — the GOV.UK Design System text input with hint text between label and field, and again when an error message is inserted — then proposed folding associated information into the definition of label, and a looser framing that two related things must be close to each other unless there is a programmatic relationship, with gestalt principles consulted for what close means. He intended the escape hatch to leave room for a future user agent that draws an arrow or indicator, and suggested the COGA task force's design guidance as the better home. patrickhlauke rejected both halves: if the requirement is visual then a programmatic relationship is irrelevant to a user who is not running AT that exposes it, shifting the burden to user agents is a cop-out, and since programmatic association is already required by 1.3.1 and usually 4.1.2, a criterion satisfiable by passing those is redundant. jake-abma agreed on widening, arguing all name-value pairs and many other related pairs deserve the same treatment."
+      }
+    ],
+    "agreed": [
+      "That proximity between related information matters for low vision and magnifier users was never disputed — awkawk states plainly that the concept is clear and everyone can see how it impacts people, and mraccess77's citation of the 2008 SC 3.3.2 Understanding text and G162 drew no rebuttal. The disagreement is entirely about whether \"how close is close enough\" can be drawn as a line.",
+      "The problem is not specific to form labels. patrickhlauke asked whether any two insufficiently close related elements cause the same problem for low vision and zoom users, and jake-abma agreed, extending it to all name-value pairs — neither treated label-and-input as the natural boundary.",
+      "Measurement should use CSS px, not mm; detlevhfischer changed the draft on patrickhlauke's first comment.",
+      "The first formula does not survive real components — textareas break it (detlevhfischer), and hint text or an inserted error message between label and field break it (alastc). Both were conceded."
+    ],
+    "open": [
+      "Whether \"Relationships detectable\" must stay limited to programmatic relationships or could additionally require visually clear ones — adampage raised this in #194 in May 2026, pointing at #175; patrickhlauke's only reply was that defining how to represent something visually \"clearly\" lands you in arbitrary graphic design statements. Nothing else followed.",
+      "tallneil's #93: whether the provision should require labels to remain visible \"at all times\" or \"in all states\" so the label survives after a value is set, and whether it should say explicitly that a placeholder attribute or the first option in a select are not sufficient substitutes for a label. Opened June 2024, no replies.",
+      "mraccess77's #184: whether a button's accessible name must carry its context — an \"Add\" button beside a person's name is visually related but not programmatically — and whether that is a failure of 1.3.1, of 2.4.6, or of neither. He notes buttons are unlike links in that they rarely sit inside a sentence and may act on a whole group of fields, so the link-context reasoning does not transfer, and asks where the line for buttons is drawn. Deferred from w3c/wcag#168 in 2016, still no replies.",
+      "What magnification level any metric is meant to serve, and whether the target is seeing the full label plus the full input or only part of it — awkawk's questions, never answered.",
+      "Exceptions for table labels, row and column headers together, and legends that sit far from their fields — raised by jake-abma citing mbgower's label-in-name issues. anevins12 asked in 2022 whether that meant spreadsheet-style grids or all tables and got no reply.",
+      "Whether this belongs in WCAG as a normative requirement at all, or in COGA design guidance or a separate best-practice document — raised by patrickhlauke and echoed by alastc."
+    ],
+    "note": "The activity is lopsided. All 33 comments sit on #194, and 32 of them were written in a two-week burst in March and April 2019; anevins12's 2022 question went unanswered and the thread was dormant for seven years until adampage revived it in May 2026. The two issues that actually concern accessible names — tallneil's #93 and mraccess77's #184, itself a deferral from 2016 — have never received a single reply."
+  },
+  "text-contrast-sufficient-minimum": {
+    "headline": "Whether the minimum test should be a contrast ratio at all, and whether a number computed from CSS colour values can predict whether rendered text is readable.",
+    "positions": [
+      {
+        "label": "Ratio is the wrong math",
+        "who": "sdw32, Myndex",
+        "detail": "sdw32 says he was surprised to find the words \"contrast ratio\" still in the latest WCAG 3 draft, because there is neither empirical nor theoretical evidence that the eye perceives contrast in proportion to the lightest colour divided by the darkest; the evidence supports perception of a brightness difference, which is what APCA computes. He argues that for mobile devices in typical indoor lighting the eye adapts to the room, so the difference can be used directly without normalising against an average or ambient level, and points to his cedc.tools comparison of APCA against ratio for black and white text on coloured backgrounds. Myndex adds in #29 that 4.5:1 degrades the experience for 100% of sighted users rather than only impaired ones, that roughly 86% of sites fail WCAG 2 contrast on automated survey with some of those failures being perceptual artefacts rather than real inaccessibility, and offers a side-by-side dark-mode comparison in which the WCAG 2 minimum is unreadable while the APCA minimum is legible."
+      },
+      {
+        "label": "The peer review has already happened",
+        "who": "Myndex",
+        "detail": "Issue #29 exists to answer the Contrast Subgroup's condition that APCA needs extensive peer review before adoption. Myndex's position is that peer review is not in the WCAG 3 charter and no other subgroup has been asked for it, and that APCA has been in open public beta since the stable February 2021 release regardless. The dossier lists journal and book-published work (Ulitin in Culture and Technologies Studies 2021 and a 2023 Springer chapter), Sam Waller's Cambridge paper \"Does the contrast ratio actually predict the legibility of website text?\", Chris Lilley's internal W3C review in the silver repo, and a Low Vision Task Force thread involving Bailey, Campbell and Avila. He renews a 2020 proposal that AGWG convene a standing panel of subject experts on the SMPTE or ISO model, on the grounds that it would strengthen the standard's footing in future legislation."
+      },
+      {
+        "label": "Testable beats theoretically correct",
+        "who": "GreggVan",
+        "detail": "GreggVan does not dispute that stroke weight, font design, presentation time and anti-aliasing all affect reading; he says stem width was considered and dropped because most people cannot measure it, and that the current simple measure is a deliberate trade, not an oversight. What he wants from critics is proposed wording: a single statement of the musts and a second of the shoulds, where a must is important, works across web technologies and has good interrater reliability. Machine testability is not required, only enough objectivity that different evaluators reach the same conclusion. He offers to have a \"text visibility\" tool built that takes font, size, type, stem and height and returns a linear score against a pass threshold, with a different threshold for running text than for menus, buttons and other short strings where the reader has time to fixate."
+      },
+      {
+        "label": "A test without utility is worse than no test",
+        "who": "Myndex",
+        "detail": "Direct rebuttal to the testability framing in #266: if the result of the test lacks utility then making it testable has not helped, and because WCAG 2.x is now being written into law, a flawed test carries flawed consequences with it. He offers the APC-RC reference-font matching method as a simple testable alternative, where a designer matches their chosen typeface against reference fonts for the silver and gold levels, necessary because \"normal\" and \"bold\" mean substantially different things per family. He also disputes GreggVan's premise that authors will not handle multiple variables, saying designers work with x-height ratio and glyph weight routinely and prefer a range of options to a binary, and that in practice only the critical content text needs testing, body text above all, and only once."
+      },
+      {
+        "label": "One threshold across all weights cannot work",
+        "who": "sdw32, TestPartners, patrickhlauke",
+        "detail": "sdw32's glance-readability study, about 40 participants shown random three and four letter words for 300 ms across Open Sans Light through Extra Bold at APCA Lc 30, 45, 60 and 75, found that the minimum workable font size depends on the interaction between weight and contrast: Open Sans Extra Bold at Lc 30 outperformed Open Sans Light at Lc 75. His proposed fix is to quantify weight by pixel density, rasterising the alphabet, cropping to the x-height and thresholding at RGB(128) to split the anti-aliased pixels, after Wilkins; that gives Open Sans Light 20.2%, Open Sans 30.7%, Open Sans Semibold 40.0%, Open Sans Bold 47.5%, Open Sans Extrabold 56.4%, with Arial 35.4% and Verdana Bold 50.3%. He initially used \"the quick brown fox\" and then switched to the bare alphabet so the method generalises beyond Latin. TestPartners notes WCAG 2 recognises only 400 and 700 while weight 600 is common and reads as bold. patrickhlauke's objection is upstream of all of it: the same nominal CSS weight renders differently between typefaces and even between cuts of one typeface, so the value is meaningless unless anchored to specific font metrics, which font fallback then breaks."
+      },
+      {
+        "label": "Nominal contrast is not rendered contrast",
+        "who": "nakano0949-web, patrickhlauke",
+        "detail": "In #590 nakano0949-web proposes a rendering-aware model: a rendered glyph divides into a Core of pure glyph colour, an anti-aliased band of blended pixels, and a background ring, with Core Ratio approximated as (C/W) squared and AA Impact as 1 minus that. Measurements show AA impact climbing sharply below 14px and dominating at 12px and below, so text that passes on CSS colour values can measure substantially lower as actually drawn, worst for small sizes, thin weights and particular font cuts. He supplies a five-step extraction algorithm to automate the measurement and offers data and code. patrickhlauke cross-references the earlier w3c/wcag#4954 discussion and elsewhere in #266 lists the same class of variables the model is trying to capture: OS anti-aliasing settings, font substitution, differing cuts, and the period when macOS rendered fonts visibly fatter than Windows in the same browser."
+      }
+    ],
+    "agreed": [
+      "CSS colour values alone cannot reliably predict readability. nakano0949-web's Core/AA/BG-Ring model drew no rebuttal, and Myndex confirmed the draft APC-RC already accounts for anti-aliasing.",
+      "A contrast threshold applied uniformly across all font weights is not fit for purpose. sdw32's glance data went unchallenged, including by GreggVan, who engaged with it without disputing the result.",
+      "Whatever size or contrast metric is used has to be anchored in the device-independent CSS reference px, which Myndex gives as 0.0213 degrees or 1.278 minutes of arc, rather than device pixels or any physical measurement.",
+      "Myndex's warning that WCAG 2's use of pt rather than px caused real-world error went unchallenged: designers apply the 3:1 large-text allowance at 18px when the breakpoint is 18pt, which is 24px, leaving the text 25% smaller than the standard intends."
+    ],
+    "open": [
+      "Whether the minimum test stays a ratio. sdw32 asked directly in #266 and nobody from the group answered that part of his post.",
+      "Whether a rendering-aware measurement can be required of authors or is only something tools should do. nakano0949-web raised it in #590 and only patrickhlauke and Myndex replied.",
+      "Whether APC-RC serves colour vision deficient and low vision users, which nakano0949-web put to Myndex directly. Myndex answered that APCA already improves on WCAG 2 for protans, that a protan compensator extension and the SACAM adjustable colour model are in progress, and that the silver and gold contrasts target a Pelli-Robson score down to 1, but those extensions are unreleased.",
+      "GreggVan's offer to have a text visibility tool built is conditional on someone supplying the research and the interaction data to define it; no one has yet.",
+      "Whether there is any minimum requirement on the default presentation of text at all, contrast included. sdw32 argues 200% or 500% zoom is worthless if the base rendering is already inadequate; GreggVan says no. The size half of that exchange is covered under text-style-readable-minimum."
+    ],
+    "note": "Issue #29 is a standing evidence dossier rather than a discussion: opened in October 2023, reorganised in March 2025, last touched April 2026, and carrying no comments at all. sdw32's March 2026 objection in #266 tagged nine working group members by name (rachaelbradley, alastc, iadawn, giacomo-petri, julierawe, fstrr, MakotoUeki, hidde, GreggVan) and drew no reply in the thread; the only later comment is tsmd's note that x-height does not transfer to Japanese, Chinese or Korean."
+  },
+  "user-settings-supported": {
+    "headline": "Whether an OS-level preference flag such as prefers-reduced-motion is a strong enough signal to hang a normative requirement on, or too blunt an instrument to build one from — an argument fought out in 2020 that has barely moved since.",
+    "positions": [
+      {
+        "label": "The preference is the requirement",
+        "who": "CharlesBelov, guyhickling, mgifford",
+        "detail": "CharlesBelov's original ask (#183) was that where the OS exposes the request and the user agent passes it to content, not animating should satisfy AA — the user telling their OS that animation is problematic removes the need for anyone to decide whether a given animation is problematic. guyhickling points out that Android's \"Remove animations\", iOS's \"Reduce motion\" and Windows 10's \"Show animations\" are all binary switches that set the same flag, and that honouring it costs an author a media query rather than banning animation, with an opt-in button available where the animation is genuinely informational. mgifford and guyhickling both argue AAA is where requirements go to be ignored, because AA is the procurement norm."
+      },
+      {
+        "label": "A binary flag is not a mandate",
+        "who": "patrickhlauke",
+        "detail": "prefers-reduced-motion is one bit, but users are affected by specific magnitudes and kinds of motion, so reading it as \"no animation at all\" would technically fail a page containing a single dot that fades by one opacity value. He cites Windows users who set the preference accidentally without realising what it does. His counter-proposal is the thing this provision grew out of: a generic \"respect user settings\" requirement at AAA covering dark mode, reduced motion and high contrast, phrased in Understanding rather than hard-coded to whichever media queries exist today, with honouring a preference offered as a sufficient technique rather than the normative bar — and even then subject to whether it is accessibility supported."
+      },
+      {
+        "label": "Define the threshold and show the evidence first",
+        "who": "alastc",
+        "detail": "Specifying size across devices and zoom levels, and duration when the motion is triggered by user action such as scrolling, is exactly where this stalled during WCAG 2.1. Small animations such as icons changing on hover did not appear to be vestibular triggers, so a minimum size looks necessary before the requirement can sit at A or AA. The preference is not a 1:1 fit for the user need, so relying on it produces false positives and extra work; in a consensus process that means persuading the people who objected last time. Answering CharlesBelov's invocation of the W3C Code of Conduct, he redirects to the priority-levels wiki as the document that actually governs level decisions."
+      },
+      {
+        "label": "The platform plumbing does not work yet",
+        "who": "JAWS-test, mraccess77, MarjaE2, Myndex",
+        "detail": "JAWS-test's cross-browser test of prefers-color-scheme (#182) found Edge reporting light even in Dark Mode and dark only under high contrast white-on-black, Firefox reporting light even in HCM, Chrome mapping some HCM modes to dark and others to no-preference, Android Chrome always reporting light even in Dark Mode, and only iOS Safari behaving as expected. mraccess77 reports the Windows setting blocks animations they want along with those they do not, and asks for finer control. MarjaE2 (#40) found user CSS forcing animation-timing-function and transition-timing-function to step-start is overridden by ::before and ::after pseudo-elements carrying their own timing functions, and argues disabled users should not have to become programmers to browse without being hurt. Myndex challenges the CSS Color Adjust rule that maps Canvas lightness (L below 33% or above 67%) onto prefers-color-scheme, on the grounds that CIELAB L is not perceptually uniform on self-illuminated displays and the real flip point is higher."
+      },
+      {
+        "label": "Scope the settings list, and say what respecting means",
+        "who": "julierawe, JAWS-test, mgifford",
+        "detail": "COGA (#737, filed by julierawe) wants haptics added to the note that currently lists font size, icon size, color scheme, magnification and motion, or the list reworded as \"include but are not limited to\", and asks whether the separate Haptic stimulation adjustable provision in the Animation section is still needed once haptics is covered here. JAWS-test asked the foundational question in 2020 — what does respecting a preference actually oblige an author to do, should pages invert, and what about a page already rendered light-on-dark. mgifford adds two cases nobody answered: dark mode can switch with the time of day so the preference changes mid-session without the user doing anything, and an on-page theme widget should take precedence over the browser preference."
+      }
+    ],
+    "agreed": [
+      "A generic, technology-neutral \"respect user settings\" requirement is a better shape than per-feature criteria. patrickhlauke proposed it, mgifford agreed, and nobody argued the provision should not exist — the dispute is only over its strength and level.",
+      "Respect runs both ways: a site that is dark by default is not honouring a user who has asked for prefers-color-scheme: light. patrickhlauke's point, unrebutted.",
+      "Support for these preferences is inconsistent enough across browsers and platforms that any requirement has to be conditioned on environments that support it — JAWS-test's test results went unchallenged, with patrickhlauke cautioning only that dark mode and high contrast mode are distinct things that correlate.",
+      "Dark mode and reduced motion are not merely aesthetic preferences; mgifford's framing that people need them to read text, avoid headaches or focus went unchallenged, and patrickhlauke noted the supporting evidence is mixed and mainly concerns cloudy ocular media."
+    ],
+    "open": [
+      "What \"respecting\" a preference concretely obliges an author to do. JAWS-test asked in 2020 and got only patrickhlauke's \"take the cue from the user's preference request and actually do something about it\" — no testable formulation followed.",
+      "Whether haptics belongs in the note, and whether Haptic stimulation adjustable can then be removed from the Animation section. Raised by julierawe for the COGA Task Force in #737; no replies.",
+      "Whether the note's list of accessibility-related user settings is closed or illustrative (julierawe).",
+      "How to indicate to the user when an on-site theme control diverges from their browser preference (mgifford).",
+      "Whether user-side remedies are good enough that the requirement is unnecessary. CharlesBelov's own assessment against the priority-levels wiki is that they are not: his user stylesheet sets animation-duration and transition-duration to 0 but does nothing for animated GIFs or JavaScript animation, and the only Firefox extension he found was outside Mozilla's security review.",
+      "Whether ::before and ::after overriding user CSS is a WCAG matter at all or a CSS specification defect. MarjaE2 raised it in #40 and was not sure where to report it.",
+      "Whether size and duration thresholds are the route forward (mgifford's sketch of a quantity-of-movement metric, answered by patrickhlauke's screen-rulers-and-calculators objection), or whether the preference alone suffices."
+    ],
+    "note": "Three of the four threads carry almost no discussion. #40 was closed without a single reply, #737 has had no response since COGA filed it in June 2026, and #182 went quiet after 2020 until one technical comment from Myndex in 2025. Effectively the whole argument lives in #183, which is dual-labelled with No visual motion and whose substance dates from 2020, with one 2025 comment from MarjaE2 reporting that drastic animation — autoplaying video, marquee text, elements that bounce or strobe once a user substitutes their own fonts — remains common, including on the W3C's own WCAG 3 introduction page."
+  },
+  "text-contrast-sufficient-enhanced": {
+    "headline": "Whether a higher contrast threshold buys anything once text is past contrast constancy, and whether \"enhanced\" should be a conformance level at all rather than a second threshold keyed to what the text is for.",
+    "positions": [
+      {
+        "label": "Above contrast constancy, more contrast is the wrong lever",
+        "who": "Myndex, sdw32",
+        "detail": "Myndex builds the enhanced case on Lovie-Kitchin's critical contrast, the point past which further increases in text-to-background contrast produce no improvement in reading speed or comprehension. Once a design reaches that Lc level it enters contrast constancy, and from there the spatial factors — whitespace, stroke weight, size, crowding — govern readability, with the perceived luminance difference ranking, in his words, among the least important. He cites Chung and Tjan for the mechanism: reading speed shows strong spatial-frequency dependence when text contrast is low, which is to say the payoff from added contrast is conditional on size and weight rather than additive to them. sdw32's glance study supplies the matching data point at enhanced-tier levels, with Open Sans Extra Bold at APCA Lc 30 outperforming Open Sans Light at Lc 75 (the weight-quantification method behind it is covered under text-contrast-sufficient-minimum)."
+      },
+      {
+        "label": "Dissolve the level into a use-case taxonomy",
+        "who": "Myndex, GreggVan",
+        "detail": "Myndex's #207 restructure folds 1.4.3 Contrast (Minimum) and 1.4.6 Contrast (Enhanced) into one guideline, \"Visually readable content uses ample luminance contrast,\" and re-cuts the requirement by what the text is doing rather than by tier. His categories are FLUENT — high-fluent body text, defined as more than two continuous lines in a block or column at an x-height of about 16px or less, fluent text up to two and a half lines, and large fluent headers above about 32px — and SUB-FLUENT, covering soft readability, spot readability (readable with fixation), logo and branding colours, and incidental text in images. GreggVan arrives at the same shape from the opposite direction, proposing a text visibility tool with one pass threshold X for running text and a different X for menus, buttons and other short strings where the reader has time to fixate. Neither treats the higher requirement as a conformance level; both treat it as a function of use case."
+      },
+      {
+        "label": "Magnification already is the enhanced level",
+        "who": "GreggVan",
+        "detail": "GreggVan's position is that if a size is large enough for typical vision, then that size under magnification is good enough for low vision — large print for typical viewers is large print for low vision users, fine print is fine print, and anyone with very low vision has magnification built into every OS. He adds that stating any floor would require specifying screen size and CSS pitch, which the author does not control, and says a lot of thought went into concluding there is no way to guarantee text is never too small. Applied to the enhanced provision this removes its reason to exist: the higher tier is delivered by the user's zoom rather than by the author's default presentation."
+      },
+      {
+        "label": "Zoom has a ceiling, so the higher tier has to be in the default",
+        "who": "sdw32",
+        "detail": "sdw32 rejects the premise of typical vision outright — vision is a bell curve like grip strength, and he routinely measures young people at 20/10, twice the 20/20 reference. Since designers default to designing for themselves, a site built by a 20/10 designer accommodates only 20/50 at the browser maximum of 500% zoom, which he does not accept as maximising foreseeable use. Working backwards from 20/200 access at 500% gives a target of 20/40 suitability at 100%, which is his 8 CSS px x-height floor. On GreggVan's pitch objection he answers that no screen pitch need be specified, only the CSS px definition itself — 96 DPI viewed at 28 inches or 711mm, implying 427mm for a 160 DPI phone — and offers a live failure, the string \"achetés = 30% d'économies\" on carrefour.fr, as text that fails EN 301 549 while passing the current WCAG 3 draft. The minimum-level half of this exchange is covered under text-contrast-sufficient-minimum and text-style-readable-minimum."
+      },
+      {
+        "label": "The real enhanced requirement is triggered by circumstance, not by tier",
+        "who": "sdw32",
+        "detail": "EN 301 549 v4.1.0, which sdw32 worked on, already ships the two-level structure but keys it to whether the text can be enlarged rather than to a conformance level. Zoomable text gets a best-practice x-height of at least 8 CSS px, corresponding to 1.2mm at a 400mm viewing distance with no zooming or screen scaling; text and images of text necessary for all functionality that is closed to text enlargement get at least 16 CSS px of x-height, an exact doubling. His companion weight rule is likewise two-sided rather than a floor: body text between regular-weight and semi-bold Open Sans, and keywords or short phrases neither thinner than regular Open Sans nor heavier than extra-bold, which cuts against reading an enhanced level as simply more."
+      },
+      {
+        "label": "The gold level is defined by a clinical target, not by a multiple",
+        "who": "Myndex, nakano0949-web",
+        "detail": "APC-RC carries silver and gold levels with reference fonts a designer matches their own typeface against, and Myndex states the selected contrasts for both are intended to serve a Pelli-Robson score down to 1, a profound contrast deficit on a scale where 2 is normal and lower is worse. That makes the higher tier an answer to a measured population rather than a round multiple of the minimum. nakano0949-web pressed him in #590 on whether a physical contrast model can capture colour vision deficiency and low vision at all; Myndex answered that APCA already improves on WCAG 2 for protans, that a protan compensator pre-shaping luminances for colours with high red primary content is due this year, and that SACAM, an accessibility-adjustable colour model for dynamic personalisation, is in progress. In #207 he notes the same physics already rejects pure red against black or dark colours, since red on black is poor for standard vision too."
+      }
+    ],
+    "agreed": [
+      "Luminance contrast and the spatial properties of text are not independent levers. Myndex's framing that contrast sensitivity is dictated by spatial frequency, which he calls peer-reviewed consensus dating to Stevens 1961 and Bartleson and Breneman 1967, drew no rebuttal in either thread where he raised it.",
+      "Not everything in a view should be at maximum contrast or maximum size. Myndex argues variation is required for visual hierarchy and for cognitive accessibility in particular, and GreggVan's separate thresholds for running text and for short strings reach the same conclusion from the testability side — the two main antagonists converge here.",
+      "Whatever the enhanced requirement asks for has to be anchored in x-height rather than font-size. sdw32 states he absolutely agrees with Myndex on this; the ratios that make font-size uninstructive are 0.55 for Verdana, 0.52 for Arial and Helvetica and 0.45 for Times New Roman. teohhanhui's correction that CSS already has the ex unit was answered by Myndex — ex is a length unit, not a way to set rendered glyph size, which is what the font-x-size proposal in csswg-drafts#6709 exists for — and teohhanhui did not press it.",
+      "Myndex's zoom arithmetic went unchallenged: 200% only reaches accommodation for 20/40, body text should be able to reach 400%, meaning 16px scaling to 64px and 48px headline text to 128px, and gains reverse beyond about 2 degrees of visual angle as reading speed falls off."
+    ],
+    "open": [
+      "Whether a separate enhanced level should exist at all. Myndex's #207 proposal to dissolve it into the fluent and sub-fluent taxonomy has sat since February 2023 with no comment from anyone.",
+      "What the enhanced threshold actually is. No participant in any of the three threads proposes or defends a numeric value for it. sdw32's Lc 30, 45, 60 and 75 are study conditions rather than proposals, and APC-RC's gold level is named but never given a value.",
+      "alastc's requirement list in #266 opens with \"Maximum text contrast: the rendered text against its background meets a maximum contrast ratio test for its text appearance,\" and no one in the thread's twenty-plus comments addressed the maximum. Myndex's argument against uniform maximum contrast bears on it but never names it.",
+      "Whether an enhanced threshold stated in CSS colour values survives rendering at the sizes where it matters. nakano0949-web's measurements in #590 show anti-aliasing impact climbing sharply below 14px and dominating at 12px and below; only patrickhlauke and Myndex replied.",
+      "Whether the protan compensator and SACAM change the enhanced-level answer once released. Both were described as forthcoming in April 2026 and neither is out.",
+      "sdw32's pixel-density method for quantifying font weight was put to the group with three explicit questions — is everyone happy with the approach, does a public-domain algorithm exist, and will anyone reimplement it outside VBA to check his numbers. He asked on 20 January 2026 and re-asked on 10 February tagging Myndex and GreggVan by name. Neither answered.",
+      "Whether any of this transfers beyond Latin scripts. tsmd's closing comment in #266 is that x-height does not directly apply to Japanese, Chinese or Korean; Myndex's own note that Japanese mixes thin-stroked logographic Kanji with thicker syllabic Kana on the same line means a single spatial threshold is already strained within one writing system."
+    ],
+    "note": "There is no discussion specific to the enhanced level. All three threads carry both the minimum and enhanced provision labels, and every substantive exchange in them is about the floor — whether a minimum exists, what unit it uses, how weight is quantified. #207, the only thread that engages the enhanced level structurally, was opened by Myndex in February 2023 as a survey item, was last updated in May 2026, carries six provision labels including graphical object, interactive element, focus indicator and pointer contrast, and has never received a single comment."
+  },
+  "text-style-readable-enhanced": {
+    "headline": "Nobody has said what the enhanced level actually raises — the two threads asking that question directly have no replies, and the shared requirements thread is arguing about whether a second, stricter threshold can be defined at all now that the baseline it would sit above has been removed.",
+    "positions": [
+      {
+        "label": "One scale, two cut-offs",
+        "who": "GreggVan",
+        "detail": "Rather than write separate prose for each level, build a text visibility tool that takes font, size, type, stem and height into account and returns a linear research-based score; point it at any text and pass above X. Proposes a different X for running text, which the eye must read at speed as it passes over the line, than for menus, buttons and other short strings where the user dwells on a word. This makes enhanced a higher number on one scale instead of a second requirement, and he offers to have the tool built — but only if someone supplies the research and the interaction effects, which he asked sdw32 for directly."
+      },
+      {
+        "label": "Tier by reference font, not by number",
+        "who": "Myndex",
+        "detail": "Because font-size and the labels normal and bold mean substantially different things across families, the APC-RC guidelines set silver and gold levels using reference fonts that a designer matches their own typeface against, a one-time exercise per font. His acuity-reserve ladder puts the enhanced step close to the minimum rather than at a doubling: 0.18 degrees, an 8.3px x-height or a 16px font at Helvetica's 0.52 ratio, is content minimum at critical size, 0.2 degrees (9.4px x-height, 18px font) is the figure for columns and blocks, and 0.24 degrees (11px x-height, 21.5px font) is preferred body. He also insists an enhanced level must not demand that everything in a view hit critical values, since spot text such as a copyright bug and sub-fluent text such as captions exist deliberately to keep the visual hierarchy readable."
+      },
+      {
+        "label": "Tier by what the user cannot zoom",
+        "who": "sdw32",
+        "detail": "EN 301 549 already has the two-level shape this provision needs: an 8 CSS px x-height as best practice for text that can be zoomed, against a 16 CSS px x-height for text and images of text necessary for functionality that is closed to text enlargement. His glance-readability study — roughly 40 participants, random three- and four-letter words at 300 ms, across Open Sans Light through Extra Bold and APCA 30 to 75 — found Open Sans Extra Bold at APCA 30 outperforming Open Sans Light at APCA 75, so a single size threshold applied across all weights is not fit for purpose and an enhanced level would have to be a size, weight and contrast surface rather than a number. For weight he proposes Wilkins' pixel-density measure (rasterise the alphabet, crop to the x-height, threshold at RGB 128, count black pixels), giving Open Sans Light 20.2 percent, regular 30.7, semibold 40.0, bold 47.5 and extrabold 56.4 — which turns EN 301 549's body-text band of regular-to-semibold into a testable range that a stricter level could narrow."
+      },
+      {
+        "label": "A narrower band has less room for rendering error",
+        "who": "patrickhlauke, scottaohara, TestPartners",
+        "detail": "Every source of slop that makes the minimum hard to test bites harder on a tighter enhanced band: OS antialiasing, font fallback and substitution, different cuts of the same typeface with subtly different metrics, and browser rendering that made fonts on macOS visually fatter than on Windows. scottaohara adds that CSS scaling can change the rendered size while the specified font-size stays exactly as authored, so the declared value is not the tested value. TestPartners notes that weight 600 is very common and looks bold while strictly not being bold, so any level that keeps the binary normal/bold split has to say how intermediate values are treated. patrickhlauke supports building GreggVan's tool but treats these as the caveats it must carry."
+      },
+      {
+        "label": "Replace the prohibitions with a user preference",
+        "who": "Myndex, detlevhfischer",
+        "detail": "The enhanced level is currently stricter by banning things — no underlining, no decorative or cursive face — and that wording is called too restrictive as a general rule and, by Myndex, subjective, ambiguous and arbitrary (the same objection recorded against the minimum). His counter-proposal reshapes what enhanced would mean: require that a plain accessible font is offered as a fallback and that layout features keep working when the user selects it, ideally through a new prefers-font-family: plain media query. The argument is that a stricter author prohibition is the wrong instrument for a dynamic medium where user personalisation can do the work, especially as these voluntary guidelines are being pressed into law."
+      },
+      {
+        "label": "The stricter rule belongs at minimum",
+        "who": "Finnberrys",
+        "detail": "In #641, a voice recognition software user points out the asymmetry directly: the minimum permits some underlining and the enhanced requirement does not. Having repeatedly tried to open a link that turned out to be randomly underlined text, they want underlining restricted to links at the minimum level — which would collapse the distinction between the two levels on this point rather than preserve it. They argue underlining is a holdover from handwriting, and that digital text has bold and italic for emphasis while underlining has become the convention for links."
+      }
+    ],
+    "agreed": [
+      "x-height, not CSS font-size, is the right anchor for any size threshold. sdw32 states he absolutely agrees with Myndex on this and notes deriving x-height for a given font is fairly trivial programmatically if you hold the licence; teohhanhui's observation that CSS already has the ex length unit was answered — it measures length but cannot set the rasterised size on screen — and the gap is the proposed font-x-size property (csswg-drafts #6709). Nobody argued for keeping font-size as the anchor.",
+      "Running text and short strings need different thresholds. GreggVan reaches this from testability (you dwell on a button label, you skim a line of body text) and Myndex from readability science (spot and sub-fluent text are legitimate design), and neither was contested.",
+      "A scored tool that returns one number is preferable to asking authors to look up several text characteristics and reason about how they interact. patrickhlauke endorsed the tool and only added rendering caveats.",
+      "Any absolute size in the spec should be given primarily in CSS px with pt secondary. Myndex's worked example went unrebutted: WCAG 2 specifies 18pt, designers apply the number as 18px, and the resulting text is 25 percent smaller than the standard requires."
+    ],
+    "open": [
+      "What the enhanced requirement is for at all. julierawe asked in #484 whether it simply encourages developers to set default text presentation to the values already specified in the foundational adjustable text style requirement, how that connection could be made clearer, and whether that framing means customisation beyond those values is no longer encouraged. The issue has had no replies since December 2025, and she flagged the same questions against readable blocks of text enhanced (#485).",
+      "What the enhanced numbers are. The candidates on the table have never been compared: sdw32's 16 CSS px x-height for text closed to enlargement against his 8 CSS px baseline, versus Myndex's ladder from 0.18 degrees (16px font) to 0.24 degrees (21.5px font).",
+      "Whether underlining should be forbidden at enhanced only or at both levels — Finnberrys (#641), unanswered since April 2026.",
+      "Whether sdw32's pixel-density approach to font weight is sound. He asked three explicit questions — is the approach acceptable, does a free public-domain algorithm exist that could run in a website, will anyone reimplement his VBA to check his numbers — and pinged Myndex and GreggVan by name in February 2026. None has been answered.",
+      "Whether the research exists to build GreggVan's scale. He asked for the interactions; sdw32 offered his experimental data and asked to join meetings; nothing has been assembled.",
+      "Whether an enhanced tier can be specified above a floor that was removed. GreggVan confirmed there is no longer a minimum size requirement for default text presentation and sdw32 registered deep concern; the argument is recorded in full against the minimum entry, but it decides the enhanced level too, since a stricter level of nothing is still nothing.",
+      "tsmd's point that x-height does not apply to Japanese, Chinese or Korean, which every size proposal here depends on. sdw32 partly conceded the shape of the problem by replacing Wilkins' English pangram with the plain alphabet for his density metric, but that is still a Latin-script fix."
+    ],
+    "note": "Both issues specific to this provision — #484 and #641 — have zero comments, so everything substantive here is drawn from #266, a requirements-tracking thread shared with the minimum level and both text contrast provisions. Part of the record is also off-thread: sdw32 posted his central proposal as a .docx attachment because the GitHub editor does not support the lists and images he needed, and separately asked GreggVan for the basic process rules — whether must and should apply, whether tests have to be machine-executable, and what the deadlines are — which GreggVan answered by saying a requirement need only be objective enough that evaluators reach the same conclusion."
+  },
+  "image-alternatives-available": {
+    "headline": "Whether \"available\" means available to everyone or only through assistive technology, and whether \"equivalent\" is a definition problem the standard can fix or a practice problem it cannot.",
+    "positions": [
+      {
+        "label": "Available should mean visible, not just programmatic",
+        "who": "MarcHaunschild, alastc",
+        "detail": "MarcHaunschild opened #191 arguing there is no icon everyone understands, and that an aria-label serves only screen reader users — the sighted majority, people who do not read the Latin alphabet, and speech-input users get nothing. His example is the GitHub editor toolbar, where a large A beside a small A could equally mean resize text; it actually means add header text, and he says he would never have guessed. He reports Germany's BITV-Test once required textual descriptions for icons and dropped the requirement to align with WCAG, which he treats as a regression. alastc drafted the requirement as \"a visible text equivalent for icons is available\" with icon defined as a non-text representation of a function or discrete piece of information, such as a printer for print or a green tick for complete; MarcHaunschild accepted it and asked for an \"unless essential\" carve-out for cases such as a game where guessing the shape is the point."
+      },
+      {
+        "label": "It was tried and no mechanism survived touch",
+        "who": "alastc, LJWatson, awkawk, detlevhfischer",
+        "detail": "alastc reported in March 2020 that DavidMacDonald's proposal was worked through in the group and put to a member survey, and that coverage broke down across four scenarios: active and inactive icons, on mouse and on touchscreen. A hover tooltip handles the mouse cases cleanly, but on a touchscreen the user cannot reach the text without activating the control or relying on a flaky double tap, and forcing visible labels into a toolbar destroys the toolbar's purpose. LJWatson cautioned separately against title attributes and the SVG title element becoming the recommended route, since those tooltips are not dismissable; awkawk noted 1.4.13's exception for user-agent-controlled presentation makes them technically permissible, and LJWatson accepted the exemption while maintaining the practice should not be encouraged. detlevhfischer pushed back on the related proposal to extend Label in Name to graphical buttons, asking what a speech-input user would actually say — \"click i\", \"click italics\" — and pointing to the existing symbolic-text-characters exception as the right answer."
+      },
+      {
+        "label": "Equivalence has collapsed into a compliance formality",
+        "who": "brett-oppegaard",
+        "detail": "His #370 argument is that \"equivalent\" has been so weakly defined that a file name passes in practice: \"dog32234.jpg\" tells you nothing about breed, setting, activity or the rhetorical reason the image was chosen, and he demonstrates the gap by asking whether readers pictured a French Bulldog on a Hawaiian beach or a Rottweiler on a grassy field. He cites Perkins at under 1 percent of the web compliant, AudioEye at roughly 3 percent and WebAIM at 4 percent, and argues Instagram's billion-plus uploads a day are being pushed toward GenAI descriptions of the form \"Might be a man, wearing glasses\". He wants equivalence defined against the academic literature on information exchange and extended explicitly to maps, charts, tables, data visualizations and descriptions of people, rather than a title plus a one-sentence overview. In #371 he makes the parallel terminology case: \"image\" excludes maps, charts and data visualizations in most people's minds, and WCAG should adopt static Audio Description, the term used by the American Council of the Blind, the American Foundation for the Blind, RNIB, the World Blind Union, the American Alliance of Museums and the US National Park Service, over image description, which is largely a computer-science coinage."
+      },
+      {
+        "label": "The requirement is sound; the ecosystem is not",
+        "who": "patrickhlauke, TestPartners, yatil",
+        "detail": "patrickhlauke's first reply is a flat correction: \"dog32234.jpg\" does not pass, it fails 1.1.1 as an inappropriate text alternative. TestPartners argues authors misusing text alternatives is not a loophole — testers frequently do not test the criterion correctly, automated tools cannot yet judge appropriateness, and the root causes are education and authoring platforms that do not help; WCAG 3 cannot and will not fix that. He adds a newer structural cause: organizations now store images in digital asset management systems with the alt text attached, so the text is written with no knowledge of the context it will be used in, which is why it defaults to a literal description of the image contents. yatil makes the division-of-labour point — W3C defines conformance, laws enforce it, and under the European Accessibility Act member states must stand up agencies with fines behind EN 301 549's reference to WCAG 2.1."
+      },
+      {
+        "label": "Equivalence is the wrong goal to aim at",
+        "who": "mbgower",
+        "detail": "In #272 he asks the group to revisit his proposal \"Meaningful images have a text alternative\" in place of the current goal that users have equivalent alternatives. His grounds are that decades of evidence show equivalence at scale does not work — he cites WebAIM's finding that nearly a third of images on popular home pages have missing, questionable or repetitive alternative text — and that even where alt text exists there is no agreement on what an equivalent is: ask ten experts and you get ten answers, with far wider spread in the wild. He frames the fix as inter-rater reliability, pointing to slides he presented to the working group three years earlier, and argues a meaningfulness test is both more scalable now and better positioned for changes in technology."
+      },
+      {
+        "label": "Equivalent to what, exactly",
+        "who": "WilcoFiers",
+        "detail": "#499 takes the draft sentence on its own terms: \"Equivalent text alternatives are available for images that convey content\" does not say what the alternative must be equivalent to. He notes that someone carrying WCAG 2 knowledge assumes the intent is the purpose of the image, but read cold the wording points at the content of the image instead — under which \"House icon\" would be correct and \"home\" would not."
+      }
+    ],
+    "agreed": [
+      "The state of alt text in the wild is poor. brett-oppegaard, mbgower and TestPartners cite overlapping evidence for it and disagree only about whether the standard is implicated in the cause.",
+      "patrickhlauke's correction that a file-name alt already fails WCAG 2.x 1.1.1 was not contested on the merits; brett-oppegaard moved to enforcement and interpretation rather than defending the original claim.",
+      "yatil's account of where the buck stops — W3C sets the standard, civil rights law and the EAA enforce it, and W3C has neither budget nor intent to review billions of sites — was accepted by brett-oppegaard, who redirected to the DOJ Title II rule.",
+      "TestPartners' digital-asset-management argument is unrebutted and brett-oppegaard endorsed the underlying problem, agreeing descriptions should be crafted per use and logged so a recontextualization trail exists, while conceding that would require a major shift in archiving practice.",
+      "Nobody defended the title attribute or the SVG title element as the technique to recommend, even after awkawk established it is permissible under 1.4.13's user-agent exception.",
+      "alastc's 2020 finding that no icon-text mechanism worked as a potentially legal requirement across sites and devices stands unrebutted; his suggestion that the work survive as advisory techniques drew no reply."
+    ],
+    "open": [
+      "Whether a visible text equivalent for icons should be required at all. MarcHaunschild's #191 has had no substantive comment since alastc reported the survey outcome in March 2020, and no one has proposed a touchscreen mechanism since.",
+      "Whether \"equivalent\" is measured against the image's content or its purpose. WilcoFiers raised it in #499 in January 2026 and the issue has no replies.",
+      "Whether the provision must say something specific about maps, charts, tables and data visualizations rather than treating them as images. brett-oppegaard asked for it in #370 and it was not taken up in a thread that turned to enforcement instead.",
+      "Whether \"image\" and \"alt text\" should be retired in favour of static Audio Description. brett-oppegaard's #371 has been open since September 2025 with zero comments, so the terminology argument the decorative-images threads defer to here has in fact never been answered.",
+      "Whether mbgower's meaningfulness framing replaces the equivalence goal. He asked twice in July 2025 and offered to walk the group through it; no one has responded on the issue.",
+      "Whether WCAG should say anything about over-specifying attributes in a description. rusteinberg's #251 raises the risk of an author writing \"African American man working on his computer\" about someone who is neither, and suggests \"Man working on his computer\" instead; MakotoUeki, then the Alt Text subgroup lead, asked which writing guide the advice came from in November 2021 and the thread stopped there.",
+      "MarcHaunschild's \"unless it is essential to be without text\" exception, and detlevhfischer's question of what a speech-input user would say for a graphical button, were both raised once and never examined."
+    ],
+    "note": "This provision is discussed far less than its filing count suggests: 7 threads and 23 comments, of which #370 accounts for most of the exchange and three others (#251, #371, #499) are effectively unanswered. #191 predates WCAG 3's provision structure by six years, and the substantive record for it — the acceptance survey alastc worked from — sits behind a W3C member-only link, so the reasoning for dropping the icon requirement is not publicly readable here. sydneycolemanfromgoogle's #518, on the decorative versus purely decorative distinction, is labelled against this provision but adampage closed it as a duplicate of #466, which moves that whole argument into the decorative-images-hidden record. As there, brett-oppegaard participates by email, so his comments arrive with quoted reply chains attached."
+  },
+  "captions-available-prerecorded": {
+    "headline": "Only one real argument happened here — whether open captions are images of text — and it was settled; the rest of the provision is unanswered proposals, including the request to define \"important sounds\", which drew no replies at all.",
+    "positions": [
+      {
+        "label": "Open captions are images of text",
+        "who": "u9000-Nine",
+        "detail": "Argued in #23 that open captions are literally pixels of text burned into video frames, so they fail 1.4.5 Images of Text at AA, and fail 1.1.1 Non-text Content at A because no video frame carries alt text. Conceded awkawk's rebuttal on the alt-text point but held the substantive request: open-captioned video should be required to carry a textual transcript in WCAG 3, not only from 1.2.8 upward. Raised the edge case of instructional video with music-only audio, where the captions are effectively carrying video-only time-based media."
+      },
+      {
+        "label": "Open captions already conform",
+        "who": "awkawk",
+        "detail": "Open captions are part of the time-based media, not separate non-text content, so the alternative required at Level A is the alternative for the video as a whole. Captions of either kind are equivalents for audio information, so the Prerecorded Video-Only provision u9000-Nine cited does not apply — video-only content has no audio and therefore no captions. Stated flatly that open captions pass Level A, full stop, and that a transcript for audio information is not required until 1.2.8."
+      },
+      {
+        "label": "Speaker identification should be required",
+        "who": "Finnberrys",
+        "detail": "Argues in #23 that without knowing who said what, a story or issue becomes hard to follow, and that this is critical for people with face-blindness — Finnberrys identifies people by voice, so muted or inaccessible audio removes the only cue. Compares uncaptioned dialogue to reading a playscript with no character names, and cites Teams meetings, where visible names do the work that in-person recognition cannot. Makes the same case for blind users reading captions or a transcript on a braille display."
+      },
+      {
+        "label": "Speaker identification is more contingent than that",
+        "who": "u9000-Nine, mitchellevan",
+        "detail": "u9000-Nine notes that identifying speakers by caption position on screen does nothing for someone with face-blindness, since the cue still depends on matching a location to a face. mitchellevan calls the discussion North-America-centric for assuming the identifier is text, pointing to the BBC's subtitle guidance recommending colour to distinguish speakers, a practice also common in continental Europe — while acknowledging colour identification may itself fail Use of Color. Neither rejects the need; both say the mechanism has not been pinned down."
+      },
+      {
+        "label": "Exemptions belong to regulators, not the standard",
+        "who": "mraccess77, mitchellevan",
+        "detail": "On whether advertising and promotional video should carry less weight than primary content, mraccess77 points out that inaccessible video causes clear discrimination in areas such as fair housing and healthcare, and draws the parallel to audio description, once dismissed as unnecessary for entertainment until entertainment was recognised as a right too. mitchellevan agrees on equal weight: user needs and technical feasibility are the same, \"promotional\" resists definition, and regulations such as the US Air Carrier Access Act already carve out advertising where a jurisdiction wants that. Prioritisation should sit in regulation, not be baked into a technical standard."
+      },
+      {
+        "label": "Captions alone do not give Deaf users access",
+        "who": "InfoGapBuster, md84419",
+        "detail": "InfoGapBuster, writing as a Deaf person in #325, argues auto-generated subtitles are inaccurate and lose tone and nuance, and that WCAG 2.0 putting sign language at AAA produced almost no implementation. Cites 250,000 to 500,000 primary ASL users in the US per Gallaudet, roughly 70 million Deaf people globally per the World Federation of the Deaf, about 60,000 JSL users in Japan, and 90 to 97 percent of Deaf children born to hearing parents with the resulting risk of language deprivation. Wants sign language translation — prepared in advance, distinct from live interpretation — named as a distinct outcome, arguing that requiring it would generate demand, grow the interpreter pool and accumulate training data. md84419 goes further, calling for a sign language alternative to website text and citing the BSL Act 2022, the Equality Act 2010, the Irish Sign Language Act 2017, the Korean Sign Language Act 2016 and the New Zealand Sign Language Act 2006 as evidence that language-based discrimination is already legally constrained."
+      }
+    ],
+    "agreed": [
+      "Advertising and promotional video should carry the same weight as primary content in the standard itself, with any exemption left to regulators — mraccess77 and mitchellevan, unrebutted.",
+      "awkawk's reading that open captions are part of the time-based media and need no alternative text of their own was accepted by u9000-Nine (\"That is fair\"), narrowing the dispute to whether a transcript should also be required.",
+      "GreggVan's procedural point that no conformance level has been finalised, so nothing definitive can be said about what Bronze, Silver or Gold require, went unchallenged."
+    ],
+    "open": [
+      "What counts as an \"important sound\". sydneycolemanfromgoogle opened #525 arguing the term is subjective and leads to missing context; the issue has no replies.",
+      "Whether open-captioned video must also provide a textual transcript in WCAG 3 — u9000-Nine's core request in #23, which awkawk acknowledged as clear but did not agree or disagree with.",
+      "Whether speaker identification is required, and whether text, colour or caption position satisfies it — raised by Finnberrys, complicated by u9000-Nine and mitchellevan.",
+      "Whether closed captions should be preferred over open captions, or open captions barred on new material, and how caption accuracy is graded across missing words, missing audio cues, absent speaker labels and punctuation carrying emphasis or sarcasm — all posed in WilcoFiers's original #23 body and none answered.",
+      "Whether MakotoUeki's proposal in #463 to merge other prerecorded-caption requirements into this one is accepted; the issue has drawn no comments since December 2025.",
+      "Whether the sign-language material belongs under this provision at all. md84419 argues in #325 that what is being discussed is text alternatives and needs a new section in 2.2 Text and Wording rather than 2.1 Image and Media Alternatives."
+    ],
+    "note": "Thin and asynchronous. Nineteen comments across four issues, two of which (#463 and #525) have zero replies, and the substantive exchange in #23 ran in November 2023 with a single follow-up a year later. InfoGapBuster's own proposed tiering permits auto-generated captions at Bronze, which sits awkwardly against the same comment's argument that automatic subtitles are unreliable — nobody in the thread picked this up."
+  }
+}

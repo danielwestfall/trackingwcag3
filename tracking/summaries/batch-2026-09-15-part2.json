@@ -1,0 +1,836 @@
+{
+  "captions-adjustable": {
+    "headline": "Whether WCAG 3 should prescribe how captions actually render, and whether closed captions should be preferred over open captions precisely because only closed captions can be adjusted.",
+    "positions": [
+      {
+        "label": "Captions need presentation standards, not just a requirement to exist",
+        "who": "JLS2024",
+        "detail": "WCAG recommends captions but specifies nothing about whether the result is readable or usable. Proposes WCAG 3 adopt the Association of National Advertisers captioning standards, which are the basis for the FCC's television captioning rules and the National Park Service captioning guidelines. Filed as #119 in October 2024 and has drawn no reply from anyone in the thread."
+      },
+      {
+        "label": "Closed captions should be rated above open captions",
+        "who": "PoornimaSubramanian, WilcoFiers",
+        "detail": "PoornimaSubramanian's case in #234 is user control: closed captions can be turned on and off, and can be customised for font face, size and position, so a rating should turn on the presence and accuracy of closed captioning, with a Rating 0 for informational or essential video carrying no metadata. WilcoFiers's opening question in #23 pushes further, asking whether open captions should be disallowed on new video material at all, and noting closed captions may be routable to a braille display. Neither has been answered in the threads."
+      },
+      {
+        "label": "Open captions are not a conformance failure",
+        "who": "awkawk",
+        "detail": "Open captions are part of the time-based media, so they need no alternative text of their own; the alternative required at Level A is for the video. The video would fail 1.1.1 only if there were no text alternative identifying the video itself, and a transcript for audio information is not required until 1.2.8. Also corrects the video-only framing: captions are equivalents for audio, so video-only content has on-screen text, not captions."
+      },
+      {
+        "label": "Open-captioned video should be required to carry a transcript",
+        "who": "u9000-Nine",
+        "detail": "Opened by arguing open captions are literally images of text and so fail 1.4.5 at AA, or 1.1.1 at A if they lack alt text, since video frames have no alt text mechanism. Conceded awkawk's reading but held the underlying proposal: because captions are explicitly an alternative for audio, WCAG 3 should require open-captioned video to also have a text transcript. Raised as an edge case open-captioned instructional video whose only audio is royalty-free music, where the captioned information is effectively video-only time-based media."
+      },
+      {
+        "label": "Do not carve out advertising or promotional video",
+        "who": "mraccess77, mitchellevan",
+        "detail": "mraccess77 argues exemptions are a regulator's job, since inaccessible video causes clear discrimination in areas such as fair housing and healthcare, and cites the shift on audio description for entertainment as precedent that entertainment is a right too. mitchellevan agrees on same weight, on the grounds that user needs and technical feasibility are the same, that \"promotional\" is hard to define, and that regulations such as the US Air Carrier Access Act already exempt advertising. Nobody argued the other side."
+      }
+    ],
+    "agreed": [
+      "Open captions do not need their own alternative text, because they are part of the time-based media — awkawk's correction, which u9000-Nine accepted directly.",
+      "Whether advertising and promotional video is exempt is a matter for regulators rather than the technical standard; the point drew no rebuttal.",
+      "The reason to favour closed captions is adjustability — user control over display, font, size and position, and the possibility of routing to braille. Nobody argued the reverse case for open captions."
+    ],
+    "open": [
+      "Whether open captions should be restricted or prohibited on new video material — WilcoFiers's question in #23, unanswered.",
+      "Whether WCAG 3 should import an external caption presentation standard — JLS2024's #119 is still without a single response.",
+      "How caption accuracy is graded. WilcoFiers asks how to weigh missing or wrong words, missing audio cues, missing speaker identification and missing punctuation needed to convey emphasis, sentence ends or sarcasm; no one has proposed a scheme.",
+      "Whether a rating keyed to the presence and accuracy of closed captions, as PoornimaSubramanian proposes, is workable as a conformance model.",
+      "u9000-Nine's edge case of open captions over a music-only audio track, which awkawk asked about and which was not resolved."
+    ],
+    "note": "Two of this provision's three threads, #119 and #234, are issue bodies with no replies at all; #234 has been open since January 2022. Every recorded comment here comes from #23, which is shared with the two speaker-identification provisions."
+  },
+  "speakers-identified-in-captions": {
+    "headline": "Whether speaker identification in captions should be required at all, and whether naming the speaker in text is the mechanism or just a North-American assumption.",
+    "positions": [
+      {
+        "label": "Required wherever the speaker can be identified",
+        "who": "Finnberrys",
+        "detail": "Understanding a conversation often depends on who said what, and without the who a story or issue becomes hard to follow — like reading a playscript with no characters identified. Speaks from experience of face-blindness: usually identifies people by voice, so on a muted device or with a hearing impairment, following a conversation between people who look similar is very difficult. Compares captions carrying names to a Teams meeting, where every participant's name is visible, versus an in-person one. Extends the same argument to blind users reading captions or a transcript via braille."
+      },
+      {
+        "label": "Positional identification does not do the job",
+        "who": "u9000-Nine",
+        "detail": "Identifying a speaker by where the caption is placed on screen does not help someone with face-blindness. Narrow but unrebutted; Finnberrys's reply effectively concedes it by restating that what helps is a name in the caption, not a position."
+      },
+      {
+        "label": "Text is not the only convention",
+        "who": "mitchellevan",
+        "detail": "The discussion is North-America-centric in assuming the identifier is text. The BBC recommends colours to distinguish speakers, and the practice is common in continental Europe. Explicitly does not claim colour is better than text, or even that it is accessible — flags that it might fail Use of Color — but argues the provision needs international context before it settles on a mechanism."
+      },
+      {
+        "label": "Scope is wrong for speakers who are not systematically identifiable",
+        "who": "sydneycolemanfromgoogle",
+        "detail": "In #512: in a live meeting or its recording, several people sharing a room are grouped as a room rather than identified individually, so the provision should say it is limited to speakers who are systematically identifiable. Second case is a video with one speaker who introduces themselves at the start, where announcing the speaker every time is repetitive. Concludes the provision needs more work or should remain supplemental for now."
+      },
+      {
+        "label": "Applicability is drawn too narrowly",
+        "who": "ashleemboyer",
+        "detail": "In #748: the provision applies only when there are multiple speakers in the video, which should be generalised to media so it covers audio without video, video without audio, and video with audio."
+      },
+      {
+        "label": "The notes need worked examples",
+        "who": "MakotoUeki",
+        "detail": "In #472: each note under the foundational wording — full name then part of name, hidden identity as part of narrative structure, recognisable position within the context of use — needs a concrete example. The only example the provision carries is the Maya Angelou to Angelou shortening."
+      }
+    ],
+    "agreed": [
+      "The user need reaches beyond deafness — face-blindness, braille readers and muted-device situations all appear in Finnberrys's case and nobody disputed any of them.",
+      "Nothing distinguishes the captions version of this provision from the transcripts or audio-description versions; all four threads are labelled across all three at once."
+    ],
+    "open": [
+      "Whether speaker identification is required at all. WilcoFiers's opening question in #23 asks exactly this and Finnberrys is the only person who answered it directly.",
+      "Whether colour or caption position count as identification, and how that squares with Use of Color — mitchellevan raised it and it has not been taken up.",
+      "Whether the provision should be limited to systematically identifiable speakers, and how to handle a single self-introducing speaker — sydneycolemanfromgoogle, #512.",
+      "Whether \"video\" becomes \"media\" in the applies-when clause — ashleemboyer, #748.",
+      "How missing speaker identification would be weighted in any caption accuracy grading — one strand of WilcoFiers's accuracy question in #23, covered under Captions adjustable."
+    ],
+    "note": "Three of the four threads here — #472, #512 and #748, filed between December 2025 and July 2026 — are issue bodies with no replies at all. The only actual exchange is in #23, which this provision shares with Speakers identified in transcripts and with Captions adjustable."
+  },
+  "speakers-identified-in-transcripts": {
+    "headline": "The transcript version of the provision has generated no discussion of its own — it carries the same four threads as the captions version, and nothing in them addresses transcripts as distinct from captions.",
+    "positions": [
+      {
+        "label": "Braille readers need the same speaker labels",
+        "who": "Finnberrys",
+        "detail": "The case in #23 is argued mainly from captions and face-blindness, but explicitly extends to a blind person reaching the material as a transcript or captions through braille. Without speaker identification, reading it is like reading a playscript with no characters identified. This is the only point in the record that speaks to transcripts specifically, and nobody contested it; the fuller argument is under Speakers identified in captions."
+      },
+      {
+        "label": "A transcript should be required where captions cannot be adjusted",
+        "who": "u9000-Nine, awkawk",
+        "detail": "u9000-Nine's repeated proposal in #23 is that open-captioned video should be required in WCAG 3 to carry a text transcript as well, because captions are explicitly an alternative for audio and open captions cannot be turned off, restyled or routed to braille. This is about whether a transcript exists at all rather than about identifying speakers inside one. awkawk acknowledged it as a clear proposal without endorsing it, having pushed back on the 1.1.1 and 1.4.5 reasoning behind it; that exchange is written up under Captions adjustable."
+      },
+      {
+        "label": "Three scoping issues filed against transcripts, captions and audio descriptions at once",
+        "who": "MakotoUeki, sydneycolemanfromgoogle, ashleemboyer",
+        "detail": "MakotoUeki (#472) wants a concrete example for each of the three notes — full name then part of name, hidden identity as narrative structure, recognisable position within the context of use. sydneycolemanfromgoogle (#512) wants the provision limited to systematically identifiable speakers, citing shared-room meeting recordings and a lone self-introducing speaker, and suggests it stay supplemental. ashleemboyer (#748) wants \"video\" generalised to \"media\", which lands hardest here, since an audio-only recording's transcript is frequently its only alternative. None of the three has had a reply, and none distinguishes transcripts from captions."
+      },
+      {
+        "label": "Identification conventions are not universal",
+        "who": "mitchellevan",
+        "detail": "Argues the discussion is North-America-centric in treating text as the identifier, pointing to the BBC's recommendation of colours to distinguish speakers and its common use in continental Europe, while noting colour identification might itself fail Use of Color. He raised this against the captions discussion; nobody has addressed what it means for a provision written once to cover both captions and plain-text transcripts."
+      }
+    ],
+    "agreed": [
+      "Speaker identification serves braille readers of transcripts as well as caption users — Finnberrys's point, unrebutted.",
+      "Generalising the applies-when clause from video to media has drawn no objection, only silence."
+    ],
+    "open": [
+      "Whether the provision should apply beyond video at all — ashleemboyer, #748.",
+      "Whether it should be limited to systematically identifiable speakers, and how to avoid repeating a single speaker's name throughout — sydneycolemanfromgoogle, #512.",
+      "What a concrete example of each note looks like — MakotoUeki, #472.",
+      "Whether the transcript, caption and audio-description versions of this provision should differ from one another at all. Nobody in these threads has taken that up, even though all four are labelled across all three provisions."
+    ],
+    "note": "This provision shares all four of its threads with Speakers identified in captions, and #23 with Captions adjustable. All 13 recorded comments sit in #23; the other three issues are bodies with no replies. Because none of that discussion is transcript-specific, the substance is written up under the captions entries and only summarised here."
+  },
+  "safe-content-review": {
+    "headline": "Whether content-level properties that are not discrete triggers — the mood a piece of content creates, the storylines woven through it — can ever be pinned down well enough to be an outcome, or whether they belong to future assistive technology instead.",
+    "positions": [
+      {
+        "label": "Mood is a gap the current outcomes miss",
+        "who": "SuzanneKTaylor, medeaoblongata",
+        "detail": "Disturbing Content and Triggers only catch acute, identifiable items, but content can create a mood with nothing in it that flags as a trigger. SuzanneKTaylor's proposed outcome (#88) is that information about the mood content is likely to encourage is available or can be changed or selected by the user, aimed at long-form content — a movie, a television show, an ebook, a VR experience — where a user managing anxiety would benefit from knowing before committing. medeaoblongata frames the same gap as connotative content, distinct from denotative and from purely decorative, and notes that a detailed description can kill the effect it describes, since the sinister or the erotic is often about what goes unmentioned, so flagging a connotation in lieu of a description has value."
+      },
+      {
+        "label": "Not measurable, and it adds noise",
+        "who": "detlevhfischer, ericwbailey, patrickhlauke",
+        "detail": "detlevhfischer's objection is that mood is not a property of content but depends on the user and on surrounding context, and that annotation would have to be exposed both visually and programmatically for equity, adding more material to the sea of content and increasing cognitive load for people it does not help — he does not see how this becomes a general measurable outcome. ericwbailey says it would be impossible to quantify before cultural variation is even factored in. patrickhlauke's concern is downstream: he dreads auditors having to check this kind of meta-information when judging conformance."
+      },
+      {
+        "label": "Storyline selection as the tractable version",
+        "who": "SuzanneKTaylor",
+        "detail": "Issue #89 proposes that individual storylines be programmatically distinguishable, or that users can choose storylines. The argument is that hiding individual items leaves the surrounding context intact and so does not actually protect the user, while interwoven plots also tax memory and the ability to distinguish characters, locations and times. Her worked example is a video cutting between three people's stories in ten-minute and then five-minute blocks: being able to watch or skip one full story handles some subtle triggers by a simple mechanism rather than by content judgement."
+      },
+      {
+        "label": "This is a job for AI-based AT",
+        "who": "GreggVan, SuzanneKTaylor",
+        "detail": "GreggVan argues no content can be written that triggers nobody — depending on personal history, a grove of trees could be a trigger — and that the group risks a never-ending discussion of what counts, so an AI filter that detects and redacts per the individual is the better place for it. SuzanneKTaylor partly agrees and extends it: if these outcomes live in AT, WCAG's remaining concern is whether that AT has the access it needs to pre-screen, which is a question about whether it can traverse a whole movie or gets stopped at the first ad. She adds that she personally thinks new AT is needed for many of the outcomes."
+      },
+      {
+        "label": "Trigger profiles carry their own risk",
+        "who": "SuzanneKTaylor",
+        "detail": "The counter to GreggVan's AI filter is that the profile it needs is itself hazardous: asking a user to enumerate their triggers could be more triggering than the content, and a leaked profile could be used for serious harm — her example is a politician whose debate opponents obtain a copy. Her conclusion is that simple and common triggers, of the do-not-show-spiders-in-this-game kind, are addressable now, and outcomes may have to stay at that basic level until more is known."
+      }
+    ],
+    "agreed": [
+      "If mood or connotation information exists, it should surface through a user agent, OS or screen reader setting the user has turned on, not by default. detlevhfischer conceded this removes the noise objection, while noting many users will never discover the setting.",
+      "There is a grey area between mood and content that some people treat as a trigger — detlevhfischer raised it and it went unchallenged.",
+      "Author-intended connotation is more tractable than user-experienced mood. SuzanneKTaylor concedes ericwbailey's point on her own proposal, since one reader finds a hardship story depressing and another finds it a call to action, and says that would need calibrating by the user inside AT."
+    ],
+    "open": [
+      "Whether mood can be scoped into anything a conformance claim could be assessed against — detlevhfischer's question of where to stop is unanswered.",
+      "Whether AT could evaluate long-form content end to end, which is SuzanneKTaylor's own open question.",
+      "Whether storyline selection (#89) is worth pursuing at all. GreggVan's AI-filter response is the only substantive reply, and he was answering the trigger framing rather than the storyline mechanism."
+    ],
+    "note": "Both issues were filed by SuzanneKTaylor on the same day in 2024 in response to the May 2024 draft's call for missing outcomes, and both are thin. #89 has drawn two comments in over two years and no pushback on the storyline proposal itself; the discussion below is mostly #88, and the working group has not responded formally in either thread."
+  },
+  "interactive-element-contrast-sufficient": {
+    "headline": "Whether a visual state requirement should be tied to programmatic state, and whether disabled controls keep their exemption from contrast, get a mandated indicator, or simply stop being classed as non-interactive.",
+    "positions": [
+      {
+        "label": "States must be visually distinct and match the programmatic state",
+        "who": "detlevhfischer",
+        "detail": "The draft SC in #193 reads: when a user interface component visibly indicates its states, these states are visually distinct and correspond to the programmatic states. The wording deliberately dodges the question the mobile accessibility task force could not settle — how much visual difference counts, since changing one pixel in a graphic is technically a difference — and instead leans on 1.4.11 to handle the 3:1 contrast of the salient part. The value he claims for it is the correspondence itself: catching a state change that is missing, reversed, or otherwise out of sync."
+      },
+      {
+        "label": "Keep it visual; programmatic state is 4.1.2's job",
+        "who": "patrickhlauke",
+        "detail": "Mixing programmatic state into a visual SC opens a loophole: a control with no programmatic state fails 4.1.2, but would nominally pass this one because there is nothing to disagree with. He proposed replacing that clause with wording along the lines of accurately represents the current state of the component, and also questioned whether visually distinct is firm enough for normative language, foreseeing the same problems as visible focus indication. detlevhfischer accepted the substitution as an improvement."
+      },
+      {
+        "label": "Disabled controls need contrast or a disabled icon",
+        "who": "DavidMacDonald, bkimmel",
+        "detail": "#197 starts from the observation that disabled interface elements work badly for people with low vision and that exempting them from 1.4.3 was the wrong fix; DavidMacDonald proposes at least 3:1 contrast OR an icon marking the element disabled. bkimmel seconds the problem, particularly where disabled controls are used to advertise the potential of an interaction — fill these fields in and you can submit — which he calls a huge safe harbour for things that cut against the Perceivable goal. He is not convinced an icon specifically is the answer."
+      },
+      {
+        "label": "Contrast yes, mandated icons no",
+        "who": "patrickhlauke",
+        "detail": "He would far rather see some form of minimum contrast apply, to solve readability, than require an icon — WCAG cannot start demanding icons everywhere without dictating visual design. His preferred shape is a more general intent of indicating that something is disabled, and he flags a crossover with how user agents themselves render disabled state."
+      },
+      {
+        "label": "The definitions exclude the elements in question",
+        "who": "adampage",
+        "detail": "Reviewing #197 against the current draft, adampage notes disabled elements fall outside the definition of interactive element — an element that responds to user input and has a distinct programmatically determinable name — so the neighbouring Interactive elements distinguishable provision does not reach them. They appear instead to match non-interactive element (does not respond to user input and does not include sub-parts), but are absent from that definition's examples and notes, so the intent is unclear. He suggests broadening the term or introducing a new one for elements that exist to be interactive even when conditionally disabled or read-only, and points at the Disabled controls explained provision and w3c/wcag#5053 as related."
+      },
+      {
+        "label": "Split contrast by luminance, hue and spatial frequency",
+        "who": "Myndex",
+        "detail": "#207 proposes reorganising all the colour and contrast outcomes on vision-science lines: luminance carries high spatial frequency information and is what reading depends on, hue matters for object recognition and colour-coded non-text material, and spatial frequency — font weight, size, letter and line spacing, padding, glyph design — is the critical factor in readability. That yields two guidelines, one for not relying on colour alone plus non-text contrast, one for luminance contrast in readable content, with non-text use cases classified as Semantic, Symbolic, DataViz and Container. He also argues specific legacy numbers are unsupported: the 80-characters-per-line figure traces to IBM equipment economics rather than research (Bringhurst's 66 characters, or a 50 to 70 range, offered as informative), and a 1.5 line-height rule is near meaningless in CSS because the x-height to font-size ratio varies by 50 percent or more between families."
+      }
+    ],
+    "agreed": [
+      "The programmatic-states clause in the #193 draft should go. detlevhfischer accepted patrickhlauke's alternative framing and nobody returned to defend the original.",
+      "Micro-SC proliferation is a real risk — detlevhfischer dreads the proliferation of bitty SCs that interact in multiple ways, as 2.4.7 and 1.4.11 already do, and patrickhlauke would rather see a few chunky, well thought-out SCs than a goldrush for 2.2. Their tentative answer was a wider provision covering interface components being visible and their states discernible.",
+      "Exempting disabled controls from contrast entirely is a problem for low-vision users; the disagreement is only over the remedy.",
+      "Both #193 and #197 need more research — alastc took each off the WCAG 2.2 slate on the same day in July 2020 for that reason, unopposed."
+    ],
+    "open": [
+      "Whether disabled elements should be brought inside the definition of interactive element, given a new term, or explicitly named in the non-interactive element notes — adampage raised all three and has had no reply.",
+      "Whether a state-change requirement can be written testably at all, which is detlevhfischer's original one-pixel question and patrickhlauke's doubt about visually distinct as normative language.",
+      "Whether #193 stays in the repository, moves to WCAG 3 proper, or is deleted. patrickhlauke asked alastc directly in August 2024 and the question is still unanswered.",
+      "Whether the contrast outcomes get restructured along Myndex's luminance/hue/spatial-frequency split. Nobody has responded to #207.",
+      "Whether the requirement is discharged by author styles or by user-agent defaults for interactive items with a background or border — alastc lists it in #270 as a supplemental item without resolving it."
+    ],
+    "note": "This provision is assembled from four threads with very little live discussion. The substantive exchange in #193 is from 2019 and the exchange in #197 from 2019 and 2020, with adampage's 2026 comment the only recent analysis; #207 and #270 are both long structural proposals that have drawn no comments at all, so nothing in them has been tested by rebuttal."
+  },
+  "sections-labeled": {
+    "headline": "Whether a requirement that headings describe topic or purpose can survive content that has no topic — fiction, irony, chapter numbers — and whether the fix is new normative wording or an Understanding note, given that any loosening also loosens the requirement on form labels.",
+    "positions": [
+      {
+        "label": "The normative wording has no room for fiction",
+        "who": "mattgarrish",
+        "detail": "2.4.6 says headings must describe the purpose or topic; it does not say only where a specific topic exists, nor that a heading may merely label a section (#170). A chapter heading might set a mood or theme, or introduce levity or absurdity, and the examples in the Understanding document reinforce the bias by showing content that breaks down neatly by topic. He has always ignored the SC for publishing, but calls it troubling to tell people to ignore a criterion because it does not make sense outside one context, especially as the part about labels describing the purpose of inputs is genuinely useful."
+      },
+      {
+        "label": "The wording is wooly, so fiction passes in practice — but irony shows it should not",
+        "who": "scottaohara, patrickhlauke",
+        "detail": "scottaohara reads a chapter title as naming the chapter you are about to read rather than summarising it, which is itself a useful title, and says he would be surprised to see anyone report this. patrickhlauke agrees more bluntly: determining what is and is not descriptive enough is completely wooly and subjective, so there is plenty of wiggle room, you can handwave fiction, and if someone insists it fails, let a judge or lawyer work it out. He still presses the hard case — a chapter titled A peaceful morning over text describing atrocities in a war-torn country is deliberately non-descriptive, even says the opposite of the content, and appears to contravene the normative requirement, while the Understanding quietly pivots from descriptive to merely providing a cue or landmark. bruce-usab's counter is that headings must describe topic or purpose rather than be descriptive, and that A peaceful morning memorably identifies the chapter's main substance."
+      },
+      {
+        "label": "The intent already covers it; the defect is that you must read Understanding to find that out",
+        "who": "bruce-usab",
+        "detail": "His recollection is that fiction chapter titles were among the use cases considered when 2.4.6 was phrased. The Understanding document states that a word, or even a single character, may suffice if it provides an appropriate cue to finding and navigating content — so a cryptic but deliberately chosen chapter title clears the bar, and esoteric novel headings are both descriptive and well suited to their purpose. He concedes a plain reading has the implication mattgarrish describes and calls it a defect that the nuance lives only in Understanding, adding that in publishing the SC is always satisfied because a real-world failure is probably impossible to find, which is not true of the web, where pages with seemingly random headings exist."
+      },
+      {
+        "label": "Do not loosen it, because labels are in the same sentence",
+        "who": "JAWS-test, mattgarrish",
+        "detail": "JAWS-test opposes rewriting the SC because any relaxation weakens it for labels, and form labels should be meaningful — not ironic, not a single character — even where headings can be held to a lower bar. His preference is an Understanding addition covering fiction now, with WCAG 3 treating headings and labels as separate requirements. mattgarrish accepts this is the cost of combining the two in one criterion. Two replacement phrasings were floated and neither survived: mattgarrish's Headings and labels establish context, which he argued covers chapter numbers that convey no topic but do tell you how far into a book you are, and bruce-usab's Headings and labels provide descriptive identification of the topic or purpose, which mattgarrish rejected as a wordier way of saying describes that still assumes a topic exists."
+      },
+      {
+        "label": "Labelled landmarks as a requirement in their own right",
+        "who": "rachaelbradley",
+        "detail": "A separate strand (#80), forwarded from a public-agwg-comments email, argues that sections being visually and programmatically distinguishable is not enough and that clearly labelled semantic landmarks separating distinct page content should be required — header, main navigation, breadcrumb navigation, main content, aside, footer. The case made is practical: landmarks are well supported in browsers, easy to implement in HTML5, ARIA and JavaScript, deliver real benefit to AT users, and are easy to test. Nobody has replied."
+      },
+      {
+        "label": "Define the scope before requiring anything",
+        "who": "giacomo-petri",
+        "detail": "#477 asks for meaningful blocks of content to be defined, quoting GreggVan's objection that the phrase is used to mean a section, a heading and even a paragraph inside a section, and that one term cannot carry three meanings — his test case is whether posting a letter online obliges you to label its introduction and its sections. It also asks that the exception, where a label is not needed to understand the purpose of the content within the context of use, be bounded, since as written it can be invoked too broadly."
+      }
+    ],
+    "agreed": [
+      "There is genuine tension between the normative text and the Understanding document — bruce-usab concedes the point after arguing the intent is sound.",
+      "It would be better if the criterion were clearer about its application; mattgarrish and bruce-usab both say so in nearly the same words.",
+      "Changing the shared wording cannot be done without weakening the label half, which is why separating headings from labels in WCAG 3 is the direction both mattgarrish and JAWS-test end up pointing at.",
+      "No proposed replacement wording has held up. mattgarrish left it at needing more thought and was content to defer the problem to 3.0."
+    ],
+    "open": [
+      "What the replacement phrasing is, if any. bruce-usab explicitly wanted something narrow enough to ship as an erratum and nothing met that bar.",
+      "Whether labelled semantic landmarks become a distinct requirement — rachaelbradley's #80 has had no response since it was filed in May 2024, and the issue carries an instruction to reply to the originating email once addressed.",
+      "What meaningful blocks of content means and how tightly the context-of-use exception is drawn, raised by giacomo-petri in #477 on GreggVan's behalf.",
+      "How Section Label sits against Regions, Headings Structure and Programmatic Relationship, which alastc lists together as requirements in #271 without comment."
+    ],
+    "note": "The only real debate here, #170, is a 2021 argument about WCAG 2.x SC 2.4.6 that has been carried into the WCAG 3 repository as background; it ends unresolved with the participants agreeing to leave it to 3.0. The three other threads — #80, #271 and #477 — have no comments at all, so the landmark, requirement-tracking and definitional questions are on the record but untested."
+  },
+  "blocks-of-content-available-minimum": {
+    "headline": "Whether a block of content being visually indistinct is an accessibility failure at all, and whether \"sufficient surrounding space\" can be written as a requirement anyone can test.",
+    "positions": [
+      {
+        "label": "If it is unclear for everyone, it is not an accessibility problem",
+        "who": "GreggVan",
+        "detail": "Responding to the opening questions in #19, asks whether there is a requirement for blocks and headings to be visually distinct in the first place, since content that is indistinct for every reader alike looks like a design quality issue rather than an accessibility one. His bar is that things be programmatically different. He also rejects the \"sufficient semantics\" framing as read, on the grounds that WCAG cannot require authors who write meaningless headings to rewrite them to be meaningful."
+      },
+      {
+        "label": "Block structure is a contrast problem, not a styling preference",
+        "who": "Myndex",
+        "detail": "Argues visual hierarchy is squarely an accessibility issue for COGA among others, and that it is also a contrast issue: the amount of padding around a text block, line spacing and letter spacing all change perceived contrast, and this is most critical for blocks of body text. Contends the primary driver of perceived contrast is spatial, chiefly rasterized font weight, because weight sets the spatial frequency the contrast sensitivity function responds to. Cites Lovie-Kitchin and colleagues for contrast reserve figures keyed to use case, roughly 20 times the JND threshold for article body text down to 3 times for non-fluent spot reading."
+      },
+      {
+        "label": "Catalogue what already works before writing a rule",
+        "who": "u9000-Nine",
+        "detail": "Wants the methods currently used to separate blocks and headings surveyed first, so a new requirement does not accidentally outlaw one that works, and notes that distinctions are frequently used in combination rather than singly. Lists boldness, font size, typeface, indentation, underlines and overlines, italicization, small caps, script, color, textual or iconographic markers and text alignment. Refines Myndex's three-way split into four groups: spatial, visual text attributes, content and external indicators."
+      },
+      {
+        "label": "Split the visual requirement from the programmatic one",
+        "who": "giacomo-petri",
+        "detail": "Opened #476 arguing that the visual and programmatic aspects of meaningful content blocks may need to be separate requirements, because one can be satisfied while the other is not. Also asks for \"sufficient surrounding space\" to be defined, and for exceptions to be considered where a particular layout choice makes added spacing inappropriate."
+      },
+      {
+        "label": "\"Sufficient\" is subjective and the requirement inverts the visual and the programmatic",
+        "who": "GreggVan, giacomo-petri",
+        "detail": "Points carried into #476 for review: the draft requires information to be programmatically determinable that is not visually determinable, which reverses the usual direction, and the wording needs to say that where content appears as a block carrying semantic meaning, that block also has to be programmatically determinable. On spacing, paragraphs often have no more space between them than between the lines inside them, yet they are meaningful blocks, so the reductio is whether every document must now add space between every paragraph, and whether the answer is one pixel, two, or three."
+      }
+    ],
+    "agreed": [
+      "Color alone should not be the distinguishing factor. u9000-Nine is content not to count color as a distinction despite it being common practice and the Word default; Myndex clarifies color is genuinely useful but must accompany weight, size and family rather than carry the distinction on its own, since perception of color varies enormously even among standard vision and shifts with context.",
+      "Relative size is a legitimate distinction, absolute size is not. u9000-Nine proposed that a heading being larger than the body text, whatever size that is, should count; Myndex agreed font size is and should be a distinguishing feature.",
+      "Font weight belongs with the spatial and contrast group rather than with font styling, because weight determines spatial frequency and therefore perceived contrast. u9000-Nine accepted the reclassification.",
+      "GreggVan's baseline that the distinctions at least have to be programmatically different went unchallenged."
+    ],
+    "open": [
+      "Whether visual distinctness of blocks is in scope at all. GreggVan asked in September 2023 and nobody in the thread answered him.",
+      "What \"sufficient surrounding space\" means and whether a number can be attached to it. giacomo-petri opened #476 specifically on this; the paragraph-spacing reductio quoted there is unanswered.",
+      "Whether visual and programmatic block structure should be one requirement or two (giacomo-petri, #476), and what exceptions exist where a layout choice makes spacing unnecessary.",
+      "Where text decoration sits. u9000-Nine asked why it appears under both layout and non-text; Myndex left it open, leaning non-text when it indicates function such as an underlined link and layout when it is merely divisional.",
+      "Whether container behaviour under large text zoom belongs to this provision. Myndex wants the smallest body text scalable to roughly 80 to 92 px, an x-height near 42 px and a zoom of 450 to 500 percent, with already-larger text scaling by a smaller percentage, and notes 500 percent is untenable on a phone so device media queries are needed."
+    ],
+    "note": "The nine comments here all come from #19, which is labelled for this provision and for Heading structure available, so the taxonomy work is shared between the two. Substantively it is a two-person exchange between Myndex and u9000-Nine over six weeks in late 2023 that converged on a classification but never produced proposed requirement text; WilcoFiers's opening questions and GreggVan's scope challenge were never resolved, and #476 reopens the same ambiguities two years later with no replies yet."
+  },
+  "heading-structure-available": {
+    "headline": "Whether the provision should police how headings look as well as how they are marked up, and what the heading hierarchy has to be for content that does not naturally have one.",
+    "positions": [
+      {
+        "label": "Semantics yes, appearance no",
+        "who": "GreggVan",
+        "detail": "Questions whether there is a requirement for headings to be visually distinct at all, since headings that are not distinct for anyone are not obviously an accessibility question. Accepts differentiating font from typeface as long as the result is programmatically different. Pushes back on the suggestion that sufficient semantics on headings matters more than visual presentation, reading \"sufficient semantics\" as \"sufficient meaning\" and arguing WCAG cannot require authors who write meaningless headings to rewrite them."
+      },
+      {
+        "label": "Visual hierarchy is an accessibility issue and a contrast issue",
+        "who": "Myndex",
+        "detail": "Holds that content structure for a good visual hierarchy matters for COGA among others, and that it is simultaneously a contrast question: padding around a heading, leading and letter spacing all change perceived contrast, as does font weight. Argues weight is the most critical spatial quality because it sets the spatial frequency that drives contrast sensitivity, illustrated with same-color samples at different weights placed on the contrast sensitivity curve. Also warns that the CSS font-size metric is close to futile as an absolute, since size and weight vary massively between families."
+      },
+      {
+        "label": "Enumerate the distinctions in use before restricting any",
+        "who": "u9000-Nine",
+        "detail": "Wants existing sufficiently distinct methods catalogued so a requirement does not accidentally remove one, and stresses that combinations of distinctions matter. Proposes four groups rather than Myndex's three: spatial, visual text attributes, content, and external indicators, with capitalization, writing system, sentence type and person placed under content. Argues writing system in particular belongs with content, since writing in sitelen pona carries semantics and nuance that Latin script or speech does not."
+      },
+      {
+        "label": "Nesting and a single h1",
+        "who": "rachaelbradley",
+        "detail": "Filed #81 from a public-agwg-comments email asking for an outcome stating that section heading levels be semantically nested so they form a hierarchical outline of the content, and that there be only one h1 per page, reserved for introducing the main content or topic and matching or closely resembling the page title. No one has replied since May 2024."
+      },
+      {
+        "label": "Fix the terminology and name the exceptions",
+        "who": "giacomo-petri",
+        "detail": "Opened #478 asking that \"higher\" and \"lower\" be replaced when referring to heading levels, since which direction each word points is ambiguous. Also wants \"meaningful block of content\" clearly defined and exceptions specified, recognising that paragraphs, letters and emails may not require headings, while insisting any exception be explicit enough that it cannot be used as a loophole. Notes both items may resolve from a single consistent definition."
+      }
+    ],
+    "agreed": [
+      "Font and typeface have to be kept distinct in the spec's language. WilcoFiers's example, that Helvetica 12pt bold and Helvetica italic 14px are different fonts sharing one typeface, drew no objection.",
+      "Whatever distinguishes a heading has to be programmatically different, not only visually different. GreggVan's condition went unchallenged.",
+      "A heading being larger than the body text is a valid distinction even though an absolute font size is not. u9000-Nine proposed the split and Myndex agreed size is and should remain a distinguishing feature.",
+      "Color should not be the sole distinguisher. u9000-Nine is willing not to count it; Myndex agrees it must be an accompaniment rather than the solo distinction, given how far color perception varies with context even for standard vision."
+    ],
+    "open": [
+      "How to decide whether headings are sufficiently distinct from each other and from surrounding content, whether color contrast can carry that judgement, and whether reading distance should be a factor. WilcoFiers asked all three in #19 in 2023 and none has been answered.",
+      "Whether sufficient semantics on headings matters more than visual distinctness, and whether the visual requirement should simply be that presentation changes away from the default. WilcoFiers raised it, GreggVan contested what it would even mean, and it stalled there.",
+      "Whether heading levels must be semantically nested and limited to one h1 per page (rachaelbradley, #81), which has had no discussion at all.",
+      "How \"meaningful block of content\" is defined and which content types are exempt from needing headings (giacomo-petri, #478) - a definition shared with the Blocks of content available (minimum) provision.",
+      "Where text decoration belongs. u9000-Nine asked why it sits in both the layout and non-text groups; Myndex left it unresolved, leaning non-text when it signals function and layout when it is merely divisional."
+    ],
+    "note": "Only one of the four threads has any discussion. All nine comments come from #19, which is labelled for this provision and for Blocks of content available (minimum), and is mostly a two-person taxonomy exchange between Myndex and u9000-Nine. #81, #271 and #478 are issue bodies with no replies: #271 is alastc's requirement-tracking issue listing Visually organize content, Regions (Minimum and Enhanced), Section Label, Headings Structure and Programmatic Relationship under one guideline, rather than an argued position."
+  },
+  "no-visual-motion-no-exceptions": {
+    "headline": "Whether the exception-free variant really is exception-free, given that a user preference or a disable mechanism could still be read as satisfying it, and whether pseudo-motion should be pulled out so no duration threshold can attach to it.",
+    "positions": [
+      {
+        "label": "The carve-outs are the whole problem",
+        "who": "MarjaE2",
+        "detail": "Opened #27 using WCAG 2.1 SC 2.3.3 as the cautionary example: it sits at AAA, it permits essential smooth animation, and it permits any smooth animation so long as some way to disable it exists, without requiring that the site-specific control be discoverable or that prefers-reduced-motion be honoured. Worries the essential exception will be stretched to cover any move or transition someone decided to make smooth. Notes many sites impose their own smooth scrolling regardless of prefers-reduced-motion or of browser settings to disable animation and autoplay, and that JavaScript-driven animation, including GitHub's own sticky headers, makes it harder still for users to protect themselves."
+      },
+      {
+        "label": "Pseudo-motion should have no threshold and its own provision",
+        "who": "julierawe, rachaelbradley, mraccess77",
+        "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"does not include pseudo-motion lasting longer than 5 seconds\", which is precisely the reading this no-exceptions variant is meant to foreclose. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache."
+      },
+      {
+        "label": "A respected user preference is not a safe substitute",
+        "who": "alastc, julierawe",
+        "detail": "alastc opened #629 on the draft note allowing content to be considered as avoiding flashing when an accessibility-supported preference to prevent flashing is respected, doubting any such method is accessibility supported today and asking whether it should be relied on even if one were. julierawe, quoted in the body, calls the method dangerous and asks what happens when someone uses another person's device without having set the preference first. alastc flags in the body and again in June 2026 that the same question lands on the animation and reduced-motion requirements, which is how it reaches this provision."
+      },
+      {
+        "label": "Warn first, or push detection down to the browser",
+        "who": "patrickhlauke, nattarnoff, alastc",
+        "detail": "patrickhlauke asks whether there should be a mandated warning before content containing potential flashing, with enough time for the user to abort or back out; alastc answers that a separate flash and motion warning requirement already exists in the working document. nattarnoff asks whether warning is an authoring duty at all or belongs to browsers detecting content type against the user's preferences, is unsure browsers could feasibly do it, but observes that we know what happens when it is left to the people who build sites, and argues this requirement straddles the bottom-up and audit-and-remediate approaches."
+      }
+    ],
+    "agreed": [
+      "Pseudo-motion's definition needs worked examples; nobody objected to the COGA list or to the additions made to it.",
+      "The user-preference question is not confined to flashing - alastc stated twice that the animation-based requirements are impacted by it.",
+      "Warnings are already the subject of a separate requirement in the draft and are not what this provision does (alastc, #629)."
+    ],
+    "open": [
+      "Whether \"no exceptions\" also rules out satisfying the requirement via a disable mechanism or a user preference. MarjaE2 raised the mechanism form in #27 and it was never taken up; alastc's #629 raises the preference form and it is unresolved.",
+      "Whether \"No pseudo-motion\" becomes a provision in its own right (julierawe, #739).",
+      "Whether detecting motion and issuing warnings is an author responsibility or a user-agent one (nattarnoff, #629).",
+      "Whether the decoy font counts as pseudo-motion. rachaelbradley asked, mraccess77 gave a first-hand account of the effect, and no one has ruled on it."
+    ],
+    "note": "Thin, and largely inherited rather than specific to this variant. #27 is MarjaE2 alone - opened October 2023, one self-reply, no response from anyone else in nearly three years - and #629 and #739 are both labelled for the base No visual motion provision as well, so their discussion is shared. The only argument that bears directly on why an exception-free variant exists is julierawe's: that a five-second threshold sitting next to pseudo-motion reads as permission for anything shorter."
+  },
+  "image-alternatives-equivalent": {
+    "headline": "Whether \"equivalent\" is failing because the definition is too loose or because the existing requirement is simply not being tested and enforced properly.",
+    "positions": [
+      {
+        "label": "Define equivalence, or the gap stays open",
+        "who": "brett-oppegaard",
+        "detail": "In #370, argues alt text is a legacy of early image-loading problems rather than a disability-studies concept, and that in practice a filename like \"dog32234.jpg\" is treated as compliance. Cites Perkins at under 1 percent of the web compliant, AudioEye at around 3 percent and WebAIM's Million at 4 percent to argue the failure is systemic rather than incidental. Wants \"equivalent\" defined against the information-exchange literature and extended with guidance for describing people, maps, tables, charts and data visualisations, not just a title plus a one-sentence overview. Points at Instagram, where alt text is buried behind a hidden process and GenAI supplies descriptions like \"Might be a man, wearing glasses\"."
+      },
+      {
+        "label": "That already fails WCAG 2 — this is not a loophole",
+        "who": "patrickhlauke, TestPartners, yatil",
+        "detail": "patrickhlauke's opening reply is flat: \"dog32234.jpg\" would fail 1.1.1, so it is not legally compliant in any sense. TestPartners attributes the observed state to testers not testing the criterion correctly, automated tools being unable to judge appropriateness, and authoring platforms that do not help — a lack of education, not a defect in the wording, and something WCAG 3 cannot fix. yatil adds the structural point that W3C defines conformance and does not enforce it; enforcement runs through civil rights litigation and, in the EU, through the European Accessibility Act's reference to WCAG 2.1 via EN 301 549, with national agencies and fines that only began operating this year."
+      },
+      {
+        "label": "Digital asset management is making it worse",
+        "who": "TestPartners, brett-oppegaard",
+        "detail": "TestPartners identifies a newer failure mode: organisations now store images in a DAM with the text alternative attached to the asset, so the alternative is authored with no knowledge of the context it will appear in, and ends up an invariably literal description of image contents that may be appropriate in one placement and wrong in another. brett-oppegaard accepts the point, proposes that descriptions be crafted per use and logged so a forensic recontextualisation is possible, and concedes this would require a major shift in archiving practice. Both treat it as a real problem; neither claims it is the central one."
+      },
+      {
+        "label": "Media alternatives are undertested as a single lump",
+        "who": "JasonAment",
+        "detail": "In #611, argues the draft never says which formats are usable for which medium and that the media alternative definition adds nothing. Offers an absurd-but-passing case: video-only content with an empty closed caption track satisfies the requirement as written. Proposes splitting the test procedure into separate procedures for audio-only, video-only and audio-video content, each ending in a check that the alternative is equivalent to the meaningful information in the media."
+      }
+    ],
+    "agreed": [
+      "\"dog32234.jpg\" is not conformant under WCAG 2.x 1.1.1 — brett-oppegaard did not contest patrickhlauke's correction, and shifted to arguing about enforcement instead.",
+      "Real-world conformance rates are very low; the disagreement is about the cause, not the number.",
+      "W3C neither polices nor funds review of conformance claims; that sits with law, regulators and litigation."
+    ],
+    "open": [
+      "Whether WCAG 3 should tighten the definition of equivalent and add scaffolding, metrics and benchmarks — brett-oppegaard's core ask, which nobody in the thread endorsed or costed.",
+      "What recourse exists against a false \"this website is WCAG compliant\" claim, and how many violations would invalidate it. brett-oppegaard asked directly; yatil answered only on the general enforcement landscape.",
+      "Whether equivalence guidance should extend to specific content types — described people, maps, charts, data visualisations — beyond generic image alternatives.",
+      "JasonAment's proposed per-medium test procedures in #611."
+    ],
+    "note": "Thin and lopsided. #370 is essentially brett-oppegaard against three respondents who all make the same rebuttal, and the exchange drifts from defining equivalence into enforcement and legal policy without returning. #611 is a body with a concrete proposal and zero replies, so nothing there has been tested at all."
+  },
+  "text-style-adjustable": {
+    "headline": "Whether user-selectable font family belongs in the standard at all, and whether \"accessible typeface\" can ever be stated as a requirement rather than advice.",
+    "positions": [
+      {
+        "label": "Add font family to user customisation",
+        "who": "LaZay, LaurenceZaysser",
+        "detail": "LaZay opens #161 asking that font selection join the other user-adjustable properties in 1.4.8, noting publishers still ship serif paper fonts in digital products where they blur on screen, and that any offered families have to exist on the user's machine — a harder implementation problem than other CSS overrides. LaurenceZaysser makes the same case in #340 as a gap rather than an enhancement: 1.4.4 Resize Text has no font-family equivalent, browsers and ebook reading systems already do this, and WCAG 2.2 is therefore not the full EAA cover it is claimed to be, since Annex I requires fonts of suitable shape. Proposes a new SC 1.4.14 Change font family with a sufficient technique naming OpenDyslexic."
+      },
+      {
+        "label": "Typeface guidance can be a recommendation, not a \"shall\"",
+        "who": "Myndex",
+        "detail": "Argues in #245 that a meaningful, testable normative standard covering all font use cases is out of reach, though blocks of body text might be a candidate. The reason is that line-height, letter-spacing, font-weight and font-size are all relative to decisions the font designer made, so two faces set at 16px and weight 400 rasterise at different real sizes and weights. Proposes CSS-level fixes — a property to set x-height directly, already filed with the CSSWG, and line-height expressed against x-height — and gives concrete targets: critical size is an x-height at least twice measured acuity height, lowercase aspect ratio under 1.5:1, baselines about 2.5 x-heights apart. Notes a century of research has produced little consensus beyond \"blackletter is hard to read\"."
+      },
+      {
+        "label": "Dyslexia fonts are the wrong fix",
+        "who": "Myndex",
+        "detail": "Directly contradicts the OpenDyslexic proposals: fonts like OpenDyslexic and Dyslexie are not actually useful, because they assume dyslexia is a visual problem when it is language-specific. Cites Marinus, Mostard et al., where increasing letter spacing on plain Arial produced the same benefit as Dyslexie, implying the gain comes from reduced crowding rather than glyph shape. Adds that dyslexia is almost unheard of in Korean, which is a clear language, so glyph-level remedies do not generalise across writing systems — of which there are at least 40 common ones."
+      },
+      {
+        "label": "Untestable in practice",
+        "who": "patrickhlauke",
+        "detail": "If CSS is not expressive enough for authors to declare these properties or for tools to query them from a rendered page, and font choice is effectively unlimited, a tester would have to run the numbers against every font an author picked — complicated further by user agents and operating systems shipping their own slight variants of nominally identical fonts and doing substitutions. Pushes chaals directly: if the user agent does not supply an accessible font, does the site then fail in that user agent? Draws the line at information, advice and best practice being fine, while mandatory requirements built on the same evidence is where it gets interesting."
+      },
+      {
+        "label": "Put it on the user agent, and check your own fonts",
+        "who": "chaals",
+        "detail": "Where the user agent supplies the font, the requirement belongs on the user agent to offer accessible fonts. Research on this has existed for a long time, so publishing information about which fonts are more accessible — and to whom, and when — should not be beyond the group. Adds the author-side corollary: if you choose fonts and want accessible content, logic says you check whether the fonts you chose achieve that."
+      },
+      {
+        "label": "Extend adjustability to link decoration",
+        "who": "hata6502",
+        "detail": "In #413, reads G183's \"if there are not a large number of links\" caveat as an implicit allowance for a different treatment in high link-density content such as wikis and glossaries. Argues G182's non-underlined alternatives — blue bold, red italic — are not reliably read as links, because user expectation is anchored to underlines. Proposes a Method under the adjustable text style guideline using text-decoration-style: dotted, with a demo file attached, to keep links perceivable while cutting visual clutter."
+      }
+    ],
+    "agreed": [
+      "Font metrics are not comparable across families — x-height ratio, stroke weight, kerning and leading are all designer choices with no standard, so nominal font-size and font-weight values do not describe what reaches the screen. Nobody in #245 disputed this.",
+      "Letter and line spacing have a measurable readability effect, via reduced crowding, independent of glyph design.",
+      "Publishing information and best practice about accessible typefaces is uncontroversial; only making it normative is contested.",
+      "Any typeface guidance has to be checked against non-Latin writing systems before it can be global."
+    ],
+    "open": [
+      "Whether a font-family override requirement can work given the font must already be installed on the user's machine — LaZay raised the constraint and left it unresolved.",
+      "Whether WCAG 2.2 actually covers the EAA's \"suitable shape\" language, which LaurenceZaysser says it does not; the parallel oversight is filed against the EPUB EAA mapping as epub-specs#2752.",
+      "Where the requirement lands when the user agent supplies the font — patrickhlauke's question to chaals about whether a site fails in a user agent that offers no accessible font was never answered.",
+      "Whether OpenDyslexic should be named as a sufficient technique when Myndex's evidence says the benefit comes from spacing, not glyphs. The two threads never meet.",
+      "hata6502's dotted-underline Method, which drew no responses."
+    ],
+    "note": "Volume is concentrated in one place. All eight comments sit in #245, and the three other issues — #161, #340 and #413 — are unanswered bodies, so their proposals have neither support nor pushback on record. #245's own discussion is also aged: the substantive exchange is from 2022, with mraccess77 adding reading links in 2025 and no reply since."
+  },
+  "text-color-adjustable": {
+    "headline": "Whether a maximum contrast ratio should exist, or whether the real variable is screen luminance and the answer is user adjustability instead.",
+    "positions": [
+      {
+        "label": "Cap the contrast",
+        "who": "cawa-93, NathanInnes",
+        "detail": "cawa-93 opens #171 with white text on black at a 21:1 ratio, which passes 1.4.6 Contrast (Enhanced) at AAA and is, in their words, absolutely not readable, and proposes a maximum alongside the minimum. NathanInnes offers Twitter's branding revamp as a case in point: it passed beyond the standard and a lot of users found it difficult to read and straining on the eyes."
+      },
+      {
+        "label": "A cap would harm me — make it adjustable instead",
+        "who": "JAWS-test, mraccess77",
+        "detail": "JAWS-test finds high-contrast text readable in itself, accepts that some people struggle with it, and argues the fix is for colour adaptation to user needs to work well and for WCAG to support that adaptability via custom styles, Windows High Contrast Mode and similar. mraccess77 says a contrast maximum would negatively affect them personally while acknowledging others need low contrast, and concedes specific bad combinations exist — small white text on black being one — before asking whether a better calculation than current contrast could isolate those cases, pointing at Myndex's work."
+      },
+      {
+        "label": "The WCAG 2 math cannot carry a maximum",
+        "who": "Myndex, bruce-usab",
+        "detail": "Myndex's objection in #171 is that WCAG 2 contrast math is not perceptually accurate — it already overstates minimum contrast for dark colours — so building a cap on it would produce more unreadable pages, not fewer, and entrench the misunderstanding of how contrast and readability work. Reframes the problem as excess luminance rather than excess ratio: users crank screen brightness to cope with all the low-contrast content in the wild, then get blasted by a site with good contrast. Also notes the OP's own example is too small and too crowded to be evidence. bruce-usab agrees white on black is a common barrier but cannot see how to address it in WCAG 2.x even at AAA, since the same rule would flag plain black-on-white body text, and points to APCA as the WCAG 3 route."
+      },
+      {
+        "label": "There is a maximum, but only in dark mode",
+        "who": "Myndex",
+        "detail": "The 2023 status update separates the cases: no maximum contrast in light mode, only a maximum luminance, which is a user display control rather than an author one, with paper-emulation best practice of keeping body-text background at about 85 percent of the adaptation state. Dark mode is different — excessively bright text on dark backgrounds causes halation and glare — and names interim experimental values under study of Lc -90 maximum for body text and Lc -85 for larger text, using APCA 0.0.98G4g. Adds that there is room for at least two dark schemes, day and night, and that daltonised, photophobia and Meares-Irlen schemes will likely need their own maxima."
+      },
+      {
+        "label": "Lc -90 is still too much",
+        "who": "kepstin",
+        "detail": "Reports from a calibrated setup — displays at 150 cd/m2 white luminance, room illuminance around 100 lx, IPS LCD at roughly 1000:1 static contrast — that black on white is comfortable while white on black remains practically unreadable, partly from halation due to astigmatism. Finds Lc -90 uncomfortable and would want something nearer Lc -50 for light-on-dark. Also warns the fix cuts both ways: in a properly calibrated environment, an author lowering contrast for dark text on light backgrounds reduces readability, comparing blue on brown to printing on kraft paper rather than white."
+      },
+      {
+        "label": "User-side colour control, stated plainly",
+        "who": "emanser869, utkudyn-a11y",
+        "detail": "emanser869's #178 proposes adding to 1.4.8 that foreground and background colours can be adjusted by the user to apply uniformity of contrast. utkudyn-a11y's #618 pushes the other direction for a specific case, asking that captions carry at least 4.5:1 between caption text and its background as a core requirement rather than a supplemental adjustability one, because caption legibility directly affects partially sighted users."
+      }
+    ],
+    "agreed": [
+      "Some specific high-ratio combinations genuinely are hard to read — small white text on black is named by cawa-93, mraccess77 and bruce-usab alike. The dispute is over the remedy, not the symptom.",
+      "Users need a way to adapt foreground and background colours to their own needs; JAWS-test, mraccess77 and emanser869 all land here.",
+      "Screen brightness set too high is a real contributing cause. kepstin agrees with Myndex on this even while disagreeing about the threshold.",
+      "WCAG 2.x contrast math is the wrong instrument for a maximum; nobody defended using it that way."
+    ],
+    "open": [
+      "Whether a maximum contrast value should be normative at all, and for which modes. Myndex's dark-mode-only framing is the most developed answer and has drawn one substantive response.",
+      "Where the dark-mode maximum sits. kepstin's lived report of Lc -50 is roughly 40 Lc away from the Lc -90 under study, and nobody has reconciled the two.",
+      "How to raise readability for users on too-bright displays without cutting contrast below what users with correctly calibrated displays need — kepstin states this as an unsolved trade-off.",
+      "Whether peak-luminance choice for a given dark scheme is a user display responsibility or an author one, which Myndex flags as open and complicated by ambient light and device output range.",
+      "What \"high-contrast\" means in the provision's own tests, which reference a high-contrast light-on-dark theme and a high-contrast dark-on-light theme without defining the term. julierawe asked this in #501.",
+      "utkudyn-a11y's proposal to make a 4.5:1 caption-background ratio a core requirement."
+    ],
+    "note": "The discussion is almost entirely #171, and much of it is old — the substantive exchange runs 2021 to 2023 with a single 2025 reply from kepstin. #178, #501 and #618 are unanswered issue bodies; julierawe's definitional question in #501 is short, central to testing this provision, and has no response at all."
+  },
+  "captions-available-live": {
+    "headline": "Three unconnected asks sit under this provision — fix WCAG 2's odd audio-only/audio+video split, tier caption quality alongside sign language, and merge the live caption requirements — and only the sign language one drew any reply.",
+    "positions": [
+      {
+        "label": "The WCAG 2 level split is backwards",
+        "who": "patrickhlauke",
+        "detail": "Live audio+video requires captions at AA (SC 1.2.4) while live audio-only sits at AAA (SC 1.2.9), a split made when internet-radio-style audio streams were common and live video was technically onerous. Twitch, let's plays and live webinars have reversed that, and captioning either is equally hard. Taken to its conclusion, an author doing a live audio-only vlog is off the hook, but turning the camera on to show their face makes them fail. Raised in #189 in 2019 and carried forward with no reply on the substance."
+      },
+      {
+        "label": "Tier caption quality, and name sign language explicitly",
+        "who": "InfoGapBuster",
+        "detail": "Auto-generated subtitles may be inaccurate and fail to carry tone and nuance, so captions alone do not deliver equitable access for Deaf people whose first language is signed (#325). Proposes graduated conformance: auto-generated or basic captions at Bronze, accurate descriptive captions plus context-appropriate sign language at Silver, and culturally appropriate sign language with multilingual caption options at Gold. Wants minimum quality guidance covering accuracy, speaker identification, emotional tone and cultural context."
+      },
+      {
+        "label": "Levels are not settled, so level-based proposals are premature",
+        "who": "GreggVan",
+        "detail": "Notes that Gold is likely achievable without doing everything listed at that level, and that the working group has not finalised what Bronze, Silver or Gold mean. Nothing definitive can be said about which tier anything lands in yet. Unrebutted, and the tiering discussion continued regardless."
+      },
+      {
+        "label": "Merge the live caption requirements",
+        "who": "MakotoUeki",
+        "detail": "Reads \"Captions are available for all live audio content\" as already covering several separate requirements about captions for live video, and suggests they be merged (#461). Filed as a short review note in December 2025 with no responses."
+      }
+    ],
+    "agreed": [
+      "Auto-generated captions are not a substitute for accurate ones — nobody in #325 disputed the quality gap, only where it belongs in the conformance structure.",
+      "GreggVan's point that the conformance levels are unfinalised went unchallenged and constrains every level-specific proposal in #325."
+    ],
+    "open": [
+      "Whether WCAG 3 keeps WCAG 2's distinction between live audio-only and live audio+video content at all — patrickhlauke's #189 is still open and unanswered after seven years.",
+      "Whether caption quality (accuracy, speaker identification, tone) becomes normative or stays as guidance — InfoGapBuster's proposal 5 in #325.",
+      "Whether the live captions requirement absorbs the separate live-video caption requirements, as MakotoUeki proposes in #461.",
+      "md84419 argues in #325 that the discussion is really about text alternatives and belongs in a new section under Text and Wording rather than Image and Media Alternatives, which would move it out of this provision's scope entirely."
+    ],
+    "note": "Low volume and largely one-directional: #189 and #461 have no comments at all, and the only threaded exchange (#325) is a multi-provision sign language proposal that touches captions mainly as the thing sign language is being contrasted against."
+  },
+  "images-detectable": {
+    "headline": "Nobody can say what \"detectable\" means — the disagreement is whether it needs a normative definition or whether the requirement should be dropped as redundant.",
+    "positions": [
+      {
+        "label": "Drop it — it does not make sense",
+        "who": "WilcoFiers",
+        "detail": "Calls \"Non-decorative images are detectable\" painfully vague and asks the specific questions the text cannot answer: detectable to whom, what counts as detectable, whether sighted users need to know an image of text is an image, and whether the obligation is programmatic and if so over which part — role, accessible name, or both (#494). Observes that role and name already appear to be covered by other requirements, so if that is not what this means, nothing is left. Recommendation is to remove the requirement."
+      },
+      {
+        "label": "Keep it, but define it normatively",
+        "who": "JasonAment",
+        "detail": "Agrees the term is ambiguous but proposes a fix rather than deletion (#605): \"A detectable element is one that can be identified programmatically in code and is presented to users in a way they can perceive.\" Points out that the only place the concept is currently explained is the non-normative Test section, which is not a basis for consistent interpretation or enforcement."
+      },
+      {
+        "label": "The test conflates two modalities",
+        "who": "JasonAment, mraccess77",
+        "detail": "Folding code inspection and screen reader inspection into one test case invites incorrect interpretation; JasonAment proposes splitting them into parallel tests with alternate conditions — check the markup where a code inspector can reach the image, and use a screen reader only where the code cannot be checked (#606). mraccess77 adds that the accessibility API should be checked before jumping to a screen reader test."
+      },
+      {
+        "label": "The requirement collides with decorative images",
+        "who": "iadawn, scottaohara",
+        "detail": "Raised as a review comment on PR 350 and carried into #357: does this forbid CSS background images unless they are also marked up as images, and how does it square with the decorative-image requirement that such images be programmatically hidden? If an image is hidden it cannot be determinable as an image, which suggests the requirement is really about images that convey meaning. scottaohara later confirmed the draft preview updates to both requirements addressed this, and adampage closed the issue on 2026-04-01 after verifying the editor's draft."
+      },
+      {
+        "label": "Markup presence is not the test",
+        "who": "MakotoUeki, mraccess77",
+        "detail": "MakotoUeki asks whether \"non-decorative images\" can simply be defined as \"images that convey meaning\", and whether in HTML using an img element satisfies the requirement (#467). mraccess77 answers no: use of img does not by itself mean the image is anything other than purely decorative."
+      },
+      {
+        "label": "The whole image-alternatives goal is the wrong frame",
+        "who": "mbgower",
+        "detail": "Pushes to revisit his \"Meaningful images have a text alternative\" proposal against the current draft's goal that users have equivalent alternatives for images (#272). Cites WebAIM's finding that nearly a third of images on popular home pages have missing, questionable or repetitive alternative text, and argues there is no agreement on what an \"equivalent\" even is — ask ten experts and get ten answers. Wants a more scalable, consistent approach that works without technology changes and adapts as technology shifts, and points to slides 11-17 of an earlier working-group presentation on inter-rater reliability."
+      }
+    ],
+    "agreed": [
+      "\"Detectable\" as currently written is ambiguous — WilcoFiers and JasonAment reach that conclusion independently, and iadawn's confusion about how it could be foundational is the same complaint from a different angle.",
+      "Presence of an img element does not establish that an image is non-decorative — mraccess77's answer to MakotoUeki was unrebutted.",
+      "The detectable/decorative collision in #357 was resolved by the drafting changes in PR 414 and the issue is closed."
+    ],
+    "open": [
+      "Whether the requirement is defined or deleted — WilcoFiers wants it dropped, JasonAment wants a normative definition, and no one has replied to either.",
+      "Whether \"non-decorative images\" should be restated as \"images that convey meaning\", as MakotoUeki proposes in #467.",
+      "Whether the test is split into code-inspection and non-code-inspection branches, and whether an accessibility API check sits between code and screen reader as mraccess77 suggests (#606).",
+      "mbgower's request in #272 for the group to revisit his alternative proposal drew no response in the thread."
+    ],
+    "note": "Six threads but only six comments across all of them: most of these are single unanswered review filings rather than exchanges. #357 is the one thread that ran to a conclusion, and it closed as resolved by drafting rather than by argument."
+  },
+  "sign-language-available-prerecorded": {
+    "headline": "Not a debate so much as one proposal being sharpened: whether prepared sign language translation for prerecorded media should be a named requirement rather than an aspiration, and how far beyond video it should reach.",
+    "positions": [
+      {
+        "label": "Name it, require it, and it will build its own supply",
+        "who": "InfoGapBuster",
+        "detail": "Argues WCAG 2.0 put sign language at AAA and implementation collapsed as a result; writing as a Deaf person, InfoGapBuster reports that when sign language is not a required criterion organisations default to captions alone (#325). Wants \"provision of videos with sign language translation\" defined as a distinct Outcome, and draws a line the draft does not: interpretation is real-time signing for live contexts, translation is prepared in advance with attention to clarity and accuracy, and translation is what prerecorded content intended for repeated viewing by a wide audience should get. Answers the obvious objection about scarce qualified interpreters and translators by arguing that requiring it generates demand, expands the pool, and accumulates data that could train future AI translation."
+      },
+      {
+        "label": "Go further — signed alternatives for text, not just media",
+        "who": "md84419",
+        "detail": "Agrees with the whole proposal but wants Gold treated as a genuine aspirational benchmark, and calls for a supplemental requirement that sign language users have access to a sign language alternative for website text, not only for video. Grounds it in anti-discrimination law rather than practice: the UDHR, ICCPR, EU Charter and American Convention, plus the ADA's auxiliary-aids duty, the BSL Act 2022 and BSL (Scotland) Act 2015, Ireland's Irish Sign Language Act 2017, South Korea's Korean Sign Language Act 2016, New Zealand's NZSL Act 2006, and Filipino Sign Language mandates. Adds ISO 24495-1:2023, ISO/IEC 29184:2020, GDPR Article 12(1) and EU AI Act Articles 14 and 50 on information in an intelligible, preferred-language form."
+      },
+      {
+        "label": "Nothing can be pinned to a level yet",
+        "who": "GreggVan",
+        "detail": "The only note of caution in the thread. Gold is likely achievable without meeting everything listed at that level, and the working group has not finalised what any of Bronze, Silver or Gold mean, so nothing definitive can be said about placing sign language in one. Neither participant contested this, and both continued proposing level assignments."
+      }
+    ],
+    "agreed": [
+      "Captions and sign language are not interchangeable — for users whose first language is signed, written captions do not deliver full comprehension. Unrebutted throughout.",
+      "The interpretation/translation distinction is real and the current draft does not make it; prepared translation is the right fit for prerecorded content.",
+      "InfoGapBuster's revised framework after md84419's intervention: sign language alternatives for text are not required at Bronze, recommended at Silver, and expected for key information such as policy documents, educational materials and terms of service at Gold."
+    ],
+    "open": [
+      "Whether sign language for prerecorded media stays supplemental or becomes a required criterion — InfoGapBuster's central ask, which nobody has answered.",
+      "Whether the scope extends from multimedia to website text at all, as md84419 proposes.",
+      "Where this belongs in the document — md84419 notes in November 2025 that the issue is filed under Image and Media Alternatives but is really about text alternatives, and probably needs a new section under Text and Wording."
+    ],
+    "note": "A single thread (#325) with six comments, and effectively a conversation between two people who agree, with one procedural caution from GreggVan. There is no opposing camp on record here — the proposal has not been rejected, it has not been taken up either."
+  },
+  "sign-language-policy-live": {
+    "headline": "Whether live sign language interpretation belongs in WCAG 3 as an organisational assertion at all, or should be a supplemental requirement — asked once, answered by nobody, and closed.",
+    "positions": [
+      {
+        "label": "Wrong instrument for the job",
+        "who": "MakotoUeki",
+        "detail": "Questions whether \"We provide sign language interpretation for all live audio content\" should be a supplemental requirement rather than an assertion (#471). An assertion is a statement of organisational policy that a conformance claim carries, not something testable against the content; the implication is that live interpretation is a content outcome and should be stated as one. Filed in December 2025 with no body beyond the question, no comments, and closed in June 2026."
+      },
+      {
+        "label": "Interpretation is the live half of a two-part gap",
+        "who": "InfoGapBuster",
+        "detail": "In #325, distinguishes sign language interpretation — real-time signing used in live contexts — from translation prepared in advance, and argues the draft does not separate them. Places live interpretation at Silver where appropriate, and at Gold as high-quality interpretation with cultural and linguistic appropriateness alongside multilingual captions. Writing as a Deaf person, argues that anything short of a defined requirement leaves organisations relying on captions alone, and that requiring it is what builds the currently limited pool of qualified interpreters."
+      },
+      {
+        "label": "Rest it on language-discrimination law",
+        "who": "md84419",
+        "detail": "Supports the proposal and pushes past it, calling for a supplemental requirement that sign language users have a signed alternative for website text. Cites jurisdictions that already mandate live interpreting or translation in public services: the ADA's auxiliary aids and services duty for US public entities, the UK's BSL Act 2022, BSL (Scotland) Act 2015 and Equality Act 2010, Ireland's Irish Sign Language Act 2017, South Korea's Korean Sign Language Act 2016, New Zealand's NZSL Act 2006, and Filipino Sign Language mandates — framing signed access as a reasonable adjustment rather than an enhancement."
+      },
+      {
+        "label": "Level placement is premature",
+        "who": "GreggVan",
+        "detail": "Gold is probably achievable without meeting everything at that level, and none of Bronze, Silver or Gold has been finalised, so no definitive statement about placing sign language in a level is possible yet. Unrebutted; the thread continued assigning levels anyway."
+      }
+    ],
+    "agreed": [
+      "Live interpretation and prepared translation are distinct things the current draft does not distinguish — InfoGapBuster's framing drew no objection.",
+      "The conformance levels are not settled, which limits what any of these proposals can actually claim (GreggVan).",
+      "Captions alone do not give equitable access to Deaf users whose first language is signed."
+    ],
+    "open": [
+      "Whether this stays an assertion or becomes a supplemental requirement — MakotoUeki's #471 question never received a substantive answer on the record.",
+      "Whether live sign language interpretation becomes a required criterion rather than a policy statement, which is InfoGapBuster's underlying ask in #325.",
+      "md84419's observation that #325 is filed under Image and Media Alternatives but is really about text alternatives, and probably needs a new section under Text and Wording."
+    ],
+    "note": "#471 was closed in June 2026 with zero comments, so the assertion-versus-supplemental question that is most specific to this provision was resolved somewhere other than the issue thread. Everything else here comes from #325, a multi-provision proposal where live interpretation is one label among six."
+  },
+  "text-detectable": {
+    "headline": "Three loosely connected threads, none of them a live argument: a long-dormant 2019-2020 debate about whether SVG text counts as an image of text, plus two unanswered proposals about where detectable text belongs and how far it goes.",
+    "positions": [
+      {
+        "label": "SVG text fails the intent, if not the letter",
+        "who": "patrickhlauke, alastc",
+        "detail": "patrickhlauke opened #190 arguing that although SVG contains real text elements and so passes the normative definition of images of text, no user agent lets a user change the font, size or colour of that text, which is the whole point of the criterion. alastc agrees the intent is not met and proposes a split: if the text's size, position and colour must be relative to its surroundings, as in a graph or infographic, it meets the \"particular visual effect\" carve-out; otherwise it fails. He puts the colour half at user agents and treats the font and spacing half as inherent to SVG's purpose."
+      },
+      {
+        "label": "SVG can be made to comply if authored carefully",
+        "who": "JAWS-test",
+        "detail": "Walks the criterion property by property and finds browser zoom, font size, font family, letter spacing and word spacing all work in SVG, with line-height and paragraph spacing the only genuine gaps. Argues those were not required until WCAG 2.1's 1.4.12, which only forbids preventing adaptation rather than requiring the author to offer it, so SVG text should not be held to a higher bar. Later narrows this after testing goodwitch's examples: he would only pass an SVG that inherits the document's colours, because adjusting fill values per graphic demands CSS expertise and time most users do not have."
+      },
+      {
+        "label": "A sad low pass, and the group should rule",
+        "who": "goodwitch",
+        "detail": "Built three CodePen examples and concluded that SVG with text passes, SVG with path-drawn text fails, and an svg file loaded via img fails. Pushes back on JAWS-test that High Contrast Mode is not named in the normative text and the criterion nowhere says customisation must be easy, so on a strict normative reading this has to pass. Asks AGWG to make a ruling so the industry is consistent, and suggests the real fix belongs in a WCAG 2.x release or Silver."
+      },
+      {
+        "label": "Move detectable text under text-to-speech",
+        "who": "shawnthompson",
+        "detail": "Reports in #202 that the text-to-speech subgroup could find nothing specific to text-to-speech devices that a screen reader would not also cover, and proposes moving Detectable text out of Clear meaning into the Text-to-speech section to replace the Text-to-speech supported requirement. Also asks whether \"text-to-speech\" names the technology or the capability, suggesting a rename such as \"Text as speech\" if the latter, and where user-agent and TTS developer guidance would live in WCAG 3. No one has replied."
+      },
+      {
+        "label": "Programmatic determinability is not enough",
+        "who": "sydneycolemanfromgoogle",
+        "detail": "In #537, calls the provision a step in the right direction that stops short: text that is programmatically determinable but cannot be selected breaks select-to-speak. Also flags possible redundancy with the copying-supported part of \"Avoid exclusionary cognitive tasks\" and suggests the two may be better combined or regrouped. Unanswered."
+      }
+    ],
+    "agreed": [
+      "Line-height and paragraph spacing are the properties SVG genuinely cannot expose to CSS adjustment; JAWS-test's inventory of the rest was not contested.",
+      "Text drawn as SVG paths rather than text elements fails, which nobody disputed."
+    ],
+    "open": [
+      "Whether SVG text passes on a strict normative reading or fails on intent. goodwitch asked AGWG for a ruling in 2020 and none is recorded in the thread.",
+      "Whether High Contrast Mode counts as a form of setting colour and background — JAWS-test raised it and expected most of the group to say no.",
+      "shawnthompson's proposal in #202 to relocate Detectable text under Text-to-speech, and the naming question behind it.",
+      "sydneycolemanfromgoogle's point in #537 that selectability, not just programmatic determinability, is what select-to-speak needs."
+    ],
+    "note": "Issue #190 is a WCAG 2.x-era discussion from 2019-2020 that has drawn no comment since, now carried forward under this provision's label. The two WCAG 3-era issues, #202 and #537, are both single unanswered comments."
+  },
+  "disabled-controls-explained": {
+    "headline": "Light discussion across two issues: a 2019-2020 exchange over whether disabled controls need a mandated icon or just adequate contrast, and a separate COGA request that explanations be persistent rather than transient.",
+    "positions": [
+      {
+        "label": "Require a disabled icon or 3:1 contrast",
+        "who": "DavidMacDonald, bkimmel",
+        "detail": "DavidMacDonald opened #197 noting that disabled interface elements work badly for people with low vision precisely because WCAG 2 exempts them from 1.4.3, and proposed requiring either 3:1 contrast or an icon marking the element as disabled. bkimmel seconds the problem, particularly where disabled states are used to signal future potential — fill these in and you can submit — calling the exemption a large safe harbour that cuts against the Perceivable goal. bkimmel is explicitly unsure an icon is the right remedy."
+      },
+      {
+        "label": "Contrast yes, mandated icons no",
+        "who": "patrickhlauke",
+        "detail": "Would rather see some minimum contrast applied to solve readability than have WCAG start demanding icons everywhere, which impinges on visual design decisions. Suggests a more general intent of \"indicating that something is disabled\" as the flexible form. Also notes a likely crossover with how user agents themselves indicate disabled state."
+      },
+      {
+        "label": "The definitions do not cover disabled elements",
+        "who": "adampage",
+        "detail": "Points out that \"Interactive elements distinguishable\" is adjacent to this problem, but the definition of interactive element — responds to user input and has a distinct programmatically determinable name — excludes disabled elements, which instead fall under non-interactive element. Since disabled elements are not mentioned in the examples or notes around that definition, he questions what the group actually intends, and floats broadening the term or adding a new one for elements that exist to be interactive but may conditionally be disabled or read-only. Flags this provision as also applicable and links w3c/wcag#5053."
+      },
+      {
+        "label": "Explanations must persist long enough to read",
+        "who": "julierawe",
+        "detail": "Filing for the COGA Task Force in #783, notes the provision requires that information explaining why a control is disabled be available but says nothing about timing or persistence. A snackbar that vanishes after three seconds fails a user with slower processing speed. Recommends requiring explanations be persistent and visually co-located, and asks that this be checked for compatibility with \"Notifications adjustable\" in the User Control section. Cites MCU 3.1.2, 3.2.1, 3.7.5 and A.4."
+      }
+    ],
+    "agreed": [
+      "Disabled controls being exempt from contrast requirements is a real low-vision problem worth addressing — nobody in #197 disputed the premise, only the remedy.",
+      "alastc took #197 off the WCAG 2.2 slate in 2020 as needing more work, consideration and research, and it has stayed there."
+    ],
+    "open": [
+      "Whether the fix is contrast, an icon, or a technology-neutral requirement to indicate disabled state — patrickhlauke's objection to mandating icons has gone unanswered since 2020.",
+      "Whether the definitions of interactive and non-interactive element should be revised to account for disabled and read-only states, raised by adampage.",
+      "julierawe's persistence and co-location requirement, filed in August 2026 with no replies."
+    ],
+    "note": "#197 predates WCAG 3 and sat untouched from 2020 until adampage revived it in May 2026. #783 has drawn no response at all."
+  },
+  "interactive-elements-distinguishable": {
+    "headline": "No discussion of this provision on its own terms — the single labelled thread is a 2019 issue about disabled controls, which reaches this provision only through adampage's closing comment that the definition of interactive element excludes disabled elements.",
+    "positions": [
+      {
+        "label": "The definition of interactive element leaves disabled controls out",
+        "who": "adampage",
+        "detail": "The provision requires interactive elements to be visually distinguishable from static content without interaction and to include visual cues on how to use them, but the defined term covers only elements that respond to user input and have a distinct programmatically determinable name. Disabled elements therefore fall outside it and instead match non-interactive element, an element that does not respond to user input and does not include sub-parts. Because disabled elements are not named in the example or notes around that definition, adampage asks what the group intends and suggests broadening the term, or adding a new one, for elements that exist to be interactive but may conditionally be disabled or read-only. Links w3c/wcag#5053 as related."
+      },
+      {
+        "label": "Underlying ask in #197: mark disabled controls perceivably",
+        "who": "DavidMacDonald, bkimmel, patrickhlauke",
+        "detail": "DavidMacDonald opened #197 in 2019 proposing that disabled UI elements meet 3:1 contrast or carry a disabled icon, since WCAG 2 exempts them from 1.4.3 and that hurts low-vision users. bkimmel seconded the problem — disabled states used to advertise future interaction create a large safe harbour — while doubting an icon is the answer. patrickhlauke preferred a minimum contrast plus a general intent of indicating disabled state, arguing WCAG cannot start demanding icons everywhere, and noted a possible crossover with user agents' own disabled styling."
+      }
+    ],
+    "agreed": [
+      "Nothing about this provision's own wording has been settled here; the only substantive claim on record, adampage's reading of the two definitions, is unrebutted."
+    ],
+    "open": [
+      "Whether the definition of interactive element should be broadened, or a new term introduced, to cover conditionally disabled and read-only controls — adampage's question, unanswered since May 2026.",
+      "alastc took #197 off the WCAG 2.2 slate in 2020 as needing more research, and it has not been picked back up in substance."
+    ],
+    "note": "This provision is exploratory and shares its only thread with \"Disabled controls explained\" and \"Interactive element contrast sufficient\"; it has attracted no issue of its own."
+  },
+  "page-view-audio-adjustable": {
+    "headline": "A short 2020 exchange about why WCAG 2 allows autoplaying audio 3 seconds but auto-updating content 5, ending with agreement not to touch it in the 2.x series and an unpursued suggestion that WCAG 3 regroup audio with motion.",
+    "positions": [
+      {
+        "label": "Harmonise the limits and regroup the requirement",
+        "who": "Wildebrew",
+        "detail": "Opened #181 arguing the 3-versus-5-second split is hard to measure and has no rationale: a screen reader user is not less patient than a sighted one, and the two-second gap just adds complexity for testers. Also questions why autoplaying audio sits under Perceivable while auto-updating content sits under Operable, when unstoppable loud audio blocks operation exactly as animation does. Proposes raising 1.4.2 from 3 seconds to 5 for backwards compatibility, and treating WCAG 3 as the opportunity to group all page-level sound and animation together."
+      },
+      {
+        "label": "Not worth a backwards-incompatible change",
+        "who": "alastc, bruce-usab",
+        "detail": "alastc notes the limits were set around 14 years earlier and no explanation is to hand, and that changing them would likely be backwards-incompatible — content passing WCAG 2.2 might not pass 2.0 or 2.1 — so he asks what the benefit would be. bruce-usab offers the historical guess that annoying sounds used to start immediately while animation and video took a few seconds to load, and five seconds of unwanted music was plainly too much. He does not claim the distinction is coherent, but would rather not make this change in the 2.x series."
+      }
+    ],
+    "agreed": [
+      "The 3-versus-5-second difference has no principled justification anyone in the thread could produce.",
+      "Whatever the merits, it should not be changed within WCAG 2.x — bruce-usab's position, and consistent with alastc's backwards-compatibility concern."
+    ],
+    "open": [
+      "Wildebrew's actual proposal — that WCAG 3 group autoplaying audio with page-level animation and auto-updating content rather than keeping them apart — was never answered and the thread stopped in April 2020."
+    ],
+    "note": "Three comments total, all from 2020, in a thread carrying both this provision's label and \"No visual motion\". Wildebrew's second comment is a mail reply with the quoted email trailer left in."
+  },
+  "no-nested-clauses": {
+    "headline": "Five mostly single-comment issues circling one question — whether a rule about clause nesting is feasible, useful and valid outside English — with only chaals and murata2makoto offering substantive argument and neither answered.",
+    "positions": [
+      {
+        "label": "Too hard for authors without writing resources",
+        "who": "sydneycolemanfromgoogle, julierawe",
+        "detail": "julierawe opened #552 carrying a January 2026 survey comment from sydneycolemanfromgoogle that the requirement will be incredibly challenging for parties without dedicated writing support and does not seem to add significantly to understanding. julierawe's answer is procedural and tooling-based: the requirement was moved from core to supplemental after the survey closed, which may resolve part of the concern, and free AI tools already flag complex sentence structures, so WCAG 3 could encourage them to call out nested clauses specifically."
+      },
+      {
+        "label": "Not too hard, but too simplistic",
+        "who": "chaals",
+        "detail": "Concedes the requirement takes real work and is very hard without someone who works on language, but notes few sites have nobody working on content, so difficulty is not the objection. Accepts that removing nested clauses generally does improve understanding, much more so for deep nesting. His actual complaint is that the requirement is too simple to be very useful: it does not differentiate by depth, clear writing is hard to test because people disagree on what is clear, and rules differ between languages so a test built for one is often useless in another."
+      },
+      {
+        "label": "The premise is English-specific",
+        "who": "murata2makoto",
+        "detail": "Argues in #569 that clause nesting is not inherently a readability problem. The English centre-embedded example about the rat, the cat and the dog is genuinely hard to process, but the equivalent Japanese structure is unremarkable for native speakers, and the same holds for Korean and other head-final languages. Concludes that the real source of difficulty varies by language — word order ambiguity, unclear referents — and that treating nested clauses as a general problem overgeneralises from English."
+      },
+      {
+        "label": "Editorial fixes to the examples",
+        "who": "sydneycolemanfromgoogle, hidde",
+        "detail": "In #529 sydneycolemanfromgoogle asked whether \"aced\" should be replaced in a pass example as an idiom that may be hard to translate; hidde changed it to \"did well on\" in commit b1351ad and closed the issue on merge. In the still-open #530 sydneycolemanfromgoogle notes the listed nesting conjunctions may read as exhaustive when words like \"that\" also qualify, and supplies a rewritten test procedure making the list open-ended."
+      }
+    ],
+    "agreed": [
+      "\"Aced\" was an inappropriate example word and has been replaced in the draft — the only thing actually resolved across these five issues.",
+      "Removing nested clauses generally does aid comprehension in English, which chaals grants even while objecting to the requirement's form."
+    ],
+    "open": [
+      "Whether moving the requirement from core to supplemental addresses sydneycolemanfromgoogle's feasibility objection — julierawe proposed reaching out to ask and no outcome is recorded.",
+      "Whether it should move further, from supplemental to best practice, raised at the February 3rd AG meeting and tracked in #560 with no comments since.",
+      "Whether the requirement should account for nesting depth rather than treating any nesting alike (chaals).",
+      "Whether the requirement is valid for head-final languages at all (murata2makoto), unanswered since February 2026.",
+      "sydneycolemanfromgoogle's proposed non-exhaustive rewording of the conjunction list in #530."
+    ],
+    "note": "#560 summarises an AG meeting rather than hosting discussion: it records unnamed members raising feasibility concerns with specialized content, and another member citing complex sentence structures as a significant cognitive barrier in their own experience. Four of the five issues have zero or one comment."
+  }
+}
