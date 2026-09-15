@@ -1,0 +1,723 @@
+---
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import fs from "fs";
+import path from "path";
+
+interface Position {
+  label: string;
+  who: string;
+  detail: string;
+}
+
+interface Summary {
+  headline: string;
+  positions: Position[];
+  agreed?: string[];
+  open?: string[];
+  note?: string;
+}
+
+interface Thread {
+  number: number;
+  title: string;
+  state: string;
+  url: string;
+  created?: string;
+  updated?: string;
+  commentCount?: number;
+}
+
+interface Provision {
+  slug: string;
+  title: string;
+  group: string;
+  guideline: string;
+  status: string;
+  type: string;
+  threadCount: number;
+  noRecordedDiscussion: boolean;
+  commentCount: number;
+  openCount: number;
+  fingerprint?: string;
+  threads: Thread[];
+  summary?: Summary;
+  summaryOf?: string;
+  summarySource?: string;
+}
+
+const dataPath = path.join(process.cwd(), "public", "data", "wcag3-discussions.json");
+let generatedAt = "";
+let totals: Record<string, number> = {};
+let provisions: Provision[] = [];
+
+if (fs.existsSync(dataPath)) {
+  const raw = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+  generatedAt = raw.generatedAt || "";
+  totals = raw.totals || {};
+  provisions = Object.values(raw.provisions || {});
+}
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
+
+const summarized = provisions
+  .filter((p) => p.summary)
+  .sort((a, b) => b.commentCount - a.commentCount);
+
+const isStale = (p: Provision) =>
+  !!p.summary && !!p.summaryOf && !!p.fingerprint && p.summaryOf !== p.fingerprint;
+
+const staleCount = summarized.filter(isStale).length;
+
+// Recorded discussion, no comments yet — the issue exists but nobody has
+// replied, so there's nothing to summarize. Listed compactly, not as cards.
+const recordedNoComments = provisions
+  .filter((p) => p.threadCount > 0 && !p.summary)
+  .sort((a, b) => b.threadCount - a.threadCount);
+
+const noDiscussionCount = provisions.filter((p) => p.noRecordedDiscussion).length;
+
+const formattedDate = generatedAt
+  ? new Date(generatedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
+  : "unknown";
+---
+
+<PlainEnglishLayout title="W3C Working Group Discussions" activeTab="discussions">
+  <section class="dashboard-banner">
+    <div class="banner-content">
+      <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle" aria-hidden="true">💬</span>
+          <span>Live from GitHub</span>
+        </div>
+        <h2>W3C Working Group Discussions</h2>
+        <p>
+          Every W3C GitHub issue on the WCAG 3 draft, grouped by the provision it's labelled
+          against, with the busiest threads distilled into a headline, the actual camps, and
+          what's still unresolved. Generated {formattedDate} from {totals.issuesTotal ?? 0} issues.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">{summarized.length}</span>
+          <span class="stat-label">Summarized Debates</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{totals.provisionsWithDiscussion ?? 0}</span>
+          <span class="stat-label">Provisions With Discussion</span>
+        </div>
+        <div class="stat-card stat-zero">
+          <span class="stat-value highlight-shift">{noDiscussionCount}</span>
+          <span class="stat-label">Provisions With No Recorded Discussion</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro-alert" aria-label="How to read this page">
+    <div class="alert-icon" aria-hidden="true">💡</div>
+    <div class="alert-body">
+      <h4>A high comment count doesn't always mean the provision itself was debated</h4>
+      <p>
+        Several of the busiest threads below turn out to be inherited WCAG 2.x arguments, or
+        disputes over a neighboring provision that happens to share a label. Each headline
+        describes what the discussion is <em>actually</em> about — read it before assuming volume
+        equals controversy on the stated topic.
+      </p>
+    </div>
+  </section>
+
+  {staleCount > 0 && (
+    <section class="intro-alert alert-warn" aria-label="Stale summaries">
+      <div class="alert-icon" aria-hidden="true">⚠️</div>
+      <div class="alert-body">
+        <h4>{staleCount} {staleCount === 1 ? "summary is" : "summaries are"} stale</h4>
+        <p>The thread has moved on since the summary below was written — new comments landed after the summary's fingerprint was taken. Flagged on the card.</p>
+      </div>
+    </section>
+  )}
+
+  <!-- Summarized Debates -->
+  <section class="debates-section">
+    <div class="debates-header">
+      <h3>🔥 Summarized Debates</h3>
+      <p>Sorted by comment volume. Every named participant and cited issue number is drawn directly from the GitHub thread — nothing here is inferred.</p>
+    </div>
+
+    <div class="debates-grid">
+      {summarized.map((p) => {
+        const s = p.summary as Summary;
+        const stale = isStale(p);
+        return (
+          <article class="debate-item-card" id={p.slug}>
+            <div class="dcard-top">
+              <span class="debate-category">{p.group.replace(/-/g, " ")}</span>
+              <span class={`status-tag status-${p.status}`}>{p.status}</span>
+              <span class="type-tag">{p.type}</span>
+              {stale && <span class="stale-tag">⚠️ Stale — thread moved on</span>}
+              <span class="comment-count">{p.commentCount} comments · {p.threadCount} thread{p.threadCount === 1 ? "" : "s"}</span>
+            </div>
+
+            <h4 class="debate-topic-title">
+              <a href={link(`/plain-english/provision/${p.slug}/`)}>{p.title}</a>
+            </h4>
+
+            <div class="debate-box">
+              <strong>The Debate</strong>
+              <p>{s.headline}</p>
+            </div>
+
+            {s.positions && s.positions.length > 0 && (
+              <div class="positions-block">
+                <strong>Positions</strong>
+                <div class="positions-grid">
+                  {s.positions.map((pos) => (
+                    <div class="position-card">
+                      <div class="position-label">{pos.label}</div>
+                      <div class="position-who">{pos.who}</div>
+                      <p class="position-detail">{pos.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div class="agreed-open-grid">
+              {s.agreed && s.agreed.length > 0 && (
+                <div class="agreed-box">
+                  <strong>✅ Agreed</strong>
+                  <ul>
+                    {s.agreed.map((a) => <li>{a}</li>)}
+                  </ul>
+                </div>
+              )}
+              {s.open && s.open.length > 0 && (
+                <div class="open-box">
+                  <strong>❓ Still Open</strong>
+                  <ul>
+                    {s.open.map((o) => <li>{o}</li>)}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {s.note && (
+              <div class="note-box">
+                <strong>Note</strong>
+                <p>{s.note}</p>
+              </div>
+            )}
+
+            <div class="thread-links">
+              {p.threads.map((t) => (
+                <a href={t.url} target="_blank" rel="noopener noreferrer" class="thread-link-item">
+                  <span class="d-icon" aria-hidden="true">💬</span>
+                  <span>#{t.number} {t.title}</span>
+                  <span class="ext-sm" aria-hidden="true">&nearr;</span>
+                </a>
+              ))}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Recorded but not yet summarized -->
+  {recordedNoComments.length > 0 && (
+    <section class="awaiting-section">
+      <div class="debates-header">
+        <h3>🕐 Recorded, Awaiting Discussion</h3>
+        <p>
+          These {recordedNoComments.length} provisions have an open GitHub issue, but nobody has
+          replied yet — there's no debate here to summarize, just a filed thread worth watching.
+        </p>
+      </div>
+      <div class="awaiting-grid">
+        {recordedNoComments.map((p) => (
+          <a href={link(`/plain-english/provision/${p.slug}/`)} class="awaiting-card">
+            <span class="awaiting-title">{p.title}</span>
+            <span class="awaiting-meta">{p.threadCount} thread{p.threadCount === 1 ? "" : "s"} · 0 comments</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</PlainEnglishLayout>
+
+<style>
+  .dashboard-banner {
+    background: linear-gradient(135deg, rgba(19, 29, 49, 0.95) 0%, rgba(11, 17, 32, 0.98) 100%);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56, 189, 248, 0.18);
+    color: #bae6fd;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+
+  .banner-title-group h2 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
+  }
+
+  .banner-title-group p {
+    color: var(--text-secondary);
+    max-width: 680px;
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .stats-grid {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    background: rgba(7, 11, 20, 0.8);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    text-align: center;
+    min-width: 120px;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    margin-bottom: 2px;
+    color: var(--text-pure);
+  }
+  .highlight-shift { color: #c084fc; }
+
+  .stat-label {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .intro-alert {
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .intro-alert.alert-warn {
+    background: rgba(251, 191, 36, 0.1);
+    border-color: rgba(251, 191, 36, 0.4);
+  }
+
+  .alert-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  .alert-body h4 {
+    color: #bae6fd;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .alert-warn .alert-body h4 { color: #fde68a; }
+  .alert-body p {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .debates-section { margin-top: 40px; }
+  .debates-header h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent-blue);
+    margin-bottom: 6px;
+  }
+  .debates-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 24px;
+    max-width: 780px;
+  }
+
+  .debates-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .debate-item-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: var(--transition-normal);
+    scroll-margin-top: 24px;
+  }
+  .debate-item-card:hover {
+    border-color: var(--accent-blue);
+  }
+
+  .dcard-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .debate-category {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.12);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    text-transform: capitalize;
+  }
+  .status-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: rgba(148, 163, 184, 0.18);
+    color: var(--text-secondary);
+    text-transform: capitalize;
+  }
+  .type-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: rgba(192, 132, 252, 0.15);
+    color: #e9d5ff;
+    text-transform: capitalize;
+  }
+  .stale-tag {
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: rgba(251, 191, 36, 0.2);
+    color: #fde68a;
+    border: 1px solid rgba(251, 191, 36, 0.5);
+  }
+  .comment-count {
+    margin-left: auto;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .debate-topic-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  .debate-topic-title a {
+    color: var(--text-pure);
+    text-decoration: none;
+  }
+  .debate-topic-title a:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+  }
+
+  .debate-box strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .debate-box p {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .positions-block > strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .positions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .position-card {
+    background: rgba(7, 11, 20, 0.75);
+    border-left: 3px solid var(--accent-blue);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 14px 16px;
+  }
+  .position-label {
+    font-weight: 700;
+    color: var(--accent-blue);
+    font-size: 0.88rem;
+    margin-bottom: 3px;
+  }
+  .position-who {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    word-break: break-word;
+  }
+  .position-detail {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .agreed-open-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .agreed-box, .open-box {
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+  }
+  .agreed-box {
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+  }
+  .open-box {
+    background: rgba(251, 113, 133, 0.08);
+    border: 1px solid rgba(251, 113, 133, 0.3);
+  }
+  .agreed-box strong { color: #34d399; }
+  .open-box strong { color: #fb7185; }
+  .agreed-box strong, .open-box strong {
+    display: block;
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+  }
+  .agreed-box ul, .open-box ul {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .agreed-box li, .open-box li {
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .note-box {
+    background: rgba(148, 163, 184, 0.08);
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+  }
+  .note-box strong {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .note-box p {
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .thread-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px dashed var(--border-subtle);
+    padding-top: 12px;
+  }
+  .thread-link-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 600;
+  }
+  .thread-link-item span:nth-child(2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .thread-link-item:hover { text-decoration: underline; }
+  .d-icon { font-size: 0.82rem; flex-shrink: 0; }
+  .ext-sm { font-size: 0.78rem; color: var(--text-muted); flex-shrink: 0; }
+
+  .awaiting-section {
+    margin-top: 48px;
+    border-top: 2px dashed var(--border-default);
+    padding-top: 36px;
+  }
+  .awaiting-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .awaiting-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  .awaiting-card:hover {
+    border-color: var(--accent-blue);
+    background: var(--surface-card-hover);
+  }
+  .awaiting-title {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .awaiting-meta {
+    color: var(--text-muted);
+    font-size: 0.76rem;
+  }
+
+  /* ==========================================================================
+     Light Theme Overrides
+     ========================================================================== */
+  :global(html[data-theme="light"]) .dashboard-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  }
+  :global(html[data-theme="light"]) .banner-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #7dd3fc;
+  }
+  :global(html[data-theme="light"]) .stat-card {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .intro-alert {
+    background: #f0f9ff;
+    border-color: #7dd3fc;
+  }
+  :global(html[data-theme="light"]) .alert-body h4 {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .intro-alert.alert-warn {
+    background: #fffbeb;
+    border-color: #fcd34d;
+  }
+  :global(html[data-theme="light"]) .alert-warn .alert-body h4 {
+    color: #92400e;
+  }
+  :global(html[data-theme="light"]) .debates-header h3 {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .debate-item-card,
+  :global(html[data-theme="light"]) .awaiting-card {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .debate-category {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .status-tag {
+    background: #f1f5f9;
+    color: #334155;
+  }
+  :global(html[data-theme="light"]) .type-tag {
+    background: #f3e8ff;
+    color: #6b21a8;
+  }
+  :global(html[data-theme="light"]) .stale-tag {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fcd34d;
+  }
+  :global(html[data-theme="light"]) .debate-topic-title a {
+    color: #0f172a;
+  }
+  :global(html[data-theme="light"]) .debate-topic-title a:hover {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .position-card {
+    background: #f8fafc;
+    border-left-color: #0284c7;
+  }
+  :global(html[data-theme="light"]) .position-label {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .agreed-box {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+  :global(html[data-theme="light"]) .agreed-box strong {
+    color: #047857;
+  }
+  :global(html[data-theme="light"]) .open-box {
+    background: #fff1f2;
+    border-color: #fecdd3;
+  }
+  :global(html[data-theme="light"]) .open-box strong {
+    color: #be123c;
+  }
+  :global(html[data-theme="light"]) .note-box {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .thread-link-item {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .awaiting-title {
+    color: #0f172a;
+  }
+</style>
