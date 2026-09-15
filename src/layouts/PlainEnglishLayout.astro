@@ -1,7 +1,7 @@
 ---
 interface Props {
   title: string;
-  activeTab?: "home" | "wcag3" | "wcag22" | "conformance" | "removals" | "w3c";
+  activeTab?: "home" | "wcag3" | "wcag22" | "conformance" | "removals" | "discussions" | "w3c";
 }
 
 const { title, activeTab = "wcag3" } = Astro.props;
@@ -766,6 +766,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <span class="tab-text">Removals & Shifts</span>
               <span class="status-pill status-removed">2.2 vs 3</span>
             </a>
+            <a href={link("/plain-english/discussions/")} class={`nav-tab ${activeTab === "discussions" ? "active" : ""}`}>
+              <span class="tab-icon" aria-hidden="true">💬</span>
+              <span class="tab-text">Discussions</span>
+              <span class="status-pill status-draft">Live</span>
+            </a>
             <a href={link("/guidelines/")} class={`nav-tab ${activeTab === "w3c" ? "active" : ""}`} title="View Raw W3C Specification View">
               <span class="tab-icon" aria-hidden="true">📜</span>
               <span class="tab-text">W3C Normative</span>
@@ -823,6 +828,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <li><a href={link("/plain-english/wcag22/")}>📘 WCAG 2.2 Reference (87 Criteria)</a></li>
               <li><a href={link("/plain-english/conformance/")}>⚖️ Conformance: What Changed &amp; Readiness</a></li>
               <li><a href={link("/plain-english/removals/")}>🔄 WCAG 2.2 vs 3 Architectural Shifts</a></li>
+              <li><a href={link("/plain-english/discussions/")}>💬 W3C Working Group Discussions</a></li>
               <li><a href={link("/guidelines/")}>📜 W3C Normative Guidelines</a></li>
               <li><a href={link("/informative/")}>📚 W3C Informative Documentation</a></li>
             </ul>

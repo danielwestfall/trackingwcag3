@@ -9,11 +9,15 @@ if (fs.existsSync(removalsPath)) {
   removalsList = JSON.parse(fs.readFileSync(removalsPath, "utf8"));
 }
 
-const debatesPath = path.join(process.cwd(), "public", "data", "wcag3-debates.json");
-let debatesList: any[] = [];
-if (fs.existsSync(debatesPath)) {
-  debatesList = JSON.parse(fs.readFileSync(debatesPath, "utf8"));
+const discussionsPath = path.join(process.cwd(), "public", "data", "wcag3-discussions.json");
+let discussionsSummarizedCount = 0;
+if (fs.existsSync(discussionsPath)) {
+  const d = JSON.parse(fs.readFileSync(discussionsPath, "utf8"));
+  discussionsSummarizedCount = Object.values(d.provisions || {}).filter((p: any) => p.summary).length;
 }
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
 ---
 
 <PlainEnglishLayout title="WCAG 2.2 vs 3 Removals & Architectural Shifts" activeTab="removals">
@@ -133,56 +137,24 @@ if (fs.existsSync(debatesPath)) {
     </div>
   </section>
 
-  <!-- Top 10 Hottest WCAG 3 Working Group Debates & Most Likely Outcomes -->
-  {debatesList && debatesList.length > 0 && (
-    <section class="hottest-debates-section">
-      <div class="debates-header">
-        <h3>🔥 Top 10 Hottest WCAG 3 Working Group Debates & Most Likely Outcomes</h3>
-        <p>Tracking the biggest controversies, working group debates, and active consensus trajectories across the W3C AGWG and Silver Task Force.</p>
-      </div>
-
-      <div class="debates-grid">
-        {debatesList.map((dItem: any, index: number) => (
-          <article class="debate-item-card">
-            <div class="dcard-top">
-              <span class="debate-number">#{index + 1}</span>
-              <span class="debate-category">{dItem.category}</span>
-              <span class="w3c-status-tag">{dItem.w3cStatus}</span>
-            </div>
-
-            <h4 class="debate-topic-title">{dItem.topic}</h4>
-
-            <div class="debate-box">
-              <strong>The Debate:</strong>
-              <p>{dItem.debateSummary}</p>
-            </div>
-
-            <div class="heated-box">
-              <strong>Why It Is Heated:</strong>
-              <p>{dItem.whyItIsHeated}</p>
-            </div>
-
-            <div class="outcome-box">
-              <strong>🎯 Most Likely Outcome as of Now:</strong>
-              <p>{dItem.mostLikelyOutcome}</p>
-            </div>
-
-            {dItem.links && dItem.links.length > 0 && (
-              <div class="dcard-links">
-                {dItem.links.map((l: any) => (
-                  <a href={l.url} target="_blank" rel="noopener noreferrer" class="dcard-link-item">
-                    <span class="d-icon">🔗</span>
-                    <span>{l.title}</span>
-                    <span class="ext-sm">&nearr;</span>
-                  </a>
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
-      </div>
-    </section>
-  )}
+  <!-- Pointer to the live discussions rollup, which replaced the hand-maintained
+       Top 10 Debates list — that list went stale the moment the draft moved and
+       had no link back to the actual GitHub threads it was describing. -->
+  <section class="discussions-teaser">
+    <div class="teaser-icon" aria-hidden="true">💬</div>
+    <div class="teaser-body">
+      <h3>Looking for the hottest debates?</h3>
+      <p>
+        That list now lives on the <a href={link("/plain-english/discussions/")}>Discussions</a> page,
+        generated directly from W3C GitHub issue threads instead of hand-maintained — currently
+        {" "}{discussionsSummarizedCount} provisions summarized, with positions, agreements, and
+        open questions attributed to named participants.
+      </p>
+      <a href={link("/plain-english/discussions/")} class="teaser-cta">
+        View W3C Working Group Discussions &rarr;
+      </a>
+    </div>
+  </section>
 </PlainEnglishLayout>
 
 <style>
@@ -532,7 +504,61 @@ if (fs.existsSync(debatesPath)) {
   .ext-icon { color: var(--accent-blue); font-weight: 700; }
 
   /* ==========================================================================
-     Hottest Debates Section Styling
+     Discussions Teaser
+     ========================================================================== */
+  .discussions-teaser {
+    margin-top: 48px;
+    border-top: 2px dashed var(--border-default);
+    padding-top: 36px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+  }
+  .teaser-icon { font-size: 2rem; flex-shrink: 0; }
+  .teaser-body h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-pure);
+    margin-bottom: 8px;
+  }
+  .teaser-body p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    max-width: 680px;
+  }
+  .teaser-body p a { color: var(--accent-blue); }
+  .teaser-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-blue);
+    color: #04121f;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  .teaser-cta:hover { opacity: 0.88; }
+
+  :global(html[data-theme="light"]) .discussions-teaser {
+    background: #f0f9ff;
+    border-color: #7dd3fc;
+  }
+  :global(html[data-theme="light"]) .teaser-body h3 {
+    color: #0f172a;
+  }
+
+  /* ==========================================================================
+     Hottest Debates Section Styling (unused now the teaser above replaces it;
+     kept in case wcag3-debates.json is ever re-surfaced elsewhere)
      ========================================================================== */
   .hottest-debates-section {
     margin-top: 48px;
