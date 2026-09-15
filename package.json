@@ -13,7 +13,8 @@
     "publish-w3c": "WCAG_PUBLISH=1 astro build --force",
     "start": "astro dev",
     "sync": "astro sync --force",
-    "sync:plain-english": "node scripts/sync-wcag-plain-english.mjs"
+    "sync:plain-english": "node scripts/sync-wcag-plain-english.mjs",
+    "track:upstream": "node scripts/track-upstream.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^6.3.11",

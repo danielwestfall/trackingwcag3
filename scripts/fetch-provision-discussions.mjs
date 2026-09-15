@@ -77,16 +77,39 @@ async function api(url) {
   for (let attempt = 0; attempt < 3; attempt++) {
     const r = await fetch(url, { headers });
     if (r.ok) return r.json();
-    const remaining = Number(r.headers.get('x-ratelimit-remaining'));
+
+    // A genuine rate-limit refusal always carries the budget headers. Read
+    // them as null-or-number rather than through Number(), because
+    // Number(null) is 0 — which made every header-less 403 (an egress policy
+    // denial, a bad or expired token, SSO enforcement) masquerade as an
+    // exhausted quota and send the caller off to wait for a reset that was
+    // never coming.
+    const remainingHeader = r.headers.get('x-ratelimit-remaining');
+    const remaining = remainingHeader === null ? null : Number(remainingHeader);
     const reset = Number(r.headers.get('x-ratelimit-reset'));
+
     if ((r.status === 403 || r.status === 429) && remaining === 0) {
       budgetSpent = true;
       throw new RateLimited(reset ? new Date(reset * 1000) : null);
     }
+
+    // A 403 with no budget headers is not a quota problem and will not fix
+    // itself on a retry. Fail with whatever GitHub actually said.
+    if (r.status === 403 && remaining === null) {
+      let detail = '';
+      try {
+        detail = String((await r.json()).message || '').trim();
+      } catch {
+        /* body was not JSON */
+      }
+      throw new Error(`403 Forbidden for ${url}${detail ? ` — ${detail}` : ''}`);
+    }
+
     if (r.status === 403 || r.status === 429 || r.status >= 500) {
       await new Promise((res) => setTimeout(res, 1500 * (attempt + 1)));
       continue;
     }
+
     throw new Error(`${r.status} ${r.statusText} for ${url}`);
   }
   throw new Error(`gave up on ${url}`);

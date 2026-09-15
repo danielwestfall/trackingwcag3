@@ -1,0 +1,91 @@
+﻿name: WCAG 3 upstream check
+
+on:
+  schedule:
+    # 13:00 UTC Monday = 08:00 America/Chicago while CDT is in effect.
+    # GitHub cron is UTC only and does not follow daylight saving.
+    - cron: '0 13 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wcag3-tracker
+  cancel-in-progress: false
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      # fetch-depth: 0 because track-upstream.mjs diffs commit ranges.
+      # token: the PAT, not GITHUB_TOKEN — commits pushed with GITHUB_TOKEN
+      # do not trigger `on: push`, so the Pages deploy would never fire.
+      - name: Checkout with full history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.TRACKER_TOKEN }}
+
+      - name: Install node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+
+      # No npm ci: the tracker scripts import only node builtins.
+
+      - name: Diff upstream w3c/wcag3
+        run: npm run track:upstream
+
+      - name: Fetch provision discussions
+        env:
+          GITHUB_TOKEN: ${{ secrets.TRACKER_TOKEN }}
+        run: npm run fetch:discussions
+
+      - name: Merge hand-written summaries
+        run: npm run merge:summaries
+
+      - name: Commit and push if anything real moved
+        run: |
+          set -euo pipefail
+
+          git config user.name 'wcag3-tracker'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo 'Nothing changed this run.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # A file only counts if something other than a run timestamp moved.
+          real_change() {
+            git diff --cached -U0 -- "$1" \
+              | grep -E '^[-+]' \
+              | grep -vE '^(\+\+\+|---)' \
+              | grep -qvE '"(generatedAt|fetchedAt)":'
+          }
+
+          meaningful=''
+          while IFS= read -r f; do
+            [ -n "$f" ] || continue
+            [ "$f" = 'tracking/discussions-raw.json' ] && continue
+            if real_change "$f"; then
+              meaningful="${meaningful}${f}"$'\n'
+            fi
+          done < <(git diff --cached --name-only)
+
+          if [ -z "$meaningful" ]; then
+            echo 'Only run timestamps and the raw cache moved — nothing committed.' \
+              >> "$GITHUB_STEP_SUMMARY"
+            git reset
+            exit 0
+          fi
+
+          {
+            echo '### Committed'
+            printf '%s' "$meaningful" | sed 's/^/- /'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          git commit -m "Weekly WCAG 3 tracker run ($(date -u +%Y-%m-%d))"
+          git push
