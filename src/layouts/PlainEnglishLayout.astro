@@ -375,6 +375,22 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         scroll-padding-inline: 3rem;
       }
 
+      /* From 768px up, let the tabs wrap onto a second row instead of staying
+         on one scrolling line. Scrolling alone hid 3 of 8 tabs at every desktop
+         width — 374px of nav out of sight even on a 3440px monitor, and worse
+         with each tab added. Wrapping shows 8/8 from 768px up (2 rows, 87px,
+         nothing hidden). It is gated on a breakpoint because wrapping is the
+         wrong answer on a phone: at 320px all eight tabs stack into a 329px
+         wall of navigation above the content, where the 47px scrolling strip
+         is what you want. The overflow-x backstop and scroll-padding above
+         still apply below the breakpoint, and above it if a single tab ever
+         outgrows a line. */
+      @media (min-width: 768px) {
+        .hub-nav {
+          flex-wrap: wrap;
+        }
+      }
+
       .nav-tab {
         display: inline-flex;
         align-items: center;
