@@ -1,0 +1,1529 @@
+---
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import fs from "fs";
+import path from "path";
+
+const catalogPath = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
+let provisions: any[] = [];
+if (fs.existsSync(catalogPath)) {
+  provisions = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+}
+
+// Group provisions into 9 standardized Functional Categories based on guideline/group slug
+const categoryMap: Record<string, { title: string; icon: string; description: string }> = {
+  "text": { title: "Text & Typography", icon: "📝", description: "Font sizing, spacing, readability, and content presentation." },
+  "navigation": { title: "Navigation & Wayfinding", icon: "🧭", description: "Landmarks, skip mechanisms, focus order, and page structure." },
+  "media": { title: "Audio, Video & Media", icon: "🎬", description: "Captions, transcripts, audio descriptions, and media controls." },
+  "interactivity": { title: "Interactivity & Forms", icon: "🔘", description: "Form validation, labels, error recovery, and interactive widgets." },
+  "visual-design": { title: "Visual Design & Contrast", icon: "🎨", description: "Color contrast, non-text contrast, resize, and reflow." },
+  "cognitive": { title: "Cognitive & Predictability", icon: "🧠", description: "Consistent navigation, timeouts, instructions, and cognitive load." },
+  "input-operation": { title: "Input & Keyboard Operation", icon: "⌨️", description: "Keyboard access, pointer gestures, target size, and effort." },
+  "user-control": { title: "Assistive Tech & User Control", icon: "🎛️", description: "Virtual cursor, user preferences, and motion toggles." },
+  "structure": { title: "Structure & Semantics", icon: "🏗️", description: "Valid markup, semantic hierarchy, and accessible name calculation." },
+};
+
+function categorizeProvision(p: any): string {
+  const g = (p.guidelineSlug || "").toLowerCase();
+  const gr = (p.groupSlug || "").toLowerCase();
+  const s = (p.slug || "").toLowerCase();
+
+  if (g.includes("text") || gr.includes("text") || s.includes("font") || s.includes("spacing") || s.includes("readab")) return "text";
+  if (g.includes("nav") || gr.includes("nav") || s.includes("focus") || s.includes("link") || s.includes("bypass")) return "navigation";
+  if (g.includes("media") || gr.includes("audio") || gr.includes("video") || s.includes("caption") || s.includes("audio")) return "media";
+  if (g.includes("form") || gr.includes("input") || g.includes("control") || s.includes("form") || s.includes("error") || s.includes("label")) return "interactivity";
+  if (g.includes("color") || g.includes("contrast") || gr.includes("contrast") || s.includes("contrast") || s.includes("reflow") || s.includes("resize")) return "visual-design";
+  if (g.includes("cognitive") || g.includes("predict") || gr.includes("harm") || s.includes("time") || s.includes("flashing") || s.includes("seizure")) return "cognitive";
+  if (g.includes("keyboard") || gr.includes("keyboard") || g.includes("pointer") || gr.includes("gesture") || s.includes("pointer") || s.includes("touch")) return "input-operation";
+  if (g.includes("assistive") || gr.includes("user-control") || s.includes("virtual-cursor") || s.includes("setting")) return "user-control";
+  return "structure";
+}
+
+const categorizedProvisions: Record<string, any[]> = {};
+Object.keys(categoryMap).forEach(cat => { categorizedProvisions[cat] = []; });
+
+provisions.forEach(p => {
+  const cat = categorizeProvision(p);
+  if (categorizedProvisions[cat]) {
+    categorizedProvisions[cat].push({
+      ...p,
+      categoryKey: cat
+    });
+  } else {
+    categorizedProvisions["structure"].push({
+      ...p,
+      categoryKey: "structure"
+    });
+  }
+});
+
+const totalProvisionsCount = provisions.length;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
+---
+
+<PlainEnglishLayout title="WCAG 3.0 Conformance Score Calculator" activeTab="calculator">
+  <!-- Banner Section -->
+  <section class="calc-banner">
+    <div class="banner-content">
+      <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="calc-icon" aria-hidden="true">🧮</span>
+          <span>Interactive Audit &amp; Conformance Tool</span>
+        </div>
+        <h2>WCAG 3.0 Conformance Score Calculator</h2>
+        <p>
+          Evaluate your digital product against W3C WCAG 3.0 draft provisions across all 9 functional categories.
+          Calculate live points-based outcomes, identify fatal core blockers, and estimate your <strong>Bronze</strong>, <strong>Silver</strong>, or <strong>Gold</strong> conformance rating.
+        </p>
+      </div>
+
+      <div class="banner-actions">
+        <button id="btn-preset-typical" type="button" class="preset-btn btn-primary-action">
+          <span>⚡ Simulate Typical Web App (~82%)</span>
+        </button>
+        <button id="btn-preset-blockers" type="button" class="preset-btn btn-secondary-action">
+          <span>⚠️ Simulate Critical Blockers (~58%)</span>
+        </button>
+        <button id="btn-preset-gold" type="button" class="preset-btn btn-secondary-action">
+          <span>🏆 Set All to Pass (100% Gold)</span>
+        </button>
+        <button id="btn-reset-all" type="button" class="preset-btn btn-ghost-action">
+          <span>🔄 Reset All</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Score & Tier Status Dashboard -->
+  <section class="score-dashboard" aria-label="Conformance score summary">
+    <div class="dashboard-grid">
+      <!-- Main Tier Card -->
+      <div class="tier-summary-card">
+        <div class="tier-badge-wrap">
+          <span class="tier-pill" id="tier-badge-status">Uncertified</span>
+          <span class="tier-points-label" id="tier-points-detail">0 / {totalProvisionsCount} pts</span>
+        </div>
+
+        <div class="overall-gauge-wrap">
+          <div class="score-circle-container">
+            <svg class="score-circle-svg" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="score-circle-bg" cx="60" cy="60" r="50" stroke-width="12" />
+              <circle class="score-circle-fill" id="score-circle-bar" cx="60" cy="60" r="50" stroke-width="12" stroke-dasharray="314.16" stroke-dashoffset="314.16" />
+            </svg>
+            <div class="score-circle-text">
+              <span class="score-number" id="overall-percentage-val">0%</span>
+              <span class="score-caption">Overall Score</span>
+            </div>
+          </div>
+
+          <div class="tier-target-milestones">
+            <div class="milestone-item milestone-bronze" id="milestone-bronze">
+              <div class="milestone-icon">🥉</div>
+              <div class="milestone-text">
+                <strong>Bronze Target (70%)</strong>
+                <span>0 Blockers + 60% per category</span>
+              </div>
+              <span class="milestone-status" id="status-bronze-check">❌ Not Met</span>
+            </div>
+
+            <div class="milestone-item milestone-silver" id="milestone-silver">
+              <div class="milestone-icon">🥈</div>
+              <div class="milestone-text">
+                <strong>Silver Target (80%)</strong>
+                <span>Bronze Met + 75% per category</span>
+              </div>
+              <span class="milestone-status" id="status-silver-check">❌ Not Met</span>
+            </div>
+
+            <div class="milestone-item milestone-gold" id="milestone-gold">
+              <div class="milestone-icon">🥇</div>
+              <div class="milestone-text">
+                <strong>Gold Target (90%)</strong>
+                <span>Silver Met + 85% per category + 50% Supp.</span>
+              </div>
+              <span class="milestone-status" id="status-gold-check">❌ Not Met</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Blockers Warning Banner -->
+        <div class="blockers-alert" id="blockers-alert-box" style="display: none;">
+          <span class="alert-symbol" aria-hidden="true">🚫</span>
+          <div class="alert-content">
+            <strong id="blockers-title">Critical Blockers Detected (<span id="blockers-count">0</span>)</strong>
+            <p id="blockers-desc">WCAG 3 does not permit Bronze certification if any Core/Foundational provision fails, regardless of overall score.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Health Mini-Grid -->
+      <div class="category-health-card">
+        <h3>Category Health Breakdown</h3>
+        <p class="health-subtitle">Each category requires &ge; 60% for Bronze, &ge; 75% for Silver, &ge; 85% for Gold.</p>
+        
+        <div class="category-bars-grid" id="category-bars-container">
+          {Object.entries(categoryMap).map(([catKey, catMeta]) => (
+            <div class="cat-bar-row" data-cat-row={catKey}>
+              <div class="cat-row-header">
+                <span class="cat-name"><span aria-hidden="true">{catMeta.icon}</span> {catMeta.title}</span>
+                <span class="cat-percent" id={`cat-pct-${catKey}`}>0%</span>
+              </div>
+              <div class="cat-progress-track">
+                <div class="cat-progress-fill" id={`cat-fill-${catKey}`} style="width: 0%;"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="export-report-toolbar">
+          <button type="button" id="btn-export-markdown" class="export-btn">
+            <span>📥 Export Markdown Report (.md)</span>
+          </button>
+          <button type="button" id="btn-export-json" class="export-btn">
+            <span>💾 Export JSON Dataset</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Search Controls Bar -->
+  <section class="calc-filters-bar" aria-label="Audit filters and search">
+    <div class="filters-wrap">
+      <!-- Search Input -->
+      <div class="filter-search-box">
+        <span class="fsearch-icon" aria-hidden="true">🔍</span>
+        <input type="text" id="calc-search-input" placeholder="Filter provisions by keyword (e.g., contrast, keyboard, focus, aria)..." aria-label="Filter calculator provisions" />
+      </div>
+
+      <!-- Quick Filter Pills -->
+      <div class="filter-pill-groups">
+        <div class="filter-group-item">
+          <span class="f-label">Role:</span>
+          <div class="f-pills">
+            <button type="button" class="fpill-btn active" data-role-filter="all">All Roles</button>
+            <button type="button" class="fpill-btn" data-role-filter="designer">🎨 Designer</button>
+            <button type="button" class="fpill-btn" data-role-filter="developer">💻 Developer</button>
+            <button type="button" class="fpill-btn" data-role-filter="qa">🧪 QA</button>
+            <button type="button" class="fpill-btn" data-role-filter="pm">📋 PM</button>
+          </div>
+        </div>
+
+        <div class="filter-group-item">
+          <span class="f-label">Status:</span>
+          <div class="f-pills">
+            <button type="button" class="fpill-btn active" data-type-filter="all">All Types</button>
+            <button type="button" class="fpill-btn" data-type-filter="core">Core Only</button>
+            <button type="button" class="fpill-btn" data-type-filter="supplemental">Supplemental</button>
+            <button type="button" class="fpill-btn" data-type-filter="failing">Show Fails Only</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 Functional Categories Audit Worksheet -->
+  <section class="worksheet-section">
+    <div class="worksheet-container">
+      {Object.entries(categorizedProvisions).map(([catKey, provList]) => {
+        const catMeta = categoryMap[catKey] || { title: catKey, icon: "📁", description: "" };
+        return (
+          <details class="category-accordion" open data-category-section={catKey}>
+            <summary class="cat-summary">
+              <div class="cat-summary-left">
+                <span class="cat-summary-icon" aria-hidden="true">{catMeta.icon}</span>
+                <div class="cat-summary-text">
+                  <h3>{catMeta.title}</h3>
+                  <span class="cat-summary-desc">{catMeta.description}</span>
+                </div>
+              </div>
+              <div class="cat-summary-right">
+                <span class="cat-count-pill">{provList.length} Provisions</span>
+                <span class="cat-score-badge" id={`accordion-badge-${catKey}`}>0% (0 / {provList.length} pts)</span>
+              </div>
+            </summary>
+
+            <div class="provisions-table-wrap">
+              <div class="provisions-list">
+                {provList.map((p) => {
+                  const isCore = (p.type || "").toLowerCase() === "foundational" || (p.type || "").toLowerCase() === "core";
+                  const summaryText = p.annotation?.plainEnglish?.summary || p.rawBody || "";
+                  return (
+                    <article 
+                      class="provision-audit-item" 
+                      data-provision-slug={p.slug}
+                      data-category={catKey}
+                      data-type={isCore ? "core" : "supplemental"}
+                      data-designer={p.annotation?.personaBreakdown?.designer ? "true" : "false"}
+                      data-developer={p.annotation?.personaBreakdown?.developer ? "true" : "false"}
+                      data-qa={p.annotation?.personaBreakdown?.qa ? "true" : "false"}
+                      data-pm={p.annotation?.personaBreakdown?.productManager ? "true" : "false"}
+                    >
+                      <div class="item-header">
+                        <div class="item-title-group">
+                          <span class={`type-tag ${isCore ? "type-core" : "type-supp"}`}>
+                            {isCore ? "Core / Foundational" : "Supplemental"}
+                          </span>
+                          <h4>
+                            <a href={link(`/plain-english/provision/${p.slug}/`)} target="_blank" title="Open detailed plain-English guide in new tab">
+                              {p.title}
+                              <span class="ext-icon" aria-hidden="true">&nearr;</span>
+                            </a>
+                          </h4>
+                        </div>
+
+                        <!-- 4-Way Radio Evaluation Buttons -->
+                        <div class="scoring-btn-group" role="radiogroup" aria-label={`Evaluation for ${p.title}`}>
+                          <label class="scoring-btn label-pass" title="Meets requirements completely (+1.0 pt)">
+                            <input type="radio" name={`eval-${p.slug}`} value="pass" data-slug={p.slug} data-cat={catKey} data-core={isCore ? "true" : "false"} />
+                            <span class="btn-indicator">✅ Pass</span>
+                          </label>
+
+                          <label class="scoring-btn label-partial" title="Minor non-blocking deviations (+0.5 pt)">
+                            <input type="radio" name={`eval-${p.slug}`} value="partial" data-slug={p.slug} data-cat={catKey} data-core={isCore ? "true" : "false"} />
+                            <span class="btn-indicator">⚠️ Partial</span>
+                          </label>
+
+                          <label class="scoring-btn label-fail" title="Critical or unresolved barrier (+0.0 pt)">
+                            <input type="radio" name={`eval-${p.slug}`} value="fail" data-slug={p.slug} data-cat={catKey} data-core={isCore ? "true" : "false"} checked />
+                            <span class="btn-indicator">❌ Fail</span>
+                          </label>
+
+                          <label class="scoring-btn label-na" title="Not applicable to this product (Exempt from denominator)">
+                            <input type="radio" name={`eval-${p.slug}`} value="na" data-slug={p.slug} data-cat={catKey} data-core={isCore ? "true" : "false"} />
+                            <span class="btn-indicator">⚪ N/A</span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <p class="item-summary">{summaryText}</p>
+
+                      {p.annotation?.personaBreakdown && (
+                        <div class="item-roles-strip">
+                          {p.annotation.personaBreakdown.developer && (
+                            <span class="role-hint role-dev"><strong>💻 Dev:</strong> {p.annotation.personaBreakdown.developer.slice(0, 120)}...</span>
+                          )}
+                          {p.annotation.personaBreakdown.qa && (
+                            <span class="role-hint role-qa"><strong>🧪 QA:</strong> {p.annotation.personaBreakdown.qa.slice(0, 120)}...</span>
+                          )}
+                        </div>
+                      )}
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </details>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Client-Side Evaluation Engine Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const STORAGE_KEY = 'wcag3_audit_state_v1';
+      const inputs = document.querySelectorAll('.scoring-btn-group input[type="radio"]');
+      const searchInput = document.getElementById('calc-search-input');
+      const rolePillBtns = document.querySelectorAll('[data-role-filter]');
+      const typePillBtns = document.querySelectorAll('[data-type-filter]');
+      const items = document.querySelectorAll('.provision-audit-item');
+
+      let currentRoleFilter = 'all';
+      let currentTypeFilter = 'all';
+      let currentSearchQuery = '';
+
+      // Initialize State
+      function loadAuditState() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const data = JSON.parse(saved);
+            Object.entries(data).forEach(([slug, val]) => {
+              const radio = document.querySelector(`input[name="eval-${slug}"][value="${val}"]`);
+              if (radio) radio.checked = true;
+            });
+          }
+        } catch (e) {}
+        recalculateScores();
+      }
+
+      function saveAuditState() {
+        const state = {};
+        inputs.forEach(input => {
+          if (input.checked) {
+            state[input.dataset.slug] = input.value;
+          }
+        });
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {}
+      }
+
+      // Core Scoring Logic
+      function recalculateScores() {
+        let totalApplicablePoints = 0;
+        let totalEarnedPoints = 0;
+        let coreBlockersCount = 0;
+        let supplementalPassedCount = 0;
+        let totalSupplementalCount = 0;
+
+        const categoryStats = {};
+
+        // Initialize category accumulators
+        document.querySelectorAll('[data-category-section]').forEach(sec => {
+          const cat = sec.dataset.categorySection;
+          categoryStats[cat] = { applicable: 0, earned: 0, count: 0 };
+        });
+
+        inputs.forEach(input => {
+          if (input.checked) {
+            const val = input.value;
+            const cat = input.dataset.cat;
+            const isCore = input.dataset.core === 'true';
+
+            if (!categoryStats[cat]) categoryStats[cat] = { applicable: 0, earned: 0, count: 0 };
+            categoryStats[cat].count++;
+
+            if (!isCore) {
+              totalSupplementalCount++;
+            }
+
+            if (val === 'na') {
+              // N/A: excluded from applicable denominator
+              return;
+            }
+
+            totalApplicablePoints += 1.0;
+            categoryStats[cat].applicable += 1.0;
+
+            if (val === 'pass') {
+              totalEarnedPoints += 1.0;
+              categoryStats[cat].earned += 1.0;
+              if (!isCore) supplementalPassedCount++;
+            } else if (val === 'partial') {
+              totalEarnedPoints += 0.5;
+              categoryStats[cat].earned += 0.5;
+            } else if (val === 'fail') {
+              if (isCore) {
+                coreBlockersCount++;
+              }
+            }
+          }
+        });
+
+        // Calculate Overall %
+        const overallPct = totalApplicablePoints > 0 ? Math.round((totalEarnedPoints / totalApplicablePoints) * 100) : 0;
+
+        // Check Category Minimums
+        let allCategoriesMeetBronze = true; // >= 60%
+        let allCategoriesMeetSilver = true; // >= 75%
+        let allCategoriesMeetGold = true;   // >= 85%
+
+        Object.entries(categoryStats).forEach(([cat, stat]) => {
+          const catPct = stat.applicable > 0 ? Math.round((stat.earned / stat.applicable) * 100) : 100;
+          if (catPct < 60) allCategoriesMeetBronze = false;
+          if (catPct < 75) allCategoriesMeetSilver = false;
+          if (catPct < 85) allCategoriesMeetGold = false;
+
+          // Update Category Bar UI
+          const pctEl = document.getElementById(`cat-pct-${cat}`);
+          const fillEl = document.getElementById(`cat-fill-${cat}`);
+          const badgeEl = document.getElementById(`accordion-badge-${cat}`);
+
+          if (pctEl) pctEl.textContent = `${catPct}%`;
+          if (fillEl) {
+            fillEl.style.width = `${catPct}%`;
+            fillEl.style.backgroundColor = catPct >= 75 ? '#34d399' : (catPct >= 60 ? '#38bdf8' : '#fb7185');
+          }
+          if (badgeEl) {
+            badgeEl.textContent = `${catPct}% (${stat.earned} / ${stat.applicable} pts)`;
+            badgeEl.style.color = catPct >= 60 ? '#34d399' : '#fb7185';
+          }
+        });
+
+        // Determine Final Conformance Tier
+        const hasNoBlockers = coreBlockersCount === 0;
+        const meetsBronze = hasNoBlockers && allCategoriesMeetBronze && overallPct >= 70;
+        const meetsSilver = meetsBronze && allCategoriesMeetSilver && overallPct >= 80;
+        const meetsGold = meetsSilver && allCategoriesMeetGold && overallPct >= 90 && (totalSupplementalCount === 0 || (supplementalPassedCount / totalSupplementalCount) >= 0.5);
+
+        // Update Dashboard UI Elements
+        const overallPctEl = document.getElementById('overall-percentage-val');
+        const pointsDetailEl = document.getElementById('tier-points-detail');
+        const circleBarEl = document.getElementById('score-circle-bar');
+        const tierBadgeEl = document.getElementById('tier-badge-status');
+        const blockersAlertEl = document.getElementById('blockers-alert-box');
+        const blockersCountEl = document.getElementById('blockers-count');
+
+        if (overallPctEl) overallPctEl.textContent = `${overallPct}%`;
+        if (pointsDetailEl) pointsDetailEl.textContent = `${totalEarnedPoints.toFixed(1)} / ${totalApplicablePoints} pts`;
+
+        // Radial Circle Progress (circumference = 314.16)
+        if (circleBarEl) {
+          const offset = 314.16 - (314.16 * overallPct) / 100;
+          circleBarEl.style.strokeDashoffset = `${offset}`;
+          circleBarEl.style.stroke = meetsGold ? '#facc15' : (meetsSilver ? '#cbd5e1' : (meetsBronze ? '#fb923c' : '#38bdf8'));
+        }
+
+        // Tier Badge Status
+        if (tierBadgeEl) {
+          if (meetsGold) {
+            tierBadgeEl.textContent = '🥇 Gold Conforming';
+            tierBadgeEl.className = 'tier-pill tier-gold';
+          } else if (meetsSilver) {
+            tierBadgeEl.textContent = '🥈 Silver Conforming';
+            tierBadgeEl.className = 'tier-pill tier-silver';
+          } else if (meetsBronze) {
+            tierBadgeEl.textContent = '🥉 Bronze Conforming';
+            tierBadgeEl.className = 'tier-pill tier-bronze';
+          } else {
+            tierBadgeEl.textContent = '❌ Uncertified (Non-Conforming)';
+            tierBadgeEl.className = 'tier-pill tier-uncertified';
+          }
+        }
+
+        // Milestone Checks
+        const bCheck = document.getElementById('status-bronze-check');
+        const sCheck = document.getElementById('status-silver-check');
+        const gCheck = document.getElementById('status-gold-check');
+
+        if (bCheck) {
+          bCheck.textContent = meetsBronze ? '✅ Achieved' : (hasNoBlockers ? '⏳ In Progress' : '🚫 Blocked');
+          bCheck.className = `milestone-status ${meetsBronze ? 'met' : 'unmet'}`;
+        }
+        if (sCheck) {
+          sCheck.textContent = meetsSilver ? '✅ Achieved' : '⏳ In Progress';
+          sCheck.className = `milestone-status ${meetsSilver ? 'met' : 'unmet'}`;
+        }
+        if (gCheck) {
+          gCheck.textContent = meetsGold ? '✅ Achieved' : '⏳ In Progress';
+          gCheck.className = `milestone-status ${meetsGold ? 'met' : 'unmet'}`;
+        }
+
+        // Core Blockers Alert Box
+        if (blockersAlertEl && blockersCountEl) {
+          if (coreBlockersCount > 0) {
+            blockersAlertEl.style.display = 'flex';
+            blockersCountEl.textContent = `${coreBlockersCount}`;
+          } else {
+            blockersAlertEl.style.display = 'none';
+          }
+        }
+      }
+
+      // Handle Radio Changes
+      inputs.forEach(input => {
+        input.addEventListener('change', () => {
+          saveAuditState();
+          recalculateScores();
+        });
+      });
+
+      // Filter Logic
+      function applyFilters() {
+        items.forEach(item => {
+          let matchesRole = currentRoleFilter === 'all';
+          if (!matchesRole) {
+            matchesRole = item.dataset[currentRoleFilter] === 'true';
+          }
+
+          let matchesType = currentTypeFilter === 'all';
+          if (currentTypeFilter === 'core') matchesType = item.dataset.type === 'core';
+          if (currentTypeFilter === 'supplemental') matchesType = item.dataset.type === 'supplemental';
+          if (currentTypeFilter === 'failing') {
+            const failRadio = item.querySelector('input[value="fail"]');
+            matchesType = failRadio ? failRadio.checked : false;
+          }
+
+          let matchesSearch = true;
+          if (currentSearchQuery.trim()) {
+            const text = item.textContent.toLowerCase();
+            matchesSearch = text.includes(currentSearchQuery.toLowerCase());
+          }
+
+          if (matchesRole && matchesType && matchesSearch) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+
+      // Search Handler
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearchQuery = e.target.value;
+          applyFilters();
+        });
+      }
+
+      // Role Filter Buttons
+      rolePillBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          rolePillBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentRoleFilter = btn.dataset.roleFilter;
+          applyFilters();
+        });
+      });
+
+      // Type Filter Buttons
+      typePillBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          typePillBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentTypeFilter = btn.dataset.typeFilter;
+          applyFilters();
+        });
+      });
+
+      // Auditor Presets
+      const btnTypical = document.getElementById('btn-preset-typical');
+      const btnBlockers = document.getElementById('btn-preset-blockers');
+      const btnGold = document.getElementById('btn-preset-gold');
+      const btnReset = document.getElementById('btn-reset-all');
+
+      function setProvisionValue(slug, value) {
+        const radio = document.querySelector(`input[name="eval-${slug}"][value="${value}"]`);
+        if (radio) radio.checked = true;
+      }
+
+      if (btnTypical) {
+        btnTypical.addEventListener('click', () => {
+          const slugs = Array.from(new Set(Array.from(inputs).map(i => i.dataset.slug)));
+          slugs.forEach((slug, idx) => {
+            const firstRadio = document.querySelector(`input[name="eval-${slug}"]`);
+            const isCore = firstRadio ? firstRadio.dataset.core === 'true' : false;
+            if (isCore) {
+              if (idx % 11 === 0) setProvisionValue(slug, 'partial');
+              else if (idx % 19 === 0) setProvisionValue(slug, 'na');
+              else setProvisionValue(slug, 'pass');
+            } else {
+              if (idx % 4 === 0) setProvisionValue(slug, 'partial');
+              else if (idx % 7 === 0) setProvisionValue(slug, 'na');
+              else if (idx % 9 === 0) setProvisionValue(slug, 'fail');
+              else setProvisionValue(slug, 'pass');
+            }
+          });
+          saveAuditState();
+          recalculateScores();
+        });
+      }
+
+      if (btnBlockers) {
+        btnBlockers.addEventListener('click', () => {
+          const slugs = Array.from(new Set(Array.from(inputs).map(i => i.dataset.slug)));
+          slugs.forEach((slug, idx) => {
+            const firstRadio = document.querySelector(`input[name="eval-${slug}"]`);
+            const isCore = firstRadio ? firstRadio.dataset.core === 'true' : false;
+            if (isCore && idx % 7 === 0) {
+              setProvisionValue(slug, 'fail');
+            } else if (idx % 5 === 0) {
+              setProvisionValue(slug, 'partial');
+            } else if (idx % 11 === 0) {
+              setProvisionValue(slug, 'na');
+            } else {
+              setProvisionValue(slug, 'pass');
+            }
+          });
+          saveAuditState();
+          recalculateScores();
+        });
+      }
+
+      if (btnGold) {
+        btnGold.addEventListener('click', () => {
+          const slugs = Array.from(new Set(Array.from(inputs).map(i => i.dataset.slug)));
+          slugs.forEach(slug => setProvisionValue(slug, 'pass'));
+          saveAuditState();
+          recalculateScores();
+        });
+      }
+
+      if (btnReset) {
+        btnReset.addEventListener('click', () => {
+          if (confirm('Are you sure you want to reset all evaluations to Fail (0%)?')) {
+            const slugs = Array.from(new Set(Array.from(inputs).map(i => i.dataset.slug)));
+            slugs.forEach(slug => setProvisionValue(slug, 'fail'));
+            saveAuditState();
+            recalculateScores();
+          }
+        });
+      }
+
+      // Export Markdown Report
+      const btnExportMd = document.getElementById('btn-export-markdown');
+      if (btnExportMd) {
+        btnExportMd.addEventListener('click', () => {
+          const timestamp = new Date().toISOString().split('T')[0];
+          const overallPct = document.getElementById('overall-percentage-val')?.textContent || '0%';
+          const tier = document.getElementById('tier-badge-status')?.textContent || 'Uncertified';
+          const points = document.getElementById('tier-points-detail')?.textContent || '0 pts';
+
+          let md = `# WCAG 3.0 Conformance Audit Report\n\n`;
+          md += `> **Audit Date:** ${timestamp}  \n`;
+          md += `> **Overall Score:** ${overallPct} (${points})  \n`;
+          md += `> **Achieved Conformance Tier:** **${tier}**  \n\n`;
+          md += `## Functional Category Breakdown\n\n`;
+          md += `| Functional Category | Score | Status |\n`;
+          md += `| :--- | :--- | :--- |\n`;
+
+          document.querySelectorAll('.cat-bar-row').forEach(row => {
+            const name = row.querySelector('.cat-name')?.textContent.trim() || '';
+            const pct = row.querySelector('.cat-percent')?.textContent.trim() || '0%';
+            const num = parseInt(pct, 10);
+            const status = num >= 75 ? '✅ Strong' : (num >= 60 ? '⚠️ Bronze Minimum' : '❌ At Risk');
+            md += `| ${name} | ${pct} | ${status} |\n`;
+          });
+
+          md += `\n## Failed Core Blockers & Action Items\n\n`;
+          let failedCoreCount = 0;
+          document.querySelectorAll('.provision-audit-item').forEach(item => {
+            const failRadio = item.querySelector('input[value="fail"]');
+            const isCore = item.dataset.type === 'core';
+            if (failRadio && failRadio.checked && isCore) {
+              failedCoreCount++;
+              const title = item.querySelector('h4 a')?.textContent.trim() || '';
+              const summary = item.querySelector('.item-summary')?.textContent.trim() || '';
+              md += `- **[Core Blocker] ${title}**: ${summary}\n`;
+            }
+          });
+
+          if (failedCoreCount === 0) {
+            md += `*No critical core blockers detected! Meets universal primary baseline requirement.*\n`;
+          }
+
+          md += `\n---\n*Report generated via [Plain English WCAG 3.0 Hub Calculator](http://localhost:4321/plain-english/calculator/)*\n`;
+
+          // Trigger File Download
+          const blob = new Blob([md], { type: 'text/markdown;charset=utf-8;' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `wcag3-audit-report-${timestamp}.md`;
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      }
+
+      // Export JSON Dataset
+      const btnExportJson = document.getElementById('btn-export-json');
+      if (btnExportJson) {
+        btnExportJson.addEventListener('click', () => {
+          const exportObj = {
+            exportedAt: new Date().toISOString(),
+            overallScore: document.getElementById('overall-percentage-val')?.textContent || '0%',
+            tier: document.getElementById('tier-badge-status')?.textContent || 'Uncertified',
+            provisions: {}
+          };
+          inputs.forEach(input => {
+            if (input.checked) {
+              exportObj.provisions[input.dataset.slug] = input.value;
+            }
+          });
+          const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `wcag3-evaluation-dataset.json`;
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      }
+
+      // Initial Load
+      loadAuditState();
+    });
+  </script>
+</PlainEnglishLayout>
+
+<style>
+  .calc-banner {
+    background: linear-gradient(135deg, rgba(19, 29, 49, 0.95) 0%, rgba(11, 17, 32, 0.98) 100%);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+
+  .banner-title-group h2 {
+    font-size: 1.95rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
+  }
+
+  .banner-title-group p {
+    color: var(--text-secondary);
+    max-width: 680px;
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .banner-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .preset-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 1px solid var(--border-default);
+    font-family: var(--font-sans);
+  }
+
+  .btn-primary-action {
+    background: var(--accent-blue);
+    color: #ffffff;
+    border-color: var(--accent-blue);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+  }
+  .btn-primary-action:hover {
+    background: #0284c7;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary-action {
+    background: rgba(15, 23, 42, 0.8);
+    color: var(--text-primary);
+  }
+  .btn-secondary-action:hover {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: var(--accent-blue);
+  }
+
+  .btn-ghost-action {
+    background: transparent;
+    color: var(--text-muted);
+  }
+  .btn-ghost-action:hover {
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+  }
+
+  /* Score Dashboard Grid */
+  .score-dashboard {
+    margin-bottom: 28px;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+  }
+
+  .tier-summary-card,
+  .category-health-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tier-badge-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tier-pill {
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.01em;
+  }
+
+  .tier-uncertified {
+    background: rgba(244, 63, 94, 0.15);
+    color: #fb7185;
+    border: 1px solid rgba(244, 63, 94, 0.35);
+  }
+
+  .tier-bronze {
+    background: rgba(251, 146, 60, 0.15);
+    color: #fb923c;
+    border: 1px solid rgba(251, 146, 60, 0.4);
+  }
+
+  .tier-silver {
+    background: rgba(203, 213, 225, 0.18);
+    color: #f1f5f9;
+    border: 1px solid rgba(203, 213, 225, 0.4);
+  }
+
+  .tier-gold {
+    background: rgba(250, 204, 21, 0.2);
+    color: #facc15;
+    border: 1px solid rgba(250, 204, 21, 0.5);
+  }
+
+  .tier-points-label {
+    font-size: 0.88rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-weight: 700;
+  }
+
+  .overall-gauge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .score-circle-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  .score-circle-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .score-circle-bg {
+    fill: none;
+    stroke: rgba(148, 163, 184, 0.15);
+  }
+
+  .score-circle-fill {
+    fill: none;
+    stroke: var(--accent-blue);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.4s ease, stroke 0.4s ease;
+  }
+
+  .score-circle-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .score-number {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--text-pure);
+    font-family: var(--font-mono);
+    line-height: 1;
+  }
+
+  .score-caption {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .tier-target-milestones {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(7, 11, 20, 0.6);
+    border: 1px solid var(--border-default);
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+  }
+
+  .milestone-icon { font-size: 1.25rem; }
+  .milestone-text { flex: 1; }
+  .milestone-text strong { display: block; font-size: 0.85rem; color: var(--text-primary); }
+  .milestone-text span { font-size: 0.74rem; color: var(--text-muted); }
+
+  .milestone-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+  }
+  .milestone-status.met {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+  }
+  .milestone-status.unmet {
+    background: rgba(148, 163, 184, 0.1);
+    color: var(--text-muted);
+  }
+
+  /* Blockers Alert */
+  .blockers-alert {
+    background: rgba(244, 63, 94, 0.12);
+    border: 1.5px solid rgba(244, 63, 94, 0.4);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .alert-symbol { font-size: 1.3rem; flex-shrink: 0; }
+  .alert-content strong { color: #fda4af; font-size: 0.92rem; display: block; margin-bottom: 2px; }
+  .alert-content p { color: var(--text-secondary); font-size: 0.84rem; line-height: 1.5; margin: 0; }
+
+  /* Category Health Card */
+  .category-health-card h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-pure);
+    margin-bottom: 4px;
+  }
+  .health-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .category-bars-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .cat-bar-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cat-row-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .cat-percent { font-family: var(--font-mono); font-weight: 700; color: var(--text-primary); }
+
+  .cat-progress-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(148, 163, 184, 0.15);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+  .cat-progress-fill {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+
+  .export-report-toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 16px;
+  }
+
+  .export-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(7, 11, 20, 0.7);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-family: var(--font-sans);
+  }
+  .export-btn:hover {
+    border-color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent-blue);
+  }
+
+  /* Filter Bar */
+  .calc-filters-bar {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 18px 24px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .filters-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .filter-search-box {
+    position: relative;
+    width: 100%;
+  }
+  .fsearch-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+  .filter-search-box input {
+    width: 100%;
+    background: rgba(7, 11, 20, 0.8);
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 10px 16px 10px 42px;
+    color: var(--text-pure);
+    font-size: 0.92rem;
+    font-family: var(--font-sans);
+    transition: var(--transition-fast);
+  }
+  .filter-search-box input:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+  }
+
+  .filter-pill-groups {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-group-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .f-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .f-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .fpill-btn {
+    background: rgba(7, 11, 20, 0.6);
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-family: var(--font-sans);
+  }
+  .fpill-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-blue);
+  }
+  .fpill-btn.active {
+    background: var(--accent-blue);
+    color: #ffffff;
+    border-color: var(--accent-blue);
+    font-weight: 700;
+  }
+
+  /* Worksheet Accordions */
+  .worksheet-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .category-accordion {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+  }
+  .category-accordion[open] {
+    border-color: rgba(56, 189, 248, 0.35);
+  }
+
+  .cat-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    cursor: pointer;
+    background: rgba(7, 11, 20, 0.4);
+    user-select: none;
+    list-style: none;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .cat-summary::-webkit-details-marker { display: none; }
+
+  .cat-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cat-summary-icon { font-size: 1.5rem; }
+  .cat-summary-text h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-pure);
+    margin: 0;
+  }
+  .cat-summary-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .cat-summary-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cat-count-pill {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    background: rgba(148, 163, 184, 0.1);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+  }
+  .cat-score-badge {
+    font-size: 0.85rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+  }
+
+  /* Provisions List */
+  .provisions-list {
+    display: flex;
+    flex-direction: column;
+    divide-y: 1px solid var(--border-subtle);
+  }
+
+  .provision-audit-item {
+    padding: 20px 24px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: background-color 0.15s ease;
+  }
+  .provision-audit-item:hover {
+    background: rgba(56, 189, 248, 0.02);
+  }
+
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .item-title-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .item-title-group h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+  .item-title-group a {
+    color: var(--text-pure);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .item-title-group a:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+  }
+  .ext-icon { font-size: 0.85rem; color: var(--text-muted); margin-left: 4px; }
+
+  .type-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .type-core {
+    background: rgba(244, 63, 94, 0.15);
+    color: #fda4af;
+    border: 1px solid rgba(244, 63, 94, 0.35);
+  }
+  .type-supp {
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+
+  /* 4-Way Radio Group */
+  .scoring-btn-group {
+    display: inline-flex;
+    background: rgba(7, 11, 20, 0.85);
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 3px;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .scoring-btn {
+    position: relative;
+    cursor: pointer;
+  }
+  .scoring-btn input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .btn-indicator {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+
+  .label-pass input:checked + .btn-indicator {
+    background: #059669;
+    color: #ffffff;
+    box-shadow: 0 1px 4px rgba(5, 150, 105, 0.4);
+  }
+  .label-partial input:checked + .btn-indicator {
+    background: #d97706;
+    color: #ffffff;
+    box-shadow: 0 1px 4px rgba(217, 119, 6, 0.4);
+  }
+  .label-fail input:checked + .btn-indicator {
+    background: #e11d48;
+    color: #ffffff;
+    box-shadow: 0 1px 4px rgba(225, 29, 72, 0.4);
+  }
+  .label-na input:checked + .btn-indicator {
+    background: #475569;
+    color: #ffffff;
+  }
+
+  .scoring-btn:hover .btn-indicator {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .item-summary {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .item-roles-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .role-hint {
+    font-size: 0.76rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    line-height: 1.4;
+  }
+  .role-dev {
+    background: rgba(52, 211, 153, 0.08);
+    color: var(--text-secondary);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+  }
+  .role-dev strong { color: #34d399; }
+
+  .role-qa {
+    background: rgba(167, 139, 250, 0.08);
+    color: var(--text-secondary);
+    border: 1px solid rgba(167, 139, 250, 0.25);
+  }
+  .role-qa strong { color: #a78bfa; }
+
+  /* ==========================================================================
+     Light Theme Overrides (High Contrast WCAG 2.2 AA / AAA Compliant)
+     ========================================================================== */
+  :global(html[data-theme="light"]) .calc-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  }
+  :global(html[data-theme="light"]) .banner-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #bae6fd;
+  }
+  :global(html[data-theme="light"]) .btn-secondary-action {
+    background: #f8fafc;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .tier-summary-card,
+  :global(html[data-theme="light"]) .category-health-card,
+  :global(html[data-theme="light"]) .calc-filters-bar,
+  :global(html[data-theme="light"]) .category-accordion {
+    background: #ffffff;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .milestone-item,
+  :global(html[data-theme="light"]) .export-btn,
+  :global(html[data-theme="light"]) .filter-search-box input,
+  :global(html[data-theme="light"]) .fpill-btn,
+  :global(html[data-theme="light"]) .cat-summary,
+  :global(html[data-theme="light"]) .scoring-btn-group {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .filter-search-box input {
+    color: #0f172a;
+  }
+  :global(html[data-theme="light"]) .tier-uncertified {
+    background: #ffe4e6;
+    color: #be123c;
+    border-color: #fecdd3;
+  }
+  :global(html[data-theme="light"]) .tier-bronze {
+    background: #ffedd5;
+    color: #9a3412;
+    border-color: #fed7aa;
+  }
+  :global(html[data-theme="light"]) .tier-silver {
+    background: #f1f5f9;
+    color: #1e293b;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .tier-gold {
+    background: #fef9c3;
+    color: #854d0e;
+    border-color: #fef08a;
+  }
+  :global(html[data-theme="light"]) .blockers-alert {
+    background: #fff1f2;
+    border-color: #fda4af;
+  }
+  :global(html[data-theme="light"]) .alert-content strong {
+    color: #9f1239;
+  }
+  :global(html[data-theme="light"]) .type-core {
+    background: #ffe4e6;
+    color: #9f1239;
+    border-color: #fecdd3;
+  }
+  :global(html[data-theme="light"]) .type-supp {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #bae6fd;
+  }
+  :global(html[data-theme="light"]) .role-dev {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+  :global(html[data-theme="light"]) .role-dev strong {
+    color: #047857;
+  }
+  :global(html[data-theme="light"]) .role-qa {
+    background: #f5f3ff;
+    border-color: #ddd6fe;
+  }
+  :global(html[data-theme="light"]) .role-qa strong {
+    color: #6d28d9;
+  }
+
+  @media (max-width: 900px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .overall-gauge-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .cat-summary {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .scoring-btn-group {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .btn-indicator {
+      flex: 1;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 0.72rem;
+    }
+  }
+</style>

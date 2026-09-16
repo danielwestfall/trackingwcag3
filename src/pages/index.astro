@@ -117,7 +117,24 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <span class="portal-cta">Browse WCAG 2.2 Reference &rarr;</span>
       </a>
 
-      <!-- Portal 3: Conformance -->
+      <!-- Portal 3: WCAG 3 Score Calculator -->
+      <a href={link("/plain-english/calculator/")} class="portal-card portal-calculator">
+        <div class="portal-card-glow"></div>
+        <div class="portal-card-header">
+          <div class="portal-icon-wrap icon-calculator">🧮</div>
+          <span class="portal-tag tag-interactive">Interactive Tool</span>
+        </div>
+        <h3>WCAG 3 Score Calculator</h3>
+        <p>Interactive audit worksheet to evaluate provisions, calculate category health scores, check for core blockers, and estimate Bronze, Silver, or Gold conformance.</p>
+        <div class="portal-metrics">
+          <span class="metric-pill">Bronze / Silver / Gold</span>
+          <span class="metric-pill">9 Categories</span>
+          <span class="metric-pill">Export Report</span>
+        </div>
+        <span class="portal-cta">Launch Score Calculator &rarr;</span>
+      </a>
+
+      <!-- Portal 4: Conformance -->
       <a href={link("/plain-english/conformance/")} class="portal-card portal-removals">
         <div class="portal-card-glow"></div>
         <div class="portal-card-header">

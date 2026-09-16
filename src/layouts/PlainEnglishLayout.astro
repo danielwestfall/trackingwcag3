@@ -1,7 +1,7 @@
 ---
 interface Props {
   title: string;
-  activeTab?: "home" | "wcag3" | "wcag22" | "conformance" | "removals" | "discussions" | "w3c";
+  activeTab?: "home" | "wcag3" | "wcag22" | "conformance" | "calculator" | "removals" | "discussions" | "w3c";
 }
 
 const { title, activeTab = "wcag3" } = Astro.props;
@@ -805,6 +805,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <span class="tab-text">Conformance</span>
               <span class="status-pill status-draft">Changed</span>
             </a>
+            <a href={link("/plain-english/calculator/")} class={`nav-tab ${activeTab === "calculator" ? "active" : ""}`}>
+              <span class="tab-icon" aria-hidden="true">🧮</span>
+              <span class="tab-text">Score Calculator</span>
+              <span class="status-pill status-draft">Interactive</span>
+            </a>
             <a href={link("/plain-english/removals/")} class={`nav-tab ${activeTab === "removals" ? "active" : ""}`}>
               <span class="tab-icon" aria-hidden="true">🔄</span>
               <span class="tab-text">Removals & Shifts</span>
@@ -870,6 +875,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <ul>
               <li><a href={link("/plain-english/")}>✨ WCAG 3.0 Explorer (245 Provisions)</a></li>
               <li><a href={link("/plain-english/wcag22/")}>📘 WCAG 2.2 Reference (87 Criteria)</a></li>
+              <li><a href={link("/plain-english/calculator/")}>🧮 WCAG 3 Score Calculator (Bronze/Silver/Gold)</a></li>
               <li><a href={link("/plain-english/conformance/")}>⚖️ Conformance: What Changed &amp; Readiness</a></li>
               <li><a href={link("/plain-english/removals/")}>🔄 WCAG 2.2 vs 3 Architectural Shifts</a></li>
               <li><a href={link("/plain-english/discussions/")}>💬 W3C Working Group Discussions</a></li>

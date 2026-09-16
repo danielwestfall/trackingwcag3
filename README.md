@@ -46,7 +46,13 @@ An accessible, fast, decoupled educational web application built with **Astro**,
 - Checks every WCAG 2.2 → 3 mapping against what actually exists upstream, flagging broken slugs, references that resolve only to a guideline or group, and provisions missing from the local catalog.
 - Runs weekly as a scheduled task. See [`tracking/README.md`](tracking/README.md) and the gap analysis in [`tracking/wcag22-to-wcag3-plan.md`](tracking/wcag22-to-wcag3-plan.md).
 
-### 7. 🔄 Decoupled Upstream Sync Engine (`npm run sync:plain-english`)
+### 8. 🧮 Interactive WCAG 3 Score Calculator (`/plain-english/calculator/`)
+- **Real-Time Outcome & Tier Engine**: Live calculation of Bronze, Silver, or Gold eligibility based on points earned across all 9 functional categories.
+- **Critical Blockers Detector**: Immediate alerts if any Core/Foundational provision fails, reinforcing that WCAG 3 requires 0 fatal blockers for Bronze.
+- **Interactive Auditor Presets**: Instant simulation of typical web apps, critical blocker scenarios, or 100% Gold baselines.
+- **Export & Reporting**: One-click download of audit results as formatted GitHub-Flavored Markdown reports (`.md`) or structured JSON datasets.
+
+### 9. 🔄 Decoupled Upstream Sync Engine (`npm run sync:plain-english`)
 - Fully decoupled from upstream `w3c/wcag3` markdown repositories.
 - Combines raw W3C spec documents with local educational annotations into zero-dependency compiled JSON catalogs in `public/data/`.
 
