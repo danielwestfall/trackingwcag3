@@ -335,6 +335,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
+    /* A flex item defaults to min-width: auto, which refuses to shrink below
+       its widest child — here a <select> sized by its longest option. That
+       floor is what max-width: 100% on the select resolves against, so the cap
+       alone does nothing until this row is allowed to shrink too. Same fix as
+       .header-left in the layout. */
+    min-width: 0;
   }
 
   .filter-label {
@@ -345,6 +351,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .level-pills {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
   }
 
@@ -380,6 +387,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     font-size: 0.85rem;
     cursor: pointer;
     font-family: var(--font-sans);
+    /* A select is sized by its widest option, and nothing here caps it, so a
+       long option label can push it past the viewport — the same "can't shrink
+       below its content" failure as the grid floors, in a form control. Caught
+       at 320px under WCAG 1.4.12 text-spacing, which widens every option. */
+    max-width: 100%;
+    min-width: 0;
   }
   .filter-select:focus {
     border-color: var(--accent-emerald);
@@ -398,7 +411,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .criteria-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr));
     gap: 22px;
   }
 
@@ -499,6 +512,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .card-footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-end;
     border-top: 1px solid var(--border-subtle);

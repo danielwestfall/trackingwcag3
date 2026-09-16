@@ -176,6 +176,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        /* A single long unbroken token (a bare URL, a long slug) in any
+           data-driven text — a plain-English summary, an example, a
+           discussion excerpt — can force its container wider than the
+           viewport with nothing else wrong. This is the site-wide backstop:
+           it only engages when a word truly has nowhere else to break, so
+           normal text is unaffected. Found via SC 4.1.1's summary text,
+           which embeds a bare w3.org URL. */
+        overflow-wrap: break-word;
       }
 
       html {
@@ -264,7 +272,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         display: flex;
         align-items: center;
         gap: 12px;
-        flex-shrink: 0;
+        flex-shrink: 1;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .brand {
@@ -344,6 +354,25 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         border: 1px solid var(--border-subtle);
         box-shadow: var(--shadow-sm);
         white-space: nowrap;
+        /* Always able to scroll internally rather than force the page wider.
+           This is the permanent backstop: the nav's natural width already
+           exceeds common desktop viewports (1280–1920px) with the current
+           six tabs, and it will only grow as tabs are added — the discussions
+           tab already caused an unnoticed page-wide overflow once this way. */
+        overflow-x: auto;
+        max-width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        /* Chromium's scroll-on-focus leaves a tab alone once any sliver of it
+           is inside the scrollport, so tabbing into a tab whose leading edge
+           has just crept into view stops with the tab — and its focus ring —
+           almost entirely off to the right. Measured at 320px: "Conformance"
+           2% visible, "Discussions" 11%. Padding the scrollport makes those
+           slivers count as out of view, so focus scrolls them fully in; it
+           costs nothing at widths where the nav doesn't scroll. 3rem is the
+           smallest value that clears every tab at 320px (2rem still leaves
+           one at 31%). */
+        scroll-padding-inline: 3rem;
       }
 
       .nav-tab {
@@ -429,6 +458,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         color: var(--text-secondary);
         max-width: 1360px;
         margin: 10px auto 0;
+        /* The badge beside this text is flex-shrink: 0, so without wrapping the
+           paragraph is the only thing that can give, and past a point it can't
+           give either — its longest line then pushes the page wider. Invisible
+           at default spacing, but it overflows 246 pages at 320px once WCAG
+           1.4.12 text-spacing is applied. Same fix as the other rows: let the
+           row wrap, and let the paragraph shrink below its content width. */
+        flex-wrap: wrap;
+      }
+      .working-draft-banner p {
+        min-width: 0;
       }
       .draft-badge {
         background: rgba(251, 191, 36, 0.2);
@@ -671,19 +710,24 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       }
 
       /* Responsive Breakpoints */
-      @media (max-width: 1080px) {
-        .header-container {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 12px;
-        }
-        .header-controls {
-          width: 100%;
-          justify-content: space-between;
-        }
-        .hub-nav {
-          overflow-x: auto;
-        }
+      /* The brand block plus the nav+toggle cluster need roughly 1900px side by
+         side at their natural, unwrapped width with seven tabs. This container
+         is capped at 1360px, so side by side never fits — not at 1280, not at
+         2560. Gating the stack on a viewport breakpoint therefore only decided
+         which viewports got the broken version: above the breakpoint the nav was
+         squeezed into ~720px of a 2560px screen and clipped mid-word with three
+         tabs behind a scrollbar, while acres of the screen sat empty. Stacking
+         unconditionally gives the nav the container's full width at every size.
+         The overflow-x backstop above still applies, since 1312px of usable
+         width is itself just short of the nav's natural 1334px. */
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .header-controls {
+        width: 100%;
+        justify-content: space-between;
       }
 
       @media (max-width: 900px) {

@@ -19,3 +19,19 @@
   background: #122f62;
   color: #d0e1f1;
 }
+
+/* A single long unbroken token — a bare URL, a long slug — in prose can force
+   its container wider than the viewport with nothing else on the page wrong,
+   which fails WCAG 1.4.10 Reflow. PlainEnglishLayout carries this same backstop
+   for the plain-English pages; the guidelines, explainer and informative docs
+   share no layout with those, so they need their own copy. It only engages when
+   a word truly has nowhere else to break, so normal text is unaffected.
+   Found via informative/guidelines/consistency-across-views/consistency/
+   consistent-navigation-labels.md, where a markdown link written inside a raw
+   <dd> block is emitted as literal text, leaving a bare w3.org URL that forced
+   a 484px floor on viewports from 320px to 414px. */
+*,
+*::before,
+*::after {
+  overflow-wrap: break-word;
+}

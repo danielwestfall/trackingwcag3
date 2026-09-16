@@ -348,7 +348,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .panel-grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 20px;
     margin-bottom: 32px;
   }
@@ -373,7 +373,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .persona-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
     gap: 16px;
   }
 
@@ -409,7 +409,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .testing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 18px;
   }
 
@@ -424,7 +424,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .code-comparison {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
     gap: 20px;
   }
 
@@ -479,7 +479,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .provision-links-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
     gap: 16px;
   }
 

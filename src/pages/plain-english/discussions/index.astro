@@ -481,7 +481,7 @@ const formattedDate = generatedAt
   }
   .positions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: 14px;
   }
   .position-card {
@@ -512,7 +512,7 @@ const formattedDate = generatedAt
 
   .agreed-open-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 14px;
   }
   .agreed-box, .open-box {
@@ -601,7 +601,7 @@ const formattedDate = generatedAt
   }
   .awaiting-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
     gap: 10px;
   }
   .awaiting-card {
