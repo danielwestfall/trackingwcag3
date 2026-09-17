@@ -214,6 +214,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .banner-badge {
+    /* 200% text scale: let this badge wrap its own label instead of
+       widening the page. Same component exists on several pages. */
+    flex-wrap: wrap;
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -227,6 +231,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     padding: 3px 10px;
     border-radius: var(--radius-full);
     margin-bottom: 12px;
+  }
+
+  /* The title block is a flex item, so it defaults to min-width: auto and
+     refuses to shrink below its longest line. At 200% text scale that line is
+     wider than a phone viewport and the page scrolls sideways. Letting it
+     shrink lets the heading wrap instead. */
+  .banner-title-group {
+    min-width: 0;
   }
 
   .banner-title-group h2 {

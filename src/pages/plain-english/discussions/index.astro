@@ -264,6 +264,10 @@ const formattedDate = generatedAt
   }
 
   .banner-badge {
+    /* 200% text scale: let this badge wrap its own label instead of
+       widening the page. Same component exists on several pages. */
+    flex-wrap: wrap;
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -277,6 +281,14 @@ const formattedDate = generatedAt
     padding: 3px 10px;
     border-radius: var(--radius-full);
     margin-bottom: 12px;
+  }
+
+  /* The title block is a flex item, so it defaults to min-width: auto and
+     refuses to shrink below its longest line. At 200% text scale that line is
+     wider than a phone viewport and the page scrolls sideways. Letting it
+     shrink lets the heading wrap instead. */
+  .banner-title-group {
+    min-width: 0;
   }
 
   .banner-title-group h2 {
@@ -328,7 +340,11 @@ const formattedDate = generatedAt
     letter-spacing: 0.05em;
   }
 
+  .alert-body { min-width: 0; }
+
   .intro-alert {
+    /* 200% text scale: wrap, and let the body text shrink beside the icon. */
+    flex-wrap: wrap;
     background: rgba(56, 189, 248, 0.1);
     border: 1px solid rgba(56, 189, 248, 0.35);
     border-radius: var(--radius-md);

@@ -296,6 +296,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .hero-badge {
+    /* Wrap rather than force the page sideways at 200% text scale. */
+    flex-wrap: wrap;
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -577,6 +580,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .role-card {
+    /* Grid and flex items default to min-width: auto and refuse to shrink
+       below their content; at 200% text scale that content is wider than a
+       phone viewport. */
+    min-width: 0;
     background: var(--surface-card);
     border-radius: var(--radius-lg);
     padding: 24px;
@@ -602,6 +609,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     align-items: center;
     gap: 10px;
     margin-bottom: 12px;
+    /* Flex row with a non-shrinkable text child: at 200% text scale the row
+       cannot shrink and pushes the page sideways. Let it wrap. */
+    flex-wrap: wrap;
   }
 
   .role-icon {

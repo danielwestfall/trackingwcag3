@@ -600,6 +600,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .banner-badge {
+    /* 200% text scale: let this badge wrap its own label instead of
+       widening the page. Same component exists on several pages. */
+    flex-wrap: wrap;
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -613,6 +617,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     padding: 3px 10px;
     border-radius: var(--radius-full);
     margin-bottom: 12px;
+  }
+
+  /* The title block is a flex item, so it defaults to min-width: auto and
+     refuses to shrink below its longest line. At 200% text scale that line is
+     wider than a phone viewport and the page scrolls sideways. Letting it
+     shrink lets the heading wrap instead. */
+  .banner-title-group {
+    min-width: 0;
   }
 
   .banner-title-group h2 {
@@ -680,11 +692,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     margin-bottom: 28px;
   }
 
+  /* A flex child of a wrapping row still needs permission to shrink. */
+  .rating-title-row h3 { min-width: 0; }
+
   .rating-title-row {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 4px;
+    /* Flex row with a non-shrinkable text child: at 200% text scale the row
+       cannot shrink and pushes the page sideways. Let it wrap. */
+    flex-wrap: wrap;
   }
 
   .rating-icon {
@@ -705,6 +723,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .rating-qa-box {
+    /* Wrap rather than force the page sideways at 200% text scale. */
+    flex-wrap: wrap;
     display: flex;
     gap: 14px;
     background: rgba(56, 189, 248, 0.08);
@@ -714,6 +734,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     margin-bottom: 22px;
   }
   .qa-icon { font-size: 1.4rem; flex-shrink: 0; }
+  /* Flex item: min-width: auto would refuse to shrink below its longest
+     line, which at 200% text scale exceeds a phone viewport. */
+  .qa-text { min-width: 0; }
+
   .qa-text strong {
     display: block;
     color: var(--accent-blue);
@@ -1159,7 +1183,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     padding: 3px 8px;
     border-radius: 6px;
     border: 1px solid var(--border-subtle);
-    white-space: nowrap;
+    /* Keeping "Medium (70-89%)" on one line is a nicety; at 200% text scale it
+       is what pushes the card past the viewport. Let it wrap when it must. */
+    max-width: 100%;
   }
   .est-label { color: var(--text-muted); margin-right: 4px; }
   .est-value { color: var(--accent-blue); font-weight: 700; }

@@ -34,6 +34,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             document.documentElement.classList.remove('light-theme');
           }
         } catch (e) {}
+
+        // Text scale, applied before first paint for the same reason as the
+        // theme: reading it after render means every navigation flashes at
+        // 100% before jumping to the size the reader actually chose.
+        try {
+          const savedScale = localStorage.getItem('wcag_hub_textscale');
+          if (savedScale && savedScale !== '100') {
+            document.documentElement.style.fontSize = savedScale + '%';
+            document.documentElement.setAttribute('data-text-scale', savedScale);
+          }
+        } catch (e) {}
       })();
     </script>
 
@@ -215,6 +226,19 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       }
 
       /* Accessible Skip Link */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+
       .skip-link {
         position: absolute;
         top: -100px;
@@ -266,19 +290,214 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         justify-content: space-between;
         align-items: center;
         gap: 16px;
+        /* At large text scales the brand, search and actions no longer fit on
+           one line; let them wrap instead of squeezing the search field to
+           nothing. */
+        flex-wrap: wrap;
       }
 
-      .header-controls {
+      /* --------------------------------------------------------------------
+         Row 1: utility strip — edition badge, reading controls, theme switch
+         -------------------------------------------------------------------- */
+      .header-utility {
+        max-width: 1360px;
+        margin: 0 auto 10px;
+        padding: 0 24px;
         display: flex;
         align-items: center;
-        gap: 12px;
-        flex-shrink: 1;
+        justify-content: space-between;
+        gap: 10px 16px;
+        flex-wrap: wrap;
+      }
+      .utility-left,
+      .utility-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
         min-width: 0;
-        max-width: 100%;
+      }
+      .utility-note {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+      .utility-divider {
+        width: 1px;
+        height: 14px;
+        background: var(--border-default);
+        flex-shrink: 0;
+      }
+
+      /* Text size controls. 200% gets its own preset because that is the level
+         WCAG 1.4.4 Resize Text asks for, so it is the size worth reaching in
+         one click rather than by pressing + repeatedly. Note 1.4.4 is a level
+         AA criterion — there is no AAA text-resize criterion, so this control
+         is deliberately not labelled "AAA" on a site that teaches WCAG. */
+      .text-scale {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+      .text-scale-label {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        font-weight: 600;
+        margin-right: 2px;
+      }
+      .scale-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-family: var(--font-sans);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        background: var(--surface-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm);
+        /* Keeps these above the WCAG 2.5.8 Target Size (Minimum) 24px floor. */
+        min-height: 24px;
+        padding: 3px 8px;
+        cursor: pointer;
+        transition: var(--transition-fast);
+      }
+      .scale-btn:hover {
+        color: var(--text-primary);
+        border-color: var(--border-default);
+      }
+      .scale-btn[aria-pressed="true"] {
+        background: rgba(56, 189, 248, 0.15);
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+      }
+      :root[data-theme="light"] .scale-btn[aria-pressed="true"] {
+        background: #e0f2fe;
+        color: #0369a1;
+      }
+      /* --------------------------------------------------------------------
+         Row 2: global search + primary actions
+         -------------------------------------------------------------------- */
+      .header-search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1 1 260px;
+        min-width: 0;
+        max-width: 480px;
+        background: var(--surface-card);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-md);
+        padding: 4px 6px 4px 12px;
+        transition: var(--transition-fast);
+      }
+      .header-search:focus-within {
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px var(--border-glow);
+      }
+      .header-search-icon {
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+      .header-search-input {
+        flex: 1 1 auto;
+        /* Not min-width: 0 — that lets the field collapse to nothing at 200%
+           text scale, leaving a search box you cannot see what you type in.
+           A ch-based floor scales with the text and makes the row wrap
+           instead. */
+        min-width: 6ch;
+        border: none;
+        background: transparent;
+        color: var(--text-primary);
+        font-family: var(--font-sans);
+        font-size: 0.82rem;
+        padding: 6px 0;
+      }
+      .header-search-input::placeholder {
+        color: var(--text-muted);
+      }
+      .header-search-input:focus {
+        outline: none;
+      }
+      .header-search-btn {
+        flex-shrink: 0;
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        background: var(--surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm);
+        min-height: 28px;
+        padding: 4px 12px;
+        cursor: pointer;
+        transition: var(--transition-fast);
+      }
+      .header-search-btn:hover {
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+      .header-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        color: var(--text-primary);
+        background: var(--surface-card);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-md);
+        min-height: 32px;
+        padding: 6px 12px;
+        transition: var(--transition-fast);
+      }
+      .header-action:hover {
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+      }
+      .header-action.is-current {
+        border-color: var(--accent-blue);
+        background: rgba(56, 189, 248, 0.12);
+        color: var(--accent-blue);
+      }
+      .header-action-solid {
+        background: var(--surface-elevated);
+      }
+      :root[data-theme="light"] .header-action-solid {
+        background: #0f172a;
+        border-color: #0f172a;
+        color: #ffffff;
+      }
+      :root[data-theme="light"] .header-action-solid:hover {
+        background: #1e293b;
+        border-color: #1e293b;
+        color: #ffffff;
+      }
+
+      /* --------------------------------------------------------------------
+         Row 3: the nav gets its own full-width line
+         -------------------------------------------------------------------- */
+      .header-nav-row {
+        max-width: 1360px;
+        margin: 12px auto 0;
+        padding: 0 24px;
       }
 
       .brand {
-        flex-shrink: 0;
+        flex: 0 1 auto;
+        min-width: 0;
       }
 
       .brand-link {
@@ -492,6 +711,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         padding: 2px 8px;
         border-radius: var(--radius-sm);
         flex-shrink: 0;
+        /* flex-shrink: 0 keeps this badge intact beside the notice text, but
+           with nothing capping it the badge simply grows past the viewport once
+           text is scaled: at 200% its label is ~370px against a 320px screen.
+           This was the single biggest reflow failure at 200% — 490 of 552
+           overflow hits across 297 pages, because the banner is on every WCAG 3
+           page. The cap lets the badge wrap its own label instead. */
+        max-width: 100%;
       }
       :root[data-theme="light"] .draft-badge {
         background: #fef3c7;
@@ -726,24 +952,29 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       }
 
       /* Responsive Breakpoints */
-      /* The brand block plus the nav+toggle cluster need roughly 1900px side by
-         side at their natural, unwrapped width with seven tabs. This container
-         is capped at 1360px, so side by side never fits — not at 1280, not at
-         2560. Gating the stack on a viewport breakpoint therefore only decided
-         which viewports got the broken version: above the breakpoint the nav was
-         squeezed into ~720px of a 2560px screen and clipped mid-word with three
-         tabs behind a scrollbar, while acres of the screen sat empty. Stacking
-         unconditionally gives the nav the container's full width at every size.
-         The overflow-x backstop above still applies, since 1312px of usable
-         width is itself just short of the nav's natural 1334px. */
-      .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-      .header-controls {
-        width: 100%;
-        justify-content: space-between;
+      /* The header is three rows now — utility strip, then brand + search +
+         actions, then the nav on its own full-width line. The brand no longer
+         competes with the nav for horizontal space, so this row can stay a row
+         on desktop. It stacks below 1024px, where the search field wants the
+         full width rather than a 260px sliver. */
+      @media (max-width: 1024px) {
+        .header-container {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 12px;
+          /* The wrap above is for the desktop ROW. In a column container
+             flex-wrap: wrap wraps into extra COLUMNS, which pushes the brand
+             off the side of the screen. */
+          flex-wrap: nowrap;
+        }
+        .header-search {
+          /* flex-basis is a main-axis length, so the 260px basis that sets this
+             field's WIDTH in the desktop row becomes its HEIGHT once the row
+             turns into a column. Reset it, or the search box renders ~260px
+             tall on tablets. */
+          flex: 0 0 auto;
+          max-width: none;
+        }
       }
 
       @media (max-width: 900px) {
@@ -760,9 +991,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         .brand-title {
           font-size: 1.15rem;
         }
-        .header-controls {
-          flex-wrap: wrap;
-          gap: 8px;
+        .header-utility,
+        .header-container,
+        .header-nav-row {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .utility-note {
+          display: none;
         }
         .hub-nav {
           width: 100%;
@@ -783,72 +1019,39 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
     <header class="hub-header">
-      <div class="header-container">
-        <!-- Brand Logo & Title (Left) -->
-        <div class="brand">
-          <a href={link("/")} class="brand-link">
-            <div class="brand-badge">
-              <span class="badge-pulse" aria-hidden="true"></span>
-              <span>a11y teacher edition</span>
-            </div>
-            <div class="brand-heading-wrap">
-              <span class="brand-logo-icon" aria-hidden="true">🌐</span>
-              <h1 class="brand-title">Plain English Accessibility Hub</h1>
-            </div>
-          </a>
-          <p class="brand-subtitle">Translating W3C Standards for Designers, Developers, QA & Product teams</p>
+      <!-- Row 1: utility strip — edition badge, reading controls, theme -->
+      <div class="header-utility">
+        <div class="utility-left">
+          <span class="brand-badge">
+            <span class="badge-pulse" aria-hidden="true"></span>
+            <span>a11y teacher edition</span>
+          </span>
+          <span class="utility-note">W3C WCAG 2.2 &amp; WCAG 3.0 draft reference</span>
         </div>
 
-        <!-- Controls: Nav & Switch (Right) -->
-        <div class="header-controls">
-          <nav class="hub-nav" aria-label="Main Navigation">
-            <a href={link("/")} class={`nav-tab ${activeTab === "home" ? "active" : ""}`}>
-              <span class="tab-icon" aria-hidden="true">🏠</span>
-              <span class="tab-text">Home</span>
-            </a>
-            <a href={link("/plain-english/")} class={`nav-tab ${activeTab === "wcag3" ? "active" : ""}`}>
-              <span class="tab-icon" aria-hidden="true">✨</span>
-              <span class="tab-text">WCAG 3 Explorer</span>
-              <span class="status-pill status-draft">Draft</span>
-            </a>
-            <a href={link("/plain-english/wcag22/")} class={`nav-tab ${activeTab === "wcag22" ? "active" : ""}`}>
-              <span class="tab-icon" aria-hidden="true">📘</span>
-              <span class="tab-text">WCAG 2.2 Reference</span>
-              <span class="status-pill status-standard">Standard</span>
-            </a>
-            <a href={link("/plain-english/conformance/")} class={`nav-tab ${activeTab === "conformance" ? "active" : ""}`}>
-              <span class="tab-icon" aria-hidden="true">⚖️</span>
-              <span class="tab-text">Conformance</span>
-              <span class="status-pill status-draft">Changed</span>
-            </a>
-            <a href={link("/plain-english/calculator/")} class={`nav-tab ${activeTab === "calculator" ? "active" : ""}`}>
-              <span class="tab-icon" aria-hidden="true">🧮</span>
-              <span class="tab-text">Score Calculator</span>
-              <span class="status-pill status-draft">Interactive</span>
-            </a>
-            <a href={link("/plain-english/removals/")} class={`nav-tab ${activeTab === "removals" ? "active" : ""}`}>
-              <span class="tab-icon" aria-hidden="true">🔄</span>
-              <span class="tab-text">Removals & Shifts</span>
-              <span class="status-pill status-removed">2.2 vs 3</span>
-            </a>
-            <a href={link("/plain-english/discussions/")} class={`nav-tab ${activeTab === "discussions" ? "active" : ""}`}>
-              <span class="tab-icon" aria-hidden="true">💬</span>
-              <span class="tab-text">Discussions</span>
-              <span class="status-pill status-draft">Live</span>
-            </a>
-            <a href={link("/guidelines/")} class={`nav-tab ${activeTab === "w3c" ? "active" : ""}`} title="View Raw W3C Specification View">
-              <span class="tab-icon" aria-hidden="true">📜</span>
-              <span class="tab-text">W3C Normative</span>
-            </a>
-          </nav>
+        <div class="utility-right">
+          <div class="text-scale" role="group" aria-label="Text size">
+            <span class="text-scale-label" aria-hidden="true">Text size</span>
+            <button type="button" class="scale-btn" data-scale="100" aria-pressed="true" title="Default text size">100%</button>
+            <button type="button" class="scale-btn" data-scale="120" aria-pressed="false" title="Enlarge text to 120%">120%</button>
+            <button
+              type="button"
+              class="scale-btn"
+              data-scale="200"
+              aria-pressed="false"
+              title="Enlarge text to 200% — the level the WCAG 1.4.4 Resize Text (AA) criterion asks for"
+            >200%</button>
+          </div>
 
-          <!-- Modern Tactile Switch Toggle (Right) -->
-          <button 
-            id="theme-toggle-btn" 
-            class="theme-toggle-switch" 
-            type="button" 
-            role="switch" 
-            aria-checked="false" 
+          <span class="utility-divider" aria-hidden="true"></span>
+
+          <!-- Modern Tactile Switch Toggle -->
+          <button
+            id="theme-toggle-btn"
+            class="theme-toggle-switch"
+            type="button"
+            role="switch"
+            aria-checked="false"
             aria-label="Toggle light or dark color mode"
             title="Toggle Light / Dark mode (Keyboard shortcut: 'T')"
           >
@@ -861,6 +1064,89 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <span class="switch-text" id="theme-switch-status">Dark</span>
           </button>
         </div>
+      </div>
+
+      <!-- Row 2: brand, global search, primary actions -->
+      <div class="header-container">
+        <div class="brand">
+          <a href={link("/")} class="brand-link">
+            <div class="brand-heading-wrap">
+              <span class="brand-logo-icon" aria-hidden="true">🌐</span>
+              <h1 class="brand-title">Plain English Accessibility Hub</h1>
+            </div>
+          </a>
+          <p class="brand-subtitle">Translating W3C Standards for Designers, Developers, QA &amp; Product teams</p>
+        </div>
+
+        <!-- Global search. Submits to the WCAG 3 explorer, which already reads ?q= -->
+        <form class="header-search" action={link("/plain-english/")} method="GET" role="search">
+          <label class="sr-only" for="global-search-input">Search WCAG 3 provisions and WCAG 2.2 criteria</label>
+          <span class="header-search-icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            name="q"
+            id="global-search-input"
+            class="header-search-input"
+            placeholder="Search WCAG 2.2 / 3.0 criteria (e.g. 2.5.8 Target Size)…"
+            autocomplete="off"
+          />
+          <button type="submit" class="header-search-btn">Search</button>
+        </form>
+
+        <div class="header-actions">
+          <a
+            href={link("/plain-english/calculator/")}
+            class={`header-action ${activeTab === "calculator" ? "is-current" : ""}`}
+            aria-current={activeTab === "calculator" ? "page" : undefined}
+          >
+            <span aria-hidden="true">🧮</span>
+            <span>Audit Calculator</span>
+          </a>
+          <a
+            href={link("/guidelines/")}
+            class={`header-action header-action-solid ${activeTab === "w3c" ? "is-current" : ""}`}
+            aria-current={activeTab === "w3c" ? "page" : undefined}
+            title="View the raw W3C normative specification"
+          >
+            <span>W3C Official</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Row 3: section navigation -->
+      <div class="header-nav-row">
+        <nav class="hub-nav" aria-label="Main Navigation">
+          <a href={link("/")} class={`nav-tab ${activeTab === "home" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">🏠</span>
+            <span class="tab-text">Home</span>
+          </a>
+          <a href={link("/plain-english/")} class={`nav-tab ${activeTab === "wcag3" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">✨</span>
+            <span class="tab-text">WCAG 3 Explorer</span>
+            <span class="status-pill status-draft">Draft</span>
+          </a>
+          <a href={link("/plain-english/wcag22/")} class={`nav-tab ${activeTab === "wcag22" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">📘</span>
+            <span class="tab-text">WCAG 2.2 Reference</span>
+            <span class="status-pill status-standard">Standard</span>
+          </a>
+          <a href={link("/plain-english/conformance/")} class={`nav-tab ${activeTab === "conformance" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">⚖️</span>
+            <span class="tab-text">Conformance</span>
+            <span class="status-pill status-draft">Changed</span>
+          </a>
+          <a href={link("/plain-english/removals/")} class={`nav-tab ${activeTab === "removals" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">🔄</span>
+            <span class="tab-text">Removals &amp; Shifts</span>
+            <span class="status-pill status-removed">2.2 vs 3</span>
+          </a>
+          <a href={link("/plain-english/discussions/")} class={`nav-tab ${activeTab === "discussions" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">💬</span>
+            <span class="tab-text">Discussions</span>
+            <span class="status-pill status-draft">Live</span>
+          </a>
+        </nav>
       </div>
 
       {activeTab === "wcag3" && (
@@ -968,6 +1254,46 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             toggleTheme();
           }
         });
+
+        /* ----------------------------------------------------------------
+           Text size. Scaling the root font-size is what WCAG 1.4.4 Resize
+           Text actually describes, and because the site sizes type in rem it
+           carries through every page — headers, nav and content together,
+           rather than only the article body. The choice is stored so it
+           survives navigation; without that it resets on every click and is
+           not worth having.
+           ---------------------------------------------------------------- */
+        const scaleButtons = Array.prototype.slice.call(document.querySelectorAll('.scale-btn'));
+
+        function currentScale() {
+          const attr = document.documentElement.getAttribute('data-text-scale');
+          return attr || '100';
+        }
+
+        function paintScaleButtons(scale) {
+          scaleButtons.forEach((btn) => {
+            btn.setAttribute('aria-pressed', btn.dataset.scale === scale ? 'true' : 'false');
+          });
+        }
+
+        function setScale(scale) {
+          if (scale === '100') {
+            document.documentElement.style.fontSize = '';
+            document.documentElement.removeAttribute('data-text-scale');
+          } else {
+            document.documentElement.style.fontSize = scale + '%';
+            document.documentElement.setAttribute('data-text-scale', scale);
+          }
+          try {
+            localStorage.setItem('wcag_hub_textscale', scale);
+          } catch (e) {}
+          paintScaleButtons(scale);
+        }
+
+        scaleButtons.forEach((btn) => {
+          btn.addEventListener('click', () => setScale(btn.dataset.scale));
+        });
+        paintScaleButtons(currentScale());
       });
     </script>
   </body>

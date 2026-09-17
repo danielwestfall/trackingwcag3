@@ -223,6 +223,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     gap: 8px;
     margin-bottom: 16px;
     font-size: 0.88rem;
+    /* A non-wrapping row whose last crumb is a full criterion title:
+       the crumb defaults to min-width: auto, so at 200% text scale the row
+       cannot shrink and pushes the page sideways. */
+    flex-wrap: wrap;
   }
 
   .back-link {
@@ -234,7 +238,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .back-link:hover { color: #6ee7b7; }
 
   .crumb-sep { color: var(--text-muted); }
-  .crumb-current { color: var(--text-secondary); }
+  .crumb-current { min-width: 0; color: var(--text-secondary); }
 
   .header-badges {
     display: flex;

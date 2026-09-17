@@ -368,8 +368,14 @@ const roleLabel: Record<string, string> = {
       line-height: 1.7;
     }
 
+    /* Its children are flex items with the default min-width: auto, so the
+       box wraps but the text inside still cannot shrink at 200% text scale. */
+    .caveat-box > * { min-width: 0; }
+
     .caveat-box {
       display: flex;
+      /* See above: wrap rather than force the page wider at 200% text. */
+      flex-wrap: wrap;
       gap: 0.85rem;
       padding: 1rem 1.25rem;
       border: 1px solid var(--border-default);
@@ -513,6 +519,9 @@ const roleLabel: Record<string, string> = {
       gap: 1rem;
     }
     .shift-card {
+      /* Grid item: min-width: auto keeps this card at its content width,
+         which at 200% text scale is wider than a phone viewport. */
+      min-width: 0;
       position: relative;
       background: var(--surface-card);
       border: 1px solid var(--border-subtle);
@@ -583,6 +592,8 @@ const roleLabel: Record<string, string> = {
       grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
     }
     .ready-col {
+      /* 200% text scale: let this shrink/wrap instead of widening the page. */
+      min-width: 0;
       background: var(--surface-card);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
@@ -612,6 +623,10 @@ const roleLabel: Record<string, string> = {
       display: grid;
       gap: 0.85rem;
     }
+    /* Grid items default to min-width: auto and will not shrink below their
+       longest line at 200% text scale. */
+    .ready-list li { min-width: 0; }
+
     .ready-list li strong {
       color: var(--text-primary);
       display: block;
@@ -631,6 +646,8 @@ const roleLabel: Record<string, string> = {
       grid-template-columns: repeat(auto-fit, minmax(min(21rem, 100%), 1fr));
     }
     .stretched-card {
+      /* 200% text scale: let this shrink/wrap instead of widening the page. */
+      min-width: 0;
       background: var(--surface-card);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
@@ -644,13 +661,17 @@ const roleLabel: Record<string, string> = {
       flex-wrap: wrap;
     }
     .sc-pill {
+      /* Keeping the label on one line is a nicety; at 200% text scale it is
+         what pushes the card past the viewport. */
+      max-width: 100%;
+      min-width: 0;
       font-size: 0.78rem;
       font-weight: 600;
       padding: 0.2rem 0.6rem;
       border-radius: 999px;
       border: 1px solid var(--border-default);
       color: var(--text-secondary);
-      white-space: nowrap;
+      white-space: normal;
     }
     .stretched-card p {
       margin: 0.6rem 0 0;

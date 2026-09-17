@@ -757,6 +757,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .banner-badge {
+    /* 200% text scale: let this shrink/wrap instead of widening the page. */
+    flex-wrap: wrap;
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -770,6 +773,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     padding: 3px 10px;
     border-radius: var(--radius-full);
     margin-bottom: 12px;
+  }
+
+  /* The title block is a flex item, so it defaults to min-width: auto and
+     refuses to shrink below its longest line. At 200% text scale that line is
+     wider than a phone viewport and the page scrolls sideways. Letting it
+     shrink lets the heading wrap instead. */
+  .banner-title-group {
+    min-width: 0;
   }
 
   .banner-title-group h2 {
@@ -849,6 +860,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .tier-summary-card,
   .category-health-card {
+    /* Grid items default to min-width: auto, so these cards refuse to
+       shrink below their widest line; at 200% text scale that is wider
+       than a phone viewport and the dashboard scrolls sideways. */
+    min-width: 0;
     background: var(--surface-card);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
@@ -866,6 +881,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .tier-pill {
+    /* Grid and flex items default to min-width: auto and refuse to shrink
+       below their content; at 200% text scale that content is wider than a
+       phone viewport. */
+    min-width: 0;
     font-size: 0.95rem;
     font-weight: 800;
     padding: 6px 14px;
@@ -967,6 +986,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .tier-target-milestones {
+    /* 200% text scale: let this shrink/wrap instead of widening the page. */
+    flex-wrap: wrap;
+    min-width: 0;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -974,6 +996,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .milestone-item {
+    /* 200% text scale: let this shrink/wrap instead of widening the page. */
+    flex-wrap: wrap;
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -1005,6 +1030,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   /* Blockers Alert */
   .blockers-alert {
+    /* Wrap rather than force the page sideways at 200% text scale. */
+    flex-wrap: wrap;
     background: rgba(244, 63, 94, 0.12);
     border: 1.5px solid rgba(244, 63, 94, 0.4);
     border-radius: var(--radius-md);
@@ -1014,6 +1041,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     gap: 12px;
   }
   .alert-symbol { font-size: 1.3rem; flex-shrink: 0; }
+  /* Flex item: min-width: auto would refuse to shrink below its longest
+     line, which at 200% text scale exceeds a phone viewport. */
+  .alert-content { min-width: 0; }
+
   .alert-content strong { color: #fda4af; font-size: 0.92rem; display: block; margin-bottom: 2px; }
   .alert-content p { color: var(--text-secondary); font-size: 0.84rem; line-height: 1.5; margin: 0; }
 

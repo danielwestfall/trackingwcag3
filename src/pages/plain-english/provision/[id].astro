@@ -297,6 +297,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     gap: 8px;
     margin-bottom: 16px;
     font-size: 0.88rem;
+    /* A non-wrapping row whose last crumb is a full criterion title:
+       the crumb defaults to min-width: auto, so at 200% text scale the row
+       cannot shrink and pushes the page sideways. */
+    flex-wrap: wrap;
   }
 
   .back-link {
@@ -314,11 +318,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .crumb-current {
+    min-width: 0;
     color: var(--text-secondary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 400px;
+    /* A flat 400px ceiling is wider than the viewport itself on a phone, and
+       scaling text does not shrink it. Same min() pattern as the grid floors. */
+    max-width: min(400px, 100%);
   }
 
   .header-badges {

@@ -176,6 +176,10 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
   }
 
   .banner-badge {
+    /* 200% text scale: let this badge wrap its own label instead of
+       widening the page. Same component exists on several pages. */
+    flex-wrap: wrap;
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -189,6 +193,14 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     padding: 3px 10px;
     border-radius: var(--radius-full);
     margin-bottom: 12px;
+  }
+
+  /* The title block is a flex item, so it defaults to min-width: auto and
+     refuses to shrink below its longest line. At 200% text scale that line is
+     wider than a phone viewport and the page scrolls sideways. Letting it
+     shrink lets the heading wrap instead. */
+  .banner-title-group {
+    min-width: 0;
   }
 
   .banner-title-group h2 {
@@ -240,7 +252,11 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     letter-spacing: 0.05em;
   }
 
+  .alert-body { min-width: 0; }
+
   .intro-alert {
+    /* 200% text scale: wrap, and let the body text shrink beside the icon. */
+    flex-wrap: wrap;
     background: rgba(192, 132, 252, 0.1);
     border: 1px solid rgba(192, 132, 252, 0.35);
     border-radius: var(--radius-md);
@@ -273,6 +289,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
   }
 
   .removal-card {
+    min-width: 0;
     background: var(--surface-card);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
@@ -408,7 +425,13 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     display: block;
     margin-bottom: 8px;
   }
+  .debate-links-list li,
+  .debate-link-item,
+  .debate-link-item > * { min-width: 0; }
+
   .debate-links-list {
+    /* 200% text scale: wrap, and let the items and their links shrink. */
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
     display: flex;
@@ -418,6 +441,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
   .debate-link-item {
     display: inline-flex;
     align-items: center;
+    /* 200% text scale: the label beside the icon cannot shrink, so wrap. */
+    flex-wrap: wrap;
     gap: 8px;
     color: var(--accent-blue);
     text-decoration: none;
@@ -479,6 +504,9 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
   }
 
   .support-link-card {
+    /* 200% text scale: let this shrink/wrap instead of widening the page. */
+    flex-wrap: wrap;
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -507,6 +535,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
      Discussions Teaser
      ========================================================================== */
   .discussions-teaser {
+    /* 200% text scale: let this shrink/wrap instead of widening the page. */
+    flex-wrap: wrap;
     margin-top: 48px;
     border-top: 2px dashed var(--border-default);
     padding-top: 36px;
@@ -519,6 +549,10 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     padding: 28px 32px;
   }
   .teaser-icon { font-size: 2rem; flex-shrink: 0; }
+  /* Flex item: needs permission to shrink below its longest line at 200%
+     text scale. */
+  .teaser-body { min-width: 0; }
+
   .teaser-body h3 {
     font-size: 1.3rem;
     font-weight: 800;
