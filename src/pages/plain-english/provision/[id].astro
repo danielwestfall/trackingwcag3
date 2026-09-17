@@ -19,8 +19,14 @@ interface Props {
 
 const { item } = Astro.props as Props;
 const ann = item?.annotation || {};
-const likelihood = ann?.statusSummary?.inclusionLikelihood || "Under Discussion";
-const delta = ann?.wcag22Comparison?.strictnessDelta || "Equivalent";
+// 242 of 245 provisions have no hand-written annotation. Theirs is generated
+// and holds only the upstream title and opening sentence — see
+// scripts/sync-wcag-plain-english.mjs for what this page used to be handed.
+// Nothing below may substitute prose of its own when a field is absent: a
+// plausible-sounding default is indistinguishable from researched analysis.
+const generated = ann?.generated === true;
+const likelihood = ann?.statusSummary?.inclusionLikelihood;
+const delta = ann?.wcag22Comparison?.strictnessDelta;
 const status = item?.status || "exploratory";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -38,7 +44,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     
     <div class="header-badges">
       <span class={`status-badge status-${status}`}>{status}</span>
-      <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>
+      {delta && <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>}
       <span class="type-badge">{item.type || "Provision"}</span>
     </div>
 
@@ -47,14 +53,26 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       Group: <strong>{item.groupSlug}</strong> &bull; Guideline: <strong>{item.guidelineSlug}</strong>
     </p>
 
-    <!-- Final Release Likelihood Banner -->
-    <div class="likelihood-banner">
-      <div class="likelihood-header">
-        <span class="banner-label">W3C Final Recommendation Likelihood:</span>
-        <span class="banner-value">{likelihood}</span>
+    {likelihood && (
+      <div class="likelihood-banner">
+        <div class="likelihood-header">
+          <span class="banner-label">W3C Final Recommendation Likelihood:</span>
+          <span class="banner-value">{likelihood}</span>
+        </div>
+        {ann?.statusSummary?.workingGroupDebate && <p class="banner-desc">{ann.statusSummary.workingGroupDebate}</p>}
       </div>
-      <p class="banner-desc">{ann?.statusSummary?.workingGroupDebate || "Active W3C AGWG exploration topic."}</p>
-    </div>
+    )}
+
+    {generated && (
+      <div class="unreviewed-banner">
+        <p>
+          <strong>No plain-English analysis has been written for this provision yet.</strong>
+          What follows is the W3C draft's own text. Role-based advice, testing steps
+          and a WCAG&nbsp;2.2 comparison appear here only once someone has researched
+          and written them &mdash; 3 of 245 provisions have so far.
+        </p>
+      </div>
+    )}
   </div>
 
   <!-- Tabbed Interface -->
@@ -84,90 +102,120 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <p class="summary-lead">{ann?.plainEnglish?.summary}</p>
       </div>
 
-      <div class="panel-grid-2">
-        <div class="info-card">
-          <h3>Why It Matters</h3>
-          <p>{ann?.plainEnglish?.whyItMatters || "Ensures equitable access for users with various disabilities."}</p>
+      {(ann?.plainEnglish?.whyItMatters || ann?.plainEnglish?.realWorldExample) && (
+        <div class="panel-grid-2">
+          {ann?.plainEnglish?.whyItMatters && (
+            <div class="info-card">
+              <h3>Why It Matters</h3>
+              <p>{ann.plainEnglish.whyItMatters}</p>
+            </div>
+          )}
+          {ann?.plainEnglish?.realWorldExample && (
+            <div class="info-card">
+              <h3>Real-World Example</h3>
+              <p>{ann.plainEnglish.realWorldExample}</p>
+            </div>
+          )}
         </div>
-        <div class="info-card">
-          <h3>Real-World Example</h3>
-          <p>{ann?.plainEnglish?.realWorldExample || "Navigating complex components without cognitive or physical barriers."}</p>
-        </div>
-      </div>
+      )}
 
       <div class="panel-section">
         <h2>Role-Based Actionable Advice</h2>
-        <div class="persona-cards-grid">
-          <div class="persona-card designer">
-            <span class="persona-header">🎨 Designer</span>
-            <p>{ann?.personaBreakdown?.designer || "Design high-contrast visual cues and consistent component states."}</p>
+        {ann?.personaBreakdown ? (
+          <div class="persona-cards-grid">
+            <div class="persona-card designer">
+              <span class="persona-header">🎨 Designer</span>
+              <p>{ann.personaBreakdown.designer}</p>
+            </div>
+            <div class="persona-card developer">
+              <span class="persona-header">💻 Developer</span>
+              <p>{ann.personaBreakdown.developer}</p>
+            </div>
+            <div class="persona-card qa">
+              <span class="persona-header">🧪 QA / Tester</span>
+              <p>{ann.personaBreakdown.qa}</p>
+            </div>
+            <div class="persona-card pm">
+              <span class="persona-header">📋 Product Manager</span>
+              <p>{ann.personaBreakdown.productManager}</p>
+            </div>
           </div>
-          <div class="persona-card developer">
-            <span class="persona-header">💻 Developer</span>
-            <p>{ann?.personaBreakdown?.developer || "Use semantic HTML elements and programmatic accessibility attributes."}</p>
-          </div>
-          <div class="persona-card qa">
-            <span class="persona-header">🧪 QA / Tester</span>
-            <p>{ann?.personaBreakdown?.qa || "Verify with automated rules, keyboard tab navigation, and screen readers."}</p>
-          </div>
-          <div class="persona-card pm">
-            <span class="persona-header">📋 Product Manager</span>
-            <p>{ann?.personaBreakdown?.productManager || "Incorporate accessible acceptance criteria in sprint user stories."}</p>
-          </div>
-        </div>
+        ) : (
+          <p class="not-written">Not written yet for this provision.</p>
+        )}
       </div>
     </div>
 
     <!-- Panel 2: Testing Guide -->
     <div id="panel-test" role="tabpanel" aria-labelledby="tab-test" class="tab-panel hidden">
-      <div class="panel-section">
-        <h2>Testing & Verification Procedures</h2>
-        <div class="testing-grid">
-          <div class="test-card">
-            <h3>🤖 Automated Testing</h3>
-            <p>{ann?.testingGuide?.automated || "Run axe-core or Lighthouse accessibility audits in CI/CD pipeline."}</p>
+      {ann?.testingGuide ? (
+        <>
+          <div class="panel-section">
+            <h2>Testing &amp; Verification Procedures</h2>
+            <div class="testing-grid">
+              <div class="test-card">
+                <h3>🤖 Automated Testing</h3>
+                <p>{ann.testingGuide.automated}</p>
+              </div>
+              <div class="test-card">
+                <h3>⌨️ Keyboard Testing</h3>
+                <p>{ann.testingGuide.manualKeyboard}</p>
+              </div>
+              <div class="test-card">
+                <h3>🔊 Screen Reader Verification</h3>
+                <p>{ann.testingGuide.screenReader}</p>
+              </div>
+            </div>
           </div>
-          <div class="test-card">
-            <h3>⌨️ Keyboard Testing</h3>
-            <p>{ann?.testingGuide?.manualKeyboard || "Tab through all interactive controls and verify focus states."}</p>
-          </div>
-          <div class="test-card">
-            <h3>🔊 Screen Reader Verification</h3>
-            <p>{ann?.testingGuide?.screenReader || "Audit with NVDA, JAWS, or VoiceOver to check verbalized announcements."}</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="panel-section">
-        <h2>Code Patterns: Good vs Bad</h2>
-        <div class="code-comparison">
-          <div class="code-box good">
-            <div class="code-header">
-              <span>✅ Good Accessible Implementation</span>
-              <button type="button" class="copy-code-btn" data-code={ann?.testingGuide?.codeSnippetGood || ""}>Copy</button>
+          {(ann.testingGuide.codeSnippetGood || ann.testingGuide.codeSnippetBad) && (
+            <div class="panel-section">
+              <h2>Code Patterns: Good vs Bad</h2>
+              <div class="code-comparison">
+                {ann.testingGuide.codeSnippetGood && (
+                  <div class="code-box good">
+                    <div class="code-header">
+                      <span>✅ Good Accessible Implementation</span>
+                      <button type="button" class="copy-code-btn" data-code={ann.testingGuide.codeSnippetGood}>Copy</button>
+                    </div>
+                    <pre><code>{ann.testingGuide.codeSnippetGood}</code></pre>
+                  </div>
+                )}
+                {ann.testingGuide.codeSnippetBad && (
+                  <div class="code-box bad">
+                    <div class="code-header">
+                      <span>❌ Inaccessible Anti-Pattern</span>
+                      <button type="button" class="copy-code-btn" data-code={ann.testingGuide.codeSnippetBad}>Copy</button>
+                    </div>
+                    <pre><code>{ann.testingGuide.codeSnippetBad}</code></pre>
+                  </div>
+                )}
+              </div>
             </div>
-            <pre><code>{ann?.testingGuide?.codeSnippetGood || "<!-- Accessible semantic implementation -->\n<button type=\"button\" aria-expanded=\"false\">\n  Toggle Navigation\n</button>"}</code></pre>
-          </div>
-          <div class="code-box bad">
-            <div class="code-header">
-              <span>❌ Inaccessible Anti-Pattern</span>
-              <button type="button" class="copy-code-btn" data-code={ann?.testingGuide?.codeSnippetBad || ""}>Copy</button>
-            </div>
-            <pre><code>{ann?.testingGuide?.codeSnippetBad || "<!-- Inaccessible div button -->\n<div onclick=\"toggleNav()\">\n  Toggle Navigation\n</div>"}</code></pre>
-          </div>
+          )}
+        </>
+      ) : (
+        <div class="panel-section">
+          <h2>Testing &amp; Verification Procedures</h2>
+          <p class="not-written">
+            Not written yet for this provision. Generic testing advice and sample
+            code would apply to almost any provision, so none is shown.
+          </p>
         </div>
-      </div>
+      )}
     </div>
 
     <!-- Panel 3: Discussion & Release Estimation -->
     <div id="panel-estimation" role="tabpanel" aria-labelledby="tab-estimation" class="tab-panel hidden">
       <div class="panel-section">
-        <h2>W3C Working Group Status & Discussion</h2>
+        <h2>W3C Working Group Status</h2>
         <div class="discussion-box">
-          <div class="metric-row">
-            <span class="metric-label">Estimated Release Likelihood:</span>
-            <span class="metric-val">{likelihood}</span>
-          </div>
+          {likelihood && (
+            <div class="metric-row">
+              <span class="metric-label">Estimated Release Likelihood:</span>
+              <span class="metric-val">{likelihood}</span>
+            </div>
+          )}
           <div class="metric-row">
             <span class="metric-label">W3C Maturity Status:</span>
             <span class="metric-val status-val">{item.status}</span>
@@ -178,55 +226,82 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           </div>
         </div>
 
-        <div class="info-card">
-          <h3>Working Group Debate & Consensus</h3>
-          <p>{ann?.statusSummary?.workingGroupDebate || "Currently under active review by the W3C Accessibility Guidelines Working Group."}</p>
-        </div>
+        {ann?.statusSummary?.workingGroupDebate ? (
+          <div class="info-card">
+            <h3>Working Group Debate &amp; Consensus</h3>
+            <p>{ann.statusSummary.workingGroupDebate}</p>
+          </div>
+        ) : (
+          <p class="not-written">
+            No summary of working-group discussion has been written for this
+            provision. Recorded W3C threads, where they exist, are on the
+            <a href={link("/plain-english/discussions/")}>Discussions</a> page.
+          </p>
+        )}
 
-        <div class="info-card">
-          <h3>Key Implementation Challenges</h3>
-          <p>{ann?.statusSummary?.keyChallenges || "Balancing flexible platform capabilities with standardized scoring formulas."}</p>
-        </div>
+        {ann?.statusSummary?.keyChallenges && (
+          <div class="info-card">
+            <h3>Key Implementation Challenges</h3>
+            <p>{ann.statusSummary.keyChallenges}</p>
+          </div>
+        )}
       </div>
     </div>
 
     <!-- Panel 4: WCAG 2.2 Comparison -->
     <div id="panel-wcag22" role="tabpanel" aria-labelledby="tab-wcag22" class="tab-panel hidden">
-      <div class="panel-section">
-        <h2>WCAG 2.2 Delta & Comparison</h2>
-        <div class="delta-summary-box">
-          <div class="delta-header">
-            <span class="delta-title">Strictness Delta:</span>
-            <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>
-          </div>
-          <p class="delta-desc">{ann?.wcag22Comparison?.deltaExplanation || "Evolution from WCAG 2.2 binary rule."}</p>
-        </div>
-
+      {ann?.wcag22Comparison ? (
         <div class="panel-section">
-          <h3>Matching WCAG 2.2 Success Criteria</h3>
-          {ann?.wcag22Comparison?.matchingCriteria?.length > 0 ? (
-            <ul class="matching-list">
-              {ann.wcag22Comparison.matchingCriteria.map((scStr: string) => {
-                const scNum = scStr.replace(/[^0-9.]/g, '');
-                const scSlug = scNum.replace(/\./g, '-');
-                return (
-                  <li>
-                    <a href={link(`/plain-english/wcag22/${scSlug}/`)} class="sc-link">
-                      <span>📘</span>
-                      <strong>{scStr}</strong>
-                      <span class="link-arrow">&rarr;</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <div class="new-outcome-box">
-              <p>✨ <strong>New WCAG 3 Outcome:</strong> This provision introduces a brand new outcome framework in WCAG 3 without a direct 1:1 predecessor in WCAG 2.2.</p>
-            </div>
-          )}
+          <h2>WCAG 2.2 Delta &amp; Comparison</h2>
+          <div class="delta-summary-box">
+            {delta && (
+              <div class="delta-header">
+                <span class="delta-title">Strictness Delta:</span>
+                <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>
+              </div>
+            )}
+            {ann.wcag22Comparison.deltaExplanation && <p class="delta-desc">{ann.wcag22Comparison.deltaExplanation}</p>}
+          </div>
+
+          <div class="panel-section">
+            <h3>Matching WCAG 2.2 Success Criteria</h3>
+            {ann.wcag22Comparison.matchingCriteria?.length > 0 ? (
+              <ul class="matching-list">
+                {ann.wcag22Comparison.matchingCriteria.map((scStr: string) => {
+                  const scNum = scStr.replace(/[^0-9.]/g, '');
+                  const scSlug = scNum.replace(/\./g, '-');
+                  return (
+                    <li>
+                      <a href={link(`/plain-english/wcag22/${scSlug}/`)} class="sc-link">
+                        <span>📘</span>
+                        <strong>{scStr}</strong>
+                        <span class="link-arrow">&rarr;</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <div class="new-outcome-box">
+                <p>✨ <strong>New WCAG 3 Outcome:</strong> This provision introduces a brand new outcome framework in WCAG 3 without a direct 1:1 predecessor in WCAG 2.2.</p>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div class="panel-section">
+          <h2>WCAG 2.2 Delta &amp; Comparison</h2>
+          <p class="not-written">
+            No mapping has been reasoned for this provision. The site previously
+            named a WCAG&nbsp;2.2 criterion here for every provision, chosen by
+            pattern-matching the group name rather than by comparing the two
+            requirements &mdash; so the mapping shown was not evidence of a real
+            relationship. The reverse direction, WCAG&nbsp;2.2 criterion to WCAG&nbsp;3,
+            is curated: see the
+            <a href={link("/plain-english/wcag22/")}>WCAG&nbsp;2.2 Reference</a>.
+          </p>
+        </div>
+      )}
     </div>
 
     <!-- Panel 5: W3C Official Text -->
@@ -378,6 +453,36 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     color: var(--text-secondary);
     font-size: 0.94rem;
     margin-bottom: 24px;
+  }
+
+  /* Shown on the 242 provisions with no hand-written annotation, in place of
+     the generated prose that used to fill these sections. */
+  .unreviewed-banner {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-left: 4px solid var(--accent-amber);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+  }
+  .unreviewed-banner p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .unreviewed-banner strong {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .not-written {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .not-written a {
+    color: var(--accent-blue);
   }
 
   .likelihood-banner {

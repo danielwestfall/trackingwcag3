@@ -12,7 +12,6 @@ if (fs.existsSync(catalogPath)) {
 
 const totalCount = catalog.length;
 const matureCount = catalog.filter((item) => item.status === "mature" || item.status === "refining").length;
-const highInclusionCount = catalog.filter((item) => item.annotation?.statusSummary?.inclusionLikelihood?.startsWith("High")).length;
 const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.annotation.plainEnglish?.summary?.endsWith("...")).length;
 
 // Type counts, read from the catalog rather than written into the prose below.
@@ -123,10 +122,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <div class="stat-card stat-mature">
           <span class="stat-value highlight-mature">{matureCount}</span>
           <span class="stat-label">Refining / Mature</span>
-        </div>
-        <div class="stat-card stat-high">
-          <span class="stat-value highlight-high">{highInclusionCount}</span>
-          <span class="stat-label">High Final Likelihood</span>
         </div>
         <div class="stat-card stat-annotated">
           <span class="stat-value highlight-annotated">{customAnnotatedCount}</span>
@@ -308,14 +303,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <option value="exploratory">Exploratory</option>
         </select>
 
-        <label for="delta-filter" class="sr-only">Filter by WCAG 2.2 Comparison</label>
-        <select id="delta-filter" class="filter-select" aria-label="Filter by WCAG 2.2 Comparison Strictness">
-          <option value="all">All 2.2 Strictness</option>
-          <option value="More Strict">More Strict than 2.2</option>
-          <option value="Equivalent">Equivalent to 2.2</option>
-          <option value="Less Strict">Less Strict than 2.2</option>
-          <option value="New / Broader Scope">New / Broader Scope</option>
-        </select>
       </div>
     </div>
   </section>
@@ -329,8 +316,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <div class="provisions-grid" id="provisions-grid">
       {catalog.map((item) => {
         const ann = item.annotation;
-        const likelihood = ann?.statusSummary?.inclusionLikelihood || "Under Discussion";
-        const delta = ann?.wcag22Comparison?.strictnessDelta || "Equivalent";
+        // Both exist only on the three hand-written annotations; they used to
+        // fall back to invented values for the other 242.
+        const likelihood = ann?.statusSummary?.inclusionLikelihood;
+        const delta = ann?.wcag22Comparison?.strictnessDelta;
         const status = item.status || "exploratory";
         const groupSlug = item.groupSlug || "general";
         
@@ -343,19 +332,21 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             data-title={item.title.toLowerCase()}
             data-body={item.rawBody.toLowerCase()}
             data-status={status}
-            data-delta={delta}
+            data-delta={delta || ""}
             data-summary={ann?.plainEnglish?.summary?.toLowerCase() || ""}
           >
             <div class="card-top">
               <div class="badge-group">
                 <span class={`status-badge status-${status}`}>{status}</span>
-                <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>
+                {delta && <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>}
                 <span class="group-tag">{GROUP_NAMES[groupSlug] || groupSlug}</span>
               </div>
-              <div class="estimation-pill" title="Estimated likelihood of reaching final WCAG 3 Recommendation">
-                <span class="est-label">Final Likelihood:</span>
-                <span class="est-value">{likelihood}</span>
-              </div>
+              {likelihood && (
+                <div class="estimation-pill" title="Estimated likelihood of reaching final WCAG 3 Recommendation">
+                  <span class="est-label">Final Likelihood:</span>
+                  <span class="est-value">{likelihood}</span>
+                </div>
+              )}
             </div>
 
             <h3 class="card-title">
@@ -394,7 +385,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     const personaPills = document.querySelectorAll('.persona-pill');
     const categoryFilter = document.getElementById('category-filter');
     const statusFilter = document.getElementById('status-filter');
-    const deltaFilter = document.getElementById('delta-filter');
     const cards = document.querySelectorAll('.provision-card');
     const resultCount = document.getElementById('result-count');
 
@@ -476,7 +466,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       const query = searchInput.value.toLowerCase().trim();
       const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
       const selectedStatus = statusFilter.value;
-      const selectedDelta = deltaFilter.value;
 
       let visible = 0;
 
@@ -486,14 +475,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         const summary = card.getAttribute('data-summary') || '';
         const group = card.getAttribute('data-group') || '';
         const status = card.getAttribute('data-status') || '';
-        const delta = card.getAttribute('data-delta') || '';
 
         const matchesQuery = !query || title.includes(query) || body.includes(query) || summary.includes(query);
         const matchesCategory = selectedCategory === 'all' || group === selectedCategory;
         const matchesStatus = selectedStatus === 'all' || status === selectedStatus;
-        const matchesDelta = selectedDelta === 'all' || delta === selectedDelta;
 
-        if (matchesQuery && matchesCategory && matchesStatus && matchesDelta) {
+        if (matchesQuery && matchesCategory && matchesStatus) {
           card.style.display = 'flex';
           visible++;
         } else {
@@ -582,7 +569,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     searchInput.addEventListener('input', filterCards);
     if (categoryFilter) categoryFilter.addEventListener('change', filterCards);
     statusFilter.addEventListener('change', filterCards);
-    deltaFilter.addEventListener('change', filterCards);
 
     // Initial trigger
     updatePersonaTips();

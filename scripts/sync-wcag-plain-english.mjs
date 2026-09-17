@@ -98,45 +98,28 @@ async function sync() {
       const cleanBody = cleanBodyText.replace(/:::[a-z]+[\s\S]*?:::/gi, '').replace(/[#*`_]/g, '').trim();
       const firstSentence = cleanBody.split(/(?<=[.!?])\s+/)[0] || cleanBody;
       const formattedTitle = frontmatter.title || provisionSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-      const statusStr = frontmatter.status || 'exploratory';
 
-      let likelihood = 'Under Discussion';
-      if (statusStr === 'mature' || statusStr === 'refining') likelihood = 'High (90%+)';
-      else if (statusStr === 'developing') likelihood = 'Medium (70-89%)';
-
-      let delta = 'Equivalent';
-      if (frontmatter.type === 'foundational') delta = 'More Strict';
-      else if (groupSlug.includes('process') || groupSlug.includes('user-control')) delta = 'New / Broader Scope';
-
+      // A provision with no hand-written annotation gets ONLY what can be
+      // derived from the upstream draft: its title and its opening sentence.
+      //
+      // This block used to manufacture the rest. It asserted, for all 242
+      // provisions without an annotation, that "W3C Task Force is refining
+      // requirements for <slug> ... Key debates focus on testability and
+      // cross-platform AT interoperability"; it published a "W3C Final
+      // Recommendation Likelihood" of Medium (70-89%) derived from nothing but
+      // the status field; and it picked WCAG 2.2 matching criteria by testing
+      // the group slug for the substring "text" or "interactive". None of that
+      // was true, and the pages presented it identically to the three
+      // provisions that do have researched annotations. On a site whose purpose
+      // is trustworthy plain-English translation of a standard, inventing the
+      // translation is the one thing it must not do.
+      //
+      // `generated: true` lets the templates tell the two apart and say so.
       annotation = {
         slug: provisionSlug,
+        generated: true,
         plainEnglish: {
-          summary: `${formattedTitle}: ${firstSentence}`,
-          whyItMatters: `Ensures that users, particularly those relying on assistive technology or with cognitive/motor needs, can perceive and interact with ${guidelineSlug.replace(/-/g, ' ')} without barriers.`,
-          realWorldExample: `In a live web application, ${formattedTitle.toLowerCase()} guarantees that users can successfully navigate and complete user flows across diverse devices.`
-        },
-        personaBreakdown: {
-          designer: `Design clear visual indicators, layout structures, and high-contrast styling for ${formattedTitle.toLowerCase()}.`,
-          developer: `Implement semantic HTML tags, standard ARIA roles, and responsive CSS properties adhering to ${provisionSlug}.`,
-          qa: `Perform keyboard tab order checks, screen reader announcements, and automated accessibility scanning.`,
-          productManager: `Include ${formattedTitle.toLowerCase()} in design system specifications and release criteria.`
-        },
-        statusSummary: {
-          inclusionLikelihood: likelihood,
-          workingGroupDebate: `W3C Task Force is refining requirements for ${provisionSlug} under the ${groupSlug} working group track. Key debates focus on testability and cross-platform AT interoperability.`,
-          keyChallenges: `Ensuring consistent execution across desktop browsers, mobile viewports, and screen reader software.`
-        },
-        testingGuide: {
-          automated: `Run automated accessibility checks via axe-core or Lighthouse inspecting elements matching ${provisionSlug}.`,
-          manualKeyboard: `Tab through interactive elements associated with ${provisionSlug} and verify visual focus and keydown triggers.`,
-          screenReader: `Navigate using NVDA/VoiceOver and verify correct accessible name, role, and state announcements.`,
-          codeSnippetGood: `<!-- Compliant pattern for ${provisionSlug} -->\n<div class="accessible-container" tabIndex="0">\n  <span>${formattedTitle}</span>\n</div>`,
-          codeSnippetBad: `<!-- Non-compliant pattern -->\n<div onclick="doSomething()">${formattedTitle}</div>`
-        },
-        wcag22Comparison: {
-          matchingCriteria: groupSlug.includes('text') ? ['1.4.3 Contrast', '1.4.12 Text Spacing'] : groupSlug.includes('interactive') ? ['4.1.2 Name, Role, Value', '2.4.7 Focus Visible'] : ['1.3.1 Info & Relationships'],
-          strictnessDelta: delta,
-          deltaExplanation: `WCAG 3 evolves ${provisionSlug} from a binary page-level check into a continuous outcome-based guideline.`
+          summary: `${formattedTitle}: ${firstSentence}`
         }
       };
     }
