@@ -1,12 +1,58 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
 console.log('🔄 Running WCAG Plain English Sync & Audit Engine...');
+
+// The upstream draft carries real structure that the site was throwing away:
+// scope conditions, editor's notes recording open questions, worked examples,
+// and a test procedure in the matching informative document. None of it is
+// interpretation — it is the W3C text, extracted and attributed — so it can be
+// shown on a provision page that has no hand-written annotation without the
+// page claiming anything of its own. Everything here is skipped when the
+// upstream section is a stub ("To be added"), because an empty heading is not
+// content and rendering it as though it were is the same failure as inventing it.
+
+// Pull ":::name ... :::" blocks out of a markdown body.
+function extractDirectives(body) {
+  const found = { 'applies-when': [], 'except-when': [], note: [], ednote: [], example: [] };
+  // Upstream sometimes leaves trailing spaces after the directive name
+  // (":::note "), which a stricter pattern silently skipped over.
+  const re = /^:::([a-z-]+)[ \t]*\r?\n([\s\S]*?)^:::/gm;
+  let m;
+  while ((m = re.exec(body)) !== null) {
+    const name = m[1];
+    if (!(name in found)) continue;
+    const text = m[2].trim();
+    if (text) found[name].push(text);
+  }
+  return found;
+}
+
+// Split a markdown document into { heading: body } on "## " headings.
+function splitSections(markdown) {
+  const out = {};
+  const parts = markdown.split(/^## +(.+?)[ \t]*$/m);
+  for (let i = 1; i < parts.length; i += 2) out[parts[i].trim()] = parts[i + 1].trim();
+  return out;
+}
+
+// Upstream marks unwritten sections with "To be added". 194 of 245 provisions
+// have a real test procedure; the other 51 have the heading and nothing else.
+function hasContent(text) {
+  if (!text) return false;
+  const flat = text.replace(/\s+/g, ' ').trim().toLowerCase();
+  if (flat.length < 4) return false;
+  return !/^(to be added|tbd|todo)\.?$/.test(flat);
+}
+
+const stripW3cMarkup = (text) => text.replace(/:[a-z]+\[([^\]]+)\](\{[^}]*\})?/gi, '$1');
+
 
 // Recursive file scanner using native node fs
 function scanFilesRecursively(dir, extension = '.md') {
@@ -51,7 +97,11 @@ function parseFrontmatter(content) {
 }
 
 async function sync() {
+  const md = await createMarkdownProcessor({});
+  const toHtml = async (markdown) => (await md.render(stripW3cMarkup(markdown))).code.trim();
+
   const groupsDir = path.join(rootDir, 'guidelines', 'groups');
+  const informativeDir = path.join(rootDir, 'informative', 'guidelines');
   const plainEnglishDataDir = path.join(rootDir, 'plain-english-data', 'provisions');
   const wcag22Path = path.join(rootDir, 'wcag22-data', 'success-criteria.json');
   const publicDataDir = path.join(rootDir, 'public', 'data');
@@ -124,6 +174,41 @@ async function sync() {
       };
     }
 
+    // --- Upstream structure, extracted and attributed ---------------------
+    const directives = extractDirectives(body);
+    const informativeRel = path.join('informative', 'guidelines', groupSlug, guidelineSlug, `${provisionSlug}.md`);
+    const informativePath = path.join(rootDir, informativeRel);
+    const informative = fs.existsSync(informativePath)
+      ? splitSections(fs.readFileSync(informativePath, 'utf8'))
+      : {};
+    // Upstream writes the test as a "Procedure" block followed by an
+    // "Expected results" block, sometimes under "## Tests" and once under
+    // "## Procedure" directly. Both shapes are kept whole rather than parsed
+    // apart, so the page shows exactly what the draft says.
+    const testsSection = informative['Tests'] || informative['Procedure'] || '';
+
+    const renderAll = async (blocks) => Promise.all(blocks.map(toHtml));
+    const derived = {
+      appliesWhen: await renderAll(directives['applies-when']),
+      exceptWhen: await renderAll(directives['except-when']),
+      notes: await renderAll(directives.note),
+      // ":::ednote" is the editors' own note in the draft: the open questions
+      // the group has written down. It is the only honest source this site has
+      // for "what is unsettled about this provision" — the field it used to
+      // fill with a manufactured sentence about task-force debate.
+      editorNotes: await renderAll(directives.ednote),
+      examples: await renderAll(directives.example),
+      tests: hasContent(testsSection) ? await toHtml(testsSection) : null,
+      methods: hasContent(informative['Methods']) ? await toHtml(informative['Methods']) : null,
+      intent: hasContent(informative['Intent']) ? await toHtml(informative['Intent']) : null,
+      recommendedPractices: hasContent(informative['Recommended Practices'])
+        ? await toHtml(informative['Recommended Practices']) : null,
+      sources: {
+        provision: path.relative(rootDir, fullPath).split(path.sep).join('/'),
+        informative: fs.existsSync(informativePath) ? informativeRel.split(path.sep).join('/') : null
+      }
+    };
+
     wcag3Catalog.push({
       slug: provisionSlug,
       groupSlug,
@@ -140,6 +225,7 @@ async function sync() {
       needsAdditionalResearch: frontmatter.needsAdditionalResearch === 'true',
       tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : (frontmatter.tags ? [frontmatter.tags] : []),
       rawBody: cleanBodyText,
+      derived,
       annotation
     });
   }
@@ -225,6 +311,12 @@ async function sync() {
   console.log(`   - Hottest W3C Debates: ${debatesCatalog.length}`);
   console.log(`   - Custom Annotations Found: ${wcag3Catalog.length - missingAnnotations.length}`);
   console.log(`   - Fallback Annotations Used: ${missingAnnotations.length}`);
+
+  const withDerived = (key) => wcag3Catalog.filter((p) => Array.isArray(p.derived[key]) ? p.derived[key].length : p.derived[key]).length;
+  console.log(`\n📚 Upstream material extracted (no interpretation added):`);
+  for (const key of ['tests', 'appliesWhen', 'exceptWhen', 'examples', 'notes', 'editorNotes', 'methods', 'intent', 'recommendedPractices']) {
+    console.log(`   - ${key}: ${withDerived(key)} provisions`);
+  }
 }
 
 sync().catch(err => {

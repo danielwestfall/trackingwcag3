@@ -32,6 +32,15 @@ const likelihood = ann?.statusSummary?.inclusionLikelihood;
 const delta = ann?.wcag22Comparison?.strictnessDelta;
 const status = item?.status || "exploratory";
 
+// Structure pulled straight out of the W3C draft by the sync script: scope
+// conditions, editors' notes, worked examples and the informative document's
+// test procedure. It is the draft's own wording, so it can be shown on a
+// provision nobody has annotated - as long as the page says where it came from
+// and never dresses it up as this site's analysis.
+const derived = item?.derived || {};
+const srcUrl = (rel: string) => `https://github.com/w3c/wcag3/blob/main/${rel}`;
+const hasScope = (derived.appliesWhen?.length || derived.exceptWhen?.length || derived.notes?.length);
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
 ---
@@ -70,9 +79,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       <div class="unreviewed-banner">
         <p>
           <strong>No plain-English analysis has been written for this provision yet.</strong>
-          What follows is the W3C draft's own text. Role-based advice, testing steps
-          and a WCAG&nbsp;2.2 comparison appear here only once someone has researched
-          and written them &mdash; 3 of 245 provisions have so far.
+          Everything below is either the W3C draft's own wording &mdash; its
+          requirement, scope, examples, editors' notes and test procedure, each
+          linked to the file it came from &mdash; or the curated WCAG&nbsp;2.2 map
+          read in reverse. Role-based advice and an editorial comparison of the two
+          standards appear only once someone has researched and written them;
+          3 of 245 provisions have so far.
         </p>
       </div>
     )}
@@ -122,6 +134,49 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </div>
       )}
 
+      {hasScope && (
+        <div class="panel-section">
+          <h2>Scope: When This Applies</h2>
+          <p class="derived-note">
+            The draft's own conditions, quoted from
+            {" "}<a href={srcUrl(derived.sources.provision)}>{derived.sources.provision}</a>.
+          </p>
+          <div class="panel-grid-2">
+            {derived.appliesWhen?.length > 0 && (
+              <div class="info-card">
+                <h3>Applies when</h3>
+                {derived.appliesWhen.map((html: string) => <div class="upstream-prose" set:html={html} />)}
+              </div>
+            )}
+            {derived.exceptWhen?.length > 0 && (
+              <div class="info-card">
+                <h3>Except when</h3>
+                {derived.exceptWhen.map((html: string) => <div class="upstream-prose" set:html={html} />)}
+              </div>
+            )}
+          </div>
+          {derived.notes?.length > 0 && (
+            <div class="info-card upstream-note">
+              <h3>Notes in the draft</h3>
+              {derived.notes.map((html: string) => <div class="upstream-prose" set:html={html} />)}
+            </div>
+          )}
+        </div>
+      )}
+
+      {derived.examples?.length > 0 && (
+        <div class="panel-section">
+          <h2>Examples from the Draft</h2>
+          <p class="derived-note">
+            Worked examples the W3C editors wrote into the provision itself, not
+            examples invented here.
+          </p>
+          {derived.examples.map((html: string) => (
+            <div class="info-card"><div class="upstream-prose" set:html={html} /></div>
+          ))}
+        </div>
+      )}
+
       <div class="panel-section">
         <h2>Role-Based Actionable Advice</h2>
         {ann?.personaBreakdown ? (
@@ -151,7 +206,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     <!-- Panel 2: Testing Guide -->
     <div id="panel-test" role="tabpanel" aria-labelledby="tab-test" class="tab-panel hidden">
-      {ann?.testingGuide ? (
+      {ann?.testingGuide && (
         <>
           <div class="panel-section">
             <h2>Testing &amp; Verification Procedures</h2>
@@ -197,15 +252,59 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             </div>
           )}
         </>
-      ) : (
-        <div class="panel-section">
-          <h2>Testing &amp; Verification Procedures</h2>
-          <p class="not-written">
-            Not written yet for this provision. Generic testing advice and sample
-            code would apply to almost any provision, so none is shown.
-          </p>
-        </div>
       )}
+
+      <>
+          <div class="panel-section">
+            <h2>Test Procedure from the W3C Draft</h2>
+            {derived.tests ? (
+              <>
+                <p class="derived-note">
+                  Quoted from the provision's informative document,
+                  {" "}<a href={srcUrl(derived.sources.informative)}>{derived.sources.informative}</a>.
+                  It is the group's own procedure, not a testing guide written here.
+                </p>
+                <div class="upstream-prose test-procedure" set:html={derived.tests} />
+              </>
+            ) : ann?.testingGuide ? (
+              <p class="not-written">
+                Upstream has not written a test procedure for this provision. The
+                steps above were written here, not by the working group.
+              </p>
+            ) : (
+              <p class="not-written">
+                Upstream has a test heading for this provision but has not written
+                the procedure yet, and no test steps have been written here.
+                Generic advice would apply to almost any provision, so none is shown.
+              </p>
+            )}
+          </div>
+
+          {derived.methods && (
+            <div class="panel-section">
+              <h2>Methods Suggested Upstream</h2>
+              <p class="derived-note">
+                Implementation methods listed in
+                {" "}<a href={srcUrl(derived.sources.informative)}>the informative document</a>.
+              </p>
+              <div class="upstream-prose" set:html={derived.methods} />
+            </div>
+          )}
+
+          {derived.recommendedPractices && (
+            <div class="panel-section">
+              <h2>Recommended Practices (Upstream)</h2>
+              <div class="upstream-prose" set:html={derived.recommendedPractices} />
+            </div>
+          )}
+
+          {derived.intent && (
+            <div class="panel-section">
+              <h2>Intent (Upstream)</h2>
+              <div class="upstream-prose" set:html={derived.intent} />
+            </div>
+          )}
+      </>
     </div>
 
     <!-- Panel 3: Discussion & Release Estimation -->
@@ -229,16 +328,30 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           </div>
         </div>
 
-        {ann?.statusSummary?.workingGroupDebate ? (
+        {ann?.statusSummary?.workingGroupDebate && (
           <div class="info-card">
             <h3>Working Group Debate &amp; Consensus</h3>
             <p>{ann.statusSummary.workingGroupDebate}</p>
           </div>
-        ) : (
+        )}
+
+        {derived.editorNotes?.length > 0 ? (
+          <div class="info-card editor-note">
+            <h3>Open Questions Recorded in the Draft</h3>
+            <p class="derived-note">
+              The editors' own notes (<code>:::ednote</code>) in
+              {" "}<a href={srcUrl(derived.sources.provision)}>{derived.sources.provision}</a>.
+              These are the questions the group has written down as unresolved &mdash;
+              not a summary of discussion written here.
+            </p>
+            {derived.editorNotes.map((html: string) => <div class="upstream-prose" set:html={html} />)}
+          </div>
+        ) : ann?.statusSummary?.workingGroupDebate ? null : (
           <p class="not-written">
-            No summary of working-group discussion has been written for this
-            provision. Recorded W3C threads, where they exist, are on the
-            <a href={link("/plain-english/discussions/")}>Discussions</a> page.
+            The draft records no open editors' notes on this provision, and no
+            summary of working-group discussion has been written here. Recorded
+            W3C threads, where they exist, are on the
+            {" "}<a href={link("/plain-english/discussions/")}>Discussions</a> page.
           </p>
         )}
 
@@ -353,6 +466,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <div id="panel-w3c" role="tabpanel" aria-labelledby="tab-w3c" class="tab-panel hidden">
       <div class="panel-section">
         <h2>W3C Raw Source Text</h2>
+        <p class="derived-note">
+          Verbatim from
+          {" "}<a href={srcUrl(derived.sources?.provision || '')}>{derived.sources?.provision}</a>
+          {derived.sources?.informative && (
+            <>
+              {" "}&middot; informative document:
+              {" "}<a href={srcUrl(derived.sources.informative)}>{derived.sources.informative}</a>
+            </>
+          )}
+        </p>
         <div class="raw-body-box">
           <pre>{item.rawBody}</pre>
         </div>
@@ -543,6 +666,51 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .not-written a {
     color: var(--accent-blue);
   }
+  .derived-note a {
+    color: var(--accent-blue);
+    /* Source paths are long unbroken strings; without this they push the
+       panel sideways at narrow widths and at 200% text scale. */
+    overflow-wrap: anywhere;
+  }
+  .derived-note code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    background: rgba(127, 127, 127, 0.16);
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Upstream markdown rendered to HTML by the sync script. It is the W3C
+     draft's own prose, so it is styled as quoted material rather than as this
+     site's own copy. */
+  .upstream-prose {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    overflow-wrap: break-word;
+  }
+  .upstream-prose :global(p) { margin: 0 0 10px; }
+  .upstream-prose :global(p:last-child) { margin-bottom: 0; }
+  .upstream-prose :global(ul),
+  .upstream-prose :global(ol) { margin: 0 0 10px; padding-left: 1.35em; }
+  .upstream-prose :global(li) { margin-bottom: 6px; }
+  .upstream-prose :global(li:last-child) { margin-bottom: 0; }
+  .upstream-prose :global(a) { color: var(--accent-blue); overflow-wrap: anywhere; }
+  .upstream-prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    overflow-wrap: anywhere;
+  }
+  .upstream-prose :global(strong),
+  .upstream-prose :global(b) { color: var(--text-primary); }
+
+  .upstream-note {
+    border-left: 4px solid var(--border-strong, var(--border-default));
+  }
+  .editor-note {
+    border-left: 4px solid var(--accent-amber, var(--accent-blue));
+  }
+  .test-procedure :global(ol) { counter-reset: none; }
 
   .likelihood-banner {
     background: linear-gradient(135deg, rgba(19, 29, 49, 0.85) 0%, rgba(11, 17, 32, 0.95) 100%);
