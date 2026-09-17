@@ -146,7 +146,12 @@ async function sync() {
       groupSlug,
       guidelineSlug,
       title: frontmatter.title || provisionSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-      type: frontmatter.type || 'foundational',
+      // Upstream leaves some provisions with no type at all. Defaulting them to
+      // 'foundational' put the site's LEAST settled provisions — all of them
+      // exploratory — under its STRONGEST type label, and disagreed with
+      // track-upstream.mjs, which counts the same eight as untyped. They are
+      // carried as their own 'exploratory' type instead.
+      type: frontmatter.type || 'exploratory',
       status: frontmatter.status || 'exploratory',
       issueLabel: frontmatter.issueLabel || '',
       needsAdditionalResearch: frontmatter.needsAdditionalResearch === 'true',

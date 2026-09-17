@@ -2,14 +2,14 @@
   "draftState": {
     "baselineCommit": "2230e0f",
     "baselineDate": "2026-09-14",
-    "generatedAt": "2026-09-15",
+    "generatedAt": "2026-09-17",
     "provisionCount": 245,
     "byType": {
       "foundational": 114,
       "supplemental": 86,
       "assertion": 36,
       "recommended practice": 1,
-      "untyped": 8
+      "exploratory": 8
     },
     "byStatus": {
       "developing": 216,

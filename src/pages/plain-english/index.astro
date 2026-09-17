@@ -15,6 +15,16 @@ const matureCount = catalog.filter((item) => item.status === "mature" || item.st
 const highInclusionCount = catalog.filter((item) => item.annotation?.statusSummary?.inclusionLikelihood?.startsWith("High")).length;
 const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.annotation.plainEnglish?.summary?.endsWith("...")).length;
 
+// Type counts, read from the catalog rather than written into the prose below.
+// The site previously hardcoded 219 provisions in five places and went stale.
+const typeCounts: Record<string, number> = {};
+for (const item of catalog) typeCounts[item.type] = (typeCounts[item.type] || 0) + 1;
+const typeBreakdown = Object.entries(typeCounts)
+  .sort((a, b) => b[1] - a[1])
+  .map(([t, n]) => `${n} ${t}`)
+  .join(', ');
+const refiningOrBetter = catalog.filter((i) => i.status === 'refining' || i.status === 'mature').length;
+
 const GROUP_NAMES: Record<string, string> = {
   'animation-and-movement': '🎬 Animation & Movement',
   'consistency-across-views': '🔄 Consistency Across Views',
@@ -226,7 +236,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <tr>
                 <td><strong>Mandatory "Core" List</strong></td>
                 <td><span class="status-badge badge-wip">🛠️ In Progress</span></td>
-                <td>Of 245 provisions: 114 foundational, 86 supplemental, 36 assertions, 8 still untyped. Nothing has reached <em>refining</em> maturity.</td>
+                <td>Of {totalCount} provisions: {typeBreakdown}. {refiningOrBetter === 0 ? "Nothing has reached" : `${refiningOrBetter} have reached`} <em>refining</em> maturity{refiningOrBetter === 0 ? "" : " or better"}.</td>
               </tr>
               <tr>
                 <td><strong>Tier Tagging</strong></td>

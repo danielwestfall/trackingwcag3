@@ -296,6 +296,67 @@ function prLink(subject) {
   return m ? `[#${m[1]}](${REPO_WEB}/pull/${m[1]})` : null;
 }
 
+// The conformance page's headline figures live in wcag3-conformance.json and are
+// rewritten from the upstream tree on every run. This used to sit below the
+// "no new upstream commits" early return, which meant the figures only ever
+// refreshed when upstream moved — but the catalog can change on its own (a type
+// default changing, for instance), and then the page quietly disagreed with it.
+// Refreshing unconditionally is the whole point of the block.
+function refreshDraftState(toSha, toDate) {
+  const tree = git(['ls-tree', '-r', '--name-only', toSha, '--', 'guidelines/groups']).split('\n');
+  const provisionPaths = tree.filter((f) => /^guidelines\/groups\/[^/]+\/[^/]+\/[^/]+\.md$/.test(f));
+  preloadBlobs(provisionPaths.map((f) => `${toSha}:${f}`));
+
+  let taggedCount = 0;
+  let needsResearchCount = 0;
+  const statusTally = {};
+  const typeTally = {};
+  for (const f of provisionPaths) {
+    const parsed = parseProvision(show(toSha, f));
+    if (!parsed) continue;
+    if (parsed.tags && parsed.tags.length) taggedCount += 1;
+    if (parsed.needsAdditionalResearch === 'true') needsResearchCount += 1;
+    statusTally[parsed.status ?? 'none'] = (statusTally[parsed.status ?? 'none'] || 0) + 1;
+    typeTally[parsed.type ?? 'none'] = (typeTally[parsed.type ?? 'none'] || 0) + 1;
+  }
+
+  const conformanceFile = path.join(ROOT, 'public', 'data', 'wcag3-conformance.json');
+  if (fs.existsSync(conformanceFile) && !OPT.dryRun) {
+    const doc = JSON.parse(fs.readFileSync(conformanceFile, 'utf8'));
+    const next = {
+      baselineCommit: toSha,
+      baselineDate: toDate,
+      generatedAt: new Date().toISOString().slice(0, 10),
+      provisionCount: provisionPaths.length,
+      byType: {
+        foundational: typeTally.foundational ?? 0,
+        supplemental: typeTally.supplemental ?? 0,
+        assertion: typeTally.assertion ?? 0,
+        'recommended practice': typeTally['recommended practice'] ?? 0,
+        // Provisions upstream leaves untyped. The catalog carries these as their
+        // own 'exploratory' type; the two names must match or the site publishes
+        // two different breakdowns of the same 245 provisions.
+        exploratory: typeTally.none ?? 0,
+      },
+      byStatus: {
+        developing: statusTally.developing ?? 0,
+        exploratory: statusTally.exploratory ?? 0,
+        refining: statusTally.refining ?? 0,
+        mature: statusTally.mature ?? 0,
+      },
+      taggedForTiers: taggedCount,
+      needsAdditionalResearch: needsResearchCount,
+    };
+    const changed = JSON.stringify(doc.draftState) !== JSON.stringify(next);
+    if (changed) {
+      doc.draftState = next;
+      fs.writeFileSync(conformanceFile, JSON.stringify(doc, null, 2) + '\n');
+      console.log('  refreshed public/data/wcag3-conformance.json draftState');
+    }
+  }
+  return { taggedCount, needsResearchCount, statusTally, typeTally };
+}
+
 // ----------------------------------------------------------------- run
 function main() {
   ensureUpstream();
@@ -316,6 +377,7 @@ function main() {
 
   if (fromSha === toSha) {
     console.log(`No new upstream commits. Still at ${toSha} (${toDate}).`);
+    refreshDraftState(toSha, toDate);
     return;
   }
 
@@ -430,20 +492,7 @@ function main() {
   // tagged by type (harm / barrier / friction) to drive reporting tiers, but as
   // of writing nothing upstream carries a tag yet. The first tagged provision is
   // the signal that tier-based reporting has become plannable, so count them.
-  const allProvisionPaths = tree.filter((f) => /^guidelines\/groups\/[^/]+\/[^/]+\/[^/]+\.md$/.test(f));
-  preloadBlobs(allProvisionPaths.map((f) => `${toSha}:${f}`));
-  let taggedCount = 0;
-  let needsResearchCount = 0;
-  const statusTally = {};
-  const typeTally = {};
-  for (const f of allProvisionPaths) {
-    const parsed = parseProvision(show(toSha, f));
-    if (!parsed) continue;
-    if (parsed.tags && parsed.tags.length) taggedCount += 1;
-    if (parsed.needsAdditionalResearch === 'true') needsResearchCount += 1;
-    statusTally[parsed.status ?? 'none'] = (statusTally[parsed.status ?? 'none'] || 0) + 1;
-    typeTally[parsed.type ?? 'none'] = (typeTally[parsed.type ?? 'none'] || 0) + 1;
-  }
+  const { taggedCount, needsResearchCount, statusTally, typeTally } = refreshDraftState(toSha, toDate);
 
   const localSlugs = loadLocalProvisionSlugs();
   const newToUs = localSlugs ? [...upstreamSlugs].filter((s) => !localSlugs.has(s)) : [];
@@ -461,36 +510,6 @@ function main() {
     summary,
     changes,
   };
-
-  // Keep the public conformance page's figures in step with the draft, so the
-  // site cannot quietly drift the way the old Bronze/Silver/Gold copy did.
-  const conformanceFile = path.join(ROOT, 'public', 'data', 'wcag3-conformance.json');
-  if (fs.existsSync(conformanceFile) && !OPT.dryRun) {
-    const doc = JSON.parse(fs.readFileSync(conformanceFile, 'utf8'));
-    doc.draftState = {
-      baselineCommit: toSha,
-      baselineDate: toDate,
-      generatedAt: date,
-      provisionCount: upstreamSlugs.size,
-      byType: {
-        foundational: typeTally.foundational ?? 0,
-        supplemental: typeTally.supplemental ?? 0,
-        assertion: typeTally.assertion ?? 0,
-        'recommended practice': typeTally['recommended practice'] ?? 0,
-        untyped: typeTally.none ?? 0,
-      },
-      byStatus: {
-        developing: statusTally.developing ?? 0,
-        exploratory: statusTally.exploratory ?? 0,
-        refining: statusTally.refining ?? 0,
-        mature: statusTally.mature ?? 0,
-      },
-      taggedForTiers: taggedCount,
-      needsAdditionalResearch: needsResearchCount,
-    };
-    fs.writeFileSync(conformanceFile, JSON.stringify(doc, null, 2) + '\n');
-    console.log('  refreshed public/data/wcag3-conformance.json draftState');
-  }
 
   fs.mkdirSync(REPORTS, { recursive: true });
   const jsonPath = path.join(REPORTS, `${date}-upstream-changes.json`);
