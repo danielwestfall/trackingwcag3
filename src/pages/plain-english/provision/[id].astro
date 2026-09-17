@@ -25,6 +25,9 @@ const ann = item?.annotation || {};
 // Nothing below may substitute prose of its own when a field is absent: a
 // plausible-sounding default is indistinguishable from researched analysis.
 const generated = ann?.generated === true;
+// Inverted from the curated WCAG 2.2 -> 3 map in sync-wcag-plain-english.mjs.
+const inbound = item?.wcag22Inbound || { direct: [], viaGuideline: [], viaGroup: [] };
+const coarse = [...inbound.viaGuideline, ...inbound.viaGroup];
 const likelihood = ann?.statusSummary?.inclusionLikelihood;
 const delta = ann?.wcag22Comparison?.strictnessDelta;
 const status = item?.status || "exploratory";
@@ -290,16 +293,58 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </div>
       ) : (
         <div class="panel-section">
-          <h2>WCAG 2.2 Delta &amp; Comparison</h2>
-          <p class="not-written">
-            No mapping has been reasoned for this provision. The site previously
-            named a WCAG&nbsp;2.2 criterion here for every provision, chosen by
-            pattern-matching the group name rather than by comparing the two
-            requirements &mdash; so the mapping shown was not evidence of a real
-            relationship. The reverse direction, WCAG&nbsp;2.2 criterion to WCAG&nbsp;3,
-            is curated: see the
-            <a href={link("/plain-english/wcag22/")}>WCAG&nbsp;2.2 Reference</a>.
+          <h2>WCAG 2.2 Criteria That Map Here</h2>
+          <p class="derived-note">
+            Derived by inverting the hand-maintained WCAG&nbsp;2.2 &rarr; WCAG&nbsp;3
+            map, so every criterion below was matched to this provision by a
+            person. No editorial comparison of the two requirements has been
+            written yet.
           </p>
+
+          {inbound.direct.length > 0 ? (
+            <ul class="matching-list">
+              {inbound.direct.map((sc) => (
+                <li>
+                  <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
+                    <span>📘</span>
+                    <strong>{sc.num} {sc.name}</strong>
+                    <span class="sc-level">Level {sc.level}</span>
+                    <span class="link-arrow">&rarr;</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : coarse.length > 0 ? (
+            <div class="new-outcome-box">
+              <p>
+                <strong>Referenced at guideline level only.</strong>
+                {" "}These WCAG&nbsp;2.2 criteria point at this provision's
+                {inbound.viaGuideline.length > 0 ? " guideline" : " group"} rather
+                than at the provision itself, so the match is broader than one-to-one:
+              </p>
+              <ul class="matching-list">
+                {coarse.map((sc) => (
+                  <li>
+                    <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
+                      <span>📘</span>
+                      <strong>{sc.num} {sc.name}</strong>
+                      <span class="sc-level">Level {sc.level}</span>
+                      <span class="link-arrow">&rarr;</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div class="new-outcome-box">
+              <p>
+                ✨ <strong>No WCAG 2.2 predecessor.</strong> No criterion in the
+                curated WCAG&nbsp;2.2 map points at this provision, its guideline or
+                its group &mdash; it appears to be new in WCAG&nbsp;3 rather than a
+                restatement of existing guidance.
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -474,6 +519,20 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     display: block;
     color: var(--text-primary);
     margin-bottom: 4px;
+  }
+  .derived-note {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .sc-level {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 1px 6px;
   }
   .not-written {
     color: var(--text-muted);

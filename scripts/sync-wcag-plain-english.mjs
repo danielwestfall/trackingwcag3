@@ -144,12 +144,57 @@ async function sync() {
     });
   }
 
+  const provisionSlugs = new Set(wcag3Catalog.map((p) => p.slug));
+  const guidelineSlugs = new Set(wcag3Catalog.map((p) => p.guidelineSlug));
+  const groupSlugs = new Set(wcag3Catalog.map((p) => p.groupSlug));
+
   // 2. Load WCAG 2.2 Data
   let wcag22Catalog = [];
   if (fs.existsSync(wcag22Path)) {
     wcag22Catalog = JSON.parse(fs.readFileSync(wcag22Path, 'utf8'));
     console.log(`✅ Loaded ${wcag22Catalog.length} WCAG 2.2 Success Criteria entries`);
   }
+
+  // 2b. Invert the curated WCAG 2.2 -> WCAG 3 map.
+  //
+  // wcag22-catalog.json is hand-maintained and trustworthy: every criterion's
+  // wcag3Mapping.provisions was reasoned by a person (0 broken, 0 missing at
+  // the last check). The WCAG 3 -> 2.2 direction never was — the old fallback
+  // guessed it from the group slug — so it is derived here by inverting the
+  // curated data instead of being invented alongside it.
+  //
+  // Some criteria point at a guideline or group slug rather than a provision
+  // (6 of them at the last count). Those are recorded against the guideline so
+  // the provision page can say the reference is coarse rather than silently
+  // claiming a provision-level match.
+  const inboundByProvision = new Map();
+  const inboundByGuideline = new Map();
+  const inboundByGroup = new Map();
+  for (const sc of wcag22Catalog) {
+    const targets = sc.wcag3Mapping?.provisions || [];
+    for (const slug of targets) {
+      const entry = { num: sc.num, name: sc.name, level: sc.level, principle: sc.principle };
+      const bucket = provisionSlugs.has(slug) ? inboundByProvision
+        : guidelineSlugs.has(slug) ? inboundByGuideline
+        : groupSlugs.has(slug) ? inboundByGroup
+        : null;
+      if (!bucket) continue;                       // dangling reference; the tracker reports these
+      if (!bucket.has(slug)) bucket.set(slug, []);
+      bucket.get(slug).push(entry);
+    }
+  }
+  const bySc = (a, b) => a.num.localeCompare(b.num, undefined, { numeric: true });
+  let directCount = 0;
+  let coarseCount = 0;
+  for (const provision of wcag3Catalog) {
+    const direct = (inboundByProvision.get(provision.slug) || []).slice().sort(bySc);
+    const viaGuideline = (inboundByGuideline.get(provision.guidelineSlug) || []).slice().sort(bySc);
+    const viaGroup = (inboundByGroup.get(provision.groupSlug) || []).slice().sort(bySc);
+    provision.wcag22Inbound = { direct, viaGuideline, viaGroup };
+    if (direct.length) directCount += 1;
+    if (!direct.length && (viaGuideline.length || viaGroup.length)) coarseCount += 1;
+  }
+  console.log(`🔗 Inverted the curated 2.2 map: ${directCount} provisions named directly, ${coarseCount} reached only at guideline/group level`);
 
   // 3. Load WCAG 2.2 vs 3 Removals & Omissions Data
   const removalsPath = path.join(rootDir, 'wcag22-data', 'removals-and-omissions.json');

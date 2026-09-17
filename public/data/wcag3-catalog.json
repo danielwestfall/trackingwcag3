@@ -16,6 +16,25 @@
       "plainEnglish": {
         "summary": "Audio Shifting Adjustable: Audio shifting designed to create a perception of motion can be paused or turned off."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.2.2",
+          "name": "Pause, Stop, Hide",
+          "level": "A",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -35,6 +54,25 @@
       "plainEnglish": {
         "summary": "Haptic Stimulation Adjustable: Haptic feedback can be reduced or turned off."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.2.2",
+          "name": "Pause, Stop, Hide",
+          "level": "A",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -54,6 +92,25 @@
       "plainEnglish": {
         "summary": "No flashing over threshold (no exceptions): Flashes are below the general flash and red flash thresholds without a minimum size."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.3.2",
+          "name": "Three Flashes",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -73,6 +130,25 @@
       "plainEnglish": {
         "summary": "No Flashing Over Threshold: Flashes are below the general flash and red flash thresholds."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.3.1",
+          "name": "Three Flashes or Below Threshold",
+          "level": "A",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -92,6 +168,18 @@
       "plainEnglish": {
         "summary": "No visual motion (no exceptions): Content does not include pseudo-motion or visual motion lasting longer than 5 seconds."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -111,6 +199,25 @@
       "plainEnglish": {
         "summary": "No Visual Motion: Content does not include pseudo-motion or visual motion lasting longer than 5 seconds."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.2.2",
+          "name": "Pause, Stop, Hide",
+          "level": "A",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -130,6 +237,18 @@
       "plainEnglish": {
         "summary": "Safe Content Review: [Title, role, or organization] asserts that:  \n\n We have reviewed content for violent, explicit, or troubling content and provided appropriate warnings before accessing the content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -149,6 +268,18 @@
       "plainEnglish": {
         "summary": "Single Flash: Content does not include a change of contrast (over 4.5:1) going from light to dark (or dark to light) of more than 30% of the visible content area (viewport)."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -168,6 +299,18 @@
       "plainEnglish": {
         "summary": "Trigger Warning Available: A warning is provided before users encounter triggers and a mechanism is available to access the same information without the triggering content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -187,6 +330,18 @@
       "plainEnglish": {
         "summary": "Visual Stimulation: Visual stimulation from combinations of density, color, movement, etc."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -206,6 +361,24 @@
       "plainEnglish": {
         "summary": "Consistent Navigation Labels: The labeling of navigation items within blocks of navigation that are repeated on multiple pages/views in the conformance scope or process is consistent."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.2.3",
+          "name": "Consistent Navigation",
+          "level": "AA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -225,6 +398,18 @@
       "plainEnglish": {
         "summary": "Consistent Navigation Order: The relative order of navigation items is consistent within blocks of navigation that are repeated on multiple pages/views of the conformance scope or process."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.2.3",
+          "name": "Consistent Navigation",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -244,6 +429,18 @@
       "plainEnglish": {
         "summary": "Consistent Structural Order: The relative order of structural components remains consistent throughout each variation of pages/views in the conformance scope."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -263,6 +460,18 @@
       "plainEnglish": {
         "summary": "Error Messages Collocated: Error messages are visually collocated with the error source or the focus is moved to the error message and a mechanism is available to move to the input that is in error."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -282,6 +491,18 @@
       "plainEnglish": {
         "summary": "Error Messages Persistent: Error messages persist at least until the error is resolved or the user dismisses them."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -301,6 +522,18 @@
       "plainEnglish": {
         "summary": "Error Notifications Available: Errors that are programmatically determined are identified and the problem is described to the user in text."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -320,6 +553,18 @@
       "plainEnglish": {
         "summary": "Error Suggestions Provided: Error messages include suggestions for corrections."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -339,6 +584,18 @@
       "plainEnglish": {
         "summary": "Errors Associated: When input validation fails, the errors are visually and programmatically associated with the element that caused the error or that can resolve it."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -358,6 +615,18 @@
       "plainEnglish": {
         "summary": "Errors Indicated In Multiple Ways: Error messages are visually indicated using at least two of the following:\n\n a symbol that is consistent throughout the conformance scope\n color that differentiates the error message from surrounding content\n a textual indication"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -377,6 +646,18 @@
       "plainEnglish": {
         "summary": "Data Entry Validated: Data entered is validated after the user enters data, either:\n\n when the user leaves the field, or \n when the form is submitted"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -396,6 +677,18 @@
       "plainEnglish": {
         "summary": "Error Prevention Review: [Title, role, or organization] asserts that: \n\n For each form in the conformance claim, we have reviewed the form designs to reduce the possibility of users making mistakes."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -415,6 +708,18 @@
       "plainEnglish": {
         "summary": "Errors Preventable: Data entry interfaces allow for users to do at least one of the following before submission:\n\n Review, confirm, and correct all information."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -434,6 +739,18 @@
       "plainEnglish": {
         "summary": "Submission Status Notified: Data entry interfaces notify users of submission status at the time of submission."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "3.3.3",
+          "name": "Error Suggestion",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -453,6 +770,11 @@
       "plainEnglish": {
         "summary": "Feedback Mechanism Available: A mechanism is available to provide feedback to authors."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -472,6 +794,11 @@
       "plainEnglish": {
         "summary": "Consistent Help Available: Help is labeled consistently and is available in a consistent location relative to other content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -491,6 +818,11 @@
       "plainEnglish": {
         "summary": "Contextual Help Available: Context-sensitive help is available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -510,6 +842,11 @@
       "plainEnglish": {
         "summary": "Conversational Support Available: Conversational support allowing both text and speech formats is available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -529,6 +866,11 @@
       "plainEnglish": {
         "summary": "Data Visualizations: Help is available to understand and use data visualizations."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -548,6 +890,11 @@
       "plainEnglish": {
         "summary": "Disabled Controls Explained: Information explaining why a visible interactive element is disabled is available and, if the user can take action(s) to enable the element, those action(s) are described."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -567,6 +914,11 @@
       "plainEnglish": {
         "summary": "Help Usability Testing: [Title, role, or organization] asserts that:\n\n Help and training was added based on usability testing with people with cognitive and mental health disabilities to identify gaps."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -586,6 +938,11 @@
       "plainEnglish": {
         "summary": "New Interfaces: A mechanism to learn a new interface or revert to the older design is available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -605,6 +962,11 @@
       "plainEnglish": {
         "summary": "Personalizable Help: Help is adaptable and personalizable."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -624,6 +986,11 @@
       "plainEnglish": {
         "summary": "Sensory Characteristics Not Relied On: Instructions and help do not rely on sensory characteristics."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -643,6 +1010,11 @@
       "plainEnglish": {
         "summary": "Support Available: Support is available during data entry, task completion and search."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -662,6 +1034,11 @@
       "plainEnglish": {
         "summary": "Supported decision-making review: [Title, role, or organization] asserts that:\n\n We have conducted a review to identify when users need to make substantial decisions about money, privacy, or well-being."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -681,6 +1058,11 @@
       "plainEnglish": {
         "summary": "Accessible Audio Player Selected: [Title, role, or organization] asserts that:\n\n We provide an audio player that supports appropriate media alternatives."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -700,6 +1082,11 @@
       "plainEnglish": {
         "summary": "Accessible Video Player Selected: [Title, role, or organization] asserts that:\n\n We provide a video player that supports appropriate media alternatives."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -719,6 +1106,11 @@
       "plainEnglish": {
         "summary": "Audio Description Language Adjustable: A mechanism is available that allows users to change the audio description language if multiple languages are available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -738,6 +1130,11 @@
       "plainEnglish": {
         "summary": "Audio Description Volume Adjustable: A mechanism is available that allows users to control the audio description volume independently from the audio volume of the video."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -757,6 +1154,11 @@
       "plainEnglish": {
         "summary": "Audio descriptions available (live): Audio descriptions are available in live video for visual content needed to understand the media."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -776,6 +1178,24 @@
       "plainEnglish": {
         "summary": "Audio descriptions available (prerecorded): Audio descriptions are available in prerecorded video for visual content needed to understand the media."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.3",
+          "name": "Audio Description or Media Alternative (Prerecorded)",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.2.5",
+          "name": "Audio Description (Prerecorded)",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -795,6 +1215,11 @@
       "plainEnglish": {
         "summary": "Audio Descriptions Controllable: A mechanism is available to turn audio descriptions on and off."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -814,6 +1239,18 @@
       "plainEnglish": {
         "summary": "Audio descriptions equivalent (prerecorded): The information conveyed by audio descriptions is equivalent to the visual content needed to understand the media."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.5",
+          "name": "Audio Description (Prerecorded)",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -833,6 +1270,11 @@
       "plainEnglish": {
         "summary": "Audio Descriptions Reviewed By Content Authors: [Title, role, or organization] asserts that:\n\n We have reviewed the audio descriptions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -852,6 +1294,11 @@
       "plainEnglish": {
         "summary": "Audio Descriptions Style Guide: [Title, role, or organization] asserts that:\n\n Our organization has a style guide that includes guidance on audio descriptions and a policy and/or processes that the style guide must be followed."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -871,6 +1318,11 @@
       "plainEnglish": {
         "summary": "Audio Descriptions Synchronized: Audio descriptions are synchronized with video content without overlapping dialogue and meaningful audio content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -890,6 +1342,11 @@
       "plainEnglish": {
         "summary": "Audio Descriptions Usability Testing: [Title, role, or organization] asserts that:\n\n We have conducted usability testing with users who need audio descriptions, and changes were made to fix or mitigate the issues found."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -909,6 +1366,18 @@
       "plainEnglish": {
         "summary": "Extended Audio Descriptions Available: The video pauses to extend the audio track and provides an extended audio description to describe visual information needed to understand the media."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.7",
+          "name": "Extended Audio Description (Prerecorded)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -928,6 +1397,18 @@
       "plainEnglish": {
         "summary": "Extended Audio Descriptions Equivalent: The information conveyed by extended audio descriptions is equivalent to the visual content needed to understand the media."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.7",
+          "name": "Extended Audio Description (Prerecorded)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -947,6 +1428,11 @@
       "plainEnglish": {
         "summary": "Non-verbal cues identified in audio descriptions: Nonverbal cues needed to understand the media are explained in audio descriptions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -966,6 +1452,11 @@
       "plainEnglish": {
         "summary": "Sounds Identified In Audio Descriptions: Sounds needed to understand the media are identified or described in captions and transcripts."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -985,6 +1476,11 @@
       "plainEnglish": {
         "summary": "Speaker Language Identified In Audio Descriptions: When more than one language is spoken in audio content, the language spoken by each speaker is identified in all audio descriptions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1004,6 +1500,11 @@
       "plainEnglish": {
         "summary": "Speakers Identified In Audio Descriptions: Speakers are identified understandably within all audio descriptions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1023,6 +1524,11 @@
       "plainEnglish": {
         "summary": "Visual Information Identified In Audio Descriptions: Visual information needed to understand the media is described in audio descriptions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1042,6 +1548,11 @@
       "plainEnglish": {
         "summary": "Caption Features Available: Enhanced features that allow users to interact with captions are available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1061,6 +1572,11 @@
       "plainEnglish": {
         "summary": "Caption Language Adjustable: A mechanism is available that allows users to change the caption language if multiple languages are available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1080,6 +1596,11 @@
       "plainEnglish": {
         "summary": "Captions Adjustable: The appearance of captions, including associated visual indicators, is adaptable including font size, font weight, font style, font color, background color, background transparency, and placement."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1099,6 +1620,18 @@
       "plainEnglish": {
         "summary": "Captions available (live): Captions are available for all live audio content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.4",
+          "name": "Captions (Live)",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1118,6 +1651,18 @@
       "plainEnglish": {
         "summary": "Captions available (prerecorded): Captions are available for all prerecorded audio content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.2",
+          "name": "Captions (Prerecorded)",
+          "level": "A",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1137,6 +1682,11 @@
       "plainEnglish": {
         "summary": "Captions centered (immersive): In 360-degree digital environments, captions remain directly in front of the user."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1156,6 +1706,11 @@
       "plainEnglish": {
         "summary": "Captions Consistent: Captions are presented consistently throughout the media, and across related productions, unless exceptions are essential."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1175,6 +1730,11 @@
       "plainEnglish": {
         "summary": "Captions Controllable: A mechanism is available to turn captions on and off."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1194,6 +1754,18 @@
       "plainEnglish": {
         "summary": "Captions equivalent (prerecorded): Equivalent captions are available for audio and video content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.2",
+          "name": "Captions (Prerecorded)",
+          "level": "A",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1213,6 +1785,11 @@
       "plainEnglish": {
         "summary": "Captions Reviewed By Content Authors: [Title, role, or organization] asserts that:\n\n We have reviewed the captions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1232,6 +1809,11 @@
       "plainEnglish": {
         "summary": "Captions Style Guide: [Title, role, or organization] asserts that:\n\n Our organization has a style guide that includes guidance on captions and a policy and/or processes that the style guide must be followed."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1251,6 +1833,11 @@
       "plainEnglish": {
         "summary": "Captions Synchronized: Captions are synchronized with the audio content of synchronized media."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1270,6 +1857,11 @@
       "plainEnglish": {
         "summary": "Captions Unobstructed: Captions are placed on the screen so that they do not hide visual information needed to understand the video content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1289,6 +1881,11 @@
       "plainEnglish": {
         "summary": "Captions Usability Testing: [Title, role, or organization] asserts that:\n\n We have conducted usability testing with users who need captions, and changes were made to fix or mitigate the issues found."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1308,6 +1905,11 @@
       "plainEnglish": {
         "summary": "Direction indicated (immersive): In 360-degree digital environments, the direction of a sound or speech is indicated when audio is heard from outside the current view."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1327,6 +1929,11 @@
       "plainEnglish": {
         "summary": "Non-verbal cues identified in captions: Nonverbal cues needed to understand the media are explained in captions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1346,6 +1953,11 @@
       "plainEnglish": {
         "summary": "Sounds Identified In Captions: Sounds needed to understand the media are identified or described in captions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1365,6 +1977,11 @@
       "plainEnglish": {
         "summary": "Speaker Language Identified In Captions: When more than one language is spoken in audio content, the language spoken by each speaker is identified in all captions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1384,6 +2001,11 @@
       "plainEnglish": {
         "summary": "Speakers Identified In Captions: Speakers are identified understandably within all captions."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1403,6 +2025,11 @@
       "plainEnglish": {
         "summary": "Figure Captions Persistent: Figure captions persist or a mechanism is available to make figure captions persist, even if the focus moves away."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1422,6 +2049,11 @@
       "plainEnglish": {
         "summary": "Alternative Text Editable: Automatically generated text descriptions are editable by the content creator."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1441,6 +2073,11 @@
       "plainEnglish": {
         "summary": "Decorative Images Hidden: Decorative images are programmatically hidden."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1460,6 +2097,11 @@
       "plainEnglish": {
         "summary": "Image Alternatives Available: Text alternatives are available for non-decorative images."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1479,6 +2121,11 @@
       "plainEnglish": {
         "summary": "Image Alternatives Equivalent: Text alternatives for non-decorative images convey the equivalent purpose to the image."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1498,6 +2145,11 @@
       "plainEnglish": {
         "summary": "Image Alternatives Style Guide: [Title, role, or organization] asserts that:\n\n Our organization has a style guide that includes guidance on image text alternatives and a policy and/or processes that the style guide must be followed."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1517,6 +2169,11 @@
       "plainEnglish": {
         "summary": "Image Types Identified: The image types are indicated."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1536,6 +2193,11 @@
       "plainEnglish": {
         "summary": "Images Detectable: Non-decorative images are detectable."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1555,6 +2217,11 @@
       "plainEnglish": {
         "summary": "Non-text content not relied on: All non-text content that is not decorative includes a programmatically determinable equivalent text alternative."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1574,6 +2241,18 @@
       "plainEnglish": {
         "summary": "Sign language available (prerecorded): Sign language interpretation is provided for all prerecorded audio content in the primary sign language that is most appropriate for each intended audience or region."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.6",
+          "name": "Sign Language (Prerecorded)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1593,6 +2272,18 @@
       "plainEnglish": {
         "summary": "Sign Language Controllable: A mechanism is available to show and hide sign language interpretation."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.6",
+          "name": "Sign Language (Prerecorded)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1612,6 +2303,11 @@
       "plainEnglish": {
         "summary": "Sign language policy (live): [Title, role, or organization] asserts that: \n\n Our organization has a policy to provide sign language interpretation for live in-person, hybrid, and fully online events/meetings."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1631,6 +2327,11 @@
       "plainEnglish": {
         "summary": "Graphical Object Contrast Sufficient: Parts of graphical objects required to understand the content meet a minimum contrast ratio test"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1650,6 +2351,11 @@
       "plainEnglish": {
         "summary": "Hue Not Relied On: Information is not conveyed by hue alone."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1669,6 +2375,11 @@
       "plainEnglish": {
         "summary": "Sound Not Relied On: Information is not conveyed by sound alone."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1688,6 +2399,11 @@
       "plainEnglish": {
         "summary": "Spatial Audio Not Relied On: Information is not conveyed by spatial audio alone."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1707,6 +2423,11 @@
       "plainEnglish": {
         "summary": "Visual Depth Not Relied On: Information is not conveyed through visual depth perception alone."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1726,6 +2447,30 @@
       "plainEnglish": {
         "summary": "Descriptive Transcripts Available: Descriptive transcripts are provided for prerecorded audio and video content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.1",
+          "name": "Audio-only and Video-only (Prerecorded)",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.2.3",
+          "name": "Audio Description or Media Alternative (Prerecorded)",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.2.8",
+          "name": "Media Alternative (Prerecorded)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1745,6 +2490,18 @@
       "plainEnglish": {
         "summary": "Dialogue transcripts available (live): Dialogue transcripts are available for all live audio and video content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.9",
+          "name": "Audio-only (Live)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1764,6 +2521,18 @@
       "plainEnglish": {
         "summary": "Dialogue transcripts available (prerecorded): Dialogue transcripts are available for all prerecorded audio and video content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.1",
+          "name": "Audio-only and Video-only (Prerecorded)",
+          "level": "A",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1783,6 +2552,11 @@
       "plainEnglish": {
         "summary": "Non-verbal cues identified in transcripts: Nonverbal cues needed to understand the media are explained in transcripts."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1802,6 +2576,11 @@
       "plainEnglish": {
         "summary": "Sounds Identified In Transcripts: Sounds needed to understand the media are identified or described in transcripts."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1821,6 +2600,11 @@
       "plainEnglish": {
         "summary": "Speaker Language Identified In Transcripts: When more than one language is spoken in audio content, the language spoken by each speaker is identified in all transcripts."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1840,6 +2624,11 @@
       "plainEnglish": {
         "summary": "Speakers Identified In Transcripts: Speakers are identified understandably within all transcripts."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1859,6 +2648,18 @@
       "plainEnglish": {
         "summary": "Transcripts equivalent (prerecorded): Equivalent transcripts are available for audio and video content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.2.8",
+          "name": "Media Alternative (Prerecorded)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1878,6 +2679,11 @@
       "plainEnglish": {
         "summary": "Transcripts Findable: A text transcript is adjacent to audio and video content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1897,6 +2703,11 @@
       "plainEnglish": {
         "summary": "Transcripts Reviewed By Content Authors: [Title, role, or organization] asserts that:\n\n We have reviewed the transcripts."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1916,6 +2727,11 @@
       "plainEnglish": {
         "summary": "Transcripts Style Guide: [Title, role, or organization] asserts that:\n\n Our organization has a style guide that includes guidance on transcripts and a policy and/or processes that the style guide must be followed."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1935,6 +2751,11 @@
       "plainEnglish": {
         "summary": "Transcripts Usability Testing: [Title, role, or organization] asserts that:\n\n We have conducted usability testing with users who need transcripts, and changes were made to fix or mitigate the issues found."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1954,6 +2775,11 @@
       "plainEnglish": {
         "summary": "Visual Information Identified In Transcripts: Visual information needed to understand the media is described in transcripts."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1973,6 +2799,11 @@
       "plainEnglish": {
         "summary": "Biometrics Not Relied On: Biometric identification is not the only way to identify or authenticate."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -1992,6 +2823,11 @@
       "plainEnglish": {
         "summary": "Multiple Biometrics Available: Authentication does not rely solely on a single type of biometrics."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2011,6 +2847,11 @@
       "plainEnglish": {
         "summary": "Voice Identification Not Relied On: Voice identification is not the only way to identify or authenticate."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2030,6 +2871,11 @@
       "plainEnglish": {
         "summary": "Body Movements Not Relied On: Functionality does not rely solely on full or gross body movement."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2049,6 +2895,11 @@
       "plainEnglish": {
         "summary": "Eye Tracking Not Relied On: Content and functionality does not rely solely on eye tracking."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2068,6 +2919,11 @@
       "plainEnglish": {
         "summary": "Hover Content Persistent: If pointer hover can trigger content, then the pointer can be moved over the additional content without the additional content disappearing."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2087,6 +2943,24 @@
       "plainEnglish": {
         "summary": "Hover Or Focus Content Dismissible: A mechanism is available to dismiss content that appears on pointer hover or keyboard focus without moving pointer hover or keyboard focus, unless the additional content does not obscure or replace other content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.4.12",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.13",
+          "name": "Focus Not Obscured (Enhanced)",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2106,6 +2980,11 @@
       "plainEnglish": {
         "summary": "Hover Or Focus Content Persistent: Content that appears on pointer hover or keyboard focus remains visible until the hover or keyboard focus trigger is removed, the user dismisses it, or its information is no longer valid."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2125,6 +3004,11 @@
       "plainEnglish": {
         "summary": "Input Method Flexible: The ability to switch between input methods is available at any time."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2144,6 +3028,11 @@
       "plainEnglish": {
         "summary": "Path-based gesture not relied on: Path-based gestures are not the only way of achieving any functionality."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2163,6 +3052,11 @@
       "plainEnglish": {
         "summary": "Pointer Accessible: Pointer selection of elements moves the keyboard focus to that element, even if the user selects an interactive element and drags away from the element without activation."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2182,6 +3076,11 @@
       "plainEnglish": {
         "summary": "Bidirectional Navigation: The keyboard interface can always move forward to the next interactive element and back to the previous interactive element."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2201,6 +3100,11 @@
       "plainEnglish": {
         "summary": "Custom Keys Documented: Documentation for each custom keyboard command is actively available on the page/view to which it applies, or within the applicable process."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2220,6 +3124,11 @@
       "plainEnglish": {
         "summary": "Focus Movement Relevant: Except for skip links and other elements that are hidden but specifically added to aid keyboard navigation, tabbing does not move the keyboard focus onto content that was not visible before the tab action."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2239,6 +3148,11 @@
       "plainEnglish": {
         "summary": "Focus Placed: When keyboard focus moves from one context to another within a page/view, whether automatically or by user request, the keyboard focus is preserved so that, when the user returns to the previous context, the keyboard focus is restored to its previous location unless that location no longer exists."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2258,6 +3172,11 @@
       "plainEnglish": {
         "summary": "Focus user-controlled: The keyboard focus only moves as a result of user interaction."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2277,6 +3196,11 @@
       "plainEnglish": {
         "summary": "Keyboard Accessible: All content that can be accessed by other input modalities can be accessed using keyboard interface only."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2296,6 +3220,11 @@
       "plainEnglish": {
         "summary": "Keyboard Operable: All components on the page/view that can be operated by pointer, audio (voice or other), gesture, camera, or other means can be operated using keyboard interface only."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2315,6 +3244,11 @@
       "plainEnglish": {
         "summary": "No Keyboard Conflicts: Custom keyboard commands do not conflict with standard platform keyboard commands or they can be remapped."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2334,6 +3268,11 @@
       "plainEnglish": {
         "summary": "No Keyboard Traps: Components that can be activated or entered using the keyboard interface, can be deactivated or exited using a standard keyboard navigation-operation technique, standard platform keyboard commands."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2353,6 +3292,11 @@
       "plainEnglish": {
         "summary": "Keyboard Effort Comparable: [Title, role, or organization] asserts that:\n\n- A review has been conducted and changes made (when necessary) to ensure that there is minimal difference between the number of input commands required when using the keyboard interface only and the number of commands when using other input modalities."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2372,6 +3316,11 @@
       "plainEnglish": {
         "summary": "Navigation Keys Described: If any keyboard action needed to navigate, perceive, and operate the full content of the page/view is not a common keyboard navigation technique, then it is described in the page/view where it is required or on a page/view earlier in the process where it is used."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2391,6 +3340,11 @@
       "plainEnglish": {
         "summary": "No Repetitive Adjacent Interactive Elements: Adjacent interactive elements that achieve the same outcome are not included in the page/view."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2410,6 +3364,11 @@
       "plainEnglish": {
         "summary": "Consistent Pointer Cancellation: The method of pointer cancellation is consistent for each type of interaction within a set of pages/views."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2429,6 +3388,11 @@
       "plainEnglish": {
         "summary": "Pointer Activation Controllable: At least one of the following is true for functionality that can be activated using a simple pointer input:\n\nNo down event\n: The down event of the pointer is not used to execute any part of the function."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2448,6 +3412,11 @@
       "plainEnglish": {
         "summary": "Pointer Pressure Not Relied On: Specific pointer pressure is not the only way of achieving any functionality."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2467,6 +3436,11 @@
       "plainEnglish": {
         "summary": "Pointer Speed Not Relied On: Functionality does not rely solely on specific pointer speed."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2486,6 +3460,11 @@
       "plainEnglish": {
         "summary": "Simple Pointer Input Available: All functionality and content available using complex pointer inputs is also available using a simple pointer input, or a sequence of simple pointer inputs that do not require timing."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2505,6 +3484,11 @@
       "plainEnglish": {
         "summary": "Generated Speech Testing: [Title, role, or organization] asserts that:\n\n- We have tested voice input and communication systems with generated speech to ensure the systems work with artificial speech as well as human speech."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2524,6 +3508,11 @@
       "plainEnglish": {
         "summary": "Real-time text available: A real-time text option is available for real-time bidirectional voice communication."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2543,6 +3532,11 @@
       "plainEnglish": {
         "summary": "Speech Not Relied On: Content or functionality does not rely on speech alone."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2562,6 +3556,30 @@
       "plainEnglish": {
         "summary": "Changes To Elements Notified: Changes to interactive element names, roles, values, or states are visually and programmatically indicated."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.13",
+          "name": "Content on Hover or Focus",
+          "level": "AA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "3.3.1",
+          "name": "Error Identification",
+          "level": "A",
+          "principle": "Understandable"
+        },
+        {
+          "num": "4.1.3",
+          "name": "Status Messages",
+          "level": "AA",
+          "principle": "Robust"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2581,6 +3599,24 @@
       "plainEnglish": {
         "summary": "Input Constraints Used: Field constraints and conditions are available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.3.1",
+          "name": "Error Identification",
+          "level": "A",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2600,6 +3636,18 @@
       "plainEnglish": {
         "summary": "Interactive Element Contrast Sufficient: Visual information required to identify interactive elements and states meet a minimum contrast ratio test."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2619,6 +3667,11 @@
       "plainEnglish": {
         "summary": "Interactive Element Importance Indicated: The importance of interactive components is indicated."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2666,6 +3719,66 @@
         "strictnessDelta": "More Strict",
         "deltaExplanation": "WCAG 3 unifies visual and programmatic naming rules and strongly recommends persistent visible text pairing over aria-label alone."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.3.6",
+          "name": "Identify Purpose",
+          "level": "AAA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "2.4.4",
+          "name": "Link Purpose (In Context)",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.9",
+          "name": "Link Purpose (Link Only)",
+          "level": "AAA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "3.3.2",
+          "name": "Labels or Instructions",
+          "level": "A",
+          "principle": "Understandable"
+        },
+        {
+          "num": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "principle": "Robust"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2685,6 +3798,72 @@
       "plainEnglish": {
         "summary": "Interactive Elements Distinguishable: Interactive elements are visually distinguishable without interaction from static content and include visual cues on how to use them."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.1.3",
+          "name": "Keyboard (No Exception)",
+          "level": "AAA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.1",
+          "name": "Pointer Gestures",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.5",
+          "name": "Target Size (AAA)",
+          "level": "AAA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.7",
+          "name": "Dragging Movements",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.8",
+          "name": "Target Size (Minimum)",
+          "level": "AA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2704,6 +3883,18 @@
       "plainEnglish": {
         "summary": "Label Included In Programmatic Name: The programmatic name includes the visual label."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.5.3",
+          "name": "Label in Name",
+          "level": "A",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2723,6 +3914,24 @@
       "plainEnglish": {
         "summary": "Roles, values, states, properties available: Accurate names, roles, values, and states are available for interactive elements."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "4.1.2",
+          "name": "Name, Role, Value",
+          "level": "A",
+          "principle": "Robust"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2742,6 +3951,11 @@
       "plainEnglish": {
         "summary": "Consistent Control Location: Where an interactive element with the same purpose is used across pages/views, its visual position in the layout is maintained."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2761,6 +3975,11 @@
       "plainEnglish": {
         "summary": "Consistent Interactions: [Title, role, or organization] asserts that:\n\n- A review has been conducted and changes made (when necessary) to ensure that Components with the same functionality behave consistently:\n  - Components that perform the same function behave in the same way and use the same visual indicators."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2780,6 +3999,11 @@
       "plainEnglish": {
         "summary": "Conventional Pattern Used: [Title, role, or organization] asserts that:\n\n- A review has been conducted and changes made (when necessary) to ensure that Components follow established conventions:\n  - Each component follows applicable platform conventions for how users interact with that type of component."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2799,6 +4023,18 @@
       "plainEnglish": {
         "summary": "Default Focus Indicator Used: The focusable item uses the user agent default focus indicator."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2818,6 +4054,24 @@
       "plainEnglish": {
         "summary": "Focus Indicator Contrast Sufficient: If a custom focus indicator is used, it has sufficient adjacent contrast and change of contrast."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.11",
+          "name": "Focus Appearance",
+          "level": "AA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2837,6 +4091,24 @@
       "plainEnglish": {
         "summary": "Focus Indicator Size Sufficient: If a custom focus indicator is used, it has sufficient size and adjacency."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.11",
+          "name": "Focus Appearance",
+          "level": "AA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2856,6 +4128,11 @@
       "plainEnglish": {
         "summary": "Focus Indicator Style Guide: [Title, role, or organization] asserts that:\n\n- Our organization has a style guide that includes guidance on focus indicators and a policy and/or processes that the style guide must be followed."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2875,6 +4152,42 @@
       "plainEnglish": {
         "summary": "Focus Order Meaningful: The keyboard focus moves sequentially through content in an order and way that preserves meaning and operability."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "2.4.1",
+          "name": "Bypass Blocks",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.2",
+          "name": "Page Titled",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.5",
+          "name": "Multiple Ways",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.8",
+          "name": "Location",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -2894,6 +4207,42 @@
       "plainEnglish": {
         "summary": "Focus Relevant: The focus order does not include hidden, static, or groups of repeated interactive elements."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "2.4.1",
+          "name": "Bypass Blocks",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.2",
+          "name": "Page Titled",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.5",
+          "name": "Multiple Ways",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.8",
+          "name": "Location",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -2913,6 +4262,42 @@
       "plainEnglish": {
         "summary": "Focus Retained: A user can focus on a content \"area\", such as a modal or popup, then resume their view of all content using a limited number of steps."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "2.4.1",
+          "name": "Bypass Blocks",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.2",
+          "name": "Page Titled",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.3",
+          "name": "Focus Order",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.5",
+          "name": "Multiple Ways",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.8",
+          "name": "Location",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -2932,6 +4317,11 @@
       "plainEnglish": {
         "summary": "Default Pointer Used: The user can ensure that the appearance of the pointer is not overridden by the authored interface."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2951,6 +4341,11 @@
       "plainEnglish": {
         "summary": "Enhanced Pointer Available: Provide a more visible pointer indicator than the platform default."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2970,6 +4365,11 @@
       "plainEnglish": {
         "summary": "Pointer activation indicated (enhanced): The user can choose to always have a visible pointer indicator."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -2989,6 +4389,11 @@
       "plainEnglish": {
         "summary": "Pointer activation indicated (minimum): There is a visible indication of the activation of an interactive element when selected by the pointer."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3008,6 +4413,11 @@
       "plainEnglish": {
         "summary": "Pointer Contrast Sufficient: The default pointer meets the @@[non-text-contrast] requirement, and is at least as large as the platform default."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3027,6 +4437,11 @@
       "plainEnglish": {
         "summary": "Pointer Focus Indicated: There is a visible pointer indicator."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3046,6 +4461,11 @@
       "plainEnglish": {
         "summary": "Pointer Visible: The pointer indicator is always visible."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3065,6 +4485,11 @@
       "plainEnglish": {
         "summary": "Infinite Scrolling Controllable: Where content includes infinite scrolling, a mechanism is provided prior to the scrolling content that allows users to switch off infinite scrolling."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3084,6 +4509,24 @@
       "plainEnglish": {
         "summary": "Overlay Content Dismissible: When new content becomes visible and covers the main content, a mechanism is available to dismiss the new content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.4.12",
+          "name": "Focus Not Obscured (Minimum)",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.13",
+          "name": "Focus Not Obscured (Enhanced)",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3103,6 +4546,11 @@
       "plainEnglish": {
         "summary": "Conventional Layout Review: [Title, role, or organization] asserts that:\n\n We have reviewed layout conventions for similar products or processes."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3122,6 +4570,11 @@
       "plainEnglish": {
         "summary": "Blocks of content available (enhanced): Styling is used to enhance the visual separation between meaningful blocks of content."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3141,6 +4594,11 @@
       "plainEnglish": {
         "summary": "Blocks of content available (minimum): Meaningful blocks of content are programmatically determinable and visually presented with sufficient surrounding space."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3160,6 +4618,11 @@
       "plainEnglish": {
         "summary": "Clear Structure Review: [Title, role, or organization] asserts that:\n\n Our organization has a process and policy for reviewing written content for clear structure before publication."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3179,6 +4642,11 @@
       "plainEnglish": {
         "summary": "Heading Structure Available: Meaningful blocks of content are organized with a logical hierarchy of headings."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3198,6 +4666,11 @@
       "plainEnglish": {
         "summary": "Key Information Usability Testing: [Title, role, or organization] asserts that:\n\n We conducted usability testing to ensure that a diverse group of users, including people with cognitive and mental health challenges, understand the site's information hierarchy and menu organization and are able to find key information."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3217,6 +4690,11 @@
       "plainEnglish": {
         "summary": "Order Detectable: Ordered content includes programmatically determinable markers that indicate the position of each item."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3236,6 +4714,11 @@
       "plainEnglish": {
         "summary": "Relationships Detectable: Relationships of meaning between elements are conveyed programmatically."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3255,6 +4738,11 @@
       "plainEnglish": {
         "summary": "Sections Labeled: Meaningful blocks of content have a semantically appropriate label that defines their purpose."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3274,6 +4762,11 @@
       "plainEnglish": {
         "summary": "All Steps Listed: A list of all steps in a multi-step process is visually and programmatically available at each step."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3293,6 +4786,11 @@
       "plainEnglish": {
         "summary": "Current Step Indicated: The current step within a multi-step process is visually and programmatically indicated."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3312,6 +4810,11 @@
       "plainEnglish": {
         "summary": "Location Within Product Review: [Title, role, or organization] asserts that:\n\n We have reviewed conventions for presenting current location within the conformance scope."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3331,6 +4834,11 @@
       "plainEnglish": {
         "summary": "Page/view change notified: When content triggers a change of page/view there is a visual change within the view and programmatic notification of the change."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3350,6 +4858,11 @@
       "plainEnglish": {
         "summary": "Page/view title available: The page/view has a title that describes its name, topic, or purpose."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3369,6 +4882,11 @@
       "plainEnglish": {
         "summary": "Return To Start Prominent: Mechanisms that return the user to the starting point of the conformance scope are available in prominent positions both programmatically and visually."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3388,6 +4906,11 @@
       "plainEnglish": {
         "summary": "Return To Start Supported: A visual and programmatically available mechanism exists that allows users to return to the starting point of the conformance scope."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3407,6 +4930,11 @@
       "plainEnglish": {
         "summary": "Inclusive Data Set: [Title, role, or organization] asserts that:\n\n Content author(s) train AI models using representative and unbiased disability-related information that is proportional to the general population."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3426,6 +4954,11 @@
       "plainEnglish": {
         "summary": "No Harm From Algorithms: [Title, role, or organization] asserts that:\n Content author(s) conduct usability testing and ethics reviews to minimize the possibility that algorithms disadvantage people with disabilities."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3445,6 +4978,11 @@
       "plainEnglish": {
         "summary": "Algorithm Inclusivity Review: [Title, role, or organization] asserts that:\n\n We have a policy and process to review — and have reviewed — the data set, results, and/or algorithm in order to minimize the possibility that algorithms are disadvantageous for people with disabilities."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3464,6 +5002,11 @@
       "plainEnglish": {
         "summary": "Consequences Explained Before Agreement: Legal, financial, privacy, and security consequences are provided before finalizing an agreement."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3483,6 +5026,11 @@
       "plainEnglish": {
         "summary": "Consequences Of Choices Explained: Choices with legal, financial, privacy, or security consequences are accompanied by a description of the benefits, risks, and potential consequences when users make the choice."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3502,6 +5050,11 @@
       "plainEnglish": {
         "summary": "Diverse Disabilities Considered: [Title, role, or organization] asserts that:\n\n When considering the safety and security of our users, we considered use cases of people with diverse disabilities."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3521,6 +5074,11 @@
       "plainEnglish": {
         "summary": "Risk Comparable: Use of assistive technology, accessible alternative versions, accessibility-related modifications of content, and accessibility-related settings do not expose people with disabilities to additional risk."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3540,6 +5098,11 @@
       "plainEnglish": {
         "summary": "No Time Limits: The completion of a process does not include time limits."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3559,6 +5122,11 @@
       "plainEnglish": {
         "summary": "No Unnecessary Time Limits: [Title, role, or organization] asserts that:\n\n Products and processes in scope have no non-essential time limits for engagement or completion."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3578,6 +5146,11 @@
       "plainEnglish": {
         "summary": "Time Limits Conveyed: Users are informed at the start of the process or session that a time limit exists, its length, and that it can be adjusted."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3597,6 +5170,11 @@
       "plainEnglish": {
         "summary": "Timeout Adjustable: A mechanism exists to extend the time limit before timeout, or the time limit can be disabled."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3616,6 +5194,11 @@
       "plainEnglish": {
         "summary": "Deceptive Practices Usability Testing: [Title, role, or organization] asserts that: \n\n We conducted a usability test that included participants with cognitive disabilities and/or mental health based disabilities to evaluate content for misleading wording, artificial pressure, misdirection, and other deceptive practices."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3635,6 +5218,11 @@
       "plainEnglish": {
         "summary": "Deceptive messaging expert review: [Title, role, or organization] asserts that:\n\n We conducted an expert review to evaluate content for misleading wording, artificial pressure, misdirection, and other deceptive practices."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3654,6 +5242,30 @@
       "plainEnglish": {
         "summary": "No Artificial Time Limits: The completion of a process does not include artificial time limits."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.2.1",
+          "name": "Timing Adjustable",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.2.3",
+          "name": "No Timing",
+          "level": "AAA",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.2.6",
+          "name": "Timeouts",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3673,6 +5285,11 @@
       "plainEnglish": {
         "summary": "Preselections Visible: During the completion of a process, preselected options that impact finance, privacy or safety are visibly and programmatically available to the user by default."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3692,6 +5309,24 @@
       "plainEnglish": {
         "summary": "Automated Entry Allowed: Automated input of personal information from user agents, third-party tools, or paste is not prevented."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.3.5",
+          "name": "Identify Input Purpose",
+          "level": "AA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "3.3.8",
+          "name": "Accessible Authentication (Minimum)",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3737,6 +5372,24 @@
         "strictnessDelta": "Equivalent",
         "deltaExplanation": "Directly carries forward WCAG 2.2 3.3.8 into the cognitive task outcome area."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.3.8",
+          "name": "Accessible Authentication (Minimum)",
+          "level": "AA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.3.9",
+          "name": "Accessible Authentication (Enhanced)",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3756,6 +5409,18 @@
       "plainEnglish": {
         "summary": "Copying Supported: Copying of content is not prevented."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.3.8",
+          "name": "Accessible Authentication (Minimum)",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3775,6 +5440,11 @@
       "plainEnglish": {
         "summary": "No Memorization: Processes can be completed without memorizing and recalling information from previous stages of the process."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3794,6 +5464,11 @@
       "plainEnglish": {
         "summary": "Information Requirements Available At Start: Information and resources that are needed to complete a multi-step process are provided at the start of the process, including the:\n\n- number of steps it might take (if known in advance),\n- details of any resources needed to perform the task, and\n- overview of the process and next step."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3813,6 +5488,30 @@
       "plainEnglish": {
         "summary": "Process Instructions Available: The instructions needed to complete a multi-step process are available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "principle": "Operable"
+        },
+        {
+          "num": "3.2.6",
+          "name": "Consistent Help",
+          "level": "A",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.3.5",
+          "name": "Help",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3832,6 +5531,24 @@
       "plainEnglish": {
         "summary": "Required Action Available: The interface indicates when user input or action is required in order to proceed to the next step."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3851,6 +5568,24 @@
       "plainEnglish": {
         "summary": "Going Back Supported: In a multi-step process, the interface supports stepping backwards in a process and returning to the current point without data loss."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.3.4",
+          "name": "Error Prevention (Legal, Financial, Data)",
+          "level": "AA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.3.6",
+          "name": "Error Prevention (All)",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3870,6 +5605,24 @@
       "plainEnglish": {
         "summary": "No Redundant Entry: Information previously entered by or provided to the user that is required to be entered again in the same process is either auto-populated, or available for the user to select."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.3.5",
+          "name": "Identify Input Purpose",
+          "level": "AA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "3.3.7",
+          "name": "Redundant Entry",
+          "level": "A",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3889,6 +5642,36 @@
       "plainEnglish": {
         "summary": "Progress Saved: Data entry and other task completion processes allow saving and resuming from the current step in the task."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.2.5",
+          "name": "Re-authenticating",
+          "level": "AAA",
+          "principle": "Operable"
+        },
+        {
+          "num": "3.3.4",
+          "name": "Error Prevention (Legal, Financial, Data)",
+          "level": "AA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.3.6",
+          "name": "Error Prevention (All)",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.3.7",
+          "name": "Redundant Entry",
+          "level": "A",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3908,6 +5691,11 @@
       "plainEnglish": {
         "summary": "Usability Testing For Unnecessary Steps: [Title, role, or organization] asserts that:\n\n Usability testing has been conducted to review for unnecessary steps in the process or unnecessary information being requested."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -3927,6 +5715,36 @@
       "plainEnglish": {
         "summary": "Abbreviations Explained: Explanations of abbreviations are available when first used."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -3946,6 +5764,36 @@
       "plainEnglish": {
         "summary": "Clear Language Review: [Title, role, or organization] asserts that:\n\n Our organization has a process and policy to review text content for clear language before publication."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -3965,6 +5813,36 @@
       "plainEnglish": {
         "summary": "Common Words Used: Common words are used, and definitions are available for uncommon words."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -3984,6 +5862,36 @@
       "plainEnglish": {
         "summary": "Diacritics Available: Diacritics required to identify the correct meaning of each word are available."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -4003,6 +5911,36 @@
       "plainEnglish": {
         "summary": "No Nested Clauses: Sentences do not include nested clauses."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -4022,6 +5960,36 @@
       "plainEnglish": {
         "summary": "No Unnecessary Words: Sentences do not include unnecessary words."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -4041,6 +6009,36 @@
       "plainEnglish": {
         "summary": "Non-literal language explained: Explanations or unambiguous alternatives are available in text content for non-literal language, such as idioms and metaphors."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -4060,6 +6058,36 @@
       "plainEnglish": {
         "summary": "Numerical Alternatives Available: Explanations or alternatives are provided for complex numerical information such as statistics."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -4079,6 +6107,36 @@
       "plainEnglish": {
         "summary": "Summaries Available: A summary is available for long-form text content and:\n is identifiable visually and programmatically,\n uses concise sentences, and\n provides access to explanations of any uncommon words that are used in the summary."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -4098,6 +6156,36 @@
       "plainEnglish": {
         "summary": "Visual Aids Review: [Title, role, or organization] asserts that:\n\n Our organization has a process and policy for reviewing text content to identify complex ideas such as processes, workflows, relationships, or chronological information, and adding visual aids to help readers understand them."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "3.1.3",
+          "name": "Unusual Words",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.4",
+          "name": "Abbreviations",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.5",
+          "name": "Reading Level",
+          "level": "AAA",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.6",
+          "name": "Pronunciation",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGroup": []
     }
   },
   {
@@ -4117,6 +6205,18 @@
       "plainEnglish": {
         "summary": "Blocks Of Text Adjustable: The presentation of blocks of text can be adjusted, without loss of content or functionality, to meet the @@ [values to be determined] for:\n inline margin\n block margin\n line length\n line height\n justification"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4136,6 +6236,24 @@
       "plainEnglish": {
         "summary": "Blocks of text readable (enhanced): The default/authored presentation of blocks of text meets the enhanced @@ [values to be determined] for:\n inline margin\n block margin\n line length\n line height"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.8",
+          "name": "Visual Presentation",
+          "level": "AAA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "2.4.10",
+          "name": "Section Headings",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4155,6 +6273,11 @@
       "plainEnglish": {
         "summary": "Blocks of text readable (minimum): The default/authored presentation of blocks of text meets the minimum @@ [values to be determined] for:\n inline margin\n block margin\n line length\n line height"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4174,6 +6297,18 @@
       "plainEnglish": {
         "summary": "Text Color Adjustable: The foreground and background color of text can be adjusted without losing content or functionality."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.8",
+          "name": "Visual Presentation",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4193,6 +6328,24 @@
       "plainEnglish": {
         "summary": "Text contrast sufficient (enhanced): The default visual presentation of text meets @@[contrast measure to be determined, at a higher level than the core requirement for Text contrast sufficient (minimum)]."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.6",
+          "name": "Contrast (Enhanced)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4238,6 +6391,18 @@
         "strictnessDelta": "More Strict",
         "deltaExplanation": "WCAG 3 incorporates visual context (font weight, spatial frequency, ambient light) rather than fixed static ratios."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.3",
+          "name": "Contrast (Minimum)",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4257,6 +6422,11 @@
       "plainEnglish": {
         "summary": "Text Customizations Retained: Content that is exported, saved, or printed retains user-applied text-appearance customizations."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4276,6 +6446,18 @@
       "plainEnglish": {
         "summary": "Text Size Adjustable: Text can be increased in size to at least 200% of the platform’s default body-text size."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4295,6 +6477,18 @@
       "plainEnglish": {
         "summary": "Text Style Adjustable: The presentation of text style properties can be adjusted, without loss of content or functionality, to meet the @@ [values to be determined] for:\n typeface\n font width\n text decoration\n capitalization\n automatic end-of-line hyphenation"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.12",
+          "name": "Text Spacing",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4314,6 +6508,11 @@
       "plainEnglish": {
         "summary": "Text style readable (enhanced): The default/authored presentation of text style properties meets the enhanced @@ [values to be determined] for:\n typeface\n font size\n font width\n text decoration\n letter spacing\n capitalization\n end-of-line hyphenation"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4333,6 +6532,11 @@
       "plainEnglish": {
         "summary": "Text style readable (minimum): The default/authored presentation of text style property meets the minimum @@ [values to be determined] for:\n typeface\n font size\n font width\n text decoration\n letter spacing\n capitalization\n end-of-line hyphenation"
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4352,6 +6556,24 @@
       "plainEnglish": {
         "summary": "Human Language Detectable: The human language of all content within the view is programmatically determinable."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.1.1",
+          "name": "Language of Page",
+          "level": "A",
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.1.2",
+          "name": "Language of Parts",
+          "level": "AA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4371,6 +6593,11 @@
       "plainEnglish": {
         "summary": "Numerical Metadata Available: Numerical information includes sufficient context in written text and a programmatic equivalent to avoid confusion when presenting dates, temperatures, time, and Roman numerals."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4390,6 +6617,11 @@
       "plainEnglish": {
         "summary": "Text Appearance Not Relied On: Meaning conveyed by text style properties is also programmatically determinable."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4409,6 +6641,36 @@
       "plainEnglish": {
         "summary": "Text Detectable: All visible text has a programmatically determinable equivalent."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.5",
+          "name": "Images of Text",
+          "level": "AA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.9",
+          "name": "Images of Text (No Exception)",
+          "level": "AAA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "4.1.1",
+          "name": "Parsing (Obsolete)",
+          "level": "A",
+          "principle": "Robust"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": []
     }
   },
   {
@@ -4428,6 +6690,43 @@
       "plainEnglish": {
         "summary": "Layout Reflow Supported: All content fits within 320 CSS pixels in the default orientation of text without requiring scrolling in more than one direction."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.3.2",
+          "name": "Meaningful Sequence",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4447,6 +6746,37 @@
       "plainEnglish": {
         "summary": "Orientation supported (enhanced): Content supports both portrait and landscape orientations."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.3.4",
+          "name": "Orientation",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4466,6 +6796,37 @@
       "plainEnglish": {
         "summary": "Orientation supported (minimum): If the platform has a default orientation, content supports that orientation."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.3.4",
+          "name": "Orientation",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4485,6 +6846,43 @@
       "plainEnglish": {
         "summary": "Text Reflow Supported: Blocks of text are legible at 320 CSS pixels in the orientation of text, without the need to scroll in the orientation of text."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.4",
+          "name": "Resize Text",
+          "level": "AA",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.10",
+          "name": "Reflow",
+          "level": "AA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4504,6 +6902,30 @@
       "plainEnglish": {
         "summary": "Assistive Technology Supported: Content can be controlled using assistive and adaptive technology."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4523,6 +6945,37 @@
       "plainEnglish": {
         "summary": "Notifications Adjustable: The timing or positioning of notifications can be changed, suppressed, or saved."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "2.2.4",
+          "name": "Interruptions",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4542,6 +6995,30 @@
       "plainEnglish": {
         "summary": "User Settings Supported: Content responds to users’ platform and user agent accessibility-related settings."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4561,6 +7038,30 @@
       "plainEnglish": {
         "summary": "Virtual Cursor Supported: Assistive technologies can access content and interactions when using mechanisms that convey alternative points of regard or focus."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4580,6 +7081,43 @@
       "plainEnglish": {
         "summary": "Change Of Content Notified: Meaningful changes in visual content are conveyed programmatically."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "3.2.5",
+          "name": "Change on Request",
+          "level": "AAA",
+          "principle": "Understandable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4599,6 +7137,37 @@
       "plainEnglish": {
         "summary": "Change Of Focus Notified: When the focus changes on-focus or automatically, the user is notified visually and programmatically."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "principle": "Operable"
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4618,6 +7187,30 @@
       "plainEnglish": {
         "summary": "Change Of User Agent Notified: When content triggers a device change or an automatic user agent change, the user is notified before the change occurs."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4637,6 +7230,30 @@
       "plainEnglish": {
         "summary": "Background Adjustable: Patterns, designs, or images placed behind text are avoided or can be removed by the user."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4656,6 +7273,30 @@
       "plainEnglish": {
         "summary": "Font Size Not Relied On: When font size conveys visual meaning (such as headings), the text maintains its meaning and purpose when text is resized."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4675,6 +7316,43 @@
       "plainEnglish": {
         "summary": "Media Alternatives Controllable: Closed captions and audio descriptions can be turned on and off."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "1.4.2",
+          "name": "Audio Control",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.7",
+          "name": "Low or No Background Audio",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4694,6 +7372,43 @@
       "plainEnglish": {
         "summary": "Media Alternatives Searchable: Alternatives for media can be searched and queried."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "1.4.2",
+          "name": "Audio Control",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.7",
+          "name": "Low or No Background Audio",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4713,6 +7428,43 @@
       "plainEnglish": {
         "summary": "Media Chapters Available: Audio or video that lasts five minutes or longer can be navigated by chapters."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [],
+      "viaGuideline": [
+        {
+          "num": "1.4.2",
+          "name": "Audio Control",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.7",
+          "name": "Low or No Background Audio",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -4732,6 +7484,50 @@
       "plainEnglish": {
         "summary": "Page/view audio adjustable: A mechanism is available to pause, stop, and adjust the volume independently of the overall system volume level, of any automatically playing audio in a page/view."
       }
+    },
+    "wcag22Inbound": {
+      "direct": [
+        {
+          "num": "1.4.2",
+          "name": "Audio Control",
+          "level": "A",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGuideline": [
+        {
+          "num": "1.4.2",
+          "name": "Audio Control",
+          "level": "A",
+          "principle": "Perceivable"
+        },
+        {
+          "num": "1.4.7",
+          "name": "Low or No Background Audio",
+          "level": "AAA",
+          "principle": "Perceivable"
+        }
+      ],
+      "viaGroup": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "principle": "Operable"
+        }
+      ]
     }
   }
 ]
