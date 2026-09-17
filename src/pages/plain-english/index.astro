@@ -923,6 +923,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     color: var(--text-pure);
     font-weight: 700;
   }
+  /* --text-pure is near-black in light mode, so this near-black header was
+     dark-on-dark at 1.42:1. Give light mode a light header instead. */
+  :global(html[data-theme="light"]) .w3c-status-table th {
+    background: #e2e8f0;
+    color: var(--text-primary);
+  }
 
   .status-badge {
     display: inline-block;
@@ -951,6 +957,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   .w3c-notice-box strong {
     color: #fb7185;
+  }
+  :global(html[data-theme="light"]) .w3c-notice-box strong {
+    color: var(--accent-rose);
     display: block;
     margin-bottom: 4px;
   }
@@ -1059,7 +1068,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   .persona-pill.active {
     background: var(--accent-blue);
-    color: #070b14;
+    /* The accent is light in dark mode and dark in light mode, so the text on
+       it has to flip too. */
+    color: var(--on-accent);
     border-color: var(--accent-blue);
     font-weight: 700;
     box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35);
@@ -1157,7 +1168,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .status-mature { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
   .status-refining { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
   .status-developing { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
-  .status-exploratory { background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
+  .status-exploratory { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
 
   .delta-badge {
     font-size: 0.68rem;
@@ -1294,7 +1305,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     align-items: center;
     gap: 8px;
     background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-blue) 100%);
-    color: #070b14;
+    /* Both stops are light in dark mode and dark in light mode, so the label
+       has to flip with them. Gradients are invisible to contrast tooling —
+       this was caught by reading the CSS, not by the sweep. */
+    color: var(--on-accent);
     border: none;
     border-radius: var(--radius-full);
     padding: 12px 20px;
@@ -1310,7 +1324,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .toc-count-badge {
-    background: rgba(7, 11, 20, 0.5);
+    /* Sits on the accent-coloured FAB. At 0.5 the white numeral measured
+       3.83:1; 0.78 takes it clear of 4.5:1 in both themes. */
+    background: rgba(7, 11, 20, 0.78);
     color: #ffffff;
     padding: 2px 8px;
     border-radius: var(--radius-full);

@@ -438,7 +438,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           }
           if (badgeEl) {
             badgeEl.textContent = `${catPct}% (${stat.earned} / ${stat.applicable} pts)`;
-            badgeEl.style.color = catPct >= 60 ? '#34d399' : '#fb7185';
+            // Inline styles outrank every stylesheet, so a hard-coded hex here
+            // cannot adapt to the light theme — it measured 2.57:1. Toggle a
+            // class instead and let the CSS below answer for each theme.
+            badgeEl.classList.toggle('score-pass', catPct >= 60);
+            badgeEl.classList.toggle('score-fail', catPct < 60);
           }
         });
 
@@ -820,7 +824,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .btn-primary-action {
     background: var(--accent-blue);
-    color: #ffffff;
+    color: var(--on-accent);
     border-color: var(--accent-blue);
     box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
   }
@@ -1212,7 +1216,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   .fpill-btn.active {
     background: var(--accent-blue);
-    color: #ffffff;
+    color: var(--on-accent);
     border-color: var(--accent-blue);
     font-weight: 700;
   }
@@ -1284,6 +1288,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     font-weight: 800;
     font-family: var(--font-mono);
   }
+  .cat-score-badge.score-pass { color: #34d399; }
+  .cat-score-badge.score-fail { color: #fb7185; }
+  :global(html[data-theme="light"]) .cat-score-badge.score-pass { color: var(--accent-emerald); }
+  :global(html[data-theme="light"]) .cat-score-badge.score-fail { color: var(--accent-rose); }
 
   /* Provisions List */
   .provisions-list {
@@ -1475,6 +1483,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   :global(html[data-theme="light"]) .scoring-btn-group {
     background: #f8fafc;
     border-color: #cbd5e1;
+  }
+  /* The rule above sets a light background for every .fpill-btn at (0,3,0),
+     which outranks .fpill-btn.active at (0,2,0) — so the ACTIVE filter lost
+     its accent background and rendered white-on-white, 1.05:1. It needs an
+     override at the same weight. */
+  :global(html[data-theme="light"]) .fpill-btn.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: var(--on-accent);
   }
   :global(html[data-theme="light"]) .filter-search-box input {
     color: #0f172a;

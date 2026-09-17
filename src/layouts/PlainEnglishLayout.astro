@@ -73,6 +73,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --text-accent: #38bdf8;
 
         --accent-blue: #38bdf8;
+        /* Text drawn ON an accent-coloured surface. The dark theme's accents
+           are light colours, so white on them measured 2.14:1 (the skip link
+           and the active nav tab); dark text on them is 9.19:1. The light
+           theme's accents are dark, so it is the reverse. */
+        --on-accent: #070b14;
         --accent-indigo: #818cf8;
         --accent-purple: #c084fc;
         --accent-emerald: #34d399;
@@ -136,15 +141,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
         --border-subtle: rgba(100, 116, 139, 0.25);
         --border-default: rgba(100, 116, 139, 0.4);
-        --border-active: #0284c7;
-        --border-glow: rgba(2, 132, 199, 0.25);
+        --border-active: #0369a1;
+        --border-glow: rgba(3, 105, 161, 0.25);
 
         /* Text: High Contrast */
         --text-pure: #0f172a;            /* 17.85:1 against white */
         --text-primary: #0f172a;         /* 17.85:1 against white */
         --text-secondary: #1e293b;       /* 14.63:1 against white */
         --text-muted: #475569;           /* 7.58:1 against white */
-        --text-accent: #0284c7;
+        --text-accent: #0369a1;       /* 5.93:1 on white; used as text, so it needs 4.5 */
 
         /* #0284c7 measured 4.10:1 on white, not the 4.8:1 this comment used to
            claim — under the 4.5:1 AA floor for normal-size text. It is the
@@ -153,6 +158,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
            already in this palette (--role-pm) and measures 5.93:1. Ratios below
            are measured, not estimated. */
         --accent-blue: #0369a1;          /* 5.93:1 on white */
+        --on-accent: #ffffff;            /* 5.93:1 on --accent-blue */
         --accent-indigo: #4f46e5;
         --accent-purple: #6d28d9;        /* 7.10:1 on white */
         --accent-emerald: #047857;       /* 5.48:1 on white */
@@ -251,7 +257,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         left: 50%;
         transform: translateX(-50%);
         background: var(--accent-blue);
-        color: #ffffff;
+        color: var(--on-accent);
         padding: 12px 28px;
         font-weight: 800;
         border-radius: var(--radius-md);
@@ -636,14 +642,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
       .nav-tab.active {
         background: var(--accent-blue);
-        color: #ffffff;
+        color: var(--on-accent);
         font-weight: 700;
         box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35);
       }
 
       .nav-tab.active .status-pill {
         background: rgba(0, 0, 0, 0.25);
-        color: #ffffff;
+        color: var(--on-accent);
       }
 
       .status-pill {
@@ -962,6 +968,67 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         display: block;
         margin-bottom: 4px;
       }
+
+      /* ==========================================================================
+         Light-theme badge palette
+         --------------------------------------------------------------------------
+         Every status / level / delta badge on this site was authored once, with a
+         DARK-theme accent hex as its text colour and a 15% tint of that same hex
+         as its background. On a dark card that is a light colour on a dark
+         surface and reads fine. In light mode it becomes a light colour on an
+         almost-white tint: measured between 1.48:1 and 2.89:1 against the 4.5:1
+         these ~11px labels need. That single habit accounted for roughly 660 of
+         the 699 failing text nodes found across the site in light mode.
+
+         These overrides keep the semantics — amber is still "developing",
+         emerald still "mature" — and swap in the light palette's own accessible
+         variants. They live in the layout's global block because the badge rules
+         themselves are repeated across six page files; :root[data-theme="light"]
+         (0,3,0) outranks Astro's scoped class selectors (0,2,0).
+         ========================================================================== */
+      :root[data-theme="light"] .status-mature,
+      :root[data-theme="light"] .badge-done,
+      :root[data-theme="light"] .level-AA {
+        background: rgba(4, 120, 87, 0.12);
+        /* #047857 measured 4.44:1 once the card tint sits under the badge tint —
+           just short. #065f46 clears it with room. */
+        color: #065f46;
+        border-color: rgba(4, 120, 87, 0.35);
+      }
+      :root[data-theme="light"] .status-refining,
+      :root[data-theme="light"] .delta-newbroaderscope,
+      :root[data-theme="light"] .level-A {
+        background: rgba(3, 105, 161, 0.12);
+        color: #0369a1;
+        border-color: rgba(3, 105, 161, 0.35);
+      }
+      :root[data-theme="light"] .status-developing,
+      :root[data-theme="light"] .badge-wip {
+        background: rgba(146, 64, 14, 0.12);
+        color: #92400e;
+        border-color: rgba(146, 64, 14, 0.35);
+      }
+      :root[data-theme="light"] .status-exploratory {
+        background: rgba(190, 18, 60, 0.12);
+        color: #be123c;
+        border-color: rgba(190, 18, 60, 0.35);
+      }
+      :root[data-theme="light"] .delta-morestrict,
+      :root[data-theme="light"] .level-AAA {
+        background: rgba(109, 40, 217, 0.12);
+        color: #6d28d9;
+        border-color: rgba(109, 40, 217, 0.35);
+      }
+      :root[data-theme="light"] .delta-equivalent {
+        background: rgba(51, 65, 85, 0.12);
+        color: #334155;
+        border-color: rgba(51, 65, 85, 0.35);
+      }
+      /* Large stat numerals tinted with the same accents (3:1 applies at 28px). */
+      :root[data-theme="light"] .highlight-levela { color: #0369a1; }
+      :root[data-theme="light"] .highlight-levelaa { color: #047857; }
+      :root[data-theme="light"] .highlight-levelaaa,
+      :root[data-theme="light"] .highlight-shift { color: #6d28d9; }
 
       /* Responsive Breakpoints */
       /* The header is three rows now — utility strip, then brand + search +

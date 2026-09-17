@@ -534,7 +534,9 @@ const roleLabel: Record<string, string> = {
       right: 1.25rem;
       font-size: 2rem;
       font-weight: 800;
-      color: var(--border-subtle);
+      /* --border-subtle is a hairline colour; as 32px text it measured 1.37:1
+         against the 3:1 that large text needs. */
+      color: var(--text-muted);
       line-height: 1;
     }
     .shift-card h4 {
