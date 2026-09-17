@@ -514,10 +514,35 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     border-radius: var(--radius-sm);
   }
 
+  /* Dark-theme pills. These hexes are the DARK accent values; on the light
+     theme's pale tints they measured 1.54-2.32:1, far under the 4.5:1 AA floor
+     for 11.5px text. The light overrides below swap in the light palette's own
+     accessible variants. */
   .tag-draft { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
   .tag-standard { background: rgba(52, 211, 153, 0.15); color: #34d399; }
   .tag-shift { background: rgba(192, 132, 252, 0.15); color: #c084fc; }
   .tag-normative { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+  /* Used by the Score Calculator card but never defined, so it rendered
+     unstyled and inherited whatever colour the card gave it. */
+  .tag-interactive { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+
+  :global(html[data-theme="light"]) .tag-draft {
+    background: rgba(3, 105, 161, 0.12);
+    color: var(--accent-blue);
+  }
+  :global(html[data-theme="light"]) .tag-standard {
+    background: rgba(4, 120, 87, 0.12);
+    color: var(--accent-emerald);
+  }
+  :global(html[data-theme="light"]) .tag-shift {
+    background: rgba(109, 40, 217, 0.12);
+    color: var(--accent-purple);
+  }
+  :global(html[data-theme="light"]) .tag-normative,
+  :global(html[data-theme="light"]) .tag-interactive {
+    background: rgba(146, 64, 14, 0.12);
+    color: var(--accent-amber);
+  }
 
   .portal-card h3 {
     font-size: 1.35rem;

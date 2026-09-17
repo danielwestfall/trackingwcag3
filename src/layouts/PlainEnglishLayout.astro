@@ -140,38 +140,44 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --border-glow: rgba(2, 132, 199, 0.25);
 
         /* Text: High Contrast */
-        --text-pure: #0f172a;            /* 18.6:1 contrast against white */
-        --text-primary: #0f172a;         /* 18.6:1 contrast against white */
-        --text-secondary: #1e293b;       /* 14.2:1 contrast against white */
-        --text-muted: #475569;           /* 6.1:1 contrast against white (exceeds 4.5:1) */
+        --text-pure: #0f172a;            /* 17.85:1 against white */
+        --text-primary: #0f172a;         /* 17.85:1 against white */
+        --text-secondary: #1e293b;       /* 14.63:1 against white */
+        --text-muted: #475569;           /* 7.58:1 against white */
         --text-accent: #0284c7;
 
-        --accent-blue: #0284c7;          /* 4.8:1 on white */
+        /* #0284c7 measured 4.10:1 on white, not the 4.8:1 this comment used to
+           claim — under the 4.5:1 AA floor for normal-size text. It is the
+           primary accent, so that single value failed the skip link, the active
+           nav tab, the search button and every card CTA at once. #0369a1 is
+           already in this palette (--role-pm) and measures 5.93:1. Ratios below
+           are measured, not estimated. */
+        --accent-blue: #0369a1;          /* 5.93:1 on white */
         --accent-indigo: #4f46e5;
-        --accent-purple: #6d28d9;        /* 6.8:1 on white */
-        --accent-emerald: #047857;       /* 5.2:1 on white */
-        --accent-amber: #92400e;         /* 5.6:1 on white */
-        --accent-rose: #be123c;          /* 6.0:1 on white */
+        --accent-purple: #6d28d9;        /* 7.10:1 on white */
+        --accent-emerald: #047857;       /* 5.48:1 on white */
+        --accent-amber: #92400e;         /* 7.09:1 on white */
+        --accent-rose: #be123c;          /* 6.29:1 on white */
 
-        --role-designer: #be185d;        /* 5.8:1 on white */
+        --role-designer: #be185d;        /* 6.04:1 on white */
         --role-designer-bg: rgba(190, 24, 93, 0.08);
         --role-designer-border: rgba(190, 24, 93, 0.35);
         
-        --role-developer: #047857;       /* 5.2:1 on white */
+        --role-developer: #047857;       /* 5.48:1 on white */
         --role-developer-bg: rgba(4, 120, 87, 0.08);
         --role-developer-border: rgba(4, 120, 87, 0.35);
         
-        --role-qa: #6d28d9;              /* 6.8:1 on white */
+        --role-qa: #6d28d9;              /* 7.10:1 on white */
         --role-qa-bg: rgba(109, 40, 217, 0.08);
         --role-qa-border: rgba(109, 40, 217, 0.35);
         
-        --role-pm: #0369a1;              /* 5.5:1 on white */
+        --role-pm: #0369a1;              /* 5.93:1 on white */
         --role-pm-bg: rgba(3, 105, 161, 0.08);
         --role-pm-border: rgba(3, 105, 161, 0.35);
 
-        --tier-bronze: #9a3412;          /* 5.8:1 on white */
-        --tier-silver: #334155;          /* 9.5:1 on white */
-        --tier-gold: #854d0e;            /* 6.2:1 on white */
+        --tier-bronze: #9a3412;          /* 7.31:1 on white */
+        --tier-silver: #334155;          /* 10.35:1 on white */
+        --tier-gold: #854d0e;            /* 6.85:1 on white */
 
         --status-mature: #047857;
         --status-refining: #0369a1;
@@ -905,6 +911,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         font-family: var(--font-mono);
         font-size: 0.8rem;
         border: 1px solid var(--border-subtle);
+      }
+      /* In light mode --surface-subtle over the footer tint lands at
+         rgb(215,222,230), where the accent blue measures 4.36:1 — just under AA
+         for this 12.8px text. A white chip restores it to 5.93:1. */
+      :root[data-theme="light"] .footer-meta-col code {
+        background: var(--surface-card);
       }
 
       .footer-shortcuts {
