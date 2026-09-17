@@ -558,6 +558,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       }
 
       .brand-title {
+        /* Was an <h1>. It is the site's name, repeated on every page — not the
+           heading of any page — so it left 56 pages with two h1 elements and
+           several others with the site name as their only h1. */
+        display: block;
         font-size: 1.25rem;
         font-weight: 800;
         letter-spacing: -0.025em;
@@ -876,6 +880,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         max-width: 400px;
       }
 
+      /* Footer column headings. As h4 they followed the page's h2/h3 content
+         and read as a two-level skip on 30 pages; they are top-level footer
+         sections, so h2 is the honest level. */
+      .footer-links-col h2,
+      .footer-meta-col h2,
       .footer-links-col h4,
       .footer-meta-col h4 {
         color: var(--text-primary);
@@ -1151,7 +1160,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <a href={link("/")} class="brand-link">
             <div class="brand-heading-wrap">
               <span class="brand-logo-icon" aria-hidden="true">🌐</span>
-              <h1 class="brand-title">Plain English Accessibility Hub</h1>
+              <span class="brand-title">Plain English Accessibility Hub</span>
             </div>
           </a>
           <p class="brand-subtitle">Translating W3C Standards for Designers, Developers, QA &amp; Product teams</p>
@@ -1252,7 +1261,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           </div>
           
           <div class="footer-links-col">
-            <h4>Quick Navigation</h4>
+            <h2>Quick Navigation</h2>
             <ul>
               <li><a href={link("/plain-english/")}>✨ WCAG 3.0 Explorer (245 Provisions)</a></li>
               <li><a href={link("/plain-english/wcag22/")}>📘 WCAG 2.2 Reference (87 Criteria)</a></li>
@@ -1266,7 +1275,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           </div>
 
           <div class="footer-meta-col">
-            <h4>Dataset & Automation</h4>
+            <h2>Dataset &amp; Automation</h2>
             <p>Decoupled Updatable Plain English Layer &copy; 2026.</p>
             <p class="footer-hint">Sync latest W3C upstream changes: <code>npm run sync:plain-english</code></p>
             <div class="footer-shortcuts">

@@ -57,23 +57,23 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 1: Plain English -->
     <div id="panel-plain" role="tabpanel" aria-labelledby="tab-plain" class="tab-panel active">
       <div class="panel-section">
-        <h3>Plain English Explanation</h3>
+        <h2>Plain English Explanation</h2>
         <p class="summary-lead">{item.plainEnglish?.summary}</p>
       </div>
 
       <div class="panel-grid-2">
         <div class="info-card">
-          <h4>Why It Matters</h4>
+          <h3>Why It Matters</h3>
           <p>{item.plainEnglish?.whyItMatters || "Ensures users can perceive and interact with web content equitably."}</p>
         </div>
         <div class="info-card">
-          <h4>Real-World Example</h4>
+          <h3>Real-World Example</h3>
           <p>{item.plainEnglish?.realWorldExample || "Clear keyboard focus indications preventing navigation disorientation."}</p>
         </div>
       </div>
 
       <div class="panel-section">
-        <h3>Role-Based Actionable Advice</h3>
+        <h2>Role-Based Actionable Advice</h2>
         <div class="persona-cards-grid">
           <div class="persona-card designer">
             <span class="persona-header">🎨 Designer</span>
@@ -98,25 +98,25 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 2: Testing Guide -->
     <div id="panel-test" role="tabpanel" aria-labelledby="tab-test" class="tab-panel hidden">
       <div class="panel-section">
-        <h3>Step-by-Step Testing Procedures</h3>
+        <h2>Step-by-Step Testing Procedures</h2>
         <div class="testing-grid">
           <div class="test-card">
-            <h4>🤖 Automated Testing</h4>
+            <h3>🤖 Automated Testing</h3>
             <p>{item.testingGuide?.automated || "Run axe-core or Lighthouse audits in your continuous integration pipeline."}</p>
           </div>
           <div class="test-card">
-            <h4>⌨️ Keyboard Testing</h4>
+            <h3>⌨️ Keyboard Testing</h3>
             <p>{item.testingGuide?.manualKeyboard || "Tab sequentially through all interactive controls and verify focus states."}</p>
           </div>
           <div class="test-card">
-            <h4>🔊 Screen Reader Check</h4>
+            <h3>🔊 Screen Reader Check</h3>
             <p>{item.testingGuide?.screenReader || "Audit with NVDA, JAWS, or VoiceOver for clear accessibility tree naming."}</p>
           </div>
         </div>
       </div>
 
       <div class="panel-section">
-        <h3>Code Patterns: Good vs Bad</h3>
+        <h2>Code Patterns: Good vs Bad</h2>
         <div class="code-comparison">
           <div class="code-box good">
             <div class="code-header">
@@ -139,15 +139,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 3: Evolution in WCAG 3 -->
     <div id="panel-evolution" role="tabpanel" aria-labelledby="tab-evolution" class="tab-panel hidden">
       <div class="panel-section">
-        <h3>How SC {item.num} Evolves in WCAG 3</h3>
+        <h2>How SC {item.num} Evolves in WCAG 3</h2>
         
         <div class="info-card evolution-box">
-          <h4>Evolution Summary</h4>
+          <h3>Evolution Summary</h3>
           <p>{item.wcag3Mapping?.evolutionNote || "This criterion transitions from a binary page-level rule to continuous outcome scoring in WCAG 3."}</p>
         </div>
 
         <div class="panel-section">
-          <h4>Mapped WCAG 3 Provisions / Outcomes</h4>
+          <h3>Mapped WCAG 3 Provisions / Outcomes</h3>
           <div class="provision-links-grid">
             {item.wcag3Mapping?.provisions?.length > 0 ? (
               item.wcag3Mapping.provisions.map((provSlug: string) => (
@@ -333,6 +333,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
   .panel-section { margin-bottom: 32px; }
   .panel-section:last-child { margin-bottom: 0; }
+  .panel-section h2,
   .panel-section h3 {
     font-size: 1.25rem;
     font-weight: 700;
@@ -363,6 +364,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     border-radius: var(--radius-md);
     padding: 20px;
   }
+  .info-card h3,
   .info-card h4 {
     color: var(--accent-emerald);
     font-size: 0.98rem;
@@ -423,7 +425,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     border-radius: var(--radius-md);
     padding: 20px;
   }
-  .test-card h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+  .test-card h3,
+  .test-card h3, .test-card h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
   .test-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55; }
 
   .code-comparison {
@@ -479,6 +482,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     border-left: 4px solid var(--accent-blue);
     margin-bottom: 24px;
   }
+  .evolution-box h3,
   .evolution-box h4 { color: var(--accent-blue); }
 
   .provision-links-grid {

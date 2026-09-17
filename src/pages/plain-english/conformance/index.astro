@@ -26,7 +26,7 @@ const roleLabel: Record<string, string> = {
           <span class="sparkle" aria-hidden="true">⚖️</span>
           <span>Conformance Model</span>
         </div>
-        <h2>Conformance: What Changed &amp; How to Get Ready</h2>
+        <h1>Conformance: What Changed &amp; How to Get Ready</h1>
         <p>
           Conformance is where WCAG 3 departs from WCAG 2.2 most sharply — and where it
           changed again in the {s.baselineDate} draft. This page covers what moved, what it
@@ -69,7 +69,7 @@ const roleLabel: Record<string, string> = {
 
   <!-- The headline shift -->
   <section class="headline-shift" aria-labelledby="headline-h">
-    <h3 id="headline-h">The headline change</h3>
+    <h2 id="headline-h">The headline change</h2>
     <blockquote class="spec-quote">
       <p>{d.headline.quote}</p>
       <cite>{d.headline.source}</cite>
@@ -86,7 +86,7 @@ const roleLabel: Record<string, string> = {
 
   <!-- Reporting tiers -->
   <section class="tiers-section" aria-labelledby="tiers-h">
-    <h3 id="tiers-h">Reporting tiers</h3>
+    <h2 id="tiers-h">Reporting tiers</h2>
     <p class="section-lead">
       Each tier is cumulative, building on and including everything in the tiers before it.
       Only tier 3 is conformance — the tiers below it describe progress toward it, and the
@@ -118,7 +118,7 @@ const roleLabel: Record<string, string> = {
     </div>
 
     <div class="kinds-grid">
-      <h4>What drives tier placement</h4>
+      <h3>What drives tier placement</h3>
       <p class="section-lead">
         Core requirements are tagged by the kind of harm that not meeting them causes.
         Those tags are what sort a requirement into tier 1, 2 or 3.
@@ -144,7 +144,7 @@ const roleLabel: Record<string, string> = {
 
   <!-- What 2.2 work carries over -->
   <section class="carryover-section" aria-labelledby="carry-h">
-    <h3 id="carry-h">Does your WCAG 2.2 work carry over?</h3>
+    <h2 id="carry-h">Does your WCAG 2.2 work carry over?</h2>
     <blockquote class="spec-quote">
       <p>{d.carryOver.quote}</p>
       <cite>W3C Accessibility Guidelines 3.0 editors' draft</cite>
@@ -155,7 +155,7 @@ const roleLabel: Record<string, string> = {
 
   <!-- Structural differences -->
   <section class="shifts-section" aria-labelledby="shifts-h">
-    <h3 id="shifts-h">The five structural differences from WCAG 2.2</h3>
+    <h2 id="shifts-h">The five structural differences from WCAG 2.2</h2>
     <p class="section-lead">
       These are the parts of WCAG 3 that are not a restatement of WCAG 2.2 in new words.
     </p>
@@ -163,7 +163,7 @@ const roleLabel: Record<string, string> = {
       {d.shifts.map((sh: any, i: number) => (
         <article class="shift-card" id={sh.id}>
           <div class="shift-num" aria-hidden="true">{i + 1}</div>
-          <h4>{sh.title}</h4>
+          <h3>{sh.title}</h3>
           <div class="shift-compare">
             <div class="shift-side shift-was">
               <span class="shift-label">WCAG 2.2</span>
@@ -185,7 +185,7 @@ const roleLabel: Record<string, string> = {
 
   <!-- Readiness -->
   <section class="readiness-section" aria-labelledby="ready-h">
-    <h3 id="ready-h">What to do to be ready</h3>
+    <h2 id="ready-h">What to do to be ready</h2>
     <p class="section-lead">
       Ordered by whether the work depends on the draft settling. The first column does not —
       which is why it is the first column.
@@ -194,7 +194,7 @@ const roleLabel: Record<string, string> = {
       <div class="ready-col ready-now">
         <div class="ready-head">
           <span class="ready-icon" aria-hidden="true">✅</span>
-          <h4>Start now</h4>
+          <h3>Start now</h3>
           <p class="ready-sub">Useful regardless of how the draft lands</p>
         </div>
         <ol class="ready-list">
@@ -209,7 +209,7 @@ const roleLabel: Record<string, string> = {
       <div class="ready-col ready-next">
         <div class="ready-head">
           <span class="ready-icon" aria-hidden="true">🔜</span>
-          <h4>Cheap hedges</h4>
+          <h3>Cheap hedges</h3>
           <p class="ready-sub">Low cost, likely to pay off</p>
         </div>
         <ol class="ready-list">
@@ -224,7 +224,7 @@ const roleLabel: Record<string, string> = {
       <div class="ready-col ready-wait">
         <div class="ready-head">
           <span class="ready-icon" aria-hidden="true">⏸️</span>
-          <h4>Wait for the draft</h4>
+          <h3>Wait for the draft</h3>
           <p class="ready-sub">Building for this now is premature</p>
         </div>
         <ol class="ready-list">
@@ -241,7 +241,7 @@ const roleLabel: Record<string, string> = {
 
   <!-- Where 2.2 stretched -->
   <section class="stretched-section" aria-labelledby="stretch-h">
-    <h3 id="stretch-h">Where WCAG 2.2 requirements visibly stretched</h3>
+    <h2 id="stretch-h">Where WCAG 2.2 requirements visibly stretched</h2>
     <p class="section-lead">
       Cases where a WCAG 2.2 success criterion does not cover the new provision cleanly.
     </p>
@@ -249,7 +249,7 @@ const roleLabel: Record<string, string> = {
       {d.stretched.map((x: any) => (
         <article class="stretched-card">
           <div class="stretched-top">
-            <h4>{x.title}</h4>
+            <h3>{x.title}</h3>
             <span class="sc-pill">{x.criteria}</span>
           </div>
           <p>{x.detail}</p>
@@ -260,7 +260,7 @@ const roleLabel: Record<string, string> = {
 
   <!-- Watch list -->
   <section class="watch-section" aria-labelledby="watch-h">
-    <h3 id="watch-h">What this site watches from here</h3>
+    <h2 id="watch-h">What this site watches from here</h2>
     <p class="section-lead">
       The upstream tracker checks the W3C editors' draft weekly. These are the signals it
       reports first, in priority order.
@@ -293,6 +293,7 @@ const roleLabel: Record<string, string> = {
       margin-bottom: 2.5rem;
     }
 
+    h2,
     h3 {
       font-size: 1.5rem;
       font-weight: 700;
@@ -300,6 +301,7 @@ const roleLabel: Record<string, string> = {
       margin: 0 0 0.75rem;
     }
 
+    h3,
     h4 {
       font-size: 1.1rem;
       font-weight: 700;
@@ -539,7 +541,8 @@ const roleLabel: Record<string, string> = {
       color: var(--text-muted);
       line-height: 1;
     }
-    .shift-card h4 {
+    .shift-card  h3,
+    .shift-card  h4 {
       padding-right: 2.5rem;
     }
     .shift-compare {
@@ -607,7 +610,8 @@ const roleLabel: Record<string, string> = {
     .ready-head {
       margin-bottom: 0.9rem;
     }
-    .ready-head h4 {
+    .ready-head  h3,
+    .ready-head  h4 {
       display: inline;
       margin: 0;
     }

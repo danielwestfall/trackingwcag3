@@ -90,7 +90,7 @@ const formattedDate = generatedAt
           <span class="sparkle" aria-hidden="true">💬</span>
           <span>Live from GitHub</span>
         </div>
-        <h2>W3C Working Group Discussions</h2>
+        <h1>W3C Working Group Discussions</h1>
         <p>
           Every W3C GitHub issue on the WCAG 3 draft, grouped by the provision it's labelled
           against, with the busiest threads distilled into a headline, the actual camps, and
@@ -117,7 +117,7 @@ const formattedDate = generatedAt
   <section class="intro-alert" aria-label="How to read this page">
     <div class="alert-icon" aria-hidden="true">💡</div>
     <div class="alert-body">
-      <h4>A high comment count doesn't always mean the provision itself was debated</h4>
+      <h2>A high comment count doesn't always mean the provision itself was debated</h2>
       <p>
         Several of the busiest threads below turn out to be inherited WCAG 2.x arguments, or
         disputes over a neighboring provision that happens to share a label. Each headline
@@ -131,7 +131,7 @@ const formattedDate = generatedAt
     <section class="intro-alert alert-warn" aria-label="Stale summaries">
       <div class="alert-icon" aria-hidden="true">⚠️</div>
       <div class="alert-body">
-        <h4>{staleCount} {staleCount === 1 ? "summary is" : "summaries are"} stale</h4>
+        <h3>{staleCount} {staleCount === 1 ? "summary is" : "summaries are"} stale</h3>
         <p>The thread has moved on since the summary below was written — new comments landed after the summary's fingerprint was taken. Flagged on the card.</p>
       </div>
     </section>
@@ -140,7 +140,7 @@ const formattedDate = generatedAt
   <!-- Summarized Debates -->
   <section class="debates-section">
     <div class="debates-header">
-      <h3>🔥 Summarized Debates</h3>
+      <h2>🔥 Summarized Debates</h2>
       <p>Sorted by comment volume. Every named participant and cited issue number is drawn directly from the GitHub thread — nothing here is inferred.</p>
     </div>
 
@@ -158,9 +158,9 @@ const formattedDate = generatedAt
               <span class="comment-count">{p.commentCount} comments · {p.threadCount} thread{p.threadCount === 1 ? "" : "s"}</span>
             </div>
 
-            <h4 class="debate-topic-title">
+            <h3 class="debate-topic-title">
               <a href={link(`/plain-english/provision/${p.slug}/`)}>{p.title}</a>
-            </h4>
+            </h3>
 
             <div class="debate-box">
               <strong>The Debate</strong>
@@ -227,7 +227,7 @@ const formattedDate = generatedAt
   {recordedNoComments.length > 0 && (
     <section class="awaiting-section">
       <div class="debates-header">
-        <h3>🕐 Recorded, Awaiting Discussion</h3>
+        <h2>🕐 Recorded, Awaiting Discussion</h2>
         <p>
           These {recordedNoComments.length} provisions have an open GitHub issue, but nobody has
           replied yet — there's no debate here to summarize, just a filed thread worth watching.
@@ -291,6 +291,7 @@ const formattedDate = generatedAt
     min-width: 0;
   }
 
+  .banner-title-group h1,
   .banner-title-group h2 {
     font-size: 1.9rem;
     font-weight: 800;
@@ -361,13 +362,15 @@ const formattedDate = generatedAt
 
   .alert-icon { font-size: 1.5rem; flex-shrink: 0; }
 
-  .alert-body h4 {
+  .alert-body  h3,
+  .alert-body  h4 {
     color: #bae6fd;
     font-weight: 700;
     font-size: 1.05rem;
     margin-bottom: 6px;
   }
-  .alert-warn .alert-body h4 { color: #fde68a; }
+  .alert-warn .alert-body  h3,
+  .alert-warn .alert-body  h4 { color: #fde68a; }
   .alert-body p {
     color: var(--text-secondary);
     font-size: 0.94rem;
@@ -376,7 +379,8 @@ const formattedDate = generatedAt
   }
 
   .debates-section { margin-top: 40px; }
-  .debates-header h3 {
+  .debates-header  h2,
+  .debates-header  h3 {
     font-size: 1.6rem;
     font-weight: 800;
     color: var(--accent-blue);
@@ -664,17 +668,20 @@ const formattedDate = generatedAt
     background: #f0f9ff;
     border-color: #7dd3fc;
   }
-  :global(html[data-theme="light"]) .alert-body h4 {
+  :global(html[data-theme="light"]) .alert-body  h3,
+  :global(html[data-theme="light"]) .alert-body  h4 {
     color: #0369a1;
   }
   :global(html[data-theme="light"]) .intro-alert.alert-warn {
     background: #fffbeb;
     border-color: #fcd34d;
   }
-  :global(html[data-theme="light"]) .alert-warn .alert-body h4 {
+  :global(html[data-theme="light"]) .alert-warn .alert-body  h3,
+  :global(html[data-theme="light"]) .alert-warn .alert-body  h4 {
     color: #92400e;
   }
-  :global(html[data-theme="light"]) .debates-header h3 {
+  :global(html[data-theme="light"]) .debates-header  h2,
+  :global(html[data-theme="light"]) .debates-header  h3 {
     color: #0369a1;
   }
   :global(html[data-theme="light"]) .debate-item-card,

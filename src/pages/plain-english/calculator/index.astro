@@ -70,7 +70,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="calc-icon" aria-hidden="true">🧮</span>
           <span>Interactive Audit &amp; Conformance Tool</span>
         </div>
-        <h2>WCAG 3.0 Conformance Score Calculator</h2>
+        <h1>WCAG 3.0 Conformance Score Calculator</h1>
         <p>
           Evaluate your digital product against W3C WCAG 3.0 draft provisions across all 9 functional categories.
           Calculate live points-based outcomes, identify fatal core blockers, and estimate your <strong>Bronze</strong>, <strong>Silver</strong>, or <strong>Gold</strong> conformance rating.
@@ -158,7 +158,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
       <!-- Category Health Mini-Grid -->
       <div class="category-health-card">
-        <h3>Category Health Breakdown</h3>
+        <h2>Category Health Breakdown</h2>
         <p class="health-subtitle">Each category requires &ge; 60% for Bronze, &ge; 75% for Silver, &ge; 85% for Gold.</p>
         
         <div class="category-bars-grid" id="category-bars-container">
@@ -233,7 +233,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <div class="cat-summary-left">
                 <span class="cat-summary-icon" aria-hidden="true">{catMeta.icon}</span>
                 <div class="cat-summary-text">
-                  <h3>{catMeta.title}</h3>
+                  <h2>{catMeta.title}</h2>
                   <span class="cat-summary-desc">{catMeta.description}</span>
                 </div>
               </div>
@@ -264,12 +264,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
                           <span class={`type-tag ${isCore ? "type-core" : "type-supp"}`}>
                             {isCore ? "Core / Foundational" : "Supplemental"}
                           </span>
-                          <h4>
+                          <h3>
                             <a href={link(`/plain-english/provision/${p.slug}/`)} target="_blank" title="Open detailed plain-English guide in new tab">
                               {p.title}
                               <span class="ext-icon" aria-hidden="true">&nearr;</span>
                             </a>
-                          </h4>
+                          </h3>
                         </div>
 
                         <!-- 4-Way Radio Evaluation Buttons -->
@@ -434,7 +434,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           if (pctEl) pctEl.textContent = `${catPct}%`;
           if (fillEl) {
             fillEl.style.width = `${catPct}%`;
-            fillEl.style.backgroundColor = catPct >= 75 ? '#34d399' : (catPct >= 60 ? '#38bdf8' : '#fb7185');
+            // Same reason as the score badge: an inline hex cannot follow the
+            // theme, and WCAG 1.4.11 wants 3:1 between this fill and its track.
+            fillEl.classList.remove('bar-good', 'bar-ok', 'bar-low');
+            fillEl.classList.add(catPct >= 75 ? 'bar-good' : (catPct >= 60 ? 'bar-ok' : 'bar-low'));
           }
           if (badgeEl) {
             badgeEl.textContent = `${catPct}% (${stat.earned} / ${stat.applicable} pts)`;
@@ -688,7 +691,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             const isCore = item.dataset.type === 'core';
             if (failRadio && failRadio.checked && isCore) {
               failedCoreCount++;
-              const title = item.querySelector('h4 a')?.textContent.trim() || '';
+              const title = item.querySelector('h3 a, h4 a')?.textContent.trim() || '';
               const summary = item.querySelector('.item-summary')?.textContent.trim() || '';
               md += `- **[Core Blocker] ${title}**: ${summary}\n`;
             }
@@ -787,6 +790,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     min-width: 0;
   }
 
+  .banner-title-group h1,
   .banner-title-group h2 {
     font-size: 1.95rem;
     font-weight: 800;
@@ -1053,7 +1057,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .alert-content p { color: var(--text-secondary); font-size: 0.84rem; line-height: 1.5; margin: 0; }
 
   /* Category Health Card */
-  .category-health-card h3 {
+  .category-health-card  h2,
+  .category-health-card  h3 {
     font-size: 1.15rem;
     font-weight: 800;
     color: var(--text-pure);
@@ -1098,6 +1103,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     border-radius: 9999px;
     transition: width 0.3s ease, background-color 0.3s ease;
   }
+  .cat-progress-fill.bar-good { background: #34d399; }
+  .cat-progress-fill.bar-ok   { background: #38bdf8; }
+  .cat-progress-fill.bar-low  { background: #fb7185; }
+  :global(html[data-theme="light"]) .cat-progress-fill.bar-good { background: var(--accent-emerald); }
+  :global(html[data-theme="light"]) .cat-progress-fill.bar-ok   { background: var(--accent-blue); }
+  :global(html[data-theme="light"]) .cat-progress-fill.bar-low  { background: var(--accent-rose); }
 
   .export-report-toolbar {
     display: flex;
@@ -1260,7 +1271,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     gap: 14px;
   }
   .cat-summary-icon { font-size: 1.5rem; }
-  .cat-summary-text h3 {
+  .cat-summary-text  h2,
+  .cat-summary-text  h3 {
     font-size: 1.15rem;
     font-weight: 800;
     color: var(--text-pure);
@@ -1327,7 +1339,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     gap: 10px;
     flex-wrap: wrap;
   }
-  .item-title-group h4 {
+  .item-title-group  h3,
+  .item-title-group  h4 {
     margin: 0;
     font-size: 1.05rem;
     font-weight: 800;

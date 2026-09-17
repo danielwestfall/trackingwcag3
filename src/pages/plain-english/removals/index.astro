@@ -28,7 +28,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
           <span class="sparkle" aria-hidden="true">🔄</span>
           <span>Architectural Evolution</span>
         </div>
-        <h2>WCAG 2.2 vs 3 Removals & Architectural Shifts</h2>
+        <h1>WCAG 2.2 vs 3 Removals & Architectural Shifts</h1>
         <p>A plain-English guide to concepts allowed or present in WCAG 2.2 that are omitted, phased out, or fundamentally redesigned in WCAG 3.</p>
       </div>
       <div class="stats-grid">
@@ -48,7 +48,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
   <section class="intro-alert" aria-label="Core shift summary">
     <div class="alert-icon" aria-hidden="true">💡</div>
     <div class="alert-body">
-      <h4>Key Paradigm Shift: Universal Primary Conformance</h4>
+      <h2>Key Paradigm Shift: Universal Primary Conformance</h2>
       <p>WCAG 3 moves decisively away from single-page binary pass/fail checklists and exemptions like "Conforming Alternate Versions" (CAV). The goal of WCAG 3 is universal primary accessibility evaluated across complete user tasks, preventing secondary "accessible text-only" segregation.</p>
     </div>
   </section>
@@ -66,7 +66,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
             </div>
           </div>
 
-          <h3 class="card-title">{item.title}</h3>
+          <h2 class="card-title">{item.title}</h2>
 
           <div class="comparison-block">
             <div class="wcag22-box">
@@ -80,7 +80,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
           </div>
 
           <div class="debate-card">
-            <h4>W3C Working Group Debate & Consensus</h4>
+            <h3>W3C Working Group Debate & Consensus</h3>
             <p>{item.workingGroupDebate}</p>
             {item.debateLinks && item.debateLinks.length > 0 && (
               <div class="debate-links-subgroup">
@@ -101,7 +101,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
           </div>
 
           <div class="persona-impact-section">
-            <h4>Role Impact</h4>
+            <h3>Role Impact</h3>
             <div class="persona-impact-grid">
               <div class="impact-item designer">
                 <strong>🎨 Designer:</strong> {item.personaImpact?.designer}
@@ -120,7 +120,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
 
           {item.supportingLinks && item.supportingLinks.length > 0 && (
             <div class="supporting-links-section">
-              <h4>🔗 Supporting W3C Specifications & Documentation</h4>
+              <h3>🔗 Supporting W3C Specifications & Documentation</h3>
               <div class="links-list">
                 {item.supportingLinks.map((link: any) => (
                   <a href={link.url} target="_blank" rel="noopener noreferrer" class="support-link-card">
@@ -143,7 +143,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
   <section class="discussions-teaser">
     <div class="teaser-icon" aria-hidden="true">💬</div>
     <div class="teaser-body">
-      <h3>Looking for the hottest debates?</h3>
+      <h2>Looking for the hottest debates?</h2>
       <p>
         That list now lives on the <a href={link("/plain-english/discussions/")}>Discussions</a> page,
         generated directly from W3C GitHub issue threads instead of hand-maintained — currently
@@ -203,6 +203,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     min-width: 0;
   }
 
+  .banner-title-group h1,
   .banner-title-group h2 {
     font-size: 1.9rem;
     font-weight: 800;
@@ -269,7 +270,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
 
   .alert-icon { font-size: 1.5rem; flex-shrink: 0; }
 
-  .alert-body h4 {
+  .alert-body  h3,
+  .alert-body  h4 {
     color: #e9d5ff;
     font-weight: 700;
     font-size: 1.05rem;
@@ -400,7 +402,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     padding: 18px 22px;
     margin-bottom: 24px;
   }
-  .debate-card h4 {
+  .debate-card  h3,
+  .debate-card  h4 {
     font-size: 0.98rem;
     font-weight: 700;
     color: var(--accent-blue);
@@ -457,7 +460,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
   .d-icon { font-size: 0.85rem; }
   .ext-sm { font-size: 0.8rem; color: var(--text-secondary); }
 
-  .persona-impact-section h4 {
+  .persona-impact-section  h3,
+  .persona-impact-section  h4 {
     font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 14px;
@@ -490,7 +494,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     border-top: 1px solid var(--border-subtle);
     padding-top: 20px;
   }
-  .supporting-links-section h4 {
+  .supporting-links-section  h3,
+  .supporting-links-section  h4 {
     font-size: 0.98rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -553,7 +558,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
      text scale. */
   .teaser-body { min-width: 0; }
 
-  .teaser-body h3 {
+  .teaser-body  h2,
+  .teaser-body  h3 {
     font-size: 1.3rem;
     font-weight: 800;
     color: var(--text-pure);
@@ -586,7 +592,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     background: #f0f9ff;
     border-color: #7dd3fc;
   }
-  :global(html[data-theme="light"]) .teaser-body h3 {
+  :global(html[data-theme="light"]) .teaser-body  h2,
+  :global(html[data-theme="light"]) .teaser-body  h3 {
     color: #0f172a;
   }
 
@@ -599,7 +606,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     border-top: 2px dashed var(--border-default);
     padding-top: 36px;
   }
-  .debates-header h3 {
+  .debates-header  h2,
+  .debates-header  h3 {
     font-size: 1.6rem;
     font-weight: 800;
     color: var(--accent-purple);
@@ -745,7 +753,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     background: #fdf4ff;
     border-color: #f0abfc;
   }
-  :global(html[data-theme="light"]) .alert-body h4 {
+  :global(html[data-theme="light"]) .alert-body  h3,
+  :global(html[data-theme="light"]) .alert-body  h4 {
     color: #701a75;
   }
   :global(html[data-theme="light"]) .status-tag {
@@ -786,7 +795,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
     color: #6b21a8;
   }
   :global(html[data-theme="light"]) .debate-card h4,
-  :global(html[data-theme="light"]) .supporting-links-section h4 {
+  :global(html[data-theme="light"]) .supporting-links-section  h3,
+  :global(html[data-theme="light"]) .supporting-links-section  h4 {
     color: #0369a1;
   }
   :global(html[data-theme="light"]) .subgroup-title {
@@ -796,7 +806,8 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
   :global(html[data-theme="light"]) .dcard-link-item {
     color: #0369a1;
   }
-  :global(html[data-theme="light"]) .debates-header h3 {
+  :global(html[data-theme="light"]) .debates-header  h2,
+  :global(html[data-theme="light"]) .debates-header  h3 {
     color: #6b21a8;
   }
   :global(html[data-theme="light"]) .outcome-box {

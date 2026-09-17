@@ -25,7 +25,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="sparkle">📘</span>
           <span>Official W3C Standard</span>
         </div>
-        <h2>WCAG 2.2 Plain English Reference</h2>
+        <h1>WCAG 2.2 Plain English Reference</h1>
         <p>A plain-English guide to the official W3C WCAG 2.2 standard for non-a11y professionals, with practical testing guides and direct links to WCAG 3 evolution.</p>
       </div>
       <div class="stats-grid">
@@ -83,7 +83,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <!-- Grid -->
   <section class="criteria-section">
     <div class="grid-header">
-      <h3 id="result-count">Showing {wcag22List.length} Success Criteria</h3>
+      <h2 id="result-count">Showing {wcag22List.length} Success Criteria</h2>
     </div>
 
     <div class="criteria-grid" id="criteria-grid">
@@ -105,9 +105,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             </div>
           </div>
 
-          <h4 class="card-title">
+          <h3 class="card-title">
             <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)}>{sc.name}</a>
-          </h4>
+          </h3>
 
           <p class="summary-text">{sc.plainEnglish?.summary}</p>
 
@@ -241,6 +241,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     min-width: 0;
   }
 
+  .banner-title-group h1,
   .banner-title-group h2 {
     font-size: 1.9rem;
     font-weight: 800;

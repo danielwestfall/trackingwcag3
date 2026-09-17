@@ -62,7 +62,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <aside id="toc-drawer" class="toc-drawer" aria-label="Table of Contents Quick Navigation" hidden>
     <div class="toc-header">
       <div class="toc-title-group">
-        <h3>📋 Table of Contents</h3>
+        <h2>📋 Table of Contents</h2>
         <span class="toc-subtitle">Jump to any of the {totalCount} provisions</span>
       </div>
       <button id="toc-close-btn" class="toc-close-btn" aria-label="Close Table of Contents">&times;</button>
@@ -101,7 +101,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="sparkle">✨</span>
           <span>Draft Standards Intelligence</span>
         </div>
-        <h2>WCAG 3 Plain English Explorer</h2>
+        <h1>WCAG 3 Plain English Explorer</h1>
         <p>A plain-English educational view of the W3C WCAG 3 draft standards with release estimations, testing guides, and WCAG 2.2 comparison mappings.</p>
       </div>
       
@@ -132,7 +132,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       <div class="rating-title-group">
         <div class="rating-title-row">
           <span class="rating-icon" aria-hidden="true">⚖️</span>
-          <h3>How WCAG 3 Conformance Works: One Bar, Six Reporting Tiers</h3>
+          <h2>How WCAG 3 Conformance Works: One Bar, Six Reporting Tiers</h2>
         </div>
         <p>The Sep 2026 draft moved leveling off conformance and onto reporting. There is no A/AA/AAA successor — you either meet all core requirements or you do not.</p>
       </div>
@@ -152,7 +152,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <div class="tier-badge">🛡️ Tiers 1–2</div>
           <span class="tier-score-target">Progress toward conformance</span>
         </div>
-        <h4>Avoid Physical Harm, then Foundational Access</h4>
+        <h3>Avoid Physical Harm, then Foundational Access</h3>
         <div class="tier-progress-bar">
           <div class="tier-progress-fill fill-bronze"></div>
         </div>
@@ -168,7 +168,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <div class="tier-badge">✅ Tier 3</div>
           <span class="tier-score-target">This is conformance</span>
         </div>
-        <h4>Conformance</h4>
+        <h3>Conformance</h3>
         <div class="tier-progress-bar">
           <div class="tier-progress-fill fill-silver"></div>
         </div>
@@ -184,7 +184,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <div class="tier-badge">🏅 Tiers 4–6</div>
           <span class="tier-score-target">Beyond conformance</span>
         </div>
-        <h4>Bronze, Silver, Gold</h4>
+        <h3>Bronze, Silver, Gold</h3>
         <div class="tier-progress-bar">
           <div class="tier-progress-fill fill-gold"></div>
         </div>
@@ -313,7 +313,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <!-- Provisions Grid -->
   <section class="provisions-section">
     <div class="grid-header">
-      <h3 id="result-count">Showing {totalCount} Provisions</h3>
+      <h2 id="result-count">Showing {totalCount} Provisions</h2>
     </div>
 
     <div class="provisions-grid" id="provisions-grid">
@@ -348,9 +348,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               </div>
             </div>
 
-            <h4 class="card-title">
+            <h3 class="card-title">
               <a href={link(`/plain-english/provision/${item.slug}/`)}>{item.title}</a>
-            </h4>
+            </h3>
 
             <p class="plain-english-text">{ann?.plainEnglish?.summary}</p>
 
@@ -627,6 +627,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     min-width: 0;
   }
 
+  .banner-title-group h1,
   .banner-title-group h2 {
     font-size: 1.9rem;
     font-weight: 800;
@@ -693,7 +694,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   /* A flex child of a wrapping row still needs permission to shrink. */
-  .rating-title-row h3 { min-width: 0; }
+  .rating-title-row  h2,
+  .rating-title-row  h3 { min-width: 0; }
 
   .rating-title-row {
     display: flex;
@@ -709,7 +711,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     font-size: 1.5rem;
   }
 
-  .rating-header h3 {
+  .rating-header  h2,
+  .rating-header  h3 {
     font-size: 1.35rem;
     font-weight: 800;
     color: var(--text-pure);
@@ -831,7 +834,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .fill-silver { width: 85%; background: var(--tier-silver); }
   .fill-gold { width: 100%; background: var(--tier-gold); }
 
-  .tier-card h4 {
+  .tier-card  h3,
+  .tier-card  h4 {
     font-size: 1.02rem;
     font-weight: 700;
     color: var(--text-pure);
@@ -1370,7 +1374,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     border-bottom: 1px solid var(--border-subtle);
     background: rgba(19, 29, 49, 0.85);
   }
-  .toc-title-group h3 {
+  .toc-title-group  h2,
+  .toc-title-group  h3 {
     font-size: 1.05rem;
     font-weight: 800;
     color: var(--text-pure);
@@ -1479,7 +1484,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     .dashboard-banner {
       padding: 24px;
     }
-    .banner-title-group h2 {
+    .banner-title-group h1,
+  .banner-title-group h2 {
       font-size: 1.5rem;
     }
     .stats-grid {

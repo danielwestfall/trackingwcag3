@@ -80,23 +80,23 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 1: Plain English -->
     <div id="panel-plain" role="tabpanel" aria-labelledby="tab-plain" class="tab-panel active">
       <div class="panel-section">
-        <h3>Summary in Plain English</h3>
+        <h2>Summary in Plain English</h2>
         <p class="summary-lead">{ann?.plainEnglish?.summary}</p>
       </div>
 
       <div class="panel-grid-2">
         <div class="info-card">
-          <h4>Why It Matters</h4>
+          <h3>Why It Matters</h3>
           <p>{ann?.plainEnglish?.whyItMatters || "Ensures equitable access for users with various disabilities."}</p>
         </div>
         <div class="info-card">
-          <h4>Real-World Example</h4>
+          <h3>Real-World Example</h3>
           <p>{ann?.plainEnglish?.realWorldExample || "Navigating complex components without cognitive or physical barriers."}</p>
         </div>
       </div>
 
       <div class="panel-section">
-        <h3>Role-Based Actionable Advice</h3>
+        <h2>Role-Based Actionable Advice</h2>
         <div class="persona-cards-grid">
           <div class="persona-card designer">
             <span class="persona-header">🎨 Designer</span>
@@ -121,25 +121,25 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 2: Testing Guide -->
     <div id="panel-test" role="tabpanel" aria-labelledby="tab-test" class="tab-panel hidden">
       <div class="panel-section">
-        <h3>Testing & Verification Procedures</h3>
+        <h2>Testing & Verification Procedures</h2>
         <div class="testing-grid">
           <div class="test-card">
-            <h4>🤖 Automated Testing</h4>
+            <h3>🤖 Automated Testing</h3>
             <p>{ann?.testingGuide?.automated || "Run axe-core or Lighthouse accessibility audits in CI/CD pipeline."}</p>
           </div>
           <div class="test-card">
-            <h4>⌨️ Keyboard Testing</h4>
+            <h3>⌨️ Keyboard Testing</h3>
             <p>{ann?.testingGuide?.manualKeyboard || "Tab through all interactive controls and verify focus states."}</p>
           </div>
           <div class="test-card">
-            <h4>🔊 Screen Reader Verification</h4>
+            <h3>🔊 Screen Reader Verification</h3>
             <p>{ann?.testingGuide?.screenReader || "Audit with NVDA, JAWS, or VoiceOver to check verbalized announcements."}</p>
           </div>
         </div>
       </div>
 
       <div class="panel-section">
-        <h3>Code Patterns: Good vs Bad</h3>
+        <h2>Code Patterns: Good vs Bad</h2>
         <div class="code-comparison">
           <div class="code-box good">
             <div class="code-header">
@@ -162,7 +162,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 3: Discussion & Release Estimation -->
     <div id="panel-estimation" role="tabpanel" aria-labelledby="tab-estimation" class="tab-panel hidden">
       <div class="panel-section">
-        <h3>W3C Working Group Status & Discussion</h3>
+        <h2>W3C Working Group Status & Discussion</h2>
         <div class="discussion-box">
           <div class="metric-row">
             <span class="metric-label">Estimated Release Likelihood:</span>
@@ -179,12 +179,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </div>
 
         <div class="info-card">
-          <h4>Working Group Debate & Consensus</h4>
+          <h3>Working Group Debate & Consensus</h3>
           <p>{ann?.statusSummary?.workingGroupDebate || "Currently under active review by the W3C Accessibility Guidelines Working Group."}</p>
         </div>
 
         <div class="info-card">
-          <h4>Key Implementation Challenges</h4>
+          <h3>Key Implementation Challenges</h3>
           <p>{ann?.statusSummary?.keyChallenges || "Balancing flexible platform capabilities with standardized scoring formulas."}</p>
         </div>
       </div>
@@ -193,7 +193,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 4: WCAG 2.2 Comparison -->
     <div id="panel-wcag22" role="tabpanel" aria-labelledby="tab-wcag22" class="tab-panel hidden">
       <div class="panel-section">
-        <h3>WCAG 2.2 Delta & Comparison</h3>
+        <h2>WCAG 2.2 Delta & Comparison</h2>
         <div class="delta-summary-box">
           <div class="delta-header">
             <span class="delta-title">Strictness Delta:</span>
@@ -203,7 +203,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </div>
 
         <div class="panel-section">
-          <h4>Matching WCAG 2.2 Success Criteria</h4>
+          <h3>Matching WCAG 2.2 Success Criteria</h3>
           {ann?.wcag22Comparison?.matchingCriteria?.length > 0 ? (
             <ul class="matching-list">
               {ann.wcag22Comparison.matchingCriteria.map((scStr: string) => {
@@ -232,7 +232,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <!-- Panel 5: W3C Official Text -->
     <div id="panel-w3c" role="tabpanel" aria-labelledby="tab-w3c" class="tab-panel hidden">
       <div class="panel-section">
-        <h3>W3C Raw Source Text</h3>
+        <h2>W3C Raw Source Text</h2>
         <div class="raw-body-box">
           <pre>{item.rawBody}</pre>
         </div>
@@ -449,6 +449,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .panel-section:last-child {
     margin-bottom: 0;
   }
+  .panel-section h2,
   .panel-section h3 {
     font-size: 1.25rem;
     font-weight: 700;
@@ -481,6 +482,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     padding: 20px;
     margin-bottom: 16px;
   }
+  .info-card h3,
   .info-card h4 {
     font-size: 0.98rem;
     font-weight: 700;
@@ -541,6 +543,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     border-radius: var(--radius-md);
     padding: 20px;
   }
+  .test-card h3,
   .test-card h4 {
     font-size: 0.98rem;
     font-weight: 700;
