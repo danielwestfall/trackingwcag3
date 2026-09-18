@@ -9,6 +9,7 @@
     "build": "astro build --force",
     "check": "astro check",
     "cspell": "cspell .",
+    "test:factuality": "node scripts/red-team-factuality.mjs",
     "fetch:discussions": "node scripts/fetch-provision-discussions.mjs",
     "merge:summaries": "node scripts/merge-discussion-summaries.mjs",
     "preview": "astro preview",

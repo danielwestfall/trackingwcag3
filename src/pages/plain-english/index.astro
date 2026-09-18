@@ -275,13 +275,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     <div class="filter-bar">
       <div class="filter-group">
-        <span class="filter-label">Filter Role Tips:</span>
-        <div class="persona-pills" id="persona-pills" role="radiogroup" aria-label="Filter role tips">
-          <button type="button" class="persona-pill active" data-persona="all" role="radio" aria-checked="true">All Roles</button>
-          <button type="button" class="persona-pill pill-designer" data-persona="designer" role="radio" aria-checked="false">🎨 Designer</button>
-          <button type="button" class="persona-pill pill-developer" data-persona="developer" role="radio" aria-checked="false">💻 Developer</button>
-          <button type="button" class="persona-pill pill-qa" data-persona="qa" role="radio" aria-checked="false">🧪 QA / Tester</button>
-          <button type="button" class="persona-pill pill-pm" data-persona="productManager" role="radio" aria-checked="false">📋 Product Mgr</button>
+        <span class="filter-label">Requirement Type:</span>
+        <div class="type-pills" id="type-pills" role="radiogroup" aria-label="Filter by requirement type">
+          <button type="button" class="type-pill active" data-type="all" role="radio" aria-checked="true">All ({totalCount})</button>
+          <button type="button" class="type-pill" data-type="foundational" role="radio" aria-checked="false">Foundational ({typeCounts['foundational'] || 114})</button>
+          <button type="button" class="type-pill" data-type="supplemental" role="radio" aria-checked="false">Supplemental ({typeCounts['supplemental'] || 86})</button>
+          <button type="button" class="type-pill" data-type="assertion" role="radio" aria-checked="false">Assertion ({typeCounts['assertion'] || 36})</button>
         </div>
       </div>
 
@@ -325,6 +324,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             class="provision-card" 
             data-slug={item.slug}
             data-group={groupSlug}
+            data-type={(item.type || "").toLowerCase()}
             data-title={item.title.toLowerCase()}
             data-body={item.rawBody.toLowerCase()}
             data-status={status}
@@ -333,8 +333,21 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <div class="card-top">
               <div class="badge-group">
                 <span class={`status-badge status-${status}`}>{status}</span>
+                <span class="type-badge">{item.type || "Provision"}</span>
                 <span class="group-tag">{GROUP_NAMES[groupSlug] || groupSlug}</span>
               </div>
+              {item.derived?.sources?.provision && (
+                <a
+                  href={`https://github.com/w3c/wcag3/blob/main/${item.derived.sources.provision}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="card-w3c-link"
+                  title="Review upstream source markdown on official W3C GitHub"
+                  aria-label={`Review upstream W3C source for ${item.title}`}
+                >
+                  W3C Source ↗
+                </a>
+              )}
             </div>
 
             <h3 class="card-title">
@@ -343,17 +356,21 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
             <p class="plain-english-text">{ann?.plainEnglish?.summary}</p>
 
-            <div class="persona-tip-box" data-persona-container>
-              <span class="tip-role">🎨 Designer Tip:</span>
-              <p class="tip-content">{ann?.personaBreakdown?.designer || "Review design tokens and ensure clear visual states."}</p>
-            </div>
+            {ann?.plainEnglish?.whyItMatters && (
+              <div class="why-matters-box">
+                <span class="why-matters-label">💡 Why It Matters:</span>
+                <p class="why-matters-text">{ann.plainEnglish.whyItMatters}</p>
+              </div>
+            )}
 
             <div class="card-footer">
               <div class="wcag22-links">
-                {ann?.wcag22Comparison?.matchingCriteria?.length > 0 ? (
-                  <span>Maps to: <strong>{ann.wcag22Comparison.matchingCriteria.join(", ")}</strong></span>
+                {item.wcag22Inbound?.direct?.length > 0 ? (
+                  <span>Predecessors: <strong>{item.wcag22Inbound.direct.join(", ")}</strong></span>
+                ) : item.wcag22Inbound?.viaGuideline?.length > 0 ? (
+                  <span>Guideline: <strong>{item.wcag22Inbound.viaGuideline.join(", ")}</strong></span>
                 ) : (
-                  <span>New WCAG 3 Outcome</span>
+                  <span>New in WCAG 3</span>
                 )}
               </div>
               <a href={link(`/plain-english/provision/${item.slug}/`)} class="read-more-btn">
@@ -370,48 +387,48 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
-    const personaPills = document.querySelectorAll('.persona-pill');
+    const typePills = document.querySelectorAll('.type-pill');
     const categoryFilter = document.getElementById('category-filter');
     const statusFilter = document.getElementById('status-filter');
     const cards = document.querySelectorAll('.provision-card');
     const resultCount = document.getElementById('result-count');
 
-    let activePersona = 'all';
+    let activeType = 'all';
 
-    // Parse URL params (?q=... and ?persona=...)
+    // Parse URL params (?q=... and ?type=...)
     const urlParams = new URLSearchParams(window.location.search);
     const initialQuery = urlParams.get('q');
-    const initialPersona = urlParams.get('persona');
+    const initialType = urlParams.get('type');
 
     if (initialQuery && searchInput) {
       searchInput.value = initialQuery;
     }
 
-    if (initialPersona) {
-      personaPills.forEach(pill => {
-        if (pill.getAttribute('data-persona') === initialPersona) {
-          personaPills.forEach(p => {
+    if (initialType) {
+      typePills.forEach(pill => {
+        if (pill.getAttribute('data-type') === initialType) {
+          typePills.forEach(p => {
             p.classList.remove('active');
             p.setAttribute('aria-checked', 'false');
           });
           pill.classList.add('active');
           pill.setAttribute('aria-checked', 'true');
-          activePersona = initialPersona;
+          activeType = initialType;
         }
       });
     }
 
-    // Role Persona Pills Click
-    personaPills.forEach(pill => {
+    // Type Pills Click
+    typePills.forEach(pill => {
       pill.addEventListener('click', () => {
-        personaPills.forEach(p => {
+        typePills.forEach(p => {
           p.classList.remove('active');
           p.setAttribute('aria-checked', 'false');
         });
         pill.classList.add('active');
         pill.setAttribute('aria-checked', 'true');
-        activePersona = pill.getAttribute('data-persona');
-        updatePersonaTips();
+        activeType = pill.getAttribute('data-type');
+        filterCards();
       });
     });
 
@@ -427,29 +444,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       }
     });
 
-    function updatePersonaTips() {
-      cards.forEach(card => {
-        const tipContainer = card.querySelector('[data-persona-container]');
-        if (!tipContainer) return;
-
-        tipContainer.className = 'persona-tip-box';
-
-        if (activePersona === 'all' || activePersona === 'designer') {
-          tipContainer.querySelector('.tip-role').textContent = '🎨 Designer Tip:';
-          tipContainer.classList.add('tip-designer');
-        } else if (activePersona === 'developer') {
-          tipContainer.querySelector('.tip-role').textContent = '💻 Developer Tip:';
-          tipContainer.classList.add('tip-developer');
-        } else if (activePersona === 'qa') {
-          tipContainer.querySelector('.tip-role').textContent = '🧪 QA / Tester Tip:';
-          tipContainer.classList.add('tip-qa');
-        } else if (activePersona === 'productManager') {
-          tipContainer.querySelector('.tip-role').textContent = '📋 Product Manager Tip:';
-          tipContainer.classList.add('tip-pm');
-        }
-      });
-    }
-
     function filterCards() {
       const query = searchInput.value.toLowerCase().trim();
       const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
@@ -463,12 +457,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         const summary = card.getAttribute('data-summary') || '';
         const group = card.getAttribute('data-group') || '';
         const status = card.getAttribute('data-status') || '';
+        const type = card.getAttribute('data-type') || '';
 
         const matchesQuery = !query || title.includes(query) || body.includes(query) || summary.includes(query);
         const matchesCategory = selectedCategory === 'all' || group === selectedCategory;
         const matchesStatus = selectedStatus === 'all' || status === selectedStatus;
+        const matchesType = activeType === 'all' || type === activeType;
 
-        if (matchesQuery && matchesCategory && matchesStatus) {
+        if (matchesQuery && matchesCategory && matchesStatus && matchesType) {
           card.style.display = 'flex';
           visible++;
         } else {
@@ -559,7 +555,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     statusFilter.addEventListener('change', filterCards);
 
     // Initial trigger
-    updatePersonaTips();
     filterCards();
   });
 </script>
@@ -1030,13 +1025,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     color: var(--text-secondary);
   }
 
-  .persona-pills {
+  .type-pills {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
   }
 
-  .persona-pill {
+  .type-pill {
     background: var(--surface-card);
     border: 1px solid var(--border-default);
     color: var(--text-secondary);
@@ -1050,24 +1045,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     align-items: center;
     gap: 6px;
   }
-  .persona-pill:hover {
+  .type-pill:hover {
     border-color: var(--accent-blue);
     color: var(--text-primary);
   }
-  .persona-pill.active {
+  .type-pill.active {
     background: var(--accent-blue);
-    /* The accent is light in dark mode and dark in light mode, so the text on
-       it has to flip too. */
     color: var(--on-accent);
     border-color: var(--accent-blue);
     font-weight: 700;
     box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35);
   }
-
-  .persona-pill.pill-designer.active { background: var(--role-designer); color: #070b14; border-color: var(--role-designer); }
-  .persona-pill.pill-developer.active { background: var(--role-developer); color: #070b14; border-color: var(--role-developer); }
-  .persona-pill.pill-qa.active { background: var(--role-qa); color: #070b14; border-color: var(--role-qa); }
-  .persona-pill.pill-pm.active { background: var(--role-pm); color: #070b14; border-color: var(--role-pm); }
 
   .select-filters {
     display: flex;
@@ -1212,36 +1200,65 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     margin-bottom: 16px;
   }
 
-  .persona-tip-box {
-    background: rgba(7, 11, 20, 0.6);
-    border-left: 3px solid var(--accent-blue);
-    padding: 12px 14px;
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    margin-bottom: 18px;
-    font-size: 0.84rem;
-    transition: var(--transition-fast);
-  }
-  .tip-designer { border-left-color: var(--role-designer); }
-  .tip-designer .tip-role { color: var(--role-designer); }
-
-  .tip-developer { border-left-color: var(--role-developer); }
-  .tip-developer .tip-role { color: var(--role-developer); }
-
-  .tip-qa { border-left-color: var(--role-qa); }
-  .tip-qa .tip-role { color: var(--role-qa); }
-
-  .tip-pm { border-left-color: var(--role-pm); }
-  .tip-pm .tip-role { color: var(--role-pm); }
-
-  .tip-role {
+  .type-badge {
+    font-size: 0.68rem;
     font-weight: 700;
-    color: var(--accent-blue);
-    display: block;
-    margin-bottom: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(148, 163, 184, 0.12);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
   }
-  .tip-content {
+
+  .card-w3c-link {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .card-w3c-link:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: var(--accent-blue);
+    color: var(--text-pure);
+  }
+
+  .why-matters-box {
+    background: rgba(7, 11, 20, 0.6);
+    border-left: 3px solid var(--accent-purple);
+    padding: 10px 14px;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin-bottom: 16px;
+    font-size: 0.84rem;
+  }
+  :global(html[data-theme="light"]) .why-matters-box {
+    background: #f8fafc;
+    border-left-color: #9333ea;
+  }
+  .why-matters-label {
+    font-weight: 700;
+    color: var(--accent-purple);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  :global(html[data-theme="light"]) .why-matters-label {
+    color: #7e22ce;
+  }
+  .why-matters-text {
     color: var(--text-secondary);
     line-height: 1.5;
+    margin: 0;
   }
 
   .card-footer {
@@ -1492,7 +1509,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   :global(html[data-theme="light"]) .tier-card,
   :global(html[data-theme="light"]) .w3c-status-accordion,
   :global(html[data-theme="light"]) .estimation-pill,
-  :global(html[data-theme="light"]) .persona-tip-box,
+  :global(html[data-theme="light"]) .why-matters-box,
   :global(html[data-theme="light"]) .toc-drawer {
     background: #ffffff;
     border-color: #cbd5e1;

@@ -5,6 +5,9 @@
     "name": "Non-text Content",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "non-text-content",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#non-text-content",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
     "plainEnglish": {
       "summary": "Every image, icon, chart, or visual element carrying meaning must have a text description so blind users and screen readers understand what is on screen.",
       "whyItMatters": "Screen readers cannot interpret pixel graphics. Text descriptions (alt text) turn visuals into spoken words or braille outputs.",
@@ -37,6 +40,9 @@
     "name": "Audio-only and Video-only (Prerecorded)",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "audio-only-and-video-only-prerecorded",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-only-and-video-only-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html",
     "plainEnglish": {
       "summary": "Prerecorded audio files (podcasts) need transcripts, and prerecorded silent videos need text or audio descriptions.",
       "whyItMatters": "Deaf users cannot hear audio podcasts; blind users cannot see silent video content.",
@@ -69,6 +75,9 @@
     "name": "Captions (Prerecorded)",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "captions-prerecorded",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#captions-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html",
     "plainEnglish": {
       "summary": "Prerecorded video with spoken audio must have synchronized captions.",
       "whyItMatters": "Deaf and hard-of-hearing users rely on captions to follow video dialogue and sound effects.",
@@ -101,6 +110,9 @@
     "name": "Audio Description or Media Alternative (Prerecorded)",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "audio-description-or-media-alternative-prerecorded",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-description-or-media-alternative-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html",
     "plainEnglish": {
       "summary": "Prerecorded videos must provide an audio description or full text transcript describing visual actions.",
       "whyItMatters": "Blind users miss crucial visual-only context in videos (such as text on screen or silent action sequences).",
@@ -133,6 +145,9 @@
     "name": "Captions (Live)",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "captions-live",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#captions-live",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/captions-live.html",
     "plainEnglish": {
       "summary": "Live streaming video with audio must have live synchronized captions.",
       "whyItMatters": "Deaf users participating in live webinars, broadcasts, or meetings need real-time captions.",
@@ -164,6 +179,9 @@
     "name": "Audio Description (Prerecorded)",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "audio-description-prerecorded",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-description-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html",
     "plainEnglish": {
       "summary": "Prerecorded video content must provide audio descriptions for visual information.",
       "whyItMatters": "Ensures blind viewers understand on-screen visual details that aren't spoken in the main soundtrack.",
@@ -196,6 +214,9 @@
     "name": "Info and Relationships",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "info-and-relationships",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#info-and-relationships",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html",
     "plainEnglish": {
       "summary": "Visual structures like headers, lists, form fields, and table headers must be coded in semantic HTML so screen readers understand relationships.",
       "whyItMatters": "Sighted users see visual cues like bold text for headings or indentation for lists. Screen reader users rely on semantic HTML elements (<h1>, <ul>, <fieldset>, <th>) to perceive those exact relationships.",
@@ -228,6 +249,9 @@
     "name": "Meaningful Sequence",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "meaningful-sequence",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#meaningful-sequence",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html",
     "plainEnglish": {
       "summary": "The reading order in the underlying code (DOM) must match the visual logical order of the content.",
       "whyItMatters": "Screen readers read content in DOM order. If CSS positioning moves visual text around out of order, screen reader users hear confusing, jumbled sentences.",
@@ -259,6 +283,9 @@
     "name": "Sensory Characteristics",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "sensory-characteristics",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#sensory-characteristics",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics.html",
     "plainEnglish": {
       "summary": "Instructions must not rely solely on shape, color, size, visual location, or sound (e.g., 'click the round green button on the right').",
       "whyItMatters": "Blind users cannot see 'green' or 'round'; screen reader users do not experience spatial locations like 'on the right'.",
@@ -290,6 +317,9 @@
     "name": "Orientation",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "orientation",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#orientation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/orientation.html",
     "plainEnglish": {
       "summary": "Content must not lock display orientation to portrait or landscape unless essential.",
       "whyItMatters": "Users with mobile devices mounted on wheelchairs cannot rotate their screens.",
@@ -322,6 +352,9 @@
     "name": "Identify Input Purpose",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "identify-input-purpose",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#identify-input-purpose",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html",
     "plainEnglish": {
       "summary": "Form inputs collecting personal user info must use standard HTML `autocomplete` attributes so browsers can auto-fill data.",
       "whyItMatters": "Users with cognitive disabilities or motor impairments struggle to manually type personal details like address, name, or email.",
@@ -354,6 +387,9 @@
     "name": "Use of Color",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "use-of-color",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#use-of-color",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
     "plainEnglish": {
       "summary": "Color must not be the only visual indicator used to convey information, indicate an action, or prompt a response.",
       "whyItMatters": "Color-blind users (red-green, blue-yellow) cannot distinguish status changes signaled only by color changes.",
@@ -385,6 +421,9 @@
     "name": "Audio Control",
     "level": "A",
     "principle": "Perceivable",
+    "w3cSlug": "audio-control",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-control",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html",
     "plainEnglish": {
       "summary": "If audio plays automatically for more than 3 seconds, a mechanism must be available to pause, stop, or control the volume independently.",
       "whyItMatters": "Autoplay audio drowns out screen reader speech, making it impossible for blind users to navigate the page.",
@@ -417,6 +456,9 @@
     "name": "Contrast (Minimum)",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "contrast-minimum",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#contrast-minimum",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
     "plainEnglish": {
       "summary": "Text must have enough color contrast against its background (at least 4.5:1 for normal text, 3:1 for large text).",
       "whyItMatters": "Low contrast text is unreadable for people with low vision or under bright sunlight.",
@@ -449,6 +491,9 @@
     "name": "Resize Text",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "resize-text",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#resize-text",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html",
     "plainEnglish": {
       "summary": "Text must be resizable up to 200% using browser zoom without loss of content or functionality.",
       "whyItMatters": "Users with low vision enlarge browser font size to read text without using a screen magnifier.",
@@ -481,6 +526,9 @@
     "name": "Images of Text",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "images-of-text",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#images-of-text",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html",
     "plainEnglish": {
       "summary": "Use real HTML text instead of images of text (pictures of text) wherever possible.",
       "whyItMatters": "Images of text pixelate when zoomed, cannot be restyled by users, and fail custom high-contrast modes.",
@@ -512,6 +560,9 @@
     "name": "Reflow",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "reflow",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#reflow",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
     "plainEnglish": {
       "summary": "Content must reflow into a single column at 400% zoom (viewport width 320px) without forcing 2D scrolling.",
       "whyItMatters": "Low vision users zooming to 400% should read vertically without scrolling back and forth horizontally for every line.",
@@ -544,6 +595,9 @@
     "name": "Non-text Contrast",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "non-text-contrast",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#non-text-contrast",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html",
     "plainEnglish": {
       "summary": "Visual indicators for interactive controls (buttons, input borders, icons, focus rings) must have at least 3:1 contrast against adjacent colors.",
       "whyItMatters": "Low vision users cannot locate form inputs or button boundaries if input borders are faint light grey.",
@@ -575,6 +629,9 @@
     "name": "Text Spacing",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "text-spacing",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#text-spacing",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html",
     "plainEnglish": {
       "summary": "Content must accommodate custom user text spacing (line height 1.5x, paragraph spacing 2x, letter spacing 0.12em, word spacing 0.16em) without breaking layout.",
       "whyItMatters": "Dyslexic readers apply custom CSS text spacing to improve reading comprehension.",
@@ -607,6 +664,9 @@
     "name": "Content on Hover or Focus",
     "level": "AA",
     "principle": "Perceivable",
+    "w3cSlug": "content-on-hover-or-focus",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#content-on-hover-or-focus",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html",
     "plainEnglish": {
       "summary": "Additional content appearing on hover or focus (tooltips, popovers) must be dismissible, hoverable, and persistent.",
       "whyItMatters": "Tooltips that disappear when moving the mouse pointer make reading impossible for screen magnifier users.",
@@ -638,6 +698,9 @@
     "name": "Keyboard",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "keyboard",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#keyboard",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html",
     "plainEnglish": {
       "summary": "All functionality must be usable using only a keyboard (Tab, Enter, Space, Arrows)—no mouse required.",
       "whyItMatters": "Blind users, motor-impaired users, and power users operate web applications without a mouse.",
@@ -670,6 +733,9 @@
     "name": "No Keyboard Trap",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "no-keyboard-trap",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#no-keyboard-trap",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html",
     "plainEnglish": {
       "summary": "Keyboard focus must never get trapped or stuck inside a component; users must be able to navigate away using Tab or Shift+Tab.",
       "whyItMatters": "If focus gets stuck inside a custom text editor or modal widget, keyboard users are completely trapped and must restart their browser.",
@@ -701,6 +767,9 @@
     "name": "Character Key Shortcuts",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "character-key-shortcuts",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#character-key-shortcuts",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html",
     "plainEnglish": {
       "summary": "Single-character keyboard shortcuts (like pressing 'F' to search) must be turn-offable or remappable.",
       "whyItMatters": "Speech recognition users say 'Find' and speech engines output the letter 'F', triggering unwanted shortcuts randomly.",
@@ -732,6 +801,9 @@
     "name": "Timing Adjustable",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "timing-adjustable",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#timing-adjustable",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html",
     "plainEnglish": {
       "summary": "Users must be given options to turn off, adjust, or extend time limits on pages.",
       "whyItMatters": "Users with reading, cognitive, or physical disabilities need extra time to complete forms or read content.",
@@ -763,6 +835,9 @@
     "name": "Pause, Stop, Hide",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "pause-stop-hide",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#pause-stop-hide",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
     "plainEnglish": {
       "summary": "Moving, blinking, scrolling, or auto-updating content lasting >5 seconds must have controls to pause, stop, or hide it.",
       "whyItMatters": "Moving carousels and animated tickers severely distract users with ADHD or cognitive impairments.",
@@ -796,6 +871,9 @@
     "name": "Three Flashes or Below Threshold",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "three-flashes-or-below-threshold",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#three-flashes-or-below-threshold",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html",
     "plainEnglish": {
       "summary": "Web pages must not contain content that flashes more than three times per second to prevent seizures.",
       "whyItMatters": "Rapidly flashing content can trigger photosensitive epileptic seizures.",
@@ -827,6 +905,9 @@
     "name": "Bypass Blocks",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "bypass-blocks",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#bypass-blocks",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html",
     "plainEnglish": {
       "summary": "Provide a mechanism (like a 'Skip to main content' link) to bypass repeated header/navigation blocks.",
       "whyItMatters": "Keyboard and screen reader users should not have to tab through 50 top menu links on every page refresh.",
@@ -858,6 +939,9 @@
     "name": "Page Titled",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "page-titled",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#page-titled",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html",
     "plainEnglish": {
       "summary": "Web pages must have descriptive, unique `<title>` tags.",
       "whyItMatters": "Screen reader users and browser tab users rely on title tags to know which page or app view is active.",
@@ -889,6 +973,9 @@
     "name": "Focus Order",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "focus-order",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-order",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html",
     "plainEnglish": {
       "summary": "Keyboard focus navigation order (Tab sequence) must preserve logical meaning and operability.",
       "whyItMatters": "If tabbing jumps randomly around the page, keyboard users lose track of visual context.",
@@ -921,6 +1008,9 @@
     "name": "Link Purpose (In Context)",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "link-purpose-in-context",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#link-purpose-in-context",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
     "plainEnglish": {
       "summary": "The purpose of each link must be understandable from its text alone or from its immediate context.",
       "whyItMatters": "Screen reader users browse links out of context via a 'Links List' dialog. Vague links like 'Click Here' or 'Read More' become useless.",
@@ -952,6 +1042,9 @@
     "name": "Headings and Labels",
     "level": "AA",
     "principle": "Operable",
+    "w3cSlug": "headings-and-labels",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#headings-and-labels",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html",
     "plainEnglish": {
       "summary": "Headings and form labels must be clear, descriptive, and accurately label the content or inputs.",
       "whyItMatters": "Clear headings allow users to scan pages efficiently; clear labels prevent form input errors.",
@@ -984,6 +1077,9 @@
     "name": "Focus Visible",
     "level": "AA",
     "principle": "Operable",
+    "w3cSlug": "focus-visible",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-visible",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
     "plainEnglish": {
       "summary": "Any keyboard-operable interface must have a clearly visible focus indicator when selected.",
       "whyItMatters": "Without a visual focus outline, keyboard users cannot see where they are on screen when tabbing.",
@@ -1014,33 +1110,36 @@
   {
     "id": "2.4.11",
     "num": "2.4.11",
-    "name": "Focus Appearance",
+    "name": "Focus Not Obscured (Minimum)",
     "level": "AA",
     "principle": "Operable",
+    "w3cSlug": "focus-not-obscured-minimum",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-not-obscured-minimum",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
     "plainEnglish": {
-      "summary": "New in WCAG 2.2! Focus indicators must be large enough and have sufficient contrast against adjacent colors.",
-      "whyItMatters": "Faint 1px grey focus dots are technically 'visible' under 2.4.7, but fail 2.4.11 because low vision users miss them.",
-      "realWorldExample": "Focus indicators must have an area of at least 1-pixel thickness around the element periphery and 3:1 contrast."
+      "summary": "New in WCAG 2.2! When an item receives keyboard focus, the item is at least partially visible and not entirely hidden behind sticky headers, banners, or popups.",
+      "whyItMatters": "Keyboard users must see what element is currently focused to navigate confidently.",
+      "realWorldExample": "When tabbing down a long page, focused links scroll into view below sticky top navigation bars."
     },
     "personaBreakdown": {
-      "designer": "Specify 2px+ thick focus outlines with distinct contrast relative to adjacent background colors.",
-      "developer": "Use standard `outline` or `box-shadow` CSS rules with at least 2px thickness.",
-      "qa": "Measure focus indicator dimensions and contrast against background colors.",
-      "productManager": "Ensure design tokens include standardized focus indicators passing WCAG 2.2 AA."
+      "designer": "Design scroll padding for sticky header regions.",
+      "developer": "Apply `scroll-margin-top` in CSS to account for fixed header heights.",
+      "qa": "Tab through long form pages with sticky header active; verify focus box is never hidden behind header.",
+      "productManager": "Include focus margin specs in header component design specs."
     },
     "testingGuide": {
-      "automated": "Manual element inspector check in DevTools recommended.",
-      "manualKeyboard": "Tab through elements and visually confirm focus outline contrast and thickness.",
-      "screenReader": "Verify focus announcements match focused controls.",
-      "codeSnippetGood": "button:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }",
-      "codeSnippetBad": "button:focus-visible { outline: 1px solid #cccccc; } /* Too faint */"
+      "automated": "axe-core focus visibility rules.",
+      "manualKeyboard": "Tab through page with sticky header pinned.",
+      "screenReader": "Confirm focused item stays visible.",
+      "codeSnippetGood": "html { scroll-padding-top: 80px; } /* Ensures focused element stays below sticky header */",
+      "codeSnippetBad": "/* Fixed header covers focused form inputs as user tabs down page */"
     },
     "wcag3Mapping": {
       "provisions": [
-        "focus-indicator-contrast-sufficient",
-        "focus-indicator-size-sufficient"
+        "overlay-content-dismissible",
+        "hover-or-focus-content-dismissible"
       ],
-      "evolutionNote": "WCAG 3 carries the quantitative focus appearance metrics into separate contrast and size provisions."
+      "evolutionNote": "No direct successor yet. The Sep 2026 draft has no provision that states focus must remain visible when obscured; the closest requirements make obscuring content dismissible."
     }
   },
   {
@@ -1049,6 +1148,9 @@
     "name": "Label in Name",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "label-in-name",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#label-in-name",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html",
     "plainEnglish": {
       "summary": "The accessible name (for speech recognition & screen readers) must contain the text presented visually on screen.",
       "whyItMatters": "Voice control users say 'Click Submit'. If visual text says 'Submit' but aria-label says 'Send Form', voice activation fails.",
@@ -1081,6 +1183,9 @@
     "name": "Dragging Movements",
     "level": "AA",
     "principle": "Operable",
+    "w3cSlug": "dragging-movements",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#dragging-movements",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html",
     "plainEnglish": {
       "summary": "New in WCAG 2.2! Any functionality requiring a dragging movement (drag-and-drop, sliders) must have a single-pointer alternative.",
       "whyItMatters": "Users with motor tremors or operating eye-gaze tracking cannot perform smooth click-and-drag mouse movements.",
@@ -1112,6 +1217,9 @@
     "name": "Target Size (Minimum)",
     "level": "AA",
     "principle": "Operable",
+    "w3cSlug": "target-size-minimum",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#target-size-minimum",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
     "plainEnglish": {
       "summary": "New in WCAG 2.2! Interactive targets (buttons, links) must be at least 24x24 CSS pixels or have sufficient spacing around them.",
       "whyItMatters": "People with hand tremors or using smartphones can easily mis-tap small, cramped buttons placed right next to each other.",
@@ -1143,6 +1251,9 @@
     "name": "Language of Page",
     "level": "A",
     "principle": "Understandable",
+    "w3cSlug": "language-of-page",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#language-of-page",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html",
     "plainEnglish": {
       "summary": "The default human language of each web page must be specified in HTML (`<html lang=\"en\">`).",
       "whyItMatters": "Screen readers use the `lang` attribute to choose correct pronunciation rules, voice synthesizers, and accents.",
@@ -1174,6 +1285,9 @@
     "name": "Language of Parts",
     "level": "AA",
     "principle": "Understandable",
+    "w3cSlug": "language-of-parts",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#language-of-parts",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html",
     "plainEnglish": {
       "summary": "The human language of any passage or phrase in a page that differs from default language must be specified in code (`<span lang=\"fr\">`).",
       "whyItMatters": "Without `lang=\"fr\"`, an English screen reader will pronounce French words using harsh English phonetics.",
@@ -1205,6 +1319,9 @@
     "name": "On Focus",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "on-focus",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#on-focus",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html",
     "plainEnglish": {
       "summary": "Receiving keyboard focus on a component must not automatically trigger a change of context (like submitting a form or opening a new page).",
       "whyItMatters": "Tabbing through a form should never automatically submit data or jump to another URL without user confirmation.",
@@ -1236,6 +1353,9 @@
     "name": "On Input",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "on-input",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#on-input",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/on-input.html",
     "plainEnglish": {
       "summary": "Changing the setting of any user interface component must not automatically cause a change of context unless informed in advance.",
       "whyItMatters": "Selecting a checkbox or radio button shouldn't suddenly navigate to a new page without warning.",
@@ -1267,6 +1387,9 @@
     "name": "Consistent Help",
     "level": "A",
     "principle": "Understandable",
+    "w3cSlug": "consistent-help",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-help",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html",
     "plainEnglish": {
       "summary": "New in WCAG 2.2! Help features (contact info, live chat, FAQ links) appearing on multiple pages must be located in the same relative place.",
       "whyItMatters": "Users seeking help or customer support should find support links in predictable locations across every page.",
@@ -1298,6 +1421,9 @@
     "name": "Error Identification",
     "level": "A",
     "principle": "Understandable",
+    "w3cSlug": "error-identification",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#error-identification",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
     "plainEnglish": {
       "summary": "If an input error is automatically detected, the item in error must be identified and the error described to the user in text.",
       "whyItMatters": "Red borders alone do not tell screen reader or color-blind users which field failed or why.",
@@ -1330,6 +1456,9 @@
     "name": "Labels or Instructions",
     "level": "A",
     "principle": "Understandable",
+    "w3cSlug": "labels-or-instructions",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#labels-or-instructions",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
     "plainEnglish": {
       "summary": "Labels or instructions must be provided when content requires user input.",
       "whyItMatters": "Without clear labels or format instructions (e.g., 'MM/DD/YYYY'), users guess what data format is expected.",
@@ -1362,6 +1491,9 @@
     "name": "Redundant Entry",
     "level": "A",
     "principle": "Understandable",
+    "w3cSlug": "redundant-entry",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#redundant-entry",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html",
     "plainEnglish": {
       "summary": "New in WCAG 2.2! Information previously entered by the user in the same process must be automatically populated or available for selection.",
       "whyItMatters": "Re-typing information like billing/shipping address causes significant cognitive fatigue and errors.",
@@ -1394,6 +1526,9 @@
     "name": "Accessible Authentication (Minimum)",
     "level": "AA",
     "principle": "Understandable",
+    "w3cSlug": "accessible-authentication-minimum",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#accessible-authentication-minimum",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html",
     "plainEnglish": {
       "summary": "New in WCAG 2.2! Authentication processes must not rely on cognitive function tests (memorizing passwords or solving puzzles) unless alternatives like passkeys or copy-paste exist.",
       "whyItMatters": "CAPTCHA puzzles and anti-copy password fields create huge barriers for people with cognitive impairments or dyslexia.",
@@ -1427,6 +1562,9 @@
     "name": "Name, Role, Value",
     "level": "A",
     "principle": "Robust",
+    "w3cSlug": "name-role-value",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#name-role-value",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
     "plainEnglish": {
       "summary": "For all custom UI controls, the name (label), role (what component it is), and value/state (expanded, checked, selected) must be programmatically available.",
       "whyItMatters": "Screen readers need to know if an element is a button, checkbox, tab, or slider, and whether it is currently checked or expanded.",
@@ -1459,6 +1597,9 @@
     "name": "Status Messages",
     "level": "AA",
     "principle": "Robust",
+    "w3cSlug": "status-messages",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#status-messages",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
     "plainEnglish": {
       "summary": "Status messages (success alerts, search result counts) must be announced to assistive tech without receiving focus.",
       "whyItMatters": "Screen reader users need to hear '3 results found' or 'Item added to cart' without having their focus focus abruptly moved away from their current input.",
@@ -1490,6 +1631,9 @@
     "name": "Sign Language (Prerecorded)",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "sign-language-prerecorded",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#sign-language-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/sign-language-prerecorded.html",
     "plainEnglish": {
       "summary": "Sign language interpretation is provided for all prerecorded audio content in synchronized media.",
       "whyItMatters": "For many Deaf people a signed language is their first language and written captions are a second language, so captions alone do not give equal access.",
@@ -1522,6 +1666,9 @@
     "name": "Extended Audio Description (Prerecorded)",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "extended-audio-description-prerecorded",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#extended-audio-description-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/extended-audio-description-prerecorded.html",
     "plainEnglish": {
       "summary": "Where pauses in main video dialogue are insufficient for audio descriptions, provide extended audio descriptions by pausing video playback.",
       "whyItMatters": "Blind users miss visual storytelling details when dialogue is too fast for standard audio description gaps.",
@@ -1554,6 +1701,9 @@
     "name": "Media Alternative (Prerecorded)",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "media-alternative-prerecorded",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#media-alternative-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/media-alternative-prerecorded.html",
     "plainEnglish": {
       "summary": "A full text transcript describing all visual scenes, dialogue, and audio cues must be provided for all prerecorded synchronized media.",
       "whyItMatters": "Deaf-blind users relying on screen reader braille displays need full descriptive text transcripts of videos.",
@@ -1586,6 +1736,9 @@
     "name": "Contrast (Enhanced)",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "contrast-enhanced",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#contrast-enhanced",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html",
     "plainEnglish": {
       "summary": "Text must have an enhanced color contrast ratio of at least 7:1 for normal text and 4.5:1 for large text.",
       "whyItMatters": "Provides maximum readability for users with severe low vision without requiring screen magnifiers.",
@@ -1617,6 +1770,9 @@
     "name": "Low or No Background Audio",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "low-or-no-background-audio",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#low-or-no-background-audio",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/low-or-no-background-audio.html",
     "plainEnglish": {
       "summary": "Background audio under spoken dialogue must be muted by default or at least 20dB lower than speech.",
       "whyItMatters": "Hard-of-hearing users cannot isolate spoken words when background music or noise is loud.",
@@ -1648,6 +1804,9 @@
     "name": "Visual Presentation",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "visual-presentation",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#visual-presentation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/visual-presentation.html",
     "plainEnglish": {
       "summary": "Allow users to customize foreground/background colors, line spacing (1.5x), paragraph spacing (2x), and text width (<80 characters).",
       "whyItMatters": "Readers with cognitive disabilities or dyslexia require specific layout dimensions and custom color combinations.",
@@ -1680,6 +1839,9 @@
     "name": "Images of Text (No Exception)",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "images-of-text-no-exception",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#images-of-text-no-exception",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text-no-exception.html",
     "plainEnglish": {
       "summary": "Images of text must not be used under any circumstances except for logos or brand names.",
       "whyItMatters": "Ensures text is 100% scalable, restylable, and accessible across all assistive technologies.",
@@ -1711,6 +1873,9 @@
     "name": "Keyboard (No Exception)",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "keyboard-no-exception",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#keyboard-no-exception",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard-no-exception.html",
     "plainEnglish": {
       "summary": "All page functionality must be operable via keyboard without exception (no mouse-only path allowed under any circumstances).",
       "whyItMatters": "Ensures 100% of features can be activated by keyboard users.",
@@ -1742,6 +1907,9 @@
     "name": "No Timing",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "no-timing",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#no-timing",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/no-timing.html",
     "plainEnglish": {
       "summary": "Content must not have any time limits whatsoever (except for non-interactive live broadcasts).",
       "whyItMatters": "Users can take as long as necessary to read, process, and complete actions without session expiration stress.",
@@ -1773,6 +1941,9 @@
     "name": "Interruptions",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "interruptions",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#interruptions",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/interruptions.html",
     "plainEnglish": {
       "summary": "Interruptions (like non-emergency popups or alerts) can be postponed or suppressed by the user.",
       "whyItMatters": "Users with cognitive disabilities can focus on reading without unexpected popups breaking concentration.",
@@ -1804,6 +1975,9 @@
     "name": "Three Flashes",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "three-flashes",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#three-flashes",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes.html",
     "plainEnglish": {
       "summary": "Content must not contain any component that flashes more than three times in any one-second period (no exceptions).",
       "whyItMatters": "Eliminates all seizure risks caused by visual flashing.",
@@ -1835,6 +2009,9 @@
     "name": "Location",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "location",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#location",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/location.html",
     "plainEnglish": {
       "summary": "Information about the user's location within a set of web pages is available (e.g. breadcrumbs).",
       "whyItMatters": "Helps users orient themselves within deep hierarchical websites.",
@@ -1866,6 +2043,9 @@
     "name": "Link Purpose (Link Only)",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "link-purpose-link-only",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#link-purpose-link-only",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-link-only.html",
     "plainEnglish": {
       "summary": "A mechanism is available to allow the purpose of each link to be identified from link text alone.",
       "whyItMatters": "Users browsing links out of context can understand every link destination without reading surrounding sentences.",
@@ -1897,6 +2077,9 @@
     "name": "Section Headings",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "section-headings",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#section-headings",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/section-headings.html",
     "plainEnglish": {
       "summary": "Section headings are used to organize content into distinct visual and semantic sections.",
       "whyItMatters": "Break up long walls of text into digestible sections for readers with cognitive impairments.",
@@ -1928,6 +2111,9 @@
     "name": "Target Size (AAA)",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "target-size-aaa",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#target-size-aaa",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-aaa.html",
     "plainEnglish": {
       "summary": "Interactive target size is at least 44x44 CSS pixels (except for inline text links).",
       "whyItMatters": "Ensures buttons and controls are easily tapable for users with severe hand tremors or motor disabilities.",
@@ -1959,6 +2145,9 @@
     "name": "Unusual Words",
     "level": "AAA",
     "principle": "Understandable",
+    "w3cSlug": "unusual-words",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#unusual-words",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/unusual-words.html",
     "plainEnglish": {
       "summary": "Provide a mechanism for identifying specific definitions of unusual words, jargon, or idioms.",
       "whyItMatters": "Helps readers with cognitive disabilities understand specialized terminology.",
@@ -1990,6 +2179,9 @@
     "name": "Abbreviations",
     "level": "AAA",
     "principle": "Understandable",
+    "w3cSlug": "abbreviations",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#abbreviations",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/abbreviations.html",
     "plainEnglish": {
       "summary": "Provide a mechanism for identifying the expanded form or definition of abbreviations.",
       "whyItMatters": "Screen reader users and cognitive readers need to know what acronyms (like W3C or WCAG) stand for.",
@@ -2021,6 +2213,9 @@
     "name": "Reading Level",
     "level": "AAA",
     "principle": "Understandable",
+    "w3cSlug": "reading-level",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#reading-level",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reading-level.html",
     "plainEnglish": {
       "summary": "When text requires advanced reading ability beyond lower secondary education level, supplemental clear language versions are available.",
       "whyItMatters": "Ensures complex medical, legal, or technical documentation can be comprehended by all readers.",
@@ -2052,6 +2247,9 @@
     "name": "Change on Request",
     "level": "AAA",
     "principle": "Understandable",
+    "w3cSlug": "change-on-request",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#change-on-request",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html",
     "plainEnglish": {
       "summary": "Changes of context are initiated ONLY by user request or a mechanism is available to turn off such changes.",
       "whyItMatters": "Users with cognitive disabilities are easily disoriented when pages auto-redirect or refresh automatically.",
@@ -2083,6 +2281,9 @@
     "name": "Help",
     "level": "AAA",
     "principle": "Understandable",
+    "w3cSlug": "help",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#help",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/help.html",
     "plainEnglish": {
       "summary": "Context-sensitive help is available for complex form fields.",
       "whyItMatters": "Provides immediate guidance for users filling out complex financial or tax forms.",
@@ -2114,6 +2315,9 @@
     "name": "Error Prevention (All)",
     "level": "AAA",
     "principle": "Understandable",
+    "w3cSlug": "error-prevention-all",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#error-prevention-all",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-all.html",
     "plainEnglish": {
       "summary": "For ALL web forms submitting user data, submissions are reversible, verified, or confirmed before final submission.",
       "whyItMatters": "Prevents accidental data loss or irreversible errors across all form submissions.",
@@ -2146,6 +2350,9 @@
     "name": "Audio-only (Live)",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "audio-only-live",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-only-live",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-only-live.html",
     "plainEnglish": {
       "summary": "Live audio-only content provides a live text alternative (such as real-time CART captions or live transcript text).",
       "whyItMatters": "Deaf users listening to live radio webcasts or press conferences need live text representations.",
@@ -2177,6 +2384,9 @@
     "name": "Identify Purpose",
     "level": "AAA",
     "principle": "Perceivable",
+    "w3cSlug": "identify-purpose",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#identify-purpose",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/identify-purpose.html",
     "plainEnglish": {
       "summary": "In content implemented using markup languages, the purpose of UI components and icons can be programmatically determined.",
       "whyItMatters": "Allows assistive tools to substitute standard icons (like a home icon) with personalized symbol sets for users with cognitive or speech disabilities.",
@@ -2208,6 +2418,9 @@
     "name": "Re-authenticating",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "re-authenticating",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#re-authenticating",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/re-authenticating.html",
     "plainEnglish": {
       "summary": "When an authenticated session expires, the user can continue the activity without loss of data after re-authenticating.",
       "whyItMatters": "Users who take extra time to complete forms due to motor or cognitive disabilities do not lose their typed work if logged out.",
@@ -2239,6 +2452,9 @@
     "name": "Timeouts",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "timeouts",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#timeouts",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timeouts.html",
     "plainEnglish": {
       "summary": "Users are warned about the duration of any user inactivity that could cause data loss.",
       "whyItMatters": "Prevents surprise session expirations for users taking extra time to complete forms.",
@@ -2270,6 +2486,9 @@
     "name": "Animation from Interactions",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "animation-from-interactions",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#animation-from-interactions",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
     "plainEnglish": {
       "summary": "Motion animation triggered by user interaction can be disabled, unless the animation is essential.",
       "whyItMatters": "Users with vestibular spectrum disorders experience severe nausea or dizziness from parallax scrolling or zoom animations.",
@@ -2301,6 +2520,9 @@
     "name": "Multiple Ways",
     "level": "AA",
     "principle": "Operable",
+    "w3cSlug": "multiple-ways",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#multiple-ways",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html",
     "plainEnglish": {
       "summary": "Provide more than one way to locate a web page within a set of web pages (e.g. site search, sitemap, main navigation).",
       "whyItMatters": "Different users have different preferences for finding information; some prefer top navigation menus, while others rely on search bars or sitemaps.",
@@ -2329,41 +2551,12 @@
   {
     "id": "2.4.12",
     "num": "2.4.12",
-    "name": "Focus Not Obscured (Minimum)",
-    "level": "AA",
-    "principle": "Operable",
-    "plainEnglish": {
-      "summary": "When an item receives keyboard focus, the item is at least partially visible and not entirely hidden behind sticky headers, banners, or popups.",
-      "whyItMatters": "Keyboard users must see what element is currently focused to navigate confidently.",
-      "realWorldExample": "When tabbing down a long page, focused links scroll into view below sticky top navigation bars."
-    },
-    "personaBreakdown": {
-      "designer": "Design scroll padding for sticky header regions.",
-      "developer": "Apply `scroll-margin-top` in CSS to account for fixed header heights.",
-      "qa": "Tab through long form pages with sticky header active; verify focus box is never hidden behind header.",
-      "productManager": "Include focus margin specs in header component design specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core focus visibility rules.",
-      "manualKeyboard": "Tab through page with sticky header pinned.",
-      "screenReader": "Confirm focused item stays visible.",
-      "codeSnippetGood": "html { scroll-padding-top: 80px; } /* Ensures focused element stays below sticky header */",
-      "codeSnippetBad": "/* Fixed header covers focused form inputs as user tabs down page */"
-    },
-    "wcag3Mapping": {
-      "provisions": [
-        "overlay-content-dismissible",
-        "hover-or-focus-content-dismissible"
-      ],
-      "evolutionNote": "No direct successor yet. The Sep 2026 draft has no provision that states focus must remain visible when obscured; the closest requirements make obscuring content dismissible. Treat this as a genuine gap and watch it."
-    }
-  },
-  {
-    "id": "2.4.13",
-    "num": "2.4.13",
     "name": "Focus Not Obscured (Enhanced)",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "focus-not-obscured-enhanced",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-not-obscured-enhanced",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced.html",
     "plainEnglish": {
       "summary": "When an item receives keyboard focus, no part of the item is obscured by author-created content (100% of focus box is completely visible).",
       "whyItMatters": "Provides maximum visibility for keyboard users so zero pixels of the focused element are covered.",
@@ -2387,7 +2580,42 @@
         "overlay-content-dismissible",
         "hover-or-focus-content-dismissible"
       ],
-      "evolutionNote": "No direct successor yet, as with 2.4.12. The enhanced (fully unobscured) variant has no counterpart in the Sep 2026 draft at all."
+      "evolutionNote": "No direct successor yet. The enhanced (fully unobscured) variant has no counterpart in the Sep 2026 draft at all."
+    }
+  },
+  {
+    "id": "2.4.13",
+    "num": "2.4.13",
+    "name": "Focus Appearance",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "focus-appearance",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-appearance",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html",
+    "plainEnglish": {
+      "summary": "New in WCAG 2.2! Focus indicators must have an area of at least the size of a 2 CSS pixel perimeter and a contrast ratio of at least 3:1 between the indicator and the unfocused state.",
+      "whyItMatters": "Faint 1px grey focus dots are technically 'visible' under 2.4.7, but fail 2.4.13 because low vision users miss them.",
+      "realWorldExample": "Focus indicators must have an area of at least 2-pixel thickness around the element periphery and 3:1 contrast against adjacent colors."
+    },
+    "personaBreakdown": {
+      "designer": "Specify 2px+ thick focus outlines with distinct contrast relative to adjacent background colors.",
+      "developer": "Use standard `outline` or `box-shadow` CSS rules with at least 2px thickness.",
+      "qa": "Measure focus indicator dimensions and contrast against background colors.",
+      "productManager": "Ensure design tokens include standardized focus indicators passing WCAG 2.2 AAA."
+    },
+    "testingGuide": {
+      "automated": "Manual element inspector check in DevTools recommended.",
+      "manualKeyboard": "Tab through elements and visually confirm focus outline contrast and thickness.",
+      "screenReader": "Verify focus announcements match focused controls.",
+      "codeSnippetGood": "button:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }",
+      "codeSnippetBad": "button:focus-visible { outline: 1px solid #cccccc; } /* Too faint */"
+    },
+    "wcag3Mapping": {
+      "provisions": [
+        "focus-indicator-contrast-sufficient",
+        "focus-indicator-size-sufficient"
+      ],
+      "evolutionNote": "WCAG 3 carries the quantitative focus appearance metrics into separate contrast and size provisions."
     }
   },
   {
@@ -2396,6 +2624,9 @@
     "name": "Pointer Gestures",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "pointer-gestures",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#pointer-gestures",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures.html",
     "plainEnglish": {
       "summary": "All functionality that operates using multipoint or path-based gestures (like pinch-zoom, swiping, or two-finger drag) can be operated with a single pointer without a path-based gesture.",
       "whyItMatters": "Users with motor disabilities or users using head pointers/eye trackers cannot perform complex multi-finger gestures.",
@@ -2427,6 +2658,9 @@
     "name": "Pointer Cancellation",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "pointer-cancellation",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#pointer-cancellation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation.html",
     "plainEnglish": {
       "summary": "For functionality that can be operated using a single pointer, completion of the function is on the up-event (like mouseup or touchend), or a mechanism is available to abort the function before completion.",
       "whyItMatters": "Prevents accidental clicks when users accidentally touch an screen element and want to drag their finger away before releasing.",
@@ -2458,6 +2692,9 @@
     "name": "Motion Actuation",
     "level": "A",
     "principle": "Operable",
+    "w3cSlug": "motion-actuation",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#motion-actuation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation.html",
     "plainEnglish": {
       "summary": "Functionality triggered by device motion (like shaking or tilting a phone) can also be operated by conventional user interface components, and motion can be disabled.",
       "whyItMatters": "Users with motor impairments who have mobile devices mounted to wheelchairs cannot shake or tilt their device.",
@@ -2489,6 +2726,9 @@
     "name": "Concurrent Input Mechanisms",
     "level": "AAA",
     "principle": "Operable",
+    "w3cSlug": "concurrent-input-mechanisms",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#concurrent-input-mechanisms",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/concurrent-input-mechanisms.html",
     "plainEnglish": {
       "summary": "Web content does not restrict use of input mechanisms available on a device (e.g. allowing users to switch freely between mouse, keyboard, touch, and stylus).",
       "whyItMatters": "Users frequently switch between touchscreens, external mice, and keyboards depending on task context.",
@@ -2520,6 +2760,9 @@
     "name": "Pronunciation",
     "level": "AAA",
     "principle": "Understandable",
+    "w3cSlug": "pronunciation",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#pronunciation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pronunciation.html",
     "plainEnglish": {
       "summary": "A mechanism is available for identifying specific pronunciation of words where meaning is ambiguous without knowing pronunciation.",
       "whyItMatters": "Helps screen readers and cognitive readers pronounce heteronyms correctly (e.g., 'read' past vs present, 'desert' verb vs noun).",
@@ -2551,6 +2794,9 @@
     "name": "Consistent Navigation",
     "level": "AA",
     "principle": "Understandable",
+    "w3cSlug": "consistent-navigation",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-navigation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html",
     "plainEnglish": {
       "summary": "Navigational mechanisms that are repeated on multiple web pages occur in the same relative order each time they are repeated.",
       "whyItMatters": "Users with cognitive disabilities or visual impairments rely on predictable navigation locations across pages.",
@@ -2583,6 +2829,9 @@
     "name": "Consistent Identification",
     "level": "AA",
     "principle": "Understandable",
+    "w3cSlug": "consistent-identification",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-identification",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html",
     "plainEnglish": {
       "summary": "Components that have the same functionality within a set of web pages are identified consistently.",
       "whyItMatters": "Users recognize functional elements (like a Search icon or Help button) when they look and act consistently site-wide.",
@@ -2615,6 +2864,9 @@
     "name": "Error Suggestion",
     "level": "AA",
     "principle": "Understandable",
+    "w3cSlug": "error-suggestion",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#error-suggestion",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html",
     "plainEnglish": {
       "summary": "If an input error is automatically detected and suggestions for correction are known, the suggestion is provided to the user.",
       "whyItMatters": "Users with cognitive disabilities or dyslexic readers benefit from explicit correction suggestions rather than generic error messages.",
@@ -2646,6 +2898,9 @@
     "name": "Error Prevention (Legal, Financial, Data)",
     "level": "AA",
     "principle": "Understandable",
+    "w3cSlug": "error-prevention-legal-financial-data",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#error-prevention-legal-financial-data",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html",
     "plainEnglish": {
       "summary": "For web pages that cause legal commitments or financial transactions, submissions are reversible, verified, or confirmed before final submission.",
       "whyItMatters": "Prevents accidental bank transfers, order purchases, or legal contract agreements.",
@@ -2678,6 +2933,9 @@
     "name": "Accessible Authentication (Enhanced)",
     "level": "AAA",
     "principle": "Understandable",
+    "w3cSlug": "accessible-authentication-enhanced",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#accessible-authentication-enhanced",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html",
     "plainEnglish": {
       "summary": "A cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process.",
       "whyItMatters": "Eliminates all cognitive memory traps during login by supporting password managers, WebAuthn passkeys, or magic link emails.",
@@ -2709,6 +2967,9 @@
     "name": "Parsing (Obsolete)",
     "level": "A",
     "principle": "Robust",
+    "w3cSlug": "parsing",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#parsing",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/parsing.html",
     "plainEnglish": {
       "summary": "In WCAG 2.0/2.1, SC 4.1.1 (Parsing) required valid HTML syntax. As documented in W3C WCAG 2.2 Section 4.1.1 (https://www.w3.org/TR/WCAG22/#parsing), 4.1.1 was retired as obsolete in WCAG 2.2 because modern user agents build DOM trees automatically.",
       "whyItMatters": "Modern web browsers and assistive technologies build DOM trees reliably without relying on legacy HTML 4 parsing rules.",

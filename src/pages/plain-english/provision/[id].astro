@@ -103,9 +103,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           Everything below is either the W3C draft's own wording &mdash; its
           requirement, scope, examples, editors' notes and test procedure, each
           linked to the file it came from &mdash; or the curated WCAG&nbsp;2.2 map
-          read in reverse. Role-based advice and an editorial comparison of the two
-          standards appear only once someone has researched and written them;
-          3 of 245 provisions have so far.
+          read in reverse. Editorial comparisons of the two standards appear
+          when mapped predecessors or structural analyses are confirmed.
         </p>
       </div>
     )}
@@ -115,10 +114,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <section class="tabs-container">
     <div class="tab-list" role="tablist" aria-label="Provision detailed analysis">
       <button role="tab" aria-selected="true" aria-controls="panel-plain" id="tab-plain" class="tab-btn active">
-        💬 Plain English & Persona Tips
+        💬 Plain English & Scope
       </button>
       <button role="tab" aria-selected="false" aria-controls="panel-test" id="tab-test" class="tab-btn">
-        🧪 Testing Guide & Code
+        🧪 Testing & Methods
       </button>
       <button role="tab" aria-selected="false" aria-controls="panel-estimation" id="tab-estimation" class="tab-btn">
         📊 W3C Status & Draft Notes
@@ -198,134 +197,54 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </div>
       )}
 
-      <div class="panel-section">
-        <h2>Role-Based Actionable Advice</h2>
-        {ann?.personaBreakdown ? (
-          <div class="persona-cards-grid">
-            <div class="persona-card designer">
-              <span class="persona-header">🎨 Designer</span>
-              <p>{ann.personaBreakdown.designer}</p>
-            </div>
-            <div class="persona-card developer">
-              <span class="persona-header">💻 Developer</span>
-              <p>{ann.personaBreakdown.developer}</p>
-            </div>
-            <div class="persona-card qa">
-              <span class="persona-header">🧪 QA / Tester</span>
-              <p>{ann.personaBreakdown.qa}</p>
-            </div>
-            <div class="persona-card pm">
-              <span class="persona-header">📋 Product Manager</span>
-              <p>{ann.personaBreakdown.productManager}</p>
-            </div>
-          </div>
-        ) : (
-          <p class="not-written">Not written yet for this provision.</p>
-        )}
-      </div>
     </div>
 
-    <!-- Panel 2: Testing Guide -->
+    <!-- Panel 2: Testing & Upstream Methods -->
     <div id="panel-test" role="tabpanel" aria-labelledby="tab-test" class="tab-panel hidden">
-      {ann?.testingGuide && (
-        <>
-          <div class="panel-section">
-            <h2>Testing &amp; Verification Procedures</h2>
-            <div class="testing-grid">
-              <div class="test-card">
-                <h3>🤖 Automated Testing</h3>
-                <p>{ann.testingGuide.automated}</p>
-              </div>
-              <div class="test-card">
-                <h3>⌨️ Keyboard Testing</h3>
-                <p>{ann.testingGuide.manualKeyboard}</p>
-              </div>
-              <div class="test-card">
-                <h3>🔊 Screen Reader Verification</h3>
-                <p>{ann.testingGuide.screenReader}</p>
-              </div>
-            </div>
-          </div>
+      <div class="panel-section">
+        <h2>Test Procedure from the W3C Draft</h2>
+        {derived.tests ? (
+          <>
+            <p class="derived-note">
+              Quoted from the provision's informative document,
+              {" "}<a href={srcUrl(derived.sources.informative)}>{derived.sources.informative}</a>.
+              It is the group's own procedure, not an editorial testing guide.
+            </p>
+            <div class="upstream-prose test-procedure" set:html={derived.tests} />
+          </>
+        ) : (
+          <p class="not-written">
+            Upstream has a test heading for this provision but has not written
+            the procedure yet, and no test steps have been written here.
+            Generic advice would apply to almost any provision, so none is shown.
+          </p>
+        )}
+      </div>
 
-          {(ann.testingGuide.codeSnippetGood || ann.testingGuide.codeSnippetBad) && (
-            <div class="panel-section">
-              <h2>Code Patterns: Good vs Bad</h2>
-              <div class="code-comparison">
-                {ann.testingGuide.codeSnippetGood && (
-                  <div class="code-box good">
-                    <div class="code-header">
-                      <span>✅ Good Accessible Implementation</span>
-                      <button type="button" class="copy-code-btn" data-code={ann.testingGuide.codeSnippetGood}>Copy</button>
-                    </div>
-                    <pre><code>{ann.testingGuide.codeSnippetGood}</code></pre>
-                  </div>
-                )}
-                {ann.testingGuide.codeSnippetBad && (
-                  <div class="code-box bad">
-                    <div class="code-header">
-                      <span>❌ Inaccessible Anti-Pattern</span>
-                      <button type="button" class="copy-code-btn" data-code={ann.testingGuide.codeSnippetBad}>Copy</button>
-                    </div>
-                    <pre><code>{ann.testingGuide.codeSnippetBad}</code></pre>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </>
+      {derived.methods && (
+        <div class="panel-section">
+          <h2>Methods Suggested Upstream</h2>
+          <p class="derived-note">
+            Implementation methods listed in
+            {" "}<a href={srcUrl(derived.sources.informative)}>the informative document</a>.
+          </p>
+          <div class="upstream-prose" set:html={derived.methods} />
+        </div>
       )}
 
-      <>
-          <div class="panel-section">
-            <h2>Test Procedure from the W3C Draft</h2>
-            {derived.tests ? (
-              <>
-                <p class="derived-note">
-                  Quoted from the provision's informative document,
-                  {" "}<a href={srcUrl(derived.sources.informative)}>{derived.sources.informative}</a>.
-                  It is the group's own procedure, not a testing guide written here.
-                </p>
-                <div class="upstream-prose test-procedure" set:html={derived.tests} />
-              </>
-            ) : ann?.testingGuide ? (
-              <p class="not-written">
-                Upstream has not written a test procedure for this provision. The
-                steps above were written here, not by the working group.
-              </p>
-            ) : (
-              <p class="not-written">
-                Upstream has a test heading for this provision but has not written
-                the procedure yet, and no test steps have been written here.
-                Generic advice would apply to almost any provision, so none is shown.
-              </p>
-            )}
-          </div>
+      {derived.recommendedPractices && (
+        <div class="panel-section">
+          <h2>Recommended Practices (Upstream)</h2>
+          <div class="upstream-prose" set:html={derived.recommendedPractices} />
+        </div>
+      )}
 
-          {derived.methods && (
-            <div class="panel-section">
-              <h2>Methods Suggested Upstream</h2>
-              <p class="derived-note">
-                Implementation methods listed in
-                {" "}<a href={srcUrl(derived.sources.informative)}>the informative document</a>.
-              </p>
-              <div class="upstream-prose" set:html={derived.methods} />
-            </div>
-          )}
-
-          {derived.recommendedPractices && (
-            <div class="panel-section">
-              <h2>Recommended Practices (Upstream)</h2>
-              <div class="upstream-prose" set:html={derived.recommendedPractices} />
-            </div>
-          )}
-
-          {derived.intent && (
-            <div class="panel-section">
-              <h2>Intent (Upstream)</h2>
-              <div class="upstream-prose" set:html={derived.intent} />
-            </div>
-          )}
-      </>
+      {derived.intent && (
+        <div class="panel-section">
+          <h2>Intent (Upstream)</h2>
+          <div class="upstream-prose" set:html={derived.intent} />
+        </div>
+      )}
     </div>
 
     <!-- Panel 3: W3C Status & Draft Notes -->

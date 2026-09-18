@@ -94,6 +94,33 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </div>
   </section>
 
+  <!-- W3C Conformance Model Specification Notice -->
+  <aside class="conformance-model-notice" aria-label="W3C Conformance Specification Notice">
+    <div class="notice-icon" aria-hidden="true">ℹ️</div>
+    <div class="notice-text">
+      <strong>Specification Context &bull; Silver Prototype vs Normative Draft:</strong>
+      <p>
+        This interactive audit tool models the <em>Silver Task Force's points-based scoring prototype</em>
+        (Bronze 70%, Silver 80%, Gold 90%). In contrast, the current normative W3C Editors' Draft
+        defines a single baseline conformance threshold evaluated across 6 reporting tiers rather than percentage scoring.
+        Both models are maintained here for comparative exploration, developer education, and gap analysis.
+      </p>
+      <div class="notice-links">
+        <a href="https://w3c.github.io/silver/prototypes/ConformancePrototype/index.html" target="_blank" rel="noopener noreferrer">
+          W3C Silver Conformance Prototype ↗
+        </a>
+        <span class="notice-sep">&bull;</span>
+        <a href="https://w3c.github.io/wcag3/guidelines/#conformance" target="_blank" rel="noopener noreferrer">
+          W3C WCAG 3.0 Conformance Specification (Normative Draft) ↗
+        </a>
+        <span class="notice-sep">&bull;</span>
+        <a href="https://w3c.github.io/wcag3/explainer/#conformance-models" target="_blank" rel="noopener noreferrer">
+          W3C Explainer on Conformance Models ↗
+        </a>
+      </div>
+    </div>
+  </aside>
+
   <!-- Live Score & Tier Status Dashboard -->
   <section class="score-dashboard" aria-label="Conformance score summary">
     <div class="dashboard-grid">
@@ -199,23 +226,21 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       <!-- Quick Filter Pills -->
       <div class="filter-pill-groups">
         <div class="filter-group-item">
-          <span class="f-label">Role:</span>
+          <span class="f-label">Evaluation:</span>
           <div class="f-pills">
-            <button type="button" class="fpill-btn active" data-role-filter="all">All Roles</button>
-            <button type="button" class="fpill-btn" data-role-filter="designer">🎨 Designer</button>
-            <button type="button" class="fpill-btn" data-role-filter="developer">💻 Developer</button>
-            <button type="button" class="fpill-btn" data-role-filter="qa">🧪 QA</button>
-            <button type="button" class="fpill-btn" data-role-filter="pm">📋 PM</button>
+            <button type="button" class="fpill-btn active" data-eval-filter="all">All</button>
+            <button type="button" class="fpill-btn" data-eval-filter="failing">❌ Fails Only</button>
+            <button type="button" class="fpill-btn" data-eval-filter="passing">✅ Passes Only</button>
+            <button type="button" class="fpill-btn" data-eval-filter="partial">⚠️ Partials Only</button>
           </div>
         </div>
 
         <div class="filter-group-item">
-          <span class="f-label">Status:</span>
+          <span class="f-label">Requirement Type:</span>
           <div class="f-pills">
             <button type="button" class="fpill-btn active" data-type-filter="all">All Types</button>
-            <button type="button" class="fpill-btn" data-type-filter="core">Core Only</button>
-            <button type="button" class="fpill-btn" data-type-filter="supplemental">Supplemental</button>
-            <button type="button" class="fpill-btn" data-type-filter="failing">Show Fails Only</button>
+            <button type="button" class="fpill-btn" data-type-filter="core">Foundational / Core Only</button>
+            <button type="button" class="fpill-btn" data-type-filter="supplemental">Supplemental Only</button>
           </div>
         </div>
       </div>
@@ -254,10 +279,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
                       data-provision-slug={p.slug}
                       data-category={catKey}
                       data-type={isCore ? "core" : "supplemental"}
-                      data-designer={p.annotation?.personaBreakdown?.designer ? "true" : "false"}
-                      data-developer={p.annotation?.personaBreakdown?.developer ? "true" : "false"}
-                      data-qa={p.annotation?.personaBreakdown?.qa ? "true" : "false"}
-                      data-pm={p.annotation?.personaBreakdown?.productManager ? "true" : "false"}
                     >
                       <div class="item-header">
                         <div class="item-title-group">
@@ -298,14 +319,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
                       <p class="item-summary">{summaryText}</p>
 
-                      {p.annotation?.personaBreakdown && (
-                        <div class="item-roles-strip">
-                          {p.annotation.personaBreakdown.developer && (
-                            <span class="role-hint role-dev"><strong>💻 Dev:</strong> {p.annotation.personaBreakdown.developer.slice(0, 120)}...</span>
-                          )}
-                          {p.annotation.personaBreakdown.qa && (
-                            <span class="role-hint role-qa"><strong>🧪 QA:</strong> {p.annotation.personaBreakdown.qa.slice(0, 120)}...</span>
-                          )}
+                      {p.annotation?.plainEnglish?.whyItMatters && (
+                        <div class="item-why-matters">
+                          <strong>💡 Why it matters:</strong> {p.annotation.plainEnglish.whyItMatters}
                         </div>
                       )}
                     </article>
@@ -325,11 +341,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       const STORAGE_KEY = 'wcag3_audit_state_v1';
       const inputs = document.querySelectorAll('.scoring-btn-group input[type="radio"]');
       const searchInput = document.getElementById('calc-search-input');
-      const rolePillBtns = document.querySelectorAll('[data-role-filter]');
+      const evalPillBtns = document.querySelectorAll('[data-eval-filter]');
       const typePillBtns = document.querySelectorAll('[data-type-filter]');
       const items = document.querySelectorAll('.provision-audit-item');
 
-      let currentRoleFilter = 'all';
+      let currentEvalFilter = 'all';
       let currentTypeFilter = 'all';
       let currentSearchQuery = '';
 
@@ -524,24 +540,28 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         input.addEventListener('change', () => {
           saveAuditState();
           recalculateScores();
+          if (currentEvalFilter !== 'all') applyFilters();
         });
       });
 
       // Filter Logic
       function applyFilters() {
         items.forEach(item => {
-          let matchesRole = currentRoleFilter === 'all';
-          if (!matchesRole) {
-            matchesRole = item.dataset[currentRoleFilter] === 'true';
+          let matchesEval = currentEvalFilter === 'all';
+          if (currentEvalFilter === 'failing') {
+            const failRadio = item.querySelector('input[value="fail"]');
+            matchesEval = failRadio ? failRadio.checked : false;
+          } else if (currentEvalFilter === 'passing') {
+            const passRadio = item.querySelector('input[value="pass"]');
+            matchesEval = passRadio ? passRadio.checked : false;
+          } else if (currentEvalFilter === 'partial') {
+            const partialRadio = item.querySelector('input[value="partial"]');
+            matchesEval = partialRadio ? partialRadio.checked : false;
           }
 
           let matchesType = currentTypeFilter === 'all';
           if (currentTypeFilter === 'core') matchesType = item.dataset.type === 'core';
           if (currentTypeFilter === 'supplemental') matchesType = item.dataset.type === 'supplemental';
-          if (currentTypeFilter === 'failing') {
-            const failRadio = item.querySelector('input[value="fail"]');
-            matchesType = failRadio ? failRadio.checked : false;
-          }
 
           let matchesSearch = true;
           if (currentSearchQuery.trim()) {
@@ -549,7 +569,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             matchesSearch = text.includes(currentSearchQuery.toLowerCase());
           }
 
-          if (matchesRole && matchesType && matchesSearch) {
+          if (matchesEval && matchesType && matchesSearch) {
             item.style.display = '';
           } else {
             item.style.display = 'none';
@@ -565,12 +585,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         });
       }
 
-      // Role Filter Buttons
-      rolePillBtns.forEach(btn => {
+      // Eval Filter Buttons
+      evalPillBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          rolePillBtns.forEach(b => b.classList.remove('active'));
+          evalPillBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          currentRoleFilter = btn.dataset.roleFilter;
+          currentEvalFilter = btn.dataset.evalFilter;
           applyFilters();
         });
       });
@@ -701,7 +721,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             md += `*No critical core blockers detected! Meets universal primary baseline requirement.*\n`;
           }
 
-          md += `\n---\n*Report generated via [Plain English WCAG 3.0 Hub Calculator](http://localhost:4321/plain-english/calculator/)*\n`;
+          md += `\n---\n*Report generated via [Plain English WCAG 3.0 Conformance Calculator](${window.location.href})*\n`;
 
           // Trigger File Download
           const blob = new Blob([md], { type: 'text/markdown;charset=utf-8;' });
@@ -853,6 +873,58 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .btn-ghost-action:hover {
     color: var(--text-primary);
     border-color: var(--text-muted);
+  }
+
+  .conformance-model-notice {
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: var(--radius-lg);
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  :global(html[data-theme="light"]) .conformance-model-notice {
+    background: #f0f9ff;
+    border-color: #bae6fd;
+  }
+  .conformance-model-notice .notice-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .conformance-model-notice .notice-text {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .conformance-model-notice strong {
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .conformance-model-notice p {
+    margin: 0 0 8px 0;
+  }
+  .conformance-model-notice .notice-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.82rem;
+  }
+  .conformance-model-notice a {
+    color: var(--accent-blue);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .conformance-model-notice a:hover {
+    color: var(--text-pure);
+  }
+  .notice-sep {
+    color: var(--text-muted);
   }
 
   /* Score Dashboard Grid */
@@ -1439,31 +1511,26 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     margin: 0;
   }
 
-  .item-roles-strip {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 4px;
-  }
-  .role-hint {
-    font-size: 0.76rem;
-    padding: 3px 8px;
-    border-radius: var(--radius-sm);
-    line-height: 1.4;
-  }
-  .role-dev {
-    background: rgba(52, 211, 153, 0.08);
+  .item-why-matters {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid var(--accent-purple);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.82rem;
     color: var(--text-secondary);
-    border: 1px solid rgba(52, 211, 153, 0.25);
+    line-height: 1.45;
   }
-  .role-dev strong { color: #34d399; }
-
-  .role-qa {
-    background: rgba(167, 139, 250, 0.08);
-    color: var(--text-secondary);
-    border: 1px solid rgba(167, 139, 250, 0.25);
+  :global(html[data-theme="light"]) .item-why-matters {
+    background: #f8fafc;
+    border-left-color: #9333ea;
   }
-  .role-qa strong { color: #a78bfa; }
+  .item-why-matters strong {
+    color: var(--accent-purple);
+  }
+  :global(html[data-theme="light"]) .item-why-matters strong {
+    color: #7e22ce;
+  }
 
   /* ==========================================================================
      Light Theme Overrides (High Contrast WCAG 2.2 AA / AAA Compliant)

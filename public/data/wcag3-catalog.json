@@ -5387,13 +5387,13 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "2.4.12",
+          "num": "2.4.11",
           "name": "Focus Not Obscured (Minimum)",
           "level": "AA",
           "principle": "Operable"
         },
         {
-          "num": "2.4.13",
+          "num": "2.4.12",
           "name": "Focus Not Obscured (Enhanced)",
           "level": "AAA",
           "principle": "Operable"
@@ -7298,9 +7298,9 @@
           "principle": "Operable"
         },
         {
-          "num": "2.4.11",
+          "num": "2.4.13",
           "name": "Focus Appearance",
-          "level": "AA",
+          "level": "AAA",
           "principle": "Operable"
         }
       ],
@@ -7357,9 +7357,9 @@
           "principle": "Operable"
         },
         {
-          "num": "2.4.11",
+          "num": "2.4.13",
           "name": "Focus Appearance",
-          "level": "AA",
+          "level": "AAA",
           "principle": "Operable"
         }
       ],
@@ -8051,13 +8051,13 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "2.4.12",
+          "num": "2.4.11",
           "name": "Focus Not Obscured (Minimum)",
           "level": "AA",
           "principle": "Operable"
         },
         {
-          "num": "2.4.13",
+          "num": "2.4.12",
           "name": "Focus Not Obscured (Enhanced)",
           "level": "AAA",
           "principle": "Operable"

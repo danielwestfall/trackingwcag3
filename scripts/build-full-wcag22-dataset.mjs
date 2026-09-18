@@ -555,21 +555,21 @@ const allCriteria = [
     evolutionNote: "WCAG 3 replaces the binary focus-visible check with measurable provisions for focus indicator contrast and size."
   },
   {
-    id: "2.4.11", num: "2.4.11", name: "Focus Appearance", level: "AA", principle: "Operable",
-    summary: "New in WCAG 2.2! Focus indicators must be large enough and have sufficient contrast against adjacent colors.",
-    whyItMatters: "Faint 1px grey focus dots are technically 'visible' under 2.4.7, but fail 2.4.11 because low vision users miss them.",
-    realWorldExample: "Focus indicators must have an area of at least 1-pixel thickness around the element periphery and 3:1 contrast.",
-    designer: "Specify 2px+ thick focus outlines with distinct contrast relative to adjacent background colors.",
-    developer: "Use standard `outline` or `box-shadow` CSS rules with at least 2px thickness.",
-    qa: "Measure focus indicator dimensions and contrast against background colors.",
-    productManager: "Ensure design tokens include standardized focus indicators passing WCAG 2.2 AA.",
-    automated: "Manual element inspector check in DevTools recommended.",
-    manualKeyboard: "Tab through elements and visually confirm focus outline contrast and thickness.",
-    screenReader: "Verify focus announcements match focused controls.",
-    codeGood: "button:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }",
-    codeBad: "button:focus-visible { outline: 1px solid #cccccc; } /* Too faint */",
-    wcag3Provisions: ["focus-indicator-contrast-sufficient", "focus-indicator-size-sufficient"],
-    evolutionNote: "WCAG 3 carries the quantitative focus appearance metrics into separate contrast and size provisions."
+    id: "2.4.11", num: "2.4.11", name: "Focus Not Obscured (Minimum)", level: "AA", principle: "Operable",
+    summary: "New in WCAG 2.2! When an item receives keyboard focus, the item is at least partially visible and not entirely hidden behind sticky headers, banners, or popups.",
+    whyItMatters: "Keyboard users must see what element is currently focused to navigate confidently.",
+    realWorldExample: "When tabbing down a long page, focused links scroll into view below sticky top navigation bars.",
+    designer: "Design scroll padding for sticky header regions.",
+    developer: "Apply `scroll-margin-top` in CSS to account for fixed header heights.",
+    qa: "Tab through long form pages with sticky header active; verify focus box is never hidden behind header.",
+    productManager: "Include focus margin specs in header component design specs.",
+    automated: "axe-core focus visibility rules.",
+    manualKeyboard: "Tab through page with sticky header pinned.",
+    screenReader: "Confirm focused item stays visible.",
+    codeGood: "html { scroll-padding-top: 80px; } /* Ensures focused element stays below sticky header */",
+    codeBad: "/* Fixed header covers focused form inputs as user tabs down page */",
+    wcag3Provisions: ["overlay-content-dismissible", "hover-or-focus-content-dismissible"],
+    evolutionNote: "No direct successor yet. The Sep 2026 draft has no provision that states focus must remain visible when obscured; the closest requirements make obscuring content dismissible."
   },
   {
     id: "2.5.3", num: "2.5.3", name: "Label in Name", level: "A", principle: "Operable",
@@ -1274,24 +1274,7 @@ const allCriteria = [
     evolutionNote: "WCAG 3 incorporates multiple ways under navigating-content outcomes."
   },
   {
-    id: "2.4.12", num: "2.4.12", name: "Focus Not Obscured (Minimum)", level: "AA", principle: "Operable",
-    summary: "When an item receives keyboard focus, the item is at least partially visible and not entirely hidden behind sticky headers, banners, or popups.",
-    whyItMatters: "Keyboard users must see what element is currently focused to navigate confidently.",
-    realWorldExample: "When tabbing down a long page, focused links scroll into view below sticky top navigation bars.",
-    designer: "Design scroll padding for sticky header regions.",
-    developer: "Apply `scroll-margin-top` in CSS to account for fixed header heights.",
-    qa: "Tab through long form pages with sticky header active; verify focus box is never hidden behind header.",
-    productManager: "Include focus margin specs in header component design specs.",
-    automated: "axe-core focus visibility rules.",
-    manualKeyboard: "Tab through page with sticky header pinned.",
-    screenReader: "Confirm focused item stays visible.",
-    codeGood: "html { scroll-padding-top: 80px; } /* Ensures focused element stays below sticky header */",
-    codeBad: "/* Fixed header covers focused form inputs as user tabs down page */",
-    wcag3Provisions: ["overlay-content-dismissible", "hover-or-focus-content-dismissible"],
-    evolutionNote: "No direct successor yet. The Sep 2026 draft has no provision that states focus must remain visible when obscured; the closest requirements make obscuring content dismissible. Treat this as a genuine gap and watch it."
-  },
-  {
-    id: "2.4.13", num: "2.4.13", name: "Focus Not Obscured (Enhanced)", level: "AAA", principle: "Operable",
+    id: "2.4.12", num: "2.4.12", name: "Focus Not Obscured (Enhanced)", level: "AAA", principle: "Operable",
     summary: "When an item receives keyboard focus, no part of the item is obscured by author-created content (100% of focus box is completely visible).",
     whyItMatters: "Provides maximum visibility for keyboard users so zero pixels of the focused element are covered.",
     realWorldExample: "A sticky chat widget automatically repositions or hides if keyboard focus lands on a link behind it.",
@@ -1305,7 +1288,24 @@ const allCriteria = [
     codeGood: "/* Floating widgets reposition to avoid overlapping focused content elements */",
     codeBad: "/* Sticky chat widget covers bottom half of focused button */",
     wcag3Provisions: ["overlay-content-dismissible", "hover-or-focus-content-dismissible"],
-    evolutionNote: "No direct successor yet, as with 2.4.12. The enhanced (fully unobscured) variant has no counterpart in the Sep 2026 draft at all."
+    evolutionNote: "No direct successor yet. The enhanced (fully unobscured) variant has no counterpart in the Sep 2026 draft at all."
+  },
+  {
+    id: "2.4.13", num: "2.4.13", name: "Focus Appearance", level: "AAA", principle: "Operable",
+    summary: "New in WCAG 2.2! Focus indicators must have an area of at least the size of a 2 CSS pixel perimeter and a contrast ratio of at least 3:1 between the indicator and the unfocused state.",
+    whyItMatters: "Faint 1px grey focus dots are technically 'visible' under 2.4.7, but fail 2.4.13 because low vision users miss them.",
+    realWorldExample: "Focus indicators must have an area of at least 2-pixel thickness around the element periphery and 3:1 contrast against adjacent colors.",
+    designer: "Specify 2px+ thick focus outlines with distinct contrast relative to adjacent background colors.",
+    developer: "Use standard `outline` or `box-shadow` CSS rules with at least 2px thickness.",
+    qa: "Measure focus indicator dimensions and contrast against background colors.",
+    productManager: "Ensure design tokens include standardized focus indicators passing WCAG 2.2 AAA.",
+    automated: "Manual element inspector check in DevTools recommended.",
+    manualKeyboard: "Tab through elements and visually confirm focus outline contrast and thickness.",
+    screenReader: "Verify focus announcements match focused controls.",
+    codeGood: "button:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }",
+    codeBad: "button:focus-visible { outline: 1px solid #cccccc; } /* Too faint */",
+    wcag3Provisions: ["focus-indicator-contrast-sufficient", "focus-indicator-size-sufficient"],
+    evolutionNote: "WCAG 3 carries the quantitative focus appearance metrics into separate contrast and size provisions."
   },
   {
     id: "2.5.1", num: "2.5.1", name: "Pointer Gestures", level: "A", principle: "Operable",
@@ -1499,35 +1499,49 @@ const allCriteria = [
 // Write dataset to wcag22-data/success-criteria.json
 const targetPath = path.join(rootDir, 'wcag22-data', 'success-criteria.json');
 
-const formattedDataset = allCriteria.map(item => ({
-  id: item.id,
-  num: item.num,
-  name: item.name,
-  level: item.level,
-  principle: item.principle,
-  plainEnglish: {
-    summary: item.summary,
-    whyItMatters: item.whyItMatters,
-    realWorldExample: item.realWorldExample
-  },
-  personaBreakdown: {
-    designer: item.designer,
-    developer: item.developer,
-    qa: item.qa,
-    productManager: item.productManager
-  },
-  testingGuide: {
-    automated: item.automated,
-    manualKeyboard: item.manualKeyboard,
-    screenReader: item.screenReader,
-    codeSnippetGood: item.codeGood,
-    codeSnippetBad: item.codeBad
-  },
-  wcag3Mapping: {
-    provisions: item.wcag3Provisions,
-    evolutionNote: item.evolutionNote
-  }
-}));
+function getW3cSlug(name, id) {
+  if (id === '4.1.1') return 'parsing';
+  return name.toLowerCase()
+    .replace(/[()]/g, '')
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-');
+}
+
+const formattedDataset = allCriteria.map(item => {
+  const w3cSlug = getW3cSlug(item.name, item.id);
+  return {
+    id: item.id,
+    num: item.num,
+    name: item.name,
+    level: item.level,
+    principle: item.principle,
+    w3cSlug,
+    trUrl: `https://www.w3.org/TR/WCAG22/#${w3cSlug}`,
+    understandingUrl: `https://www.w3.org/WAI/WCAG22/Understanding/${w3cSlug}.html`,
+    plainEnglish: {
+      summary: item.summary,
+      whyItMatters: item.whyItMatters,
+      realWorldExample: item.realWorldExample
+    },
+    personaBreakdown: {
+      designer: item.designer,
+      developer: item.developer,
+      qa: item.qa,
+      productManager: item.productManager
+    },
+    testingGuide: {
+      automated: item.automated,
+      manualKeyboard: item.manualKeyboard,
+      screenReader: item.screenReader,
+      codeSnippetGood: item.codeGood,
+      codeSnippetBad: item.codeBad
+    },
+    wcag3Mapping: {
+      provisions: item.wcag3Provisions,
+      evolutionNote: item.evolutionNote
+    }
+  };
+});
 
 fs.writeFileSync(targetPath, JSON.stringify(formattedDataset, null, 2));
 console.log(`🎉 Built complete dataset of ${formattedDataset.length} WCAG 2.2 Success Criteria entries!`);

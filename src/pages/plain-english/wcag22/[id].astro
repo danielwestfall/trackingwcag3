@@ -38,13 +38,28 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     <h1 class="page-title">{item.name}</h1>
     <p class="meta-subtitle">Official W3C WCAG 2.2 Standard Success Criterion &bull; Principle: <strong>{item.principle}</strong></p>
+
+    <div class="w3c-primary-links" aria-label="Official W3C Sources">
+      {item.trUrl && (
+        <a href={item.trUrl} target="_blank" rel="noopener noreferrer" class="w3c-link-pill pill-normative" title="Review normative criterion definition in W3C WCAG 2.2 Recommendation">
+          <span class="pill-icon" aria-hidden="true">📜</span>
+          <span>W3C Recommendation (Normative) ↗</span>
+        </a>
+      )}
+      {item.understandingUrl && (
+        <a href={item.understandingUrl} target="_blank" rel="noopener noreferrer" class="w3c-link-pill pill-informative" title="Read official W3C Understanding document, intent, and techniques">
+          <span class="pill-icon" aria-hidden="true">💡</span>
+          <span>Understanding SC {item.num} (W3C WAI) ↗</span>
+        </a>
+      )}
+    </div>
   </div>
 
   <!-- Tabbed Interface -->
   <section class="tabs-container">
     <div class="tab-list" role="tablist" aria-label="Criterion details">
       <button role="tab" aria-selected="true" aria-controls="panel-plain" id="tab-plain" class="tab-btn active">
-        💬 Plain English & Persona Tips
+        💬 Plain English & Guidance
       </button>
       <button role="tab" aria-selected="false" aria-controls="panel-test" id="tab-test" class="tab-btn">
         🧪 Testing Guide & Code
@@ -72,67 +87,105 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </div>
       </div>
 
-      <div class="panel-section">
-        <h2>Role-Based Actionable Advice</h2>
-        <div class="persona-cards-grid">
-          <div class="persona-card designer">
-            <span class="persona-header">🎨 Designer</span>
-            <p>{item.personaBreakdown?.designer || "Ensure color contrast and visual focus states are defined in design tokens."}</p>
-          </div>
-          <div class="persona-card developer">
-            <span class="persona-header">💻 Developer</span>
-            <p>{item.personaBreakdown?.developer || "Use semantic HTML elements and programmatic labels."}</p>
-          </div>
-          <div class="persona-card qa">
-            <span class="persona-header">🧪 QA / Tester</span>
-            <p>{item.personaBreakdown?.qa || "Verify with automated scanners, keyboard navigation, and screen reader announcements."}</p>
-          </div>
-          <div class="persona-card pm">
-            <span class="persona-header">📋 Product Manager</span>
-            <p>{item.personaBreakdown?.productManager || "Track conformance with regulatory legal standards."}</p>
+      {item.personaBreakdown && (
+        <div class="panel-section">
+          <h2>Role-Based Implementation Advice</h2>
+          <div class="persona-cards-grid">
+            {item.personaBreakdown.designer && (
+              <div class="persona-card designer">
+                <span class="persona-header">🎨 Designer</span>
+                <p>{item.personaBreakdown.designer}</p>
+              </div>
+            )}
+            {item.personaBreakdown.developer && (
+              <div class="persona-card developer">
+                <span class="persona-header">💻 Developer</span>
+                <p>{item.personaBreakdown.developer}</p>
+              </div>
+            )}
+            {item.personaBreakdown.qa && (
+              <div class="persona-card qa">
+                <span class="persona-header">🧪 QA / Tester</span>
+                <p>{item.personaBreakdown.qa}</p>
+              </div>
+            )}
+            {item.personaBreakdown.productManager && (
+              <div class="persona-card pm">
+                <span class="persona-header">📋 Product Manager</span>
+                <p>{item.personaBreakdown.productManager}</p>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      )}
     </div>
 
     <!-- Panel 2: Testing Guide -->
     <div id="panel-test" role="tabpanel" aria-labelledby="tab-test" class="tab-panel hidden">
-      <div class="panel-section">
-        <h2>Step-by-Step Testing Procedures</h2>
-        <div class="testing-grid">
-          <div class="test-card">
-            <h3>🤖 Automated Testing</h3>
-            <p>{item.testingGuide?.automated || "Run axe-core or Lighthouse audits in your continuous integration pipeline."}</p>
+      {item.testingGuide && (
+        <>
+          <div class="panel-section">
+            <h2>Step-by-Step Testing Procedures</h2>
+            <div class="testing-grid">
+              {item.testingGuide.automated && (
+                <div class="test-card">
+                  <h3>🤖 Automated Testing</h3>
+                  <p>{item.testingGuide.automated}</p>
+                </div>
+              )}
+              {item.testingGuide.manualKeyboard && (
+                <div class="test-card">
+                  <h3>⌨️ Keyboard Testing</h3>
+                  <p>{item.testingGuide.manualKeyboard}</p>
+                </div>
+              )}
+              {item.testingGuide.screenReader && (
+                <div class="test-card">
+                  <h3>🔊 Screen Reader Check</h3>
+                  <p>{item.testingGuide.screenReader}</p>
+                </div>
+              )}
+            </div>
           </div>
-          <div class="test-card">
-            <h3>⌨️ Keyboard Testing</h3>
-            <p>{item.testingGuide?.manualKeyboard || "Tab sequentially through all interactive controls and verify focus states."}</p>
-          </div>
-          <div class="test-card">
-            <h3>🔊 Screen Reader Check</h3>
-            <p>{item.testingGuide?.screenReader || "Audit with NVDA, JAWS, or VoiceOver for clear accessibility tree naming."}</p>
-          </div>
-        </div>
-      </div>
+
+          {(item.testingGuide.codeSnippetGood || item.testingGuide.codeSnippetBad) && (
+            <div class="panel-section">
+              <h2>Code Patterns: Good vs Bad</h2>
+              <div class="code-comparison">
+                {item.testingGuide.codeSnippetGood && (
+                  <div class="code-box good">
+                    <div class="code-header">
+                      <span>✅ Compliant Code Pattern</span>
+                      <button type="button" class="copy-code-btn" data-code={item.testingGuide.codeSnippetGood}>Copy</button>
+                    </div>
+                    <pre><code>{item.testingGuide.codeSnippetGood}</code></pre>
+                  </div>
+                )}
+                {item.testingGuide.codeSnippetBad && (
+                  <div class="code-box bad">
+                    <div class="code-header">
+                      <span>❌ Non-Compliant Pattern</span>
+                      <button type="button" class="copy-code-btn" data-code={item.testingGuide.codeSnippetBad}>Copy</button>
+                    </div>
+                    <pre><code>{item.testingGuide.codeSnippetBad}</code></pre>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </>
+      )}
 
       <div class="panel-section">
-        <h2>Code Patterns: Good vs Bad</h2>
-        <div class="code-comparison">
-          <div class="code-box good">
-            <div class="code-header">
-              <span>✅ Compliant Code Pattern</span>
-              <button type="button" class="copy-code-btn" data-code={item.testingGuide?.codeSnippetGood || ""}>Copy</button>
-            </div>
-            <pre><code>{item.testingGuide?.codeSnippetGood || "<!-- Compliant semantic markup -->\n<button type=\"button\">\n  Submit\n</button>"}</code></pre>
-          </div>
-          <div class="code-box bad">
-            <div class="code-header">
-              <span>❌ Non-Compliant Pattern</span>
-              <button type="button" class="copy-code-btn" data-code={item.testingGuide?.codeSnippetBad || ""}>Copy</button>
-            </div>
-            <pre><code>{item.testingGuide?.codeSnippetBad || "<!-- Inaccessible div button -->\n<div onclick=\"doSubmit()\">\n  Submit\n</div>"}</code></pre>
-          </div>
-        </div>
+        <h2>Official W3C Techniques &amp; Failures</h2>
+        <p>
+          Authoritative testing techniques, test rules, and documented failures for Success Criterion {item.num} are maintained normatively by W3C WAI:
+        </p>
+        <p>
+          <a href={item.understandingUrl} target="_blank" rel="noopener noreferrer" class="w3c-link-pill pill-informative">
+            <span>Read Understanding SC {item.num} &amp; Techniques on W3C WAI ↗</span>
+          </a>
+        </p>
       </div>
     </div>
 
@@ -287,6 +340,70 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .meta-subtitle {
     color: var(--text-secondary);
     font-size: 0.94rem;
+  }
+
+  .w3c-primary-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .w3c-link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-fast);
+    max-width: 100%;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .pill-normative {
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+  }
+  .pill-normative:hover {
+    background: rgba(52, 211, 153, 0.22);
+    border-color: var(--accent-emerald);
+    color: #a7f3d0;
+  }
+
+  .pill-informative {
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--accent-blue);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+  .pill-informative:hover {
+    background: rgba(56, 189, 248, 0.22);
+    border-color: var(--accent-blue);
+    color: #bae6fd;
+  }
+
+  :global(html[data-theme="light"]) .pill-normative {
+    background: rgba(16, 185, 129, 0.1);
+    color: #047857;
+    border-color: rgba(16, 185, 129, 0.35);
+  }
+  :global(html[data-theme="light"]) .pill-normative:hover {
+    background: rgba(16, 185, 129, 0.2);
+    color: #065f46;
+  }
+
+  :global(html[data-theme="light"]) .pill-informative {
+    background: rgba(2, 132, 199, 0.1);
+    color: #0369a1;
+    border-color: rgba(2, 132, 199, 0.35);
+  }
+  :global(html[data-theme="light"]) .pill-informative:hover {
+    background: rgba(2, 132, 199, 0.2);
+    color: #075985;
   }
 
   .tabs-container {
