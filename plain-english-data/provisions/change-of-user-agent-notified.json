@@ -1,0 +1,12 @@
+{
+  "slug": "change-of-user-agent-notified",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/content-changes/change-of-user-agent-notified.md",
+  "plainEnglish": {
+    "summary": "When content triggers a device change or an automatic change of user agent, the user is told before it happens.",
+    "whyItMatters": "Being thrown into another app or device mid-task can drop assistive technology settings and abandon work in progress."
+  }
+}

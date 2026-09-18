@@ -1,0 +1,12 @@
+{
+  "slug": "captions-controllable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-controllable.md",
+  "plainEnglish": {
+    "summary": "There is a way to turn captions on and off, unless they are burned into the video.",
+    "whyItMatters": "Captions cover part of the picture and are a distraction to viewers who do not need them, so the choice has to sit with the viewer."
+  }
+}

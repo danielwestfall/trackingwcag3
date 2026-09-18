@@ -1,0 +1,12 @@
+{
+  "slug": "hover-content-persistent",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/input-operation/hover-content-persistent.md",
+  "plainEnglish": {
+    "summary": "Where hovering makes extra content appear, the pointer can be moved onto that content without it vanishing. This applies when the author, rather than the browser, controls how the extra content looks.",
+    "whyItMatters": "A tooltip that disappears when you move toward it cannot be read by anyone who uses magnification, has a tremor, or simply moves the pointer slowly."
+  }
+}

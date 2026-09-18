@@ -1,0 +1,12 @@
+{
+  "slug": "visual-stimulation",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/visual-stimulation.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: visual intensity built out of density, colour, movement and similar factors can be reduced or turned off.",
+    "whyItMatters": "Visually busy interfaces can overwhelm people with sensory processing differences, autism, migraine or cognitive disabilities, to the point where the content cannot be used at all."
+  }
+}

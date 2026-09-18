@@ -1,0 +1,12 @@
+{
+  "slug": "errors-associated",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/correct-errors/errors-associated.md",
+  "plainEnglish": {
+    "summary": "When validation fails, the error is tied both visually and programmatically to the element that caused it or that can fix it.",
+    "whyItMatters": "A programmatic association is what lets a screen reader announce the error when the user reaches the field, rather than leaving it stranded somewhere else on the page."
+  }
+}

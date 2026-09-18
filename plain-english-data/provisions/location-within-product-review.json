@@ -1,0 +1,12 @@
+{
+  "slug": "location-within-product-review",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/user-orientation/location-within-product-review.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it reviewed the conventions for showing the user's current location and used patterns that work both visually and programmatically.",
+    "whyItMatters": "Knowing where you are is the precondition for deciding where to go next; it is easily lost in deep or dynamic interfaces."
+  }
+}

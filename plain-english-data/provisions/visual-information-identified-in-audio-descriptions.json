@@ -1,0 +1,12 @@
+{
+  "slug": "visual-information-identified-in-audio-descriptions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/visual-information-identified-in-audio-descriptions.md",
+  "plainEnglish": {
+    "summary": "Whatever the picture carries and the soundtrack does not - actions, documents, expressions, on-screen text - is spoken in the audio description.",
+    "whyItMatters": "This is the core of the technique: what the picture carries and the soundtrack does not is exactly what a blind viewer would otherwise lose."
+  }
+}

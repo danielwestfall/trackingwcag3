@@ -1,0 +1,12 @@
+{
+  "slug": "assistive-technology-supported",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/assistive-technology-control/assistive-technology-supported.md",
+  "plainEnglish": {
+    "summary": "Screen readers, switch devices, voice control, magnifiers and other assistive or adaptive technology can operate the content - not merely read it.",
+    "whyItMatters": "This is the baseline the rest depends on: content that blocks or breaks assistive technology is inaccessible no matter how well it is labelled."
+  }
+}

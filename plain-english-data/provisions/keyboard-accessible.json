@@ -1,0 +1,12 @@
+{
+  "slug": "keyboard-accessible",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/keyboard-accessible.md",
+  "plainEnglish": {
+    "summary": "Anything reachable with another input method has to be reachable with the keyboard interface alone.",
+    "whyItMatters": "The keyboard interface is what screen readers, switch devices, sip-and-puff systems and voice control all drive. Content it cannot reach is content those users cannot reach."
+  }
+}

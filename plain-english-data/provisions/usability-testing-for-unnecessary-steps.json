@@ -1,0 +1,12 @@
+{
+  "slug": "usability-testing-for-unnecessary-steps",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/unnecessary-steps/usability-testing-for-unnecessary-steps.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it ran usability testing, including participants with cognitive or mental health disabilities, to find unnecessary steps and unnecessary requests for information.",
+    "whyItMatters": "Every extra step is a place to give up. Which steps are unnecessary is visible in testing and invisible from inside the design."
+  }
+}

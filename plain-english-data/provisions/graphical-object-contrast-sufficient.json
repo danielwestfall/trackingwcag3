@@ -1,0 +1,12 @@
+{
+  "slug": "graphical-object-contrast-sufficient",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/single-sense/graphical-object-contrast-sufficient.md",
+  "plainEnglish": {
+    "summary": "The parts of a graphic you need in order to understand it must meet a minimum contrast ratio. Where a particular presentation is essential to the information itself, the requirement does not apply.",
+    "whyItMatters": "Icons, chart lines and diagram strokes carry meaning the same way text does. At low contrast that meaning disappears for people with low vision, and for anyone on a dim or glare-hit screen."
+  }
+}

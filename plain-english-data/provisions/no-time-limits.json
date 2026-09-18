@@ -1,0 +1,12 @@
+{
+  "slug": "no-time-limits",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/adequate-time/no-time-limits.md",
+  "plainEnglish": {
+    "summary": "Completing a process does not involve time limits, unless a limit is essential.",
+    "whyItMatters": "Time limits assume a typical speed of reading, typing and decision-making. People using screen readers, switch input or voice, and people with cognitive disabilities, routinely need longer."
+  }
+}

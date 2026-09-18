@@ -1,0 +1,12 @@
+{
+  "slug": "text-customizations-retained",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/text-customizations-retained.md",
+  "plainEnglish": {
+    "summary": "Where content can be exported, saved or printed, the user's own text-appearance customisations survive into the exported copy.",
+    "whyItMatters": "Adjustments that vanish on export mean the saved copy is unreadable to the person who saved it - and they usually have no way to reapply them."
+  }
+}

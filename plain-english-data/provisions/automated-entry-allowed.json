@@ -1,0 +1,12 @@
+{
+  "slug": "automated-entry-allowed",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/automated-entry-allowed.md",
+  "plainEnglish": {
+    "summary": "Automated entry of personal information is not blocked - whether from the browser, a third-party tool, or pasting.",
+    "whyItMatters": "Blocking paste or autofill forces manual transcription of exactly the data that is longest and least memorable, which is a barrier for password manager users and people with cognitive or motor disabilities."
+  }
+}

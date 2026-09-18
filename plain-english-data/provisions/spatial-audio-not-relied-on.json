@@ -1,0 +1,12 @@
+{
+  "slug": "spatial-audio-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/single-sense/spatial-audio-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Where sound is positioned in space to convey information, that positioning cannot be the only way the information is given.",
+    "whyItMatters": "Spatial cues require hearing in both ears. They are unavailable to people with single-sided deafness or asymmetric hearing loss, and to anyone listening on one earbud or a mono speaker."
+  }
+}

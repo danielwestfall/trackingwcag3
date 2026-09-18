@@ -1,0 +1,12 @@
+{
+  "slug": "captions-equivalent-prerecorded",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-equivalent-prerecorded.md",
+  "plainEnglish": {
+    "summary": "Captions have to be equivalent to the audio, not an approximation of it. Audio or video with no spoken content that serves only as background is exempt.",
+    "whyItMatters": "Auto-generated captions routinely drop names, technical terms and negations. An approximate caption can change the meaning of what was said."
+  }
+}

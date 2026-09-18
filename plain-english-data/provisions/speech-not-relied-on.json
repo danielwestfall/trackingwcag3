@@ -1,0 +1,12 @@
+{
+  "slug": "speech-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/speech-and-voice-input/speech-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Content and functionality cannot depend on speech alone, unless speech input is essential to what the function is.",
+    "whyItMatters": "Requiring speech excludes people who are non-speaking, who have a speech difference, who use a communication device, or who are in a setting where they cannot speak."
+  }
+}

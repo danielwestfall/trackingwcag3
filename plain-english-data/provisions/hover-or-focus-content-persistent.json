@@ -1,0 +1,12 @@
+{
+  "slug": "hover-or-focus-content-persistent",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/input-operation/hover-or-focus-content-persistent.md",
+  "plainEnglish": {
+    "summary": "Content shown on hover or focus stays visible until the trigger is removed, the user dismisses it, or its information stops being valid.",
+    "whyItMatters": "Content that times out on its own is gone before slower readers, screen magnifier users and people using switch input have finished with it."
+  }
+}

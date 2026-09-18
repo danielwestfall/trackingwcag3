@@ -1,0 +1,12 @@
+{
+  "slug": "speakers-identified-in-transcripts",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/speakers-identified-in-transcripts.md",
+  "plainEnglish": {
+    "summary": "Where there are several speakers, the transcript makes clear who is speaking - except where identity is deliberately hidden or clear from context.",
+    "whyItMatters": "An unattributed transcript reads as one continuous voice, and the argument in a conversation becomes impossible to follow."
+  }
+}

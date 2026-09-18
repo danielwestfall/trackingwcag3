@@ -1,0 +1,12 @@
+{
+  "slug": "no-nested-clauses",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/no-nested-clauses.md",
+  "plainEnglish": {
+    "summary": "Sentences avoid nested clauses. Poetic, scriptural, artistic and expressive content is exempt, as is legal information.",
+    "whyItMatters": "Each nested clause is something the reader has to hold in mind while the sentence finishes. That load is what makes otherwise simple information unreadable for people with cognitive disabilities."
+  }
+}

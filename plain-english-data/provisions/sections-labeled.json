@@ -1,0 +1,12 @@
+{
+  "slug": "sections-labeled",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/structure/sections-labeled.md",
+  "plainEnglish": {
+    "summary": "Meaningful blocks of content carry a semantically appropriate label that says what they are for - unless the purpose is already clear from the context of use.",
+    "whyItMatters": "Labelled regions are what let a screen reader user skip to navigation, search or main content instead of reading through the page to find them."
+  }
+}

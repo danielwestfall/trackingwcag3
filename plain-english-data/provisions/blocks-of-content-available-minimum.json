@@ -1,0 +1,12 @@
+{
+  "slug": "blocks-of-content-available-minimum",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/structure/blocks-of-content-available-minimum.md",
+  "plainEnglish": {
+    "summary": "The page is divided into meaningful blocks that software can identify, and each block is given enough surrounding space to be seen as a block.",
+    "whyItMatters": "The programmatic part is what lets a screen reader jump between sections; the spacing is what lets a sighted reader see where one ends and the next begins."
+  }
+}

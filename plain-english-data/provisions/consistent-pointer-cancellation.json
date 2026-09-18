@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-pointer-cancellation",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/pointer-input/consistent-pointer-cancellation.md",
+  "plainEnglish": {
+    "summary": "How a pointer action is cancelled stays the same for each type of interaction across a set of pages, unless a difference is essential.",
+    "whyItMatters": "Cancelling an accidental press is a skill users learn once. Changing the rule between pages means accidental activations stick."
+  }
+}

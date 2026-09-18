@@ -1,0 +1,12 @@
+{
+  "slug": "overlay-content-dismissible",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/no-obstruction/overlay-content-dismissible.md",
+  "plainEnglish": {
+    "summary": "When new content appears over the main content, there is a way to dismiss it.",
+    "whyItMatters": "A cookie banner or chat widget with no reachable close button can cover the content permanently for keyboard users and for anyone using magnification."
+  }
+}

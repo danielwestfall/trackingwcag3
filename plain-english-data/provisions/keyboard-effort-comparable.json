@@ -1,0 +1,12 @@
+{
+  "slug": "keyboard-effort-comparable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/physical-or-cognitive-effort-when-using-keyboard/keyboard-effort-comparable.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it reviewed its content, and made changes where needed, so that doing a task with the keyboard alone takes a comparable number of commands to doing it another way.",
+    "whyItMatters": "Content can be technically keyboard-operable and still take five times as many keystrokes. That gap is a fatigue and pain cost for people with motor disabilities and RSI."
+  }
+}

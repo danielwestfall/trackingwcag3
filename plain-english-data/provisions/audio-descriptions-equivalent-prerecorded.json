@@ -1,0 +1,12 @@
+{
+  "slug": "audio-descriptions-equivalent-prerecorded",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-equivalent-prerecorded.md",
+  "plainEnglish": {
+    "summary": "Not just present, but equivalent: the description has to carry the same information as the visual content it stands in for.",
+    "whyItMatters": "A description that names what is on screen without conveying what it means leaves blind viewers with a thinner version of the content than everyone else gets."
+  }
+}

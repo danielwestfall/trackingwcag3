@@ -1,0 +1,12 @@
+{
+  "slug": "error-suggestions-provided",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/correct-errors/error-suggestions-provided.md",
+  "plainEnglish": {
+    "summary": "Where the user has to correct an error, the message suggests how - unless suggesting it would compromise security or defeat the purpose of the content.",
+    "whyItMatters": "Knowing that a field is wrong is not the same as knowing what it wants. Suggestions are what make a form completable for people with cognitive or learning disabilities."
+  }
+}

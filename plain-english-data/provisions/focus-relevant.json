@@ -1,0 +1,12 @@
+{
+  "slug": "focus-relevant",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/navigating-content/focus-relevant.md",
+  "plainEnglish": {
+    "summary": "The focus order leaves out hidden elements, static content and groups of repeated interactive elements.",
+    "whyItMatters": "Tabbing through invisible or repeated stops wastes keystrokes and makes the focus indicator seem to vanish - a common reason keyboard users abandon a page."
+  }
+}

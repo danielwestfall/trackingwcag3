@@ -1,0 +1,12 @@
+{
+  "slug": "clear-structure-review",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/structure/clear-structure-review.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it has a process and policy for reviewing written content for clear structure before publication - checking the Structure guideline's core requirements, keeping sections concise, considering icons as structural cues, and turning sentences into lists where that helps - and that any style guide or author training covers these.",
+    "whyItMatters": "Structure is decided while writing, not afterwards. A review process is what keeps clear structure from depending on which author happened to write the page."
+  }
+}

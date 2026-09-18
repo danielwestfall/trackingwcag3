@@ -1,0 +1,12 @@
+{
+  "slug": "media-alternatives-searchable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/media-control/media-alternatives-searchable.md",
+  "plainEnglish": {
+    "summary": "Alternatives for media - transcripts and the like - can be searched and queried.",
+    "whyItMatters": "Search is what makes a long transcript usable for finding one fact, rather than a wall of text to read through."
+  }
+}

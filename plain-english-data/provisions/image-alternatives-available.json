@@ -1,0 +1,12 @@
+{
+  "slug": "image-alternatives-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/image-alternatives/image-alternatives-available.md",
+  "plainEnglish": {
+    "summary": "Every image that is not decorative has a text alternative.",
+    "whyItMatters": "Without one, a screen reader user gets a filename or silence where the content is - and if the image is a link or a control, may not be able to use it at all."
+  }
+}

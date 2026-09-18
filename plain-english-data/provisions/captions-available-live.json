@@ -1,0 +1,12 @@
+{
+  "slug": "captions-available-live",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-available-live.md",
+  "plainEnglish": {
+    "summary": "Everything spoken in live audio is captioned as it happens, for the whole of the content rather than parts of it.",
+    "whyItMatters": "Live is where there is no catching up afterwards. Without captions, a deaf or hard-of-hearing participant is excluded from the event as it happens."
+  }
+}

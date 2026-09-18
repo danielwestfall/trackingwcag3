@@ -1,0 +1,12 @@
+{
+  "slug": "text-style-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/text-style-adjustable.md",
+  "plainEnglish": {
+    "summary": "Text style properties can be adjusted without losing content or functionality - typeface, font width, text decoration, capitalisation and automatic hyphenation - to values still to be determined. Hard-coded styling is exempt.",
+    "whyItMatters": "Readers with dyslexia often substitute a typeface, and all-caps or hyphenated text is markedly harder to read. Being able to change these is what makes text legible for them."
+  }
+}

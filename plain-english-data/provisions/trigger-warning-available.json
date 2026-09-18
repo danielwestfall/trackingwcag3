@@ -1,0 +1,12 @@
+{
+  "slug": "trigger-warning-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/trigger-warning-available.md",
+  "plainEnglish": {
+    "summary": "Where content contains triggers, a warning comes before the user reaches them, and there is a way to get the same information without the triggering content.",
+    "whyItMatters": "A warning alone still forces a choice between the content and the trigger. Providing an alternative route means people with PTSD, anxiety disorders or phobias can get the information without the exposure."
+  }
+}

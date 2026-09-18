@@ -1,0 +1,12 @@
+{
+  "slug": "changes-to-elements-notified",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/control-information/changes-to-elements-notified.md",
+  "plainEnglish": {
+    "summary": "When an interactive element's name, role, value or state changes, that change is indicated both visually and programmatically.",
+    "whyItMatters": "A state change nobody announces - a button that has become pressed, a field now marked invalid - leaves screen reader users acting on stale information."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "hue-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/single-sense/hue-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Hue alone cannot be the only carrier of information. Artistic or expressive content, and content made for a device that can only present hues, are exempt.",
+    "whyItMatters": "Around one in twelve men has a colour vision deficiency, and hue is also lost in greyscale printing, high-contrast modes and bright sunlight."
+  }
+}

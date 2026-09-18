@@ -1,0 +1,12 @@
+{
+  "slug": "copying-supported",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/copying-supported.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: copying content is not prevented.",
+    "whyItMatters": "Copying is how people move text into a translator, a reader, a note or a password manager. Blocking it removes an adaptation the user had already made for themselves."
+  }
+}

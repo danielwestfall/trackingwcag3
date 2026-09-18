@@ -1,0 +1,12 @@
+{
+  "slug": "caption-language-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/caption-language-adjustable.md",
+  "plainEnglish": {
+    "summary": "Where captions exist in more than one language, there is a way for the user to choose between them.",
+    "whyItMatters": "Captions in the wrong language are no more use than no captions. This matters most where an audience shares a region but not a first language."
+  }
+}

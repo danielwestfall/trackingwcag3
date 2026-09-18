@@ -1,0 +1,12 @@
+{
+  "slug": "media-chapters-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/media-control/media-chapters-available.md",
+  "plainEnglish": {
+    "summary": "Audio or video of five minutes or longer can be navigated by chapters, unless it is a piece of music the composer did not divide into movements.",
+    "whyItMatters": "Scrubbing a timeline precisely is difficult with a switch, a head pointer or a tremor. Chapters give structural navigation that does not depend on fine pointer control."
+  }
+}

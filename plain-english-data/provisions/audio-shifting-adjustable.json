@@ -1,0 +1,12 @@
+{
+  "slug": "audio-shifting-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/audio-shifting-adjustable.md",
+  "plainEnglish": {
+    "summary": "Audio that pans or shifts between channels to simulate movement must be something a user can pause or switch off. It does not apply when the shifting comes from the operating system or the browser rather than from the content.",
+    "whyItMatters": "Simulated motion in sound can provoke nausea, disorientation or vestibular symptoms, and it makes speech harder to follow for people who process audio with one ear or with a hearing aid."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "summaries-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/summaries-available.md",
+  "plainEnglish": {
+    "summary": "Long-form text - a page of continuous prose in paragraphs of 300 words or more - has a summary that is identifiable both visually and programmatically, uses concise sentences, and gives access to explanations of any uncommon words it uses. Where the text runs across several pages, only the first needs one.",
+    "whyItMatters": "A summary is how a reader decides whether to spend the effort, and for people with cognitive disabilities or limited reading stamina it is often the only part they can get through."
+  }
+}

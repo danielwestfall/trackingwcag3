@@ -1,0 +1,12 @@
+{
+  "slug": "no-unnecessary-words",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/no-unnecessary-words.md",
+  "plainEnglish": {
+    "summary": "Sentences avoid unnecessary words. Poetic, scriptural, artistic and expressive content is exempt.",
+    "whyItMatters": "Padding lengthens the path to the meaning, which costs the most for people who read slowly, use text-to-speech, or have limited working memory."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "risk-comparable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/policy-and-protection/risk/risk-comparable.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: where content shows or asks for personal or sensitive information, using assistive technology, an accessible alternative version, an accessibility modification or an accessibility setting must not expose the user to extra risk.",
+    "whyItMatters": "If turning on accessibility features marks a user out, weakens their security, or discloses their disability, the price of access is exposure."
+  }
+}

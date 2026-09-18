@@ -1,0 +1,12 @@
+{
+  "slug": "error-messages-collocated",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/correct-errors/error-messages-collocated.md",
+  "plainEnglish": {
+    "summary": "An error message about user input either appears next to the input it concerns, or focus moves to the message and there is a way to get from the message back to the field in error.",
+    "whyItMatters": "An error announced far from the field it belongs to can be missed entirely by someone using magnification, and leaves screen reader users to hunt for which field is wrong."
+  }
+}

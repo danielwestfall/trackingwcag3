@@ -1,0 +1,12 @@
+{
+  "slug": "voice-identification-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/authentication/voice-identification-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Voice identification cannot be the only way to identify or authenticate.",
+    "whyItMatters": "Voice recognition fails for people who are non-speaking, who have dysarthria or a speech difference, or whose voice changes with a condition or treatment."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "no-visual-motion-no-exceptions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/no-visual-motion-no-exceptions.md",
+  "plainEnglish": {
+    "summary": "The same five-second limit on visual motion and pseudo-motion, with the 'essential' exception removed.",
+    "whyItMatters": "Where the exception applies, a user who cannot tolerate motion has no route through the content at all. This version leaves none."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "audio-description-language-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-description-language-adjustable.md",
+  "plainEnglish": {
+    "summary": "Where audio descriptions exist in more than one language, there is a way for the user to choose between them.",
+    "whyItMatters": "A description in a language the viewer does not speak conveys nothing. This matters most for blind and low-vision users, who have no fallback to the picture."
+  }
+}

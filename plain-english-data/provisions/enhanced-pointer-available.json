@@ -1,0 +1,12 @@
+{
+  "slug": "enhanced-pointer-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/pointer-focus-appearance/enhanced-pointer-available.md",
+  "plainEnglish": {
+    "summary": "A more visible pointer indicator than the platform default is offered, switchable on in a setting, shown either temporarily or permanently.",
+    "whyItMatters": "Finding the pointer is a recurring problem for people with low vision, attention-related disabilities and anyone on a large or high-resolution display."
+  }
+}

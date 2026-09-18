@@ -1,0 +1,12 @@
+{
+  "slug": "required-action-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/complete-tasks/required-action-available.md",
+  "plainEnglish": {
+    "summary": "Where the user must do something to move to the next step, the interface says so.",
+    "whyItMatters": "A process that stalls without saying why reads as a broken page. The user most likely to give up is the one who cannot see the unfilled field."
+  }
+}

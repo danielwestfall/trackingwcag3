@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-control-location",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/expected-behavior/consistent-control-location.md",
+  "plainEnglish": {
+    "summary": "A control that serves the same purpose across pages keeps the same visual position - except where the position changes because of a page variation, a change of viewport, or a step in a process.",
+    "whyItMatters": "Spatial memory is how most people find familiar controls quickly. Moving them costs the most for magnification users, who see only a fraction of the screen at once."
+  }
+}

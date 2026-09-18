@@ -1,0 +1,12 @@
+{
+  "slug": "abbreviations-explained",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/abbreviations-explained.md",
+  "plainEnglish": {
+    "summary": "An abbreviation is explained where it is first used - unless it has become a dictionary word in its own right (such as \"scuba\" or \"HTML\"), appears in a logo, or sits inside a longer phrase that the non-literal language requirement already covers.",
+    "whyItMatters": "Unexplained abbreviations stop readers who are new to a domain, reading in a second language, or have a language or learning disability - and screen readers often pronounce them as words."
+  }
+}

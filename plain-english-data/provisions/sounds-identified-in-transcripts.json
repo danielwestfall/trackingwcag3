@@ -1,0 +1,12 @@
+{
+  "slug": "sounds-identified-in-transcripts",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/sounds-identified-in-transcripts.md",
+  "plainEnglish": {
+    "summary": "Where sound carries meaning and the video is not decorative, the transcript records what the sound was, alongside the dialogue.",
+    "whyItMatters": "For a reader who never hears the audio, an unmarked sound is simply an event that did not happen."
+  }
+}

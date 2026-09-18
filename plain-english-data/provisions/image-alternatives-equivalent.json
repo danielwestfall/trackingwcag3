@@ -1,0 +1,12 @@
+{
+  "slug": "image-alternatives-equivalent",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/image-alternatives/image-alternatives-equivalent.md",
+  "plainEnglish": {
+    "summary": "The text alternative has to serve the same purpose as the image, not merely describe its appearance.",
+    "whyItMatters": "\"Photo of a chart\" tells a blind reader that information exists and withholds it. The alternative has to carry what the image is there to convey."
+  }
+}

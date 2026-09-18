@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-activation-indicated-minimum",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/pointer-focus-appearance/pointer-activation-indicated-minimum.md",
+  "plainEnglish": {
+    "summary": "Where the platform does not show a pointer indicator, activating an interactive element by pointer produces a visible indication that it happened.",
+    "whyItMatters": "Without confirmation, users repeat the action - which on a form or a payment is worse than no feedback at all."
+  }
+}

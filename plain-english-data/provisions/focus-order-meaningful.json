@@ -1,0 +1,12 @@
+{
+  "slug": "focus-order-meaningful",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/navigating-content/focus-order-meaningful.md",
+  "plainEnglish": {
+    "summary": "Keyboard focus moves through content in an order that preserves the meaning of the content and keeps it operable.",
+    "whyItMatters": "When focus order and reading order disagree, keyboard and screen reader users get the page in an order it was never written to be read in."
+  }
+}

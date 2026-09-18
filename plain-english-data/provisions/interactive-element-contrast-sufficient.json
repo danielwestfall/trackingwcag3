@@ -1,0 +1,12 @@
+{
+  "slug": "interactive-element-contrast-sufficient",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/control-information/interactive-element-contrast-sufficient.md",
+  "plainEnglish": {
+    "summary": "The visual information needed to identify an interactive element and its states has to meet a minimum contrast ratio. Inactive elements, and components whose appearance the browser supplies unmodified, are exempt.",
+    "whyItMatters": "If the boundary of a control or the mark showing it is selected is too faint to see, the control is effectively invisible to people with low vision, even though its label is readable."
+  }
+}

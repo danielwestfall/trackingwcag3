@@ -1,0 +1,12 @@
+{
+  "slug": "descriptive-transcripts-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
+  "plainEnglish": {
+    "summary": "Prerecorded audio and video have a descriptive transcript - one that covers the visuals as well as the speech. Purely decorative media, media that is already an alternative for text and labelled as such, and video whose picture adds nothing to the audio are exempt.",
+    "whyItMatters": "A transcript is the one format that can be read at any speed, searched, translated, and rendered in braille. It serves deafblind users, who have no route through either captions or audio description."
+  }
+}

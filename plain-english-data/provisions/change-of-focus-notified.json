@@ -1,0 +1,12 @@
+{
+  "slug": "change-of-focus-notified",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/content-changes/change-of-focus-notified.md",
+  "plainEnglish": {
+    "summary": "When focus changes, whether on focus or automatically, the user is notified both visually and programmatically.",
+    "whyItMatters": "Unannounced focus movement is disorienting for sighted keyboard users and can leave screen reader users reading from an entirely different part of the page."
+  }
+}

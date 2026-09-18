@@ -1,0 +1,12 @@
+{
+  "slug": "sign-language-controllable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/sign-language/sign-language-controllable.md",
+  "plainEnglish": {
+    "summary": "There is a way to show and hide sign language interpretation, unless it is burned into the video or supplied as a separate interpreted version.",
+    "whyItMatters": "An interpreter window occupies part of the picture. Viewers who do not use it need it out of the way, and viewers who do need it present."
+  }
+}

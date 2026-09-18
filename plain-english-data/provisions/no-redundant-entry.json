@@ -1,0 +1,12 @@
+{
+  "slug": "no-redundant-entry",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/retain-information/no-redundant-entry.md",
+  "plainEnglish": {
+    "summary": "Information the user already entered or was already given, if required again in the same process, is either filled in automatically or offered for selection. Re-entry that is essential, needed for security, or where the earlier information is no longer valid, is exempt.",
+    "whyItMatters": "Re-typing the same data is effort and a new chance to make a mistake, which is costly for people with motor and cognitive disabilities and slow for anyone using speech input."
+  }
+}

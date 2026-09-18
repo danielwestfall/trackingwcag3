@@ -1,0 +1,12 @@
+{
+  "slug": "no-repetitive-adjacent-interactive-elements",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/physical-or-cognitive-effort-when-using-keyboard/no-repetitive-adjacent-interactive-elements.md",
+  "plainEnglish": {
+    "summary": "Adjacent interactive elements that do the same thing are not both included - unless the outcome is a form of dismissal.",
+    "whyItMatters": "Duplicated links and buttons double the tab stops and the screen reader announcements for no added function, which is pure cost for keyboard and screen reader users."
+  }
+}

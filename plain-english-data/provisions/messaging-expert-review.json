@@ -1,0 +1,12 @@
+{
+  "slug": "messaging-expert-review",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/avoid-deception/messaging-expert-review.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that an expert review looked for misleading wording, artificial pressure, misdirection and other deceptive practices, and that what was found was removed.",
+    "whyItMatters": "Expert review catches patterns that individual users experience as their own mistake rather than as a design decision."
+  }
+}

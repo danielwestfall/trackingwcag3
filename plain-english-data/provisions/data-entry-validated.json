@@ -1,0 +1,12 @@
+{
+  "slug": "data-entry-validated",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/prevent-errors/data-entry-validated.md",
+  "plainEnglish": {
+    "summary": "Data is validated either when the user leaves the field or when the form is submitted - not, for instance, mid-keystroke.",
+    "whyItMatters": "Validation that fires while someone is still typing produces errors for input that is merely unfinished, which is disorienting for screen reader users and discouraging for people who type slowly."
+  }
+}

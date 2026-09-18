@@ -1,0 +1,12 @@
+{
+  "slug": "custom-keys-documented",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/custom-keys-documented.md",
+  "plainEnglish": {
+    "summary": "Where a page defines its own keyboard commands, the documentation for them is available on the page or within the process where they apply.",
+    "whyItMatters": "An undocumented shortcut may as well not exist, and a user who discovers one by accident cannot tell what else is available."
+  }
+}

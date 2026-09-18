@@ -1,0 +1,12 @@
+{
+  "slug": "current-step-indicated",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/user-orientation/current-step-indicated.md",
+  "plainEnglish": {
+    "summary": "The current step in a multi-step process is indicated both visually and programmatically.",
+    "whyItMatters": "Without it, a user who is interrupted cannot tell where they are on returning, and a screen reader user may not be able to tell at all."
+  }
+}

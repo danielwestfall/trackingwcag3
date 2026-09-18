@@ -1,0 +1,12 @@
+{
+  "slug": "text-detectable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
+  "plainEnglish": {
+    "summary": "Every piece of text a sighted user can see has an equivalent that software can read - including text inside images and drawn onto a canvas. The exception is where providing it would duplicate text already present in the view.",
+    "whyItMatters": "Text baked into an image or drawn on a canvas cannot be read aloud, enlarged, recoloured or translated. The programmatic equivalent is what restores all of those."
+  }
+}

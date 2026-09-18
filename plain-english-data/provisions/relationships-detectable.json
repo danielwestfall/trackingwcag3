@@ -1,0 +1,12 @@
+{
+  "slug": "relationships-detectable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/structure/relationships-detectable.md",
+  "plainEnglish": {
+    "summary": "Where two things are related in meaning - a label and its field, a heading and its section, a cell and its column - the relationship is marked up, not just implied by position or styling.",
+    "whyItMatters": "A label beside a field, a cell under a column header, a caption under a figure - all of these are obvious by sight and invisible to assistive technology unless the relationship is marked up."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "generated-speech-testing",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/speech-and-voice-input/generated-speech-testing.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it tested its voice input and communication systems with synthetic speech, not only human speech.",
+    "whyItMatters": "Many non-speaking people communicate through a speech-generating device. A system tuned only to human voices rejects them at the door."
+  }
+}

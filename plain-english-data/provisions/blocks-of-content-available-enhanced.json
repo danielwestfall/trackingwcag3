@@ -1,0 +1,12 @@
+{
+  "slug": "blocks-of-content-available-enhanced",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/structure/blocks-of-content-available-enhanced.md",
+  "plainEnglish": {
+    "summary": "Styling is used to strengthen the visual separation between meaningful blocks of content.",
+    "whyItMatters": "Clear visual grouping is how readers find their way without reading everything, and it is what keeps a page navigable when magnified or reflowed."
+  }
+}

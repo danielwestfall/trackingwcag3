@@ -1,0 +1,12 @@
+{
+  "slug": "page-view-audio-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/media-control/page-view-audio-adjustable.md",
+  "plainEnglish": {
+    "summary": "Where audio plays automatically, there is a way to pause it, stop it, or adjust its volume separately from the system volume.",
+    "whyItMatters": "Background audio masks a screen reader's speech, making the page unusable until it stops - and the system volume control turns off both at once."
+  }
+}

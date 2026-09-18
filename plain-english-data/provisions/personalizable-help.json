@@ -1,0 +1,12 @@
+{
+  "slug": "personalizable-help",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/personalizable-help.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: help can be adapted and personalised to the individual user.",
+    "whyItMatters": "One fixed explanation suits one kind of reader. Being able to change the form of help - its length, its vocabulary, its medium - is what makes it usable across very different cognitive profiles."
+  }
+}

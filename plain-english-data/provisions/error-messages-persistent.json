@@ -1,0 +1,12 @@
+{
+  "slug": "error-messages-persistent",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/correct-errors/error-messages-persistent.md",
+  "plainEnglish": {
+    "summary": "Error messages stay on screen until the error is fixed or the user dismisses them - they do not time out on their own.",
+    "whyItMatters": "A message that disappears on a timer is gone before many people have finished reading it, particularly people who read slowly, use magnification, or are navigating with a screen reader."
+  }
+}

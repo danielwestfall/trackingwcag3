@@ -1,0 +1,12 @@
+{
+  "slug": "media-alternatives-controllable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/media-control/media-alternatives-controllable.md",
+  "plainEnglish": {
+    "summary": "The viewer, not the page, decides whether closed captions and audio descriptions are playing, and can change that at any point.",
+    "whyItMatters": "Which alternative helps depends on the viewer. Control is what lets people sharing a screen, or with different needs, use the same media."
+  }
+}

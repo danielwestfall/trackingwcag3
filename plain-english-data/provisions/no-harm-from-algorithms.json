@@ -1,0 +1,12 @@
+{
+  "slug": "no-harm-from-algorithms",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/policy-and-protection/algorithms/no-harm-from-algorithms.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that its authors run usability testing and ethics reviews to reduce the chance that algorithms disadvantage disabled people.",
+    "whyItMatters": "Algorithmic decisions about ranking, moderation or eligibility can disadvantage disabled people invisibly, without any individual decision looking wrong."
+  }
+}

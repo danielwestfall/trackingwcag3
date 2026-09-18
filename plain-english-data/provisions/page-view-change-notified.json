@@ -1,0 +1,12 @@
+{
+  "slug": "page-view-change-notified",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/user-orientation/page-view-change-notified.md",
+  "plainEnglish": {
+    "summary": "When content causes a change of page or view, there is a visible change within the view and a programmatic notification of it.",
+    "whyItMatters": "In a single-page application nothing reloads, so a screen reader user may not be told anything happened and can continue reading content that is no longer there."
+  }
+}

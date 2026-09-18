@@ -1,0 +1,12 @@
+{
+  "slug": "change-of-content-notified",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/content-changes/change-of-content-notified.md",
+  "plainEnglish": {
+    "summary": "A meaningful visual change has to be announced programmatically, not just shown. The draft lists what counts: changes above the user's place in reading order, changes earlier in a process, notifications and status or error messages, changes in how much content there is, changes that alter meaning, and changes of audience. Continuous change with no pause is exempt.",
+    "whyItMatters": "A change a sighted user sees at a glance is invisible to a screen reader user unless it is announced, so they act on a version of the page that no longer exists."
+  }
+}

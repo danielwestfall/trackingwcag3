@@ -1,0 +1,12 @@
+{
+  "slug": "figure-captions-persistent",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/figure-captions/figure-captions-persistent.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: figure captions stay visible, or there is a way to make them stay, even after focus moves elsewhere.",
+    "whyItMatters": "A caption that vanishes when focus moves cannot be read alongside the figure it explains - which is exactly how people using magnification or a screen reader read it."
+  }
+}

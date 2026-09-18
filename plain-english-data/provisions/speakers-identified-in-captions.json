@@ -1,0 +1,12 @@
+{
+  "slug": "speakers-identified-in-captions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/speakers-identified-in-captions.md",
+  "plainEnglish": {
+    "summary": "Where a video has several speakers, the captions make clear who is speaking - except where identity is deliberately hidden or already clear from context.",
+    "whyItMatters": "Captions strip out voice, accent and volume, which is how hearing viewers tell speakers apart. Without attribution, a conversation becomes a block of text."
+  }
+}

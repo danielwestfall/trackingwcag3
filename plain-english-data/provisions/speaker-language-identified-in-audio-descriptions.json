@@ -1,0 +1,12 @@
+{
+  "slug": "speaker-language-identified-in-audio-descriptions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/speaker-language-identified-in-audio-descriptions.md",
+  "plainEnglish": {
+    "summary": "Where more than one language is spoken, every audio description identifies which language each speaker is using. Incidental words are exempt.",
+    "whyItMatters": "Without it, a listener cannot tell whether they have missed something or the speaker has simply switched language - and may not know a translation exists."
+  }
+}

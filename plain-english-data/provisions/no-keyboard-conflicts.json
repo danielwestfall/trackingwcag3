@@ -1,0 +1,12 @@
+{
+  "slug": "no-keyboard-conflicts",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/no-keyboard-conflicts.md",
+  "plainEnglish": {
+    "summary": "Custom keyboard commands must not clash with standard platform commands, or they must be remappable.",
+    "whyItMatters": "A single-key shortcut that overrides a platform command can disable an assistive technology's own keys, which is worse than having no shortcut at all."
+  }
+}

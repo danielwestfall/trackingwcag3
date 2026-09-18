@@ -1,0 +1,12 @@
+{
+  "slug": "captions-usability-testing",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-usability-testing.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it tested with people who rely on captions and fixed or mitigated what the testing found.",
+    "whyItMatters": "Caption quality problems - timing, reading speed, speaker attribution - show up in use rather than in a checklist."
+  }
+}

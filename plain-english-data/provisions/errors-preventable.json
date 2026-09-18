@@ -1,0 +1,12 @@
+{
+  "slug": "errors-preventable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/prevent-errors/errors-preventable.md",
+  "plainEnglish": {
+    "summary": "Before submitting, users can either review, confirm and correct everything they entered, or review and correct the errors validation found. Content that auto-saves or where submission is reversible is exempt.",
+    "whyItMatters": "A mistake that can only be discovered after submission is expensive to undo. A review step is what makes an irreversible action safe for people who are more likely to mistype or misread."
+  }
+}

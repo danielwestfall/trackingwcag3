@@ -1,0 +1,12 @@
+{
+  "slug": "sound-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/single-sense/sound-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Sound alone cannot be the only carrier of information, except where the content is itself audio-based media.",
+    "whyItMatters": "A beep signalling success or an error is silent for deaf users, for anyone with the volume down, and for anyone in a noisy place."
+  }
+}

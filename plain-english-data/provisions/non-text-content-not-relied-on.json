@@ -1,0 +1,12 @@
+{
+  "slug": "non-text-content-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/non-text-alternatives/non-text-content-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "All non-decorative non-text content - not only images, but audio, icons, controls and the rest - has a programmatically determinable text equivalent.",
+    "whyItMatters": "Text is the one form that can be rendered as speech, braille, larger type or a different colour. It is what makes content translatable to any user's needs."
+  }
+}

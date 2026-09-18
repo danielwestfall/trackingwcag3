@@ -1,0 +1,12 @@
+{
+  "slug": "key-information-usability-testing",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/structure/key-information-usability-testing.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it ran usability testing with a diverse group including people with cognitive and mental health disabilities, checking that they understood the information hierarchy and menu organisation and could find key information.",
+    "whyItMatters": "Whether an information architecture works is not something its authors can judge - they already know where everything is."
+  }
+}

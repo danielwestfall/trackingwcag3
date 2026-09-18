@@ -1,0 +1,12 @@
+{
+  "slug": "numerical-metadata-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-to-speech/numerical-metadata-available.md",
+  "plainEnglish": {
+    "summary": "Numerical information carries enough context in the written text, plus a programmatic equivalent, to avoid confusion - dates, temperatures, times and Roman numerals in particular.",
+    "whyItMatters": "\"03/04\" is two different dates depending on the reader, and a screen reader may voice a Roman numeral as a word. Context is what stops a number being misread."
+  }
+}

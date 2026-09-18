@@ -1,0 +1,12 @@
+{
+  "slug": "non-verbal-cues-identified-in-audio-descriptions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/non-verbal-cues-identified-in-audio-descriptions.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: nonverbal cues needed to follow the media - expressions, gestures, reactions - are explained in the audio description.",
+    "whyItMatters": "Meaning frequently sits in what nobody says. Without it, a blind listener gets the words of a scene and not its sense."
+  }
+}

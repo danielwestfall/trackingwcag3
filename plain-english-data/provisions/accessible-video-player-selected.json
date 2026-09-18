@@ -1,0 +1,12 @@
+{
+  "slug": "accessible-video-player-selected",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/accessible-media-player/accessible-video-player-selected.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion, relevant when video needs a player that standard browsers do not provide: the organisation states which media-alternative features its video player supports - closed captions in a standard format, turning captions and audio descriptions on and off, restyling and repositioning captions, and changing the audio description language.",
+    "whyItMatters": "Captions and descriptions only help if the player exposes them and lets people adjust them. Caption styling in particular is what makes them readable for people with low vision."
+  }
+}

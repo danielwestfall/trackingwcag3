@@ -1,0 +1,12 @@
+{
+  "slug": "visual-aids-review",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/visual-aids-review.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it has a process and policy for finding complex ideas in its text - processes, workflows, relationships, chronology - and adding visual aids to help readers understand them.",
+    "whyItMatters": "Some relationships are far easier to see than to read. A diagram is often the difference between a process being followable and being merely described."
+  }
+}

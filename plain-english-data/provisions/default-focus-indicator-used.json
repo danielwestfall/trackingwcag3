@@ -1,0 +1,12 @@
+{
+  "slug": "default-focus-indicator-used",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/keyboard-focus-appearance/default-focus-indicator-used.md",
+  "plainEnglish": {
+    "summary": "The focusable element uses the browser's own default focus indicator rather than a replacement.",
+    "whyItMatters": "The default indicator is designed to be visible against unknown backgrounds and is what users already recognise. Replacing it is where most focus indicators become invisible."
+  }
+}

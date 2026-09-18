@@ -1,0 +1,12 @@
+{
+  "slug": "data-visualizations",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/data-visualizations.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: help is available for understanding and using data visualisations.",
+    "whyItMatters": "Charts encode meaning in position, colour and shape at once. Without an explanation or an alternative route to the data, that meaning is unavailable to screen reader users and to many people with cognitive disabilities."
+  }
+}

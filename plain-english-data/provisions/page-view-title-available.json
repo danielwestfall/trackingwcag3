@@ -1,0 +1,12 @@
+{
+  "slug": "page-view-title-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/user-orientation/page-view-title-available.md",
+  "plainEnglish": {
+    "summary": "Each page or view has a title describing its name, topic or purpose - unless the technology has no way to carry one.",
+    "whyItMatters": "The title is the first thing a screen reader announces and how users tell tabs, windows and history entries apart."
+  }
+}

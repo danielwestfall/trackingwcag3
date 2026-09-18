@@ -1,0 +1,12 @@
+{
+  "slug": "caption-features-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/caption-features-available.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: captions offer enhanced features that let users interact with them rather than only read them.",
+    "whyItMatters": "Being able to search, pause on or re-read a caption gives deaf and hard-of-hearing viewers the same control over pace that hearing viewers get from replaying audio."
+  }
+}

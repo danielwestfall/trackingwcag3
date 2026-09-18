@@ -1,0 +1,12 @@
+{
+  "slug": "default-pointer-used",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/pointer-focus-appearance/default-pointer-used.md",
+  "plainEnglish": {
+    "summary": "The user can keep the pointer looking the way their system draws it, rather than having the page override it - unless changing the pointer is essential.",
+    "whyItMatters": "People who have enlarged or recoloured their cursor did so because they lose it otherwise. A custom cursor undoes that setting without asking."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "user-settings-supported",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/assistive-technology-control/user-settings-supported.md",
+  "plainEnglish": {
+    "summary": "Content responds to the accessibility-related settings the user has already set on their platform or browser.",
+    "whyItMatters": "People configure contrast, motion, text size and colour once, at system level. Content that ignores those settings makes them configure everything again, site by site."
+  }
+}

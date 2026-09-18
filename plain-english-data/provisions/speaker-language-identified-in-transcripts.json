@@ -1,0 +1,12 @@
+{
+  "slug": "speaker-language-identified-in-transcripts",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/speaker-language-identified-in-transcripts.md",
+  "plainEnglish": {
+    "summary": "Where more than one language is spoken, the transcript identifies which language each speaker is using. Incidental words are exempt.",
+    "whyItMatters": "Without the marker, a reader cannot tell a translated passage from the speaker's own words, or know that a second-language version exists."
+  }
+}

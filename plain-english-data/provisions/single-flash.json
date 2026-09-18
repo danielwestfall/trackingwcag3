@@ -1,0 +1,12 @@
+{
+  "slug": "single-flash",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/single-flash.md",
+  "plainEnglish": {
+    "summary": "A single large change of contrast counts too: content must not swing from light to dark, or dark to light, by more than 4.5:1 across more than 30% of the viewport. Loading a new page and essential flashes are excluded.",
+    "whyItMatters": "A single full-screen flash can trigger seizures and can cause pain or after-images for people with light sensitivity, migraine or eye conditions - the harm does not require a repeating flash."
+  }
+}

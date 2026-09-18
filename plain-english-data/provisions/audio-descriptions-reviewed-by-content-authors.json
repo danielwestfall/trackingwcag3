@@ -1,0 +1,12 @@
+{
+  "slug": "audio-descriptions-reviewed-by-content-authors",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-reviewed-by-content-authors.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it reviewed its audio descriptions, and records who reviewed them and when.",
+    "whyItMatters": "Descriptions produced at volume, or automatically, drift from what the picture actually shows. A recorded review is the check that they still match."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "no-flashing-over-threshold-no-exceptions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/no-flashing-over-threshold-no-exceptions.md",
+  "plainEnglish": {
+    "summary": "The same flash thresholds as the foundational requirement, but with no minimum-size allowance: a flashing area under the size threshold is no longer exempt.",
+    "whyItMatters": "The size exemption assumes a small flashing area is safe, which does not hold for everyone or for every viewing distance. Removing it closes that gap for people with photosensitive epilepsy."
+  }
+}

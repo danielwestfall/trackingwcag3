@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-focus-indicated",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/pointer-focus-appearance/pointer-focus-indicated.md",
+  "plainEnglish": {
+    "summary": "There is a visible pointer indicator - except over video, where it may hide as long as there is a way to bring it back, and where the pointer is steering the direction of view in a virtual or real-world environment.",
+    "whyItMatters": "Losing the pointer means losing your place. The exceptions cover the cases where a visible cursor would obscure the content itself."
+  }
+}

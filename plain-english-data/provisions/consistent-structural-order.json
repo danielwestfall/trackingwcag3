@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-structural-order",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/consistency-across-views/consistency/consistent-structural-order.md",
+  "plainEnglish": {
+    "summary": "The main structural parts of a page keep the same relative order across the variations of pages in scope.",
+    "whyItMatters": "A predictable structure is what lets people move quickly to the part they want. Reordering it between pages forces everyone to re-orient, and forces assistive technology users to re-explore."
+  }
+}

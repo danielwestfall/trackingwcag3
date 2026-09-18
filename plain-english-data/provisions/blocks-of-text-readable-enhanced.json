@@ -1,0 +1,12 @@
+{
+  "slug": "blocks-of-text-readable-enhanced",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/blocks-of-text-readable-enhanced.md",
+  "plainEnglish": {
+    "summary": "The text as authored - before any user adjustment - meets enhanced values for inline margin, block margin, line length and line height. The values themselves are still to be determined.",
+    "whyItMatters": "Setting readable defaults means users do not have to know that adjustment is possible, which is most of them."
+  }
+}

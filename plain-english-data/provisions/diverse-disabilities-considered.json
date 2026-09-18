@@ -1,0 +1,12 @@
+{
+  "slug": "diverse-disabilities-considered",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/policy-and-protection/risk/diverse-disabilities-considered.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it considered the safety and security of users with diverse disabilities - noting, for example, that people with cognitive or learning disabilities are sometimes targeted for exploitation - researched the risks, and took reasonable practical steps to mitigate what it found.",
+    "whyItMatters": "Safety design usually assumes an average user. Disabled users are disproportionately targeted, and a threat model that leaves them out leaves them unprotected."
+  }
+}

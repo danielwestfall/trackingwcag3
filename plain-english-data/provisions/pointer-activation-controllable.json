@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-activation-controllable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/pointer-input/pointer-activation-controllable.md",
+  "plainEnglish": {
+    "summary": "For anything activated by a simple pointer input, at least one of these has to hold: nothing happens on the down event; the action completes on the up event and can be cancelled beforehand or undone afterwards; or the up event reverses whatever the down event did. Only an essential need to act on the down event is exempt.",
+    "whyItMatters": "People with tremor, limited dexterity or an imprecise pointer press the wrong thing regularly. Acting on release rather than press is what makes a mis-press recoverable."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "roles-values-states-properties-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/control-information/roles-values-states-properties-available.md",
+  "plainEnglish": {
+    "summary": "Interactive elements expose accurate names, roles, values and states.",
+    "whyItMatters": "This is what assistive technology reads. An element with a wrong role is announced as the wrong kind of thing, and a missing state hides whether it is on, off, expanded or selected."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-activation-indicated-enhanced",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/pointer-focus-appearance/pointer-activation-indicated-enhanced.md",
+  "plainEnglish": {
+    "summary": "Where the platform itself does not show a visible pointer indicator, the user can choose to have one shown at all times.",
+    "whyItMatters": "On touch and immersive platforms there is often no cursor at all, leaving no feedback about where an action will land."
+  }
+}

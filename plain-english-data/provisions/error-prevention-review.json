@@ -1,0 +1,12 @@
+{
+  "slug": "error-prevention-review",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/prevent-errors/error-prevention-review.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it has reviewed its form designs to reduce mistakes - asking for less information, marking required fields, chunking long numbers, offering valid choices, supporting autocomplete, using familiar words and units, and correcting or suggesting where it reliably can.",
+    "whyItMatters": "Most form failures are design failures. Reviewing the design removes errors before anyone has to recover from them, which matters most for people with cognitive and learning disabilities."
+  }
+}

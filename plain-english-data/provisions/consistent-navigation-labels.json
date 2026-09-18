@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-navigation-labels",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md",
+  "plainEnglish": {
+    "summary": "Navigation blocks that repeat across pages must label the same item the same way each time. Items marked as the current page are exempt.",
+    "whyItMatters": "People who navigate by searching for a remembered label - screen reader users, voice control users, and anyone with a memory or reading disability - lose their way when the same destination is called something different on the next page."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "audio-description-volume-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-description-volume-adjustable.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: the audio description track can be adjusted in volume separately from the video's own audio.",
+    "whyItMatters": "When description and soundtrack are locked together, one drowns out the other. Independent control is what makes both audible for people who rely on the description."
+  }
+}

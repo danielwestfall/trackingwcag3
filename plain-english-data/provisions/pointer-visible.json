@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-visible",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/pointer-focus-appearance/pointer-visible.md",
+  "plainEnglish": {
+    "summary": "The pointer indicator stays visible, with the same narrow exceptions for a stationary pointer over video and for a pointer controlling the direction of view.",
+    "whyItMatters": "Auto-hiding cursors force users to move the pointer to find it, which is a real cost for people with motor disabilities and for anyone with low vision."
+  }
+}

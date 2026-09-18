@@ -1,0 +1,12 @@
+{
+  "slug": "speakers-identified-in-audio-descriptions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/speakers-identified-in-audio-descriptions.md",
+  "plainEnglish": {
+    "summary": "When a video has several speakers, the audio description makes clear who is speaking - except where the speaker's identity is deliberately hidden or is already obvious from context.",
+    "whyItMatters": "Voices alone are hard to tell apart without the picture, particularly for listeners with hearing loss as well as sight loss."
+  }
+}

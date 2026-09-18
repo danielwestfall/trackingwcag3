@@ -1,0 +1,12 @@
+{
+  "slug": "captions-reviewed-by-content-authors",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-reviewed-by-content-authors.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it reviewed its captions, and records who did so and when.",
+    "whyItMatters": "Machine captioning is now the default, and its errors are systematic. A recorded review is what catches them before publication."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-help-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/consistent-help-available.md",
+  "plainEnglish": {
+    "summary": "Where help exists - a phone number, a contact form, a self-help option or an automated assistant - it is labelled the same way and sits in the same place relative to other content across pages.",
+    "whyItMatters": "Help that moves around is help that cannot be found in the moment it is needed, which is exactly when someone with a cognitive disability has least capacity to search for it."
+  }
+}

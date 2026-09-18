@@ -1,0 +1,12 @@
+{
+  "slug": "captions-unobstructed",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-unobstructed.md",
+  "plainEnglish": {
+    "summary": "Captions are positioned so they do not cover visual information needed to understand the video.",
+    "whyItMatters": "Captions sitting over on-screen text or a speaker's face force a deaf viewer to choose between two pieces of the same content."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "text-style-readable-enhanced",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/text-style-readable-enhanced.md",
+  "plainEnglish": {
+    "summary": "The authored presentation of text style properties - typeface, font size, font width, text decoration, letter spacing, capitalisation and end-of-line hyphenation - meets enhanced values, still to be determined.",
+    "whyItMatters": "Defaults decide what most readers get. Setting them at the enhanced level removes the need for individual adaptation."
+  }
+}

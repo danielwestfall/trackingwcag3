@@ -1,0 +1,12 @@
+{
+  "slug": "dialogue-transcripts-available-prerecorded",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/dialogue-transcripts-available-prerecorded.md",
+  "plainEnglish": {
+    "summary": "Prerecorded audio and video have a transcript of the dialogue, with the same exemptions for text alternatives and background-only media.",
+    "whyItMatters": "Reading at one's own pace is the difference between following a recording and merely playing it, particularly for people with cognitive or processing disabilities."
+  }
+}

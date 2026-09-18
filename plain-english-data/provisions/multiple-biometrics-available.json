@@ -1,0 +1,12 @@
+{
+  "slug": "multiple-biometrics-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/authentication/multiple-biometrics-available.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: authentication does not depend on a single type of biometric.",
+    "whyItMatters": "A person who cannot use one biometric may well be able to use another; offering only one turns a single sensor's limits into a lockout."
+  }
+}

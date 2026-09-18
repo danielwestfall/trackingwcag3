@@ -1,0 +1,12 @@
+{
+  "slug": "sensory-characteristics-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/sensory-characteristics-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Instructions and help do not depend on shape, colour, size, visual location, orientation or sound to make sense - 'the round button on the right' has to work for someone who cannot see it.",
+    "whyItMatters": "Directions given purely by appearance or position are unusable by screen reader users, and often by people with colour vision deficiencies or those using a reflowed, magnified layout."
+  }
+}

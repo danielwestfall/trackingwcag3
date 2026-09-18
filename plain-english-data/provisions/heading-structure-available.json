@@ -1,0 +1,12 @@
+{
+  "slug": "heading-structure-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/structure/heading-structure-available.md",
+  "plainEnglish": {
+    "summary": "Meaningful blocks of content are organised under a logical hierarchy of headings, where the technology supports heading levels.",
+    "whyItMatters": "Headings are the primary way screen reader users navigate a long page; a flat or scrambled hierarchy removes that route entirely."
+  }
+}

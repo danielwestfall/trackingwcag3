@@ -1,0 +1,12 @@
+{
+  "slug": "text-reflow-supported",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/adjustable-viewport/text-reflow-supported.md",
+  "plainEnglish": {
+    "summary": "Blocks of text stay legible at 320 CSS pixels in the orientation of the text, without having to scroll in that direction to read a line. Text whose meaning depends on a two-dimensional structure is exempt.",
+    "whyItMatters": "Having to scroll sideways to read every line makes sustained reading impossible, which is the everyday experience of magnification users on unreflowed layouts."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "support-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/support-available.md",
+  "plainEnglish": {
+    "summary": "Support is available while the user is entering data, completing a task or searching, where the content includes those processes.",
+    "whyItMatters": "These are the moments when people get stuck and abandon a task. Support offered at that point, rather than in a manual, is what keeps the task completable."
+  }
+}

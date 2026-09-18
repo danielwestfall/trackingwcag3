@@ -1,0 +1,12 @@
+{
+  "slug": "background-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/control-text/background-adjustable.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: patterns, designs and images behind text are avoided, or the user can remove them.",
+    "whyItMatters": "Texture behind text lowers effective contrast unpredictably and makes letter shapes harder to resolve, particularly for people with low vision or dyslexia."
+  }
+}

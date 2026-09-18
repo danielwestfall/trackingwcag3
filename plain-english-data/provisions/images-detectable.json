@@ -1,0 +1,12 @@
+{
+  "slug": "images-detectable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/image-alternatives/images-detectable.md",
+  "plainEnglish": {
+    "summary": "Where a page contains non-decorative images, those images can be detected - a user can tell that an image is there.",
+    "whyItMatters": "Knowing an image exists is what lets someone decide to seek out its description. An undetectable image is invisible even to a user who would want it."
+  }
+}

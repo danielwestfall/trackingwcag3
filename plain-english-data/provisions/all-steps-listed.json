@@ -1,0 +1,12 @@
+{
+  "slug": "all-steps-listed",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/user-orientation/all-steps-listed.md",
+  "plainEnglish": {
+    "summary": "In a multi-step process, the full list of steps is available visually and programmatically at every step - unless the number of steps is unknown or the sequence depends on what the user does.",
+    "whyItMatters": "Knowing how much is left is what lets someone decide whether they can finish now, which matters for people with fatigue, pain or limited time on a shared device."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "deceptive-practices-usability-testing",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/avoid-deception/deceptive-practices-usability-testing.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it ran a usability test including participants with cognitive or mental health disabilities to look for misleading wording, artificial pressure and misdirection, and removed what it found.",
+    "whyItMatters": "Deceptive patterns work by exploiting the gap between what an interface appears to offer and what it does - a gap that is widest for users who read it literally."
+  }
+}

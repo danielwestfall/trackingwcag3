@@ -1,0 +1,12 @@
+{
+  "slug": "captions-centered-immersive",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-centered-immersive.md",
+  "plainEnglish": {
+    "summary": "In 360-degree environments where the user controls where captions sit, the captions stay directly in front of the user as they look around.",
+    "whyItMatters": "Captions anchored to a fixed point in the scene vanish the moment the viewer turns their head, which in an immersive environment is constantly."
+  }
+}

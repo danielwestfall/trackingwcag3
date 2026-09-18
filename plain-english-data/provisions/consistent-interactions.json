@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-interactions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/expected-behavior/consistent-interactions.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it reviewed its components so that things with the same function behave the same way, use the same visual indicators and the same labels, and follow standard platform patterns where they apply.",
+    "whyItMatters": "Inconsistent behaviour forces relearning at every encounter, which is exactly the cost people with cognitive disabilities can least absorb."
+  }
+}

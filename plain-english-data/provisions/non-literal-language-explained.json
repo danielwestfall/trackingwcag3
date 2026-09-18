@@ -1,0 +1,12 @@
+{
+  "slug": "non-literal-language-explained",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/non-literal-language-explained.md",
+  "plainEnglish": {
+    "summary": "Idioms, metaphors and other non-literal language come with an explanation or an unambiguous alternative in text. Poetic, scriptural, artistic and expressive content is exempt.",
+    "whyItMatters": "Non-literal language is routinely read literally by people with some cognitive disabilities and by autistic readers, and it rarely survives translation."
+  }
+}

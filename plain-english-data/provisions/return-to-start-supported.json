@@ -1,0 +1,12 @@
+{
+  "slug": "return-to-start-supported",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/user-orientation/return-to-start-supported.md",
+  "plainEnglish": {
+    "summary": "There is a mechanism, available both visually and programmatically, to get back to the starting point of the conformance scope. Pages that are themselves the starting point are exempt, as is content where withholding the mechanism is essential.",
+    "whyItMatters": "A dependable route home is what makes it safe to explore an unfamiliar interface, and it is what a disoriented user reaches for first."
+  }
+}

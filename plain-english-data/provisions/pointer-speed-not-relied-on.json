@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-speed-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/pointer-input/pointer-speed-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Functionality cannot depend on moving the pointer at a particular speed, unless that speed is essential.",
+    "whyItMatters": "Speed requirements like double-click timing or a fast flick exclude people whose movements are slow or variable, including many older users."
+  }
+}

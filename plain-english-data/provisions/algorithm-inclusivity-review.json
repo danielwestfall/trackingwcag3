@@ -1,0 +1,12 @@
+{
+  "slug": "algorithm-inclusivity-review",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/policy-and-protection/risk/algorithm-inclusivity-review.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it has a policy and process for reviewing the data set, the results or the algorithm itself to reduce disadvantage to disabled people, and records which disabilities were considered and what was reviewed.",
+    "whyItMatters": "Naming what was reviewed and which disabilities were in scope is what turns a general claim of fairness into something that can be checked."
+  }
+}

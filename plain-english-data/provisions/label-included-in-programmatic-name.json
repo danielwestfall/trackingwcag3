@@ -1,0 +1,12 @@
+{
+  "slug": "label-included-in-programmatic-name",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/control-information/label-included-in-programmatic-name.md",
+  "plainEnglish": {
+    "summary": "The programmatic name of a control contains the visible label text.",
+    "whyItMatters": "Voice control users say what they see. When the accessible name does not contain the visible words, the command simply fails."
+  }
+}

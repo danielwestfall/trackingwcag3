@@ -1,0 +1,12 @@
+{
+  "slug": "disabled-controls-explained",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/disabled-controls-explained.md",
+  "plainEnglish": {
+    "summary": "When a control is visible but disabled, the content explains why, and if the user can do something to enable it, says what.",
+    "whyItMatters": "A greyed-out button with no explanation is a dead end: the user cannot tell whether they have missed a step, lack permission, or hit a bug."
+  }
+}

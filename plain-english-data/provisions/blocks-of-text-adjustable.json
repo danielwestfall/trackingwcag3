@@ -1,0 +1,12 @@
+{
+  "slug": "blocks-of-text-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/blocks-of-text-adjustable.md",
+  "plainEnglish": {
+    "summary": "The presentation of blocks of text can be adjusted without losing content or functionality - inline margin, block margin, line length, line height and justification. The exact values are still to be determined in the draft. Hard-coded styling, such as raw text that is already capitalised or hyphenated, is exempt.",
+    "whyItMatters": "Readers with dyslexia, low vision or attention-related disabilities often need wider spacing or shorter lines. Layouts that break when those change force a choice between reading comfortably and reading at all."
+  }
+}

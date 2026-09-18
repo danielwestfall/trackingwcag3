@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-pressure-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/pointer-input/pointer-pressure-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Requiring a particular pointer pressure - a force press, for instance - cannot be the only way to do something, unless that pressure is essential.",
+    "whyItMatters": "Pressure-sensitive input assumes controlled force, which is not available to people with weakness, tremor, or those using a head pointer, stylus or switch."
+  }
+}

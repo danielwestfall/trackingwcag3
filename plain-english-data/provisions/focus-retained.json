@@ -1,0 +1,12 @@
+{
+  "slug": "focus-retained",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/navigating-content/focus-retained.md",
+  "plainEnglish": {
+    "summary": "A user can move focus into an area such as a modal or popup and get back to the rest of the content in a small number of steps.",
+    "whyItMatters": "Escaping an overlay by tabbing through everything inside it is slow enough that many keyboard users give up on the task."
+  }
+}

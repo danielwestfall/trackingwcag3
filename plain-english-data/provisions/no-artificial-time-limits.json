@@ -1,0 +1,12 @@
+{
+  "slug": "no-artificial-time-limits",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/avoid-deception/no-artificial-time-limits.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: completing a process does not involve artificial time limits - countdowns manufactured to create urgency - unless the limit is essential.",
+    "whyItMatters": "Manufactured urgency pushes people into decisions before they have understood them, and hits hardest anyone who needs longer to read or decide."
+  }
+}

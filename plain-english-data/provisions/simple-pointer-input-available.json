@@ -1,0 +1,12 @@
+{
+  "slug": "simple-pointer-input-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/pointer-input/simple-pointer-input-available.md",
+  "plainEnglish": {
+    "summary": "Anything you can do with a complex pointer input - multi-finger, multi-point, path-based - can also be done with a simple pointer input, or a series of them that does not depend on timing.",
+    "whyItMatters": "Multi-point and timed gestures are unavailable to people using a head pointer, switch, stylus or single finger, and to anyone whose movements are slow or imprecise."
+  }
+}

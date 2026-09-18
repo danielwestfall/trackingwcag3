@@ -1,0 +1,12 @@
+{
+  "slug": "sounds-identified-in-audio-descriptions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/sounds-identified-in-audio-descriptions.md",
+  "plainEnglish": {
+    "summary": "Where sound carries meaning and the video is not decorative, that sound is named or described in the captions and transcript rather than left to be heard.",
+    "whyItMatters": "A door closing offscreen or an alarm can carry the plot. Deaf and hard-of-hearing viewers only get it if it is written down."
+  }
+}

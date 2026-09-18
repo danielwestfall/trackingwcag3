@@ -1,0 +1,12 @@
+{
+  "slug": "focus-indicator-size-sufficient",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-size-sufficient.md",
+  "plainEnglish": {
+    "summary": "Where a custom focus indicator replaces the browser default, it has to be large enough and close enough to what it marks.",
+    "whyItMatters": "A hairline outline is easy to lose on a busy page, particularly for people with low vision or when the page is magnified."
+  }
+}

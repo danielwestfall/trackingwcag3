@@ -1,0 +1,12 @@
+{
+  "slug": "text-appearance-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-to-speech/text-appearance-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: where styling, weight or other text characteristics carry meaning beyond the words themselves, that meaning is also available programmatically. Where the only added meaning is emphasis, the requirement does not apply.",
+    "whyItMatters": "Bold, colour and size are invisible to a screen reader unless marked up. Meaning carried only by appearance simply does not reach the user."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "infinite-scrolling-controllable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/no-obstruction/infinite-scrolling-controllable.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: where content scrolls infinitely, a control before the scrolling content lets the user switch that behaviour off, and nothing becomes unreachable when they do.",
+    "whyItMatters": "Infinite scroll can put the footer permanently out of reach and makes a page impossible to get to the end of - a particular problem for screen reader and keyboard users."
+  }
+}

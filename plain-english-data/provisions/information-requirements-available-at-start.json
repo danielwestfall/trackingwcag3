@@ -1,0 +1,12 @@
+{
+  "slug": "information-requirements-available-at-start",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/complete-tasks/information-requirements-available-at-start.md",
+  "plainEnglish": {
+    "summary": "Where a user has to complete a multi-step process, the information and resources needed are given up front: how many steps it may take if that is known, what will be needed to do it, and an overview of the process and the next step.",
+    "whyItMatters": "Discovering halfway through that a document is needed means abandoning the task. Knowing in advance is what lets people with limited time, energy or attention start at the right moment."
+  }
+}

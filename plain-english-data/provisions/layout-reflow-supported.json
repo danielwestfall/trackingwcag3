@@ -1,0 +1,12 @@
+{
+  "slug": "layout-reflow-supported",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/adjustable-viewport/layout-reflow-supported.md",
+  "plainEnglish": {
+    "summary": "The page has to work in a 320-CSS-pixel-wide column - the width of a 1280px page at 400% zoom - without forcing the reader to scroll both across and down. Sections that scroll the other way must fit that width too. Tables and program guides, slide-style canvases, and multi-panel tools such as image editors and IDEs are exempt.",
+    "whyItMatters": "320 CSS pixels is what a 1280-pixel page looks like at 400% zoom. Content that forces scrolling in both directions at that size makes reading a line a two-handed operation."
+  }
+}

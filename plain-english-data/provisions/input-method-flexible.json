@@ -1,0 +1,12 @@
+{
+  "slug": "input-method-flexible",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/input-operation/input-method-flexible.md",
+  "plainEnglish": {
+    "summary": "The user can switch between input methods at any time, rather than being locked into the one they started with.",
+    "whyItMatters": "Many people move between keyboard, pointer, voice and touch during one session, often because of fatigue or pain. Being locked in forces them to stop."
+  }
+}

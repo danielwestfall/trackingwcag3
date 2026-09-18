@@ -1,0 +1,12 @@
+{
+  "slug": "non-verbal-cues-identified-in-transcripts",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/non-verbal-cues-identified-in-transcripts.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: nonverbal cues needed to understand the media are explained in the transcript.",
+    "whyItMatters": "A transcript of words alone loses the tone and reaction that told the audience how to read those words."
+  }
+}

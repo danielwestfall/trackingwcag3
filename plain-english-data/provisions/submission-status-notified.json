@@ -1,0 +1,12 @@
+{
+  "slug": "submission-status-notified",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/prevent-errors/submission-status-notified.md",
+  "plainEnglish": {
+    "summary": "When a submission succeeds or fails, the interface says so at the time it happens.",
+    "whyItMatters": "Without an announcement, a screen reader user has no way to know whether anything happened, and may submit again - or leave believing a task is done when it failed."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-contrast-sufficient",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/pointer-focus-appearance/pointer-contrast-sufficient.md",
+  "plainEnglish": {
+    "summary": "Where the pointer's appearance can be changed from the platform default, it must meet the non-text contrast requirement and be at least as large as the default.",
+    "whyItMatters": "A custom cursor that is smaller or fainter than the system one is harder to track for exactly the people who most need to track it."
+  }
+}

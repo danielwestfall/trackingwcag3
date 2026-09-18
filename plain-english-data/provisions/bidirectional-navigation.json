@@ -1,0 +1,12 @@
+{
+  "slug": "bidirectional-navigation",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/bidirectional-navigation.md",
+  "plainEnglish": {
+    "summary": "The keyboard interface can always move on to the next interactive element and back to the previous one.",
+    "whyItMatters": "One-way navigation means a mistake can only be corrected by starting the page over, which for a keyboard-only user can mean dozens of keystrokes."
+  }
+}

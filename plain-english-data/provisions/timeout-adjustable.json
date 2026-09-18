@@ -1,0 +1,12 @@
+{
+  "slug": "timeout-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/adequate-time/timeout-adjustable.md",
+  "plainEnglish": {
+    "summary": "Where time limits exist, there is a way to extend the limit before it expires or to switch it off - unless the limit is essential.",
+    "whyItMatters": "Without an extension, a session that times out mid-form destroys work, and the people most likely to hit it are those who were already working hardest to complete it."
+  }
+}

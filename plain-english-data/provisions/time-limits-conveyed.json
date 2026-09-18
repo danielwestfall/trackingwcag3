@@ -1,0 +1,12 @@
+{
+  "slug": "time-limits-conveyed",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/adequate-time/time-limits-conveyed.md",
+  "plainEnglish": {
+    "summary": "Where a time limit exists, the user is told at the start of the process or session that there is one, how long it is, and that it can be adjusted - unless hiding its existence is essential.",
+    "whyItMatters": "A limit nobody mentions is discovered by losing work. Knowing about it in advance is what lets someone adjust it or plan around it."
+  }
+}

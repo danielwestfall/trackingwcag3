@@ -1,0 +1,12 @@
+{
+  "slug": "text-size-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/text-size-adjustable.md",
+  "plainEnglish": {
+    "summary": "Text can be increased to at least 200% of the platform's default body-text size. Text that also appears elsewhere in the view and can be enlarged that far is exempt.",
+    "whyItMatters": "Enlarging text is the most common adaptation there is. Layouts that clip, overlap or scroll sideways at 200% take it away from people with low vision."
+  }
+}

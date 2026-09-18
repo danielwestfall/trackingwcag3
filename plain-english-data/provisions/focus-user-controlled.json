@@ -1,0 +1,12 @@
+{
+  "slug": "focus-user-controlled",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/focus-user-controlled.md",
+  "plainEnglish": {
+    "summary": "Keyboard focus moves only because the user did something. The draft allows narrow exceptions, such as advancing between the boxes of a one-time code and security or emergency situations like an imminent session timeout.",
+    "whyItMatters": "Focus that moves on its own takes control away mid-task: a screen reader starts reading somewhere else, and typed input can land in a field the user never chose."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "audio-descriptions-style-guide",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-style-guide.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it has a style guide covering audio descriptions, plus a policy or process requiring the guide to be followed.",
+    "whyItMatters": "Consistency across a library is what lets a regular listener build expectations. A style guide is how that consistency survives changes of author and vendor."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "captions-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-adjustable.md",
+  "plainEnglish": {
+    "summary": "Caption appearance can be adapted - font size, weight, style and colour, background colour and transparency, and where they sit on screen - along with any associated visual indicators.",
+    "whyItMatters": "Fixed captions are unreadable for many low-vision viewers. Size, contrast and position are the settings that make the difference between legible and not."
+  }
+}

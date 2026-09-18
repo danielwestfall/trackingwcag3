@@ -1,0 +1,12 @@
+{
+  "slug": "process-instructions-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/complete-tasks/process-instructions-available.md",
+  "plainEnglish": {
+    "summary": "Where a task runs across several steps, the instructions for completing it are there to be found - the process does not assume the user already knows how it works.",
+    "whyItMatters": "Processes that assume prior knowledge exclude first-time users, and disproportionately those who cannot infer the missing steps from the layout alone."
+  }
+}

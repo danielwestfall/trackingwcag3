@@ -1,0 +1,12 @@
+{
+  "slug": "no-visual-motion",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/no-visual-motion.md",
+  "plainEnglish": {
+    "summary": "Visual motion and pseudo-motion - things like parallax scrolling and moving backgrounds - must not run longer than five seconds, unless the motion is essential.",
+    "whyItMatters": "Sustained motion can cause nausea, dizziness and migraine in people with vestibular disorders, and it pulls attention away from the content for people with attention-related disabilities."
+  }
+}

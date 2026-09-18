@@ -1,0 +1,12 @@
+{
+  "slug": "consequences-of-choices-explained",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/policy-and-protection/risk/consequences-of-choices-explained.md",
+  "plainEnglish": {
+    "summary": "Choices with legal, financial, privacy or security consequences come with a description of the benefits, the risks and what may follow.",
+    "whyItMatters": "Interfaces routinely present consequential choices as routine ones. An explicit description is what protects people who take the interface at its word."
+  }
+}

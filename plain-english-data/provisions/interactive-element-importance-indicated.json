@@ -1,0 +1,12 @@
+{
+  "slug": "interactive-element-importance-indicated",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/control-information/interactive-element-importance-indicated.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: the relative importance of interactive components is indicated.",
+    "whyItMatters": "When every control looks equally weighted, users have to read all of them to find the one that matters - a real cost for people with cognitive disabilities or limited screen area."
+  }
+}

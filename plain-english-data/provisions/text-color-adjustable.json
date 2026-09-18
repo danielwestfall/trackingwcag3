@@ -1,0 +1,12 @@
+{
+  "slug": "text-color-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/text-color-adjustable.md",
+  "plainEnglish": {
+    "summary": "The foreground and background colour of text can be changed without losing content or functionality. The exceptions mirror the contrast requirement: text also present elsewhere in a conforming form, text in an inactive control, pure decoration, invisible text, text within a substantive picture, and logos.",
+    "whyItMatters": "Many people read only with a specific colour combination - light text on dark, or a tinted background for scotopic sensitivity. Content that resists recolouring blocks the adaptation they depend on."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "safe-content-review",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/safe-content-review.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion, not a technical check: the organisation states that it has reviewed its content for violent, explicit or distressing material and warned people before they reach it. The assertion has to name who made it and when the review happened.",
+    "whyItMatters": "Encountering distressing content without warning can trigger trauma responses, and people who need to prepare for or avoid such material cannot do so if nothing signals it is coming."
+  }
+}

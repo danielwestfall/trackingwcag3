@@ -1,0 +1,12 @@
+{
+  "slug": "eye-tracking-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/input-operation/eye-tracking-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Content and functionality cannot rely solely on eye tracking, unless eye tracking is essential.",
+    "whyItMatters": "Eye tracking assumes steady, controllable gaze. Nystagmus, strabismus, low vision and blindness all make it unreliable or impossible."
+  }
+}

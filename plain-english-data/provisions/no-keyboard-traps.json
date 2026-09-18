@@ -1,0 +1,12 @@
+{
+  "slug": "no-keyboard-traps",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/no-keyboard-traps.md",
+  "plainEnglish": {
+    "summary": "Anything you can enter or activate with the keyboard, you can leave using standard keyboard techniques - unless a non-standard way out is described on the page or earlier in the process.",
+    "whyItMatters": "A keyboard trap ends the session: the user cannot move on, cannot go back, and often cannot reach the browser's own controls."
+  }
+}

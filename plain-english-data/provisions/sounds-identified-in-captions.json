@@ -1,0 +1,12 @@
+{
+  "slug": "sounds-identified-in-captions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/sounds-identified-in-captions.md",
+  "plainEnglish": {
+    "summary": "Where sound carries meaning and the video is not decorative, the captions say what the sound is - not only what is spoken.",
+    "whyItMatters": "Significant sounds - a phone, a knock, music signalling a change - are part of the content, not decoration around it."
+  }
+}

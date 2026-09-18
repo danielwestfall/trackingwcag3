@@ -1,0 +1,12 @@
+{
+  "slug": "consistent-navigation-order",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/consistency-across-views/consistency/consistent-navigation-order.md",
+  "plainEnglish": {
+    "summary": "Where a block of navigation repeats across a set of pages, the items keep the same relative order on each page.",
+    "whyItMatters": "Once someone has learned that a link is the fourth item, changing the order makes every page a fresh problem. That cost falls hardest on screen reader, switch and voice users, for whom re-scanning is slow."
+  }
+}

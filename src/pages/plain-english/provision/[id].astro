@@ -7,24 +7,50 @@ export async function getStaticPaths() {
   const catalogPath = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
   if (!fs.existsSync(catalogPath)) return [];
   const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+
+  // Real W3C threads, fetched from the GitHub API by
+  // scripts/fetch-provision-discussions.mjs, with the 36 hand-researched
+  // position summaries merged in by scripts/merge-discussion-summaries.mjs.
+  // 152 provisions have recorded discussion; the Discussions page has shown it
+  // all along, but the provision's own page - the place someone reading that
+  // provision would look - said only "no summary has been written".
+  const discussionsPath = path.join(process.cwd(), "public", "data", "wcag3-discussions.json");
+  const discussions = fs.existsSync(discussionsPath)
+    ? JSON.parse(fs.readFileSync(discussionsPath, "utf8")).provisions || {}
+    : {};
+
   return catalog.map((item: any) => ({
     params: { id: item.slug },
-    props: { item },
+    props: { item, discussion: discussions[item.slug] || null },
   }));
 }
 
 interface Props {
   item: any;
+  discussion: any;
 }
 
-const { item } = Astro.props as Props;
+const { item, discussion } = Astro.props as Props;
+// A summary is stale when the thread has moved on since it was written - the
+// same fingerprint check the Discussions page makes.
+const summary = discussion?.summary || null;
+const summaryStale = !!summary && !!discussion?.summaryOf && !!discussion?.fingerprint
+  && discussion.summaryOf !== discussion.fingerprint;
+const threads = discussion?.threads || [];
 const ann = item?.annotation || {};
-// 242 of 245 provisions have no hand-written annotation. Theirs is generated
-// and holds only the upstream title and opening sentence — see
-// scripts/sync-wcag-plain-english.mjs for what this page used to be handed.
 // Nothing below may substitute prose of its own when a field is absent: a
 // plausible-sounding default is indistinguishable from researched analysis.
+// `generated` marks a provision with no annotation file at all - a new one
+// upstream, before anyone has written for it. All 245 are written as of this
+// build, but the state still has to render honestly when that changes.
 const generated = ann?.generated === true;
+// Which parts of the annotation were actually written, as recorded in the
+// annotation file itself rather than inferred from what happens to be present.
+const authored: string[] = Array.isArray(ann?.authored) ? ann.authored : [];
+const hasSummary = !!ann?.plainEnglish?.summary;
+const hasPersona = !!ann?.personaBreakdown;
+const hasTesting = !!ann?.testingGuide;
+const partial = !generated && hasSummary && !(hasPersona && hasTesting);
 // Inverted from the curated WCAG 2.2 -> 3 map in sync-wcag-plain-english.mjs.
 const inbound = item?.wcag22Inbound || { direct: [], viaGuideline: [], viaGroup: [] };
 const coarse = [...inbound.viaGuideline, ...inbound.viaGroup];
@@ -72,6 +98,20 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="banner-value">{likelihood}</span>
         </div>
         {ann?.statusSummary?.workingGroupDebate && <p class="banner-desc">{ann.statusSummary.workingGroupDebate}</p>}
+      </div>
+    )}
+
+    {partial && (
+      <div class="unreviewed-banner partial-banner">
+        <p>
+          <strong>Plain-English summary written; role-based advice and testing steps not.</strong>
+          The summary and "why it matters" below were written for this site from the
+          W3C draft at
+          {" "}<a href={srcUrl(ann.translatedFrom || derived.sources?.provision || '')}>{ann.translatedFrom || derived.sources?.provision}</a>.
+          Everything else on this page is either the draft's own wording, quoted and
+          linked, or the curated WCAG&nbsp;2.2 map read in reverse. Sections nobody
+          has written say so rather than filling the space.
+        </p>
       </div>
     )}
 
@@ -348,10 +388,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           </div>
         ) : ann?.statusSummary?.workingGroupDebate ? null : (
           <p class="not-written">
-            The draft records no open editors' notes on this provision, and no
-            summary of working-group discussion has been written here. Recorded
-            W3C threads, where they exist, are on the
-            {" "}<a href={link("/plain-english/discussions/")}>Discussions</a> page.
+            The draft records no open editors' notes on this provision.
           </p>
         )}
 
@@ -360,6 +397,93 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <h3>Key Implementation Challenges</h3>
             <p>{ann.statusSummary.keyChallenges}</p>
           </div>
+        )}
+      </div>
+
+      <div class="panel-section">
+        <h2>W3C Threads on This Provision</h2>
+        {threads.length > 0 ? (
+          <>
+            <p class="derived-note">
+              {discussion.threadCount} GitHub {discussion.threadCount === 1 ? "thread" : "threads"}
+              {" "}carrying {discussion.commentCount} comment{discussion.commentCount === 1 ? "" : "s"},
+              fetched from <a href="https://github.com/w3c/wcag3/issues">w3c/wcag3</a> by the
+              tracker. Titles, numbers and states are the threads' own.
+            </p>
+
+            {summary ? (
+              <div class="info-card summary-card">
+                {summaryStale && (
+                  <p class="stale-flag">
+                    &#9888;&#65039; This summary is stale &mdash; comments landed after it was written.
+                  </p>
+                )}
+                <h3>What the Argument Is About</h3>
+                <p>{summary.headline}</p>
+
+                {summary.positions?.length > 0 && (
+                  <div class="positions-block">
+                    <h4>Positions taken in the thread</h4>
+                    <div class="positions-grid">
+                      {summary.positions.map((pos: any) => (
+                        <div class="position-card">
+                          <span class="position-label">{pos.label}</span>
+                          <span class="position-who">{pos.who}</span>
+                          <p class="position-detail">{pos.detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div class="agreed-open-grid">
+                  {summary.agreed?.length > 0 && (
+                    <div class="agreed-box">
+                      <h4>Agreed</h4>
+                      <ul>{summary.agreed.map((a: string) => <li>{a}</li>)}</ul>
+                    </div>
+                  )}
+                  {summary.open?.length > 0 && (
+                    <div class="open-box">
+                      <h4>Still open</h4>
+                      <ul>{summary.open.map((o: string) => <li>{o}</li>)}</ul>
+                    </div>
+                  )}
+                </div>
+
+                {summary.note && (
+                  <div class="info-card note-box">
+                    <h4>Note</h4>
+                    <p>{summary.note}</p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p class="not-written">
+                Nobody has read these threads and written up the positions yet, so
+                only the threads themselves are listed.
+              </p>
+            )}
+
+            <ul class="thread-list">
+              {threads.map((t: any) => (
+                <li>
+                  <a href={t.url} target="_blank" rel="noopener noreferrer" class="thread-link-item">
+                    <span class="thread-title">#{t.number} {t.title}</span>
+                    <span class={`thread-state state-${t.state}`}>{t.state}</span>
+                    <span class="thread-meta">{t.comments} comment{t.comments === 1 ? "" : "s"} &middot; updated {t.updated}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p class="not-written">
+            No GitHub issue in w3c/wcag3 carries this provision's label, so there
+            is no recorded discussion to show. Cross-cutting threads that name no
+            provision are listed on the
+            {" "}<a href={link("/plain-english/discussions/")}>Discussions</a> page.
+          </p>
         )}
       </div>
     </div>
@@ -638,6 +762,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     line-height: 1.6;
     margin: 0;
   }
+  /* A written summary is a different state from an unwritten provision, so it
+     gets its own colour rather than the same warning stripe. */
+  .partial-banner {
+    border-left-color: var(--accent-blue);
+  }
+  .unreviewed-banner a {
+    color: var(--accent-blue);
+    overflow-wrap: anywhere;
+  }
   .unreviewed-banner strong {
     display: block;
     color: var(--text-primary);
@@ -711,6 +844,134 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     border-left: 4px solid var(--accent-amber, var(--accent-blue));
   }
   .test-procedure :global(ol) { counter-reset: none; }
+
+  /* --- Real W3C discussion, mirrored from the Discussions page ------------- */
+  .summary-card { border-left: 4px solid var(--accent-blue); }
+  .stale-flag {
+    color: var(--accent-amber);
+    font-size: 0.84rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .summary-card h4 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 16px 0 8px;
+  }
+  .positions-grid {
+    display: grid;
+    /* min() so a card may shrink below its track floor instead of forcing the
+       grid wider than the viewport - the failure mode this site keeps hitting. */
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 14px;
+  }
+  .position-card {
+    background: rgba(7, 11, 20, 0.75);
+    border-left: 3px solid var(--accent-blue);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 14px 16px;
+  }
+  .position-label {
+    display: block;
+    font-weight: 700;
+    color: var(--accent-blue);
+    font-size: 0.88rem;
+    margin-bottom: 3px;
+  }
+  .position-who {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+  }
+  .position-detail {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .agreed-open-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: 14px;
+  }
+  .agreed-box, .open-box { border-radius: var(--radius-md); padding: 14px 18px; }
+  .agreed-box { background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.3); }
+  .open-box { background: rgba(251, 113, 133, 0.08); border: 1px solid rgba(251, 113, 133, 0.3); }
+  .summary-card .agreed-box h4 { color: #34d399; margin-top: 0; }
+  .summary-card .open-box h4 { color: #fb7185; margin-top: 0; }
+  .agreed-box ul, .open-box ul {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .agreed-box li, .open-box li {
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+  .note-box {
+    background: rgba(148, 163, 184, 0.08);
+    border: 1px dashed var(--border-default);
+    margin-top: 14px;
+  }
+  .summary-card .note-box h4 { color: var(--text-muted); margin-top: 0; }
+  .note-box p { font-style: italic; }
+
+  .thread-list {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .thread-link-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 10px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--accent-blue);
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+  .thread-link-item:hover {
+    border-color: var(--accent-blue);
+    background: var(--surface-card-hover);
+  }
+  .thread-title {
+    /* Issue titles are long and arbitrary; let them wrap rather than clipping
+       them or pushing the row sideways. */
+    flex: 1 1 200px;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .thread-state {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: var(--radius-sm);
+    padding: 2px 8px;
+    flex-shrink: 0;
+  }
+  .state-open { background: rgba(52, 211, 153, 0.18); color: #34d399; }
+  .state-closed { background: rgba(148, 163, 184, 0.18); color: var(--text-muted); }
+  .thread-meta {
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
 
   .likelihood-banner {
     background: linear-gradient(135deg, rgba(19, 29, 49, 0.85) 0%, rgba(11, 17, 32, 0.95) 100%);
@@ -897,11 +1158,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .code-box {
     border-radius: var(--radius-md);
     padding: 18px;
-    background: #070b14;
-    border: 1px solid var(--border-default);
+    /* Theme-aware: the hard-coded dark surface left the code text at 1.13:1 in
+       the light theme, hidden behind a closed tab where no sweep could see it. */
+    background: var(--code-surface);
+    color: var(--code-text);
+    border: 1px solid var(--code-border);
   }
-  .code-box.good { border-top: 3px solid #34d399; }
-  .code-box.bad { border-top: 3px solid #f43f5e; }
+  .code-box.good { border-top: 3px solid var(--code-ok); }
+  .code-box.bad { border-top: 3px solid var(--code-bad); }
 
   .code-header {
     display: flex;
@@ -911,13 +1175,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     font-weight: 700;
     font-size: 0.88rem;
   }
-  .good .code-header span { color: #34d399; }
-  .bad .code-header span { color: #f43f5e; }
+  .good .code-header span { color: var(--code-ok); }
+  .bad .code-header span { color: var(--code-bad); }
 
   .copy-code-btn {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-subtle);
+    /* Neutral tint rather than a white wash, so the button reads on both the
+       dark and the light code surface. */
+    background: rgba(127, 127, 127, 0.16);
+    color: var(--code-text);
+    border: 1px solid var(--code-border);
     padding: 3px 9px;
     border-radius: var(--radius-sm);
     font-size: 0.75rem;
@@ -926,8 +1192,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     transition: var(--transition-fast);
   }
   .copy-code-btn:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.15);
+    color: var(--code-text);
+    background: rgba(127, 127, 127, 0.28);
   }
   .copy-code-btn.copied {
     background: #34d399;
@@ -1017,10 +1283,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
 
   .raw-body-box pre {
-    background: #070b14;
+    background: var(--code-surface);
+    color: var(--code-text);
     padding: 20px;
     border-radius: var(--radius-md);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--code-border);
   }
 
   @media (max-width: 768px) {
@@ -1054,5 +1321,45 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   :global(html[data-theme="light"]) .delta-desc {
     color: #1e293b;
+  }
+  /* Same light palette the Discussions page uses, so the two views of the same
+     data look like the same data. Ratios are the measured ones from the
+     contrast pass: #047857 is 4.83:1 and #be123c 5.91:1 on their tinted
+     backgrounds. */
+  :global(html[data-theme="light"]) .position-card {
+    background: #f8fafc;
+    border-left-color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .position-label {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .agreed-box {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+  :global(html[data-theme="light"]) .summary-card .agreed-box h4 {
+    color: #047857;
+  }
+  :global(html[data-theme="light"]) .open-box {
+    background: #fff1f2;
+    border-color: #fecdd3;
+  }
+  :global(html[data-theme="light"]) .summary-card .open-box h4 {
+    color: #be123c;
+  }
+  :global(html[data-theme="light"]) .note-box {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .thread-link-item {
+    color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .state-open {
+    background: #ecfdf5;
+    color: #047857;
+  }
+  :global(html[data-theme="light"]) .state-closed {
+    background: #f1f5f9;
+    color: #475569;
   }
 </style>

@@ -1,0 +1,12 @@
+{
+  "slug": "going-back-supported",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/retain-information/going-back-supported.md",
+  "plainEnglish": {
+    "summary": "In a multi-step process the user can step backwards and return to where they were without losing data - unless it is essential that they cannot go back.",
+    "whyItMatters": "Correcting an earlier answer should not cost the whole form. Losing data on going back punishes exactly the users who most often need to check their work."
+  }
+}

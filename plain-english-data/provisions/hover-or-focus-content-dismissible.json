@@ -1,0 +1,12 @@
+{
+  "slug": "hover-or-focus-content-dismissible",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/input-operation/hover-or-focus-content-dismissible.md",
+  "plainEnglish": {
+    "summary": "Content that appears on hover or keyboard focus can be dismissed without moving the pointer or the focus, unless it does not cover or replace anything else.",
+    "whyItMatters": "A popup covering the field you are typing in is a trap for magnification users - dismissing it by moving away means losing your place."
+  }
+}

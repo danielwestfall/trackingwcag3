@@ -1,0 +1,12 @@
+{
+  "slug": "audio-descriptions-available-prerecorded",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-available-prerecorded.md",
+  "plainEnglish": {
+    "summary": "Prerecorded video carries audio descriptions of the visual information needed to follow it. Video that exists as an alternative to text and says so is exempt.",
+    "whyItMatters": "Anything conveyed only by the picture - a document on screen, a gesture, who just entered the room - is simply absent for blind and low-vision viewers without description."
+  }
+}

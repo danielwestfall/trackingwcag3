@@ -1,0 +1,12 @@
+{
+  "slug": "no-unnecessary-time-limits",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/adequate-time/no-unnecessary-time-limits.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that the products and processes in scope have no non-essential time limits for engagement or completion.",
+    "whyItMatters": "Most time limits are implementation convenience rather than necessity, and each one silently excludes whoever cannot work at that pace."
+  }
+}

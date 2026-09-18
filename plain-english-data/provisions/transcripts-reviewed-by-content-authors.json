@@ -1,0 +1,12 @@
+{
+  "slug": "transcripts-reviewed-by-content-authors",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/transcripts-reviewed-by-content-authors.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it reviewed its transcripts, and records who did so and when.",
+    "whyItMatters": "Automatic transcription errors cluster on exactly the words that carry meaning - names, terms, numbers. Review is what catches them."
+  }
+}

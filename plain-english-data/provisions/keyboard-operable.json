@@ -1,0 +1,12 @@
+{
+  "slug": "keyboard-operable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/keyboard-operable.md",
+  "plainEnglish": {
+    "summary": "Anything operable by pointer, voice, gesture, camera or any other means has to be operable with the keyboard interface alone.",
+    "whyItMatters": "Reaching a control is not the same as being able to use it. A custom widget that only responds to a mouse event is a dead end for every keyboard-driven assistive technology."
+  }
+}

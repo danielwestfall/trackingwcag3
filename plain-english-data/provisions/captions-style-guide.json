@@ -1,0 +1,12 @@
+{
+  "slug": "captions-style-guide",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-style-guide.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it has a style guide covering captions, plus a policy or process requiring it to be followed.",
+    "whyItMatters": "Caption conventions - how speakers are named, how sounds are written - only help if they are stable. A style guide is how they stay stable across teams."
+  }
+}

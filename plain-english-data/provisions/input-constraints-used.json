@@ -1,0 +1,12 @@
+{
+  "slug": "input-constraints-used",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/control-information/input-constraints-used.md",
+  "plainEnglish": {
+    "summary": "The constraints and conditions on a field - required format, length, allowed values - are made available to the user.",
+    "whyItMatters": "Constraints discovered only by failing are a guessing game, which is costly for people with cognitive disabilities and for anyone whose input is slow or effortful."
+  }
+}

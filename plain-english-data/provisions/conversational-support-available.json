@@ -1,0 +1,12 @@
+{
+  "slug": "conversational-support-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/conversational-support-available.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: support is available through conversation, in both text and speech, rather than only one of the two.",
+    "whyItMatters": "Some people cannot use speech and some cannot use typing. Offering both formats means the support route itself is not the barrier."
+  }
+}

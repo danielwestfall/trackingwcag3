@@ -1,0 +1,12 @@
+{
+  "slug": "audio-descriptions-controllable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-controllable.md",
+  "plainEnglish": {
+    "summary": "There is a way to turn audio descriptions on and off, unless they are baked into the recording and cannot be separated.",
+    "whyItMatters": "Description is welcome to some listeners and intrusive to others sharing the same screen. Control is what lets both use the same content."
+  }
+}

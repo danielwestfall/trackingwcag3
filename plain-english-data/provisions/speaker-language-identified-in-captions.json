@@ -1,0 +1,12 @@
+{
+  "slug": "speaker-language-identified-in-captions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/speaker-language-identified-in-captions.md",
+  "plainEnglish": {
+    "summary": "Where more than one language is spoken, the captions identify which language each speaker is using. Incidental words are exempt.",
+    "whyItMatters": "A deaf viewer cannot hear the switch. Naming the language is what prevents a translated line from reading as the speaker's own words."
+  }
+}

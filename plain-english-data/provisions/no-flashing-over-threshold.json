@@ -1,0 +1,12 @@
+{
+  "slug": "no-flashing-over-threshold",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/no-flashing-over-threshold.md",
+  "plainEnglish": {
+    "summary": "Anything that flashes has to stay under the general flash and red flash thresholds, unless the flashing is essential to what the content is.",
+    "whyItMatters": "Flashing above these thresholds can trigger seizures in people with photosensitive epilepsy. This is one of the few accessibility failures that can cause immediate physical harm."
+  }
+}

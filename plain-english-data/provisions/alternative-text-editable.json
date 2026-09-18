@@ -1,0 +1,12 @@
+{
+  "slug": "alternative-text-editable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/image-alternatives/alternative-text-editable.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: where text descriptions are generated automatically, the content creator can edit them.",
+    "whyItMatters": "Generated descriptions miss what the image is for in its context. Editability is what lets the person who knows the purpose correct it."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "interactive-elements-distinguishable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+  "plainEnglish": {
+    "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+    "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability."
+  }
+}

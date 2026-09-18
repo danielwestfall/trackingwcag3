@@ -1,0 +1,12 @@
+{
+  "slug": "direction-indicated-immersive",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/direction-indicated-immersive.md",
+  "plainEnglish": {
+    "summary": "In 360-degree environments, when a sound or speech comes from outside the current view, its direction is indicated.",
+    "whyItMatters": "Spatial audio is the usual cue for where to look, and it is unavailable to deaf and hard-of-hearing users. A visual direction cue restores it."
+  }
+}

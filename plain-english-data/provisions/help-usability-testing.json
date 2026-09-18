@@ -1,0 +1,12 @@
+{
+  "slug": "help-usability-testing",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/help-usability-testing.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it added help and training in response to usability testing with people with cognitive and mental health disabilities, and records when that testing happened.",
+    "whyItMatters": "Help written without testing tends to answer the questions the authors imagined. Testing with the people who rely on it is what finds the gaps that matter."
+  }
+}

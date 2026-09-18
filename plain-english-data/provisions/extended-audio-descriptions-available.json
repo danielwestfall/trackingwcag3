@@ -1,0 +1,12 @@
+{
+  "slug": "extended-audio-descriptions-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/extended-audio-descriptions-available.md",
+  "plainEnglish": {
+    "summary": "Where the natural gaps in the soundtrack are too short to describe what is on screen, the video pauses so that a longer description can be given.",
+    "whyItMatters": "Dense visual content cannot be described in the pauses a soundtrack happens to leave. Pausing is the only way to convey it without cutting information."
+  }
+}

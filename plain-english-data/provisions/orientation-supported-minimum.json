@@ -1,0 +1,12 @@
+{
+  "slug": "orientation-supported-minimum",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/adjustable-viewport/orientation-supported-minimum.md",
+  "plainEnglish": {
+    "summary": "Where a platform has a default orientation, content supports it; where the platform has none, content supports both portrait and landscape. The same exemptions apply.",
+    "whyItMatters": "Locking orientation overrides a physical setup the user cannot change, which is why this is a baseline rather than an enhancement."
+  }
+}

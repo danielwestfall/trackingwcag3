@@ -1,0 +1,12 @@
+{
+  "slug": "diacritics-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/diacritics-available.md",
+  "plainEnglish": {
+    "summary": "Where a language has a form that drops diacritics for proficient readers, the diacritics needed to identify each word's correct meaning are available.",
+    "whyItMatters": "Without them, a word can be read several ways. Readers who are still learning the language, or who have a reading disability, cannot reliably pick the right one from context."
+  }
+}

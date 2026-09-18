@@ -1,0 +1,12 @@
+{
+  "slug": "return-to-start-prominent",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/user-orientation/return-to-start-prominent.md",
+  "plainEnglish": {
+    "summary": "A recommended practice: ways to get back to the starting point of the conformance scope are prominent, both visually and programmatically.",
+    "whyItMatters": "A reliable way home is what makes exploring safe. Without it, getting lost means starting over."
+  }
+}

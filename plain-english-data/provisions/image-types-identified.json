@@ -1,0 +1,12 @@
+{
+  "slug": "image-types-identified",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/image-alternatives/image-types-identified.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: the type of an image is indicated - a photo, a chart, an illustration. Images that are links, buttons, or purely decorative are exempt.",
+    "whyItMatters": "Knowing the kind of image sets expectations about what the alternative will contain and whether a longer description is worth seeking out."
+  }
+}

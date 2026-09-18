@@ -1,0 +1,12 @@
+{
+  "slug": "biometrics-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/authentication/biometrics-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Biometric identification cannot be the only way to identify or authenticate - there has to be another route in.",
+    "whyItMatters": "Fingerprint and face recognition fail for people whose bodies the sensors were not designed around, including people with tremor, limb differences, facial differences or certain eye conditions. A failed scan with no alternative locks the account."
+  }
+}

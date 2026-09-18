@@ -1,0 +1,12 @@
+{
+  "slug": "accessible-audio-player-selected",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/accessible-media-player/accessible-audio-player-selected.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion, relevant when audio needs a player that standard browsers do not provide: the organisation states that its audio player supports the media alternatives it lists, such as turning audio descriptions on and off and changing their language.",
+    "whyItMatters": "A custom player can undo the accessibility of the media inside it. Naming the features it actually supports makes that checkable rather than assumed."
+  }
+}

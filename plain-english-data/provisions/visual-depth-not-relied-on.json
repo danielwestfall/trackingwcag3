@@ -1,0 +1,12 @@
+{
+  "slug": "visual-depth-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/single-sense/visual-depth-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Depth perception cannot be the only way information is conveyed.",
+    "whyItMatters": "Stereoscopic depth needs usable vision in both eyes. People with monocular vision or amblyopia get no depth cue at all, and flat displays remove it for everyone."
+  }
+}

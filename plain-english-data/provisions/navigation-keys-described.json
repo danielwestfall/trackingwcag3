@@ -1,0 +1,12 @@
+{
+  "slug": "navigation-keys-described",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/physical-or-cognitive-effort-when-using-keyboard/navigation-keys-described.md",
+  "plainEnglish": {
+    "summary": "If understanding or operating the page needs a keyboard action that is not a common navigation technique, it is described on that page or earlier in the process.",
+    "whyItMatters": "Custom interaction models are not discoverable by exploration. Without a description, a keyboard user has no way to know the technique exists."
+  }
+}

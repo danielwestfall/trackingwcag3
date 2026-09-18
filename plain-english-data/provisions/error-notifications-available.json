@@ -1,0 +1,12 @@
+{
+  "slug": "error-notifications-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/correct-errors/error-notifications-available.md",
+  "plainEnglish": {
+    "summary": "When the content can detect an error, it says so in text and describes what the problem is - not just that something went wrong.",
+    "whyItMatters": "Colour or an icon alone tells a screen reader user nothing, and 'invalid input' tells nobody what to change. A described error in text is what makes the problem fixable."
+  }
+}

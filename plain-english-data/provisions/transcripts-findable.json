@@ -1,0 +1,12 @@
+{
+  "slug": "transcripts-findable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/transcripts-findable.md",
+  "plainEnglish": {
+    "summary": "The transcript sits next to the audio or video it belongs to, not on a separate page someone has to hunt for. Media with no spoken dialogue, decorative media and labelled text alternatives are exempt.",
+    "whyItMatters": "A transcript nobody can find is not an alternative. Adjacency is what makes it a real choice at the moment the media is encountered."
+  }
+}

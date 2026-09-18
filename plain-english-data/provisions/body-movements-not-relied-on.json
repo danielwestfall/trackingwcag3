@@ -1,0 +1,12 @@
+{
+  "slug": "body-movements-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/input-operation/body-movements-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "Functionality cannot depend solely on full or gross body movement, unless that movement is essential to what the function is.",
+    "whyItMatters": "Requiring someone to move their whole body excludes wheelchair users, people with limited mobility and anyone seated at a fixed workstation."
+  }
+}

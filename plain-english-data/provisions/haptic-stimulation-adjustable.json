@@ -1,0 +1,12 @@
+{
+  "slug": "haptic-stimulation-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/animation-and-movement/avoid-physical-harm/haptic-stimulation-adjustable.md",
+  "plainEnglish": {
+    "summary": "Vibration and other haptic feedback the content triggers must be reducible or switchable off. Haptics the operating system generates on the user's own request are out of scope.",
+    "whyItMatters": "Vibration can cause pain for people with chronic pain conditions or tremor, and it can be startling or disorienting for people with sensory processing differences."
+  }
+}

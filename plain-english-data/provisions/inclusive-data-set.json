@@ -1,0 +1,12 @@
+{
+  "slug": "inclusive-data-set",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/policy-and-protection/algorithms/inclusive-data-set.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that its authors train AI models on representative, unbiased disability-related data, in proportion to the general population.",
+    "whyItMatters": "Models trained on data where disabled people are rare or stereotyped reproduce that in their output - and increasingly that output is the interface."
+  }
+}

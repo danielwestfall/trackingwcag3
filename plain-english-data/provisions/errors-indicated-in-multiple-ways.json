@@ -1,0 +1,12 @@
+{
+  "slug": "errors-indicated-in-multiple-ways",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/error-handling/correct-errors/errors-indicated-in-multiple-ways.md",
+  "plainEnglish": {
+    "summary": "An error has to be marked in at least two of three ways: a symbol used consistently throughout, a distinguishing colour, and a textual indication.",
+    "whyItMatters": "Colour alone is invisible to people with colour vision deficiencies and disappears in high-contrast modes. A second, redundant signal means the error still registers."
+  }
+}

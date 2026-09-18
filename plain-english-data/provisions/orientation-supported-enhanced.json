@@ -1,0 +1,12 @@
+{
+  "slug": "orientation-supported-enhanced",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/adjustable-viewport/orientation-supported-enhanced.md",
+  "plainEnglish": {
+    "summary": "Content works in both portrait and landscape. Content aligned with the physical world, and cases where a particular orientation is essential, are exempt.",
+    "whyItMatters": "A device mounted to a wheelchair or a bed is fixed in one orientation. Content that only works the other way round cannot be used at all."
+  }
+}

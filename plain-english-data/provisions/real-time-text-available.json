@@ -1,0 +1,12 @@
+{
+  "slug": "real-time-text-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/speech-and-voice-input/real-time-text-available.md",
+  "plainEnglish": {
+    "summary": "Two-way live voice communication also offers real-time text - text that transmits as it is typed rather than when a message is sent.",
+    "whyItMatters": "Real-time text lets a deaf or non-speaking person hold a live conversation at conversational pace, including in emergencies where a voice call is the default channel."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "focus-indicator-contrast-sufficient",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-contrast-sufficient.md",
+  "plainEnglish": {
+    "summary": "Where a custom focus indicator replaces the browser default, it has to have sufficient contrast against what is next to it and sufficient change of contrast from the unfocused state.",
+    "whyItMatters": "An indicator that cannot be distinguished from the background tells a sighted keyboard user nothing about where they are on the page."
+  }
+}

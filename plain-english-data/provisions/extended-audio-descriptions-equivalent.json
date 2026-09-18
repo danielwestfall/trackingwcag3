@@ -1,0 +1,12 @@
+{
+  "slug": "extended-audio-descriptions-equivalent",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/extended-audio-descriptions-equivalent.md",
+  "plainEnglish": {
+    "summary": "The extended description must convey the same information as the visual content it describes, not just fill the pause.",
+    "whyItMatters": "The pause is bought at the cost of the viewer's time; an inadequate description wastes it and still leaves the content incomplete."
+  }
+}

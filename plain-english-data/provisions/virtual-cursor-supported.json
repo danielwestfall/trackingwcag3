@@ -1,0 +1,12 @@
+{
+  "slug": "virtual-cursor-supported",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/assistive-technology-control/virtual-cursor-supported.md",
+  "plainEnglish": {
+    "summary": "Assistive technologies can reach content and interactions when they use a separate point of regard or focus - the virtual cursor a screen reader moves through the page independently of keyboard focus.",
+    "whyItMatters": "Screen reader users read with the virtual cursor. Content that only responds to real keyboard focus is reachable but unreadable."
+  }
+}

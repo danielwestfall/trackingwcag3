@@ -1,0 +1,12 @@
+{
+  "slug": "progress-saved",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/retain-information/progress-saved.md",
+  "plainEnglish": {
+    "summary": "Data entry and task completion can be saved and resumed from the current step - unless the task is part of a real-time event where no alternative to the time limit is possible.",
+    "whyItMatters": "Being able to stop and come back is what makes a long task possible for people with fatigue, pain, attention-related disabilities, or an unreliable connection."
+  }
+}

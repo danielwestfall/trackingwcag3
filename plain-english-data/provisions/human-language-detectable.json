@@ -1,0 +1,12 @@
+{
+  "slug": "human-language-detectable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-to-speech/human-language-detectable.md",
+  "plainEnglish": {
+    "summary": "The human language of everything in the view can be determined programmatically - unless no language tag exists for it in the ISO register, or the technology cannot indicate language at all.",
+    "whyItMatters": "Screen readers choose pronunciation rules from the language tag. Untagged or mistagged text is read in the wrong accent and is often incomprehensible."
+  }
+}

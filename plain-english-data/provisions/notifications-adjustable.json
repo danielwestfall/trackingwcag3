@@ -1,0 +1,12 @@
+{
+  "slug": "notifications-adjustable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/assistive-technology-control/notifications-adjustable.md",
+  "plainEnglish": {
+    "summary": "Where notifications or other interruptions occur, their timing or position can be changed, suppressed or saved - unless the notification is an emergency or is otherwise essential.",
+    "whyItMatters": "Interruptions break concentration and can steal focus mid-task, which is particularly costly for people with attention-related and cognitive disabilities."
+  }
+}

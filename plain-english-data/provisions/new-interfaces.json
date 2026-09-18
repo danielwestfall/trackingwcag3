@@ -1,0 +1,12 @@
+{
+  "slug": "new-interfaces",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/new-interfaces.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: when an interface changes dramatically in a redesign, there is a way to learn the new one or to go back to the old design - unless the new interface is essential.",
+    "whyItMatters": "A redesign resets the learned patterns people depend on. For users with cognitive disabilities that relearning cost can be severe enough to end their use of the product."
+  }
+}

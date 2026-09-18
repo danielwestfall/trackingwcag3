@@ -1,0 +1,12 @@
+{
+  "slug": "numerical-alternatives-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/numerical-alternatives-available.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: complex numerical information, such as statistics, comes with an explanation or an alternative.",
+    "whyItMatters": "Statistics compress a lot of meaning into a form many readers cannot unpack, and a misread number can change a decision about health or money."
+  }
+}

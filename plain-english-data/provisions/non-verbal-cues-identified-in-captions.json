@@ -1,0 +1,12 @@
+{
+  "slug": "non-verbal-cues-identified-in-captions",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/non-verbal-cues-identified-in-captions.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: nonverbal cues needed to understand the media are explained in the captions.",
+    "whyItMatters": "Tone, sarcasm and emotion carry meaning that the words alone do not. Captions that omit them can invert what a scene means."
+  }
+}

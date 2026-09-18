@@ -1,0 +1,12 @@
+{
+  "slug": "path-based-gesture-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/input-operation/path-based-gesture-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "A gesture that has to follow a particular path - a swipe, a drag along a line - cannot be the only way to do something, unless the path is essential.",
+    "whyItMatters": "Path gestures require fine motor control and a pointer that can be dragged accurately, which rules out switch users, many voice users and people with tremor."
+  }
+}

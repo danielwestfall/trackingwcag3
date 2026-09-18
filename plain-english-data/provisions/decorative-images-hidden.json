@@ -1,0 +1,12 @@
+{
+  "slug": "decorative-images-hidden",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/image-alternatives/decorative-images-hidden.md",
+  "plainEnglish": {
+    "summary": "Images that are purely decorative are hidden from assistive technology.",
+    "whyItMatters": "Announcing every decorative image buries the content in noise, and for a screen reader user that noise costs real time on every pass through the page."
+  }
+}

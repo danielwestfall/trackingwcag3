@@ -1,0 +1,12 @@
+{
+  "slug": "font-size-not-relied-on",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/user-control/control-text/font-size-not-relied-on.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: where font size carries visual meaning, such as marking headings, that meaning survives when the text is resized.",
+    "whyItMatters": "Hierarchy expressed only by size collapses once a user sets their own text size - and it was never available to screen reader users in the first place."
+  }
+}

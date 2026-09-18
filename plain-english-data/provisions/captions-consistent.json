@@ -1,0 +1,12 @@
+{
+  "slug": "captions-consistent",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-consistent.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: captions look and behave the same way through a production and across related productions - styling, placement, and how speakers, languages and sounds are marked - unless a difference is essential.",
+    "whyItMatters": "Reading captions is already a divided-attention task. Consistent conventions mean the viewer spends attention on the content rather than on decoding the captions."
+  }
+}

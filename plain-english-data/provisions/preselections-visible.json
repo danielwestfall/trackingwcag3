@@ -1,0 +1,12 @@
+{
+  "slug": "preselections-visible",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/avoid-deception/preselections-visible.md",
+  "plainEnglish": {
+    "summary": "During a process, any preselected option affecting finance, privacy or safety is visible and programmatically available to the user by default.",
+    "whyItMatters": "A pre-ticked box is a decision made on the user's behalf. If it is not announced, a screen reader user may agree to it without ever encountering it."
+  }
+}

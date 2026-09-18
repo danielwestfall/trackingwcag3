@@ -1,0 +1,12 @@
+{
+  "slug": "common-words-used",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/common-words-used.md",
+  "plainEnglish": {
+    "summary": "Common words are used, and uncommon ones come with definitions. This applies to languages with more than 1,500 words; names of people and places are exempt, as are languages with no high-frequency corpus.",
+    "whyItMatters": "Vocabulary is the most common barrier in text. Uncommon words stop readers with cognitive and learning disabilities, and readers working in a second language."
+  }
+}

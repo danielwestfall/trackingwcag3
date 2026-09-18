@@ -1,0 +1,12 @@
+{
+  "slug": "audio-descriptions-synchronized",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-synchronized.md",
+  "plainEnglish": {
+    "summary": "Descriptions land in time with the video and do not talk over dialogue or other meaningful audio.",
+    "whyItMatters": "A description that collides with the dialogue costs the listener both. Timing is what keeps the described version coherent."
+  }
+}

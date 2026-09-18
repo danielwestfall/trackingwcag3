@@ -1,0 +1,12 @@
+{
+  "slug": "blocks-of-text-readable-minimum",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/blocks-of-text-readable-minimum.md",
+  "plainEnglish": {
+    "summary": "The same as the enhanced version but at a minimum level: the authored presentation of text blocks meets baseline values for inline margin, block margin, line length and line height, still to be determined.",
+    "whyItMatters": "Long lines and tight leading cause readers to lose their place on the return sweep - a problem for everyone, and a barrier for people with dyslexia or low vision."
+  }
+}

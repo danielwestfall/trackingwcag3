@@ -1,0 +1,12 @@
+{
+  "slug": "clear-language-review",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/clear-language/clear-language-review.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it has a process and policy for reviewing text for clear language before publication - meeting the Clear Language guideline's core requirements, choosing verb tense for ease of understanding, keeping paragraphs short, and opening informative paragraphs with a topic sentence - and that any style guide or author training covers these.",
+    "whyItMatters": "Clarity is a property of how content is produced. A review policy is what makes it survive deadlines and changes of author."
+  }
+}

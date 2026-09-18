@@ -1,0 +1,12 @@
+{
+  "slug": "sign-language-available-prerecorded",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/sign-language/sign-language-available-prerecorded.md",
+  "plainEnglish": {
+    "summary": "Prerecorded audio content is interpreted into the primary sign language most appropriate for its audience or region. Audio that is an alternative to visual content and labelled as such, decorative background sound and interface sound effects are exempt.",
+    "whyItMatters": "For many deaf people a sign language is their first language and the written language of the page is a second one, so captions are not an equivalent route."
+  }
+}

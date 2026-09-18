@@ -1,0 +1,12 @@
+{
+  "slug": "contextual-help-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/help-available/contextual-help-available.md",
+  "plainEnglish": {
+    "summary": "Help is available that relates to what the user is doing at the time, rather than only as general documentation.",
+    "whyItMatters": "Generic help pages put the burden of translation on the user. Help tied to the current task is what lets people with cognitive and learning disabilities finish it."
+  }
+}

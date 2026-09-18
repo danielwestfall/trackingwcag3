@@ -1,0 +1,12 @@
+{
+  "slug": "focus-indicator-style-guide",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-style-guide.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that it has a style guide covering focus indicators, plus a policy or process requiring it to be followed.",
+    "whyItMatters": "Focus styling is usually removed by accident, one component at a time. A style guide is what keeps it from eroding across a product."
+  }
+}

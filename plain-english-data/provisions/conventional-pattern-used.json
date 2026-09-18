@@ -1,0 +1,12 @@
+{
+  "slug": "conventional-pattern-used",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/interactive-components/expected-behavior/conventional-pattern-used.md",
+  "plainEnglish": {
+    "summary": "An organisational assertion: the organisation states that its components follow established platform conventions, and that any component library it uses is tested for accessibility before use.",
+    "whyItMatters": "Assistive technologies are built around conventional patterns. A custom component that ignores them may be unusable even when it is technically labelled."
+  }
+}

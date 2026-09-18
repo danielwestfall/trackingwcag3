@@ -1,0 +1,12 @@
+{
+  "slug": "focus-movement-relevant",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/focus-movement-relevant.md",
+  "plainEnglish": {
+    "summary": "Tabbing does not move focus onto content that was not visible before the tab press, apart from skip links and similar hidden aids to keyboard navigation.",
+    "whyItMatters": "Focus landing on something invisible strands sighted keyboard users, who can see the focus indicator disappear but not where it went."
+  }
+}

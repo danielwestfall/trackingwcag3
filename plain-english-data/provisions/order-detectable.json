@@ -1,0 +1,12 @@
+{
+  "slug": "order-detectable",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/layout/structure/order-detectable.md",
+  "plainEnglish": {
+    "summary": "Where content is ordered, programmatically determinable markers indicate each item's position - unless the nature of the ordering is stated immediately before it.",
+    "whyItMatters": "Without position markers a screen reader user hears a list of items with no sense of sequence, which matters when the order is the information."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "audio-descriptions-available-live",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-available-live.md",
+  "plainEnglish": {
+    "summary": "Live video carries audio descriptions of the visual information needed to follow it.",
+    "whyItMatters": "Live events are exactly where a blind or low-vision viewer cannot catch up later. Without description, anything shown rather than said is lost."
+  }
+}

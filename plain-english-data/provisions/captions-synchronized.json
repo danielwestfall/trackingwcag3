@@ -1,0 +1,12 @@
+{
+  "slug": "captions-synchronized",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-synchronized.md",
+  "plainEnglish": {
+    "summary": "Captions are timed to the audio they represent.",
+    "whyItMatters": "Captions that run ahead of or behind the speech break the link between the words and who is saying them, and make dialogue hard to follow."
+  }
+}

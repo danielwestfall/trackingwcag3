@@ -1,0 +1,12 @@
+{
+  "slug": "no-memorization",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/no-memorization.md",
+  "plainEnglish": {
+    "summary": "An exploratory requirement: a process can be completed without having to memorise and recall information from an earlier stage.",
+    "whyItMatters": "Requiring recall turns a task into a memory test, which excludes people with memory impairments, and is harder for anyone interrupted mid-process."
+  }
+}

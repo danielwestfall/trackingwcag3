@@ -1,0 +1,12 @@
+{
+  "slug": "feedback-mechanism-available",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/help-and-feedback/feedback/feedback-mechanism-available.md",
+  "plainEnglish": {
+    "summary": "There is a way for users to send feedback to the people who made the content.",
+    "whyItMatters": "When something is inaccessible, a feedback route is often the only way a disabled user can get it fixed. Its absence makes the barrier permanent."
+  }
+}

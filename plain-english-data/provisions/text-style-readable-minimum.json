@@ -1,0 +1,12 @@
+{
+  "slug": "text-style-readable-minimum",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/text-style-readable-minimum.md",
+  "plainEnglish": {
+    "summary": "The same properties at a minimum level: the authored text style meets baseline values, still to be determined.",
+    "whyItMatters": "This is the floor below which text is difficult for a large share of readers regardless of any setting they might change."
+  }
+}

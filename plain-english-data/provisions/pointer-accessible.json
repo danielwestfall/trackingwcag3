@@ -1,0 +1,12 @@
+{
+  "slug": "pointer-accessible",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/input-operation/pointer-accessible.md",
+  "plainEnglish": {
+    "summary": "Selecting an element with a pointer moves keyboard focus to it, including when the user presses down on an interactive element and then drags away without activating it.",
+    "whyItMatters": "When focus and pointer disagree, a user who alternates between mouse and keyboard loses their place, and a screen reader announces somewhere other than where the user is working."
+  }
+}

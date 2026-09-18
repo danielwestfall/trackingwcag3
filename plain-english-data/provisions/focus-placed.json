@@ -1,0 +1,12 @@
+{
+  "slug": "focus-placed",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/input-operation/keyboard-interface-input/focus-placed.md",
+  "plainEnglish": {
+    "summary": "When keyboard focus moves between contexts within a page, returning to the previous context restores focus to where it was - unless that place no longer exists.",
+    "whyItMatters": "Being dumped back at the top of a long page after closing a dialog can mean re-traversing the entire page, which is slow and disorienting for keyboard and screen reader users."
+  }
+}

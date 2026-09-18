@@ -1,0 +1,12 @@
+{
+  "slug": "dialogue-transcripts-available-live",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/transcripts/dialogue-transcripts-available-live.md",
+  "plainEnglish": {
+    "summary": "Live audio and video have a transcript of the dialogue. Media that is an alternative for text and labelled as such, and media with no spoken content that serves only as background, are exempt.",
+    "whyItMatters": "A live transcript is what lets someone catch up on a point they missed, which captions scrolling in real time do not allow."
+  }
+}

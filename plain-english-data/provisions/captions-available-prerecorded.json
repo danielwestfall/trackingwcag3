@@ -1,0 +1,12 @@
+{
+  "slug": "captions-available-prerecorded",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/images-and-media/captions/captions-available-prerecorded.md",
+  "plainEnglish": {
+    "summary": "All prerecorded audio content is captioned, unless the audio is an alternative to text and is clearly labelled as such.",
+    "whyItMatters": "Captions are the primary route into spoken content for deaf and hard-of-hearing users, and the route many other people use in noisy or silent settings."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "text-contrast-sufficient-enhanced",
+  "authored": [
+    "summary",
+    "whyItMatters"
+  ],
+  "translatedFrom": "guidelines/groups/text-and-wording/text-appearance/text-contrast-sufficient-enhanced.md",
+  "plainEnglish": {
+    "summary": "A higher contrast bar than the minimum requirement, with the same scope and exceptions. The measure itself is still to be determined in the draft.",
+    "whyItMatters": "The minimum level is a floor, not a comfortable reading level. The enhanced level is aimed at people whose contrast sensitivity is significantly reduced."
+  }
+}
