@@ -1,8 +1,8 @@
 # Factuality Source Matrix & Verification Registry
 
 > **Site Verification Standard:** Strict Factuality & Zero Unsourced Speculation  
-> **Generated:** 2026-09-18T03:38:15.234Z  
-> **Audit Suite:** `scripts/red-team-factuality.mjs` (1708 automated assertions, 0 failures)  
+> **Generated:** 2026-09-18T04:03:21.854Z  
+> **Audit Suite:** `scripts/red-team-factuality.mjs` (2583 automated assertions, 0 failures)  
 
 This document provides the authoritative, statement-by-statement upstream citation list for all content on Tracking WCAG 3. Every single standard, provision, criterion, status count, and architectural discussion is backed by direct links to primary W3C publications or official W3C Working Group repositories.
 
@@ -13,6 +13,7 @@ This document provides the authoritative, statement-by-statement upstream citati
 | **W3C Authoritative** | 245 WCAG 3 Draft Provisions & raw W3C source content | [https://github.com/w3c/wcag3/tree/main/guidelines](https://github.com/w3c/wcag3/tree/main/guidelines) | Upstream W3C repository containing normative provisions, scope conditions, and test procedures. |
 | **W3C Authoritative** | WCAG 2.2 Recommendation (all 87 Success Criteria, Level A/AA/AAA) | [https://www.w3.org/TR/WCAG22/](https://www.w3.org/TR/WCAG22/) | Official W3C Recommendation published 05 October 2023. |
 | **W3C Authoritative** | Understanding WCAG 2.2 guidance documents | [https://www.w3.org/WAI/WCAG22/Understanding/](https://www.w3.org/WAI/WCAG22/Understanding/) | Official W3C informative guidance detailing intent, examples, and techniques. |
+| **W3C Authoritative** | WCAG Evolution Matrix (Old vs New) | [https://www.w3.org/TR/WCAG22/ and https://w3c.github.io/wcag3/guidelines/](https://www.w3.org/TR/WCAG22/ and https://w3c.github.io/wcag3/guidelines/) | Comparative mapping of all 87 WCAG 2.2 Success Criteria to WCAG 3.0 draft provisions with scope and testing impact analysis. |
 | **W3C Authoritative** | Conforming Alternate Versions removal & page variations debate | [https://github.com/w3c/wcag3/discussions/623](https://github.com/w3c/wcag3/discussions/623) | W3C AGWG discussion on phasing out CAV in favor of inclusive native accessibility. |
 | **W3C Authoritative** | WCAG 3 Conformance Architecture & Non-Binary Assessment | [https://www.w3.org/TR/accessibility-conformance-challenges/](https://www.w3.org/TR/accessibility-conformance-challenges/) | W3C Working Group Note: Challenges with Accessibility Guidelines Conformance and Testing. |
 | **W3C Authoritative** | WCAG 3 Conformance & Reporting Tiers Specification | [https://w3c.github.io/wcag3/guidelines/#conformance](https://w3c.github.io/wcag3/guidelines/#conformance) | W3C Editors Draft section defining conformance requirements and reporting tiers. |

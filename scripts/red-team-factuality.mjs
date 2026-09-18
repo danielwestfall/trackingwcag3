@@ -42,6 +42,7 @@ const WCAG22_CATALOG_PATH = path.join(ROOT, 'public', 'data', 'wcag22-catalog.js
 const CONFORMANCE_PATH = path.join(ROOT, 'public', 'data', 'wcag3-conformance.json');
 const REMOVALS_PATH = path.join(ROOT, 'public', 'data', 'wcag3-removals.json');
 const DISCUSSIONS_PATH = path.join(ROOT, 'public', 'data', 'wcag3-discussions.json');
+const MATRIX_PATH = path.join(ROOT, 'public', 'data', 'wcag-evolution-matrix.json');
 const PROVISIONS_DIR = path.join(ROOT, 'plain-english-data', 'provisions');
 
 // Speculative patterns that must NEVER appear in factual text
@@ -98,6 +99,7 @@ class RedTeamFactualityAudit {
 
     this.auditWCAG3Catalog();
     this.auditWCAG22Catalog();
+    this.auditEvolutionMatrix();
     this.auditRemovals();
     this.auditConformanceModel();
     this.auditDiscussions();
@@ -455,6 +457,73 @@ class RedTeamFactualityAudit {
     this.check(
       'Calculator index.astro contains no fake role data attributes',
       !calcAstro.includes('data-designer') && !calcAstro.includes('data-developer')
+    );
+
+    // Evolution Matrix page audit
+    const comparisonPath = path.join(ROOT, 'src', 'pages', 'plain-english', 'comparison', 'index.astro');
+    this.check('comparison/index.astro exists', fs.existsSync(comparisonPath));
+    if (fs.existsSync(comparisonPath)) {
+      const comparisonAstro = fs.readFileSync(comparisonPath, 'utf8');
+      this.check(
+        'comparison/index.astro provides 3-column evolution structure',
+        comparisonAstro.includes('col-old') && comparisonAstro.includes('col-new') && comparisonAstro.includes('col-delta')
+      );
+      this.check(
+        'comparison/index.astro has no fake role data attributes',
+        !comparisonAstro.includes('data-designer') && !comparisonAstro.includes('data-developer')
+      );
+      for (const pattern of SPECULATIVE_PATTERNS) {
+        if (pattern.test(comparisonAstro)) {
+          this.check('No speculative forecasts in comparison/index.astro', false, `Matched ${pattern}`);
+        }
+      }
+    }
+  }
+
+  // Audit Evolution Matrix (Old vs New)
+  auditEvolutionMatrix() {
+    console.log('▶ Auditing WCAG Evolution Matrix (wcag-evolution-matrix.json)...');
+    this.check('wcag-evolution-matrix.json exists', fs.existsSync(MATRIX_PATH));
+    if (!fs.existsSync(MATRIX_PATH)) return;
+
+    const matrix = JSON.parse(fs.readFileSync(MATRIX_PATH, 'utf8'));
+    this.check('Evolution matrix contains exactly 87 WCAG 2.2 criteria', matrix.length === 87, `Found ${matrix.length}`);
+
+    const validChangeTypes = new Set(['granular-split', 'expands-scope', 'new-metric', 'easier-testing', 'direct', 'redesigned']);
+
+    for (const item of matrix) {
+      this.check(`Criterion ${item.num} has valid ID and title`, !!item.id && !!item.name);
+      this.check(`Criterion ${item.num} has valid conformance level`, VALID_LEVELS.has(item.level), `Found ${item.level}`);
+      this.check(`Criterion ${item.num} has valid principle`, VALID_PRINCIPLES.has(item.principle), `Found ${item.principle}`);
+      this.check(`Criterion ${item.num} has W3C TR and Understanding URLs`, !!item.trUrl && !!item.understandingUrl);
+      this.check(`Criterion ${item.num} has provisions array`, Array.isArray(item.provisions));
+
+      const ca = item.changeAnalysis;
+      this.check(`Criterion ${item.num} has changeAnalysis object`, !!ca);
+      if (ca) {
+        this.check(`Criterion ${item.num} has valid changeType`, validChangeTypes.has(ca.changeType), `Found ${ca.changeType}`);
+        this.check(`Criterion ${item.num} has changeBadge`, !!ca.changeBadge);
+        this.check(`Criterion ${item.num} has scopeDelta explanation`, typeof ca.scopeDelta === 'string' && ca.scopeDelta.length > 10);
+        this.check(`Criterion ${item.num} has testingImpact explanation`, typeof ca.testingImpact === 'string' && ca.testingImpact.length > 10);
+
+        for (const pattern of SPECULATIVE_PATTERNS) {
+          if (pattern.test(ca.scopeDelta)) {
+            this.check(`No speculative forecasts in scopeDelta for ${item.num}`, false, `Matched ${pattern} in "${ca.scopeDelta}"`);
+          }
+          if (pattern.test(ca.testingImpact)) {
+            this.check(`No speculative forecasts in testingImpact for ${item.num}`, false, `Matched ${pattern} in "${ca.testingImpact}"`);
+          }
+          if (ca.evolutionNote && pattern.test(ca.evolutionNote)) {
+            this.check(`No speculative forecasts in evolutionNote for ${item.num}`, false, `Matched ${pattern} in "${ca.evolutionNote}"`);
+          }
+        }
+      }
+    }
+
+    this.addSource(
+      'WCAG Evolution Matrix (Old vs New)',
+      'https://www.w3.org/TR/WCAG22/ and https://w3c.github.io/wcag3/guidelines/',
+      'Comparative mapping of all 87 WCAG 2.2 Success Criteria to WCAG 3.0 draft provisions with scope and testing impact analysis.'
     );
   }
 

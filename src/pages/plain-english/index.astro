@@ -282,6 +282,19 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </details>
   </section>
 
+  <!-- Old vs New Evolution Matrix CTA -->
+  <aside class="evolution-cta-banner" aria-label="WCAG 2.2 vs 3.0 Comparison">
+    <div class="cta-icon" aria-hidden="true">🔀</div>
+    <div class="cta-content">
+      <strong>Comparing WCAG 2.2 to the new 3.0 draft?</strong>
+      <p>Explore our complete side-by-side Evolution Matrix mapping all 87 WCAG 2.2 Success Criteria directly to draft 3.0 provisions with scope and testing impact analysis.</p>
+    </div>
+    <a href={link("/plain-english/comparison/")} class="cta-button">
+      <span>View Old vs New Matrix</span>
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </aside>
+
   <!-- Controls & Filters -->
   <section class="controls-section" aria-label="Filters and Search Controls">
     <div class="search-box">
@@ -672,6 +685,71 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 </script>
 
 <style>
+  .evolution-cta-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: var(--radius-md);
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .cta-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .cta-content {
+    flex: 1 1 240px;
+    min-width: 0;
+  }
+  .cta-content strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+  .cta-content p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.45;
+  }
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--accent-blue);
+    color: var(--on-accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .cta-button:hover {
+    filter: brightness(1.1);
+  }
+  @media (max-width: 640px) {
+    .evolution-cta-banner {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 16px 12px;
+    }
+    .cta-button {
+      width: 100%;
+    }
+  }
+
   /* Dashboard Banner */
   .dashboard-banner {
     background: linear-gradient(135deg, rgba(19, 29, 49, 0.9) 0%, rgba(11, 17, 32, 0.95) 100%);
@@ -1801,5 +1879,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   :global(html[data-theme="light"]) .qa-text strong {
     color: #0369a1;
+  }
+  :global(html[data-theme="light"]) .evolution-cta-banner {
+    background: #f0f9ff;
+    border-color: #bae6fd;
   }
 </style>

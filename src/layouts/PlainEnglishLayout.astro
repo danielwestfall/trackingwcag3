@@ -1,7 +1,7 @@
 ---
 interface Props {
   title: string;
-  activeTab?: "home" | "wcag3" | "wcag22" | "conformance" | "calculator" | "removals" | "discussions" | "w3c";
+  activeTab?: "home" | "wcag3" | "wcag22" | "comparison" | "conformance" | "calculator" | "removals" | "discussions" | "w3c";
 }
 
 const { title, activeTab = "wcag3" } = Astro.props;
@@ -639,6 +639,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         max-width: 1360px;
         margin: 12px auto 0;
         padding: 0 24px;
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
+        overflow: hidden;
       }
 
       .brand {
@@ -729,7 +733,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
            six tabs, and it will only grow as tabs are added — the discussions
            tab already caused an unnoticed page-wide overflow once this way. */
         overflow-x: auto;
+        width: 100%;
         max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
         /* Chromium's scroll-on-focus leaves a tab alone once any sliver of it
@@ -741,7 +748,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
            costs nothing at widths where the nav doesn't scroll. 3rem is the
            smallest value that clears every tab at 320px (2rem still leaves
            one at 31%). */
-        scroll-padding-inline: 3rem;
+        scroll-padding-inline: clamp(1rem, 4vw, 2.5rem);
       }
 
       /* From 768px up, let the tabs wrap onto a second row instead of staying
@@ -768,6 +775,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         border-radius: var(--radius-md);
         color: var(--text-secondary);
         text-decoration: none;
+        flex-shrink: 0;
         font-weight: 600;
         font-size: 0.84rem;
         transition: var(--transition-fast);
@@ -1366,6 +1374,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <span class="tab-text">WCAG 2.2 Reference</span>
             <span class="status-pill status-standard">Standard</span>
           </a>
+          <a href={link("/plain-english/comparison/")} class={`nav-tab ${activeTab === "comparison" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">🔀</span>
+            <span class="tab-text">Old vs New</span>
+            <span class="status-pill status-standard">Evolution</span>
+          </a>
           <a href={link("/plain-english/conformance/")} class={`nav-tab ${activeTab === "conformance" ? "active" : ""}`}>
             <span class="tab-icon" aria-hidden="true">⚖️</span>
             <span class="tab-text">Conformance</span>
@@ -1412,6 +1425,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <ul>
               <li><a href={link("/plain-english/")}>✨ WCAG 3.0 Explorer (245 Provisions)</a></li>
               <li><a href={link("/plain-english/wcag22/")}>📘 WCAG 2.2 Reference (87 Criteria)</a></li>
+              <li><a href={link("/plain-english/comparison/")}>🔀 Old vs New: WCAG 2.2 vs 3.0 Evolution Matrix</a></li>
               <li><a href={link("/plain-english/calculator/")}>🧮 WCAG 3 Score Calculator (Bronze/Silver/Gold)</a></li>
               <li><a href={link("/plain-english/conformance/")}>⚖️ Conformance: What Changed &amp; Readiness</a></li>
               <li><a href={link("/plain-english/removals/")}>🔄 WCAG 2.2 vs 3 Architectural Shifts</a></li>

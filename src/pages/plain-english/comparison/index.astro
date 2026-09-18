@@ -1,0 +1,1460 @@
+---
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import fs from "node:fs";
+import path from "node:path";
+
+const matrixPath = path.join(process.cwd(), "public", "data", "wcag-evolution-matrix.json");
+let matrix: any[] = [];
+if (fs.existsSync(matrixPath)) {
+  matrix = JSON.parse(fs.readFileSync(matrixPath, "utf8"));
+}
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
+
+const totalSCs = matrix.length;
+const totalMappedProvisions = new Set(matrix.flatMap(m => m.provisions.map((p: any) => p.slug))).size;
+
+// Stats by change type
+const changeTypeCounts: Record<string, number> = {};
+for (const item of matrix) {
+  const type = item.changeAnalysis?.changeType || "direct";
+  changeTypeCounts[type] = (changeTypeCounts[type] || 0) + 1;
+}
+
+const levelCounts = {
+  A: matrix.filter(m => m.level === "A").length,
+  AA: matrix.filter(m => m.level === "AA").length,
+  AAA: matrix.filter(m => m.level === "AAA").length,
+};
+
+const principleCounts = {
+  Perceivable: matrix.filter(m => m.principle === "Perceivable").length,
+  Operable: matrix.filter(m => m.principle === "Operable").length,
+  Understandable: matrix.filter(m => m.principle === "Understandable").length,
+  Robust: matrix.filter(m => m.principle === "Robust").length,
+};
+---
+
+<PlainEnglishLayout title="Old vs New: WCAG 2.2 vs 3.0 Evolution Matrix" activeTab="comparison">
+  <!-- Hero Dashboard Banner -->
+  <section class="dashboard-banner">
+    <div class="banner-content">
+      <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle" aria-hidden="true">🔀</span>
+          <span>Standards Evolution Matrix</span>
+        </div>
+        <h1>Old vs New: WCAG 2.2 vs 3.0 Evolution Matrix</h1>
+        <p>A side-by-side comparative analysis of all 87 official WCAG 2.2 Success Criteria against their draft WCAG 3.0 provision successors, examining how requirements expand and whether testing becomes more objective and automated.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">{totalSCs}</span>
+          <span class="stat-label">WCAG 2.2 Criteria</span>
+        </div>
+        <div class="stat-card stat-mapped">
+          <span class="stat-value highlight-mapped">{totalMappedProvisions}</span>
+          <span class="stat-label">Mapped WCAG 3 Provisions</span>
+        </div>
+        <div class="stat-card stat-expanded">
+          <span class="stat-value highlight-expanded">{changeTypeCounts["expands-scope"] || 0}</span>
+          <span class="stat-label">Expanded Scope</span>
+        </div>
+        <div class="stat-card stat-testing">
+          <span class="stat-value highlight-testing">{changeTypeCounts["easier-testing"] || 0}</span>
+          <span class="stat-label">Easier / Algorithmic Testing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Informative Callout Banner -->
+  <section class="info-alert" aria-label="About this evolution matrix">
+    <div class="alert-icon" aria-hidden="true">💡</div>
+    <div class="alert-body">
+      <h2>How to Read the Evolution Matrix</h2>
+      <p>
+        <strong>Column 1</strong> displays the official <strong>WCAG 2.2 Recommendation (Baseline)</strong> with its level, plain-English summary, and rationale. 
+        <strong>Column 2</strong> displays the draft <strong>WCAG 3.0 Provision(s)</strong> that inherit or replace that requirement. 
+        <strong>Column 3</strong> details the <strong>Change &amp; Testing Impact</strong>: whether the requirement goes further, splits into granular functional outcomes, introduces perceptual algorithms (like APCA), or replaces subjective heuristics with machine-verifiable measurements.
+      </p>
+    </div>
+  </section>
+
+  <!-- Interactive Controls: Search & Multi-Pill Filtering -->
+  <section class="controls-section" aria-label="Search and filter criteria">
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input
+        type="search"
+        id="matrix-search"
+        placeholder="Filter by criterion number (e.g. 1.4.3, 2.5.8), title, keyword, or change badge..."
+        aria-label="Filter evolution matrix by number, title, or keywords"
+        autocomplete="off"
+      />
+      <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Clear search input" hidden>✕</button>
+    </div>
+
+    <div class="filter-toolbar">
+      <!-- Conformance Level Filter -->
+      <div class="filter-group">
+        <span class="filter-group-title">Level:</span>
+        <div class="filter-pills" id="level-pills" role="radiogroup" aria-label="Filter by WCAG 2.2 Level">
+          <button type="button" class="filter-pill active" data-level="all" role="radio" aria-checked="true">All ({totalSCs})</button>
+          <button type="button" class="filter-pill pill-a" data-level="A" role="radio" aria-checked="false">Level A ({levelCounts.A})</button>
+          <button type="button" class="filter-pill pill-aa" data-level="AA" role="radio" aria-checked="false">Level AA ({levelCounts.AA})</button>
+          <button type="button" class="filter-pill pill-aaa" data-level="AAA" role="radio" aria-checked="false">Level AAA ({levelCounts.AAA})</button>
+        </div>
+      </div>
+
+      <!-- WCAG Principle Filter -->
+      <div class="filter-group">
+        <label for="principle-select" class="filter-group-title">Principle:</label>
+        <select id="principle-select" class="filter-select" aria-label="Filter by WCAG Principle">
+          <option value="all">All 4 Principles ({totalSCs})</option>
+          <option value="Perceivable">1. Perceivable ({principleCounts.Perceivable})</option>
+          <option value="Operable">2. Operable ({principleCounts.Operable})</option>
+          <option value="Understandable">3. Understandable ({principleCounts.Understandable})</option>
+          <option value="Robust">4. Robust ({principleCounts.Robust})</option>
+        </select>
+      </div>
+
+      <!-- Change / Evolution Type Filter -->
+      <div class="filter-group">
+        <span class="filter-group-title">Evolution Type:</span>
+        <div class="filter-pills" id="type-pills" role="radiogroup" aria-label="Filter by Evolution Type">
+          <button type="button" class="filter-pill active" data-type="all" role="radio" aria-checked="true">All Types</button>
+          <button type="button" class="filter-pill" data-type="expands-scope" role="radio" aria-checked="false">Expands Scope ({changeTypeCounts["expands-scope"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="granular-split" role="radio" aria-checked="false">Granular Split ({changeTypeCounts["granular-split"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="new-metric" role="radio" aria-checked="false">New Metric ({changeTypeCounts["new-metric"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="easier-testing" role="radio" aria-checked="false">Easier Testing ({changeTypeCounts["easier-testing"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="direct" role="radio" aria-checked="false">Direct ({changeTypeCounts["direct"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="redesigned" role="radio" aria-checked="false">Redesigned ({changeTypeCounts["redesigned"] || 0})</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Counter and Reset -->
+    <div class="results-bar">
+      <div class="results-count" id="results-count" aria-live="polite">
+        Showing <strong id="visible-count">{totalSCs}</strong> of <strong>{totalSCs}</strong> criteria
+      </div>
+      <button type="button" id="reset-filters-btn" class="reset-btn" hidden>Reset All Filters</button>
+    </div>
+  </section>
+
+  <!-- Empty Results Fallback -->
+  <div id="no-results" class="no-results-card" hidden>
+    <div class="no-results-icon" aria-hidden="true">🔎</div>
+    <h3>No matching criteria found</h3>
+    <p>No criteria match your active search and filter combinations. Try clearing keywords or adjusting the level and evolution filters.</p>
+    <button type="button" class="btn-clear-filters" id="btn-clear-filters-empty">Reset All Filters</button>
+  </div>
+
+  <!-- Matrix Header (Desktop Viewports >= 1024px) -->
+  <div class="matrix-table-header" aria-hidden="true">
+    <div class="col-head col-head-old">
+      <span class="col-head-num">1</span>
+      <span class="col-head-text">WCAG 2.2 Standard (Baseline)</span>
+    </div>
+    <div class="col-head col-head-new">
+      <span class="col-head-num">2</span>
+      <span class="col-head-text">WCAG 3.0 Equivalent(s) (Draft)</span>
+    </div>
+    <div class="col-head col-head-delta">
+      <span class="col-head-num">3</span>
+      <span class="col-head-text">The Change &amp; Testing Impact</span>
+    </div>
+  </div>
+
+  <!-- The Evolution Matrix Rows -->
+  <div class="matrix-container" id="matrix-container">
+    {matrix.map((item) => {
+      const rowId = `sc-${item.id.replace(/\./g, "-")}`;
+      const changeType = item.changeAnalysis?.changeType || "direct";
+      const changeBadge = item.changeAnalysis?.changeBadge || "Direct Evolution";
+      const scopeDelta = item.changeAnalysis?.scopeDelta || "";
+      const testingImpact = item.changeAnalysis?.testingImpact || "";
+      const evolutionNote = item.changeAnalysis?.evolutionNote || "";
+      const provCount = item.provisions.length;
+
+      // Concatenate search blob for fast client-side filtering
+      const searchBlob = [
+        item.num,
+        item.name,
+        `Level ${item.level}`,
+        item.principle,
+        item.summary,
+        item.whyItMatters,
+        item.provisions.map((p: any) => `${p.title} ${p.slug} ${p.type} ${p.summary}`).join(" "),
+        changeBadge,
+        scopeDelta,
+        testingImpact,
+        evolutionNote
+      ].join(" ").toLowerCase();
+
+      return (
+        <article
+          class="matrix-row"
+          id={rowId}
+          data-num={item.num}
+          data-level={item.level}
+          data-principle={item.principle}
+          data-change-type={changeType}
+          data-search={searchBlob}
+        >
+          <!-- Anchor permalink banner for directly shared links -->
+          <div class="row-anchor-header">
+            <span class="anchor-label">SC {item.num}</span>
+            <a href={`#${rowId}`} class="anchor-link" title={`Direct link to ${item.num} comparison`}>
+              <span aria-hidden="true">🔗</span>
+              <span class="sr-only">Direct link to {item.num} {item.name}</span>
+            </a>
+          </div>
+
+          <div class="matrix-grid">
+            <!-- ==========================================================
+                 COLUMN 1: WCAG 2.2 Standard (Baseline)
+                 ========================================================== -->
+            <section class="matrix-col col-old" aria-label={`WCAG 2.2 ${item.num} ${item.name}`}>
+              <div class="col-mobile-header" aria-hidden="true">
+                <span class="col-mobile-step">1</span>
+                <span>WCAG 2.2 Standard (Baseline)</span>
+              </div>
+
+              <div class="col-top-badges">
+                <span class={`level-badge level-${item.level}`}>Level {item.level}</span>
+                <span class="principle-badge">{item.principle}</span>
+              </div>
+
+              <h2 class="col-title">
+                <a href={link(item.guideUrl)} class="sc-title-link">
+                  <span class="sc-num">{item.num}</span> {item.name}
+                </a>
+              </h2>
+
+              <div class="summary-block">
+                <h3 class="block-subhead">Plain-English Meaning</h3>
+                <p class="summary-text">{item.summary}</p>
+              </div>
+
+              <div class="why-block">
+                <h3 class="block-subhead">Why It Matters</h3>
+                <p class="why-text">{item.whyItMatters}</p>
+              </div>
+
+              <div class="col-footer-links">
+                <a href={link(item.guideUrl)} class="action-link primary">
+                  <span>2.2 Guide</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+                <a href={item.trUrl} target="_blank" rel="noopener noreferrer" class="action-link w3c">
+                  <span>W3C Spec</span>
+                  <span aria-hidden="true">&nearr;</span>
+                </a>
+                <a href={item.understandingUrl} target="_blank" rel="noopener noreferrer" class="action-link w3c">
+                  <span>Understanding</span>
+                  <span aria-hidden="true">&nearr;</span>
+                </a>
+              </div>
+            </section>
+
+            <!-- ==========================================================
+                 COLUMN 2: WCAG 3.0 Equivalent(s) (Draft)
+                 ========================================================== -->
+            <section class="matrix-col col-new" aria-label={`WCAG 3.0 provisions for ${item.num}`}>
+              <div class="col-mobile-header" aria-hidden="true">
+                <span class="col-mobile-step">2</span>
+                <span>WCAG 3.0 Equivalent(s) (Draft)</span>
+              </div>
+
+              <div class="col-top-badges">
+                <span class="provisions-count-badge">
+                  {provCount === 1 ? "1 Mapped Provision" : `${provCount} Mapped Provisions`}
+                </span>
+              </div>
+
+              {provCount === 0 ? (
+                <div class="empty-provision-card">
+                  <p><strong>Holistic Coverage:</strong> No single 1:1 provision in current draft. Architectural requirement evaluated holistically across user tasks.</p>
+                </div>
+              ) : (
+                <div class="provisions-stack">
+                  {item.provisions.map((prov: any) => (
+                    <div class="provision-card">
+                      <div class="prov-card-header">
+                        <span class={`prov-type-badge type-${prov.type}`}>{prov.type}</span>
+                        <span class={`prov-status-badge status-${prov.status}`}>{prov.status}</span>
+                      </div>
+
+                      <h3 class="prov-title">
+                        <a href={link(prov.guideUrl)} class="prov-title-link">
+                          {prov.title}
+                        </a>
+                      </h3>
+
+                      <p class="prov-summary">{prov.summary}</p>
+
+                      <div class="prov-footer-links">
+                        <a href={link(prov.guideUrl)} class="action-link primary">
+                          <span>WCAG 3 Guide</span>
+                          <span aria-hidden="true">&rarr;</span>
+                        </a>
+                        <a href={prov.sourceUrl} target="_blank" rel="noopener noreferrer" class="action-link w3c">
+                          <span>W3C Source</span>
+                          <span aria-hidden="true">&nearr;</span>
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+
+            <!-- ==========================================================
+                 COLUMN 3: The Change & Testing Impact (Analysis)
+                 ========================================================== -->
+            <section class="matrix-col col-delta" aria-label={`Evolution and Testing Impact for ${item.num}`}>
+              <div class="col-mobile-header" aria-hidden="true">
+                <span class="col-mobile-step">3</span>
+                <span>The Change &amp; Testing Impact</span>
+              </div>
+
+              <div class="col-top-badges">
+                <span class={`change-badge change-${changeType}`}>{changeBadge}</span>
+              </div>
+
+              <!-- Does it go further? -->
+              <div class="delta-card delta-scope">
+                <div class="delta-card-head">
+                  <span class="delta-icon" aria-hidden="true">📈</span>
+                  <h3 class="delta-heading">Does it go further?</h3>
+                </div>
+                <p class="delta-body">{scopeDelta}</p>
+              </div>
+
+              <!-- Is it easier to test? -->
+              <div class="delta-card delta-testing">
+                <div class="delta-card-head">
+                  <span class="delta-icon" aria-hidden="true">🧪</span>
+                  <h3 class="delta-heading">Is it easier to test?</h3>
+                </div>
+                <p class="delta-body">{testingImpact}</p>
+              </div>
+
+              <!-- Working Group Direction -->
+              {evolutionNote && (
+                <div class="delta-card delta-context">
+                  <div class="delta-card-head">
+                    <span class="delta-icon" aria-hidden="true">💡</span>
+                    <h3 class="delta-heading">W3C Working Group Context</h3>
+                  </div>
+                  <p class="delta-body">{evolutionNote}</p>
+                </div>
+              )}
+            </section>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</PlainEnglishLayout>
+
+<style>
+  /* ==========================================================================
+     Dashboard Hero Banner & Stats
+     ========================================================================== */
+  .dashboard-banner {
+    background: linear-gradient(135deg, var(--surface-card) 0%, var(--surface-elevated) 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .banner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--accent-blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+
+  .banner-title-group h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    margin: 0 0 10px;
+  }
+
+  .banner-title-group p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 960px;
+    margin: 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+  }
+
+  .stat-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: var(--transition-fast);
+  }
+
+  .stat-card:hover {
+    border-color: var(--border-default);
+    transform: translateY(-2px);
+  }
+
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .highlight-mapped { color: #38bdf8; }
+  .highlight-expanded { color: #34d399; }
+  .highlight-testing { color: #fbbf24; }
+
+  :root[data-theme="light"] .highlight-mapped { color: #0284c7; }
+  :root[data-theme="light"] .highlight-expanded { color: #059669; }
+  :root[data-theme="light"] .highlight-testing { color: #d97706; }
+
+  /* ==========================================================================
+     Informative Callout Banner
+     ========================================================================== */
+  .info-alert {
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .alert-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .alert-body h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 4px;
+  }
+
+  .alert-body p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  :root[data-theme="light"] .info-alert {
+    background: #f0f9ff;
+    border-color: #bae6fd;
+  }
+
+  /* ==========================================================================
+     Controls & Multi-Pill Filters
+     ========================================================================== */
+  .controls-section {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    pointer-events: none;
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: var(--surface-base);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 10px 42px 10px 40px;
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    transition: var(--transition-fast);
+  }
+
+  .search-box input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+  }
+
+  .search-clear-btn {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+  }
+  .search-clear-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .filter-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-group-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    min-width: 90px;
+  }
+
+  .filter-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-pill {
+    background: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .filter-pill:hover {
+    border-color: var(--border-default);
+    color: var(--text-primary);
+    background: var(--surface-subtle);
+  }
+
+  .filter-pill.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: var(--on-accent);
+    font-weight: 700;
+  }
+
+  .filter-select {
+    background: var(--surface-base);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 6px 12px;
+    font-size: 0.84rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .results-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .results-count strong {
+    color: var(--text-primary);
+  }
+
+  .reset-btn {
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--accent-blue);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .reset-btn:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--accent-blue);
+  }
+
+  /* No results state */
+  .no-results-card {
+    background: var(--surface-card);
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 48px 24px;
+    text-align: center;
+    margin: 32px 0;
+  }
+
+  .no-results-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+  }
+
+  .no-results-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-pure);
+    margin: 0 0 8px;
+  }
+
+  .no-results-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 20px;
+  }
+
+  .btn-clear-filters {
+    background: var(--accent-blue);
+    color: var(--on-accent);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ==========================================================================
+     Matrix Table Header (Desktop Viewports)
+     ========================================================================== */
+  .matrix-table-header {
+    display: none;
+  }
+
+  @media (min-width: 1080px) {
+    .matrix-table-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1.15fr);
+      gap: 16px;
+      padding: 12px 20px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .col-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .col-head-num {
+      width: 22px;
+      height: 22px;
+      border-radius: var(--radius-full);
+      background: var(--accent-blue);
+      color: var(--on-accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+  }
+
+  /* ==========================================================================
+     Matrix Container & Rows
+     ========================================================================== */
+  .matrix-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .matrix-row {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+    scroll-margin-top: 80px;
+  }
+
+  .matrix-row:hover {
+    border-color: var(--border-default);
+  }
+
+  .matrix-row:target,
+  .matrix-row.highlight-target {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px var(--accent-blue), var(--shadow-md);
+  }
+
+  .row-anchor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .anchor-label {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    background: rgba(56, 189, 248, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .anchor-link {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+  }
+  .anchor-link:hover {
+    color: var(--accent-blue);
+  }
+
+  .matrix-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  @media (min-width: 1080px) {
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1.15fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+  }
+
+  /* Column Shared Styles */
+  .matrix-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .col-mobile-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-subtle);
+  }
+
+  .col-mobile-step {
+    width: 18px;
+    height: 18px;
+    border-radius: var(--radius-full);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.68rem;
+    font-weight: 800;
+  }
+
+  @media (min-width: 1080px) {
+    .col-mobile-header {
+      display: none;
+    }
+  }
+
+  .col-top-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* ==========================================================================
+     Column 1: WCAG 2.2 Standard (Baseline)
+     ========================================================================== */
+  .col-old {
+    border-left: 3px solid var(--accent-blue);
+  }
+
+  .level-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .level-A {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+  }
+  :root[data-theme="light"] .level-A {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fcd34d;
+  }
+
+  .level-AA {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+  }
+  :root[data-theme="light"] .level-AA {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #bae6fd;
+  }
+
+  .level-AAA {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.35);
+  }
+  :root[data-theme="light"] .level-AAA {
+    background: #d1fae5;
+    color: #065f46;
+    border-color: #6ee7b7;
+  }
+
+  .principle-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-elevated);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .col-title {
+    margin: 4px 0 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .sc-title-link {
+    color: var(--text-pure);
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  .sc-title-link:hover {
+    color: var(--accent-blue);
+  }
+
+  .sc-num {
+    color: var(--accent-blue);
+    font-family: var(--font-mono);
+  }
+
+  .block-subhead {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 4px;
+  }
+
+  .summary-text, .why-text {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .why-block {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 2px solid var(--border-default);
+    padding-left: 10px;
+    margin-top: 4px;
+  }
+
+  .col-footer-links {
+    margin-top: auto;
+    padding-top: 10px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+  }
+
+  .action-link.primary {
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--accent-blue);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+  }
+  .action-link.primary:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: var(--accent-blue);
+  }
+
+  .action-link.w3c {
+    background: var(--surface-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+  }
+  .action-link.w3c:hover {
+    color: var(--text-primary);
+    border-color: var(--border-default);
+  }
+
+  :root[data-theme="light"] .action-link.primary {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #bae6fd;
+  }
+
+  /* ==========================================================================
+     Column 2: WCAG 3.0 Equivalents (Draft)
+     ========================================================================== */
+  .col-new {
+    border-left: 3px solid var(--accent-purple);
+  }
+
+  .provisions-count-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    background: rgba(192, 132, 252, 0.12);
+    color: #c084fc;
+    border: 1px solid rgba(192, 132, 252, 0.25);
+  }
+  :root[data-theme="light"] .provisions-count-badge {
+    background: #f3e8ff;
+    color: #6b21a8;
+    border-color: #e9d5ff;
+  }
+
+  .provisions-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .provision-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .prov-card-header {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .prov-type-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-elevated);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .prov-type-badge.type-foundational {
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.25);
+  }
+  :root[data-theme="light"] .prov-type-badge.type-foundational {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+
+  .prov-status-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+  }
+
+  .status-mature {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+  }
+  .status-refining {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+  }
+  .status-developing {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+  }
+  .status-exploratory {
+    background: rgba(244, 63, 94, 0.15);
+    color: #fb7185;
+  }
+
+  :root[data-theme="light"] .status-mature { background: #d1fae5; color: #065f46; }
+  :root[data-theme="light"] .status-refining { background: #e0f2fe; color: #0369a1; }
+  :root[data-theme="light"] .status-developing { background: #fef3c7; color: #92400e; }
+  :root[data-theme="light"] .status-exploratory { background: #ffe4e6; color: #9f1239; }
+
+  .prov-title {
+    margin: 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .prov-title-link {
+    color: var(--text-pure);
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  .prov-title-link:hover {
+    color: var(--accent-purple);
+  }
+
+  .prov-summary {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .prov-footer-links {
+    margin-top: 4px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .empty-provision-card {
+    background: var(--surface-card);
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  /* ==========================================================================
+     Column 3: The Change & Testing Impact (Analysis)
+     ========================================================================== */
+  .col-delta {
+    border-left: 3px solid var(--accent-emerald);
+  }
+
+  .change-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: normal;
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .change-expands-scope {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.35);
+  }
+  .change-granular-split {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+  }
+  .change-new-metric {
+    background: rgba(192, 132, 252, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(192, 132, 252, 0.35);
+  }
+  .change-easier-testing {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.35);
+  }
+  .change-direct {
+    background: var(--surface-elevated);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-default);
+  }
+  .change-redesigned {
+    background: rgba(251, 113, 133, 0.15);
+    color: #fb7185;
+    border: 1px solid rgba(251, 113, 133, 0.35);
+  }
+
+  :root[data-theme="light"] .change-expands-scope { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+  :root[data-theme="light"] .change-granular-split { background: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
+  :root[data-theme="light"] .change-new-metric { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
+  :root[data-theme="light"] .change-easier-testing { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+  :root[data-theme="light"] .change-direct { background: #f1f5f9; color: #334155; border-color: #cbd5e1; }
+  :root[data-theme="light"] .change-redesigned { background: #ffe4e6; color: #9f1239; border-color: #fecdd3; }
+
+  .delta-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .delta-card-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .delta-icon {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
+  .delta-heading {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0;
+  }
+
+  .delta-body {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .delta-scope {
+    border-left: 3px solid var(--accent-emerald);
+  }
+
+  .delta-testing {
+    border-left: 3px solid var(--accent-amber);
+  }
+
+  .delta-context {
+    border-left: 3px solid var(--accent-blue);
+    background: rgba(56, 189, 248, 0.04);
+  }
+
+  @media (max-width: 640px) {
+    .dashboard-banner {
+      padding: 20px 16px;
+    }
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+    .controls-section {
+      padding: 16px 12px;
+    }
+    .info-alert {
+      padding: 14px 12px;
+      flex-direction: column;
+    }
+    .matrix-row {
+      padding: 16px 12px;
+    }
+    .filter-select {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const searchInput = document.getElementById("matrix-search");
+    const clearBtn = document.getElementById("search-clear-btn");
+    const levelPills = document.querySelectorAll("#level-pills .filter-pill");
+    const typePills = document.querySelectorAll("#type-pills .filter-pill");
+    const principleSelect = document.getElementById("principle-select");
+    const visibleCount = document.getElementById("visible-count");
+    const resetBtn = document.getElementById("reset-filters-btn");
+    const noResults = document.getElementById("no-results");
+    const emptyClearBtn = document.getElementById("btn-clear-filters-empty");
+    const rows = Array.from(document.querySelectorAll(".matrix-row"));
+
+    let activeLevel = "all";
+    let activeType = "all";
+    let activePrinciple = "all";
+    let searchQuery = "";
+
+    function filterRows() {
+      let count = 0;
+      const q = searchQuery.toLowerCase().trim();
+
+      rows.forEach((row) => {
+        const level = row.getAttribute("data-level");
+        const principle = row.getAttribute("data-principle");
+        const changeType = row.getAttribute("data-change-type");
+        const searchBlob = row.getAttribute("data-search") || "";
+
+        const matchesLevel = activeLevel === "all" || level === activeLevel;
+        const matchesPrinciple = activePrinciple === "all" || principle === activePrinciple;
+        const matchesType = activeType === "all" || changeType === activeType;
+        const matchesSearch = !q || searchBlob.includes(q);
+
+        if (matchesLevel && matchesPrinciple && matchesType && matchesSearch) {
+          row.style.display = "";
+          count++;
+        } else {
+          row.style.display = "none";
+        }
+      });
+
+      if (visibleCount) visibleCount.textContent = String(count);
+
+      const hasActiveFilters = activeLevel !== "all" || activeType !== "all" || activePrinciple !== "all" || !!q;
+      if (resetBtn) resetBtn.hidden = !hasActiveFilters;
+      if (clearBtn) clearBtn.hidden = !q;
+
+      if (noResults) {
+        noResults.hidden = count > 0;
+      }
+    }
+
+    // Search Input
+    if (searchInput) {
+      searchInput.addEventListener("input", (e) => {
+        searchQuery = e.target.value;
+        filterRows();
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        if (searchInput) {
+          searchInput.value = "";
+          searchQuery = "";
+          searchInput.focus();
+        }
+        filterRows();
+      });
+    }
+
+    // Level Pills
+    levelPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        levelPills.forEach((p) => {
+          p.classList.remove("active");
+          p.setAttribute("aria-checked", "false");
+        });
+        pill.classList.add("active");
+        pill.setAttribute("aria-checked", "true");
+        activeLevel = pill.getAttribute("data-level") || "all";
+        filterRows();
+      });
+    });
+
+    // Type Pills
+    typePills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        typePills.forEach((p) => {
+          p.classList.remove("active");
+          p.setAttribute("aria-checked", "false");
+        });
+        pill.classList.add("active");
+        pill.setAttribute("aria-checked", "true");
+        activeType = pill.getAttribute("data-type") || "all";
+        filterRows();
+      });
+    });
+
+    // Principle Select
+    if (principleSelect) {
+      principleSelect.addEventListener("change", (e) => {
+        activePrinciple = e.target.value;
+        filterRows();
+      });
+    }
+
+    // Reset Function
+    function resetAll() {
+      searchQuery = "";
+      activeLevel = "all";
+      activeType = "all";
+      activePrinciple = "all";
+
+      if (searchInput) searchInput.value = "";
+      if (principleSelect) principleSelect.value = "all";
+
+      levelPills.forEach((p) => {
+        const isAll = p.getAttribute("data-level") === "all";
+        p.classList.toggle("active", isAll);
+        p.setAttribute("aria-checked", isAll ? "true" : "false");
+      });
+
+      typePills.forEach((p) => {
+        const isAll = p.getAttribute("data-type") === "all";
+        p.classList.toggle("active", isAll);
+        p.setAttribute("aria-checked", isAll ? "true" : "false");
+      });
+
+      filterRows();
+    }
+
+    if (resetBtn) resetBtn.addEventListener("click", resetAll);
+    if (emptyClearBtn) emptyClearBtn.addEventListener("click", resetAll);
+
+    // Initial check for hash on page load
+    if (window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.classList.add("highlight-target");
+        setTimeout(() => {
+          targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 150);
+      }
+    }
+  })();
+</script>

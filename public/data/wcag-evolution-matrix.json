@@ -1,0 +1,3291 @@
+[
+  {
+    "id": "1.1.1",
+    "num": "1.1.1",
+    "name": "Non-text Content",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "non-text-content",
+    "summary": "Every image, icon, chart, or visual element carrying meaning must have a text description so blind users and screen readers understand what is on screen.",
+    "whyItMatters": "Screen readers cannot interpret pixel graphics. Text descriptions (alt text) turn visuals into spoken words or braille outputs.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#non-text-content",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
+    "guideUrl": "/plain-english/wcag22/1-1-1/",
+    "provisions": [
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      },
+      {
+        "slug": "text-detectable",
+        "title": "Text Detectable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "Every piece of text a sighted user can see has an equivalent that software can read - including text inside images and drawn onto a canvas. The exception is where providing it would duplicate text already present in the view.",
+        "whyItMatters": "Text baked into an image or drawn on a canvas cannot be read aloud, enlarged, recoloured or translated. The programmatic equivalent is what restores all of those.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
+        "guideUrl": "/plain-english/provision/text-detectable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "Goes further by separating text descriptions for static images from interactive element names, and adds a dedicated provision for detectable text in canvas and graphics.",
+      "testingImpact": "Easier to test: Automated rules can separately verify element naming vs media equivalence rather than bundling them into a single massive checklist rule.",
+      "evolutionNote": "WCAG 3 breaks non-text content into distinct functional outcomes: interactive element naming, media alternatives, and detectable text."
+    }
+  },
+  {
+    "id": "1.2.1",
+    "num": "1.2.1",
+    "name": "Audio-only and Video-only (Prerecorded)",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "audio-only-and-video-only-prerecorded",
+    "summary": "Prerecorded audio files (podcasts) need transcripts, and prerecorded silent videos need text or audio descriptions.",
+    "whyItMatters": "Deaf users cannot hear audio podcasts; blind users cannot see silent video content.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-only-and-video-only-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html",
+    "guideUrl": "/plain-english/wcag22/1-2-1/",
+    "provisions": [
+      {
+        "slug": "descriptive-transcripts-available",
+        "title": "Descriptive Transcripts Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Prerecorded audio and video have a descriptive transcript - one that covers the visuals as well as the speech. Purely decorative media, media that is already an alternative for text and labelled as such, and video whose picture adds nothing to the audio are exempt.",
+        "whyItMatters": "A transcript is the one format that can be read at any speed, searched, translated, and rendered in braille. It serves deafblind users, who have no route through either captions or audio description.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
+        "guideUrl": "/plain-english/provision/descriptive-transcripts-available/"
+      },
+      {
+        "slug": "dialogue-transcripts-available-prerecorded",
+        "title": "Dialogue transcripts available (prerecorded)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Prerecorded audio and video have a transcript of the dialogue, with the same exemptions for text alternatives and background-only media.",
+        "whyItMatters": "Reading at one's own pace is the difference between following a recording and merely playing it, particularly for people with cognitive or processing disabilities.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/transcripts/dialogue-transcripts-available-prerecorded.md",
+        "guideUrl": "/plain-english/provision/dialogue-transcripts-available-prerecorded/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "Splits media alternatives into dedicated transcript requirements with separate provisions for equivalence, findability, and content author review.",
+      "testingImpact": "Testing verifies transcript completeness and synchronization independently from whether the transcript file merely exists.",
+      "evolutionNote": "WCAG 3 splits media alternatives apart: prerecorded audio-only and video-only are covered by the transcripts guideline rather than one combined outcome."
+    }
+  },
+  {
+    "id": "1.2.2",
+    "num": "1.2.2",
+    "name": "Captions (Prerecorded)",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "captions-prerecorded",
+    "summary": "Prerecorded video with spoken audio must have synchronized captions.",
+    "whyItMatters": "Deaf and hard-of-hearing users rely on captions to follow video dialogue and sound effects.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#captions-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html",
+    "guideUrl": "/plain-english/wcag22/1-2-2/",
+    "provisions": [
+      {
+        "slug": "captions-available-prerecorded",
+        "title": "Captions available (prerecorded)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "All prerecorded audio content is captioned, unless the audio is an alternative to text and is clearly labelled as such.",
+        "whyItMatters": "Captions are the primary route into spoken content for deaf and hard-of-hearing users, and the route many other people use in noisy or silent settings.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/captions/captions-available-prerecorded.md",
+        "guideUrl": "/plain-english/provision/captions-available-prerecorded/"
+      },
+      {
+        "slug": "captions-equivalent-prerecorded",
+        "title": "Captions equivalent (prerecorded)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Captions have to be equivalent to the audio, not an approximation of it. Audio or video with no spoken content that serves only as background is exempt.",
+        "whyItMatters": "Auto-generated captions routinely drop names, technical terms and negations. An approximate caption can change the meaning of what was said.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/captions/captions-equivalent-prerecorded.md",
+        "guideUrl": "/plain-english/provision/captions-equivalent-prerecorded/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split & Extra Attributes",
+      "scopeDelta": "Goes further by separating the presence of captions from caption equivalence, and introduces distinct provisions for speaker identification, sound effects, and non-verbal cues.",
+      "testingImpact": "Enables granular quality testing: auditors can score speaker identification and sound cue accuracy separately from baseline caption timing.",
+      "evolutionNote": "WCAG 3 separates whether captions exist from whether they are equivalent, and adds further provisions for speaker identification, sounds and non-verbal cues."
+    }
+  },
+  {
+    "id": "1.2.3",
+    "num": "1.2.3",
+    "name": "Audio Description or Media Alternative (Prerecorded)",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "audio-description-or-media-alternative-prerecorded",
+    "summary": "Prerecorded videos must provide an audio description or full text transcript describing visual actions.",
+    "whyItMatters": "Blind users miss crucial visual-only context in videos (such as text on screen or silent action sequences).",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-description-or-media-alternative-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html",
+    "guideUrl": "/plain-english/wcag22/1-2-3/",
+    "provisions": [
+      {
+        "slug": "audio-descriptions-available-prerecorded",
+        "title": "Audio descriptions available (prerecorded)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Prerecorded video carries audio descriptions of the visual information needed to follow it. Video that exists as an alternative to text and says so is exempt.",
+        "whyItMatters": "Anything conveyed only by the picture - a document on screen, a gesture, who just entered the room - is simply absent for blind and low-vision viewers without description.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-available-prerecorded.md",
+        "guideUrl": "/plain-english/provision/audio-descriptions-available-prerecorded/"
+      },
+      {
+        "slug": "descriptive-transcripts-available",
+        "title": "Descriptive Transcripts Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Prerecorded audio and video have a descriptive transcript - one that covers the visuals as well as the speech. Purely decorative media, media that is already an alternative for text and labelled as such, and video whose picture adds nothing to the audio are exempt.",
+        "whyItMatters": "A transcript is the one format that can be read at any speed, searched, translated, and rendered in braille. It serves deafblind users, who have no route through either captions or audio description.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
+        "guideUrl": "/plain-english/provision/descriptive-transcripts-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Maintains the dual-path option: either an audio description or a full descriptive transcript satisfies the basic accessibility requirement.",
+      "testingImpact": "Testing remains identical in verification criteria, but results map into distinct functional outcomes in the WCAG 3 reporting architecture.",
+      "evolutionNote": "WCAG 3 keeps the either/or shape of 1.2.3: an audio description, or a descriptive transcript."
+    }
+  },
+  {
+    "id": "1.2.4",
+    "num": "1.2.4",
+    "name": "Captions (Live)",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "captions-live",
+    "summary": "Live streaming video with audio must have live synchronized captions.",
+    "whyItMatters": "Deaf users participating in live webinars, broadcasts, or meetings need real-time captions.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#captions-live",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/captions-live.html",
+    "guideUrl": "/plain-english/wcag22/1-2-4/",
+    "provisions": [
+      {
+        "slug": "captions-available-live",
+        "title": "Captions available (live)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Everything spoken in live audio is captioned as it happens, for the whole of the content rather than parts of it.",
+        "whyItMatters": "Live is where there is no catching up afterwards. Without captions, a deaf or hard-of-hearing participant is excluded from the event as it happens.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/captions/captions-available-live.md",
+        "guideUrl": "/plain-english/provision/captions-available-live/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries live broadcast captions forward into a dedicated provision under the captions guideline, distinct from prerecorded rules.",
+      "testingImpact": "Auditing focuses strictly on live latency thresholds and caption stream availability without conflating with prerecorded editing standards.",
+      "evolutionNote": "WCAG 3 gives live captions their own provision under the captions guideline."
+    }
+  },
+  {
+    "id": "1.2.5",
+    "num": "1.2.5",
+    "name": "Audio Description (Prerecorded)",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "audio-description-prerecorded",
+    "summary": "Prerecorded video content must provide audio descriptions for visual information.",
+    "whyItMatters": "Ensures blind viewers understand on-screen visual details that aren't spoken in the main soundtrack.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-description-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html",
+    "guideUrl": "/plain-english/wcag22/1-2-5/",
+    "provisions": [
+      {
+        "slug": "audio-descriptions-available-prerecorded",
+        "title": "Audio descriptions available (prerecorded)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Prerecorded video carries audio descriptions of the visual information needed to follow it. Video that exists as an alternative to text and says so is exempt.",
+        "whyItMatters": "Anything conveyed only by the picture - a document on screen, a gesture, who just entered the room - is simply absent for blind and low-vision viewers without description.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-available-prerecorded.md",
+        "guideUrl": "/plain-english/provision/audio-descriptions-available-prerecorded/"
+      },
+      {
+        "slug": "audio-descriptions-equivalent-prerecorded",
+        "title": "Audio descriptions equivalent (prerecorded)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Not just present, but equivalent: the description has to carry the same information as the visual content it stands in for.",
+        "whyItMatters": "A description that names what is on screen without conveying what it means leaves blind viewers with a thinner version of the content than everyone else gets.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-equivalent-prerecorded.md",
+        "guideUrl": "/plain-english/provision/audio-descriptions-equivalent-prerecorded/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "Splits audio descriptions into separate provisions for availability (is an audio track provided?) and equivalence (does the track convey all visual information?).",
+      "testingImpact": "Automated checks can verify alternate audio track presence; human evaluation focuses on semantic equivalence.",
+      "evolutionNote": "WCAG 3 separates the existence of audio description from whether it conveys equivalent information."
+    }
+  },
+  {
+    "id": "1.3.1",
+    "num": "1.3.1",
+    "name": "Info and Relationships",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "info-and-relationships",
+    "summary": "Visual structures like headers, lists, form fields, and table headers must be coded in semantic HTML so screen readers understand relationships.",
+    "whyItMatters": "Sighted users see visual cues like bold text for headings or indentation for lists. Screen reader users rely on semantic HTML elements (<h1>, <ul>, <fieldset>, <th>) to perceive those exact relationships.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#info-and-relationships",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html",
+    "guideUrl": "/plain-english/wcag22/1-3-1/",
+    "provisions": [
+      {
+        "slug": "roles-values-states-properties-available",
+        "title": "Roles, values, states, properties available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements expose accurate names, roles, values and states.",
+        "whyItMatters": "This is what assistive technology reads. An element with a wrong role is announced as the wrong kind of thing, and a missing state hides whether it is on, off, expanded or selected.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/roles-values-states-properties-available.md",
+        "guideUrl": "/plain-english/provision/roles-values-states-properties-available/"
+      },
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split & Structural Modeling",
+      "scopeDelta": "Decomposes general 'Info and Relationships' into component-level information, process-level semantics, section labeling, and relationships-detectable.",
+      "testingImpact": "Significantly easier to test: Replaces one sprawling catch-all criterion with focused checks for headings, lists, tables, and form associations.",
+      "evolutionNote": "WCAG 3 separates structural relationships into component-level information and process-level semantic hierarchy."
+    }
+  },
+  {
+    "id": "1.3.2",
+    "num": "1.3.2",
+    "name": "Meaningful Sequence",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "meaningful-sequence",
+    "summary": "The reading order in the underlying code (DOM) must match the visual logical order of the content.",
+    "whyItMatters": "Screen readers read content in DOM order. If CSS positioning moves visual text around out of order, screen reader users hear confusing, jumbled sentences.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#meaningful-sequence",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html",
+    "guideUrl": "/plain-english/wcag22/1-3-2/",
+    "provisions": [
+      {
+        "slug": "layout-reflow-supported",
+        "title": "Layout Reflow Supported",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "The page has to work in a 320-CSS-pixel-wide column - the width of a 1280px page at 400% zoom - without forcing the reader to scroll both across and down. Sections that scroll the other way must fit that width too. Tables and program guides, slide-style canvases, and multi-panel tools such as image editors and IDEs are exempt.",
+        "whyItMatters": "320 CSS pixels is what a 1280-pixel page looks like at 400% zoom. Content that forces scrolling in both directions at that size makes reading a line a two-handed operation.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/adjustable-viewport/layout-reflow-supported.md",
+        "guideUrl": "/plain-english/provision/layout-reflow-supported/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Connects reading order directly to layout reflow and visual presentation outcomes across dynamic viewports.",
+      "testingImpact": "Testing focuses on DOM-to-visual order alignment, especially when CSS grid and flexbox reorder visual flows.",
+      "evolutionNote": "WCAG 3 links meaningful sequence to layout reflow and visual presentation outcomes."
+    }
+  },
+  {
+    "id": "1.3.3",
+    "num": "1.3.3",
+    "name": "Sensory Characteristics",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "sensory-characteristics",
+    "summary": "Instructions must not rely solely on shape, color, size, visual location, or sound (e.g., 'click the round green button on the right').",
+    "whyItMatters": "Blind users cannot see 'green' or 'round'; screen reader users do not experience spatial locations like 'on the right'.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#sensory-characteristics",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics.html",
+    "guideUrl": "/plain-english/wcag22/1-3-3/",
+    "provisions": [
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries sensory independence forward, requiring controls and content not to rely solely on shape, color, size, orientation, or sound.",
+      "testingImpact": "Auditing checks that instructions use textual labels alongside or instead of physical descriptors.",
+      "evolutionNote": "WCAG 3 integrates sensory independence into clear language and control information."
+    }
+  },
+  {
+    "id": "1.3.4",
+    "num": "1.3.4",
+    "name": "Orientation",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "orientation",
+    "summary": "Content must not lock display orientation to portrait or landscape unless essential.",
+    "whyItMatters": "Users with mobile devices mounted on wheelchairs cannot rotate their screens.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#orientation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/orientation.html",
+    "guideUrl": "/plain-english/wcag22/1-3-4/",
+    "provisions": [
+      {
+        "slug": "orientation-supported-minimum",
+        "title": "Orientation supported (minimum)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "Where a platform has a default orientation, content supports it; where the platform has none, content supports both portrait and landscape. The same exemptions apply.",
+        "whyItMatters": "Locking orientation overrides a physical setup the user cannot change, which is why this is a baseline rather than an enhancement.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/adjustable-viewport/orientation-supported-minimum.md",
+        "guideUrl": "/plain-english/provision/orientation-supported-minimum/"
+      },
+      {
+        "slug": "orientation-supported-enhanced",
+        "title": "Orientation supported (enhanced)",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "Content works in both portrait and landscape. Content aligned with the physical world, and cases where a particular orientation is essential, are exempt.",
+        "whyItMatters": "A device mounted to a wheelchair or a bed is fixed in one orientation. Content that only works the other way round cannot be used at all.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/adjustable-viewport/orientation-supported-enhanced.md",
+        "guideUrl": "/plain-english/provision/orientation-supported-enhanced/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Splits orientation into minimum and enhanced provisions, covering modern foldable, dual-screen, and wearable viewport configurations.",
+      "testingImpact": "Tests orientation locking across standard desktop/mobile and multi-screen/split-window environments.",
+      "evolutionNote": "WCAG 3 carries orientation support forward into minimum and enhanced viewport outcomes."
+    }
+  },
+  {
+    "id": "1.3.5",
+    "num": "1.3.5",
+    "name": "Identify Input Purpose",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "identify-input-purpose",
+    "summary": "Form inputs collecting personal user info must use standard HTML `autocomplete` attributes so browsers can auto-fill data.",
+    "whyItMatters": "Users with cognitive disabilities or motor impairments struggle to manually type personal details like address, name, or email.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#identify-input-purpose",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html",
+    "guideUrl": "/plain-english/wcag22/1-3-5/",
+    "provisions": [
+      {
+        "slug": "automated-entry-allowed",
+        "title": "Automated Entry Allowed",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Automated entry of personal information is not blocked - whether from the browser, a third-party tool, or pasting.",
+        "whyItMatters": "Blocking paste or autofill forces manual transcription of exactly the data that is longest and least memorable, which is a barrier for password manager users and people with cognitive or motor disabilities.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/automated-entry-allowed.md",
+        "guideUrl": "/plain-english/provision/automated-entry-allowed/"
+      },
+      {
+        "slug": "no-redundant-entry",
+        "title": "No Redundant Entry",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Information the user already entered or was already given, if required again in the same process, is either filled in automatically or offered for selection. Re-entry that is essential, needed for security, or where the earlier information is no longer valid, is exempt.",
+        "whyItMatters": "Re-typing the same data is effort and a new chance to make a mistake, which is costly for people with motor and cognitive disabilities and slow for anyone using speech input.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/retain-information/no-redundant-entry.md",
+        "guideUrl": "/plain-english/provision/no-redundant-entry/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Broadens input purpose beyond HTML autocomplete tokens into automated entry support and redundant entry reduction across multi-step processes.",
+      "testingImpact": "Testing covers both browser autofill attribute validity and application-level persistence of previously entered user data.",
+      "evolutionNote": "WCAG 3 expands autocomplete into automated entry and redundant entry outcomes."
+    }
+  },
+  {
+    "id": "1.4.1",
+    "num": "1.4.1",
+    "name": "Use of Color",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "use-of-color",
+    "summary": "Color must not be the only visual indicator used to convey information, indicate an action, or prompt a response.",
+    "whyItMatters": "Color-blind users (red-green, blue-yellow) cannot distinguish status changes signaled only by color changes.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#use-of-color",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
+    "guideUrl": "/plain-english/wcag22/1-4-1/",
+    "provisions": [
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "Integrates color reliance rules directly into provisions for interactive element distinction and non-text visual indicators.",
+      "testingImpact": "Testing pairs color audits directly with underline, icon, and shape indicators on links and buttons.",
+      "evolutionNote": "WCAG 3 integrates use of color rules into distinguishable component outcomes."
+    }
+  },
+  {
+    "id": "1.4.2",
+    "num": "1.4.2",
+    "name": "Audio Control",
+    "level": "A",
+    "principle": "Perceivable",
+    "w3cSlug": "audio-control",
+    "summary": "If audio plays automatically for more than 3 seconds, a mechanism must be available to pause, stop, or control the volume independently.",
+    "whyItMatters": "Autoplay audio drowns out screen reader speech, making it impossible for blind users to navigate the page.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-control",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html",
+    "guideUrl": "/plain-english/wcag22/1-4-2/",
+    "provisions": [
+      {
+        "slug": "media-control",
+        "title": "Media Control",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/media-control/"
+      },
+      {
+        "slug": "page-view-audio-adjustable",
+        "title": "Page/view audio adjustable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "Where audio plays automatically, there is a way to pause it, stop it, or adjust its volume separately from the system volume.",
+        "whyItMatters": "Background audio masks a screen reader's speech, making the page unusable until it stops - and the system volume control turns off both at once.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/media-control/page-view-audio-adjustable.md",
+        "guideUrl": "/plain-english/provision/page-view-audio-adjustable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Groups background audio stopping into user media control provisions under the audio-adjustable guideline.",
+      "testingImpact": "Testing confirms automatic audio plays for less than 3 seconds or provides an immediate keyboard-accessible mute control.",
+      "evolutionNote": "WCAG 3 categorizes audio control under user media control outcomes."
+    }
+  },
+  {
+    "id": "1.4.3",
+    "num": "1.4.3",
+    "name": "Contrast (Minimum)",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "contrast-minimum",
+    "summary": "Text must have enough color contrast against its background (at least 4.5:1 for normal text, 3:1 for large text).",
+    "whyItMatters": "Low contrast text is unreadable for people with low vision or under bright sunlight.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#contrast-minimum",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+    "guideUrl": "/plain-english/wcag22/1-4-3/",
+    "provisions": [
+      {
+        "slug": "text-contrast-sufficient-minimum",
+        "title": "Text contrast sufficient (minimum)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "Text must maintain strong visual contrast against its background so it can be easily read by everyone, including people with low vision or under bright light.",
+        "whyItMatters": "Faint or low-contrast text forces users to strain their eyes and makes reading impossible for low-vision users.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/text-contrast-sufficient-minimum.md",
+        "guideUrl": "/plain-english/provision/text-contrast-sufficient-minimum/"
+      },
+      {
+        "slug": "text-contrast-sufficient-enhanced",
+        "title": "Text contrast sufficient (enhanced)",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "A higher contrast bar than the minimum requirement, with the same scope and exceptions. The measure itself is still to be determined in the draft.",
+        "whyItMatters": "The minimum level is a floor, not a comfortable reading level. The enhanced level is aimed at people whose contrast sensitivity is significantly reduced.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/text-contrast-sufficient-enhanced.md",
+        "guideUrl": "/plain-english/provision/text-contrast-sufficient-enhanced/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "new-metric",
+      "changeBadge": "Perceptual Metric (APCA)",
+      "scopeDelta": "Transitions from a flat 4.5:1 mathematical ratio to the Advanced Perceptual Contrast Algorithm (APCA), which models font weight, size, and polarity.",
+      "testingImpact": "Replaces rigid pass/fail thresholds with continuous perceptual contrast scoring, resolving false passes for thin fonts and false fails for bold dark text.",
+      "evolutionNote": "WCAG 3 transitions to advanced visual perceptual algorithms (APCA)."
+    }
+  },
+  {
+    "id": "1.4.4",
+    "num": "1.4.4",
+    "name": "Resize Text",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "resize-text",
+    "summary": "Text must be resizable up to 200% using browser zoom without loss of content or functionality.",
+    "whyItMatters": "Users with low vision enlarge browser font size to read text without using a screen magnifier.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#resize-text",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html",
+    "guideUrl": "/plain-english/wcag22/1-4-4/",
+    "provisions": [
+      {
+        "slug": "text-size-adjustable",
+        "title": "Text Size Adjustable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "Text can be increased to at least 200% of the platform's default body-text size. Text that also appears elsewhere in the view and can be enlarged that far is exempt.",
+        "whyItMatters": "Enlarging text is the most common adaptation there is. Layouts that clip, overlap or scroll sideways at 200% take it away from people with low vision.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/text-size-adjustable.md",
+        "guideUrl": "/plain-english/provision/text-size-adjustable/"
+      },
+      {
+        "slug": "text-reflow-supported",
+        "title": "Text Reflow Supported",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "Blocks of text stay legible at 320 CSS pixels in the orientation of the text, without having to scroll in that direction to read a line. Text whose meaning depends on a two-dimensional structure is exempt.",
+        "whyItMatters": "Having to scroll sideways to read every line makes sustained reading impossible, which is the everyday experience of magnification users on unreflowed layouts.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/adjustable-viewport/text-reflow-supported.md",
+        "guideUrl": "/plain-english/provision/text-reflow-supported/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Maps text resizing directly to text-size-adjustable outcomes, emphasizing scalable typography without clipping.",
+      "testingImpact": "Testing measures root rem/em font scaling up to 200% without horizontal container blowouts or truncated content.",
+      "evolutionNote": "WCAG 3 maps text resizing to text-size-adjustable outcomes."
+    }
+  },
+  {
+    "id": "1.4.5",
+    "num": "1.4.5",
+    "name": "Images of Text",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "images-of-text",
+    "summary": "Use real HTML text instead of images of text (pictures of text) wherever possible.",
+    "whyItMatters": "Images of text pixelate when zoomed, cannot be restyled by users, and fail custom high-contrast modes.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#images-of-text",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html",
+    "guideUrl": "/plain-english/wcag22/1-4-5/",
+    "provisions": [
+      {
+        "slug": "text-detectable",
+        "title": "Text Detectable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "Every piece of text a sighted user can see has an equivalent that software can read - including text inside images and drawn onto a canvas. The exception is where providing it would duplicate text already present in the view.",
+        "whyItMatters": "Text baked into an image or drawn on a canvas cannot be read aloud, enlarged, recoloured or translated. The programmatic equivalent is what restores all of those.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
+        "guideUrl": "/plain-english/provision/text-detectable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries text-over-images rules into text-detectable provisions, requiring live CSS/HTML typography whenever possible.",
+      "testingImpact": "Automated scanning flags raster images containing text; exceptions for logos and brand identity are preserved.",
+      "evolutionNote": "WCAG 3 requires detectable, selectable text across media."
+    }
+  },
+  {
+    "id": "1.4.10",
+    "num": "1.4.10",
+    "name": "Reflow",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "reflow",
+    "summary": "Content must reflow into a single column at 400% zoom (viewport width 320px) without forcing 2D scrolling.",
+    "whyItMatters": "Low vision users zooming to 400% should read vertically without scrolling back and forth horizontally for every line.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#reflow",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+    "guideUrl": "/plain-english/wcag22/1-4-10/",
+    "provisions": [
+      {
+        "slug": "layout-reflow-supported",
+        "title": "Layout Reflow Supported",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "The page has to work in a 320-CSS-pixel-wide column - the width of a 1280px page at 400% zoom - without forcing the reader to scroll both across and down. Sections that scroll the other way must fit that width too. Tables and program guides, slide-style canvases, and multi-panel tools such as image editors and IDEs are exempt.",
+        "whyItMatters": "320 CSS pixels is what a 1280-pixel page looks like at 400% zoom. Content that forces scrolling in both directions at that size makes reading a line a two-handed operation.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/adjustable-viewport/layout-reflow-supported.md",
+        "guideUrl": "/plain-english/provision/layout-reflow-supported/"
+      },
+      {
+        "slug": "text-reflow-supported",
+        "title": "Text Reflow Supported",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "Blocks of text stay legible at 320 CSS pixels in the orientation of the text, without having to scroll in that direction to read a line. Text whose meaning depends on a two-dimensional structure is exempt.",
+        "whyItMatters": "Having to scroll sideways to read every line makes sustained reading impossible, which is the everyday experience of magnification users on unreflowed layouts.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/adjustable-viewport/text-reflow-supported.md",
+        "guideUrl": "/plain-english/provision/text-reflow-supported/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution & Reflow",
+      "scopeDelta": "Carried forward into layout-reflow-supported and text-reflow-supported provisions under the layout group.",
+      "testingImpact": "Testing tests responsive viewports at 320px width (vertical scroll) and 256px height (horizontal scroll) without two-dimensional scrollbars.",
+      "evolutionNote": "WCAG 3 groups 1.4.10 under layout-reflow-supported outcomes."
+    }
+  },
+  {
+    "id": "1.4.11",
+    "num": "1.4.11",
+    "name": "Non-text Contrast",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "non-text-contrast",
+    "summary": "Visual indicators for interactive controls (buttons, input borders, icons, focus rings) must have at least 3:1 contrast against adjacent colors.",
+    "whyItMatters": "Low vision users cannot locate form inputs or button boundaries if input borders are faint light grey.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#non-text-contrast",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html",
+    "guideUrl": "/plain-english/wcag22/1-4-11/",
+    "provisions": [
+      {
+        "slug": "interactive-element-contrast-sufficient",
+        "title": "Interactive Element Contrast Sufficient",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "The visual information needed to identify an interactive element and its states has to meet a minimum contrast ratio. Inactive elements, and components whose appearance the browser supplies unmodified, are exempt.",
+        "whyItMatters": "If the boundary of a control or the mark showing it is selected is too faint to see, the control is effectively invisible to people with low vision, even though its label is readable.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-contrast-sufficient.md",
+        "guideUrl": "/plain-english/provision/interactive-element-contrast-sufficient/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "easier-testing",
+      "changeBadge": "Measurable Thresholds",
+      "scopeDelta": "Maps non-text contrast to interactive-element-contrast-sufficient provisions, clarifying boundary and state indicator requirements.",
+      "testingImpact": "Testing clarifies ambiguous edge cases around disabled states, hover borders, and graphical icons with precise color contrast guidelines.",
+      "evolutionNote": "WCAG 3 adopts 1.4.11 into interactive-element-contrast-sufficient outcomes."
+    }
+  },
+  {
+    "id": "1.4.12",
+    "num": "1.4.12",
+    "name": "Text Spacing",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "text-spacing",
+    "summary": "Content must accommodate custom user text spacing (line height 1.5x, paragraph spacing 2x, letter spacing 0.12em, word spacing 0.16em) without breaking layout.",
+    "whyItMatters": "Dyslexic readers apply custom CSS text spacing to improve reading comprehension.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#text-spacing",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html",
+    "guideUrl": "/plain-english/wcag22/1-4-12/",
+    "provisions": [
+      {
+        "slug": "blocks-of-text-adjustable",
+        "title": "Blocks Of Text Adjustable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "The presentation of blocks of text can be adjusted without losing content or functionality - inline margin, block margin, line length, line height and justification. The exact values are still to be determined in the draft. Hard-coded styling, such as raw text that is already capitalised or hyphenated, is exempt.",
+        "whyItMatters": "Readers with dyslexia, low vision or attention-related disabilities often need wider spacing or shorter lines. Layouts that break when those change force a choice between reading comfortably and reading at all.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-adjustable.md",
+        "guideUrl": "/plain-english/provision/blocks-of-text-adjustable/"
+      },
+      {
+        "slug": "text-style-adjustable",
+        "title": "Text Style Adjustable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "Text style properties can be adjusted without losing content or functionality - typeface, font width, text decoration, capitalisation and automatic hyphenation - to values still to be determined. Hard-coded styling is exempt.",
+        "whyItMatters": "Readers with dyslexia often substitute a typeface, and all-caps or hyphenated text is markedly harder to read. Being able to change these is what makes text legible for them.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/text-style-adjustable.md",
+        "guideUrl": "/plain-english/provision/text-style-adjustable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Mapped to text-style-adjustable and blocks-of-text-adjustable provisions under the text-and-wording group.",
+      "testingImpact": "Testing ensures line height (1.5x), paragraph spacing (2x), letter spacing (0.12x), and word spacing (0.16x) do not truncate text.",
+      "evolutionNote": "WCAG 3 maps text spacing to blocks-of-text-adjustable outcomes."
+    }
+  },
+  {
+    "id": "1.4.13",
+    "num": "1.4.13",
+    "name": "Content on Hover or Focus",
+    "level": "AA",
+    "principle": "Perceivable",
+    "w3cSlug": "content-on-hover-or-focus",
+    "summary": "Additional content appearing on hover or focus (tooltips, popovers) must be dismissible, hoverable, and persistent.",
+    "whyItMatters": "Tooltips that disappear when moving the mouse pointer make reading impossible for screen magnifier users.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#content-on-hover-or-focus",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html",
+    "guideUrl": "/plain-english/wcag22/1-4-13/",
+    "provisions": [
+      {
+        "slug": "changes-to-elements-notified",
+        "title": "Changes To Elements Notified",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "When an interactive element's name, role, value or state changes, that change is indicated both visually and programmatically.",
+        "whyItMatters": "A state change nobody announces - a button that has become pressed, a field now marked invalid - leaves screen reader users acting on stale information.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/changes-to-elements-notified.md",
+        "guideUrl": "/plain-english/provision/changes-to-elements-notified/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "easier-testing",
+      "changeBadge": "Objective Dismissibility",
+      "scopeDelta": "Subsumes content on hover or focus into overlay-content-dismissible, hover-content-persistent, and hover-or-focus-content-dismissible provisions.",
+      "testingImpact": "Testing verifies pointer move dismissibility, hover persistence, and Escape key trigger directly on popovers and tooltips.",
+      "evolutionNote": "WCAG 3 incorporates hover/focus popovers into notification and state availability outcomes."
+    }
+  },
+  {
+    "id": "2.1.1",
+    "num": "2.1.1",
+    "name": "Keyboard",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "keyboard",
+    "summary": "All functionality must be usable using only a keyboard (Tab, Enter, Space, Arrows)—no mouse required.",
+    "whyItMatters": "Blind users, motor-impaired users, and power users operate web applications without a mouse.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#keyboard",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html",
+    "guideUrl": "/plain-english/wcag22/2-1-1/",
+    "provisions": [
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      },
+      {
+        "slug": "required-action-available",
+        "title": "Required Action Available",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Where the user must do something to move to the next step, the interface says so.",
+        "whyItMatters": "A process that stalls without saying why reads as a broken page. The user most likely to give up is the one who cannot see the unfilled field.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/complete-tasks/required-action-available.md",
+        "guideUrl": "/plain-english/provision/required-action-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expands basic keyboard accessibility into keyboard-accessible, keyboard-operable, and simple-pointer-input outcomes across modern input methods.",
+      "testingImpact": "Audits keyboard operability across full web components, custom widgets, canvas apps, and virtual cursors.",
+      "evolutionNote": "WCAG 3 expands keyboard access into comprehensive input operation outcomes."
+    }
+  },
+  {
+    "id": "2.1.2",
+    "num": "2.1.2",
+    "name": "No Keyboard Trap",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "no-keyboard-trap",
+    "summary": "Keyboard focus must never get trapped or stuck inside a component; users must be able to navigate away using Tab or Shift+Tab.",
+    "whyItMatters": "If focus gets stuck inside a custom text editor or modal widget, keyboard users are completely trapped and must restart their browser.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#no-keyboard-trap",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html",
+    "guideUrl": "/plain-english/wcag22/2-1-2/",
+    "provisions": [
+      {
+        "slug": "required-action-available",
+        "title": "Required Action Available",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Where the user must do something to move to the next step, the interface says so.",
+        "whyItMatters": "A process that stalls without saying why reads as a broken page. The user most likely to give up is the one who cannot see the unfilled field.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/complete-tasks/required-action-available.md",
+        "guideUrl": "/plain-english/provision/required-action-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Preserves the absolute rule against keyboard traps under no-keyboard-traps in the process completion group.",
+      "testingImpact": "Standard automated and manual keyboard navigation testing: focus must exit any dialog or widget via standard Tab or Escape keys.",
+      "evolutionNote": "WCAG 3 addresses keyboard traps under task completion and navigation provisions."
+    }
+  },
+  {
+    "id": "2.1.4",
+    "num": "2.1.4",
+    "name": "Character Key Shortcuts",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "character-key-shortcuts",
+    "summary": "Single-character keyboard shortcuts (like pressing 'F' to search) must be turn-offable or remappable.",
+    "whyItMatters": "Speech recognition users say 'Find' and speech engines output the letter 'F', triggering unwanted shortcuts randomly.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#character-key-shortcuts",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html",
+    "guideUrl": "/plain-english/wcag22/2-1-4/",
+    "provisions": [
+      {
+        "slug": "user-control",
+        "title": "User Control",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/user-control/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Retains character key shortcut controls under navigation-keys-described and no-keyboard-conflicts.",
+      "testingImpact": "Tests single-key shortcuts for remapping, turn-off mechanisms, or activation only on component focus.",
+      "evolutionNote": "WCAG 3 categorizes shortcut controls under user control outcomes."
+    }
+  },
+  {
+    "id": "2.2.1",
+    "num": "2.2.1",
+    "name": "Timing Adjustable",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "timing-adjustable",
+    "summary": "Users must be given options to turn off, adjust, or extend time limits on pages.",
+    "whyItMatters": "Users with reading, cognitive, or physical disabilities need extra time to complete forms or read content.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#timing-adjustable",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html",
+    "guideUrl": "/plain-english/wcag22/2-2-1/",
+    "provisions": [
+      {
+        "slug": "no-artificial-time-limits",
+        "title": "No Artificial Time Limits",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "process-and-task-completion",
+        "summary": "An exploratory requirement: completing a process does not involve artificial time limits - countdowns manufactured to create urgency - unless the limit is essential.",
+        "whyItMatters": "Manufactured urgency pushes people into decisions before they have understood them, and hits hardest anyone who needs longer to read or decide.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/avoid-deception/no-artificial-time-limits.md",
+        "guideUrl": "/plain-english/provision/no-artificial-time-limits/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Moves timing adjustment to no-artificial-time-limits and timeout-adjustable, broadening protection to background session logouts.",
+      "testingImpact": "Tests options to turn off, adjust (10x), or extend time limits with at least 20 seconds of warning.",
+      "evolutionNote": "WCAG 3 moves timing controls to 'no-artificial-time-limits' under process completion."
+    }
+  },
+  {
+    "id": "2.2.2",
+    "num": "2.2.2",
+    "name": "Pause, Stop, Hide",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "pause-stop-hide",
+    "summary": "Moving, blinking, scrolling, or auto-updating content lasting >5 seconds must have controls to pause, stop, or hide it.",
+    "whyItMatters": "Moving carousels and animated tickers severely distract users with ADHD or cognitive impairments.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#pause-stop-hide",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+    "guideUrl": "/plain-english/wcag22/2-2-2/",
+    "provisions": [
+      {
+        "slug": "no-visual-motion",
+        "title": "No Visual Motion",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "animation-and-movement",
+        "summary": "Visual motion and pseudo-motion - things like parallax scrolling and moving backgrounds - must not run longer than five seconds, unless the motion is essential.",
+        "whyItMatters": "Sustained motion can cause nausea, dizziness and migraine in people with vestibular disorders, and it pulls attention away from the content for people with attention-related disabilities.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/no-visual-motion.md",
+        "guideUrl": "/plain-english/provision/no-visual-motion/"
+      },
+      {
+        "slug": "audio-shifting-adjustable",
+        "title": "Audio Shifting Adjustable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "animation-and-movement",
+        "summary": "Audio that pans or shifts between channels to simulate movement must be something a user can pause or switch off. It does not apply when the shifting comes from the operating system or the browser rather than from the content.",
+        "whyItMatters": "Simulated motion in sound can provoke nausea, disorientation or vestibular symptoms, and it makes speech harder to follow for people who process audio with one ear or with a hearing aid.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/audio-shifting-adjustable.md",
+        "guideUrl": "/plain-english/provision/audio-shifting-adjustable/"
+      },
+      {
+        "slug": "haptic-stimulation-adjustable",
+        "title": "Haptic Stimulation Adjustable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "animation-and-movement",
+        "summary": "Vibration and other haptic feedback the content triggers must be reducible or switchable off. Haptics the operating system generates on the user's own request are out of scope.",
+        "whyItMatters": "Vibration can cause pain for people with chronic pain conditions or tremor, and it can be startling or disorienting for people with sensory processing differences.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/haptic-stimulation-adjustable.md",
+        "guideUrl": "/plain-english/provision/haptic-stimulation-adjustable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split by Motion Type",
+      "scopeDelta": "Splits general pause/stop/hide into distinct provisions for visual motion, audio changes, and haptic feedback.",
+      "testingImpact": "Significantly easier testing: animation controls are tested separately from auto-updating news tickers and sound loops.",
+      "evolutionNote": "WCAG 3 breaks pause/stop/hide apart by the kind of motion: visual motion, audio shifting, and haptic stimulation each get their own provision."
+    }
+  },
+  {
+    "id": "2.3.1",
+    "num": "2.3.1",
+    "name": "Three Flashes or Below Threshold",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "three-flashes-or-below-threshold",
+    "summary": "Web pages must not contain content that flashes more than three times per second to prevent seizures.",
+    "whyItMatters": "Rapidly flashing content can trigger photosensitive epileptic seizures.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#three-flashes-or-below-threshold",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html",
+    "guideUrl": "/plain-english/wcag22/2-3-1/",
+    "provisions": [
+      {
+        "slug": "no-flashing-over-threshold",
+        "title": "No Flashing Over Threshold",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "animation-and-movement",
+        "summary": "Anything that flashes has to stay under the general flash and red flash thresholds, unless the flashing is essential to what the content is.",
+        "whyItMatters": "Flashing above these thresholds can trigger seizures in people with photosensitive epilepsy. This is one of the few accessibility failures that can cause immediate physical harm.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/no-flashing-over-threshold.md",
+        "guideUrl": "/plain-english/provision/no-flashing-over-threshold/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "easier-testing",
+      "changeBadge": "Measurable Thresholds",
+      "scopeDelta": "Restates flash thresholds around explicit luminance and red-saturation formulas under no-flashing-over-threshold.",
+      "testingImpact": "Testing uses automated flash measurement tools with strict quantitative limits (3 flashes per second threshold).",
+      "evolutionNote": "WCAG 3 restated this around explicit thresholds: flashes must stay below the general flash and red flash thresholds. A stricter no-exceptions variant and an exploratory single-flash provision sit alongside it."
+    }
+  },
+  {
+    "id": "2.4.1",
+    "num": "2.4.1",
+    "name": "Bypass Blocks",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "bypass-blocks",
+    "summary": "Provide a mechanism (like a 'Skip to main content' link) to bypass repeated header/navigation blocks.",
+    "whyItMatters": "Keyboard and screen reader users should not have to tab through 50 top menu links on every page refresh.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#bypass-blocks",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html",
+    "guideUrl": "/plain-english/wcag22/2-4-1/",
+    "provisions": [
+      {
+        "slug": "navigating-content",
+        "title": "Navigating Content",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/navigating-content/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "Groups bypass blocks into navigating-content guidelines, connecting skip links with semantic landmark regions.",
+      "testingImpact": "Tests skip link visibility upon keyboard focus and valid target container ID anchoring.",
+      "evolutionNote": "WCAG 3 groups skip links under navigating-content guidelines."
+    }
+  },
+  {
+    "id": "2.4.2",
+    "num": "2.4.2",
+    "name": "Page Titled",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "page-titled",
+    "summary": "Web pages must have descriptive, unique `<title>` tags.",
+    "whyItMatters": "Screen reader users and browser tab users rely on title tags to know which page or app view is active.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#page-titled",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html",
+    "guideUrl": "/plain-english/wcag22/2-4-2/",
+    "provisions": [
+      {
+        "slug": "navigating-content",
+        "title": "Navigating Content",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/navigating-content/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries page titles into page-view-title-available under navigating content.",
+      "testingImpact": "Tests unique, descriptive <title> tag on every page view and document state.",
+      "evolutionNote": "WCAG 3 incorporates page titles into navigation structure outcomes."
+    }
+  },
+  {
+    "id": "2.4.3",
+    "num": "2.4.3",
+    "name": "Focus Order",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "focus-order",
+    "summary": "Keyboard focus navigation order (Tab sequence) must preserve logical meaning and operability.",
+    "whyItMatters": "If tabbing jumps randomly around the page, keyboard users lose track of visual context.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-order",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html",
+    "guideUrl": "/plain-english/wcag22/2-4-3/",
+    "provisions": [
+      {
+        "slug": "navigating-content",
+        "title": "Navigating Content",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/navigating-content/"
+      },
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Aligns focus order with navigating-content and bidirectional-navigation provisions.",
+      "testingImpact": "Verifies keyboard Tab order preserves meaning and operability across dynamic DOM updates.",
+      "evolutionNote": "WCAG 3 aligns focus order with navigating-content outcomes."
+    }
+  },
+  {
+    "id": "2.4.4",
+    "num": "2.4.4",
+    "name": "Link Purpose (In Context)",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "link-purpose-in-context",
+    "summary": "The purpose of each link must be understandable from its text alone or from its immediate context.",
+    "whyItMatters": "Screen reader users browse links out of context via a 'Links List' dialog. Vague links like 'Click Here' or 'Read More' become useless.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#link-purpose-in-context",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
+    "guideUrl": "/plain-english/wcag22/2-4-4/",
+    "provisions": [
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "Maps link purpose in context to interactive-element-names-available provisions.",
+      "testingImpact": "Tests accessible name calculation on <a> tags (inner text, aria-label, aria-labelledby) for ambiguous strings like 'click here'.",
+      "evolutionNote": "WCAG 3 handles link purpose under interactive-element-names-available outcomes."
+    }
+  },
+  {
+    "id": "2.4.6",
+    "num": "2.4.6",
+    "name": "Headings and Labels",
+    "level": "AA",
+    "principle": "Operable",
+    "w3cSlug": "headings-and-labels",
+    "summary": "Headings and form labels must be clear, descriptive, and accurately label the content or inputs.",
+    "whyItMatters": "Clear headings allow users to scan pages efficiently; clear labels prevent form input errors.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#headings-and-labels",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html",
+    "guideUrl": "/plain-english/wcag22/2-4-6/",
+    "provisions": [
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      },
+      {
+        "slug": "process-instructions-available",
+        "title": "Process Instructions Available",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Where a task runs across several steps, the instructions for completing it are there to be found - the process does not assume the user already knows how it works.",
+        "whyItMatters": "Processes that assume prior knowledge exclude first-time users, and disproportionately those who cannot infer the missing steps from the layout alone.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/complete-tasks/process-instructions-available.md",
+        "guideUrl": "/plain-english/provision/process-instructions-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Maps headings and labels into sections-labeled and process-instructions-available.",
+      "testingImpact": "Verifies headings and form labels clearly describe topic or purpose.",
+      "evolutionNote": "WCAG 3 maps 2.4.6 to process instructions and control naming."
+    }
+  },
+  {
+    "id": "2.4.7",
+    "num": "2.4.7",
+    "name": "Focus Visible",
+    "level": "AA",
+    "principle": "Operable",
+    "w3cSlug": "focus-visible",
+    "summary": "Any keyboard-operable interface must have a clearly visible focus indicator when selected.",
+    "whyItMatters": "Without a visual focus outline, keyboard users cannot see where they are on screen when tabbing.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-visible",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
+    "guideUrl": "/plain-english/wcag22/2-4-7/",
+    "provisions": [
+      {
+        "slug": "default-focus-indicator-used",
+        "title": "Default Focus Indicator Used",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "The focusable element uses the browser's own default focus indicator rather than a replacement.",
+        "whyItMatters": "The default indicator is designed to be visible against unknown backgrounds and is what users already recognise. Replacing it is where most focus indicators become invisible.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/keyboard-focus-appearance/default-focus-indicator-used.md",
+        "guideUrl": "/plain-english/provision/default-focus-indicator-used/"
+      },
+      {
+        "slug": "focus-indicator-contrast-sufficient",
+        "title": "Focus Indicator Contrast Sufficient",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Where a custom focus indicator replaces the browser default, it has to have sufficient contrast against what is next to it and sufficient change of contrast from the unfocused state.",
+        "whyItMatters": "An indicator that cannot be distinguished from the background tells a sighted keyboard user nothing about where they are on the page.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-contrast-sufficient.md",
+        "guideUrl": "/plain-english/provision/focus-indicator-contrast-sufficient/"
+      },
+      {
+        "slug": "focus-indicator-size-sufficient",
+        "title": "Focus Indicator Size Sufficient",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Where a custom focus indicator replaces the browser default, it has to be large enough and close enough to what it marks.",
+        "whyItMatters": "A hairline outline is easy to lose on a busy page, particularly for people with low vision or when the page is magnified.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-size-sufficient.md",
+        "guideUrl": "/plain-english/provision/focus-indicator-size-sufficient/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "new-metric",
+      "changeBadge": "Measurable Focus Metrics",
+      "scopeDelta": "Replaces binary 'focus is visible' check with measurable requirements for indicator thickness, contrast, and bounding geometry.",
+      "testingImpact": "Testing moves from subjective visual inspection to measurable 3:1 contrast against adjacent background and minimum pixel surface area.",
+      "evolutionNote": "WCAG 3 replaces the binary focus-visible check with measurable provisions for focus indicator contrast and size."
+    }
+  },
+  {
+    "id": "2.4.11",
+    "num": "2.4.11",
+    "name": "Focus Not Obscured (Minimum)",
+    "level": "AA",
+    "principle": "Operable",
+    "w3cSlug": "focus-not-obscured-minimum",
+    "summary": "New in WCAG 2.2! When an item receives keyboard focus, the item is at least partially visible and not entirely hidden behind sticky headers, banners, or popups.",
+    "whyItMatters": "Keyboard users must see what element is currently focused to navigate confidently.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-not-obscured-minimum",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
+    "guideUrl": "/plain-english/wcag22/2-4-11/",
+    "provisions": [
+      {
+        "slug": "overlay-content-dismissible",
+        "title": "Overlay Content Dismissible",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "layout",
+        "summary": "When new content appears over the main content, there is a way to dismiss it.",
+        "whyItMatters": "A cookie banner or chat widget with no reachable close button can cover the content permanently for keyboard users and for anyone using magnification.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/layout/no-obstruction/overlay-content-dismissible.md",
+        "guideUrl": "/plain-english/provision/overlay-content-dismissible/"
+      },
+      {
+        "slug": "hover-or-focus-content-dismissible",
+        "title": "Hover Or Focus Content Dismissible",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "input-operation",
+        "summary": "Content that appears on hover or keyboard focus can be dismissed without moving the pointer or the focus, unless it does not cover or replace anything else.",
+        "whyItMatters": "A popup covering the field you are typing in is a trap for magnification users - dismissing it by moving away means losing your place.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/input-operation/input-operation/hover-or-focus-content-dismissible.md",
+        "guideUrl": "/plain-english/provision/hover-or-focus-content-dismissible/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "redesigned",
+      "changeBadge": "Redesigned / Overlay Dismissibility",
+      "scopeDelta": "No direct 1:1 successor in current draft. The draft replaces obscuring layout rules with overlay-content-dismissible and hover-or-focus-content-dismissible.",
+      "testingImpact": "Auditors verify that sticky banners, popups, and dialogs can be dismissed without moving focus, rather than auditing partial pixel overlap.",
+      "evolutionNote": "No direct successor yet. The Sep 2026 draft has no provision that states focus must remain visible when obscured; the closest requirements make obscuring content dismissible."
+    }
+  },
+  {
+    "id": "2.5.3",
+    "num": "2.5.3",
+    "name": "Label in Name",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "label-in-name",
+    "summary": "The accessible name (for speech recognition & screen readers) must contain the text presented visually on screen.",
+    "whyItMatters": "Voice control users say 'Click Submit'. If visual text says 'Submit' but aria-label says 'Send Form', voice activation fails.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#label-in-name",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html",
+    "guideUrl": "/plain-english/wcag22/2-5-3/",
+    "provisions": [
+      {
+        "slug": "label-included-in-programmatic-name",
+        "title": "Label Included In Programmatic Name",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "The programmatic name of a control contains the visible label text.",
+        "whyItMatters": "Voice control users say what they see. When the accessible name does not contain the visible words, the command simply fails.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/label-included-in-programmatic-name.md",
+        "guideUrl": "/plain-english/provision/label-included-in-programmatic-name/"
+      },
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carried forward directly as 'label-included-in-programmatic-name' under text and wording.",
+      "testingImpact": "Automated scan confirms visual text label matches the beginning of the element's programmatic accessible name.",
+      "evolutionNote": "WCAG 3 carries this requirement forward directly as 'label-included-in-programmatic-name'."
+    }
+  },
+  {
+    "id": "2.5.7",
+    "num": "2.5.7",
+    "name": "Dragging Movements",
+    "level": "AA",
+    "principle": "Operable",
+    "w3cSlug": "dragging-movements",
+    "summary": "New in WCAG 2.2! Any functionality requiring a dragging movement (drag-and-drop, sliders) must have a single-pointer alternative.",
+    "whyItMatters": "Users with motor tremors or operating eye-gaze tracking cannot perform smooth click-and-drag mouse movements.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#dragging-movements",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html",
+    "guideUrl": "/plain-english/wcag22/2-5-7/",
+    "provisions": [
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "easier-testing",
+      "changeBadge": "Objective Dragging Alternatives",
+      "scopeDelta": "Carried into simple-pointer-input-available, requiring single pointer tap alternatives for sliders, reordering, and drag-and-drop.",
+      "testingImpact": "Tests presence of up/down arrow buttons or menu selectors alongside draggable elements.",
+      "evolutionNote": "WCAG 3 incorporates single-pointer alternatives under pointer input operation outcomes."
+    }
+  },
+  {
+    "id": "2.5.8",
+    "num": "2.5.8",
+    "name": "Target Size (Minimum)",
+    "level": "AA",
+    "principle": "Operable",
+    "w3cSlug": "target-size-minimum",
+    "summary": "New in WCAG 2.2! Interactive targets (buttons, links) must be at least 24x24 CSS pixels or have sufficient spacing around them.",
+    "whyItMatters": "People with hand tremors or using smartphones can easily mis-tap small, cramped buttons placed right next to each other.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#target-size-minimum",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+    "guideUrl": "/plain-english/wcag22/2-5-8/",
+    "provisions": [
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "easier-testing",
+      "changeBadge": "Touch Target Floor (24px)",
+      "scopeDelta": "Mapped to interactive-elements-distinguishable, ensuring targets meet 24x24px floor or have sufficient spacing offset.",
+      "testingImpact": "Direct geometric bounding box and spacing circle calculation in automated audit rules.",
+      "evolutionNote": "WCAG 3 incorporates touch target metrics into comprehensive pointer control guidelines."
+    }
+  },
+  {
+    "id": "3.1.1",
+    "num": "3.1.1",
+    "name": "Language of Page",
+    "level": "A",
+    "principle": "Understandable",
+    "w3cSlug": "language-of-page",
+    "summary": "The default human language of each web page must be specified in HTML (`<html lang=\"en\">`).",
+    "whyItMatters": "Screen readers use the `lang` attribute to choose correct pronunciation rules, voice synthesizers, and accents.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#language-of-page",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html",
+    "guideUrl": "/plain-english/wcag22/3-1-1/",
+    "provisions": [
+      {
+        "slug": "human-language-detectable",
+        "title": "Human Language Detectable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "The human language of everything in the view can be determined programmatically - unless no language tag exists for it in the ISO register, or the technology cannot indicate language at all.",
+        "whyItMatters": "Screen readers choose pronunciation rules from the language tag. Untagged or mistagged text is read in the wrong accent and is often incomprehensible.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-to-speech/human-language-detectable.md",
+        "guideUrl": "/plain-english/provision/human-language-detectable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Mapped directly to human-language-detectable under text and wording.",
+      "testingImpact": "Automated inspection of top-level <html lang> attribute with valid BCP 47 language code.",
+      "evolutionNote": "WCAG 3 maps 3.1.1 directly to human-language-detectable."
+    }
+  },
+  {
+    "id": "3.1.2",
+    "num": "3.1.2",
+    "name": "Language of Parts",
+    "level": "AA",
+    "principle": "Understandable",
+    "w3cSlug": "language-of-parts",
+    "summary": "The human language of any passage or phrase in a page that differs from default language must be specified in code (`<span lang=\"fr\">`).",
+    "whyItMatters": "Without `lang=\"fr\"`, an English screen reader will pronounce French words using harsh English phonetics.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#language-of-parts",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html",
+    "guideUrl": "/plain-english/wcag22/3-1-2/",
+    "provisions": [
+      {
+        "slug": "human-language-detectable",
+        "title": "Human Language Detectable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "The human language of everything in the view can be determined programmatically - unless no language tag exists for it in the ISO register, or the technology cannot indicate language at all.",
+        "whyItMatters": "Screen readers choose pronunciation rules from the language tag. Untagged or mistagged text is read in the wrong accent and is often incomprehensible.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-to-speech/human-language-detectable.md",
+        "guideUrl": "/plain-english/provision/human-language-detectable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Includes passage and phrase language switches in human-language-detectable provisions.",
+      "testingImpact": "Tests inline lang attributes on foreign phrases for screen reader pronunciation switching.",
+      "evolutionNote": "WCAG 3 includes inline language in human-language-detectable outcomes."
+    }
+  },
+  {
+    "id": "3.2.1",
+    "num": "3.2.1",
+    "name": "On Focus",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "on-focus",
+    "summary": "Receiving keyboard focus on a component must not automatically trigger a change of context (like submitting a form or opening a new page).",
+    "whyItMatters": "Tabbing through a form should never automatically submit data or jump to another URL without user confirmation.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#on-focus",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html",
+    "guideUrl": "/plain-english/wcag22/3-2-1/",
+    "provisions": [
+      {
+        "slug": "change-of-focus-notified",
+        "title": "Change Of Focus Notified",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "When focus changes, whether on focus or automatically, the user is notified both visually and programmatically.",
+        "whyItMatters": "Unannounced focus movement is disorienting for sighted keyboard users and can leave screen reader users reading from an entirely different part of the page.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/content-changes/change-of-focus-notified.md",
+        "guideUrl": "/plain-english/provision/change-of-focus-notified/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Categorized under change-of-focus-notified provisions in consistency guidelines.",
+      "testingImpact": "Tests that receiving focus does not automatically submit forms, navigate to new URLs, or spawn popups.",
+      "evolutionNote": "WCAG 3 categorizes 3.2.1 under change-of-focus-notified outcomes."
+    }
+  },
+  {
+    "id": "3.2.2",
+    "num": "3.2.2",
+    "name": "On Input",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "on-input",
+    "summary": "Changing the setting of any user interface component must not automatically cause a change of context unless informed in advance.",
+    "whyItMatters": "Selecting a checkbox or radio button shouldn't suddenly navigate to a new page without warning.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#on-input",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/on-input.html",
+    "guideUrl": "/plain-english/wcag22/3-2-2/",
+    "provisions": [
+      {
+        "slug": "change-of-content-notified",
+        "title": "Change Of Content Notified",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "A meaningful visual change has to be announced programmatically, not just shown. The draft lists what counts: changes above the user's place in reading order, changes earlier in a process, notifications and status or error messages, changes in how much content there is, changes that alter meaning, and changes of audience. Continuous change with no pause is exempt.",
+        "whyItMatters": "A change a sighted user sees at a glance is invisible to a screen reader user unless it is announced, so they act on a version of the page that no longer exists.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/content-changes/change-of-content-notified.md",
+        "guideUrl": "/plain-english/provision/change-of-content-notified/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Addressed under change-of-content-notified, ensuring input changes do not unexpectedly shift context without advance notice.",
+      "testingImpact": "Verifies changing radio buttons, checkboxes, or dropdowns does not unexpectedly reload or navigate.",
+      "evolutionNote": "WCAG 3 addresses 3.2.2 under change-of-content-notified."
+    }
+  },
+  {
+    "id": "3.2.6",
+    "num": "3.2.6",
+    "name": "Consistent Help",
+    "level": "A",
+    "principle": "Understandable",
+    "w3cSlug": "consistent-help",
+    "summary": "New in WCAG 2.2! Help features (contact info, live chat, FAQ links) appearing on multiple pages must be located in the same relative place.",
+    "whyItMatters": "Users seeking help or customer support should find support links in predictable locations across every page.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-help",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html",
+    "guideUrl": "/plain-english/wcag22/3-2-6/",
+    "provisions": [
+      {
+        "slug": "process-instructions-available",
+        "title": "Process Instructions Available",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Where a task runs across several steps, the instructions for completing it are there to be found - the process does not assume the user already knows how it works.",
+        "whyItMatters": "Processes that assume prior knowledge exclude first-time users, and disproportionately those who cannot infer the missing steps from the layout alone.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/complete-tasks/process-instructions-available.md",
+        "guideUrl": "/plain-english/provision/process-instructions-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Integrates consistent help into support-available and personalizable-help provisions under help-and-feedback.",
+      "testingImpact": "Tests help links, chat widgets, and support contact items maintain uniform placement across views.",
+      "evolutionNote": "WCAG 3 integrates 3.2.6 into process instructions and consistency outcomes."
+    }
+  },
+  {
+    "id": "3.3.1",
+    "num": "3.3.1",
+    "name": "Error Identification",
+    "level": "A",
+    "principle": "Understandable",
+    "w3cSlug": "error-identification",
+    "summary": "If an input error is automatically detected, the item in error must be identified and the error described to the user in text.",
+    "whyItMatters": "Red borders alone do not tell screen reader or color-blind users which field failed or why.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#error-identification",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
+    "guideUrl": "/plain-english/wcag22/3-3-1/",
+    "provisions": [
+      {
+        "slug": "input-constraints-used",
+        "title": "Input Constraints Used",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "The constraints and conditions on a field - required format, length, allowed values - are made available to the user.",
+        "whyItMatters": "Constraints discovered only by failing are a guessing game, which is costly for people with cognitive disabilities and for anyone whose input is slow or effortful.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/input-constraints-used.md",
+        "guideUrl": "/plain-english/provision/input-constraints-used/"
+      },
+      {
+        "slug": "changes-to-elements-notified",
+        "title": "Changes To Elements Notified",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "When an interactive element's name, role, value or state changes, that change is indicated both visually and programmatically.",
+        "whyItMatters": "A state change nobody announces - a button that has become pressed, a field now marked invalid - leaves screen reader users acting on stale information.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/changes-to-elements-notified.md",
+        "guideUrl": "/plain-english/provision/changes-to-elements-notified/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "Splits error identification into input-constraints-used, submission-status-notified, and error message provisions.",
+      "testingImpact": "Automated checks confirm aria-invalid and error description linking via aria-describedby.",
+      "evolutionNote": "WCAG 3 covers error identification under input-constraints-used outcomes."
+    }
+  },
+  {
+    "id": "3.3.2",
+    "num": "3.3.2",
+    "name": "Labels or Instructions",
+    "level": "A",
+    "principle": "Understandable",
+    "w3cSlug": "labels-or-instructions",
+    "summary": "Labels or instructions must be provided when content requires user input.",
+    "whyItMatters": "Without clear labels or format instructions (e.g., 'MM/DD/YYYY'), users guess what data format is expected.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#labels-or-instructions",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
+    "guideUrl": "/plain-english/wcag22/3-3-2/",
+    "provisions": [
+      {
+        "slug": "input-constraints-used",
+        "title": "Input Constraints Used",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "The constraints and conditions on a field - required format, length, allowed values - are made available to the user.",
+        "whyItMatters": "Constraints discovered only by failing are a guessing game, which is costly for people with cognitive disabilities and for anyone whose input is slow or effortful.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/input-constraints-used.md",
+        "guideUrl": "/plain-english/provision/input-constraints-used/"
+      },
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Mapped to input constraints and process instructions under input-operation and error handling.",
+      "testingImpact": "Tests visible labels, format hints (e.g. DD/MM/YYYY), and required field indicators.",
+      "evolutionNote": "WCAG 3 maps 3.3.2 to input constraints and element naming."
+    }
+  },
+  {
+    "id": "3.3.7",
+    "num": "3.3.7",
+    "name": "Redundant Entry",
+    "level": "A",
+    "principle": "Understandable",
+    "w3cSlug": "redundant-entry",
+    "summary": "New in WCAG 2.2! Information previously entered by the user in the same process must be automatically populated or available for selection.",
+    "whyItMatters": "Re-typing information like billing/shipping address causes significant cognitive fatigue and errors.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#redundant-entry",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html",
+    "guideUrl": "/plain-english/wcag22/3-3-7/",
+    "provisions": [
+      {
+        "slug": "no-redundant-entry",
+        "title": "No Redundant Entry",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Information the user already entered or was already given, if required again in the same process, is either filled in automatically or offered for selection. Re-entry that is essential, needed for security, or where the earlier information is no longer valid, is exempt.",
+        "whyItMatters": "Re-typing the same data is effort and a new chance to make a mistake, which is costly for people with motor and cognitive disabilities and slow for anyone using speech input.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/retain-information/no-redundant-entry.md",
+        "guideUrl": "/plain-english/provision/no-redundant-entry/"
+      },
+      {
+        "slug": "progress-saved",
+        "title": "Progress Saved",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Data entry and task completion can be saved and resumed from the current step - unless the task is part of a real-time event where no alternative to the time limit is possible.",
+        "whyItMatters": "Being able to stop and come back is what makes a long task possible for people with fatigue, pain, attention-related disabilities, or an unreliable connection.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/retain-information/progress-saved.md",
+        "guideUrl": "/plain-english/provision/progress-saved/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Adopts redundant entry directly into 'no-redundant-entry' under process completion.",
+      "testingImpact": "Tests that information previously entered in a multi-step flow is auto-populated or available for selection.",
+      "evolutionNote": "WCAG 3 adopts 3.3.7 directly into 'no-redundant-entry' under the retain information group."
+    }
+  },
+  {
+    "id": "3.3.8",
+    "num": "3.3.8",
+    "name": "Accessible Authentication (Minimum)",
+    "level": "AA",
+    "principle": "Understandable",
+    "w3cSlug": "accessible-authentication-minimum",
+    "summary": "New in WCAG 2.2! Authentication processes must not rely on cognitive function tests (memorizing passwords or solving puzzles) unless alternatives like passkeys or copy-paste exist.",
+    "whyItMatters": "CAPTCHA puzzles and anti-copy password fields create huge barriers for people with cognitive impairments or dyslexia.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#accessible-authentication-minimum",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html",
+    "guideUrl": "/plain-english/wcag22/3-3-8/",
+    "provisions": [
+      {
+        "slug": "cognitive-test-alternatives-available",
+        "title": "Cognitive Test Alternatives Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Users must not be forced to solve puzzles, recall passwords, or perform mental math to complete tasks unless an alternative login or verification method exists.",
+        "whyItMatters": "Cognitive tests like CAPTCHAs lock out users with memory loss, dyslexia, or brain injuries.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/cognitive-test-alternatives-available.md",
+        "guideUrl": "/plain-english/provision/cognitive-test-alternatives-available/"
+      },
+      {
+        "slug": "automated-entry-allowed",
+        "title": "Automated Entry Allowed",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Automated entry of personal information is not blocked - whether from the browser, a third-party tool, or pasting.",
+        "whyItMatters": "Blocking paste or autofill forces manual transcription of exactly the data that is longest and least memorable, which is a barrier for password manager users and people with cognitive or motor disabilities.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/automated-entry-allowed.md",
+        "guideUrl": "/plain-english/provision/automated-entry-allowed/"
+      },
+      {
+        "slug": "copying-supported",
+        "title": "Copying Supported",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "process-and-task-completion",
+        "summary": "An exploratory requirement: copying content is not prevented.",
+        "whyItMatters": "Copying is how people move text into a translator, a reader, a note or a password manager. Blocking it removes an adaptation the user had already made for themselves.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/copying-supported.md",
+        "guideUrl": "/plain-english/provision/copying-supported/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Authentication",
+      "scopeDelta": "Breaks accessible authentication into cognitive-test-alternatives-available, automated-entry-allowed, and copying-supported.",
+      "testingImpact": "Directly tests password manager autofill support, copy-paste allowance, and passkey/biometric alternatives.",
+      "evolutionNote": "WCAG 3 breaks accessible authentication into cognitive test alternatives, automated entry, and copying support."
+    }
+  },
+  {
+    "id": "4.1.2",
+    "num": "4.1.2",
+    "name": "Name, Role, Value",
+    "level": "A",
+    "principle": "Robust",
+    "w3cSlug": "name-role-value",
+    "summary": "For all custom UI controls, the name (label), role (what component it is), and value/state (expanded, checked, selected) must be programmatically available.",
+    "whyItMatters": "Screen readers need to know if an element is a button, checkbox, tab, or slider, and whether it is currently checked or expanded.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#name-role-value",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
+    "guideUrl": "/plain-english/wcag22/4-1-2/",
+    "provisions": [
+      {
+        "slug": "roles-values-states-properties-available",
+        "title": "Roles, values, states, properties available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements expose accurate names, roles, values and states.",
+        "whyItMatters": "This is what assistive technology reads. An element with a wrong role is announced as the wrong kind of thing, and a missing state hides whether it is on, off, expanded or selected.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/roles-values-states-properties-available.md",
+        "guideUrl": "/plain-english/provision/roles-values-states-properties-available/"
+      },
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Component Semantics",
+      "scopeDelta": "Maps Name, Role, Value to 'roles-values-states-properties-available' and 'interactive-element-names-available'.",
+      "testingImpact": "Tests programmatic accessibility tree representation: aria-* states, roles, and values across custom interactive widgets.",
+      "evolutionNote": "WCAG 3 maps 4.1.2 to 'roles-values-states-properties-available'."
+    }
+  },
+  {
+    "id": "4.1.3",
+    "num": "4.1.3",
+    "name": "Status Messages",
+    "level": "AA",
+    "principle": "Robust",
+    "w3cSlug": "status-messages",
+    "summary": "Status messages (success alerts, search result counts) must be announced to assistive tech without receiving focus.",
+    "whyItMatters": "Screen reader users need to hear '3 results found' or 'Item added to cart' without having their focus focus abruptly moved away from their current input.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#status-messages",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+    "guideUrl": "/plain-english/wcag22/4-1-3/",
+    "provisions": [
+      {
+        "slug": "changes-to-elements-notified",
+        "title": "Changes To Elements Notified",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "When an interactive element's name, role, value or state changes, that change is indicated both visually and programmatically.",
+        "whyItMatters": "A state change nobody announces - a button that has become pressed, a field now marked invalid - leaves screen reader users acting on stale information.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/changes-to-elements-notified.md",
+        "guideUrl": "/plain-english/provision/changes-to-elements-notified/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Mapped to changes-to-elements-notified and change-of-content-notified under feedback and messaging.",
+      "testingImpact": "Tests aria-live regions and role='status' / role='alert' announcements for asynchronous DOM updates without focus change.",
+      "evolutionNote": "WCAG 3 handles status messages under changes-to-elements-notified outcomes."
+    }
+  },
+  {
+    "id": "1.2.6",
+    "num": "1.2.6",
+    "name": "Sign Language (Prerecorded)",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "sign-language-prerecorded",
+    "summary": "Sign language interpretation is provided for all prerecorded audio content in synchronized media.",
+    "whyItMatters": "For many Deaf people a signed language is their first language and written captions are a second language, so captions alone do not give equal access.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#sign-language-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/sign-language-prerecorded.html",
+    "guideUrl": "/plain-english/wcag22/1-2-6/",
+    "provisions": [
+      {
+        "slug": "sign-language-available-prerecorded",
+        "title": "Sign language available (prerecorded)",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Prerecorded audio content is interpreted into the primary sign language most appropriate for its audience or region. Audio that is an alternative to visual content and labelled as such, decorative background sound and interface sound effects are exempt.",
+        "whyItMatters": "For many deaf people a sign language is their first language and the written language of the page is a second one, so captions are not an equivalent route.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/sign-language/sign-language-available-prerecorded.md",
+        "guideUrl": "/plain-english/provision/sign-language-available-prerecorded/"
+      },
+      {
+        "slug": "sign-language-controllable",
+        "title": "Sign Language Controllable",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "There is a way to show and hide sign language interpretation, unless it is burned into the video or supplied as a separate interpreted version.",
+        "whyItMatters": "An interpreter window occupies part of the picture. Viewers who do not use it need it out of the way, and viewers who do need it present.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/sign-language/sign-language-controllable.md",
+        "guideUrl": "/plain-english/provision/sign-language-controllable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Gives sign language interpretation its own guideline and introduces provisions for user control over visibility and sizing of the signer video overlay.",
+      "testingImpact": "Testing checks not only whether sign language video exists, but whether the user can adjust, toggle, or reposition the signer viewport.",
+      "evolutionNote": "WCAG 3 gives sign language its own guideline, and adds a provision for showing and hiding the interpretation."
+    }
+  },
+  {
+    "id": "1.2.7",
+    "num": "1.2.7",
+    "name": "Extended Audio Description (Prerecorded)",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "extended-audio-description-prerecorded",
+    "summary": "Where pauses in main video dialogue are insufficient for audio descriptions, provide extended audio descriptions by pausing video playback.",
+    "whyItMatters": "Blind users miss visual storytelling details when dialogue is too fast for standard audio description gaps.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#extended-audio-description-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/extended-audio-description-prerecorded.html",
+    "guideUrl": "/plain-english/wcag22/1-2-7/",
+    "provisions": [
+      {
+        "slug": "extended-audio-descriptions-available",
+        "title": "Extended Audio Descriptions Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Where the natural gaps in the soundtrack are too short to describe what is on screen, the video pauses so that a longer description can be given.",
+        "whyItMatters": "Dense visual content cannot be described in the pauses a soundtrack happens to leave. Pausing is the only way to convey it without cutting information.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/audio-descriptions/extended-audio-descriptions-available.md",
+        "guideUrl": "/plain-english/provision/extended-audio-descriptions-available/"
+      },
+      {
+        "slug": "extended-audio-descriptions-equivalent",
+        "title": "Extended Audio Descriptions Equivalent",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "The extended description must convey the same information as the visual content it describes, not just fill the pause.",
+        "whyItMatters": "The pause is bought at the cost of the viewer's time; an inadequate description wastes it and still leaves the content incomplete.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/audio-descriptions/extended-audio-descriptions-equivalent.md",
+        "guideUrl": "/plain-english/provision/extended-audio-descriptions-equivalent/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "Splits extended audio description into availability and equivalence provisions under the audio descriptions guideline.",
+      "testingImpact": "Allows discrete verification of pause-and-play audio description systems separately from standard continuous descriptions.",
+      "evolutionNote": "WCAG 3 splits extended audio description into availability and equivalence."
+    }
+  },
+  {
+    "id": "1.2.8",
+    "num": "1.2.8",
+    "name": "Media Alternative (Prerecorded)",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "media-alternative-prerecorded",
+    "summary": "A full text transcript describing all visual scenes, dialogue, and audio cues must be provided for all prerecorded synchronized media.",
+    "whyItMatters": "Deaf-blind users relying on screen reader braille displays need full descriptive text transcripts of videos.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#media-alternative-prerecorded",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/media-alternative-prerecorded.html",
+    "guideUrl": "/plain-english/wcag22/1-2-8/",
+    "provisions": [
+      {
+        "slug": "descriptive-transcripts-available",
+        "title": "Descriptive Transcripts Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Prerecorded audio and video have a descriptive transcript - one that covers the visuals as well as the speech. Purely decorative media, media that is already an alternative for text and labelled as such, and video whose picture adds nothing to the audio are exempt.",
+        "whyItMatters": "A transcript is the one format that can be read at any speed, searched, translated, and rendered in braille. It serves deafblind users, who have no route through either captions or audio description.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
+        "guideUrl": "/plain-english/provision/descriptive-transcripts-available/"
+      },
+      {
+        "slug": "transcripts-equivalent-prerecorded",
+        "title": "Transcripts equivalent (prerecorded)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Transcripts have to be equivalent to the media, not a partial record of it. Media with no spoken content that serves only as background is exempt.",
+        "whyItMatters": "A transcript that summarises rather than conveys gives its readers less than everyone else receives from the same content.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/transcripts/transcripts-equivalent-prerecorded.md",
+        "guideUrl": "/plain-english/provision/transcripts-equivalent-prerecorded/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Split",
+      "scopeDelta": "The WCAG 2.2 full media alternative becomes the descriptive transcript in WCAG 3, accompanied by specific style and findability provisions.",
+      "testingImpact": "Testing tests transcript equivalence, speaker labeling, and layout placement independently.",
+      "evolutionNote": "The WCAG 2.2 media alternative becomes the descriptive transcript in WCAG 3, with a separate equivalence provision."
+    }
+  },
+  {
+    "id": "1.4.6",
+    "num": "1.4.6",
+    "name": "Contrast (Enhanced)",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "contrast-enhanced",
+    "summary": "Text must have an enhanced color contrast ratio of at least 7:1 for normal text and 4.5:1 for large text.",
+    "whyItMatters": "Provides maximum readability for users with severe low vision without requiring screen magnifiers.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#contrast-enhanced",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html",
+    "guideUrl": "/plain-english/wcag22/1-4-6/",
+    "provisions": [
+      {
+        "slug": "text-contrast-sufficient-enhanced",
+        "title": "Text contrast sufficient (enhanced)",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "A higher contrast bar than the minimum requirement, with the same scope and exceptions. The measure itself is still to be determined in the draft.",
+        "whyItMatters": "The minimum level is a floor, not a comfortable reading level. The enhanced level is aimed at people whose contrast sensitivity is significantly reduced.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/text-contrast-sufficient-enhanced.md",
+        "guideUrl": "/plain-english/provision/text-contrast-sufficient-enhanced/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "new-metric",
+      "changeBadge": "Perceptual Metric (Enhanced APCA)",
+      "scopeDelta": "Replaces 7:1 ratio with enhanced perceptual contrast levels under the APCA model for optimal readability.",
+      "testingImpact": "Evaluated using enhanced APCA lightness contrast targets across all text sizes and display weights.",
+      "evolutionNote": "WCAG 3 maps 1.4.6 to text-contrast-sufficient-enhanced."
+    }
+  },
+  {
+    "id": "1.4.7",
+    "num": "1.4.7",
+    "name": "Low or No Background Audio",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "low-or-no-background-audio",
+    "summary": "Background audio under spoken dialogue must be muted by default or at least 20dB lower than speech.",
+    "whyItMatters": "Hard-of-hearing users cannot isolate spoken words when background music or noise is loud.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#low-or-no-background-audio",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/low-or-no-background-audio.html",
+    "guideUrl": "/plain-english/wcag22/1-4-7/",
+    "provisions": [
+      {
+        "slug": "media-control",
+        "title": "Media Control",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/media-control/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries speech-over-background audio rules into media audio control provisions.",
+      "testingImpact": "Verifies that background audio is 20dB lower than foreground speech or can be completely disabled by the user.",
+      "evolutionNote": "WCAG 3 includes background audio control under media outcomes."
+    }
+  },
+  {
+    "id": "1.4.8",
+    "num": "1.4.8",
+    "name": "Visual Presentation",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "visual-presentation",
+    "summary": "Allow users to customize foreground/background colors, line spacing (1.5x), paragraph spacing (2x), and text width (<80 characters).",
+    "whyItMatters": "Readers with cognitive disabilities or dyslexia require specific layout dimensions and custom color combinations.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#visual-presentation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/visual-presentation.html",
+    "guideUrl": "/plain-english/wcag22/1-4-8/",
+    "provisions": [
+      {
+        "slug": "blocks-of-text-readable-enhanced",
+        "title": "Blocks of text readable (enhanced)",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "The text as authored - before any user adjustment - meets enhanced values for inline margin, block margin, line length and line height. The values themselves are still to be determined.",
+        "whyItMatters": "Setting readable defaults means users do not have to know that adjustment is possible, which is most of them.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-readable-enhanced.md",
+        "guideUrl": "/plain-english/provision/blocks-of-text-readable-enhanced/"
+      },
+      {
+        "slug": "text-color-adjustable",
+        "title": "Text Color Adjustable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "The foreground and background colour of text can be changed without losing content or functionality. The exceptions mirror the contrast requirement: text also present elsewhere in a conforming form, text in an inactive control, pure decoration, invisible text, text within a substantive picture, and logos.",
+        "whyItMatters": "Many people read only with a specific colour combination - light text on dark, or a tinted background for scotopic sensitivity. Content that resists recolouring blocks the adaptation they depend on.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/text-color-adjustable.md",
+        "guideUrl": "/plain-english/provision/text-color-adjustable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expands visual presentation options into customizable text color, text style, and user setting retention provisions.",
+      "testingImpact": "Testing confirms user stylesheet overrides and platform font/spacing settings are respected by the application.",
+      "evolutionNote": "WCAG 3 categorizes 1.4.8 under blocks-of-text-readable-enhanced outcomes."
+    }
+  },
+  {
+    "id": "1.4.9",
+    "num": "1.4.9",
+    "name": "Images of Text (No Exception)",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "images-of-text-no-exception",
+    "summary": "Images of text must not be used under any circumstances except for logos or brand names.",
+    "whyItMatters": "Ensures text is 100% scalable, restylable, and accessible across all assistive technologies.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#images-of-text-no-exception",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text-no-exception.html",
+    "guideUrl": "/plain-english/wcag22/1-4-9/",
+    "provisions": [
+      {
+        "slug": "text-detectable",
+        "title": "Text Detectable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "Every piece of text a sighted user can see has an equivalent that software can read - including text inside images and drawn onto a canvas. The exception is where providing it would duplicate text already present in the view.",
+        "whyItMatters": "Text baked into an image or drawn on a canvas cannot be read aloud, enlarged, recoloured or translated. The programmatic equivalent is what restores all of those.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
+        "guideUrl": "/plain-english/provision/text-detectable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Maintains absolute prohibition of images of text except for branding, logos, and essential visual demonstrations.",
+      "testingImpact": "Strict automated and manual inspection for rasterized typography in web applications.",
+      "evolutionNote": "WCAG 3 maps 1.4.9 to text-detectable."
+    }
+  },
+  {
+    "id": "2.1.3",
+    "num": "2.1.3",
+    "name": "Keyboard (No Exception)",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "keyboard-no-exception",
+    "summary": "All page functionality must be operable via keyboard without exception (no mouse-only path allowed under any circumstances).",
+    "whyItMatters": "Ensures 100% of features can be activated by keyboard users.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#keyboard-no-exception",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard-no-exception.html",
+    "guideUrl": "/plain-english/wcag22/2-1-3/",
+    "provisions": [
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries keyboard without exception forward as an enhanced input operation provision.",
+      "testingImpact": "Confirms that zero functions require timed pointer gestures or path-dependent interactions.",
+      "evolutionNote": "WCAG 3 builds on complete keyboard operability."
+    }
+  },
+  {
+    "id": "2.2.3",
+    "num": "2.2.3",
+    "name": "No Timing",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "no-timing",
+    "summary": "Content must not have any time limits whatsoever (except for non-interactive live broadcasts).",
+    "whyItMatters": "Users can take as long as necessary to read, process, and complete actions without session expiration stress.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#no-timing",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/no-timing.html",
+    "guideUrl": "/plain-english/wcag22/2-2-3/",
+    "provisions": [
+      {
+        "slug": "no-artificial-time-limits",
+        "title": "No Artificial Time Limits",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "process-and-task-completion",
+        "summary": "An exploratory requirement: completing a process does not involve artificial time limits - countdowns manufactured to create urgency - unless the limit is essential.",
+        "whyItMatters": "Manufactured urgency pushes people into decisions before they have understood them, and hits hardest anyone who needs longer to read or decide.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/avoid-deception/no-artificial-time-limits.md",
+        "guideUrl": "/plain-english/provision/no-artificial-time-limits/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries no-timing exceptions into no-time-limits provisions.",
+      "testingImpact": "Confirms that time is not an essential aspect of the activity (with exceptions for live auctions and real-time multiplayer games).",
+      "evolutionNote": "WCAG 3 incorporates 2.2.3 into 'no-artificial-time-limits'."
+    }
+  },
+  {
+    "id": "2.2.4",
+    "num": "2.2.4",
+    "name": "Interruptions",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "interruptions",
+    "summary": "Interruptions (like non-emergency popups or alerts) can be postponed or suppressed by the user.",
+    "whyItMatters": "Users with cognitive disabilities can focus on reading without unexpected popups breaking concentration.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#interruptions",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/interruptions.html",
+    "guideUrl": "/plain-english/wcag22/2-2-4/",
+    "provisions": [
+      {
+        "slug": "notifications-adjustable",
+        "title": "Notifications Adjustable",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "Where notifications or other interruptions occur, their timing or position can be changed, suppressed or saved - unless the notification is an emergency or is otherwise essential.",
+        "whyItMatters": "Interruptions break concentration and can steal focus mid-task, which is particularly costly for people with attention-related and cognitive disabilities.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/assistive-technology-control/notifications-adjustable.md",
+        "guideUrl": "/plain-english/provision/notifications-adjustable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expands interruption postponement into adjustable notifications and progress saving provisions.",
+      "testingImpact": "Tests ability of users to suppress non-emergency notifications and alerts.",
+      "evolutionNote": "WCAG 3 maps 2.2.4 to notifications-adjustable."
+    }
+  },
+  {
+    "id": "2.3.2",
+    "num": "2.3.2",
+    "name": "Three Flashes",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "three-flashes",
+    "summary": "Content must not contain any component that flashes more than three times in any one-second period (no exceptions).",
+    "whyItMatters": "Eliminates all seizure risks caused by visual flashing.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#three-flashes",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes.html",
+    "guideUrl": "/plain-english/wcag22/2-3-2/",
+    "provisions": [
+      {
+        "slug": "no-flashing-over-threshold-no-exceptions",
+        "title": "No flashing over threshold (no exceptions)",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "animation-and-movement",
+        "summary": "The same flash thresholds as the foundational requirement, but with no minimum-size allowance: a flashing area under the size threshold is no longer exempt.",
+        "whyItMatters": "The size exemption assumes a small flashing area is safe, which does not hold for everyone or for every viewing distance. Removing it closes that gap for people with photosensitive epilepsy.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/no-flashing-over-threshold-no-exceptions.md",
+        "guideUrl": "/plain-english/provision/no-flashing-over-threshold-no-exceptions/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Maintains zero-flash AAA safety under no-flashing-over-threshold-no-exceptions and single-flash provisions.",
+      "testingImpact": "Automated scanner flags any content flashing more than 1 time in any 1-second period.",
+      "evolutionNote": "The AAA no-exceptions variant survives in WCAG 3 as a separate provision that drops the minimum-size allowance."
+    }
+  },
+  {
+    "id": "2.4.8",
+    "num": "2.4.8",
+    "name": "Location",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "location",
+    "summary": "Information about the user's location within a set of web pages is available (e.g. breadcrumbs).",
+    "whyItMatters": "Helps users orient themselves within deep hierarchical websites.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#location",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/location.html",
+    "guideUrl": "/plain-english/wcag22/2-4-8/",
+    "provisions": [
+      {
+        "slug": "navigating-content",
+        "title": "Navigating Content",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/navigating-content/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Maps location within site/app to location-within-product-review and breadcrumb structure.",
+      "testingImpact": "Verifies breadcrumb trails, progress indicators, or active navigation highlighting.",
+      "evolutionNote": "WCAG 3 includes location in navigating-content outcomes."
+    }
+  },
+  {
+    "id": "2.4.9",
+    "num": "2.4.9",
+    "name": "Link Purpose (Link Only)",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "link-purpose-link-only",
+    "summary": "A mechanism is available to allow the purpose of each link to be identified from link text alone.",
+    "whyItMatters": "Users browsing links out of context can understand every link destination without reading surrounding sentences.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#link-purpose-link-only",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-link-only.html",
+    "guideUrl": "/plain-english/wcag22/2-4-9/",
+    "provisions": [
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Requires link purpose alone (without needing surrounding context) for complete programmatic clarity.",
+      "testingImpact": "Tests link accessible names independently of surrounding paragraphs.",
+      "evolutionNote": "WCAG 3 maps link purpose to interactive-element-names-available."
+    }
+  },
+  {
+    "id": "2.4.10",
+    "num": "2.4.10",
+    "name": "Section Headings",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "section-headings",
+    "summary": "Section headings are used to organize content into distinct visual and semantic sections.",
+    "whyItMatters": "Break up long walls of text into digestible sections for readers with cognitive impairments.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#section-headings",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/section-headings.html",
+    "guideUrl": "/plain-english/wcag22/2-4-10/",
+    "provisions": [
+      {
+        "slug": "blocks-of-text-readable-enhanced",
+        "title": "Blocks of text readable (enhanced)",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "The text as authored - before any user adjustment - meets enhanced values for inline margin, block margin, line length and line height. The values themselves are still to be determined.",
+        "whyItMatters": "Setting readable defaults means users do not have to know that adjustment is possible, which is most of them.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-readable-enhanced.md",
+        "guideUrl": "/plain-english/provision/blocks-of-text-readable-enhanced/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries section headings into sections-labeled provisions under content structure.",
+      "testingImpact": "Tests hierarchical heading structure (h1 through h6) across all major content divisions.",
+      "evolutionNote": "WCAG 3 includes section headings under readable text outcomes."
+    }
+  },
+  {
+    "id": "2.5.5",
+    "num": "2.5.5",
+    "name": "Target Size (AAA)",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "target-size-aaa",
+    "summary": "Interactive target size is at least 44x44 CSS pixels (except for inline text links).",
+    "whyItMatters": "Ensures buttons and controls are easily tapable for users with severe hand tremors or motor disabilities.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#target-size-aaa",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-aaa.html",
+    "guideUrl": "/plain-english/wcag22/2-5-5/",
+    "provisions": [
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "easier-testing",
+      "changeBadge": "Measurable Target Thresholds",
+      "scopeDelta": "Carries AAA 44x44px target size into comprehensive pointer control guidelines under interactive components.",
+      "testingImpact": "Automated testing checks bounding box dimensions of interactive tap targets.",
+      "evolutionNote": "WCAG 3 integrates 44x44px target sizes under target size outcomes."
+    }
+  },
+  {
+    "id": "3.1.3",
+    "num": "3.1.3",
+    "name": "Unusual Words",
+    "level": "AAA",
+    "principle": "Understandable",
+    "w3cSlug": "unusual-words",
+    "summary": "Provide a mechanism for identifying specific definitions of unusual words, jargon, or idioms.",
+    "whyItMatters": "Helps readers with cognitive disabilities understand specialized terminology.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#unusual-words",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/unusual-words.html",
+    "guideUrl": "/plain-english/wcag22/3-1-3/",
+    "provisions": [
+      {
+        "slug": "clear-language",
+        "title": "Clear Language",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/clear-language/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expands unusual words into non-literal-language-explained and summaries-available provisions.",
+      "testingImpact": "Verifies glossary links, ruby annotations, or inline definitions for idioms and jargon.",
+      "evolutionNote": "WCAG 3 maps 3.1.3 to clear-language outcomes."
+    }
+  },
+  {
+    "id": "3.1.4",
+    "num": "3.1.4",
+    "name": "Abbreviations",
+    "level": "AAA",
+    "principle": "Understandable",
+    "w3cSlug": "abbreviations",
+    "summary": "Provide a mechanism for identifying the expanded form or definition of abbreviations.",
+    "whyItMatters": "Screen reader users and cognitive readers need to know what acronyms (like W3C or WCAG) stand for.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#abbreviations",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/abbreviations.html",
+    "guideUrl": "/plain-english/wcag22/3-1-4/",
+    "provisions": [
+      {
+        "slug": "clear-language",
+        "title": "Clear Language",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/clear-language/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries abbreviation expansions into clear text and wording outcomes.",
+      "testingImpact": "Tests <abbr title> tags or parenthetical expansions upon first mention in text.",
+      "evolutionNote": "WCAG 3 includes abbreviations in clear-language outcomes."
+    }
+  },
+  {
+    "id": "3.1.5",
+    "num": "3.1.5",
+    "name": "Reading Level",
+    "level": "AAA",
+    "principle": "Understandable",
+    "w3cSlug": "reading-level",
+    "summary": "When text requires advanced reading ability beyond lower secondary education level, supplemental clear language versions are available.",
+    "whyItMatters": "Ensures complex medical, legal, or technical documentation can be comprehended by all readers.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#reading-level",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reading-level.html",
+    "guideUrl": "/plain-english/wcag22/3-1-5/",
+    "provisions": [
+      {
+        "slug": "clear-language",
+        "title": "Clear Language",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/clear-language/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Broadens reading level into no-unnecessary-words, no-nested-clauses, and summaries-available provisions.",
+      "testingImpact": "Testing evaluates sentence length, readability scores, and provision of plain-language executive summaries.",
+      "evolutionNote": "WCAG 3 promotes clear language and plain-English translations."
+    }
+  },
+  {
+    "id": "3.2.5",
+    "num": "3.2.5",
+    "name": "Change on Request",
+    "level": "AAA",
+    "principle": "Understandable",
+    "w3cSlug": "change-on-request",
+    "summary": "Changes of context are initiated ONLY by user request or a mechanism is available to turn off such changes.",
+    "whyItMatters": "Users with cognitive disabilities are easily disoriented when pages auto-redirect or refresh automatically.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#change-on-request",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html",
+    "guideUrl": "/plain-english/wcag22/3-2-5/",
+    "provisions": [
+      {
+        "slug": "change-of-content-notified",
+        "title": "Change Of Content Notified",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "user-control",
+        "summary": "A meaningful visual change has to be announced programmatically, not just shown. The draft lists what counts: changes above the user's place in reading order, changes earlier in a process, notifications and status or error messages, changes in how much content there is, changes that alter meaning, and changes of audience. Continuous change with no pause is exempt.",
+        "whyItMatters": "A change a sighted user sees at a glance is invisible to a screen reader user unless it is announced, so they act on a version of the page that no longer exists.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/user-control/content-changes/change-of-content-notified.md",
+        "guideUrl": "/plain-english/provision/change-of-content-notified/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries context change on request into user-control and change-of-view-notified provisions.",
+      "testingImpact": "Confirms context changes only initiate when the user activates an explicit submit button.",
+      "evolutionNote": "WCAG 3 maps 3.2.5 to change-of-content-notified outcomes."
+    }
+  },
+  {
+    "id": "3.3.5",
+    "num": "3.3.5",
+    "name": "Help",
+    "level": "AAA",
+    "principle": "Understandable",
+    "w3cSlug": "help",
+    "summary": "Context-sensitive help is available for complex form fields.",
+    "whyItMatters": "Provides immediate guidance for users filling out complex financial or tax forms.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#help",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/help.html",
+    "guideUrl": "/plain-english/wcag22/3-3-5/",
+    "provisions": [
+      {
+        "slug": "process-instructions-available",
+        "title": "Process Instructions Available",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Where a task runs across several steps, the instructions for completing it are there to be found - the process does not assume the user already knows how it works.",
+        "whyItMatters": "Processes that assume prior knowledge exclude first-time users, and disproportionately those who cannot infer the missing steps from the layout alone.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/complete-tasks/process-instructions-available.md",
+        "guideUrl": "/plain-english/provision/process-instructions-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expands context-sensitive help into personalizable-help and support-available provisions.",
+      "testingImpact": "Tests inline help icons, tooltips, and contextual guidance for complex form inputs.",
+      "evolutionNote": "WCAG 3 includes contextual help in process-instructions-available."
+    }
+  },
+  {
+    "id": "3.3.6",
+    "num": "3.3.6",
+    "name": "Error Prevention (All)",
+    "level": "AAA",
+    "principle": "Understandable",
+    "w3cSlug": "error-prevention-all",
+    "summary": "For ALL web forms submitting user data, submissions are reversible, verified, or confirmed before final submission.",
+    "whyItMatters": "Prevents accidental data loss or irreversible errors across all form submissions.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#error-prevention-all",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-all.html",
+    "guideUrl": "/plain-english/wcag22/3-3-6/",
+    "provisions": [
+      {
+        "slug": "going-back-supported",
+        "title": "Going Back Supported",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "In a multi-step process the user can step backwards and return to where they were without losing data - unless it is essential that they cannot go back.",
+        "whyItMatters": "Correcting an earlier answer should not cost the whole form. Losing data on going back punishes exactly the users who most often need to check their work.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/retain-information/going-back-supported.md",
+        "guideUrl": "/plain-english/provision/going-back-supported/"
+      },
+      {
+        "slug": "progress-saved",
+        "title": "Progress Saved",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Data entry and task completion can be saved and resumed from the current step - unless the task is part of a real-time event where no alternative to the time limit is possible.",
+        "whyItMatters": "Being able to stop and come back is what makes a long task possible for people with fatigue, pain, attention-related disabilities, or an unreliable connection.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/retain-information/progress-saved.md",
+        "guideUrl": "/plain-english/provision/progress-saved/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Extends error prevention across all data submissions (not just legal/financial).",
+      "testingImpact": "Tests confirmation and edit capabilities across general user profile, comment, and data forms.",
+      "evolutionNote": "WCAG 3 covers error prevention under going-back-supported and progress-saved outcomes."
+    }
+  },
+  {
+    "id": "1.2.9",
+    "num": "1.2.9",
+    "name": "Audio-only (Live)",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "audio-only-live",
+    "summary": "Live audio-only content provides a live text alternative (such as real-time CART captions or live transcript text).",
+    "whyItMatters": "Deaf users listening to live radio webcasts or press conferences need live text representations.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#audio-only-live",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-only-live.html",
+    "guideUrl": "/plain-english/wcag22/1-2-9/",
+    "provisions": [
+      {
+        "slug": "dialogue-transcripts-available-live",
+        "title": "Dialogue transcripts available (live)",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "images-and-media",
+        "summary": "Live audio and video have a transcript of the dialogue. Media that is an alternative for text and labelled as such, and media with no spoken content that serves only as background, are exempt.",
+        "whyItMatters": "A live transcript is what lets someone catch up on a point they missed, which captions scrolling in real time do not allow.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/images-and-media/transcripts/dialogue-transcripts-available-live.md",
+        "guideUrl": "/plain-english/provision/dialogue-transcripts-available-live/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries live audio-only descriptions and text equivalents into live media provisions.",
+      "testingImpact": "Testing confirms presence of real-time text streaming alongside live audio broadcasts.",
+      "evolutionNote": "WCAG 3 covers live audio-only under live dialogue transcripts."
+    }
+  },
+  {
+    "id": "1.3.6",
+    "num": "1.3.6",
+    "name": "Identify Purpose",
+    "level": "AAA",
+    "principle": "Perceivable",
+    "w3cSlug": "identify-purpose",
+    "summary": "In content implemented using markup languages, the purpose of UI components and icons can be programmatically determined.",
+    "whyItMatters": "Allows assistive tools to substitute standard icons (like a home icon) with personalized symbol sets for users with cognitive or speech disabilities.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#identify-purpose",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/identify-purpose.html",
+    "guideUrl": "/plain-english/wcag22/1-3-6/",
+    "provisions": [
+      {
+        "slug": "interactive-element-names-available",
+        "title": "Interactive Element Names Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "guideUrl": "/plain-english/provision/interactive-element-names-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expands landmark and UI component identification into explicit role, value, state, and property detection provisions.",
+      "testingImpact": "Testing audits full programmatic accessibility trees rather than just HTML5 landmarks.",
+      "evolutionNote": "WCAG 3 maps 1.3.6 to element identification and name outcomes."
+    }
+  },
+  {
+    "id": "2.2.5",
+    "num": "2.2.5",
+    "name": "Re-authenticating",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "re-authenticating",
+    "summary": "When an authenticated session expires, the user can continue the activity without loss of data after re-authenticating.",
+    "whyItMatters": "Users who take extra time to complete forms due to motor or cognitive disabilities do not lose their typed work if logged out.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#re-authenticating",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/re-authenticating.html",
+    "guideUrl": "/plain-english/wcag22/2-2-5/",
+    "provisions": [
+      {
+        "slug": "progress-saved",
+        "title": "Progress Saved",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Data entry and task completion can be saved and resumed from the current step - unless the task is part of a real-time event where no alternative to the time limit is possible.",
+        "whyItMatters": "Being able to stop and come back is what makes a long task possible for people with fatigue, pain, attention-related disabilities, or an unreliable connection.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/retain-information/progress-saved.md",
+        "guideUrl": "/plain-english/provision/progress-saved/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Carries re-authentication data retention forward into progress-saved and automated-entry-allowed.",
+      "testingImpact": "Confirms that submitted form data and session progress survive re-authentication without data loss.",
+      "evolutionNote": "WCAG 3 handles re-authentication under progress-saved outcomes."
+    }
+  },
+  {
+    "id": "2.2.6",
+    "num": "2.2.6",
+    "name": "Timeouts",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "timeouts",
+    "summary": "Users are warned about the duration of any user inactivity that could cause data loss.",
+    "whyItMatters": "Prevents surprise session expirations for users taking extra time to complete forms.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#timeouts",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timeouts.html",
+    "guideUrl": "/plain-english/wcag22/2-2-6/",
+    "provisions": [
+      {
+        "slug": "no-artificial-time-limits",
+        "title": "No Artificial Time Limits",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "process-and-task-completion",
+        "summary": "An exploratory requirement: completing a process does not involve artificial time limits - countdowns manufactured to create urgency - unless the limit is essential.",
+        "whyItMatters": "Manufactured urgency pushes people into decisions before they have understood them, and hits hardest anyone who needs longer to read or decide.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/avoid-deception/no-artificial-time-limits.md",
+        "guideUrl": "/plain-english/provision/no-artificial-time-limits/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Incorporates timeout warnings into explicit time-limits-conveyed and process-instructions-available provisions.",
+      "testingImpact": "Tests that users are notified of inactivity durations at the start of multi-step forms.",
+      "evolutionNote": "WCAG 3 integrates timeout warnings under time limit outcomes."
+    }
+  },
+  {
+    "id": "2.3.3",
+    "num": "2.3.3",
+    "name": "Animation from Interactions",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "animation-from-interactions",
+    "summary": "Motion animation triggered by user interaction can be disabled, unless the animation is essential.",
+    "whyItMatters": "Users with vestibular spectrum disorders experience severe nausea or dizziness from parallax scrolling or zoom animations.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#animation-from-interactions",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+    "guideUrl": "/plain-english/wcag22/2-3-3/",
+    "provisions": [
+      {
+        "slug": "animation-and-movement",
+        "title": "Animation And Movement",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/animation-and-movement/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries motion animation controls into no-visual-motion and no-visual-motion-no-exceptions.",
+      "testingImpact": "Tests respects prefers-reduced-motion CSS media query and in-app parallax/scroll-driven animation toggles.",
+      "evolutionNote": "WCAG 3 maintains motion controls under animation-and-movement outcomes."
+    }
+  },
+  {
+    "id": "2.4.5",
+    "num": "2.4.5",
+    "name": "Multiple Ways",
+    "level": "AA",
+    "principle": "Operable",
+    "w3cSlug": "multiple-ways",
+    "summary": "Provide more than one way to locate a web page within a set of web pages (e.g. site search, sitemap, main navigation).",
+    "whyItMatters": "Different users have different preferences for finding information; some prefer top navigation menus, while others rely on search bars or sitemaps.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#multiple-ways",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html",
+    "guideUrl": "/plain-english/wcag22/2-4-5/",
+    "provisions": [
+      {
+        "slug": "navigating-content",
+        "title": "Navigating Content",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/navigating-content/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carried forward into multiple-ways-to-navigate provisions under layout and consistency guidelines.",
+      "testingImpact": "Verifies site search, sitemaps, table of contents, and hierarchical navigation bars.",
+      "evolutionNote": "WCAG 3 incorporates multiple ways under navigating-content outcomes."
+    }
+  },
+  {
+    "id": "2.4.12",
+    "num": "2.4.12",
+    "name": "Focus Not Obscured (Enhanced)",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "focus-not-obscured-enhanced",
+    "summary": "When an item receives keyboard focus, no part of the item is obscured by author-created content (100% of focus box is completely visible).",
+    "whyItMatters": "Provides maximum visibility for keyboard users so zero pixels of the focused element are covered.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-not-obscured-enhanced",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced.html",
+    "guideUrl": "/plain-english/wcag22/2-4-12/",
+    "provisions": [
+      {
+        "slug": "overlay-content-dismissible",
+        "title": "Overlay Content Dismissible",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "layout",
+        "summary": "When new content appears over the main content, there is a way to dismiss it.",
+        "whyItMatters": "A cookie banner or chat widget with no reachable close button can cover the content permanently for keyboard users and for anyone using magnification.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/layout/no-obstruction/overlay-content-dismissible.md",
+        "guideUrl": "/plain-english/provision/overlay-content-dismissible/"
+      },
+      {
+        "slug": "hover-or-focus-content-dismissible",
+        "title": "Hover Or Focus Content Dismissible",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "input-operation",
+        "summary": "Content that appears on hover or keyboard focus can be dismissed without moving the pointer or the focus, unless it does not cover or replace anything else.",
+        "whyItMatters": "A popup covering the field you are typing in is a trap for magnification users - dismissing it by moving away means losing your place.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/input-operation/input-operation/hover-or-focus-content-dismissible.md",
+        "guideUrl": "/plain-english/provision/hover-or-focus-content-dismissible/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "redesigned",
+      "changeBadge": "Redesigned / Overlay Dismissibility",
+      "scopeDelta": "The strict zero-obscuring AAA rule shifts toward comprehensive dismissibility and non-modal overlay management in WCAG 3.",
+      "testingImpact": "Tests that overlays do not conceal focused elements and provide instant Escape dismissal.",
+      "evolutionNote": "No direct successor yet. The enhanced (fully unobscured) variant has no counterpart in the Sep 2026 draft at all."
+    }
+  },
+  {
+    "id": "2.4.13",
+    "num": "2.4.13",
+    "name": "Focus Appearance",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "focus-appearance",
+    "summary": "New in WCAG 2.2! Focus indicators must have an area of at least the size of a 2 CSS pixel perimeter and a contrast ratio of at least 3:1 between the indicator and the unfocused state.",
+    "whyItMatters": "Faint 1px grey focus dots are technically 'visible' under 2.4.7, but fail 2.4.13 because low vision users miss them.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#focus-appearance",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html",
+    "guideUrl": "/plain-english/wcag22/2-4-13/",
+    "provisions": [
+      {
+        "slug": "focus-indicator-contrast-sufficient",
+        "title": "Focus Indicator Contrast Sufficient",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Where a custom focus indicator replaces the browser default, it has to have sufficient contrast against what is next to it and sufficient change of contrast from the unfocused state.",
+        "whyItMatters": "An indicator that cannot be distinguished from the background tells a sighted keyboard user nothing about where they are on the page.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-contrast-sufficient.md",
+        "guideUrl": "/plain-english/provision/focus-indicator-contrast-sufficient/"
+      },
+      {
+        "slug": "focus-indicator-size-sufficient",
+        "title": "Focus Indicator Size Sufficient",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "interactive-components",
+        "summary": "Where a custom focus indicator replaces the browser default, it has to be large enough and close enough to what it marks.",
+        "whyItMatters": "A hairline outline is easy to lose on a busy page, particularly for people with low vision or when the page is magnified.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-size-sufficient.md",
+        "guideUrl": "/plain-english/provision/focus-indicator-size-sufficient/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "new-metric",
+      "changeBadge": "Measurable Focus Appearance",
+      "scopeDelta": "Directly adopts the 2.4.13 geometric and contrast thresholds into pointer-focus-indicated and interactive-element-contrast-sufficient.",
+      "testingImpact": "Quantitative testing of focus indicator perimeter, 3:1 contrast against unfocused state, and minimum 2px thickness.",
+      "evolutionNote": "WCAG 3 carries the quantitative focus appearance metrics into separate contrast and size provisions."
+    }
+  },
+  {
+    "id": "2.5.1",
+    "num": "2.5.1",
+    "name": "Pointer Gestures",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "pointer-gestures",
+    "summary": "All functionality that operates using multipoint or path-based gestures (like pinch-zoom, swiping, or two-finger drag) can be operated with a single pointer without a path-based gesture.",
+    "whyItMatters": "Users with motor disabilities or users using head pointers/eye trackers cannot perform complex multi-finger gestures.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#pointer-gestures",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures.html",
+    "guideUrl": "/plain-english/wcag22/2-5-1/",
+    "provisions": [
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expands pointer gestures into pointer-accessible and path-based-gesture-not-relied-on across modern touch and spatial interfaces.",
+      "testingImpact": "Tests single-tap / click alternatives for all multipoint, pinching, or path-based dragging gestures.",
+      "evolutionNote": "WCAG 3 includes pointer gesture alternatives under gesture outcomes."
+    }
+  },
+  {
+    "id": "2.5.2",
+    "num": "2.5.2",
+    "name": "Pointer Cancellation",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "pointer-cancellation",
+    "summary": "For functionality that can be operated using a single pointer, completion of the function is on the up-event (like mouseup or touchend), or a mechanism is available to abort the function before completion.",
+    "whyItMatters": "Prevents accidental clicks when users accidentally touch an screen element and want to drag their finger away before releasing.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#pointer-cancellation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation.html",
+    "guideUrl": "/plain-english/wcag22/2-5-2/",
+    "provisions": [
+      {
+        "slug": "interactive-elements-distinguishable",
+        "title": "Interactive Elements Distinguishable",
+        "type": "supplemental",
+        "status": "exploratory",
+        "groupSlug": "interactive-components",
+        "summary": "Interactive elements look different from static content before anyone interacts with them, and carry visual cues about how to use them.",
+        "whyItMatters": "Flat design that removes button edges and link underlines makes people hunt by hovering, which is impossible on touch and unreliable for anyone with low vision or a cognitive disability.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/interactive-components/control-information/interactive-elements-distinguishable.md",
+        "guideUrl": "/plain-english/provision/interactive-elements-distinguishable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carries pointer cancellation into pointer-activation-controllable and consistent-pointer-cancellation.",
+      "testingImpact": "Verifies action occurs on pointer up-event, with abort/undo capabilities.",
+      "evolutionNote": "WCAG 3 handles pointer cancellation under input operation outcomes."
+    }
+  },
+  {
+    "id": "2.5.4",
+    "num": "2.5.4",
+    "name": "Motion Actuation",
+    "level": "A",
+    "principle": "Operable",
+    "w3cSlug": "motion-actuation",
+    "summary": "Functionality triggered by device motion (like shaking or tilting a phone) can also be operated by conventional user interface components, and motion can be disabled.",
+    "whyItMatters": "Users with motor impairments who have mobile devices mounted to wheelchairs cannot shake or tilt their device.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#motion-actuation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation.html",
+    "guideUrl": "/plain-english/wcag22/2-5-4/",
+    "provisions": [
+      {
+        "slug": "user-control",
+        "title": "User Control",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/user-control/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Carries motion actuation into sensor independence provisions, covering device shaking, tilting, and spatial gestures.",
+      "testingImpact": "Tests that shaking or tilting functions can be operated by conventional UI buttons and sensors can be disabled.",
+      "evolutionNote": "WCAG 3 includes motion actuation fallbacks under user-control outcomes."
+    }
+  },
+  {
+    "id": "2.5.6",
+    "num": "2.5.6",
+    "name": "Concurrent Input Mechanisms",
+    "level": "AAA",
+    "principle": "Operable",
+    "w3cSlug": "concurrent-input-mechanisms",
+    "summary": "Web content does not restrict use of input mechanisms available on a device (e.g. allowing users to switch freely between mouse, keyboard, touch, and stylus).",
+    "whyItMatters": "Users frequently switch between touchscreens, external mice, and keyboards depending on task context.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#concurrent-input-mechanisms",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/concurrent-input-mechanisms.html",
+    "guideUrl": "/plain-english/wcag22/2-5-6/",
+    "provisions": [
+      {
+        "slug": "user-control",
+        "title": "User Control",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/user-control/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expanded into input-method-flexible provisions, ensuring users can switch seamlessly between keyboard, mouse, touch, and voice.",
+      "testingImpact": "Tests that applications do not lock interaction to a single hardware device type.",
+      "evolutionNote": "WCAG 3 integrates input mode flexibility under user-control outcomes."
+    }
+  },
+  {
+    "id": "3.1.6",
+    "num": "3.1.6",
+    "name": "Pronunciation",
+    "level": "AAA",
+    "principle": "Understandable",
+    "w3cSlug": "pronunciation",
+    "summary": "A mechanism is available for identifying specific pronunciation of words where meaning is ambiguous without knowing pronunciation.",
+    "whyItMatters": "Helps screen readers and cognitive readers pronounce heteronyms correctly (e.g., 'read' past vs present, 'desert' verb vs noun).",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#pronunciation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pronunciation.html",
+    "guideUrl": "/plain-english/wcag22/3-1-6/",
+    "provisions": [
+      {
+        "slug": "clear-language",
+        "title": "Clear Language",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/clear-language/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Maintains pronunciation assistance for heteronyms and ambiguous words.",
+      "testingImpact": "Verifies pronunciation guides or phonetic markups where context alone does not resolve meaning.",
+      "evolutionNote": "WCAG 3 covers pronunciation under clear-language outcomes."
+    }
+  },
+  {
+    "id": "3.2.3",
+    "num": "3.2.3",
+    "name": "Consistent Navigation",
+    "level": "AA",
+    "principle": "Understandable",
+    "w3cSlug": "consistent-navigation",
+    "summary": "Navigational mechanisms that are repeated on multiple web pages occur in the same relative order each time they are repeated.",
+    "whyItMatters": "Users with cognitive disabilities or visual impairments rely on predictable navigation locations across pages.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-navigation",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html",
+    "guideUrl": "/plain-english/wcag22/3-2-3/",
+    "provisions": [
+      {
+        "slug": "consistent-navigation-order",
+        "title": "Consistent Navigation Order",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "consistency-across-views",
+        "summary": "Where a block of navigation repeats across a set of pages, the items keep the same relative order on each page.",
+        "whyItMatters": "Once someone has learned that a link is the fourth item, changing the order makes every page a fresh problem. That cost falls hardest on screen reader, switch and voice users, for whom re-scanning is slow.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/consistency-across-views/consistency/consistent-navigation-order.md",
+        "guideUrl": "/plain-english/provision/consistent-navigation-order/"
+      },
+      {
+        "slug": "consistent-navigation-labels",
+        "title": "Consistent Navigation Labels",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "consistency-across-views",
+        "summary": "Navigation blocks that repeat across pages must label the same item the same way each time. Items marked as the current page are exempt.",
+        "whyItMatters": "People who navigate by searching for a remembered label - screen reader users, voice control users, and anyone with a memory or reading disability - lose their way when the same destination is called something different on the next page.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md",
+        "guideUrl": "/plain-english/provision/consistent-navigation-labels/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Carried forward into consistent-navigation-order provisions under consistency across views.",
+      "testingImpact": "Tests that repeated navigation elements appear in the same relative order across multiple pages.",
+      "evolutionNote": "WCAG 3 separates the order of repeated navigation from the labelling of it."
+    }
+  },
+  {
+    "id": "3.2.4",
+    "num": "3.2.4",
+    "name": "Consistent Identification",
+    "level": "AA",
+    "principle": "Understandable",
+    "w3cSlug": "consistent-identification",
+    "summary": "Components that have the same functionality within a set of web pages are identified consistently.",
+    "whyItMatters": "Users recognize functional elements (like a Search icon or Help button) when they look and act consistently site-wide.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-identification",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html",
+    "guideUrl": "/plain-english/wcag22/3-2-4/",
+    "provisions": [
+      {
+        "slug": "consistent-structural-order",
+        "title": "Consistent Structural Order",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "consistency-across-views",
+        "summary": "The main structural parts of a page keep the same relative order across the variations of pages in scope.",
+        "whyItMatters": "A predictable structure is what lets people move quickly to the part they want. Reordering it between pages forces everyone to re-orient, and forces assistive technology users to re-explore.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/consistency-across-views/consistency/consistent-structural-order.md",
+        "guideUrl": "/plain-english/provision/consistent-structural-order/"
+      },
+      {
+        "slug": "consistent-navigation-labels",
+        "title": "Consistent Navigation Labels",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "consistency-across-views",
+        "summary": "Navigation blocks that repeat across pages must label the same item the same way each time. Items marked as the current page are exempt.",
+        "whyItMatters": "People who navigate by searching for a remembered label - screen reader users, voice control users, and anyone with a memory or reading disability - lose their way when the same destination is called something different on the next page.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md",
+        "guideUrl": "/plain-english/provision/consistent-navigation-labels/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "direct",
+      "changeBadge": "Direct Evolution",
+      "scopeDelta": "Mapped to consistent-identification provisions under interactive components.",
+      "testingImpact": "Verifies controls with the same functionality have identical labels and icons across the entire product.",
+      "evolutionNote": "WCAG 3 covers consistent identification through consistent structural order and consistent labelling."
+    }
+  },
+  {
+    "id": "3.3.3",
+    "num": "3.3.3",
+    "name": "Error Suggestion",
+    "level": "AA",
+    "principle": "Understandable",
+    "w3cSlug": "error-suggestion",
+    "summary": "If an input error is automatically detected and suggestions for correction are known, the suggestion is provided to the user.",
+    "whyItMatters": "Users with cognitive disabilities or dyslexic readers benefit from explicit correction suggestions rather than generic error messages.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#error-suggestion",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html",
+    "guideUrl": "/plain-english/wcag22/3-3-3/",
+    "provisions": [
+      {
+        "slug": "error-handling",
+        "title": "Error Handling",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "general",
+        "summary": "WCAG 3 draft provision in development by AGWG.",
+        "whyItMatters": "",
+        "sourceUrl": null,
+        "guideUrl": "/plain-english/provision/error-handling/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "easier-testing",
+      "changeBadge": "Actionable Error Advice",
+      "scopeDelta": "Mapped to actionable error suggestions and error remediation provisions.",
+      "testingImpact": "Verifies error messages state how to correct the mistake rather than just reporting failure.",
+      "evolutionNote": "WCAG 3 maps 3.3.3 to error-handling outcomes."
+    }
+  },
+  {
+    "id": "3.3.4",
+    "num": "3.3.4",
+    "name": "Error Prevention (Legal, Financial, Data)",
+    "level": "AA",
+    "principle": "Understandable",
+    "w3cSlug": "error-prevention-legal-financial-data",
+    "summary": "For web pages that cause legal commitments or financial transactions, submissions are reversible, verified, or confirmed before final submission.",
+    "whyItMatters": "Prevents accidental bank transfers, order purchases, or legal contract agreements.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#error-prevention-legal-financial-data",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html",
+    "guideUrl": "/plain-english/wcag22/3-3-4/",
+    "provisions": [
+      {
+        "slug": "going-back-supported",
+        "title": "Going Back Supported",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "In a multi-step process the user can step backwards and return to where they were without losing data - unless it is essential that they cannot go back.",
+        "whyItMatters": "Correcting an earlier answer should not cost the whole form. Losing data on going back punishes exactly the users who most often need to check their work.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/retain-information/going-back-supported.md",
+        "guideUrl": "/plain-english/provision/going-back-supported/"
+      },
+      {
+        "slug": "progress-saved",
+        "title": "Progress Saved",
+        "type": "supplemental",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Data entry and task completion can be saved and resumed from the current step - unless the task is part of a real-time event where no alternative to the time limit is possible.",
+        "whyItMatters": "Being able to stop and come back is what makes a long task possible for people with fatigue, pain, attention-related disabilities, or an unreliable connection.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/retain-information/progress-saved.md",
+        "guideUrl": "/plain-english/provision/progress-saved/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "expands-scope",
+      "changeBadge": "Expands Scope",
+      "scopeDelta": "Expands error prevention for legal/financial tasks into return-to-start-supported and risk-comparable provisions.",
+      "testingImpact": "Tests confirmation screens, reversible actions, and review steps before final transaction submission.",
+      "evolutionNote": "WCAG 3 includes 3.3.4 in transaction safety outcomes."
+    }
+  },
+  {
+    "id": "3.3.9",
+    "num": "3.3.9",
+    "name": "Accessible Authentication (Enhanced)",
+    "level": "AAA",
+    "principle": "Understandable",
+    "w3cSlug": "accessible-authentication-enhanced",
+    "summary": "A cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process.",
+    "whyItMatters": "Eliminates all cognitive memory traps during login by supporting password managers, WebAuthn passkeys, or magic link emails.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#accessible-authentication-enhanced",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html",
+    "guideUrl": "/plain-english/wcag22/3-3-9/",
+    "provisions": [
+      {
+        "slug": "cognitive-test-alternatives-available",
+        "title": "Cognitive Test Alternatives Available",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "process-and-task-completion",
+        "summary": "Users must not be forced to solve puzzles, recall passwords, or perform mental math to complete tasks unless an alternative login or verification method exists.",
+        "whyItMatters": "Cognitive tests like CAPTCHAs lock out users with memory loss, dyslexia, or brain injuries.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/cognitive-test-alternatives-available.md",
+        "guideUrl": "/plain-english/provision/cognitive-test-alternatives-available/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "granular-split",
+      "changeBadge": "Granular Authentication (AAA)",
+      "scopeDelta": "Carries enhanced cognitive authentication into multiple-biometrics-available and zero-puzzle requirements.",
+      "testingImpact": "Tests complete absence of cognitive function tests (object recognition, arithmetic) for login.",
+      "evolutionNote": "WCAG 3 maps 3.3.9 to cognitive-test-alternatives-available outcomes."
+    }
+  },
+  {
+    "id": "4.1.1",
+    "num": "4.1.1",
+    "name": "Parsing (Obsolete)",
+    "level": "A",
+    "principle": "Robust",
+    "w3cSlug": "parsing",
+    "summary": "In WCAG 2.0/2.1, SC 4.1.1 (Parsing) required valid HTML syntax. As documented in W3C WCAG 2.2 Section 4.1.1 (https://www.w3.org/TR/WCAG22/#parsing), 4.1.1 was retired as obsolete in WCAG 2.2 because modern user agents build DOM trees automatically.",
+    "whyItMatters": "Modern web browsers and assistive technologies build DOM trees reliably without relying on legacy HTML 4 parsing rules.",
+    "trUrl": "https://www.w3.org/TR/WCAG22/#parsing",
+    "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/parsing.html",
+    "guideUrl": "/plain-english/wcag22/4-1-1/",
+    "provisions": [
+      {
+        "slug": "text-detectable",
+        "title": "Text Detectable",
+        "type": "foundational",
+        "status": "developing",
+        "groupSlug": "text-and-wording",
+        "summary": "Every piece of text a sighted user can see has an equivalent that software can read - including text inside images and drawn onto a canvas. The exception is where providing it would duplicate text already present in the view.",
+        "whyItMatters": "Text baked into an image or drawn on a canvas cannot be read aloud, enlarged, recoloured or translated. The programmatic equivalent is what restores all of those.",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/main/guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
+        "guideUrl": "/plain-english/provision/text-detectable/"
+      }
+    ],
+    "changeAnalysis": {
+      "changeType": "redesigned",
+      "changeBadge": "Obsolete / Integrated in HTML",
+      "scopeDelta": "Formally removed in WCAG 2.2 and omitted in WCAG 3. Syntactic parsing is handled natively by modern browser HTML parsers.",
+      "testingImpact": "No longer audited as an accessibility defect; parsing issues that cause AT failures are tested under role/name/value.",
+      "evolutionNote": "WCAG 3 draft omits parsing completely in favor of outcome-based DOM state testing."
+    }
+  }
+]
