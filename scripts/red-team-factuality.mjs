@@ -222,6 +222,26 @@ class RedTeamFactualityAudit {
       } else {
         this.check(`SC ${sc.num} has valid W3C Understanding URL`, false, `URL: ${sc.understandingUrl}`);
       }
+
+      // Audit summarized material in WCAG 2.2 (plain English, personas, testing guides, evolution notes)
+      this.check(`SC ${sc.num} has plainEnglish.summary`, Boolean(sc.plainEnglish?.summary));
+      this.check(`SC ${sc.num} has plainEnglish.whyItMatters`, Boolean(sc.plainEnglish?.whyItMatters));
+
+      const scSummarizedText = JSON.stringify({
+        plainEnglish: sc.plainEnglish,
+        personaBreakdown: sc.personaBreakdown,
+        testingGuide: sc.testingGuide,
+        evolutionNote: sc.wcag3Mapping?.evolutionNote
+      });
+      for (const pat of SPECULATIVE_PATTERNS) {
+        if (pat.test(scSummarizedText)) {
+          this.check(
+            `SC ${sc.num} summarized text must not contain speculative claims`,
+            false,
+            `Matched pattern ${pat.toString()}`
+          );
+        }
+      }
     }
 
     // Official WCAG 2.2 distribution: Level A: 32, Level AA: 24, Level AAA: 31 = 87 total
