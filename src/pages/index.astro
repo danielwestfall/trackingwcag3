@@ -91,7 +91,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="portal-tag tag-draft">W3C Draft Explorer</span>
         </div>
         <h3>WCAG 3 Plain English Explorer</h3>
-        <p>Breakdown of all {wcag3Count} draft provisions across functional categories, W3C release likelihood estimates, and how the conformance model now works.</p>
+        <p>Breakdown of all {wcag3Count} draft provisions across functional categories, upstream maturity status, and how the conformance model works in the current draft.</p>
         <div class="portal-metrics">
           <span class="metric-pill"><strong>{wcag3Count}</strong> Provisions</span>
           <span class="metric-pill">Reporting Tiers</span>
@@ -125,7 +125,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="portal-tag tag-interactive">Interactive Tool</span>
         </div>
         <h3>WCAG 3 Score Calculator</h3>
-        <p>Interactive audit worksheet to evaluate provisions, calculate category health scores, check for core blockers, and estimate Bronze, Silver, or Gold conformance.</p>
+        <p>Interactive audit worksheet to evaluate provisions, calculate category health scores, check for core blockers, and simulate Bronze, Silver, or Gold conformance under the draft model.</p>
         <div class="portal-metrics">
           <span class="metric-pill">Bronze / Silver / Gold</span>
           <span class="metric-pill">9 Categories</span>

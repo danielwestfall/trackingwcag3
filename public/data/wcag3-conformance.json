@@ -112,7 +112,7 @@
       "title": "Requirements split three ways, plus advisory material",
       "was": "Success criteria at three levels, and nothing else normative.",
       "now": "Core requirements (MUST, and the whole of conformance), supplemental requirements, and assertions — plus recommended practices, renamed from \"best practices\", which are explicitly not necessary to conform.",
-      "soWhat": "The AAA instinct — nice if we get to it — maps roughly onto supplemental, but not cleanly. Eight provisions still carry no type at all."
+      "soWhat": "The AAA instinct — nice if we get to it — maps roughly onto supplemental, but not cleanly. Eight provisions carry no upstream type in the draft and are tracked here as exploratory."
     }
   ],
   "carryOver": {

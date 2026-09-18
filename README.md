@@ -15,8 +15,8 @@ An accessible, fast, decoupled educational web application built with **Astro**,
 
 ### 2. 📘 WCAG 3.0 Explorer (`/plain-english/`)
 - **245 W3C Draft Provisions**: Educational breakdowns across all functional categories (*Text*, *Navigation*, *Media*, *Interactivity*, *Forms*, *Assistive Tech Control*, etc.). Tracked against the W3C editors' draft; the count updates when upstream changes.
-- **Role-Tailored Guidance**: Persona tabs for **🎨 Designers**, **💻 Developers**, **🧪 QA Engineers**, and **📋 Product Managers**.
-- **W3C Working Group Estimations**: Live estimates on whether provisions are mature or under active discussion, plus W3C release likelihood meters (`High 90%+`, `Medium 70-89%`, `Under Discussion`).
+- **Structured Draft Information**: Scope, applies-when / except-when conditions, editor notes, worked examples, procedure tests, and direct source links for every provision.
+- **W3C Working Group Status**: Upstream maturity levels (*developing*, *exploratory*, *refining*, *mature*) and open questions recorded directly in the editors' draft.
 - **Conformance Model Breakdown**: How WCAG 3 replaced A/AA/AAA with a single conformance bar wrapped in six reporting tiers. Bronze, Silver and Gold are tiers *above* conformance in the current draft, not the conformance levels — and the working group has a competing scoring proposal open for comment, which the site says plainly.
 - **Interactive Quick Nav Drawer**: Keyboard-operable (`Esc` to close) table of contents with instant text filtering.
 

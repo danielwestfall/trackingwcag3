@@ -316,10 +316,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <div class="provisions-grid" id="provisions-grid">
       {catalog.map((item) => {
         const ann = item.annotation;
-        // Both exist only on the three hand-written annotations; they used to
-        // fall back to invented values for the other 242.
-        const likelihood = ann?.statusSummary?.inclusionLikelihood;
-        const delta = ann?.wcag22Comparison?.strictnessDelta;
         const status = item.status || "exploratory";
         const groupSlug = item.groupSlug || "general";
         
@@ -332,21 +328,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             data-title={item.title.toLowerCase()}
             data-body={item.rawBody.toLowerCase()}
             data-status={status}
-            data-delta={delta || ""}
             data-summary={ann?.plainEnglish?.summary?.toLowerCase() || ""}
           >
             <div class="card-top">
               <div class="badge-group">
                 <span class={`status-badge status-${status}`}>{status}</span>
-                {delta && <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>}
                 <span class="group-tag">{GROUP_NAMES[groupSlug] || groupSlug}</span>
               </div>
-              {likelihood && (
-                <div class="estimation-pill" title="Estimated likelihood of reaching final WCAG 3 Recommendation">
-                  <span class="est-label">Final Likelihood:</span>
-                  <span class="est-value">{likelihood}</span>
-                </div>
-              )}
             </div>
 
             <h3 class="card-title">

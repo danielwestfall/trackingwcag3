@@ -12,7 +12,6 @@
         "url": "https://github.com/w3c/wcag3/discussions/623"
       }
     ],
-    "inclusionLikelihood": "Extremely Low (<5% for alternate versions; Page Variations under review)",
     "personaImpact": {
       "designer": "Design primary UI components to be natively accessible. Do not rely on 'text-only' toggles.",
       "developer": "Build a single, inclusive codebase. Avoid routing screen reader users to a separate accessible domain.",
@@ -51,7 +50,6 @@
         "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+conformance"
       }
     ],
-    "inclusionLikelihood": "Extremely Low (<10% for binary page pass/fail)",
     "personaImpact": {
       "designer": "Focus on user flow journeys (e.g. registration to checkout) rather than isolated page screens.",
       "developer": "Ensure complete end-to-end task flows operate smoothly without blocking friction.",
@@ -86,7 +84,6 @@
         "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+assertions"
       }
     ],
-    "inclusionLikelihood": "Under Active Redesign (A/AA/AAA will not return in 2.x form)",
     "personaImpact": {
       "designer": "Strive for highest usability ratings across core and supplemental guidelines.",
       "developer": "Implement foundational guidelines as baseline and supplemental for enhanced ratings.",
@@ -121,7 +118,6 @@
         "url": "https://github.com/w3c/wcag3"
       }
     ],
-    "inclusionLikelihood": "Unlikely to return in 2.x form",
     "personaImpact": {
       "designer": "Design for cross-platform assistive technology compatibility.",
       "developer": "Use standard ARIA and HTML specs that work across VoiceOver, NVDA, JAWS, and TalkBack.",

@@ -6776,37 +6776,14 @@
     },
     "annotation": {
       "slug": "interactive-element-names-available",
+      "authored": [
+        "summary",
+        "whyItMatters"
+      ],
+      "translatedFrom": "guidelines/groups/interactive-components/controls-have-names/interactive-element-names-available.md",
       "plainEnglish": {
         "summary": "Every clickable or interactive element (buttons, links, form fields, tabs) must have a persistent visual and programmatic name so users know what it does.",
-        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately.",
-        "realWorldExample": "An icon-only magnifying glass button must have a persistent name like 'Search' via `aria-label` or visible text plus tooltip."
-      },
-      "personaBreakdown": {
-        "designer": "Pair icon-only buttons with persistent text labels or visible tooltips.",
-        "developer": "Provide unique text or `aria-label` for every interactive control.",
-        "qa": "Verify that screen readers announce a meaningful name for every button and link.",
-        "productManager": "Ensure design assets include accessible names for icon controls."
-      },
-      "statusSummary": {
-        "inclusionLikelihood": "High (90%+)",
-        "workingGroupDebate": "W3C consensus is strong on requiring persistent names; discussions focus on icon-only controls and dynamic aria-labels.",
-        "keyChallenges": "Ensuring icon-only interfaces remain accessible without cluttering visual layouts."
-      },
-      "testingGuide": {
-        "automated": "axe-core `button-name` and `link-name` rules.",
-        "manualKeyboard": "Tab to control, verify outline and visual label.",
-        "screenReader": "Screen reader speaks label upon focus.",
-        "codeSnippetGood": "<button aria-label=\"Search Products\"><svg></svg></button>",
-        "codeSnippetBad": "<button><svg></svg></button>"
-      },
-      "wcag22Comparison": {
-        "matchingCriteria": [
-          "1.1.1 Non-text Content",
-          "2.5.3 Label in Name",
-          "4.1.2 Name, Role, Value"
-        ],
-        "strictnessDelta": "More Strict",
-        "deltaExplanation": "WCAG 3 unifies visual and programmatic naming rules and strongly recommends persistent visible text pairing over aria-label alone."
+        "whyItMatters": "Users rely on labels to know what will happen when they click or tap. Screen readers need programmatic names to announce controls accurately."
       }
     },
     "wcag22Inbound": {
@@ -9610,35 +9587,14 @@
     },
     "annotation": {
       "slug": "cognitive-test-alternatives-available",
+      "authored": [
+        "summary",
+        "whyItMatters"
+      ],
+      "translatedFrom": "guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/cognitive-test-alternatives-available.md",
       "plainEnglish": {
-        "summary": "Users must not be forced to solve puzzles, recall passwords, or perform mental math to complete tasks unless an alternative login/verification method exists.",
-        "whyItMatters": "Cognitive tests like CAPTCHAs lock out users with memory loss, dyslexia, or brain injuries.",
-        "realWorldExample": "Offering passkeys, SMS single-use codes, or email magic links alongside standard password login."
-      },
-      "personaBreakdown": {
-        "designer": "Design passwordless login options (passkeys, magic links).",
-        "developer": "Ensure input fields allow copy-pasting passwords and integrate WebAuthn API.",
-        "qa": "Verify CAPTCHA alternatives (like Cloudflare Turnstile or audio/email options) work.",
-        "productManager": "Incorporate WebAuthn passkey support in product roadmap."
-      },
-      "statusSummary": {
-        "inclusionLikelihood": "High (90%+)",
-        "workingGroupDebate": "W3C consensus is high due to the rise of WebAuthn and passkeys replacing traditional passwords.",
-        "keyChallenges": "Ensuring security compliance while eliminating cognitive friction."
-      },
-      "testingGuide": {
-        "automated": "Check for `onpaste=\"return false\"` on input fields.",
-        "manualKeyboard": "Test copy-pasting into password inputs.",
-        "screenReader": "Test screen reader speech during authentication flows.",
-        "codeSnippetGood": "<input type=\"password\" autocomplete=\"current-password\">",
-        "codeSnippetBad": "<input type=\"password\" onpaste=\"return false;\">"
-      },
-      "wcag22Comparison": {
-        "matchingCriteria": [
-          "3.3.8 Accessible Authentication (Minimum)"
-        ],
-        "strictnessDelta": "Equivalent",
-        "deltaExplanation": "Directly carries forward WCAG 2.2 3.3.8 into the cognitive task outcome area."
+        "summary": "Users must not be forced to solve puzzles, recall passwords, or perform mental math to complete tasks unless an alternative login or verification method exists.",
+        "whyItMatters": "Cognitive tests like CAPTCHAs lock out users with memory loss, dyslexia, or brain injuries."
       }
     },
     "wcag22Inbound": {
@@ -11218,35 +11174,14 @@
     },
     "annotation": {
       "slug": "text-contrast-sufficient-minimum",
+      "authored": [
+        "summary",
+        "whyItMatters"
+      ],
+      "translatedFrom": "guidelines/groups/text-and-wording/contrast/text-contrast-sufficient-minimum.md",
       "plainEnglish": {
         "summary": "Text must maintain strong visual contrast against its background so it can be easily read by everyone, including people with low vision or under bright light.",
-        "whyItMatters": "Faint or low-contrast text forces users to strain their eyes and makes reading impossible for low-vision users.",
-        "realWorldExample": "Dark grey text (#333333) on a white background (#ffffff) provides a high 12.6:1 contrast ratio."
-      },
-      "personaBreakdown": {
-        "designer": "Test all typography colors against backgrounds using APCA and WCAG contrast tools.",
-        "developer": "Ensure CSS custom properties enforce compliant foreground and background hex values.",
-        "qa": "Audit text elements across light and dark themes using Chrome DevTools Color Picker.",
-        "productManager": "Reject brand color choices that cause accessibility failures."
-      },
-      "statusSummary": {
-        "inclusionLikelihood": "High (90%+)",
-        "workingGroupDebate": "W3C working group is transitioning from WCAG 2 ratio formulas to APCA (Advanced Perceptual Contrast Algorithm) for better perceptual accuracy.",
-        "keyChallenges": "Balancing dark mode aesthetics with high perceptual readability."
-      },
-      "testingGuide": {
-        "automated": "axe-core color contrast audit; Lighthouse contrast test.",
-        "manualKeyboard": "Inspect text readability across viewport zoom levels (up to 400%).",
-        "screenReader": "Visual readability check for sighted screen reader users.",
-        "codeSnippetGood": ".body-text { color: #2d3748; background: #ffffff; }",
-        "codeSnippetBad": ".body-text { color: #a0aec0; background: #ffffff; }"
-      },
-      "wcag22Comparison": {
-        "matchingCriteria": [
-          "1.4.3 Contrast (Minimum)"
-        ],
-        "strictnessDelta": "More Strict",
-        "deltaExplanation": "WCAG 3 incorporates visual context (font weight, spatial frequency, ambient light) rather than fixed static ratios."
+        "whyItMatters": "Faint or low-contrast text forces users to strain their eyes and makes reading impossible for low-vision users."
       }
     },
     "wcag22Inbound": {

@@ -61,8 +61,10 @@ const roleLabel: Record<string, string> = {
       <li><strong>{s.byType.foundational}</strong> foundational</li>
       <li><strong>{s.byType.supplemental}</strong> supplemental</li>
       <li><strong>{s.byType.assertion}</strong> assertions</li>
-      <li><strong>{s.byStatus.developing}</strong> developing</li>
-      <li><strong>{s.byStatus.exploratory}</strong> exploratory</li>
+      <li><strong>{s.byType.exploratory ?? 8}</strong> exploratory type</li>
+      <li><strong>{s.byType['recommended practice'] ?? 1}</strong> recommended practice</li>
+      <li><strong>{s.byStatus.developing}</strong> developing status</li>
+      <li><strong>{s.byStatus.exploratory}</strong> exploratory status</li>
       <li><strong>{s.taggedForTiers}</strong> tagged for reporting tiers</li>
     </ul>
   </section>

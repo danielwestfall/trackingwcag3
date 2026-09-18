@@ -46,16 +46,12 @@ const ann = item?.annotation || {};
 const generated = ann?.generated === true;
 // Which parts of the annotation were actually written, as recorded in the
 // annotation file itself rather than inferred from what happens to be present.
-const authored: string[] = Array.isArray(ann?.authored) ? ann.authored : [];
 const hasSummary = !!ann?.plainEnglish?.summary;
-const hasPersona = !!ann?.personaBreakdown;
-const hasTesting = !!ann?.testingGuide;
-const partial = !generated && hasSummary && !(hasPersona && hasTesting);
+const hasWhyItMatters = !!ann?.plainEnglish?.whyItMatters;
+const partial = !generated && (!hasSummary || !hasWhyItMatters);
 // Inverted from the curated WCAG 2.2 -> 3 map in sync-wcag-plain-english.mjs.
 const inbound = item?.wcag22Inbound || { direct: [], viaGuideline: [], viaGroup: [] };
 const coarse = [...inbound.viaGuideline, ...inbound.viaGroup];
-const likelihood = ann?.statusSummary?.inclusionLikelihood;
-const delta = ann?.wcag22Comparison?.strictnessDelta;
 const status = item?.status || "exploratory";
 
 // Structure pulled straight out of the W3C draft by the sync script: scope
@@ -82,7 +78,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     
     <div class="header-badges">
       <span class={`status-badge status-${status}`}>{status}</span>
-      {delta && <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>}
       <span class="type-badge">{item.type || "Provision"}</span>
     </div>
 
@@ -91,26 +86,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       Group: <strong>{item.groupSlug}</strong> &bull; Guideline: <strong>{item.guidelineSlug}</strong>
     </p>
 
-    {likelihood && (
-      <div class="likelihood-banner">
-        <div class="likelihood-header">
-          <span class="banner-label">W3C Final Recommendation Likelihood:</span>
-          <span class="banner-value">{likelihood}</span>
-        </div>
-        {ann?.statusSummary?.workingGroupDebate && <p class="banner-desc">{ann.statusSummary.workingGroupDebate}</p>}
-      </div>
-    )}
-
     {partial && (
       <div class="unreviewed-banner partial-banner">
         <p>
-          <strong>Plain-English summary written; role-based advice and testing steps not.</strong>
-          The summary and "why it matters" below were written for this site from the
-          W3C draft at
+          <strong>Plain-English summary in progress.</strong>
+          This provision's plain-English breakdown is partially written from the W3C draft at
           {" "}<a href={srcUrl(ann.translatedFrom || derived.sources?.provision || '')}>{ann.translatedFrom || derived.sources?.provision}</a>.
-          Everything else on this page is either the draft's own wording, quoted and
-          linked, or the curated WCAG&nbsp;2.2 map read in reverse. Sections nobody
-          has written say so rather than filling the space.
         </p>
       </div>
     )}
@@ -140,7 +121,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         🧪 Testing Guide & Code
       </button>
       <button role="tab" aria-selected="false" aria-controls="panel-estimation" id="tab-estimation" class="tab-btn">
-        📊 Discussion & Estimation
+        📊 W3C Status & Draft Notes
       </button>
       <button role="tab" aria-selected="false" aria-controls="panel-wcag22" id="tab-wcag22" class="tab-btn">
         ⚖️ WCAG 2.2 Comparison
@@ -347,17 +328,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       </>
     </div>
 
-    <!-- Panel 3: Discussion & Release Estimation -->
+    <!-- Panel 3: W3C Status & Draft Notes -->
     <div id="panel-estimation" role="tabpanel" aria-labelledby="tab-estimation" class="tab-panel hidden">
       <div class="panel-section">
         <h2>W3C Working Group Status</h2>
         <div class="discussion-box">
-          {likelihood && (
-            <div class="metric-row">
-              <span class="metric-label">Estimated Release Likelihood:</span>
-              <span class="metric-val">{likelihood}</span>
-            </div>
-          )}
           <div class="metric-row">
             <span class="metric-label">W3C Maturity Status:</span>
             <span class="metric-val status-val">{item.status}</span>
@@ -367,13 +342,6 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <span class="metric-val">{item.groupSlug}</span>
           </div>
         </div>
-
-        {ann?.statusSummary?.workingGroupDebate && (
-          <div class="info-card">
-            <h3>Working Group Debate &amp; Consensus</h3>
-            <p>{ann.statusSummary.workingGroupDebate}</p>
-          </div>
-        )}
 
         {derived.editorNotes?.length > 0 ? (
           <div class="info-card editor-note">
@@ -386,17 +354,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             </p>
             {derived.editorNotes.map((html: string) => <div class="upstream-prose" set:html={html} />)}
           </div>
-        ) : ann?.statusSummary?.workingGroupDebate ? null : (
+        ) : (
           <p class="not-written">
             The draft records no open editors' notes on this provision.
           </p>
-        )}
-
-        {ann?.statusSummary?.keyChallenges && (
-          <div class="info-card">
-            <h3>Key Implementation Challenges</h3>
-            <p>{ann.statusSummary.keyChallenges}</p>
-          </div>
         )}
       </div>
 
@@ -490,57 +451,38 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     <!-- Panel 4: WCAG 2.2 Comparison -->
     <div id="panel-wcag22" role="tabpanel" aria-labelledby="tab-wcag22" class="tab-panel hidden">
-      {ann?.wcag22Comparison ? (
-        <div class="panel-section">
-          <h2>WCAG 2.2 Delta &amp; Comparison</h2>
-          <div class="delta-summary-box">
-            {delta && (
-              <div class="delta-header">
-                <span class="delta-title">Strictness Delta:</span>
-                <span class={`delta-badge delta-${delta.toLowerCase().replace(/[^a-z]/g, '')}`}>{delta}</span>
-              </div>
-            )}
-            {ann.wcag22Comparison.deltaExplanation && <p class="delta-desc">{ann.wcag22Comparison.deltaExplanation}</p>}
-          </div>
+      <div class="panel-section">
+        <h2>WCAG 2.2 Criteria That Map Here</h2>
+        <p class="derived-note">
+          Derived by inverting the hand-maintained WCAG&nbsp;2.2 &rarr; WCAG&nbsp;3
+          map, so every criterion below was matched to this provision by a
+          person. No editorial comparison of the two requirements has been
+          written yet.
+        </p>
 
-          <div class="panel-section">
-            <h3>Matching WCAG 2.2 Success Criteria</h3>
-            {ann.wcag22Comparison.matchingCriteria?.length > 0 ? (
-              <ul class="matching-list">
-                {ann.wcag22Comparison.matchingCriteria.map((scStr: string) => {
-                  const scNum = scStr.replace(/[^0-9.]/g, '');
-                  const scSlug = scNum.replace(/\./g, '-');
-                  return (
-                    <li>
-                      <a href={link(`/plain-english/wcag22/${scSlug}/`)} class="sc-link">
-                        <span>📘</span>
-                        <strong>{scStr}</strong>
-                        <span class="link-arrow">&rarr;</span>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              <div class="new-outcome-box">
-                <p>✨ <strong>New WCAG 3 Outcome:</strong> This provision introduces a brand new outcome framework in WCAG 3 without a direct 1:1 predecessor in WCAG 2.2.</p>
-              </div>
-            )}
-          </div>
-        </div>
-      ) : (
-        <div class="panel-section">
-          <h2>WCAG 2.2 Criteria That Map Here</h2>
-          <p class="derived-note">
-            Derived by inverting the hand-maintained WCAG&nbsp;2.2 &rarr; WCAG&nbsp;3
-            map, so every criterion below was matched to this provision by a
-            person. No editorial comparison of the two requirements has been
-            written yet.
-          </p>
-
-          {inbound.direct.length > 0 ? (
+        {inbound.direct.length > 0 ? (
+          <ul class="matching-list">
+            {inbound.direct.map((sc: any) => (
+              <li>
+                <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
+                  <span>📘</span>
+                  <strong>{sc.num} {sc.name}</strong>
+                  <span class="sc-level">Level {sc.level}</span>
+                  <span class="link-arrow">&rarr;</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : coarse.length > 0 ? (
+          <div class="new-outcome-box">
+            <p>
+              <strong>Referenced at guideline level only.</strong>
+              {" "}These WCAG&nbsp;2.2 criteria point at this provision's
+              {inbound.viaGuideline.length > 0 ? " guideline" : " group"} rather
+              than at the provision itself, so the match is broader than one-to-one:
+            </p>
             <ul class="matching-list">
-              {inbound.direct.map((sc) => (
+              {coarse.map((sc: any) => (
                 <li>
                   <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
                     <span>📘</span>
@@ -551,39 +493,18 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
                 </li>
               ))}
             </ul>
-          ) : coarse.length > 0 ? (
-            <div class="new-outcome-box">
-              <p>
-                <strong>Referenced at guideline level only.</strong>
-                {" "}These WCAG&nbsp;2.2 criteria point at this provision's
-                {inbound.viaGuideline.length > 0 ? " guideline" : " group"} rather
-                than at the provision itself, so the match is broader than one-to-one:
-              </p>
-              <ul class="matching-list">
-                {coarse.map((sc) => (
-                  <li>
-                    <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
-                      <span>📘</span>
-                      <strong>{sc.num} {sc.name}</strong>
-                      <span class="sc-level">Level {sc.level}</span>
-                      <span class="link-arrow">&rarr;</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <div class="new-outcome-box">
-              <p>
-                ✨ <strong>No WCAG 2.2 predecessor.</strong> No criterion in the
-                curated WCAG&nbsp;2.2 map points at this provision, its guideline or
-                its group &mdash; it appears to be new in WCAG&nbsp;3 rather than a
-                restatement of existing guidance.
-              </p>
-            </div>
-          )}
-        </div>
-      )}
+          </div>
+        ) : (
+          <div class="new-outcome-box">
+            <p>
+              ✨ <strong>No WCAG 2.2 predecessor.</strong> No criterion in the
+              curated WCAG&nbsp;2.2 map points at this provision, its guideline or
+              its group &mdash; it appears to be new in WCAG&nbsp;3 rather than a
+              restatement of existing guidance.
+            </p>
+          </div>
+        )}
+      </div>
     </div>
 
     <!-- Panel 5: W3C Official Text -->

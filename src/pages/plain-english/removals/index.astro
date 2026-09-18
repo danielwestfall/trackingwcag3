@@ -60,10 +60,6 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
         <article class="removal-card">
           <div class="card-top">
             <span class="status-tag">{item.wcag3Status}</span>
-            <div class="likelihood-pill">
-              <span class="pill-label">Likelihood in Final WCAG 3:</span>
-              <span class="pill-val">{item.inclusionLikelihood}</span>
-            </div>
           </div>
 
           <h2 class="card-title">{item.title}</h2>

@@ -33,5 +33,35 @@
 *,
 *::before,
 *::after {
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
+
+@media (max-width: 640px) {
+  body {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  ul ul, ol ol, ul ol, ol ul {
+    padding-inline-start: 1.25rem !important;
+  }
+  #toc ul, #toc ol {
+    padding-inline-start: 0.75rem !important;
+  }
+  #toc li {
+    margin-left: 0.25rem !important;
+  }
+}
+
+table {
+  max-width: 100% !important;
+  display: block !important;
+  overflow-x: auto !important;
+}
+
+/* Ensure W3C ReSpec-generated Table of Contents heading meets WCAG 2 AA contrast (3:1 large text) */
+#toc h2.introductory {
+  color: #556772 !important;
+}
+
+
