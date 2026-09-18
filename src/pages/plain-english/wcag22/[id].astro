@@ -438,11 +438,14 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .code-box {
     border-radius: var(--radius-md);
     padding: 18px;
-    background: #070b14;
-    border: 1px solid var(--border-default);
+    /* Theme-aware: the hard-coded dark surface left the code text at 1.13:1 in
+       the light theme, hidden behind a closed tab where no sweep could see it. */
+    background: var(--code-surface);
+    color: var(--code-text);
+    border: 1px solid var(--code-border);
   }
-  .code-box.good { border-top: 3px solid #34d399; }
-  .code-box.bad { border-top: 3px solid #f43f5e; }
+  .code-box.good { border-top: 3px solid var(--code-ok); }
+  .code-box.bad { border-top: 3px solid var(--code-bad); }
 
   .code-header {
     display: flex;
@@ -452,13 +455,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     font-weight: 700;
     font-size: 0.88rem;
   }
-  .good .code-header span { color: #34d399; }
-  .bad .code-header span { color: #f43f5e; }
+  .good .code-header span { color: var(--code-ok); }
+  .bad .code-header span { color: var(--code-bad); }
 
   .copy-code-btn {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-subtle);
+    /* Neutral tint rather than a white wash, so the button reads on both the
+       dark and the light code surface. */
+    background: rgba(127, 127, 127, 0.16);
+    color: var(--code-text);
+    border: 1px solid var(--code-border);
     padding: 3px 9px;
     border-radius: var(--radius-sm);
     font-size: 0.75rem;
@@ -466,7 +471,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     cursor: pointer;
     transition: var(--transition-fast);
   }
-  .copy-code-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.15); }
+  .copy-code-btn:hover { color: var(--code-text); background: rgba(127, 127, 127, 0.28); }
   .copy-code-btn.copied { background: #34d399; color: #070b14; font-weight: 700; }
 
   pre {

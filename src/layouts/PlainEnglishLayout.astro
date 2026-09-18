@@ -84,6 +84,18 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --accent-amber: #fbbf24;
         --accent-rose: #fb7185;
 
+        /* Code and raw-source surfaces. These panels hard-coded #070b14 in
+           both themes while their text came from the theme tokens, so in the
+           light theme the draft's raw text rendered near-black on near-black
+           (measured 1.10:1). They were invisible to every contrast sweep
+           because they sit inside tab panels that are display:none until the
+           tab is opened. */
+        --code-surface: #070b14;
+        --code-border: rgba(148, 163, 184, 0.35);
+        --code-text: #e2e8f0;            /* 15.1:1 on --code-surface */
+        --code-ok: #34d399;              /* 8.9:1 on --code-surface */
+        --code-bad: #fb7185;             /* 6.3:1 on --code-surface */
+
         /* Role Specific Tokens */
         --role-designer: #f472b6;
         --role-designer-bg: rgba(244, 114, 182, 0.12);
@@ -164,6 +176,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --accent-emerald: #047857;       /* 5.48:1 on white */
         --accent-amber: #92400e;         /* 7.09:1 on white */
         --accent-rose: #be123c;          /* 6.29:1 on white */
+
+        --code-surface: #f1f5f9;
+        --code-border: #cbd5e1;
+        --code-text: #0f172a;            /* 15.8:1 on --code-surface */
+        --code-ok: #047857;              /* 4.98:1 on --code-surface */
+        --code-bad: #be123c;             /* 5.72:1 on --code-surface */
 
         --role-designer: #be185d;        /* 6.04:1 on white */
         --role-designer-bg: rgba(190, 24, 93, 0.08);
