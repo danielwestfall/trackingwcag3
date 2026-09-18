@@ -1,7 +1,7 @@
 # Factuality Source Matrix & Verification Registry
 
 > **Site Verification Standard:** Strict Factuality & Zero Unsourced Speculation  
-> **Generated:** 2026-09-18T03:24:09.881Z  
+> **Generated:** 2026-09-18T03:38:15.234Z  
 > **Audit Suite:** `scripts/red-team-factuality.mjs` (1708 automated assertions, 0 failures)  
 
 This document provides the authoritative, statement-by-statement upstream citation list for all content on Tracking WCAG 3. Every single standard, provision, criterion, status count, and architectural discussion is backed by direct links to primary W3C publications or official W3C Working Group repositories.

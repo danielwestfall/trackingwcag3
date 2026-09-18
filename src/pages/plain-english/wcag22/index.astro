@@ -96,6 +96,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           data-level={sc.level}
           data-principle={sc.principle}
           data-summary={sc.plainEnglish?.summary?.toLowerCase() || ""}
+          data-why={sc.plainEnglish?.whyItMatters?.toLowerCase() || ""}
+          data-example={sc.plainEnglish?.realWorldExample?.toLowerCase() || ""}
+          data-mapped={(sc.wcag3Mapping?.provisions || []).join(" ").toLowerCase()}
         >
           <div class="card-header">
             <div class="header-badges">
@@ -149,6 +152,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     let selectedLevel = 'all';
 
+    // Parse URL params (?q=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialQuery = urlParams.get('q');
+    if (initialQuery && searchInput) {
+      searchInput.value = initialQuery;
+    }
+
     levelPills.forEach(pill => {
       pill.addEventListener('click', () => {
         levelPills.forEach(p => {
@@ -172,10 +182,20 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         const num = card.getAttribute('data-num') || '';
         const name = card.getAttribute('data-name') || '';
         const summary = card.getAttribute('data-summary') || '';
+        const why = card.getAttribute('data-why') || '';
+        const example = card.getAttribute('data-example') || '';
+        const mapped = card.getAttribute('data-mapped') || '';
         const level = card.getAttribute('data-level') || '';
         const principle = card.getAttribute('data-principle') || '';
 
-        const matchesQuery = !query || num.includes(query) || name.includes(query) || summary.includes(query);
+        const matchesQuery = !query || 
+          num.includes(query) || 
+          name.includes(query) || 
+          summary.includes(query) || 
+          why.includes(query) || 
+          example.includes(query) || 
+          mapped.includes(query);
+
         const matchesLevel = selectedLevel === 'all' || level === selectedLevel;
         const matchesPrinciple = selectedPrinciple === 'all' || principle === selectedPrinciple;
 
@@ -192,6 +212,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     searchInput.addEventListener('input', filterCards);
     principleSelect.addEventListener('change', filterCards);
+
+    // Initial filter execution to process ?q=
+    filterCards();
   });
 </script>
 

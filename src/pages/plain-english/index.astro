@@ -10,6 +10,23 @@ if (fs.existsSync(catalogPath)) {
   catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 }
 
+const wcag22Path = path.join(process.cwd(), "public", "data", "wcag22-catalog.json");
+let wcag22Catalog: any[] = [];
+if (fs.existsSync(wcag22Path)) {
+  wcag22Catalog = JSON.parse(fs.readFileSync(wcag22Path, "utf8"));
+}
+
+const wcag22SearchData = wcag22Catalog.map((sc) => ({
+  num: sc.num,
+  name: sc.name,
+  level: sc.level,
+  principle: sc.principle,
+  slug: sc.id.replace(/\./g, '-'),
+  summary: sc.plainEnglish?.summary || '',
+  why: sc.plainEnglish?.whyItMatters || '',
+  mapped: sc.wcag3Mapping?.provisions || []
+}));
+
 const totalCount = catalog.length;
 const matureCount = catalog.filter((item) => item.status === "mature" || item.status === "refining").length;
 const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.annotation.plainEnglish?.summary?.endsWith("...")).length;
@@ -306,6 +323,21 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </div>
   </section>
 
+  <!-- Dynamic WCAG 2.2 Match Section (Appears when search matches WCAG 2.2 Success Criteria) -->
+  <section id="wcag22-matches-section" class="wcag22-matches-section" aria-label="Matching WCAG 2.2 Standards" hidden>
+    <div class="matches-header">
+      <div class="matches-title-wrap">
+        <span class="matches-icon" aria-hidden="true">📘</span>
+        <div>
+          <h2 id="wcag22-matches-title" class="matches-title">Matching WCAG 2.2 Success Criteria</h2>
+          <p class="matches-subtitle">Official W3C WCAG 2.2 standards matching your search query:</p>
+        </div>
+      </div>
+      <a href={link("/plain-english/wcag22/")} class="matches-view-all">Browse all 87 WCAG 2.2 Criteria &rarr;</a>
+    </div>
+    <div class="wcag22-matches-grid" id="wcag22-matches-grid"></div>
+  </section>
+
   <!-- Provisions Grid -->
   <section class="provisions-section">
     <div class="grid-header">
@@ -317,6 +349,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         const ann = item.annotation;
         const status = item.status || "exploratory";
         const groupSlug = item.groupSlug || "general";
+        const directInbound = item.wcag22Inbound?.direct || [];
+        const viaInbound = item.wcag22Inbound?.viaGuideline || [];
+        const directNums = directInbound.map((d: any) => typeof d === 'string' ? d : d.num);
+        const directSearchStr = directInbound.map((d: any) => typeof d === 'string' ? d : `${d.num} ${d.name}`).join(" ");
+        const viaNums = viaInbound.map((d: any) => typeof d === 'string' ? d : d.num);
+        const viaSearchStr = viaInbound.map((d: any) => typeof d === 'string' ? d : `${d.num} ${d.name}`).join(" ");
+        const allPredecessors = `${directSearchStr} ${viaSearchStr}`.toLowerCase();
         
         return (
           <article 
@@ -329,6 +368,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             data-body={item.rawBody.toLowerCase()}
             data-status={status}
             data-summary={ann?.plainEnglish?.summary?.toLowerCase() || ""}
+            data-why={ann?.plainEnglish?.whyItMatters?.toLowerCase() || ""}
+            data-predecessors={allPredecessors}
           >
             <div class="card-top">
               <div class="badge-group">
@@ -365,10 +406,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
             <div class="card-footer">
               <div class="wcag22-links">
-                {item.wcag22Inbound?.direct?.length > 0 ? (
-                  <span>Predecessors: <strong>{item.wcag22Inbound.direct.join(", ")}</strong></span>
-                ) : item.wcag22Inbound?.viaGuideline?.length > 0 ? (
-                  <span>Guideline: <strong>{item.wcag22Inbound.viaGuideline.join(", ")}</strong></span>
+                {directNums.length > 0 ? (
+                  <span>Predecessors: <strong>{directNums.join(", ")}</strong></span>
+                ) : viaNums.length > 0 ? (
+                  <span>Guideline: <strong>{viaNums.join(", ")}</strong></span>
                 ) : (
                   <span>New in WCAG 3</span>
                 )}
@@ -384,7 +425,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   </section>
 </PlainEnglishLayout>
 
-<script is:inline>
+<script is:inline define:vars={{ wcag22SearchData, base }}>
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const typePills = document.querySelectorAll('.type-pill');
@@ -392,6 +433,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     const statusFilter = document.getElementById('status-filter');
     const cards = document.querySelectorAll('.provision-card');
     const resultCount = document.getElementById('result-count');
+    const wcag22Section = document.getElementById('wcag22-matches-section');
+    const wcag22Grid = document.getElementById('wcag22-matches-grid');
 
     let activeType = 'all';
 
@@ -447,19 +490,81 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     function filterCards() {
       const query = searchInput.value.toLowerCase().trim();
       const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
-      const selectedStatus = statusFilter.value;
+      const selectedStatus = statusFilter ? statusFilter.value : 'all';
 
+      // 1. Check WCAG 2.2 matches if query exists
+      if (wcag22Section && wcag22Grid) {
+        const wcag22Matches = [];
+        if (query) {
+          for (const sc of wcag22SearchData) {
+            const numMatch = sc.num === query || sc.num.startsWith(query);
+            const nameMatch = sc.name.toLowerCase().includes(query);
+            const sumMatch = sc.summary.toLowerCase().includes(query);
+            const whyMatch = sc.why.toLowerCase().includes(query);
+            const mappedMatch = Array.isArray(sc.mapped) && sc.mapped.some(m => m.toLowerCase().includes(query));
+
+            if (numMatch || nameMatch || sumMatch || whyMatch || mappedMatch) {
+              wcag22Matches.push({ sc, exact: numMatch });
+            }
+          }
+        }
+
+        wcag22Matches.sort((a, b) => (b.exact ? 1 : 0) - (a.exact ? 1 : 0));
+
+        if (wcag22Matches.length > 0) {
+          wcag22Section.hidden = false;
+          wcag22Grid.innerHTML = wcag22Matches.slice(0, 4).map(m => {
+            const sc = m.sc;
+            const detailUrl = `${base}/plain-english/wcag22/${sc.slug}/`;
+            return `
+              <article class="wcag22-match-card">
+                <div class="match-card-top">
+                  <div class="match-badges">
+                    <span class="match-badge num-badge">SC ${sc.num}</span>
+                    <span class="match-badge level-badge level-${sc.level}">Level ${sc.level}</span>
+                    <span class="match-badge principle-badge">${sc.principle}</span>
+                  </div>
+                  <span class="standard-indicator">Standard</span>
+                </div>
+                <h3 class="match-card-title">
+                  <a href="${detailUrl}">${sc.num} ${sc.name}</a>
+                </h3>
+                <p class="match-card-summary">${sc.summary}</p>
+                <div class="match-card-footer">
+                  <a href="${detailUrl}" class="match-open-link">Open WCAG 2.2 Guide &rarr;</a>
+                </div>
+              </article>
+            `;
+          }).join('');
+        } else {
+          wcag22Section.hidden = true;
+          wcag22Grid.innerHTML = '';
+        }
+      }
+
+      // 2. Filter WCAG 3 provision cards
       let visible = 0;
+      let matchedViaPredecessor = 0;
 
       cards.forEach(card => {
         const title = card.getAttribute('data-title') || '';
         const body = card.getAttribute('data-body') || '';
         const summary = card.getAttribute('data-summary') || '';
+        const predecessors = card.getAttribute('data-predecessors') || '';
+        const why = card.getAttribute('data-why') || '';
+        const slug = card.getAttribute('data-slug') || '';
         const group = card.getAttribute('data-group') || '';
         const status = card.getAttribute('data-status') || '';
         const type = card.getAttribute('data-type') || '';
 
-        const matchesQuery = !query || title.includes(query) || body.includes(query) || summary.includes(query);
+        const matchesQuery = !query || 
+          title.includes(query) || 
+          slug.includes(query) || 
+          summary.includes(query) || 
+          predecessors.includes(query) || 
+          why.includes(query) || 
+          body.includes(query);
+
         const matchesCategory = selectedCategory === 'all' || group === selectedCategory;
         const matchesStatus = selectedStatus === 'all' || status === selectedStatus;
         const matchesType = activeType === 'all' || type === activeType;
@@ -467,12 +572,19 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         if (matchesQuery && matchesCategory && matchesStatus && matchesType) {
           card.style.display = 'flex';
           visible++;
+          if (query && predecessors.includes(query) && !title.includes(query) && !summary.includes(query)) {
+            matchedViaPredecessor++;
+          }
         } else {
           card.style.display = 'none';
         }
       });
 
-      resultCount.textContent = `Showing ${visible} of ${cards.length} Provisions`;
+      if (query && matchedViaPredecessor > 0) {
+        resultCount.textContent = `Showing ${visible} of ${cards.length} WCAG 3 Provisions (${matchedViaPredecessor} matched via WCAG 2.2 predecessor)`;
+      } else {
+        resultCount.textContent = `Showing ${visible} of ${cards.length} WCAG 3 Provisions`;
+      }
       updateTocVisibility();
     }
 
@@ -1085,6 +1197,162 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     outline: none;
   }
 
+  /* WCAG 2.2 Matching Standards Section */
+  .wcag22-matches-section {
+    margin: 20px 0 32px;
+    padding: 24px;
+    background: var(--surface-card);
+    border: 2px solid var(--accent-blue);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 24px rgba(3, 105, 161, 0.12);
+  }
+  .matches-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .matches-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .matches-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .matches-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  .matches-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 2px 0 0;
+  }
+  .matches-view-all {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-elevated);
+    transition: var(--transition-fast);
+  }
+  .matches-view-all:hover {
+    border-color: var(--accent-blue);
+    text-decoration: underline;
+  }
+  .wcag22-matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: 18px;
+  }
+  .wcag22-match-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .wcag22-match-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-blue);
+  }
+  .match-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .match-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .match-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .num-badge {
+    background: rgba(3, 105, 161, 0.15);
+    color: var(--text-accent);
+    border: 1px solid rgba(3, 105, 161, 0.35);
+  }
+  .level-badge {
+    text-transform: uppercase;
+  }
+  .level-badge.level-A { background: rgba(3, 105, 161, 0.15); color: #0284c7; border: 1px solid rgba(3, 105, 161, 0.35); }
+  .level-badge.level-AA { background: rgba(4, 120, 87, 0.15); color: #059669; border: 1px solid rgba(4, 120, 87, 0.35); }
+  .level-badge.level-AAA { background: rgba(109, 40, 217, 0.15); color: #7c3aed; border: 1px solid rgba(109, 40, 217, 0.35); }
+  :global(html[data-theme="light"]) .level-badge.level-A { color: #0369a1; }
+  :global(html[data-theme="light"]) .level-badge.level-AA { color: #047857; }
+  :global(html[data-theme="light"]) .level-badge.level-AAA { color: #6d28d9; }
+  .principle-badge {
+    background: var(--surface-subtle);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+  .standard-indicator {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-accent);
+    background: rgba(3, 105, 161, 0.12);
+    border: 1px solid rgba(3, 105, 161, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .match-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  .match-card-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .match-card-title a:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+  }
+  .match-card-summary {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin: 0;
+  }
+  .match-card-footer {
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .match-open-link {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    text-decoration: none;
+  }
+  .match-open-link:hover {
+    text-decoration: underline;
+  }
+
   /* Grid */
   .provisions-section {
     margin-top: 12px;
@@ -1510,9 +1778,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   :global(html[data-theme="light"]) .w3c-status-accordion,
   :global(html[data-theme="light"]) .estimation-pill,
   :global(html[data-theme="light"]) .why-matters-box,
+  :global(html[data-theme="light"]) .wcag22-matches-section,
+  :global(html[data-theme="light"]) .wcag22-match-card,
   :global(html[data-theme="light"]) .toc-drawer {
     background: #ffffff;
     border-color: #cbd5e1;
+  }
+  :global(html[data-theme="light"]) .wcag22-matches-section {
+    background: #f8fafc;
+    border-color: #0369a1;
   }
   :global(html[data-theme="light"]) .toc-header {
     background: #f1f5f9;
