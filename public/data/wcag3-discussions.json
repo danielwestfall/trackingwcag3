@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-15T01:17:54.732Z",
+  "generatedAt": "2026-09-21T18:26:48.928Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 471,
+    "issuesTotal": 475,
     "issuesWithProvisionLabel": 233,
     "provisionsWithDiscussion": 152,
-    "generalIssues": 238,
+    "generalIssues": 242,
     "summarized": 36,
     "awaitingSummary": 116
   },

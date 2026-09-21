@@ -4311,49 +4311,86 @@
       "title": "Email: ITI Comments on First Public Working Draft of W3C Accessibility Guidelines (WCAG) 3.0 (19 - Representative Sampling)",
       "state": "open",
       "labels": [
-        "Conformance"
+        "Guidance: Testing"
       ],
       "user": "jspellman",
       "created": "2021-03-12T13:57:09Z",
-      "updated": "2025-02-14T16:42:41Z",
+      "updated": "2026-09-16T23:41:00Z",
       "closed": null,
-      "commentCount": 1,
+      "commentCount": 2,
       "body": "[Comment from Email](https://lists.w3.org/Archives/Public/public-agwg-comments/2021Feb/0012.html): \r\nfrom [PDF](https://lists.w3.org/Archives/Public/public-agwg-comments/2021Feb/att-0012/ITI_Comments_on_WCAG_3.0_First_Public_Working_Draft_20210224_1_.pdf)\r\n\r\nFPWD: Representative sampling is an important strategy to large and complex sites. We welcome suggestions and feedback about the best way to incorporate representative sampling into WCAG 3.0.\r\n\r\nRepresentative sampling will be a highly customized process for different content providers. Sampling techniques have different issues for different types of sites. For example, a sampling process that requires manual testing on 5% of views would be a major challenge for a site with 50,000 views (2,500 manual view tests), let alone one with millions. A requirement that the content provider selects the top ten workflows to test is much more achievable. However, workflow definition may vary greatly between providers so guidance is needed on what level of detail should be included. \r\n",
       "url": "https://github.com/w3c/wcag3/issues/282",
-      "comments": []
+      "comments": [
+        {
+          "user": "jspellman",
+          "created": "2021-03-12T13:57:26Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue. "
+        },
+        {
+          "user": "alastc",
+          "created": "2026-09-16T23:40:47Z",
+          "body": "I'm moving this from conformance to the guidance documents, due to the aspects raised in the comment:\n> Representative sampling will be a highly customized process for different content providers... a sampling process that requires manual testing on 5% of views would be a major challenge for a site with 50,000 views (2,500 manual view tests), let alone one with millions.... workflow definition may vary greatly between providers so guidance is needed on what level of detail should be included.\n\nWe have gone with a simpler conformance model, so that the informative guidance can provide more flexible advice on how to sample."
+        }
+      ]
     },
     "283": {
       "number": 283,
       "title": "Email: ITI Comments on First Public Working Draft of W3C Accessibility Guidelines (WCAG) 3.0 (7 - automation compliance level",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "jspellman",
       "created": "2021-03-11T16:31:33Z",
-      "updated": "2025-02-14T16:50:05Z",
-      "closed": null,
-      "commentCount": 2,
+      "updated": "2026-09-16T23:38:02Z",
+      "closed": "2026-09-16T23:38:02Z",
+      "commentCount": 3,
       "body": "[Comment from Email](https://lists.w3.org/Archives/Public/public-agwg-comments/2021Feb/0012.html): \r\nfrom [PDF](https://lists.w3.org/Archives/Public/public-agwg-comments/2021Feb/att-0012/ITI_Comments_on_WCAG_3.0_First_Public_Working_Draft_20210224_1_.pdf)\r\n\r\n* Inclusion of a compliance level or mechanism that only depends upon automated/automatable tests rather than needing human judgement and review.  Such a compliance level or mechanism might be an ever-rising bar, that ratchets up over time as machine learning and other techniques allow more comprehensive automated testing.  We believe this is particularly important for the very largest and most dynamic of websites and web applications, such as those driven primarily by user-generated content, and which may be receiving more than 100m updates per day (more than 50k updates per second).  ",
       "url": "https://github.com/w3c/wcag3/issues/283",
-      "comments": []
+      "comments": [
+        {
+          "user": "jspellman",
+          "created": "2021-03-11T16:31:47Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue. "
+        },
+        {
+          "user": "jspellman",
+          "created": "2021-03-16T09:53:42Z",
+          "body": "Moving to Conformance as it is a request for a new automation-only level"
+        },
+        {
+          "user": "alastc",
+          "created": "2026-09-16T23:38:02Z",
+          "body": "This was considered ([survey](https://www.w3.org/wbs/35422/conformance-updates-test/results/#xq5), [minutes](https://www.w3.org/2026/05/11-ag-minutes.html#36d6)), but it was thought that: What is automatable (or easy to test in general) doesn't map directly to what is important for users. It isn't a good basis for a conformance level.\n\nAs we have a [resolution to that effect](https://www.w3.org/2026/05/11-ag-minutes.html#1000e), I'll close this issue."
+        }
+      ]
     },
     "284": {
       "number": 284,
-      "title": " Email: ITI Comments on First Public Working Draft of W3C Accessibility Guidelines (WCAG) 3.0 (4 - mapping to WCAG2)",
+      "title": "Mapping to WCAG2 (via email: ITI Comments on First Public Working Draft)",
       "state": "open",
       "labels": [
-        "Type: editorial",
-        "Conformance"
+        "Other: Guideline Approach"
       ],
       "user": "jspellman",
       "created": "2021-03-11T16:21:34Z",
-      "updated": "2026-05-02T13:13:26Z",
+      "updated": "2026-09-16T23:35:18Z",
       "closed": null,
-      "commentCount": 1,
+      "commentCount": 2,
       "body": "[Comment from Email](https://lists.w3.org/Archives/Public/public-agwg-comments/2021Feb/0012.html): \r\nfrom [PDF](https://lists.w3.org/Archives/Public/public-agwg-comments/2021Feb/att-0012/ITI_Comments_on_WCAG_3.0_First_Public_Working_Draft_20210224_1_.pdf)\r\n\r\n* As WCAG 3.0 does not supersede WCAG 2, there needs to be a mapping of the success criteria from WCAG 2 to WCAG 3.0 outcomes. This will facilitate both product creators, with their development/testing/reporting of products previously evaluated using WCAG 2, and product consumers so they can use their knowledge of WCAG 2 to bring them up to speed on guidelines in WCAG 3.0.",
       "url": "https://github.com/w3c/wcag3/issues/284",
-      "comments": []
+      "comments": [
+        {
+          "user": "jspellman",
+          "created": "2021-03-11T16:21:46Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue. "
+        },
+        {
+          "user": "alastc",
+          "created": "2026-09-16T23:35:18Z",
+          "body": "Re-labeling, not a conformance related issue as such, it's just asking for a mapping (which is going to be done, but not yet)."
+        }
+      ]
     },
     "285": {
       "number": 285,
@@ -4490,18 +4527,69 @@
     "304": {
       "number": 304,
       "title": "About Bronze - Silver - Gold and scope of views etc.",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "spanchang",
       "created": "2020-11-22T14:04:38Z",
-      "updated": "2025-09-26T05:41:57Z",
-      "closed": null,
-      "commentCount": 9,
+      "updated": "2026-09-16T23:03:13Z",
+      "closed": "2026-09-16T23:03:13Z",
+      "commentCount": 10,
       "body": "Views and processes: \r\nIt says a view is akin to a Web page. Sowhile evaluating a process the entire Web page(s) is judged, including common header/footer section, right?\r\nBut then there is a feedback question about whether an image in the footer without an alt is critical to the process.\r\nSo here is a thought: Grading system: Bronze-Silver-Gold \r\nBronze: should cover specific views and processes for accomplishing task flows / accessing information.\r\nparts of Web page, like header nav that enable one to find the particular task or section of interest should also be within the scope of this review.\r\nHelp documentation linked from the view / process should be within scope\r\nOut of scope: Footer sections / banner / complementary sections as long as they pass non-interference requirements.\r\n\r\nSilver: Bronze plus\r\nCover all declared scope i.e. including footer / banner etc. sections excluded from bronze\r\n\r\nGold: Silver plus\r\ni. Include a mandate to perform usability testing.\r\nii. Passing selective Level AAA SCs \r\n\r\nNote: While above appears to be in the context of Web content, it can be applied to software / apps too.\r\nThanks,\r\nSailesh\r\n",
       "url": "https://github.com/w3c/wcag3/issues/304",
-      "comments": []
+      "comments": [
+        {
+          "user": "Myndex",
+          "created": "2020-11-23T00:09:38Z",
+          "body": "Hi @spanchang  thank you for commenting.\r\n\r\nI am going to respond as to how the conformance model is working right now for Visual Contrast.\r\n\r\n**All visible text is in scope**, except purely decorative (i.e. dingbats of flowers in a line). However, the _purpose_ of a given text element sets different limits and requirements, with further variations per level of conformance.\r\n\r\n### Brief Overview of Contrasts\r\n\r\nIn terms of luminance contrast (ignoring size, spatial, hue, and other contrasts) there are four broad categories:\r\n\r\n1. Fluent Readability Contrast\r\n2. Contrast for Spot Reading\r\n3. Contrast for non-text objects, images, elements, states (focus), etc.\r\n4. Purely aesthetic Contrasts.\r\n\r\nNumber 4 has no requirement other than to not interfere with numbers 1 thru 3. Number 1, readability, has by far the highest contrast requirement as needed to enable whole word recognition in the VWFA (Visual Word Form Area) of the brain. Number 2 is a relaxed contrast requirement as spot reading assumes that letter-by-letter lexical processing is acceptable. Number three is a bit more complicated but typically as relaxed as number 2, but in some cases can be more relaxed, yet in other use cases have a higher contrast requirement.\r\n\r\n### Use Cases Defined\r\n\r\n**(A) Fluent Readability:**\r\n- Columns of body text (body text has elevated requirements for best score)\r\n- Headlines, Subheads, Asides\r\n- Primary navigation, Primary menus\r\n- Descriptive captions that convey meaning beyond the image.\r\n- Font weight and size are interdependent with luminance contrast.\r\n\r\n**(B) Spot Reading Level**\r\n- Copyright, ByLine, and Legal Notices and links thereto (secondary navigation).\r\n- Captions that only restate the captioned item or provide only credits, byline, rights, etc.\r\n- Ancillary text that is not a part of, nor critical to the understanding of, the primary content.\r\n\r\n**(C) Non-Text Elements**\r\n- This means buttons, controls, form fields, clickable objects but does NOT apply to any text within these items.\r\n- This also includes temporal/spatial state changes (including state changes to text, which is necessarily separated from the text's readability contrast).\r\n- Contrasts within an image or drawing that is part of content.\r\n- Contrasts in size, shape, temporal, and spatial relationships are interdependent with luminance contrast.\r\n\r\n**(UX) Aesthetic Contrast**\r\n- Simply anything that is purely decorative, non-readable, not needed for understanding content.\r\n- It can include contrasts that may be helpful for organizing content but are not strictly necessary.\r\n- These have no standard other than to not distract nor interfere with use cases A, B, and C\r\n\r\n### Conformance Scoring Levels\r\n\r\n**Preferred**\r\n- This is a non-normative \"suggested best practices\" level. Achieving this achieves Level 4, but does not gain any \"bonus\" points. It is intended as guidance for more ideal design goals that exceed what is reasonable as a scorable level.\r\n- Includes more restrictive font-size minimums and more restrictive use of low-contrast elements. \r\n\r\n**Score 4 — \"Ideal Minimum\"**\r\n- The normative minimum for a Score of 4 for the view. \r\n- Case A elements are very similar to the \"Preferred\" level, but Case B and C elements have more relaxed requirements.\r\n\r\n**Score 3 — \"Acceptable Minimum\"**\r\n- The normative minimum for a Score of 3 for the view. \r\n- Case A, B, and C elements are only slightly relaxed relative to level 4.\r\n- Intended as a \"catch\" level for a well designed and well conforming site that \"just misses\" in one or two areas of visual contrast performance.\r\n- Also, this level is intended to pass sites that are presently passing 1.4.6 contrast enhanced (WCAG 2.x AAA) provided that the background colors are no darker than #CCC and no Case A content uses a font smaller than 16px.\r\n\r\n**Score 2 — \"Marginal\"**\r\n- The normative minimum for a Score of 2 for the view. \r\n- Case A, B, and C elements are relaxed relative to level 3. In particular the high-contrast Case A is relaxed, and certain minimum sizes of fonts are relaxed.\r\n- Intended as a way for sites that are presently passing 1.4.3 contrast (WCAG 2.x AA) provided that the background colors are no darker than #BBB and no Case A content uses a font smaller than 14px.\r\n\r\n**Score 1 — \"Poor\"**\r\n- The normative minimum for a Score of 1 for the view. \r\n- Case A, B, and C elements are relaxed relative to level 2, with few restrictions on minimum sizes for Case B text.\r\n- Intended as a catch-all for sites that are presently passing 1.4.3 contrast (WCAG 2.x AA) despite significant design deficiencies and/or false passes of dark color pairs.\r\n- Score 1 means \"deficient\" but passing, so that sites can still operate and not be penalized (in places where they are by law to comply) to give them time to address and correct their issues.\r\n\r\n\r\n### How This Answers Your Comment\r\n\r\nThe `<header>` or `<footer>` does not denote use cases as defined herein. Nor does the `<main>` or `<article>` or... you name it. \r\n\r\nIt is definitely possible (in fact more than likely) that the header will contain text of the page title, and that is definitely a \"Case A use case\" and the footer could easily have navigational elements that fall under Case A. Meanwhile, `<main>` or `<section>` could easily have Case B and Case C elements.\r\n\r\nThe point is, that at least for Visual Contrast, use cases do not align with the broader semantic markup of sections and other elements. And definitely NOT header! The closest might be footer, but even then, in the conformance model for Visual Contrast, ALL text is in scope, but there are sub-scope requirements that differ based on use case and score level.\r\n\r\nIt is the USE CASE that is important, not the semantic markup.\r\n\r\nThank you for posting the comment,\r\n\r\nAndy\r\n\r\n\r\n**_Andrew Somers_**\r\n_W3 invited Expert\r\nMyndex Color Science Researcher_\r\n\r\n"
+        },
+        {
+          "user": "davidberman",
+          "created": "2022-03-03T13:54:41Z",
+          "body": "I am concerned about both the Anglocentrism (and colorcentrism?) challenges of using the actual terms \"Gold\", \"Silver\", and \"Bronze\" for the levels. Furthermore I’m concerned about unnecessary burden within our industry regarding how we’ll repeatedly express these constructions: I am imagining that professionals will immediately shorten the three tiers to G, S, and B in their documents (in English), and so on. Is this the correct place for me to post this concern, or is it already explored elsewhere?"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2022-03-03T15:54:19Z",
+          "body": "> I am concerned about both the Anglocentrism (and colorcentrism?) challenges of using the actual terms \"Gold\", \"Silver\", and \"Bronze\" for the levels.\r\n\r\ni'd have thought that that categorisation, common throughout international/global sporting events, would be fairly universal"
+        },
+        {
+          "user": "davidberman",
+          "created": "2022-04-27T19:53:36Z",
+          "body": "Thanks for weighing in Patrick; while I agree that the international sport's embracing of the Olympic cliche is universally recognized. However, we are trying to be the best. Relying on colors is not our a11y best... we're almost encouraging people to use non-text indicators in reports. Creating something that won't be instantly recognizable/understandable will be best. We are not giving out medals: we are setting conformance standards that will be cited in regulations as a normative ISO standard. There will be times when \"Bronze\" will be a regulatory fail rather than \"medal-worthy\". And sometime \"Gold\" will be an inappropriate target. And it will still need to be translated. Is this the correct place for me to post this concern, or is it already explored elsewhere?"
+        },
+        {
+          "user": "mbgower",
+          "created": "2022-04-27T20:28:17Z",
+          "body": "At Tuesday's call, the working group had a resolution to remove ratings and scoring in the next charter. When/if that scoring returns in a couple of years, these comments can be brought to consideration again, but for now, I think this issue can be deferred and I have added a label to that effect.\r\n> [Remove ratings, critical errors, and scorings. Add editor's note similar to 'Critical errors was introduced as a concept in the FPWD. Although it not currently included, AGWG intends to re-asses this concept in the future.'](https://www.w3.org/2022/04/26-ag-minutes#r01)"
+        },
+        {
+          "user": "fstrr",
+          "created": "2025-03-28T21:55:54Z",
+          "body": "Proposed response:\n\nThis content has been updated with the release of the latest draft of WCAG 3, which can be found here:  [W3C Accessibility Guidelines \\(WCAG\\) 3.0](https://www.w3.org/TR/wcag-3.0/).  We believe that these issues are no longer relevant based on the changes made to the latest working draft.  Should you feel that these issues remain in the current draft, please log a new issue here:  [New Issue · w3c/wcag3](https://github.com/w3c/wcag3/issues/new)."
+        },
+        {
+          "user": "davidberman",
+          "created": "2025-03-31T19:21:10Z",
+          "body": "Are you saying that this discussion is no longer relevant because the committee has let go (or considering letting go) of a tiered system altogether (e.g., A/AA/AAA or Bronze/Silver/Gold? Or are you saying that the whole matter is being kicked down the road for now? I'm \"missing the headline\". Thanks! "
+        },
+        {
+          "user": "cwadamsoforacle",
+          "created": "2025-04-11T17:25:33Z",
+          "body": "We are leaving the issue open for further evaluation, and transferring to the WCAG 3 repository."
+        },
+        {
+          "user": "spanchang",
+          "created": "2025-09-10T13:20:33Z",
+          "body": "The issue I raised initially  is for determining  to what part(s)of the page is critical for assigning rating. The comment was in response to the feedback question posed then.\nDid the first comment covering visual contrast sort of muddy the waters and deflect attention from the original comment? \nAs per my understanding, the issue 217 is now  issue 304 in WCAG 3, so am leaving this open. \n\nThanks\n"
+        },
+        {
+          "user": "alastc",
+          "created": "2026-09-16T23:03:13Z",
+          "body": "Hi @spanchang \n\n> So here is a thought: Grading system: Bronze-Silver-Gold\n> Bronze: should cover specific views and processes for accomplishing task flows / accessing information.\nparts of Web page, like header nav that enable one to find the particular task or section of interest should also be within the scope of this review...\n> The issue I raised initially is for determining to what part(s)of the page is critical for assigning rating. \n\nWe did consider a similar proposal with critical/essential paths ([survey results](https://www.w3.org/wbs/35422/conformance-updates-test/results/#xq3), [minutes](https://www.w3.org/2026/05/11-ag-minutes.html#ec2b)).\n\nHowever, defining what is critical, essential, or whatever levels of importance across the variety of sites/products that WCAG applies to was considered too difficult. We are looking at more granular units of conformance though, which leaves it open to report on in various ways. \n\n> Gold: Silver plus\n> i. Include a mandate to perform usability testing.\n> ii. Passing selective Level AAA SCs\n\nThat is what we are looking at, not as part of \"conformance\" but as part of \"reporting\" in the guidance documents (testing/reporting/policy). In the [latest draft](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/) conformance is based on \"core requirements\", and WCAG Bronze/Silver/Gold is based on reporting that you have done various supplemental requirements and assertions.\n\nOverall, I think this comment is mostly addressed with the recent draft and direction of the informative guidance. Where it is not addressed, we have discounted the approach. @spanchang please reopen this with a comment if you have reviewed the latest draft and disagree.\n\nFor @davidberman's comment on Bronze/Silver/Gold: I think we'd need a better suggestion that is at least as recognizable _and_ more appropriate. No one has found or thought of anything yet. Please open a new issue if you have a suggestion.\n"
+        }
+      ]
     },
     "307": {
       "number": 307,
@@ -5076,12 +5164,38 @@
       ],
       "user": "WilcoFiers",
       "created": "2021-02-26T21:03:02Z",
-      "updated": "2025-09-26T05:45:59Z",
+      "updated": "2026-09-16T23:32:35Z",
       "closed": null,
-      "commentCount": 4,
+      "commentCount": 5,
       "body": "This issue is per request of @jspellman, as discussed on today's Silver call. The numbers in this post aren't real costs of any particular organisation, they're just examples.\r\n\r\n\r\nTesting a site for WCAG is labor intensive. Depending on a variety of factors, it often takes at least a full day of work, often quite a bit more. For an organization of a budget of 100k doing an annual accessibility audit isn't a big deal. But if you have 8k to build a site, it is hard to justify spending 2k of it on an accessibility audit. That's not even fixing any accessibility problems, it's just to test for them.\r\n\r\nThe need for accessibility is universal. So WCAG 3 should be too. In my opinion the lowest conformance level of WCAG 3 should be one that is achievable by low-budget and no-budget websites. Ideally it is one that can be tested with minimal effort, without the involvement of an expert.\r\n\r\nHaving a lower entry level to WCAG 3, makes WCAG more inclusive. It may work better in countries where there is no legal presidency too, and it gives a starting point for organizations new to accessibility.",
       "url": "https://github.com/w3c/wcag3/issues/388",
-      "comments": []
+      "comments": [
+        {
+          "user": "lauracarlson",
+          "created": "2021-03-03T20:43:34Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue."
+        },
+        {
+          "user": "fstrr",
+          "created": "2025-09-17T18:45:16Z",
+          "body": "Proposed response:\n\nThis content has been updated with the release of the latest draft of WCAG 3, which can be found here:  [W3C Accessibility Guidelines \\(WCAG\\) 3.0](https://www.w3.org/TR/wcag-3.0/).  We believe that these issues are no longer relevant based on the changes made to the latest working draft.  Should you feel that these issues remain in the current draft, please log a new issue here:  [New Issue · w3c/wcag3](https://github.com/w3c/wcag3/issues/new)."
+        },
+        {
+          "user": "WilcoFiers",
+          "created": "2025-09-25T10:47:18Z",
+          "body": "@fstrr Can you explain why you think the latest draft has addressed this issue? If anything, the minimal scope of WCAG 3.0 is far larger than it is of WCAG 2.2 - and most of the things that have been added would seem to require expert human evaluations. I feel like that would significantly increase the cost of accessibility testing, rather than reduce it for the minimum level."
+        },
+        {
+          "user": "fstrr",
+          "created": "2025-09-26T04:00:05Z",
+          "body": "Moving to the WCAG 3 repo to keep this issue going."
+        },
+        {
+          "user": "alastc",
+          "created": "2026-09-16T23:32:35Z",
+          "body": "Hi @WilcoFiers,\n\n> the lowest conformance level of WCAG 3 should be one that is achievable by low-budget and no-budget websites. Ideally it is one that can be tested with minimal effort, without the involvement of an expert.\n\nI think there's a principle here: Should a level of conformance be set by the effort required? \n\nThere was a similar proposal for automated testing being part of a first level ([survey](https://www.w3.org/wbs/35422/conformance-updates-test/results/#xq5), [minutes](https://www.w3.org/2026/05/11-ag-minutes.html#36d6)), but it was thought that: What is easy to test doesn't make it important to users.\n\nThe current draft has just one level of conformance, but multiple [tiers of reporting](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#tiers-of-reporting). The tiers are based on user-impact rather than effort, but there is \"a lower entry level\". \n\nIt's a slightly different approach than the one suggested, but does it fulfill the goal for you?"
+        }
+      ]
     },
     "393": {
       "number": 393,
@@ -9851,7 +9965,82 @@
       "body": "Hello, I've taken ownership as a shepherd for the 'no time limits' supplemental requirement. The current phrasing needs to be improved to create a testable version of this requirement\n\nCurrent Text:\n\"The completion of a [process](https://w3c.github.io/wcag3/guidelines/#dfn-process) does not include time limits.\"\n\nIssues:\n* The requirement of no-time limit is not testable without inspecting the code. A time limit could be set at 22hrs (for example).\n* There is a contradiction between the existence of supplemental criteria for both \n  * no time limits, and\n  * time limits conveyed; as you cannot convey a time limit that does (should) not exist.\n\n\nThis requirement probably works better as an assertion. Criteria already exist for the part of this requirement that *could* be testable, namely:\n* [Time limits conveyed](https://w3c.github.io/wcag3/guidelines/#time-limits-conveyed) \n* [Time-out adjustable](https://w3c.github.io/wcag3/guidelines/#timeout-adjustable) \n\nProposed Solution:\nChange requirement into assertion\n\n@hidde for visibility.",
       "url": "https://github.com/w3c/wcag3/issues/865",
       "comments": []
+    },
+    "868": {
+      "number": 868,
+      "title": "Inconsistent reading order of headings and permalinks in guidelines doc",
+      "state": "open",
+      "labels": [
+        "Other: Guideline Approach"
+      ],
+      "user": "mcking65",
+      "created": "2026-09-16T19:08:29Z",
+      "updated": "2026-09-16T19:08:29Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "In the Guidelines doc, sometimes the permalink is after a heading and sometimes it is before. This makes it more difficult for screen reader users to understand and navigate the document.\n\nPlease consistently place the permalinks after the headings.\n\n#### Good example H2\n\n```\n<div class=\"header-wrapper\">\n  <h2 id=\"x2-guidelines\">\n    <bdi class=\"secno\">2. </bdi>\n    Guidelines<span class=\"status-marker\">Developing</span>\n  </h2>\n  <a class=\"self-link\" href=\"#guidelines\" aria-label=\"Permalink for Section 2. Guidelines\"></a>\n</div>\n```\n\n#### Bad example H4\n\n```\n<div class=\"header-wrapper\">\n  <a class=\"self-link\" href=\"#pointer-input\" aria-label=\"Permalink for Guideline 2.4.3  Pointer input\"></a>\n  <h4 id=\"x2-4-3-pointer-input\">\n    <bdi class=\"secno\">Guideline 2.4.3 </bdi>\n    <a href=\"/wcag3/informative/input-operation/pointer-input/\">Pointer input</a>\n  </h4>\n</div>\n```",
+      "url": "https://github.com/w3c/wcag3/issues/868",
+      "comments": []
+    },
+    "869": {
+      "number": 869,
+      "title": "Titles and status incorrectly formatted as a single word for screen reader users in the Guidelines Doc",
+      "state": "open",
+      "labels": [
+        "Other: Guideline Approach"
+      ],
+      "user": "mcking65",
+      "created": "2026-09-16T19:26:23Z",
+      "updated": "2026-09-16T19:26:23Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "In the Guidelines doc, the status of a section is incorrectly appended to the last word of the title of the section in the DOM text node containing the title text.\nThis means that screen reader users are perceiving the last word of the title and the status as a single word.\n\nExample:\n\n```\n  <h2 id=\"x2-guidelines\">\n    <bdi class=\"secno\">2. </bdi>\n    Guidelines<span class=\"status-marker\">Developing</span>\n  </h2>\n```\n\nThe string `Guidelines<span class=\"status-marker\">Developing</span>` yields the DOM text node 'GuidelinesDeveloping'; there is no semantic separation between the title and the status. I am sure there must be some visual styling that indicates \"Guidelines\" is the title and \"Developing\" is the status.\n\nSide note: This is a separate issue, or potential issue ... I wonder what portion of sighted readers understand that \"Developing\" is a status. If we assume they read the entire introduction, they may comprehend it as a status. However, that assumes they remember everything they read in the introduction.",
+      "url": "https://github.com/w3c/wcag3/issues/869",
+      "comments": []
+    },
+    "870": {
+      "number": 870,
+      "title": "Use headings instead of definition list to structure the glossary",
+      "state": "open",
+      "labels": [
+        "Other: Guideline Approach"
+      ],
+      "user": "mcking65",
+      "created": "2026-09-16T19:42:10Z",
+      "updated": "2026-09-16T19:42:10Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "As a screen reader user, I find definition lists very problematic. they are extremely easy to misunderstand and very difficult to navigate efficiently. The glossary is an extreme case with 119 entries that are very complex in nature.\n\nPlease consider eliminating `dl` from the glossary and replacing `dt` with `h3` and replacing `dd` with `div`.\n\nI don't think this is necessary, but it is worth considering an additional usability feature that adds a section for each letter of the alphabet that has terms. For example, `h3` elements could serve as letter of the alphabet titles and then `h4` elements could serve as terms.",
+      "url": "https://github.com/w3c/wcag3/issues/870",
+      "comments": []
+    },
+    "873": {
+      "number": 873,
+      "title": "Ambiguity of uppercase vs lowercase usage of RFC 2119 key words",
+      "state": "open",
+      "labels": [
+        "Conformance"
+      ],
+      "user": "bruce-usab",
+      "created": "2026-09-18T13:56:48Z",
+      "updated": "2026-09-18T14:24:17Z",
+      "closed": null,
+      "commentCount": 2,
+      "body": "Presently, [§ 3 Conformance](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#conformance) cites RFC 8174 and states (emphasis added):\n> The key words MAY, MUST, and SHOULD in this document are to be interpreted as described in BCP 14 [RFC2119] [RFC8174] **_when, and only when_**, they appear in all capitals, as shown here.\n\n1. Many requirements use RFC 2119 key words in lowercase.\n2. The use of uppercase, as compared to lowercase (w or w/o emphasis), interferes with fluid reading.\n3. In general, the use of uppercase for emphasis (as opposed to bold and/or italic) is a poor choice (and markup languages provide better alternatives).  It is not semantic and is confusable with acronyms (which are almost always uppercase).   Screen reading software have algorithmic facility to emphasize _`em`_ and **`strong`** but are forced to resort to heuristics when encountering UPPERCASE.\n\nMy suggestion would be that we **_not_** reference RFC 8174.  We might (or might not) explain the rationale.\n\nIn the alternative, for the next working draft, there should be an editorial pass to eliminate lowercase usage of RFC 2119 key words.",
+      "url": "https://github.com/w3c/wcag3/issues/873",
+      "comments": [
+        {
+          "user": "patrickhlauke",
+          "created": "2026-09-18T14:20:29Z",
+          "body": "purely from a standards perspective, when something is binary pass or fail, SHOULD/SHOULD NOT/MAY are odd anyway.\n\nSHOULD/SHOULD NOT, when talking about requirements, give an out for somebody not following a guideline ... which should not happen unless there is a clearly stated exception, it's just a handwavy \"but yeah, if you have some rationale for not following this requirement, go for it\". unless they describe something that goes beyond the requirement, which then makes them functionally equivalent to a suggestion (\"best\" practice).\n\nMAY is basically a stretch goal/going above an beyond what's strictly required. so again a suggestion (\"best\" practice).\n\nMUST should pretty much be implied in the standard as a whole, for anything normative. and of course when used explicitly in writing, even in lowercase, it clearly states a hard requirement. so as long as there's no confusing use of \"must\" in non-normative parts / when actually talking about a suggestion, it should always be clear."
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-09-18T14:24:17Z",
+          "body": "> We might (or might not) explain the rationale.\n\nsurely you mean \"We MAY explain the rationale.\""
+        }
+      ]
     }
   },
-  "fetchedAt": "2026-09-15T01:17:54.732Z"
+  "fetchedAt": "2026-09-21T18:26:48.928Z"
 }
