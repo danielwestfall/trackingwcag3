@@ -299,8 +299,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <section class="controls-section" aria-label="Filters and Search Controls">
     <div class="search-box">
       <span class="search-icon" aria-hidden="true">🔍</span>
-      <input type="text" id="search-input" placeholder="Search WCAG 3 provisions by keyword, topic, or code... (Press '/' to focus)" aria-label="Search provisions" />
-      <span class="search-key-badge"><kbd>/</kbd></span>
+      <input type="text" id="search-input" placeholder="Search WCAG 3 provisions by keyword, topic, or code... (Ctrl+K to focus)" aria-label="Search provisions" />
+      <span class="search-key-badge" aria-hidden="true"><kbd>Ctrl</kbd>+<kbd>K</kbd></span>
     </div>
 
     <div class="filter-bar">
@@ -488,9 +488,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       });
     });
 
-    // Keyboard shortcut '/' to search
+    // Ctrl/Cmd+K focuses search. (A bare '/' shortcut fired on a single
+    // printable key, which speech-input users trigger by accident: WCAG 2.1.4.)
     window.addEventListener('keydown', (e) => {
-      if (e.key === '/' && document.activeElement !== searchInput && document.activeElement !== tocSearchInput) {
+      if ((e.ctrlKey || e.metaKey) && !e.altKey && (e.key === 'k' || e.key === 'K')) {
         e.preventDefault();
         searchInput.focus();
         searchInput.select();

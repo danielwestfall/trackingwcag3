@@ -313,6 +313,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         transition: var(--transition-normal);
       }
 
+      /* Set by the header script below when the header would cover more than
+         30% of the viewport (small screens, 200% text): it scrolls away instead
+         of hiding content and focused items (WCAG 2.4.11). */
+      .hub-header.is-unstuck {
+        position: relative;
+      }
+
       :root[data-theme="light"] .hub-header {
         background: rgba(254, 251, 255, 0.96);
         border-bottom: 1px solid var(--border-default);
@@ -708,7 +715,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         border-radius: 50%;
         background-color: var(--accent-blue);
         box-shadow: 0 0 8px var(--accent-blue);
-        animation: pulseGlow 2s infinite;
+        /* Two pulses, then it rests: nothing decorative moves for more than
+           5 seconds (WCAG 2.2.2). */
+        animation: pulseGlow 2s 2;
       }
 
       @keyframes pulseGlow {
@@ -1451,7 +1460,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <p>Decoupled Updatable Plain English Layer &copy; 2026.</p>
             <p class="footer-hint">Sync latest W3C upstream changes: <code>npm run sync:plain-english</code></p>
             <div class="footer-shortcuts">
-              <span class="shortcut-badge"><kbd>/</kbd> Quick Search</span>
+              <span class="shortcut-badge"><kbd>Ctrl</kbd>+<kbd>K</kbd> Quick Search</span>
               <span class="shortcut-badge"><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> Reading Options</span>
               <span class="shortcut-badge"><kbd>Esc</kbd> Close Drawer</span>
             </div>
@@ -1477,6 +1486,27 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </script>
     <script>
       import '../scripts/a11y-panel.js';
+    </script>
+    <!-- Sticky header vs. focus (WCAG 2.4.11 Focus Not Obscured): keep
+         scroll-padding equal to the sticky header's height so anything that
+         receives focus is scrolled clear of it, and stop the header sticking
+         at all when it is tall relative to the viewport. -->
+    <script is:inline>
+      (function () {
+        var header = document.querySelector('.hub-header');
+        if (!header) return;
+        var root = document.documentElement;
+        function fit() {
+          header.classList.remove('is-unstuck');
+          var h = header.offsetHeight;
+          var tooTall = h > window.innerHeight * 0.3;
+          header.classList.toggle('is-unstuck', tooTall);
+          root.style.scrollPaddingTop = tooTall ? '' : (h + 16) + 'px';
+        }
+        fit();
+        if ('ResizeObserver' in window) new ResizeObserver(fit).observe(header);
+        window.addEventListener('resize', fit, { passive: true });
+      })();
     </script>
     <!-- Global page controller: search combobox -->
     <script is:inline>

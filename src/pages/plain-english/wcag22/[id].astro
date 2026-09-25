@@ -39,7 +39,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <h1 class="page-title">{item.name}</h1>
     <p class="meta-subtitle">Official W3C WCAG 2.2 Standard Success Criterion &bull; Principle: <strong>{item.principle}</strong></p>
 
-    <div class="w3c-primary-links" aria-label="Official W3C Sources">
+    <div class="w3c-primary-links" role="group" aria-label="Official W3C Sources">
       {item.trUrl && (
         <a href={item.trUrl} target="_blank" rel="noopener noreferrer" class="w3c-link-pill pill-normative" title="Review normative criterion definition in W3C WCAG 2.2 Recommendation">
           <span class="pill-icon" aria-hidden="true">📜</span>
