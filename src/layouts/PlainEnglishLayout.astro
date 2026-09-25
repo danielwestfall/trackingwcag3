@@ -20,30 +20,33 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
-    <!-- Theme Initializer Script (Prevents Flash of Unstyled Content) -->
+    <!-- Theme initializer: applies the saved light/dark choice before first paint.
+         The choice lives in the reading panel's state, which codea11y.dev shares
+         (same origin), so both sites follow one setting. Older saved values from
+         this site's former theme switch and text-size buttons carry over. -->
     <script is:inline>
       (function() {
         try {
-          const savedTheme = localStorage.getItem('wcag_hub_theme');
-          const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-          const theme = savedTheme ? savedTheme : (systemPrefersLight ? 'light' : 'dark');
-          document.documentElement.setAttribute('data-theme', theme);
-          if (theme === 'light') {
-            document.documentElement.classList.add('light-theme');
-          } else {
-            document.documentElement.classList.remove('light-theme');
+          var key = 'a11yp:' + location.hostname;
+          var s = JSON.parse(localStorage.getItem(key) || '{}');
+          var changed = false;
+          if (!s.theme) {
+            var old = localStorage.getItem('wcag_hub_theme') || localStorage.getItem('theme');
+            if (old === 'light' || old === 'dark') { s.theme = 'site-' + old; changed = true; }
           }
-        } catch (e) {}
-
-        // Text scale, applied before first paint for the same reason as the
-        // theme: reading it after render means every navigation flashes at
-        // 100% before jumping to the size the reader actually chose.
-        try {
-          const savedScale = localStorage.getItem('wcag_hub_textscale');
-          if (savedScale && savedScale !== '100') {
-            document.documentElement.style.fontSize = savedScale + '%';
-            document.documentElement.setAttribute('data-text-scale', savedScale);
+          if (s.text == null) {
+            var sc = localStorage.getItem('wcag_hub_textscale');
+            var idx = { '120': 1, '150': 3, '200': 5 }[sc];
+            if (idx) { s.text = idx; changed = true; }
           }
+          if (changed) localStorage.setItem(key, JSON.stringify(s));
+          var t = s.theme || '';
+          var d = t === 'site-dark' || t === 'yellow' ? 'dark'
+            : t === 'site-light' || t === 'light' || t === 'sepia' ? 'light'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', d);
+          document.documentElement.classList.toggle('light-theme', d === 'light');
+          document.documentElement.style.colorScheme = d;
         } catch (e) {}
       })();
     </script>
@@ -51,33 +54,36 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <style is:global>
       /* ==========================================================================
          Dark Mode Design Tokens (WCAG 2.2 AA / AAA Compliant)
+         Core surface, text, border and accent values are shared with
+         codea11y.dev (its Material palette measured higher: accent 10.87:1,
+         muted 10.86:1, control borders 5.81:1) so the two sites read as one.
          ========================================================================== */
       :root {
-        --surface-ground: #070b14;
-        --surface-base: #0b1120;
-        --surface-card: #131d31;
-        --surface-card-hover: #1b2842;
-        --surface-elevated: #1e293b;
+        --surface-ground: #0f0e11;
+        --surface-base: #141316;
+        --surface-card: #1c1b1f;
+        --surface-card-hover: #201f22;
+        --surface-elevated: #2b292d;
         --surface-subtle: rgba(255, 255, 255, 0.05);
         
-        --border-subtle: rgba(148, 163, 184, 0.2);
-        --border-default: rgba(148, 163, 184, 0.35);
-        --border-active: #38bdf8;
-        --border-glow: rgba(56, 189, 248, 0.35);
+        --border-subtle: #46464f;
+        --border-default: #918f99;
+        --border-active: #b6c4ff;
+        --border-glow: rgba(182, 196, 255, 0.35);
 
         /* Text: High Contrast */
         --text-pure: #ffffff;
-        --text-primary: #f8fafc;
-        --text-secondary: #cbd5e1;       /* 10.5:1 contrast against card */
-        --text-muted: #94a3b8;           /* 6.2:1 contrast against card */
-        --text-accent: #38bdf8;
+        --text-primary: #e6e3ea;
+        --text-secondary: #e6e3ea;       /* 10.5:1 contrast against card */
+        --text-muted: #c7c5d0;           /* 6.2:1 contrast against card */
+        --text-accent: #b6c4ff;
 
-        --accent-blue: #38bdf8;
+        --accent-blue: #b6c4ff;
         /* Text drawn ON an accent-coloured surface. The dark theme's accents
            are light colours, so white on them measured 2.14:1 (the skip link
            and the active nav tab); dark text on them is 9.19:1. The light
            theme's accents are dark, so it is the reverse. */
-        --on-accent: #070b14;
+        --on-accent: #002984;
         --accent-indigo: #818cf8;
         --accent-purple: #c084fc;
         --accent-emerald: #34d399;
@@ -90,9 +96,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
            (measured 1.10:1). They were invisible to every contrast sweep
            because they sit inside tab panels that are display:none until the
            tab is opened. */
-        --code-surface: #070b14;
-        --code-border: rgba(148, 163, 184, 0.35);
-        --code-text: #e2e8f0;            /* 15.1:1 on --code-surface */
+        --code-surface: #0f0e11;
+        --code-border: #46464f;
+        --code-text: #e6e3ea;            /* 15.1:1 on --code-surface */
         --code-ok: #34d399;              /* 8.9:1 on --code-surface */
         --code-bad: #fb7185;             /* 6.3:1 on --code-surface */
 
@@ -109,7 +115,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --role-qa-bg: rgba(167, 139, 250, 0.12);
         --role-qa-border: rgba(167, 139, 250, 0.35);
         
-        --role-pm: #38bdf8;
+        --role-pm: #b6c4ff;
         --role-pm-bg: rgba(56, 189, 248, 0.12);
         --role-pm-border: rgba(56, 189, 248, 0.35);
 
@@ -118,7 +124,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --tier-gold: #facc15;
 
         --status-mature: #34d399;
-        --status-refining: #38bdf8;
+        --status-refining: #b6c4ff;
         --status-developing: #fbbf24;
         --status-exploratory: #f43f5e;
 
@@ -144,24 +150,24 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
          ========================================================================== */
       :root[data-theme="light"],
       html.light-theme {
-        --surface-ground: #e2e8f0;
-        --surface-base: #f8fafc;
+        --surface-ground: #f2f0f4;
+        --surface-base: #fefbff;
         --surface-card: #ffffff;
-        --surface-card-hover: #f1f5f9;
+        --surface-card-hover: #f2f0f4;
         --surface-elevated: #ffffff;
         --surface-subtle: rgba(15, 23, 42, 0.05);
 
-        --border-subtle: rgba(100, 116, 139, 0.25);
-        --border-default: rgba(100, 116, 139, 0.4);
-        --border-active: #0369a1;
-        --border-glow: rgba(3, 105, 161, 0.25);
+        --border-subtle: #c7c5d0;
+        --border-default: #777680;
+        --border-active: #2337ff;
+        --border-glow: rgba(35, 55, 255, 0.25);
 
         /* Text: High Contrast */
-        --text-pure: #0f172a;            /* 17.85:1 against white */
-        --text-primary: #0f172a;         /* 17.85:1 against white */
-        --text-secondary: #1e293b;       /* 14.63:1 against white */
-        --text-muted: #475569;           /* 7.58:1 against white */
-        --text-accent: #0369a1;       /* 5.93:1 on white; used as text, so it needs 4.5 */
+        --text-pure: #1c1b1f;            /* 17.85:1 against white */
+        --text-primary: #1c1b1f;         /* 17.85:1 against white */
+        --text-secondary: #313033;       /* 14.63:1 against white */
+        --text-muted: #46464f;           /* 7.58:1 against white */
+        --text-accent: #2337ff;       /* 5.93:1 on white; used as text, so it needs 4.5 */
 
         /* #0284c7 measured 4.10:1 on white, not the 4.8:1 this comment used to
            claim — under the 4.5:1 AA floor for normal-size text. It is the
@@ -169,7 +175,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
            nav tab, the search button and every card CTA at once. #0369a1 is
            already in this palette (--role-pm) and measures 5.93:1. Ratios below
            are measured, not estimated. */
-        --accent-blue: #0369a1;          /* 5.93:1 on white */
+        --accent-blue: #2337ff;          /* 5.93:1 on white */
         --on-accent: #ffffff;            /* 5.93:1 on --accent-blue */
         --accent-indigo: #4f46e5;
         --accent-purple: #6d28d9;        /* 7.10:1 on white */
@@ -177,9 +183,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --accent-amber: #92400e;         /* 7.09:1 on white */
         --accent-rose: #be123c;          /* 6.29:1 on white */
 
-        --code-surface: #f1f5f9;
-        --code-border: #cbd5e1;
-        --code-text: #0f172a;            /* 15.8:1 on --code-surface */
+        --code-surface: #f2f0f4;
+        --code-border: #c7c5d0;
+        --code-text: #1c1b1f;            /* 15.8:1 on --code-surface */
         --code-ok: #047857;              /* 4.98:1 on --code-surface */
         --code-bad: #be123c;             /* 5.72:1 on --code-surface */
 
@@ -195,7 +201,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --role-qa-bg: rgba(109, 40, 217, 0.08);
         --role-qa-border: rgba(109, 40, 217, 0.35);
         
-        --role-pm: #0369a1;              /* 5.93:1 on white */
+        --role-pm: #2337ff;              /* 5.93:1 on white */
         --role-pm-bg: rgba(3, 105, 161, 0.08);
         --role-pm-border: rgba(3, 105, 161, 0.35);
 
@@ -204,7 +210,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --tier-gold: #854d0e;            /* 6.85:1 on white */
 
         --status-mature: #047857;
-        --status-refining: #0369a1;
+        --status-refining: #2337ff;
         --status-developing: #92400e;
         --status-exploratory: #be123c;
 
@@ -241,7 +247,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         display: flex;
         flex-direction: column;
         background-image: 
-          radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.07) 0px, transparent 50%),
+          radial-gradient(at 0% 0%, rgba(182, 196, 255, 0.06) 0px, transparent 50%),
           radial-gradient(at 100% 0%, rgba(129, 140, 248, 0.06) 0px, transparent 50%),
           radial-gradient(at 50% 100%, rgba(52, 211, 153, 0.04) 0px, transparent 50%);
         background-attachment: fixed;
@@ -250,7 +256,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
       :root[data-theme="light"] body {
         background-image: 
-          radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.06) 0px, transparent 50%),
+          radial-gradient(at 0% 0%, rgba(35, 55, 255, 0.05) 0px, transparent 50%),
           radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.05) 0px, transparent 50%),
           radial-gradient(at 50% 100%, rgba(4, 120, 87, 0.04) 0px, transparent 50%);
       }
@@ -296,7 +302,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
       /* Header */
       .hub-header {
-        background: rgba(11, 17, 32, 0.92);
+        background: rgba(20, 19, 22, 0.92);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--border-subtle);
@@ -308,7 +314,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       }
 
       :root[data-theme="light"] .hub-header {
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(254, 251, 255, 0.96);
         border-bottom: 1px solid var(--border-default);
       }
 
@@ -357,6 +363,31 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         height: 14px;
         background: var(--border-default);
         flex-shrink: 0;
+      }
+
+      .utility-home {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-accent);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        min-height: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .reading-options {
+        display: flex;
+        align-items: center;
+        --a11yp-accent: var(--accent-blue);
+        --a11yp-on-accent: var(--on-accent);
+        --a11yp-bg: var(--surface-card);
+        --a11yp-fg: var(--text-primary);
+        --a11yp-muted: var(--text-muted);
+        --a11yp-line: var(--border-subtle);
+        --a11yp-chip: var(--surface-card-hover);
+        --a11yp-track: var(--border-default);
+        --a11yp-ring: var(--accent-blue);
       }
 
       /* Text size controls. 200% gets its own preset because that is the level
@@ -790,12 +821,15 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         background: var(--accent-blue);
         color: var(--on-accent);
         font-weight: 700;
-        box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35);
+        box-shadow: 0 2px 8px var(--border-glow);
       }
 
+      /* Inverted pill on the active tab: on-accent background, accent text
+         (7.47:1 dark, 6.86:1 light). A translucent black wash measured 4.23:1
+         on the lighter dark-theme accent. */
       .nav-tab.active .status-pill {
-        background: rgba(0, 0, 0, 0.25);
-        color: var(--on-accent);
+        background: var(--on-accent);
+        color: var(--accent-blue);
       }
 
       .status-pill {
@@ -1265,39 +1299,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </div>
 
         <div class="utility-right">
-          <div class="text-scale" role="group" aria-label="Text size">
-            <span class="text-scale-label" aria-hidden="true">Text size</span>
-            <button type="button" class="scale-btn" data-scale="100" aria-pressed="true" title="Default text size">100%</button>
-            <button type="button" class="scale-btn" data-scale="120" aria-pressed="false" title="Enlarge text to 120%">120%</button>
-            <button
-              type="button"
-              class="scale-btn"
-              data-scale="200"
-              aria-pressed="false"
-              title="Enlarge text to 200% — the level the WCAG 1.4.4 Resize Text (AA) criterion asks for"
-            >200%</button>
-          </div>
+          <a class="utility-home" href="https://codea11y.dev/">
+            <span aria-hidden="true">←</span> codea11y.dev
+          </a>
 
           <span class="utility-divider" aria-hidden="true"></span>
 
-          <!-- Modern Tactile Switch Toggle -->
-          <button
-            id="theme-toggle-btn"
-            class="theme-toggle-switch"
-            type="button"
-            role="switch"
-            aria-checked="false"
-            aria-label="Toggle light or dark color mode"
-            title="Toggle Light / Dark mode (Keyboard shortcut: 'T')"
-          >
-            <span class="switch-outer" aria-hidden="true">
-              <span class="switch-thumb">
-                <span class="thumb-icon moon" aria-hidden="true">🌙</span>
-                <span class="thumb-icon sun" aria-hidden="true">☀️</span>
-              </span>
-            </span>
-            <span class="switch-text" id="theme-switch-status">Dark</span>
-          </button>
+          <!-- Reading & accessibility panel (shared with codea11y.dev): text size,
+               spacing, fonts, Auto/Light/Dark and contrast themes, reading aids,
+               read aloud. Alt+Shift+A opens it. -->
+          <div id="reading-options" class="reading-options"></div>
         </div>
       </div>
 
@@ -1441,7 +1452,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <p class="footer-hint">Sync latest W3C upstream changes: <code>npm run sync:plain-english</code></p>
             <div class="footer-shortcuts">
               <span class="shortcut-badge"><kbd>/</kbd> Quick Search</span>
-              <span class="shortcut-badge"><kbd>T</kbd> Toggle Theme</span>
+              <span class="shortcut-badge"><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> Reading Options</span>
               <span class="shortcut-badge"><kbd>Esc</kbd> Close Drawer</span>
             </div>
           </div>
@@ -1454,96 +1465,22 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       </div>
     </footer>
 
-    <!-- Global Theme Switch Controller Script -->
+    <script is:inline>
+      window.a11yPanelConfig = {
+        mount: '#reading-options',
+        layout: 'dropdown',
+        autoOpen: false,
+        removable: false,
+        label: 'Reading options',
+        nativeTheme: { attr: 'data-theme', light: 'light', dark: 'dark', lightClass: 'light-theme', legacyKey: 'wcag_hub_theme' },
+      };
+    </script>
+    <script>
+      import '../scripts/a11y-panel.js';
+    </script>
+    <!-- Global page controller: search combobox -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
-        const switchBtn = document.getElementById('theme-toggle-btn');
-        const switchText = document.getElementById('theme-switch-status');
-
-        function updateSwitchUI(theme) {
-          if (!switchBtn) return;
-          const isLight = theme === 'light';
-          switchBtn.setAttribute('aria-checked', isLight ? 'true' : 'false');
-          if (switchText) switchText.textContent = isLight ? 'Light' : 'Dark';
-          switchBtn.setAttribute('title', isLight ? 'Switch to Dark mode (Shortcut: T)' : 'Switch to Light mode (Shortcut: T)');
-        }
-
-        function setTheme(theme) {
-          document.documentElement.setAttribute('data-theme', theme);
-          if (theme === 'light') {
-            document.documentElement.classList.add('light-theme');
-          } else {
-            document.documentElement.classList.remove('light-theme');
-          }
-          try {
-            localStorage.setItem('wcag_hub_theme', theme);
-          } catch (e) {}
-          updateSwitchUI(theme);
-        }
-
-        function toggleTheme() {
-          const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-          const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-          setTheme(newTheme);
-        }
-
-        if (switchBtn) {
-          switchBtn.addEventListener('click', toggleTheme);
-          const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-          updateSwitchUI(currentTheme);
-        }
-
-        // Global Shortcut 'T'
-        window.addEventListener('keydown', (e) => {
-          if ((e.key === 't' || e.key === 'T') && 
-              document.activeElement.tagName !== 'INPUT' && 
-              document.activeElement.tagName !== 'TEXTAREA' &&
-              document.activeElement.tagName !== 'SELECT') {
-            e.preventDefault();
-            toggleTheme();
-          }
-        });
-
-        /* ----------------------------------------------------------------
-           Text size. Scaling the root font-size is what WCAG 1.4.4 Resize
-           Text actually describes, and because the site sizes type in rem it
-           carries through every page — headers, nav and content together,
-           rather than only the article body. The choice is stored so it
-           survives navigation; without that it resets on every click and is
-           not worth having.
-           ---------------------------------------------------------------- */
-        const scaleButtons = Array.prototype.slice.call(document.querySelectorAll('.scale-btn'));
-
-        function currentScale() {
-          const attr = document.documentElement.getAttribute('data-text-scale');
-          return attr || '100';
-        }
-
-        function paintScaleButtons(scale) {
-          scaleButtons.forEach((btn) => {
-            btn.setAttribute('aria-pressed', btn.dataset.scale === scale ? 'true' : 'false');
-          });
-        }
-
-        function setScale(scale) {
-          if (scale === '100') {
-            document.documentElement.style.fontSize = '';
-            document.documentElement.removeAttribute('data-text-scale');
-          } else {
-            document.documentElement.style.fontSize = scale + '%';
-            document.documentElement.setAttribute('data-text-scale', scale);
-          }
-          try {
-            localStorage.setItem('wcag_hub_textscale', scale);
-          } catch (e) {}
-          paintScaleButtons(scale);
-        }
-
-        scaleButtons.forEach((btn) => {
-          btn.addEventListener('click', () => setScale(btn.dataset.scale));
-        });
-        paintScaleButtons(currentScale());
-
         /* ----------------------------------------------------------------
            Global Search Combobox Controller
            ---------------------------------------------------------------- */
