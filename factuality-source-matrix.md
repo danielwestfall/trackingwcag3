@@ -1,8 +1,8 @@
 # Factuality Source Matrix & Verification Registry
 
 > **Site Verification Standard:** Strict Factuality & Zero Unsourced Speculation  
-> **Generated:** 2026-09-18T04:03:21.854Z  
-> **Audit Suite:** `scripts/red-team-factuality.mjs` (2583 automated assertions, 0 failures)  
+> **Generated:** 2026-09-24T01:16:54.717Z  
+> **Audit Suite:** `scripts/red-team-factuality.mjs` (2754 automated assertions, 0 failures)  
 
 This document provides the authoritative, statement-by-statement upstream citation list for all content on Tracking WCAG 3. Every single standard, provision, criterion, status count, and architectural discussion is backed by direct links to primary W3C publications or official W3C Working Group repositories.
 
@@ -118,10 +118,10 @@ Every criterion below is verified against the official **W3C Recommendation (05 
 
 | Shift / Topic | Factual Definition & Scope | Primary Discussion / Reference URL |
 | :--- | :--- | :--- |
-| **Conforming Alternate Versions & Page Variations** | undefined | [undefined](undefined) |
-| **Page-by-Page Binary Pass/Fail Conformance** | undefined | [undefined](undefined) |
-| **Strict A / AA / AAA Conformance Levels** | undefined | [undefined](undefined) |
-| **Page-Level 'Accessibility Supported' Reliance** | undefined | [undefined](undefined) |
+| **Conforming Alternate Versions & Page Variations** | In WCAG 2.2, developers could achieve conformance under Requirement 5.2.2 by providing a qualifying alternate version of a non-accessible page. WCAG 3 proposals eliminate secondary fallback pages, requiring the primary digital product itself to be natively accessible across user variations. | [W3C WCAG 2.2 Official Definition: Conforming Alternate Version](https://www.w3.org/TR/WCAG22/#dfn-conforming-alternate-version) |
+| **Page-by-Page Binary Pass/Fail Conformance** | WCAG 2.2 evaluated conformance on a strict page-by-page basis. WCAG 3 replaces single-page reliance with a defined 'conformance scope' (which may span entire products, complete processes, paths, views, or components) where all core requirements must be satisfied. An alternative continuous task-scoring model is also being explored by the working group. | [W3C WCAG 3.0 Editors' Draft: Defined Conformance Scope](https://w3c.github.io/wcag3/guidelines/#defined-conformance-scope) |
+| **Strict A / AA / AAA Conformance Levels** | The traditional A/AA/AAA tier structure from WCAG 2.x is omitted in WCAG 3. Instead, WCAG 3 defines a single conformance threshold (Tier 3: Conformance) requiring all core requirements to be satisfied, framed by six reporting tiers that express progress toward conformance (Tiers 1–2) and achievements beyond it (Tiers 4–6: Bronze, Silver, Gold). | [W3C WCAG 3.0 Editors' Draft: Conformance Requirements](https://w3c.github.io/wcag3/guidelines/#conformance) |
+| **Page-Level 'Accessibility Supported' Reliance** | In WCAG 2.2, authors relied on subjective, author-defined 'accessibility supported' baselines. WCAG 3 standardizes this by defining two explicit Accessibility Support Sets: a Default set (common browsers/AT supporting English content) and Alternative sets (for other languages, regions, or closed environments), which must be explicitly declared in conformance claims. | [W3C WCAG 3.0 Editors' Draft: Accessibility Support Sets](https://w3c.github.io/wcag3/guidelines/#accessibility-support-set) |
 
 ## 4. Conformance Architecture & Reporting Tiers
 
@@ -129,12 +129,12 @@ The current normative WCAG 3.0 Editors' Draft defines **6 reporting tiers** rath
 
 | Reporting Tier | Official Level Requirement | Official W3C Reference |
 | :--- | :--- | :--- |
-| **Avoid physical harm** | undefined | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
-| **Foundational access** | undefined | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
-| **Conformance** | undefined | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
-| **Bronze** | undefined | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
-| **Silver** | undefined | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
-| **Gold** | undefined | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
+| **Avoid physical harm** | Physical harm and risk requirements are met | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
+| **Foundational access** | …plus barrier requirements | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
+| **Conformance** | …plus friction requirements — all core requirements are met | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
+| **Bronze** | …plus [TBD number of] supplemental requirements and assertions about content | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
+| **Silver** | …plus [TBD greater number of] supplemental requirements and assertions about content | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
+| **Gold** | …plus [TBD number of] the assertions about the organization | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |
 
 ### Conformance Metric Baseline (As of Active Editors' Draft)
 

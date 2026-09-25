@@ -108,7 +108,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="portal-tag tag-standard">Current Official Standard</span>
         </div>
         <h3>WCAG 2.2 Reference Guide</h3>
-        <p>Complete plain-English translations of all 68 Level A, AA, and AAA success criteria with practical test checklists and Good vs. Bad accessible code examples.</p>
+        <p>Complete plain-English translations of all 87 Level A, AA, and AAA success criteria with practical test checklists and Good vs. Bad accessible code examples.</p>
         <div class="portal-metrics">
           <span class="metric-pill"><strong>{wcag22Count}</strong> Success Criteria</span>
           <span class="metric-pill">Level A / AA / AAA</span>
@@ -196,7 +196,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
     <div class="role-cards-grid">
       <!-- Designer -->
-      <a href={link("/plain-english/?persona=designer")} class="role-card role-designer-card">
+      <a href={link("/plain-english/comparison/")} class="role-card role-designer-card">
         <div class="role-header">
           <span class="role-icon">🎨</span>
           <h3>Designers</h3>
@@ -207,11 +207,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span>Target Sizes (24x24 / 44x44)</span>
           <span>Motion Controls</span>
         </div>
-        <span class="role-action-link">View Designer Guidance &rarr;</span>
+        <span class="role-action-link">Explore Design Changes &rarr;</span>
       </a>
 
       <!-- Developer -->
-      <a href={link("/plain-english/?persona=developer")} class="role-card role-developer-card">
+      <a href={link("/plain-english/")} class="role-card role-developer-card">
         <div class="role-header">
           <span class="role-icon">💻</span>
           <h3>Developers</h3>
@@ -222,11 +222,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span>ARIA Patterns</span>
           <span>Keyboard Navigation</span>
         </div>
-        <span class="role-action-link">View Developer Guidance &rarr;</span>
+        <span class="role-action-link">Explore Developer Provisions &rarr;</span>
       </a>
 
       <!-- QA -->
-      <a href={link("/plain-english/?persona=qa")} class="role-card role-qa-card">
+      <a href={link("/plain-english/wcag22/")} class="role-card role-qa-card">
         <div class="role-header">
           <span class="role-icon">🧪</span>
           <h3>QA & Accessibility Testers</h3>
@@ -237,11 +237,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span>Screen Reader Audits</span>
           <span>Keyboard Traversal</span>
         </div>
-        <span class="role-action-link">View QA Guidance &rarr;</span>
+        <span class="role-action-link">View Testing Checklists &rarr;</span>
       </a>
 
       <!-- PM -->
-      <a href={link("/plain-english/?persona=productManager")} class="role-card role-pm-card">
+      <a href={link("/plain-english/conformance/")} class="role-card role-pm-card">
         <div class="role-header">
           <span class="role-icon">📋</span>
           <h3>Product Managers</h3>
@@ -249,10 +249,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <p>Understand legal compliance requirements (DOJ Title II, European Accessibility Act), follow how WCAG 3 conformance and reporting tiers are taking shape, and prioritize inclusive sprint backlogs.</p>
         <div class="role-tag-list">
           <span>Legal Compliance</span>
-          <span>Scoring Tiers</span>
-          <span>Roadmap Planning</span>
+          <span>Reporting Tiers</span>
+          <span>Readiness Checklist</span>
         </div>
-        <span class="role-action-link">View PM Guidance &rarr;</span>
+        <span class="role-action-link">View Conformance Readiness &rarr;</span>
       </a>
     </div>
   </section>

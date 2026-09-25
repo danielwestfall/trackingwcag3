@@ -287,14 +287,34 @@ class RedTeamFactualityAudit {
         }
       }
 
-      // Check debate links
-      if (r.activeDebates) {
-        for (const d of r.activeDebates) {
-          this.check(
-            `Debate "${d.title}" links to legitimate W3C issue`,
-            d.url.startsWith('https://github.com/w3c/wcag3') || d.url.startsWith('https://www.w3.org/'),
-            `URL: ${d.url}`
-          );
+      // Check debate and supporting links
+      const allLinks = [...(r.debateLinks || []), ...(r.supportingLinks || []), ...(r.activeDebates || [])];
+      for (const d of allLinks) {
+        this.check(
+          `Link "${d.title}" links to legitimate W3C issue or spec`,
+          d.url.startsWith('https://github.com/w3c/wcag3') || d.url.startsWith('https://www.w3.org/') || d.url.startsWith('https://w3c.github.io/'),
+          `URL: ${d.url}`
+        );
+      }
+    }
+
+    // Audit debates dataset if present
+    const DEBATES_PATH = path.join(ROOT, 'public', 'data', 'wcag3-debates.json');
+    if (fs.existsSync(DEBATES_PATH)) {
+      const debates = JSON.parse(fs.readFileSync(DEBATES_PATH, 'utf8'));
+      for (const d of debates) {
+        const dStr = JSON.stringify(d);
+        for (const pat of SPECULATIVE_PATTERNS) {
+          this.check(`Debate ${d.id} contains no speculative patterns`, !pat.test(dStr), `Matched ${pat.toString()}`);
+        }
+        if (d.links) {
+          for (const l of d.links) {
+            this.check(
+              `Debate ${d.id} link "${l.title}" points to valid W3C domain`,
+              l.url.startsWith('https://github.com/w3c/wcag3') || l.url.startsWith('https://www.w3.org/') || l.url.startsWith('https://w3c.github.io/'),
+              `URL: ${l.url}`
+            );
+          }
         }
       }
     }
@@ -560,7 +580,10 @@ class RedTeamFactualityAudit {
     md += `| Shift / Topic | Factual Definition & Scope | Primary Discussion / Reference URL |\n`;
     md += `| :--- | :--- | :--- |\n`;
     for (const r of removals) {
-      md += `| **${r.title}** | ${r.description} | [${r.sourceUrl}](${r.sourceUrl}) |\n`;
+      const summary = r.plainEnglishSummary || r.wcag22Concept || '';
+      const linkUrl = r.supportingLinks?.[0]?.url || r.debateLinks?.[0]?.url || 'https://w3c.github.io/wcag3/guidelines/#conformance';
+      const linkTitle = r.supportingLinks?.[0]?.title || r.debateLinks?.[0]?.title || 'W3C Reference';
+      md += `| **${r.title}** | ${summary} | [${linkTitle}](${linkUrl}) |\n`;
     }
 
     md += `\n## 4. Conformance Architecture & Reporting Tiers\n\n`;
@@ -568,7 +591,7 @@ class RedTeamFactualityAudit {
     md += `| Reporting Tier | Official Level Requirement | Official W3C Reference |\n`;
     md += `| :--- | :--- | :--- |\n`;
     for (const t of conf.tiers || []) {
-      md += `| **${t.name}** | ${t.description} | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |\n`;
+      md += `| **${t.name}** | ${t.requires} | [W3C Conformance Section](https://w3c.github.io/wcag3/guidelines/#conformance) |\n`;
     }
 
     md += `\n### Conformance Metric Baseline (As of Active Editors' Draft)\n\n`;
@@ -600,6 +623,10 @@ class RedTeamFactualityAudit {
     md += `   All WCAG 2.2 Success Criteria can be cross-checked against [https://www.w3.org/TR/WCAG22/](https://www.w3.org/TR/WCAG22/).\n`;
     md += `3. **Verify against official W3C WCAG 3 Working Draft**:\n`;
     md += `   All WCAG 3 structure, outcomes, and exploratory status can be cross-checked against [https://w3c.github.io/wcag3/guidelines/](https://w3c.github.io/wcag3/guidelines/) and [https://github.com/w3c/wcag3/](https://github.com/w3c/wcag3/).\n`;
+
+    if (md.includes('undefined')) {
+      throw new Error('Factuality source matrix contains literal "undefined" output!');
+    }
 
     const outPath = path.join(ROOT, 'factuality-source-matrix.md');
     fs.writeFileSync(outPath, md, 'utf8');

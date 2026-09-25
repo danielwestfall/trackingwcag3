@@ -26,29 +26,32 @@ An accessible, fast, decoupled educational web application built with **Astro**,
 - **Interactive Code Snippet Diffs**: Accessible vs. Inaccessible HTML/CSS code comparisons with one-click copy buttons.
 - **WCAG 3 Evolution Map**: Direct cross-reference links mapping WCAG 2.2 criteria to their corresponding WCAG 3 outcomes.
 
-### 4. 🔄 Removals, Architectural Shifts & Working Group Debates (`/plain-english/removals/`)
-- **Phased Out Concepts in WCAG 3**:
-  1. *Conforming Alternate Versions (CAV)* & Page Variations
-  2. *Page-by-Page Binary Pass/Fail Conformance*
-  3. *Strict A / AA / AAA Conformance Tiers*
-  4. *Page-Level 'Accessibility Supported' Baseline Exemptions*
-- **🔥 Top 10 Hottest WCAG 3 Working Group Debates**: Real-time tracking of AGWG and Silver Task Force debates (e.g. APCA vs. WCAG 2 contrast algorithms, Cognitive Accessibility testability, Assertion-based conformance claims, Third-party widget responsibility) with direct links to W3C GitHub issues.
+### 4. 🔄 Removals & Architectural Shifts (`/plain-english/removals/`)
+- **Phased Out & Redesigned Concepts in WCAG 3**:
+  1. *Conforming Alternate Versions (CAV)* phased out in favor of native accessibility and responsive page variations.
+  2. *Page-by-Page Binary Pass/Fail Conformance* replaced by defined Conformance Scope (with alternative task-scoring under review).
+  3. *Strict A / AA / AAA Conformance Levels* replaced by a single core conformance threshold wrapped in six reporting tiers.
+  4. *Author-Defined 'Accessibility Supported' Baselines* standardized into defined Default and Alternative Accessibility Support Sets.
 
-### 5. ⚖️ Conformance: What Changed & Readiness (`/plain-english/conformance/`)
-- **The headline shift**: leveling moved off conformance and onto reporting in the Sep 2026 draft, with the six-tier table and what drives tier placement.
-- **Five structural differences from WCAG 2.2**: reporting tiers, assertions, conformance scope, accessibility support sets, and the three-way requirement split — each as a *was / now / so what*.
-- **A readiness checklist**: split into *start now* (work that pays off regardless of how the draft lands), *cheap hedges*, and *wait for the draft*.
-- **Live draft figures**: provision counts, type and maturity breakdowns, and the reporting-tier tag count are read from `public/data/wcag3-conformance.json`, which `npm run track:upstream` refreshes on every run.
+### 5. 💬 Live W3C Working Group Discussions (`/plain-english/discussions/`)
+- **Direct GitHub Issue Synchronization**: Automatically ingests issue threads from `w3c/wcag3` and groups them by provision.
+- **Distilled Consensus & Positions**: Real positions, consensus agreements, and open questions attributed to named W3C contributors (e.g. font-size units in #642, flashing thresholds in #628/#629, adjacent interactive elements in #602).
 
-### 6. 🔍 Upstream Change Tracker (`npm run track:upstream`)
+### 6. ⚖️ Conformance: What Changed & Readiness (`/plain-english/conformance/`)
+- **The headline shift**: Leveling moved off conformance and onto reporting in the latest W3C draft, with the six-tier table and what drives tier placement.
+- **Five structural differences from WCAG 2.2**: Reporting tiers, assertions, conformance scope, accessibility support sets, and the three-way requirement split — each explained as *was / now / so what*.
+- **A readiness checklist**: Split into *start now* (work that pays off regardless of how the draft lands), *cheap hedges*, and *wait for the draft*.
+- **Live draft figures**: Provision counts, type and maturity breakdowns, and the reporting-tier tag count are read from `public/data/wcag3-conformance.json`, which `npm run track:upstream` refreshes on every run.
+
+### 7. 🔍 Upstream Change Tracker (`npm run track:upstream`)
 - Diffs the W3C editors' draft (`w3c/wcag3`) since the last tracked commit and writes a dated report to `tracking/reports/`.
-- Separates real normative wording changes from the periodic `:term[]` markup and punctuation passes upstream runs before each publication.
-- Checks every WCAG 2.2 → 3 mapping against what actually exists upstream, flagging broken slugs, references that resolve only to a guideline or group, and provisions missing from the local catalog.
-- Runs weekly as a scheduled task. See [`tracking/README.md`](tracking/README.md) and the gap analysis in [`tracking/wcag22-to-wcag3-plan.md`](tracking/wcag22-to-wcag3-plan.md).
+- Separates real normative wording changes from periodic markup and punctuation passes.
+- Checks every WCAG 2.2 → 3 mapping against what actually exists upstream, flagging broken slugs and coarse references.
+- Runs weekly as a scheduled task. See [`tracking/README.md`](tracking/README.md) and [`tracking/wcag22-to-wcag3-plan.md`](tracking/wcag22-to-wcag3-plan.md).
 
 ### 8. 🧮 Interactive WCAG 3 Score Calculator (`/plain-english/calculator/`)
-- **Real-Time Outcome & Tier Engine**: Live calculation of Bronze, Silver, or Gold eligibility based on points earned across all 9 functional categories.
-- **Critical Blockers Detector**: Immediate alerts if any Core/Foundational provision fails, reinforcing that WCAG 3 requires 0 fatal blockers for Bronze.
+- **Educational Simulation of the Silver Scoring Prototype**: Models the Silver Task Force's points-based scoring prototype (Bronze 70%, Silver 80%, Gold 90%) with interactive category health meters, allowing teams to explore outcome-based audit workflows alongside the normative reporting tier draft.
+- **Core Blockers Detection**: Visual feedback verifying that all core/foundational provisions must pass before rating thresholds can be satisfied under the prototype scoring model.
 - **Interactive Auditor Presets**: Instant simulation of typical web apps, critical blocker scenarios, or 100% Gold baselines.
 - **Export & Reporting**: One-click download of audit results as formatted GitHub-Flavored Markdown reports (`.md`) or structured JSON datasets.
 

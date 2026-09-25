@@ -33,13 +33,13 @@
     "id": "page-level-binary-conformance",
     "title": "Page-by-Page Binary Pass/Fail Conformance",
     "wcag22Concept": "WCAG 2.2 evaluates accessibility on a strict page-by-page basis (either a whole URL passes 100% of SCs at Level AA or the entire page fails).",
-    "wcag3Status": "Replaced by Task & Outcome Scoring Model",
-    "plainEnglishSummary": "WCAG 2.2 treated accessibility as a pass/fail checklist for individual URLs. WCAG 3 replaces this with continuous scoring across entire user tasks and processes, allowing organizations to measure incremental progress.",
-    "workingGroupDebate": "Discussions center on how to prevent single minor bugs from declaring a massive enterprise web app '100% non-compliant' while still ensuring critical user tasks can be completed.",
+    "wcag3Status": "Replaced by Defined Conformance Scope (with Alternative Scoring Proposal)",
+    "plainEnglishSummary": "WCAG 2.2 evaluated conformance on a strict page-by-page basis. WCAG 3 replaces single-page reliance with a defined 'conformance scope' (which may span entire products, complete processes, paths, views, or components) where all core requirements must be satisfied. An alternative continuous task-scoring model is also being explored by the working group.",
+    "workingGroupDebate": "Discussions focus on defining clear boundaries for limited scopes (like components and user processes) so that critical tasks cannot be blocked by severe friction, while exploring whether progress is better captured through reporting tiers or percentage scoring.",
     "debateLinks": [
       {
         "title": "W3C WCAG 3.0 Explainer: Outcomes & Process Scope Model",
-        "url": "https://www.w3.org/TR/wcag-3.0-explainer/#outcomes"
+        "url": "https://w3c.github.io/wcag3/explainer/#outcomes"
       },
       {
         "title": "W3C Silver Task Force Wiki: Process & User Journey Evaluation",
@@ -58,12 +58,12 @@
     },
     "supportingLinks": [
       {
-        "title": "W3C WCAG 2.2 Official Spec: Conformance Requirements",
-        "url": "https://www.w3.org/TR/WCAG22/#conformance"
+        "title": "W3C WCAG 3.0 Editors' Draft: Defined Conformance Scope",
+        "url": "https://w3c.github.io/wcag3/guidelines/#defined-conformance-scope"
       },
       {
-        "title": "W3C WCAG 3.0 Working Draft: Outcomes Overview",
-        "url": "https://www.w3.org/TR/wcag-3.0/#outcomes"
+        "title": "W3C WCAG 2.2 Official Spec: Conformance Requirements",
+        "url": "https://www.w3.org/TR/WCAG22/#conformance"
       }
     ]
   },
@@ -71,17 +71,17 @@
     "id": "strict-conformance-levels-a-aa-aaa",
     "title": "Strict A / AA / AAA Conformance Levels",
     "wcag22Concept": "WCAG 2.2 categorizes all criteria into rigid buckets: Level A (minimum), Level AA (standard target for legal compliance), and Level AAA (enhanced).",
-    "wcag3Status": "Replaced by Rating Levels (Bronze, Silver, Gold)",
-    "plainEnglishSummary": "The traditional A/AA/AAA tier structure from WCAG 2.x is omitted in WCAG 3. Instead, WCAG 3 uses rating levels (Bronze, Silver, Gold) based on total outcome points, automated testing, and user testing assertions.",
-    "workingGroupDebate": "Significant debate exists around legal adoption and how regulators (like the US DOJ or EU European Accessibility Act) will map WCAG 3 rating levels to statutory compliance thresholds.",
+    "wcag3Status": "Replaced by Single Core Conformance Bar & 6 Reporting Tiers",
+    "plainEnglishSummary": "The traditional A/AA/AAA tier structure from WCAG 2.x is omitted in WCAG 3. Instead, WCAG 3 defines a single conformance threshold (Tier 3: Conformance) requiring all core requirements to be satisfied, framed by six reporting tiers that express progress toward conformance (Tiers 1–2) and achievements beyond it (Tiers 4–6: Bronze, Silver, Gold).",
+    "workingGroupDebate": "The working group moved leveling from conformance to reporting in late 2026 drafts (PRs #826, #834), making Bronze an achievement tier above conformance rather than a baseline. A parallel alternative proposal exploring scoring toward conformance followed by Bronze/Silver/Gold awards remains open for public comment.",
     "debateLinks": [
       {
-        "title": "W3C WCAG 3.0 Working Draft: Conformance Rating Levels (Bronze, Silver, Gold)",
-        "url": "https://www.w3.org/TR/wcag-3.0/#conformance-levels"
+        "title": "W3C WCAG 3 Pull Request #826: Update Conformance Section",
+        "url": "https://github.com/w3c/wcag3/pull/826"
       },
       {
-        "title": "W3C WCAG 3 Repository: Rating Levels & Assertions Discussions",
-        "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+assertions"
+        "title": "W3C WCAG 3 Pull Request #834: Conformance Section Feedback",
+        "url": "https://github.com/w3c/wcag3/pull/834"
       }
     ],
     "personaImpact": {
@@ -92,12 +92,12 @@
     },
     "supportingLinks": [
       {
-        "title": "W3C WAI Guidance: Understanding WCAG 2.2 Conformance Levels",
-        "url": "https://www.w3.org/WAI/WCAG21/Understanding/conformance#levels"
+        "title": "W3C WCAG 3.0 Editors' Draft: Conformance Requirements",
+        "url": "https://w3c.github.io/wcag3/guidelines/#conformance"
       },
       {
-        "title": "W3C WCAG 3.0 Draft: Rating Levels Specification",
-        "url": "https://www.w3.org/TR/wcag-3.0/#conformance-levels"
+        "title": "W3C WCAG 3.0 Explainer: Conformance Models & Reporting Tiers",
+        "url": "https://w3c.github.io/wcag3/explainer/#conformance-models"
       }
     ]
   },
@@ -105,17 +105,13 @@
     "id": "accessibility-supported-baseline-exemption",
     "title": "Page-Level 'Accessibility Supported' Reliance",
     "wcag22Concept": "WCAG 2.2 allowed authors to rely on specific user agent/assistive technology combinations defined in an author-specified 'accessibility supported' baseline.",
-    "wcag3Status": "Replaced by Universal Platform Capabilities",
-    "plainEnglishSummary": "In WCAG 2.2, authors could claim compliance if a feature worked in one specific screen reader/browser combination listed in their conformance claim. WCAG 3 shifts responsibility toward broad, platform-agnostic interoperability.",
-    "workingGroupDebate": "W3C working group is defining standardized expectations for modern browsers, mobile OSs, and assistive technology interfaces to eliminate narrow vendor exemptions.",
+    "wcag3Status": "Standardized into Defined Accessibility Support Sets",
+    "plainEnglishSummary": "In WCAG 2.2, authors relied on subjective, author-defined 'accessibility supported' baselines. WCAG 3 standardizes this by defining two explicit Accessibility Support Sets: a Default set (common browsers/AT supporting English content) and Alternative sets (for other languages, regions, or closed environments), which must be explicitly declared in conformance claims.",
+    "workingGroupDebate": "The AG Working Group commits to ensuring core requirements have at least one method working with the default accessibility support set at publication time. Current discussions address defining the default set, guidance for creating alternative sets, and handling long-standing AT/UA bugs.",
     "debateLinks": [
       {
-        "title": "W3C WCAG 3.0 Working Draft: User Agent & Platform Interoperability",
-        "url": "https://www.w3.org/TR/wcag-3.0/#user-agents"
-      },
-      {
-        "title": "W3C WCAG 3 Repository: Main Issues & Discussions",
-        "url": "https://github.com/w3c/wcag3"
+        "title": "W3C WCAG 3 Repository: Conformance & Platform Discussions",
+        "url": "https://github.com/w3c/wcag3/issues?q=is%3Aissue+conformance"
       }
     ],
     "personaImpact": {
@@ -126,12 +122,12 @@
     },
     "supportingLinks": [
       {
-        "title": "W3C WCAG 2.2 Official Definition: Accessibility Supported",
-        "url": "https://www.w3.org/TR/WCAG22/#dfn-accessibility-supported"
+        "title": "W3C WCAG 3.0 Editors' Draft: Accessibility Support Sets",
+        "url": "https://w3c.github.io/wcag3/guidelines/#accessibility-support-set"
       },
       {
-        "title": "W3C WCAG 3.0 Draft: Platform Interoperability",
-        "url": "https://www.w3.org/TR/wcag-3.0/#user-agents"
+        "title": "W3C WCAG 2.2 Official Definition: Accessibility Supported",
+        "url": "https://www.w3.org/TR/WCAG22/#dfn-accessibility-supported"
       }
     ]
   }
