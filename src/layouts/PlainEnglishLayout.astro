@@ -4,6 +4,9 @@ interface Props {
   activeTab?: "home" | "wcag3" | "wcag22" | "comparison" | "conformance" | "calculator" | "removals" | "discussions" | "w3c";
 }
 
+import Codea11ySiteBar from "@/components/site/Codea11ySiteBar.astro";
+import "@/styles/codea11y-tokens.css";
+
 const { title, activeTab = "wcag3" } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
@@ -14,11 +17,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} | WCAG 3 & 2.2 Plain English Hub</title>
+    <title>{title} | Tracking WCAG | codea11y.dev</title>
     <meta name="description" content="Translating W3C WCAG 3.0 draft guidelines and WCAG 2.2 accessibility standards into plain, actionable English for designers, developers, QA, and PMs." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
     <!-- Theme initializer: applies the saved light/dark choice before first paint.
          The choice lives in the reading panel's state, which codea11y.dev shares
@@ -138,7 +141,9 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
         --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
 
-        --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        /* Same type as codea11y.dev: system UI text, Cal Sans for display. */
+        --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-display: "Cal Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
         --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -740,9 +745,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
            heading of any page — so it left 56 pages with two h1 elements and
            several others with the site name as their only h1. */
         display: block;
-        font-size: 1.25rem;
-        font-weight: 800;
-        letter-spacing: -0.025em;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 400;
+        letter-spacing: 0;
         color: var(--text-pure);
         transition: var(--transition-fast);
       }
@@ -754,6 +760,20 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         color: var(--text-secondary);
         font-size: 0.8rem;
         margin-top: 1px;
+      }
+
+      /* Page headings use codea11y.dev's display face. Cal Sans ships one
+         weight, so headings are set at 400 rather than faux-bolded. */
+      .hub-main h1,
+      .hub-main h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        letter-spacing: 0;
+        /* Cal Sans runs wider than the old Inter headings; at 320px with
+           200% text a long word such as "Accessibility" was wider than the
+           viewport. Let headings break inside a word as a last resort. */
+        overflow-wrap: anywhere;
+        hyphens: auto;
       }
 
       /* Navigation Tabs */
@@ -1297,40 +1317,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
     <header class="hub-header">
-      <!-- Row 1: utility strip — edition badge, reading controls, theme -->
-      <div class="header-utility">
-        <div class="utility-left">
-          <span class="brand-badge">
-            <span class="badge-pulse" aria-hidden="true"></span>
-            <span>a11y teacher edition</span>
-          </span>
-          <span class="utility-note">W3C WCAG 2.2 &amp; WCAG 3.0 draft reference</span>
-        </div>
-
-        <div class="utility-right">
-          <a class="utility-home" href="https://codea11y.dev/">
-            <span aria-hidden="true">←</span> codea11y.dev
-          </a>
-
-          <span class="utility-divider" aria-hidden="true"></span>
-
-          <!-- Reading & accessibility panel (shared with codea11y.dev): text size,
-               spacing, fonts, Auto/Light/Dark and contrast themes, reading aids,
-               read aloud. Alt+Shift+A opens it. -->
-          <div id="reading-options" class="reading-options"></div>
-        </div>
-      </div>
+      <!-- Row 1: the codea11y.dev site bar (logo, site links, reading panel) -->
+      <Codea11ySiteBar />
 
       <!-- Row 2: brand, global search, primary actions -->
       <div class="header-container">
         <div class="brand">
           <a href={link("/")} class="brand-link">
-            <div class="brand-heading-wrap">
-              <span class="brand-logo-icon" aria-hidden="true">🌐</span>
-              <span class="brand-title">Plain English Accessibility Hub</span>
-            </div>
+            <span class="brand-title">Tracking WCAG</span>
           </a>
-          <p class="brand-subtitle">Translating W3C Standards for Designers, Developers, QA &amp; Product teams</p>
+          <p class="brand-subtitle">WCAG 3 &amp; 2.2 in plain English for designers, developers, QA &amp; product teams</p>
         </div>
 
         <!-- Global search with instant autocomplete combobox -->
@@ -1379,7 +1375,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
       <!-- Row 3: section navigation -->
       <div class="header-nav-row">
-        <nav class="hub-nav" aria-label="Main Navigation">
+        <nav class="hub-nav" aria-label="Tracking WCAG sections">
           <a href={link("/")} class={`nav-tab ${activeTab === "home" ? "active" : ""}`}>
             <span class="tab-icon" aria-hidden="true">🏠</span>
             <span class="tab-text">Home</span>
@@ -1434,10 +1430,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <div class="footer-grid">
           <div class="footer-brand-col">
             <div class="footer-logo">
-              <span class="footer-logo-icon">🌐</span>
-              <strong>WCAG 3 & 2.2 Plain English Hub</strong>
+              <strong>Tracking WCAG</strong>
             </div>
             <p class="footer-desc">An open-source educational resource translating technical W3C specifications into clear, role-based, practical guidance.</p>
+            <p class="footer-desc">A project by <a href="https://codea11y.dev/">Daniel Westfall at codea11y.dev</a>. See also <a href="https://codea11y.dev/projects">other projects</a> and the <a href="https://codea11y.dev/blog/tracking-wcag-launch/">launch post</a>.</p>
           </div>
           
           <div class="footer-links-col">
