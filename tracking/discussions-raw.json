@@ -1030,19 +1030,25 @@
     "102": {
       "number": 102,
       "title": "Feedback on conformance",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Management: Please Review",
         "Conformance"
       ],
       "user": "katekalcevich",
       "created": "2024-07-12T21:50:26Z",
-      "updated": "2026-04-03T00:03:10Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T14:50:28Z",
+      "closed": "2026-09-24T14:50:28Z",
+      "commentCount": 1,
       "body": "In response to the Editor's note: https://www.w3.org/TR/wcag-3.0/#issue-container-generatedID-64\r\n\r\nAs we continue developing conformance, we seek input on the following:\r\n\r\n*  Which option has the best chance of adoption and why?\r\n*  How well do these approaches support regulatory needs?\r\n*  How will these approaches be integrated into a conformance model (including levels or scores)?\r\n\r\nAmber Knabl, Elana Chapman and I suggest that regulations should be updated to include WCAG 3 rather than creating conformance requirements that align with current regulatory need. Change management guidance for regulatory bodies should be created and also plans for migrating the wider tech industry to WCAG 3.",
       "url": "https://github.com/w3c/wcag3/issues/102",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:50:28Z",
+          "body": "Thanks for this feedback on a previous version of WCAG. \n\nAs an update, work on guidance for regulators and others has started, and new sections on [Conformance](https://www.w3.org/TR/wcag-3.0/#conformance) and [Reporting](https://www.w3.org/TR/wcag-3.0/#reporting) have been added to the [latest working draft](https://www.w3.org/TR/wcag-3.0).\n\nFeedback on the new version is welcomed, closing this issue."
+        }
+      ]
     },
     "103": {
       "number": 103,
@@ -1055,12 +1061,28 @@
       ],
       "user": "katekalcevich",
       "created": "2024-07-12T22:10:13Z",
-      "updated": "2025-12-29T19:38:04Z",
+      "updated": "2026-09-24T14:47:46Z",
       "closed": null,
-      "commentCount": 2,
+      "commentCount": 3,
       "body": "In response to the Editor's note: https://www.w3.org/TR/wcag-3.0/#issue-container-generatedID-68\r\n\r\nAs we continue developing this content, we seek input on the following:\r\n\r\n* Is every issue critical to someone, making this concept invalid?\r\n* How best to assign severity, particularly if testers have different ideas on what is critical?\r\n* How do we incorporate context/process/task? Is that part of scoping, or issue severity? Both are important to the end result.\r\n* What to do with non-critical issues?\r\n* If included, how will situations where severity depends on context be handled?\r\n* How will issue severity fit into levels? For example:\r\n        “Bronze” could be an absence of any critical or high issues;\r\n        “Silver” could be an absence of any critical, high, or medium issues.\r\n* How to account for cumulative issues becoming critical?\r\n* Would another approach be more effective, for example assigning critical issues after testing is complete based on task or type of task rather than by test?\r\n\r\nAmber Knabl, Elana Chapman and myself suggest that issue severity will always be subjective, but that doesn't make it invalid. Testers will have ideas on severity, but guidance on what constitutes high, medium, and low severity has always been part of accessibility testing tools and processes. We think about severity in terms of:\r\n\r\nHigh - blocks the completion of a task flow\r\nMedium - user can’t complete task as expected ​\r\n(for example, it’s hard to do, takes a long time or requires a work around)​\r\nLow - \r\n    User suggests a fix based on preference/ease of use​\r\n    User has to think about how to complete task ​\r\n    User makes more than one attempt before succeeding​\r\n    \r\nPrioritization of issues, including non-critical ones will depend on a variety of factors - including team capacity, whether a product is developed in house or outsourced or is based on open source or frameworks. Expanding WCAG beyond the evaluation of accessibility into how to action findings doesn't feel appropriate for a technical standard. Many other frameworks (maturity models/inclusive design practices) discuss what to do to improve accessibility.\r\n\r\nRepresentative sampling could also be factored into issue severity, but that increases the complexity of WCAG, something we'd caution against. If an accessibility issue exists, it likely impacts more than one user even if you only have evidence of the issue from one user engagement.",
       "url": "https://github.com/w3c/wcag3/issues/103",
-      "comments": []
+      "comments": [
+        {
+          "user": "tlees",
+          "created": "2024-10-16T16:42:30Z",
+          "body": "A large problem with accessibility issues is that as it stands today using the WCAG 2.2 guidelines, _all_ issues are critical issues if you must legally meet the conformance level.  That doesn't help the people who are trying to prioritize which issues need to be fixed. An important distinction is that all issues fail the guidelines in some way. Not all issues fall into neat Level A, AA, or AAA conformance levels, but the conformance level can be used as a metric to help inform which priority the issue should be, and the priority adjusted for your use case.\r\n\r\nThe standard that our team has developed is very similar to the one that @katekalcevich suggested. We hold our site to the A and AA conformance level as much as possible.\r\n\r\n> **Critical**: These issues prevent the user from completing the primary task. For example, on a retail website, this would mean issues that prevent the user from checking out, such as the add to bag button not working with a keyboard that all keyboard users would encounter. On a website for a podcast it would prevent the user from accessing the podcast in an accessible manner. These issues almost certainly fail the level A guidelines.\r\n>\r\n> **High**: These issues prevent the user from continuing forward or block the completion of secondary tasks that not all users may encounter, and no alternative is provided. For example, on a forum, the user may be able to create a new post successfully, but the editing feature may not work, preventing the user from editing their post.  These issues almost certainly fail A or AA guidelines, but are not in the primary user flow.\r\n>\r\n> **Medium**: These are issues where the user has a bad user experience, but functionality is not broken, and it doesn't prevent them from using the site or tool. As @katekalcevich noted, these are issues where something is hard to do, takes a long time, or requires a workaround to solve. These issues might have alternative content that passes using some accessibility techniques, but fail in others. Usually, these issues will pass A guidelines, but may fail AA or AAA guidelines.\r\n>\r\n> **Low**: These are issues that are cosmetic or a poor experience, but doesn't hinder the user. These are usually programmatic issues detected with automated tools that browsers or screen readers would automatically correct for and might technically be incorrect, but actual users would not even notice that they're wrong. These issues will likely pass A and AA guidelines, but fail AAA guidelines.\r\n\r\nThe main difference between the suggested prioritization technique is the inclusion of a critical severity. The critical severity was necessary for our team to explain that some users were not able to use the site at all, and that it needed to be fixed immediately rather than waiting for a new version."
+        },
+        {
+          "user": "cwadamsoforacle",
+          "created": "2025-01-06T17:03:57Z",
+          "body": "@katekalcevich, issue severity is one of the core issues that the working group has been and will continue to discuss.  We have not resolved on any approaches yet, and will keep you and this issue updated when the topic matures."
+        },
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:47:46Z",
+          "body": "The latest draft contains [Core requirement tags](https://www.w3.org/TR/wcag-3.0/#core-requirement-tags) that speak to severity. Your feedback is welcomed."
+        }
+      ]
     },
     "105": {
       "number": 105,
@@ -3167,18 +3189,29 @@
     "230": {
       "number": 230,
       "title": "Improving equity between different disabilities",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "jspellman",
       "created": "2022-06-02T11:07:33Z",
-      "updated": "2025-01-15T20:26:27Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T16:11:21Z",
+      "closed": "2026-09-24T15:19:31Z",
+      "commentCount": 2,
       "body": "Part of the Silver Research project of 2017-18 were interviews on Conformance with a small number of [thought leaders from different aspects of accessibility industry](https://docs.google.com/document/d/1ZD8T1XgcZJAlV7VketWAx8f3Doad05jU5lpVf7wuIW0/edit#heading=h.9i2nf5iv1l3n).  They were promised anonymity to encourage free comments.  They were given a standard list of questions.  They reached interesting and informative [conclusions ](https://docs.google.com/document/d/1ZD8T1XgcZJAlV7VketWAx8f3Doad05jU5lpVf7wuIW0/edit#heading=h.y4qfie9jmt3v)and directions for the future.  Note that this was a small group of participants that were selected for their innovative and thoughtful thinking on broad accessibility issues.  \r\n\r\nOne issue raised by the two US-based lawyers interviewed was the question of how success criteria were assigned to different levels and that \"Testable\" was included in the criteria of how the success criteria were assigned.  One lawyer with Civil Rights experience was concerned that if a judge questioned the inclusion of testability, that there was a substantial risk that the WCAG regulations would be struck down.  The lawyers interviewed strongly recommended that user needs be the basis of evaluating accessibility and testability not be included in any assignment of level of priority or severity.  \r\n\r\nA later concern that was raised during the Design Sprint from a US accessibility lawyer is that the current assignment of success criteria to the levels is not balanced by disability type.  For example, the Deaf, deaf, and hearing impaired have only one A success criterion (1.2.2 captioning), 1 AA (1.2.4 Captions (Live) and all others are AAA.  Any solution in WCAG3 should strive to treat all disabilities equally.  One suggestion was to require a minimum level in each disability category.  \r\n\r\nI am raising this issue, because as we move into AG discussions of conformance, I do not want the research that was done to be forgotten. There are innovative solutions in the Silver Research and Silver Design Sprint that should not be lost because AG members naturally want to build on what is familiar.  There is an opportunity for a transformative approach to conformance that can address important problems in accessibility.  That should not be lost.  \r\n\r\nIn summary: \r\n\r\n- Read the [Silver Research](https://www.w3.org/WAI/GL/task-forces/silver/wiki/Silver_Research_Archive), especially the [Interviews on Conformance Conclusions](https://docs.google.com/document/d/1ZD8T1XgcZJAlV7VketWAx8f3Doad05jU5lpVf7wuIW0/).  \r\n- Remove testability from any evaluation of severity or priority.  Focus on user needs. This will ensure long-term viability of WCAG in regulatory use.  \r\n- Ensure that attention is paid to equity between disability categories.  All disabilities have essential user needs.  \r\n\r\n\r\n",
       "url": "https://github.com/w3c/wcag3/issues/230",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:19:31Z",
+          "body": "Thanks for this important reminder. \n\nThe [latest working draft](https://www.w3.org/TR/wcag-3.0/) contains a new Conformance section following conformance discussions in AGWG and its conformance subgroup. In general, like earlier drafts, this working draft is based on outcomes informed by user needs. We also explicitly list functional performance statements. \n\nClosing this issue as the conformance discussions have happened (though they may continue at a later stage). Feedback on the new conformance and reporting sections is welcomed! "
+        },
+        {
+          "user": "alastc",
+          "created": "2026-09-24T16:11:21Z",
+          "body": "Just to note how (and what bits) the conclusions have been incorporated:\n\n> One participant recommended decoupling testability and conformance so that conformance requirements do not restrict what guidance can be included in Silver. \n\nThe guidance (requirements/assertions/recommended practices) go beyond conformance, and reporting enables for organizations to report improvements below and above conformance.\n\n> The lawyers interviewed strongly recommended that user needs be the basis of evaluating accessibility and testability not be included in any assignment of level of priority or severity.\n\nTestability isn't part of leveling. Although it is part of whether a requirement is included, it doesn't define what level it goes to (as there aren't levels at the conformance level). There are also recommended practices and assertions that are not considered as testable as requirements.\n\n> Any solution in WCAG3 should strive to treat all disabilities equally. One suggestion was to require a minimum level in each disability category.\n\nThe group is tracking which requirements benefit which functional needs, but the aim is to include everything we can.\n\n> recommended looking at the US and Canada LEEDS (Leadership in Energy and Environmental Design) standards for green building certification as a model for Silver conformance and certification.  They proposed a “bronze” level certification for meeting minimum Silver conformance (the equivalent of WCAG 2.0 AA), then a point system where organizations could increase their score up to a “platinum” level by steadily improving the usability for people with disabilities.\n\nThat is essentially the approach taken, with some terminology differences. As an \"output\" standard (that assesses the output of design/development), the term \"conformance\" has a very specific meaning, but we have layered on reporting to get to WCAG Bronze/Silver/Gold levels.\n\n> International, non-native English speaking assistive technology vendors do not understand how to implement specifications correctly. \n\nThis is ongoing with the accessibility supported work.\n\n> Both advocates commented that user needs should have a higher priority than regulation. \n\nFor WCAG, being used in regulation is an important part of getting in front of the most people possible. In the guideline level guidance there will be a listing of user-needs so that the relationship is clearer."
+        }
+      ]
     },
     "231": {
       "number": 231,
@@ -3283,20 +3316,25 @@
     },
     "237": {
       "number": 237,
-      "title": "As a tactical approach, consider clearly dividing requirements in Silver between qualitative criteria and those that are machine-determinable and binary in nature",
+      "title": "Tag requirements for machine-testability",
       "state": "open",
       "labels": [
-        "Other: Guideline Approach",
-        "Conformance"
+        "Other: Guideline Approach"
       ],
       "user": "mbgower",
       "created": "2022-01-18T17:35:45Z",
-      "updated": "2026-05-02T12:38:27Z",
+      "updated": "2026-09-24T16:38:24Z",
       "closed": null,
       "commentCount": 1,
       "body": "In response to an AGWG survey on [issue](https://github.com/w3c/silver/issues/257) to change \"text alternatives\" to \"meaningful text alternatives\", I responded:\r\n> I would like to advocate that the existence of a text alternative be one requirement, and that the quality of the text alternative be another requirement. Not only Is the first much easier to confirm through automation, but the existence of the alt is an implementation check, while the quality of the alt is a design check.\r\n\r\nI ask the Silver group to consider and respond to a tactical approach of dividing requirements between those that are machine-determinable for pass/fail, and those that are qualitative and are less easily expressed as \"true\" or \"false\".\r\n\r\nThere are a variety of ways of addressing qualitative requirements, from design approaches and practices, to adopting solutions in the wild, to user testing (or all three). To the extent that WCAG 3 can find ways of differentiating these requirements using current technologies and practices, it should be easier to establish conformance 'levels' (for example \"Passes all machine-testing requirements\").",
       "url": "https://github.com/w3c/wcag3/issues/237",
-      "comments": []
+      "comments": [
+        {
+          "user": "Myndex",
+          "created": "2022-01-24T11:51:32Z",
+          "body": "Where such divisions are made, it should be noted that future technology may change what can be automated. As an example, you mention al- text — whether or not it's there in the html is an easy, binary, automatable conformance point.\r\n\r\n### Qualitiative\r\nWhen it comes to the \"quality\" of the writing, while there are probably no tools today that are specifically for alt-text, there are today tools that can, for instance, judge and assess the readability of a paragraph for instance:\r\n\r\nhttps://wooorm.com/readability/\r\n\r\nThe technology in that could conceivably be used to asses readability of alt text... though of course we wold probably want alt text to not just be readable, but to do well describing the contents of the image. As there are technologies now that can examine an image and create a textual description, we can say that a technology that can assess the readability and the appropriateness for a given image is certainly a possibility.\r\n\r\n\r\n### The Font Weight Challenge\r\nIn terms of visual contrast, one of the key challenges is that there is no standard for either font weight nor the x-height of a font for any given font property setting.\r\n\r\nAt the moment, the method is manual, as described here: https://github.com/Myndex/SAPC-APCA/discussions/28#discussioncomment-1610289  But it won't be manual forever as there is technology in development to specifically address this issue.\r\n\r\n\r\n### Not Necessarily Binary\r\nOn the above examples, when they become machine determinable, that does not demand the result be binary. Looking for instance at the https://wooorm.com/readability/ page, the text is colored somewhere from a green to a red, depending on how well it fits a given age group. \r\n\r\nIf the results are determined through automation, I don't think this means they should be forced into a binary result, particularly if WCAG 3 is using a sliding scale scoring.\r\n"
+        }
+      ]
     },
     "238": {
       "number": 238,
@@ -3529,18 +3567,24 @@
     "244": {
       "number": 244,
       "title": "Consider Adding New Requirements to Reporting",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "rachaelbradley",
       "created": "2022-01-06T15:55:09Z",
-      "updated": "2025-01-15T20:52:48Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T14:55:53Z",
+      "closed": "2026-09-24T14:55:53Z",
+      "commentCount": 1,
       "body": "Please consider asking that the following information be included in conformance reports:\r\n\r\n- Scope of testing (pages/views/processes or whatever the group decides on)\r\n- Test environment used",
       "url": "https://github.com/w3c/wcag3/issues/244",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:55:53Z",
+          "body": "In the latest working draft, scope of testing is included in [3.2.2 Defined conformance scope](https://www.w3.org/TR/wcag-3.0/#defined-conformance-scope) and test environment is captured in [3.2.1.1 Accessibility support set](https://www.w3.org/TR/wcag-3.0/#accessibility-support-set). As they are both added as requirements, we have completed the task set out in this issue, so I'll go ahead and close it."
+        }
+      ]
     },
     "245": {
       "number": 245,
@@ -3604,19 +3648,25 @@
     "246": {
       "number": 246,
       "title": "Need clear intention of mentioning web content publisher's responsibility for user generated contents",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Management: Please Review",
         "Conformance"
       ],
       "user": "a11ydoer",
       "created": "2021-12-17T16:16:19Z",
-      "updated": "2025-09-26T05:38:01Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T15:15:42Z",
+      "closed": "2026-09-24T15:15:42Z",
+      "commentCount": 1,
       "body": "[Current user generated content 6.2](https://www.w3.org/TR/wcag-3.0/#user-generated-content) indicates INDIRECTLY and IMPLICITLY web content publisher's accesssibility requirment via [editor's note](https://www.w3.org/TR/wcag-3.0/#issue-container-generatedID-20)\r\n\r\nI would like to propose that Web content publisher's responsibility should be noted **clearly** and **direclty** so that any readers of WCAG can understand Web content publisher's responsibility. This requirment should not be spreaded throughout different WCAG rules and diluted.\r\n\r\nThe detailed discussion is available at [Silver meeting minute on Dec 17, 2021](https://www.w3.org/2021/12/17-silver-minutes.html)",
       "url": "https://github.com/w3c/wcag3/issues/246",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:15:42Z",
+          "body": "Closing as this is about a definition no longer existent in the [latest working draft](https://www.w3.org/TR/wcag-3.0/)."
+        }
+      ]
     },
     "247": {
       "number": 247,
@@ -3708,18 +3758,25 @@
     "252": {
       "number": 252,
       "title": "UsableNet Feedback/Input on Representative Sample",
-      "state": "open",
+      "state": "closed",
       "labels": [
-        "Conformance"
+        "Conformance",
+        "Guidance: Testing"
       ],
       "user": "UsableNet-WCAG",
       "created": "2021-09-01T20:55:57Z",
-      "updated": "2025-01-16T22:24:19Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T16:13:35Z",
+      "closed": "2026-09-24T15:09:15Z",
+      "commentCount": 1,
       "body": "Hi, There was a comment by edit of WCAG 3.0 to give input on Representative Sample. I wanted to share what we have found are clear and practical understandable steps to define and create repeatable and robust representative samples for Websites and Apps. We find combining the well documented Website Accessibility Conformance Evaluation Methodology (WCAG-EM) 1.0 (https://www.w3.org/TR/WCAG-EM/)  with the DOT's original Primary Scope of website accessibility in the  for the Air Carrier Access Act (https://www.transportation.gov/airconsumer/passengers-disabilities) - where the scope is outlined to be the top User tasks of a site. We take that approach and modify for the different industries but in general website and App teams understand and design and build around \"User Tasks\" or \"User Outcomes\" or \"User flows\". SO establishing scope around testing the completion of top User Tasks or User Flows along with Key \"entry Pages\" such as Home page, Marketing landing pages, Social funnels etc. would be a good general direction to move scope definition in. ",
       "url": "https://github.com/w3c/wcag3/issues/252",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:09:15Z",
+          "body": "Thanks for this feedback! Closing this issue as it is no longer relevant to the [latest working draft](https://www.w3.org/TR/wcag-3.0/), which no longer mentions representative samples."
+        }
+      ]
     },
     "253": {
       "number": 253,
@@ -3740,34 +3797,46 @@
     "254": {
       "number": 254,
       "title": "Trusted Tester comment on WCAG3 draft: Conformance Levels",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "kengdoj",
       "created": "2021-08-25T23:52:27Z",
-      "updated": "2025-01-16T22:25:34Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T14:58:59Z",
+      "closed": "2026-09-24T14:58:59Z",
+      "commentCount": 1,
       "body": "Thank you for the opportunity to comment. Apologies for the delayed response. We hope it's not too late and is still useful.\r\n\r\n## Conformance Levels\r\n\r\nCode-based testing and AT testing, while both valuable, can yield very different results. How WCAG 3 will combine these results is unclear, and we have concerns that combining results will result in loss of clarity with regard to actual conformance to the defined standards/guidelines.\r\n\r\nCode-based evaluation (the current most common way of testing) is a determination of how well content meets the guidelines, and the results will be as subjective as the guidelines. If content includes the properties required to meet the guidelines, it passes.\r\n\r\nAT testing is dependent on a 3rd party tool&#39;s compatibility with the code, the tool vendor&#39;s interpretation of accessibility guidelines and technology specifications, as well as the tool&#39;s presumed and designed intent to help users navigate accessibility challenges. The purpose of assistive technology is to assist and provide accessibility; therefore, AT testing results are not always a good indication of the content&#39;s conformance to the guidelines. AT testing indicates the ability of the AT to provide information from the content, not necessarily whether the content itself conforms to accessibility guidelines/standards.\r\n\r\nThe conformance levels bronze, silver, gold, with code-based inspection representing the minimum (bronze) level of testing implies that AT testing is actually better than code-based inspection. This is not a concept that we support. Similarly, the use of the term &quot;holistic tests&quot; to describe testing with AT implies that AT testing is more comprehensive, and therefore better at determining accessibility. While we encourage AT testing as a tool in usability testing and to understand the experience of AT users, for &quot;conformance testing&quot;, we strongly believe that content and code evaluation is more accurate and ensures broader support for all assistive technologies. When testing with a particular AT, some test results are only indicative of a user&#39;s experience using that specific AT, with limited external validity for some results. Code-based inspection, on other hand, provides a more accurate representation of conformance to guidelines and standards and is typically more broadly indicative of accessibility, regardless of the specific AT a user may employ.\r\n\r\nIn the early years of Trusted Tester (around 2008), the JAWS screen reader was one of the testing tools incorporated in the test process, in addition to code evaluation tools. We taught use of JAWS in Trusted Tester training classes to student testers who were introduced to assistive technology in the same class. We found that JAWS was difficult to teach, and it was even more difficult to ensure that testers who left our training were able to use JAWS at a satisfactory level. Within the testing team at DHS&#39;s Office of Accessible Systems &amp; Technology, the creator of Trusted Tester, we found conflicting results between code evaluation results and JAWS testing. The most common scenario was that JAWS was not reading content that passed code evaluation (code passed but JAWS failed), but there were also instances where JAWS compensated for poorly coded content (code failed but JAWS passed). In all situations, the code evaluation result overruled the JAWS result because another screen reader confirmed the code evaluation result. In another instance, when our JAWS version was updated, we found that the updated version of JAWS did not read the same content that was read successfully with the previous version of JAWS. After a year of testing with JAWS and JAWS results being overruled or inconsistent, JAWS was dropped from Trusted Tester as a testing tool.\r\n\r\nAs such, AT testing is not &quot;better&quot;, nor does it improve code evaluation results. The results may conflict, as described in the previous paragraph. AT testing provides valuable but different information – about the AT. Summarizing, AT testing can answer questions like &quot;Does this AT (specific product and version) work well with this application?&quot;, while code evaluation answers the question &quot;does this application meet accessibility requirements?&quot;",
       "url": "https://github.com/w3c/wcag3/issues/254",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:58:59Z",
+          "body": "thank you for the feedback. A new conformance section and a reporting section with levels has been published in [the latest working draft](https://www.w3.org/TR/wcag-3.0/), and has accessibility support sets specifically as part of the conformance section. As they address the issues described here, I am closing this issue. \n\nWe welcome feedback on the latest working draft. "
+        }
+      ]
     },
     "255": {
       "number": 255,
       "title": "Trusted Tester sampling guidance",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "kengdoj",
       "created": "2021-08-25T23:45:21Z",
-      "updated": "2025-01-17T17:29:09Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T15:10:36Z",
+      "closed": "2026-09-24T15:10:35Z",
+      "commentCount": 1,
       "body": "@jspellman, apologies for this very delayed response to your request for sampling guidance during your wcag3 presentation to our team. Here it is - \r\n\r\n## Trusted Tester Guidance for Sampling\r\n\r\nDue to time constraints, it is unlikely a Trusted Tester will be able to test all content manually. For best sampling outcomes, request the following information from the application&#39;s owner/developer to maximize testing coverage and minimize repetitive testing. Ensure that the following are included in testing samples:\r\n\r\n1. Content that has applicable 508 requirements (such as tables, sync media, images, forms, etc. (reference TT script chapters)) and content with potential for non-interference issues (blinking, auto-play, blinking/scrolling, auto-update, keyboard trap)\r\n2. Content that appears on multiple pages and/or the templates that are used to generate content on multiple pages\r\n3. Most-visited pages/most-used app functions (using site analytics)\r\n4. Functions and content presented to both Admin and user roles\r\n5. Core functionality/critical path/essential information\r\n   - Login access\r\n   - Required fields in a form and submit function\r\n   - Menu navigation\r\n   - Error notifications and handling\r\n6. User Help\r\n7. If application was previously tested: test the new content and content previously found not conformant",
       "url": "https://github.com/w3c/wcag3/issues/255",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:10:35Z",
+          "body": "Thanks for taking the time to share this! Closing this issue as it is relates to work that was in 2021, and is no longer relevant to the [latest editor's draft](https://www.w3.org/TR/wcag-3.0/)."
+        }
+      ]
     },
     "256": {
       "number": 256,
@@ -3804,51 +3873,89 @@
     "258": {
       "number": 258,
       "title": "UsableNet - WCAG Team comment - Consider the legal and practical importance of conformance.",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "UsableNet-WCAG",
       "created": "2021-04-18T12:46:45Z",
-      "updated": "2025-09-26T05:36:44Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-09-24T15:12:21Z",
+      "closed": "2026-09-24T15:12:21Z",
+      "commentCount": 2,
       "body": "Reviewing 3.0 in its current form indicates some significant changes to terminology , particularly in the area of conformance. With the growing US legal activity focused on compliance there is a need to quickly and cheaply provide evidence of conformance for any size business.  Additional detail on how conformance could or should be presented would aid companies looking to communicate their efforts and status. ",
       "url": "https://github.com/w3c/wcag3/issues/258",
-      "comments": []
+      "comments": [
+        {
+          "user": "jpascalides",
+          "created": "2021-05-11T13:42:22Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue."
+        },
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:12:21Z",
+          "body": "Thanks for this comment! Closing this issue as it relates to a much earlier version of Silver/WCAG 3. We've just published the latest [working draft](https://www.w3.org/TR/wcag-3.0/), which features a new model and has had legal aspects considered within the conformance subgroup that worked on it. We welcome  feedback on these new sections (Conformance and Reporting)."
+        }
+      ]
     },
     "259": {
       "number": 259,
       "title": "Email: Siteimprove Comments on WCAG 3.0 Draft (3 - Conformance testing is difficult to carry out reliably and in a reproducible manner)",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "cwadamsoforacle",
       "created": "2021-04-08T21:24:11Z",
-      "updated": "2025-01-17T17:31:53Z",
-      "closed": null,
+      "updated": "2026-09-24T15:01:48Z",
+      "closed": "2026-09-24T15:01:48Z",
       "commentCount": 3,
       "body": "[Comment from email:](https://lists.w3.org/Archives/Public/public-silver/2021Apr/0031.html)\r\nConformance testing is difficult to carry out reliably and in a reproducible manner\r\nGregg Vanderheiden expounded in his review on the serious problems that the current draft imposes on conformance testing and test reproducibility. We agree with Vanderheiden’s observation: Qualitative scoring cannot be used for conformance testing; a test must comprise criteria that either fail or pass if said criteria are to be employed in any legislative manner. Otherwise, two testers may produce altogether different results, which is unacceptable for WCAG in its present role in European legilastion.\r\nThere is also the problem of scope, which in the current draft is left poorly delineated. Who determines what the processes that should be subjected to testing are? How can one ensure that two similar services or apps or documents when tested by different providers account for similar scope and type of processes or use cases? \r\nGiven the taxing nature of the WCAG 3.0 testing effort, as discussed above, one may be tempted to opt for simple processes with less complex user interface components or aspects, and/or limit the number of processes to a minimum – what ever the smallest acceptable number might be – in order to make the testing effort at least somewhat financially feasible. This, then, would further compound the issue of expected lower quality of testing, which we presaged above.\r\n[WCAG 3 comments_Siteimprove_Codebusters_April7_2021.docx](https://github.com/w3c/silver/files/6281602/WCAG.3.comments_Siteimprove_Codebusters_April7_2021.docx)\r\n",
       "url": "https://github.com/w3c/wcag3/issues/259",
-      "comments": []
+      "comments": [
+        {
+          "user": "cwadamsoforacle",
+          "created": "2021-04-08T21:24:20Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue."
+        },
+        {
+          "user": "cwadamsoforacle",
+          "created": "2021-08-26T18:19:31Z",
+          "body": "This issue needs to be split into 2, one covering \"Reproducibility of tests\", and one for \"scope\"."
+        },
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:01:48Z",
+          "body": "Closing this issue as it applies to previous drafts. The latest editor draft has [new conformance model](https://www.w3.org/TR/wcag-3.0/#conformance) and suggestions for [reporting](https://www.w3.org/TR/wcag-3.0/#reporting). Feedback on the latest draft welcomed. "
+        }
+      ]
     },
     "260": {
       "number": 260,
       "title": "Email: Siteimprove Comments on WCAG 3.0 Draft (2 - Testing is difficult to carry out efficiently)",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Management: Please Review",
         "Conformance"
       ],
       "user": "cwadamsoforacle",
       "created": "2021-04-08T21:20:15Z",
-      "updated": "2025-09-26T05:39:57Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-09-24T15:08:04Z",
+      "closed": "2026-09-24T15:08:04Z",
+      "commentCount": 2,
       "body": "[Comment from email:](https://lists.w3.org/Archives/Public/public-silver/2021Apr/0031.html)\r\nTesting is difficult to carry out efficiently\r\nIn WCAG 3.0, one can no longer simply report on issues that fail WCAG. Instead, one has to report the degree to which all outcomes, including those part of successful criteria, are met. This is because the test result is based on an overall score of all criteria (with some caveats), not on finding out which criteria pass or fail or which are relevant in the testing context. Given that there are also no longer different levels of conformance (A, AA, AAA), one must score each criteria and all its outcomes for every tested process. What is more, the scoring formulae for these outcomes vary. Given, then, the vast number of the outcomes, these formulae are perforce very difficult to memorize reliably and must be consulted carefully during a test.\r\nConclusion: The testing procedure becomes exceedingly taxing, as each of the (hundreds?)  of individual outcomes must be checked for their specific success formulae and the respective data collected and calculated for the test artefact. It goes without saying that the manual effort required is vast and altogether unsuitable for current manual testing approaches whereby the auditor can report only on criteria that fail, and by this means invest time and effort on explaining how and why the criterial fail and how the service owner can best amend the issues in order to improve the service accessibility. \r\nNow, however, the focus in WCAG 3.0 shifts from testing that serves the customer and the web service users to a testing that mechanically, yet unproductively, reports on passed atomic outcomes, with a lot of room for calculation and data assembly errors yet with little benefit for the service owner or its users.\r\nToday, a manual WCAG test report of a web service can comprise 20 to 30 pages. If the report expands manifold owing to the overhead discussed above, one will have to re-think the entire testing procedure to somehow accommodate for all the mandatory data. \r\nThis will likely preclude many manual auditors from offering their services in the future, as, on one hand, they cannot simply absorb this level of extra work without raising their prices substantially, and, on the other, the customers who here in Europe are mainly composed of the public sector cannot, in their turn, pay more for these services, which are already pricey due to the degree of manual work required. It is likely that the industry will thus shift towards increasingly automated and hence poorer quality testing procedures that conform to WCAG in name only. One gathers that is not a desirable outcome.\r\n\r\nThis, one notes, is in stark contrast to the intent of WCAG 3.0, which is to augment a more qualitative and relevant testing approach. It will now likely do the opposite.\r\n[WCAG 3 comments_Siteimprove_Codebusters_April7_2021.docx](https://github.com/w3c/silver/files/6281581/WCAG.3.comments_Siteimprove_Codebusters_April7_2021.docx)\r\n",
       "url": "https://github.com/w3c/wcag3/issues/260",
-      "comments": []
+      "comments": [
+        {
+          "user": "cwadamsoforacle",
+          "created": "2021-04-08T21:20:39Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue."
+        },
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:08:04Z",
+          "body": "The issues SiteImprove discussed are related to the first public working draft of WCAG 3 and are no longer relevant to the [latest draft that was published 10 September](https://www.w3.org/TR/wcag-3.0/). The scoring mechanism that is of concern is no longer part of this latest draft, and the amount of requirement has changed.\n\nClosing this issue as no longer relevant, feedback on the latest draft is of course welcomed."
+        }
+      ]
     },
     "261": {
       "number": 261,
@@ -4276,35 +4383,57 @@
     "280": {
       "number": 280,
       "title": "Email: Intopia Feedback - WCAG 3.0 FPWD (5 - Processes)",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Management: Please Review",
         "Conformance"
       ],
       "user": "jspellman",
       "created": "2021-03-12T15:23:34Z",
-      "updated": "2026-05-02T13:12:46Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-09-24T15:06:17Z",
+      "closed": "2026-09-24T15:06:17Z",
+      "commentCount": 2,
       "body": "[Comment from Email](https://lists.w3.org/Archives/Public/public-agwg-comments/2021Feb/0015.html): \r\n\r\nFPWD: Is this approach of using complete processes as the smallest unit of conformance workable for different types of organizations? These include organizations with very large, dynamic, or complex content, medium-sized organizations relying on external accessibility resources, and very small organizations with limited resources?\r\n\r\nWe believe that the approach can be workable across different types of organisations, as it allows them to focus on making core tasks accessible rather than individual pages, something that should be achievable regardless of organisation size.\r\n\r\nSome additional clarity on the definition of a process is required. Processes can be complex (including across multiple pages of a website or views of an application).\r\n\r\nExample: For a consumer merchant website that has an ‘Add to Cart’ and ‘Checkout’ step, would this be considered a single process or a number of processes? Depending on interpretation, only part of these steps could be accessible, but the organisation may still be eligible for Bronze status.\r\n",
       "url": "https://github.com/w3c/wcag3/issues/280",
-      "comments": []
+      "comments": [
+        {
+          "user": "jspellman",
+          "created": "2021-03-12T15:24:23Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue. "
+        },
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:06:17Z",
+          "body": "The issues described in Intopia's email are related to the first public working draft of WCAG 3 and are no longer relevant to the [latest draft that was published 10 September](https://www.w3.org/TR/wcag-3.0/). As issues have either been addressed or are no longer relevant, I am closing this issue."
+        }
+      ]
     },
     "281": {
       "number": 281,
       "title": "Email: Intopia Feedback - WCAG 3.0 FPWD (4 - Testing)",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "jspellman",
       "created": "2021-03-12T15:21:41Z",
-      "updated": "2025-02-12T18:51:55Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-09-24T15:05:33Z",
+      "closed": "2026-09-24T15:05:33Z",
+      "commentCount": 2,
       "body": "[Comment from Email](https://lists.w3.org/Archives/Public/public-agwg-comments/2021Feb/0015.html): \r\n\r\nFPWD: We would like constructive feedback on the testing approach, and examples of why you would or would not implement it in your organization.\r\n\r\nSignificant work would be required to adopt the testing approach within our organisation, but we will consider adoption as the guidelines continue to develop.\r\n\r\nInitial areas that would impact on adopting the testing approach include:\r\n\r\n  *   Clarity on recording test results – if results need to be recorded per atomic test result for every element, this will increase the amount of work needed to prepare documentation. The greatest impact will be for clients that have retesting that needs to be completed (as multiple sets of documentation may be required dependent on testing methodology)\r\n  *   The suitability of atomic tests will need to be reviewed given that no assistive technology is required as a part of the tests\r\n  *   For any tests that are technology specific, clarity on how often these will be reviewed (and superseded) is needed\r\n  *   List(s) of tests should be collated as the guidelines are finalised – the current content structure makes it difficult for testers to work through a seamless flow of tests",
       "url": "https://github.com/w3c/wcag3/issues/281",
-      "comments": []
+      "comments": [
+        {
+          "user": "jspellman",
+          "created": "2021-03-12T15:22:23Z",
+          "body": "Thank you for your comment. Project members are working on your comment. You may see discussion in the comment thread and we may ask for additional information as we work on it. We will mark the official response when we are finished and close the issue. "
+        },
+        {
+          "user": "hidde",
+          "created": "2026-09-24T15:05:33Z",
+          "body": "The issues described in Intopia's email are related to the first public working draft of WCAG 3 and are no longer relevant to the [latest draft that was published 10 September](https://www.w3.org/TR/wcag-3.0/). As issues have either been addressed or are no longer relevant, I am closing this issue."
+        }
+      ]
     },
     "282": {
       "number": 282,
@@ -5480,18 +5609,24 @@
     "416": {
       "number": 416,
       "title": "Composition of Functional needs",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "spanchang",
       "created": "2025-11-14T19:34:00Z",
-      "updated": "2026-03-29T23:13:31Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T14:42:04Z",
+      "closed": "2026-09-24T14:42:04Z",
+      "commentCount": 1,
       "body": "Refer to Proposed Conformance Level Slides:\nhttps://docs.google.com/presentation/d/1DlDxp8MCYXj3RWnFCCz13zsmM2fV4Wf8NbECKogdul8/edit?slide=id.g39fd5db5083_2_0#slide=id.g39fd5db5083_2_0\n\nI understand this is work in progress.\n1. Is there scope to group some needs into one category so that the list is rationalized to make it    shorter? This mainly relates to the first list of needs in Slide# 6.\nExample: executive function can include  attention spells, memory, reasoning, perception processing etc.\nCan anxiety be a disability by itself  (as listed as a functional need) or does it manifest in something else  long term that is already listed?\nReference:\nhttps://neurolaunch.com/is-executive-dysfunction-a-disability/\n\n2. Is it possible to point to specific reasoning / documentation for including: language, knowledge, fitness as functional needs?\nWhen does not knowing a language result in a condition that warrants accommodation for a disability condition?\nKnowledge: If one does not have the subject matter knowledge then content may still not be understandable even if the content is in a language the user knows.\nFitness: This seems very broad / general. Maybe it is covered in one of the other needs / disability conditions?\n\nThanks\n",
       "url": "https://github.com/w3c/wcag3/issues/416",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:42:04Z",
+          "body": "Thanks for this feedback. As it relates to an earlier discussion and is no longer specifically relevant now that the [latest WCAG 3 working draft](https://www.w3.org/TR/wcag-3.0/) was published. Closing this issue accordingly."
+        }
+      ]
     },
     "419": {
       "number": 419,
@@ -5503,12 +5638,18 @@
       ],
       "user": "spanchang",
       "created": "2025-11-24T14:38:09Z",
-      "updated": "2026-03-29T23:13:02Z",
+      "updated": "2026-09-24T14:39:22Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "I believe a pivotal change and fundamental ingredient of WCAG 3.0 against WCAG 2.X is the reference to \"functional needs\". This is highlighted in the first para About WCAG 3.0 section 1.2.\nIt states:\n\"WCAG 3.0 supports a wide set of user needs, uses new approaches to testing, and allows frequent maintenance of guidelines and related content to keep pace with accelerating technology changes. WCAG 3 supports this evolution by focusing on the functional needs of users.\n These needs are then supported by guidelines that are written as outcome statements, requirements, assertions, and technology-specific methods to meet those needs\".\n\nTherefore, the conformance process should allow one to determine how the needs are met. It should be tied to the functional needs as suggested in\nhttps://lists.w3.org/Archives/Public/w3c-wai-gl/2025OctDec/0059.html\n\nPlease consider incorporating the functional needs as part of the normative content of WCAG 3.0 in a manner similar to Functional Performance Statements (Clause 4.2) in EN 301 549.\nThis does not limit future versions (like WCAG 3.1 say) from adding /tweaking functional needs if circumstances warrant.\nThanks very much\nSailesh\n\n\n",
       "url": "https://github.com/w3c/wcag3/issues/419",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:39:22Z",
+          "body": "Functional performance statements have now been included in the reporting section of the latest WCAG 3 draft in [4.2 Functional performance statements](https://www.w3.org/TR/wcag-3.0/#function-performance-statements).\n\nDoes this satisfy your concern?"
+        }
+      ]
     },
     "420": {
       "number": 420,
@@ -5973,7 +6114,7 @@
     "450": {
       "number": 450,
       "title": "Starting point position - Clarify the differences between good practice and best practice",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance",
         "Path: User orientation⹁ layout and structure",
@@ -5981,12 +6122,18 @@
       ],
       "user": "giacomo-petri",
       "created": "2025-12-24T16:25:43Z",
-      "updated": "2026-03-29T22:44:48Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T14:30:09Z",
+      "closed": "2026-09-24T14:30:09Z",
+      "commentCount": 1,
       "body": "Per @julierawe feedback:\n\n> What is the difference between a good practice and a best practice? And will good and/or best practices be factored into the conformance model?",
       "url": "https://github.com/w3c/wcag3/issues/450",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:30:09Z",
+          "body": "Thanks for capturing this. Closing this isuse, as in the [latest working draft](https://www.w3.org/TR/wcag-3.0/) we've answered the question by evaluating towards 'recommended practices', and clarifying they are not part of conformance. "
+        }
+      ]
     },
     "451": {
       "number": 451,
@@ -6958,18 +7105,29 @@
     "506": {
       "number": 506,
       "title": "Retro-Compatibility",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance"
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-01-14T19:59:30Z",
-      "updated": "2026-03-27T23:36:27Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T16:34:39Z",
+      "closed": "2026-09-24T14:27:26Z",
+      "commentCount": 2,
       "body": "The W3C has stated that WCAG 3.0 will not be backwards compatible with the 2.x series. Organizations that spent years reaching WCAG 2.2 AA may find that their existing \"compliant\" code doesn't meet the new \"Foundational\" requirements of 3.0. This creates a risk of \"Compliance Debt,\" where teams must re-audit and re-remediate previously \"fixed\" content.",
       "url": "https://github.com/w3c/wcag3/issues/506",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:27:26Z",
+          "body": "Thanks for this feedback. \n\nRealistically, WCAG 2 AA status isn't forever either, and it's common in industry to re-evaluate on a regular basis either way.\n\nClosing this issue as no open actions remain. "
+        },
+        {
+          "user": "alastc",
+          "created": "2026-09-24T16:34:39Z",
+          "body": "I would also add that a mapping document will be produced (once it's closer to recommendation), to make the process easier."
+        }
+      ]
     },
     "507": {
       "number": 507,
@@ -7006,36 +7164,63 @@
     },
     "509": {
       "number": 509,
-      "title": "Conformance (scope and sampling)",
+      "title": "Add sampling methodology to WCAG?",
       "state": "open",
       "labels": [
         "Conformance"
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-01-14T20:29:10Z",
-      "updated": "2026-03-27T23:34:02Z",
+      "updated": "2026-09-24T14:18:31Z",
       "closed": null,
-      "commentCount": 3,
+      "commentCount": 4,
       "body": "The draft does not currently explain how to test a small sample of pages to represent a massive website. We cannot adopt this standard until a statistically valid sampling method is defined.",
       "url": "https://github.com/w3c/wcag3/issues/509",
-      "comments": []
+      "comments": [
+        {
+          "user": "TestPartners",
+          "created": "2026-01-14T21:12:30Z",
+          "body": "Is there a reason you think the WCAG Evaluation Methodology (WCAG-EM) is insufficient? Although it was written for WCAG 2, I expect it would be trivially easy to adapt it for WCAG 3.\n\nI don't think there is such a thing as \"statistically valid sampling method\" in the context of a website about which you don't know anything except how many pages it contains. The distribution of different types of content does not follow any known distribution pattern such as Normal, Binomial, Poissonian etc.. The same applies to accessibility barriers.\n\nEven when there is such a known distribution, you can only calculate the probability that a sample of a particular size will contain a particular number of whatever it is you are measuring. There is no way to guarantee that a sample will contain every instance.\n\nOur approach has been to build an automated inventory tool that crawls a website and records all the \"interesting\" types of content it finds, such as embedded video, tables, forms, accordions etc. This is followed by a lot of manual investigation to see how consistent the coding is - are all the accordions coded the same or are there different design patterns? There are plenty of gotchas with this approach, but I don't know a better way. Of course, if you're testing a website you built, you will know more about it, but third-party testers usually know nothign to start with."
+        },
+        {
+          "user": "hidde",
+          "created": "2026-01-16T12:18:51Z",
+          "body": "WCAG-EM 2 recommends skipping sampling in cases where the site is very small and having all pages in scope. There's also a lot of gray area in between small and massive. In my experience what sort of sample forms one that is representative becomes clear quickly when looking at a product before starting off an evaluation."
+        },
+        {
+          "user": "TestPartners",
+          "created": "2026-01-16T12:35:23Z",
+          "body": "> In my experience what sort of sample forms one that is representative becomes clear quickly when looking at a product before starting off an evaluation.\n\nThat's not been my experience, but it probably depends on the size of website you are working on. For us, websites with 10,000+ pages are common. Websites with 100,000+ pages are not unusual, and some have millions of pages and documents.\n\nFor small websites, I agree that you can usually make a rough estimate quite quickly. But for large websites, you just can't do that. It's very common for different sections of a large website to be designed completely differently, maybe over a period of 10 or 15 years. Very often, no individual has an overview of the website because dozens of different departments are responsible for their own section. They might use a common header and footer, but they often don't even do that. It's essentially like testing 20 different websites except that you don't know how many there are or how large each one is when you start.\n\nThis is why we regard the inventory process as being so important. On small websites (say up to a few thousand pages) this can be very fast. However, on large websites, the automated crawling process alone can take more than a day and the manual analysis of the results can take several days. But if you don't do this work, your sample could be wildly unrepresentative."
+        },
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:17:16Z",
+          "body": "For WCAG 2, I would say WCAG-EM is the right place. \n\nFor WCAG 3, we are going to be developing guidance on testing and reporting in a separate task force.\n\nIMO, we should do this as supplemental guidance and not as part of WCAG itself, as this has worked well in WCAG 2.\n\nProposal: to close this issue."
+        }
+      ]
     },
     "510": {
       "number": 510,
       "title": "Image Alternatives (Foundational Requirements)",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Conformance",
         "Path: Image and media alternatives"
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-01-14T20:30:29Z",
-      "updated": "2026-03-27T23:34:22Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-09-24T14:04:39Z",
+      "closed": "2026-09-24T14:04:39Z",
+      "commentCount": 1,
       "body": "The text explaining how foundational requirements relate to the outcome rating is currently difficult to follow. Please simplify the language to clearly show how passing the basics affects the final score.",
       "url": "https://github.com/w3c/wcag3/issues/510",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:04:39Z",
+          "body": "Thanks for this comment, that helped the work progress. Closing this issue, as it relates to the previous working draft. The [latest working draft](https://www.w3.org/TR/wcag-3.0/) no longer has the outcome ratings."
+        }
+      ]
     },
     "512": {
       "number": 512,
@@ -8431,16 +8616,27 @@
       "state": "open",
       "labels": [
         "Other: Guideline Approach",
-        "Conformance"
+        "Assertions"
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-04-07T01:02:27Z",
-      "updated": "2026-04-07T14:40:07Z",
+      "updated": "2026-09-24T16:37:07Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 2,
       "body": "[assertions](https://docs.google.com/presentation/d/1qWuFM3fFgC_e1Jik05Os11O0Rl86HLDXu9dolwyWWtc/edit?slide=id.p#slide=id.p). \nSlide number for each feedback piece:\n\n- 2: It would be helpful to understand how/if assertions would be part of the conformance model as it would change how we think about them\n- 2-3: It's unclear if assertions are pre-defined or open ended. For example, if we want to include something unique to Google, would this be possible or we can only assert from a list?\n- 4: Having Assertions and \"Core assertions\" meaning different things is confusing, I'd have assertions always being optional/extra; and something like \"requirements\" or \"foundational expectations\" as what's needed for minimum conformance level \n- 6: Is this a requirement or an assertion? Are we changing the terminology from success criteria to Core requirement assertion? WHY all the name changes?\n- 6-11: I think an assertion could be a simple statement for the entire product, and leave detailed conformance data for the requirements, otherwise ACRs would be massive and not very meaningful for complex products. The examples are also too focused on Content. \n- 6-9: Google would prefer to keep this simple and point to user documentation. For media features, instead of all of those bullets on slide 11, we could have something like \"<link to help center page>YouTube provides captions capabilities and rich customizations options. </link>\".\n- 10-11: Very US focused. Google would prefer having a high level statement \"we use consistent and clear language guidance in our development process, and have robust localization processes to ensure consistency across languages\".In answering the quesstions on \n- 13: It really depends on what the assertions are, how required and granular they need to be. We would need clarity on how assertions are used in the conformance model.",
       "url": "https://github.com/w3c/wcag3/issues/634",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T14:01:44Z",
+          "body": "Thanks @sydneycolemanfromgoogle for this feedback! As the discussions continued and work progressed (including the publication of a [new conformance section in the latest draft](https://www.w3.org/TR/wcag-3.0-explainer/#conformance-models)), thanks in part to the points raised in this issue, I'll close this issue."
+        },
+        {
+          "user": "alastc",
+          "created": "2026-09-24T16:37:07Z",
+          "body": "I think this issue is more related to assertions, and we're just starting the TF for assertions so I'll re-open and move it across to assertions."
+        }
+      ]
     },
     "635": {
       "number": 635,
@@ -8974,17 +9170,22 @@
       "title": "Assertions are too long and hard to follow. Please replace the  text of how to write an assertion, with a link.",
       "state": "open",
       "labels": [
-        "coga",
-        "Conformance"
+        "coga"
       ],
       "user": "lseeman",
       "created": "2026-04-23T08:25:19Z",
-      "updated": "2026-04-23T08:25:19Z",
+      "updated": "2026-09-24T13:52:53Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "#Assertions are too long and hard to follow. Please replace the  text of how to write an assertion, with a link.\n\n\n## Issue description:\nAssertions look very difficult because of all the template information. The template is very wordy and repetitive and makes it hard to find or focus on the few details that are unique to a specific assertion. That The templated information can be in a different section (maybe in conformance) and linked to.\n\n**For example**  the following could replace the text below:\n\n\nCreate an assertion as **_defined in the conformance section_** to show the following:\n\n1.Our organization has:\n\n- a style guide that includes guidance on focus indicators, and \n- a policy and/or processes that the style guide must be followed.\n\n\n**This would replace the following text (taken from https://w3c.github.io/wcag3/guidelines/#focus-indicator-style-guide) :** \n\nFor each form in the conformance claim, we have reviewed the form designs to reduce the possibility of users making mistakes.\nThis review includes checking to make sure that we:\n\n1.Our organization has a style guide that includes guidance on focus indicators and a policy and/or processes that the style guide must be followed.\n\nInformation that needs to be included publicly:\n\nTitle, role or organization making the assertion\nDate of assertion (if different from the date of the conformance claim)\nRecommended internal documentation (Informative):\n\nDocumentation of which forms were reviewed\nDocumentation of any changes made as a result of the review\nDate of usability testing, if applicable\n\n\nBy the way, we also broke out the actionable text into bullet points. We feel that that is also easier to read. \n\n\nThanks!\nThe coga task force ",
       "url": "https://github.com/w3c/wcag3/issues/655",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T13:52:53Z",
+          "body": "Removing the 'Conformance' label as this feedback does not relate to WCAG 3's conformance model or the conformance section of the spec."
+        }
+      ]
     },
     "657": {
       "number": 657,
@@ -9133,12 +9334,18 @@
       ],
       "user": "fstrr",
       "created": "2026-05-29T23:06:12Z",
-      "updated": "2026-05-29T23:06:24Z",
+      "updated": "2026-09-24T13:44:00Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "Issue #599, which proposes to remove the “keyboard navigable if responsive” provision, raises an issue that WCAG 3 currently doesn't specify that conformance needs to happen at different variations of a page / view. Note 3 of [WCAG 2.2's Full Pages conformance requirement](https://www.w3.org/TR/WCAG22/#cc2) says:\n\n> A full page includes each variation of the page that is automatically presented by the page for various screen sizes (e.g. variations in a responsive web page). Each of these variations needs to conform (or needs to have a conforming alternate version) in order for the entire page to conform.\n\nWe need something like this for WCAG 3.\n",
       "url": "https://github.com/w3c/wcag3/issues/682",
-      "comments": []
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-09-24T13:44:00Z",
+          "body": "In https://github.com/w3c/wcag3/pull/875 I have done a first attempt at addressing this issue, and including variations. \n\nMy suggestion is to make it it part of the main, normative text, rather than a note, as it is in WCAG 2."
+        }
+      ]
     },
     "683": {
       "number": 683,
@@ -9402,16 +9609,64 @@
       "title": "Update the definition of text",
       "state": "open",
       "labels": [
-        "Other: Definitions & Terminology"
+        "Path: Text and wording",
+        "Other: Definitions & Terminology",
+        "P - Text contrast sufficient (minimum)"
       ],
       "user": "alastc",
       "created": "2026-07-01T14:44:08Z",
-      "updated": "2026-07-07T15:55:20Z",
+      "updated": "2026-09-22T02:13:49Z",
       "closed": null,
-      "commentCount": 8,
+      "commentCount": 9,
       "body": "The [current definition](https://www.w3.org/TR/wcag-3.0/#dfn-text) is:\n> sequence of characters that can be [programmatically determined](https://www.w3.org/TR/wcag-3.0/#dfn-programmatically-determinable), where the sequence is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)\n\nWe also have a requirement that visually available text is programmatically:\n> **Requirement**: All visible [text](https://www.w3.org/TR/wcag-3.0/#dfn-text) has a [programmatically determinable](https://www.w3.org/TR/wcag-3.0/#dfn-programmatically-determinable) equivalent.\n> **Applies when**: Content includes contains text that is informative to the user, including text embedded in image formats.\n> **Except when**:\n> - making visible text programmatically determinable would lead to duplication within the page/view.\n> - text is [decorative](https://www.w3.org/TR/wcag3/#dfn-decorative), is used only for visual formatting, or is not presented to users.\n\nThe definition of text itself doesn't make a requirement, so that is needed, but clashes with the definition.\n\nAlso, in WCAG 3 we've had conversations about steering clear of the format aspect, so whether text is added with unicode, images, or something else, it is still text. If an icon is implemented with unicode, i.e. not something in human language, it is not text.\n\nI propose that we simplify the definition to:\n> sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)",
       "url": "https://github.com/w3c/wcag3/issues/744",
-      "comments": []
+      "comments": [
+        {
+          "user": "charleshalldesign",
+          "created": "2026-07-01T16:45:42Z",
+          "body": "while in favor of simplification, this still omits text that is not or is not always a sequence.\nexample: a section heading of “A” for terms that begin with A. this may at times be in sequence with another section with a heading of “B” at the same level, but is not in sequence with other characters in its own element or with its siblings. yet “A” is still expressing something in human language."
+        },
+        {
+          "user": "charleshalldesign",
+          "created": "2026-07-01T16:52:23Z",
+          "body": "by opinion and experience, no content – especially text – could ever meet the current definition of decorative.\nso this exception makes no sense to me: “text is [decorative](https://www.w3.org/TR/wcag3/#dfn-decorative), is used only for visual formatting, or is not presented to users.”\n\nthe example provided with the note for the definition of decorative is “The cover page of a dictionary has random words in very light text in the background.”\n\nthose words each individually convey information in human language. even if truly selected at random, that particular pattern and set of random words was chosen by a human or team of humans to represent the information found in the book. it is not only aesthetic. it provides information."
+        },
+        {
+          "user": "murata2makoto",
+          "created": "2026-07-04T03:17:41Z",
+          "body": "Since CJK ideographic characters may be accompanied by ruby annotations, text is NOT a sequence of characters."
+        },
+        {
+          "user": "alastc",
+          "created": "2026-07-06T11:58:11Z",
+          "body": "@charleshalldesign wrote:\n> example: a section heading of “A” for terms that begin with A. \n\nSo perhaps \"character or sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)\"?\n\n> by opinion and experience, no content – especially text – could ever meet the current definition of decorative.\n\nI've come across examples where text is used as party of a background style. If it were random patterns it would pass, but just because it looks like (or uses) text doesn't make it useful or informative. Also, stock-style pictures where there is some random text on a TV screen in the background. You wouldn't include it in the alt-text, so why include it in this requirement?\n\n@murata2makoto wrote:\n> Since CJK ideographic characters may be accompanied by ruby annotations, text is NOT a sequence of characters.\n\nI don't understand, if ruby annotations can be revealed (or appear by default), why does that mean the source text is not a sequence of characters?"
+        },
+        {
+          "user": "charleshalldesign",
+          "created": "2026-07-06T13:24:36Z",
+          "body": ">…just because it looks like (or uses) text doesn't make it useful or informative.\n\nuseful and informative are very different. the text as text – single character or sequence of characters – conveys information. the world doesn’t always design and build things that are useful. but everyone has the right to perceive those things.\n\n>You wouldn't include it in the alt-text, so why include it in this requirement?\n\ni absolutely would and always have. text can never meet the definition of pure decoration. it might meet the definition of visual formatting, but we lack one. even as formatting, a format conveys information."
+        },
+        {
+          "user": "murata2makoto",
+          "created": "2026-07-07T09:34:39Z",
+          "body": "@alastc wrote:\n>I don't understand, if ruby annotations can be revealed (or appear by default), why does that mean the source text is not a sequence of characters?\n\nThe proposed definition assumes that text is always a sequence of characters. However, this assumption does not hold for all writing systems.\n\nHTML Ruby is explicitly defined as a parallel annotation. A ruby construct consists of two related character sequences (the base text and its annotation), rather than a single sequence of characters.\n\nTherefore, a ruby construct is text, but it cannot be adequately described as a single sequence of characters.\n\nThis issue is not limited to implementation details. It affects accessibility semantics such as reading order, pronunciation, highlighting, and counting text.  For example, it is often desirable for TTS engines to ignore ruby annotations and use the ruby base only.  More about this topic, see [Text-to-Speech Rendering of Electronic Documents Containing Ruby: User Requirements](https://www.w3.org/TR/ruby-tts-req/).\n\nI therefore do not think that \"sequence of characters\" is an adequate definition of text for WCAG.\n\n"
+        },
+        {
+          "user": "hidde",
+          "created": "2026-07-07T12:21:31Z",
+          "body": "@murata2makoto, thanks for the further explanation. Conceptually, would it make sense to consider both the base text and the ruby annotation as sequences of characters? So the annotation is its own text, parallel to base text?\n\nLooking at where “text” is currently used, and what would happen if we replace it by the updated definition, I don't think it specifically works badly for cases where there text happens to be  a parallel ruby annotation, or a construct of base text + annotation:\n\n| Usage  | With proposed definition  | Notes |\n|:-----|:-----|:---|\n| 1. [Editor's note](https://www.w3.org/TR/wcag3/#ref-for-dfn-text-1) with “Visual information identified”: “This includes actions, charts or [informative](https://www.w3.org/TR/wcag3/#dfn-informative) visuals, scene changes, and on-screen [text](https://www.w3.org/TR/wcag3/#dfn-text)” | This includes actions, charts or [informative](https://www.w3.org/TR/wcag3/#dfn-informative) visuals, scene changes, and on-screen **sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)** | Works (but a little awkward to have sequence be singular) |\n| 2. Guideline “Users have alternatives available for non-[text](https://www.w3.org/TR/wcag3/#dfn-text), non-image [content](https://www.w3.org/TR/wcag3/#dfn-content) that conveys context or meaning.” | Users have alternatives available for non-**sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)**, non-image [content](https://www.w3.org/TR/wcag3/#dfn-content) that conveys context or meaning. | Works (but a little awkward to have sequence be singular) | \n| 3. Guideline “Users can read visually rendered [text](https://www.w3.org/TR/wcag3/#dfn-text).” | Users can read visually rendered **sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)**. | This works, and seems to cover both ruby annotation and base text, both would need to be readable |\n| 4. The 'Text detectable' provision: “All visible [text](https://www.w3.org/TR/wcag3/#dfn-text) has a [programmatically determinable](https://www.w3.org/TR/wcag3/#dfn-programmatically-determinable) equivalent.” |  All visible **sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)** has a [programmatically determinable](https://www.w3.org/TR/wcag3/#dfn-programmatically-determinable) equivalent.  | Works (but a little awkward to have sequence be singular) | \n| 5. List item in Note that goes with 2.2.3, “Right-to-left [text](https://www.w3.org/TR/wcag3/#dfn-text) layout” | Right-to-left **sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)** layout | Works (but a little awkward to have sequence be singular) |\n| 6. In Note with “No repetitive links”: ”A common pattern is having a [component](https://www.w3.org/TR/wcag3/#dfn-component) that includes a linked image and some linked [text](https://www.w3.org/TR/wcag3/#dfn-text) | A common pattern is having a [component](https://www.w3.org/TR/wcag3/#dfn-component) that includes a linked image and some linked **sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)** | Works |\n| 7. Guideline Control Text: “Users can control [text](https://www.w3.org/TR/wcag3/#dfn-text) presentation.” | Users can control **sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)** presentation. | Works (but a little awkward to have sequence be singular) |\n\nGiven the above examples, I don't know what we can change to make it more meaningful re ruby, but my suggestion would be to update the definition to work in both singular and plural: \n\n> sequence(s) of characters that express(es) something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)"
+        },
+        {
+          "user": "murata2makoto",
+          "created": "2026-07-07T15:55:20Z",
+          "body": "@hidde \n\n>Conceptually, would it make sense to consider both the base text and the ruby annotation as sequences of characters? So the annotation is its own text, parallel to base text?\n\nYes, you are right.\n\nTo me, text is something like this.\n\n```\n                   I'am a ruby annotation \n                /                         \\\n               /                           \\\nruby-less text-                             -- ruby-less text\n               \\                           /  \n                \\                         /  \n                      I am a ruby base \n```\n\nHow about \"a sequence of characters together with any associated annotations”？"
+        },
+        {
+          "user": "adampage",
+          "created": "2026-09-22T02:13:11Z",
+          "body": "Defining “[text](https://w3c.github.io/wcag3/guidelines/#dfn-text)” in relation to “[human language](https://w3c.github.io/wcag3/guidelines/#dfn-human-language)” may also undermine some provisions.\n\n> **human language**\n> language that is spoken, written, or signed (through visual or tactile means) to communicate with humans\n\nBy my interpretation, HTML, CSS, and JavaScript would not qualify as human languages. Their purpose is to express instructions to machines, not to communicate with humans. Still, they are sometimes presented for humans to perceive and comprehend.\n\nAn [HTML snippet in an ACT rule’s reference page](https://w3c.github.io/wcag3/informative/act-rules/web/custom-keys-documented/#passed-example-1), for example, should not escape the need to have [sufficient contrast](https://w3c.github.io/wcag3/guidelines/#text-contrast-sufficient-minimum).\n\nRelated: w3c/wcag#5369"
+        }
+      ]
     },
     "747": {
       "number": 747,
@@ -10040,7 +10295,53 @@
           "body": "> We might (or might not) explain the rationale.\n\nsurely you mean \"We MAY explain the rationale.\""
         }
       ]
+    },
+    "874": {
+      "number": 874,
+      "title": "AFixt Comments on WCAG 3 draft as of 10 September 2026",
+      "state": "open",
+      "labels": [],
+      "user": "karlgroves",
+      "created": "2026-09-21T22:29:58Z",
+      "updated": "2026-09-21T22:29:58Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "WCAG 3 has the potential to improve accessibility evaluation significantly, particularly through greater attention to cognitive accessibility, complete activities, modern application behavior, and real-world use. Our primary concern is whether that ambition will result in a standard that can be interpreted consistently, evaluated with defensible evidence, implemented globally, and communicated meaningfully to people with disabilities.\n\nThe following comments are based on the 10 September 2026 Working Draft and related issue discussions.\n\n## 1. The conformance floor must protect essential user needs\n\nThe current draft requires that “all core requirements MUST be satisfied.” This is an important improvement because supplemental achievement cannot compensate for failed core requirements. The remaining question, however, is whether the core requirements collectively establish an adequate accessibility floor. If an essential user need is classified as supplemental, making every core requirement mandatory does not solve the underlying problem.\n\nThis is particularly important for cognitive and learning disabilities. If a person cannot complete a task because of insufficient time, incomprehensible error recovery, or another barrier to independent use, implementation difficulty should not determine whether that need receives minimum protection. The standard should therefore evaluate whether its core requirements collectively protect essential user needs, including through their applicability rules, exceptions, dependencies, and methods.\n\nRef: [[Section 3.2](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#conformance-requirements)](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#conformance-requirements) and [[issue #653](https://github.com/w3c/wcag3/issues/653)](https://github.com/w3c/wcag3/issues/653).\n\n## 2. Implementation burden should not determine whether accessibility is required\n\nSupplemental requirements are defined in part as requirements that are “disproportionately burdensome to implement.” Implementation burden, however, varies according to architecture, technical debt, organizational resources, procurement decisions, and previous accessibility investment. Those circumstances do not determine whether a feature is necessary for access.\n\nCost and practicality are legitimate considerations for implementation guidance, migration strategies, and policy, but they should not determine whether a user need belongs in the minimum accessibility baseline. The same principle applies to testability: a requirement should not receive weaker protection simply because it is difficult to automate or evaluate. This is particularly important for cognitive and language accessibility, where meaningful requirements may inherently require greater contextual judgment.\n\nSee [[Section 3.1.1](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#types-of-provisions)](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#types-of-provisions).\n\n## 3. Conformance scope and evaluation sample are different things\n\nA conformance scope identifies what the claim covers, while a sample identifies what was examined to support that claim. Representative sampling is necessary for substantial digital products, but sampling should not reduce the obligations applicable to untested content. Likewise, a known failure within the claimed scope remains a failure whether or not that content was originally part of the sample.\n\nWCAG 3 should support evidence-based conclusions about scopes larger than the material individually inspected while making the limitations and uncertainty of that evidence clear. Testing and reporting systems should therefore represent the claimed product scope separately from the pages, states, components, and processes actually examined. Otherwise, an evaluation risks silently redefining the scope of conformance to match whatever happened to be tested.\n\n## 4. Sampling methodology should match the purpose of the evaluation\n\nSampling is appropriate, but arbitrary page counts or percentages do not establish that a sample is adequate. A remediation audit, statistical measurement exercise, monitoring program, and scope-wide conformance assessment answer different questions and may require different sampling strategies.\n\nFor remediation, sampling should prioritize meaningful variation and the discovery of materially different problems. For statistical claims, the sample must support the specific inference being made. The percentage of URLs containing a failure, for example, is not equivalent to the percentage of successful user journeys, the prevalence of defective component implementations, or satisfaction of all applicable requirements.\n\nEvaluators should document why material was selected, what meaningful variations it represents, and what conclusions the sample can support. Numerical confidence should be reported only when the sampling design actually supports it; structured professional judgment may still be useful, but it should not be presented as statistical certainty.\n\n## 5. Flexible scopes must not enable misleading conformance claims\n\nThe draft notes that limited conformance scopes are still being defined, making clear boundaries and dependency rules especially important. A complete service should not be able to exclude a required step simply because another vendor provides it. Responsibility for remediation can be divided among organizations, but the user still experiences a single activity that either can or cannot be completed.\n\nSimilarly, navigation, help, account settings, policy information, and other secondary functions should not disappear from consideration merely because they are not part of the principal workflow. Limited claims can be useful, but their boundaries and dependencies need to be obvious enough that a reasonable reader can understand what the claim covers without reconstructing it from qualifications scattered throughout a report.\n\nRef: [[Section 3.2.2](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#defined-conformance-scope)](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#defined-conformance-scope).\n\n## 6. Modern applications require evaluation of meaningful states, not simply pages\n\nURLs are an increasingly weak proxy for application functionality because the same URL may behave differently based on permissions, account history, user input, locale, responsive layout, or previous interaction. Evaluation therefore needs to identify variations capable of changing accessibility outcomes rather than treating pages as the primary unit of coverage.\n\nTesting a form before validation does not test its error behavior; testing a dialog when it opens does not establish correct focus handling when it closes; and testing an ordinary account may not evaluate administrative functionality. This does not require testing every possible permutation, but it does require a defensible approach to identifying and covering material variation.\n\nWCAG 3's evaluation model should therefore explicitly support states, interactions, reusable components, dependencies, and processes in addition to pages. This is also important when evaluating change, because a modification to a shared component may affect hundreds of views while an isolated content change may have only a narrow effect.\n\n## 7. Automation should provide evidence, not create a separate definition of conformance\n\nAutomation is extremely valuable for accessibility evaluation because it can detect recurring problems, monitor regressions, support development workflows, and operate at a scale unavailable to manual testing. Those advantages do not mean that an automated result is equivalent to a conformance determination; automation establishes only what the particular test can demonstrate.\n\nAn automated result should identify the condition tested, its applicability, the method used, and the limitations of the conclusion. “No failures detected” must not become equivalent to “all applicable requirements passed,” particularly when some requirements depend on context, interaction, or human judgment.\n\nThe same principle applies to AI-assisted evaluation. Model confidence is not itself evidence that an accessibility requirement has been satisfied. AI-based methods need validation against the judgments they claim to make, including across languages, contexts, and difficult boundary cases.\n\n## 8. Severity should inform remediation without changing conformance results\n\nSeverity is valuable because organizations need to prioritize defects according to their effect on users, but severity and conformance answer different questions. A lower-severity failure remains a failure, while a single issue may completely prevent access to an important service even when most of the product works correctly.\n\nSeverity also depends on context. The impact of an inaccessible control depends on its function, available alternatives, and role within the overall activity, so assigning a fixed severity to every occurrence of a requirement may obscure meaningful differences. WCAG 3 and supporting tools should preserve the distinction between whether a requirement was satisfied and the consequence or remediation priority of a failure.\n\n## 9. Internationalization must be part of test validity\n\nRequirements involving language need evidence that their evaluation methods work across the languages to which they are applied. For example, the supplemental provision stating that “Sentences do not include unnecessary words” raises a fundamental question about how evaluators determine what is unnecessary consistently across languages and contexts.\n\nDetermining necessity is not simply a matter of counting words or preferring shorter sentences. Grammar, segmentation, context, redundancy, and clarity behave differently across languages, and shortening text can sometimes remove information necessary for understanding. Issues [[#547](https://github.com/w3c/wcag3/issues/547)](https://github.com/w3c/wcag3/issues/547), [[#569](https://github.com/w3c/wcag3/issues/569)](https://github.com/w3c/wcag3/issues/569), and [[#742](https://github.com/w3c/wcag3/issues/742)](https://github.com/w3c/wcag3/issues/742) illustrate different aspects of this problem.\n\nWCAG 3 should identify which methods are validated for which languages, what evidence supports those methods, and what evaluators should do when no validated method exists. Unsupported language evaluation should be reported as unsupported or unresolved rather than silently approximated using English-language assumptions.\n\n## 10. Accessibility support sets need transparent governance\n\nThe default accessibility support set currently refers to technologies and settings that “support English content.” WCAG 3 does not thereby exclude other languages, but an international standard needs a clear mechanism for defining, validating, maintaining, and recognizing alternative support sets.\n\nClaimants should not be able to select an environment simply because it avoids a known interoperability problem. At the same time, authors cannot reasonably be responsible for every defect in every historical version of every browser or assistive technology. The model therefore needs a defensible way to distinguish authoring failures, platform limitations, and interoperability failures in technology combinations reasonably used by the relevant population.\n\nEnvironment versions and assumptions should remain attached to evaluation results so the meaning of historical reports remains understandable as technologies change. Specification validity and observed behavior should both contribute evidence without either automatically replacing the other.\n\nSee [[Section 3.2.1.1](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#accessibility-support-set)](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/#accessibility-support-set) and [[issue #771](https://github.com/w3c/wcag3/issues/771)](https://github.com/w3c/wcag3/issues/771).\n\n## 11. Assertions should distinguish organizational assurance from product outcomes\n\nAccessibility practices such as training, procurement controls, design systems, research, and monitoring are valuable, but evidence that a practice exists is different from evidence that it was followed, and both are different from evidence that the evaluated product is accessible. Assertions should make clear which of these conclusions they support rather than blending them into a general indication of accessibility.\n\nWCAG 3 should also avoid placing important user needs only within organizational assertions. Difficult-to-test needs still require appropriate protection at the product-outcome level. Assertions also need scope and currency because research conducted before a significant redesign may provide little assurance about the current product.\n\nReporting should therefore distinguish product accessibility outcomes, enhanced accessibility, and organizational assurance. Combining them into a single designation risks encouraging readers to infer more about the accessibility of the product than the evidence supports.\n\nSee [[issue #654](https://github.com/w3c/wcag3/issues/654)](https://github.com/w3c/wcag3/issues/654) and [[issue #473](https://github.com/w3c/wcag3/issues/473)](https://github.com/w3c/wcag3/issues/473).\n\n## 12. More granular requirements still need reproducible judgments\n\nBreaking broad requirements into smaller provisions can improve diagnosis and automation, but granularity alone does not produce objectivity. Terms such as *meaningful*, *equivalent*, *clear*, and *sufficient* still require methods capable of producing reasonably reproducible judgments, and turning a subjective scale into a binary question does not eliminate subjectivity.\n\nMethods should be tested against realistic examples and difficult boundary cases by independent evaluators. Where evaluators disagree, the cause should be examined: requirement wording, methodology, missing evidence, environment differences, or evaluator preparation. Reproducibility should be treated as an implementation requirement for the standard rather than something assumed from the structure of the requirements.\n\nGranularity also affects reporting because one underlying defect may fail several provisions, while several superficially similar findings may require different fixes. Evaluation systems therefore need to distinguish requirement failures, individual occurrences, affected user experiences, and underlying remediation causes.\n\nSee [[issue #507](https://github.com/w3c/wcag3/issues/507)](https://github.com/w3c/wcag3/issues/507) and [[issue #259](https://github.com/w3c/wcag3/issues/259)](https://github.com/w3c/wcag3/issues/259).\n\n## 13. Coverage changes need to be traceable\n\nAn unfinished Working Draft will inevitably contain gaps and unresolved issues. The important question is whether implementers can determine what changed, where a user need is now addressed, and why. Current issues concerning target size, moving content, submission status, and focus indicators illustrate the importance of this traceability.\n\nAn issue does not prove that the Working Group has accepted a criticism, and an apparent omission cannot be established from one passage alone. Nevertheless, when requirements disappear, move, split, merge, or are replaced, their relationships should be documented clearly so implementers can determine whether a user need was removed, relocated, broadened, or addressed through another mechanism.\n\nStable identifiers, synchronized supporting material, and explicit change records are especially important for organizations that must maintain rule libraries, training materials, customer reports, automated testing systems, and historical comparisons over time.\n\nSee [[#823](https://github.com/w3c/wcag3/issues/823)](https://github.com/w3c/wcag3/issues/823), [[#734](https://github.com/w3c/wcag3/issues/734)](https://github.com/w3c/wcag3/issues/734), [[#830](https://github.com/w3c/wcag3/issues/830)](https://github.com/w3c/wcag3/issues/830), and [[#809](https://github.com/w3c/wcag3/issues/809)](https://github.com/w3c/wcag3/issues/809).\n\n## 14. Reporting must preserve what each measurement actually means\n\nA single accessibility score can conceal changes in scope, applicability, evidence, and evaluation coverage. A score may improve because difficult content was excluded, or decline because a more thorough evaluation discovered previously unknown problems. Neither movement necessarily represents a corresponding change in the accessibility of the product.\n\nReporting should therefore preserve the underlying dimensions separately, including conformance results, scope, evaluation coverage, unresolved judgments, severity, enhanced outcomes, organizational assurance, and evidence currency. Summary levels may still be useful, but users must be able to understand what produced them and distinguish changes in accessibility from changes in measurement.\n\nThis is particularly important for labels below full conformance. Such labels can communicate progress, but they should not create the impression that unmet core requirements have somehow ceased to matter.\n\n## Conclusion\n\nWCAG 3 can produce a substantially better accessibility standard, but additional sophistication should result in greater clarity rather than greater ambiguity. A dependable model needs a minimum accessibility floor based on user needs rather than implementation convenience; scope rules that prevent misleading exclusions; representative evaluation without weakening obligations outside the sample; methods that produce defensible and reasonably reproducible judgments; explicit support for application states, interactions, and dependencies; appropriate separation of automation, severity, assertions, and conformance; methods validated across languages and technology environments; and reporting that makes the meaning and limitations of conclusions clear.\n\nFor consultants, this should produce findings and conclusions that can be defended. For tool vendors, it should support transparent and interoperable evaluation and reporting. For purchasers, it should make the meaning and limitations of an assessment understandable. Most importantly, for people with disabilities, a WCAG 3 conformance claim should provide a credible indication of the access they can expect.",
+      "url": "https://github.com/w3c/wcag3/issues/874",
+      "comments": []
+    },
+    "876": {
+      "number": 876,
+      "title": "Sign language: make it count in tiers and usable by policy tags",
+      "state": "open",
+      "labels": [
+        "Path: Sign language"
+      ],
+      "user": "alastc",
+      "created": "2026-09-28T10:02:25Z",
+      "updated": "2026-09-28T10:02:49Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "From James Cameron-Morris to the public-agwg-comments list:\n\n<hr>\n\nHello AG WG,\n\nI am Deaf and BSL is my first language. I also build websites for small businesses in the UK, so I look at WCAG both as someone who relies on it and as someone who implements it.\n\nThis comment is about Guideline 2.1.7 Sign language in the 10 September 2026 Working Draft, and how it fits the new conformance model described in the blog post \"Crafting WCAG 3 for more accessible user experiences\".\n\nFirst, thank you for including it. The wording \"primary sign language most appropriate for each intended audience or region\" deals well with the concern that there are several sign languages. The live-events policy assertion is also a welcome step.\n\nMy concern is that, as the model stands, sign language may count for very little in practice.\n\n1. Tiers 4 to 6 require a to-be-determined number of supplemental requirements. If organisations can choose any supplementals to reach a tier, sign language will be skipped by almost everyone, because it is the most expensive to provide. Could sign language interpretation be a named requirement at one of the higher tiers, rather than one option among many?\n\n2. Only core requirements carry the harm, risk, barrier and friction tags that policymakers can use to set rules by context. The blog post notes that some sign language users are less fluent in written text. From my own experience, even plain English and Easy Read versions are easy for a Deaf BSL user to misunderstand, because English is not our first language. Clearer English helps, but it is not a substitute for sign language.\n\nThe consequences are real: doing something wrong, or paying for something you did not need to pay for in the first place. That fits your own definition of the Risk tag, which covers increased financial and legal risk. So missing sign language on health, benefits, legal or emergency information is a risk or barrier, not friction. Please consider giving supplemental requirements, or at least 2.1.7.1, comparable tags. That would let policymakers require sign language for essential services in WCAG terms without making it universal.\n\n3. The cost argument is changing. The blog post gives cost and a shortage of signers as the main reasons not to require sign language. AI sign language translation now works at scale. For example, Signapse in the UK generates BSL and ASL video from text, and reports producing over 5,000 BSL train announcements a day on UK railways. AI does not replace qualified human interpreters, and quality varies, but cost is no longer a fixed barrier, especially for prerecorded content.\n\nThis also means WCAG needs to say what counts as meeting the requirement. The draft already has supplemental requirements for audio descriptions to be usability tested and reviewed. I would suggest an equivalent for sign language: interpretation, whether human or AI-generated, is reviewed by fluent Deaf signers, so that 2.1.7.1 cannot be met with poor-quality output.\n\n4. This matters for real policy. In the UK, the British Sign Language Act 2022 recognises BSL as a language of Great Britain, and public bodies are increasingly expected to provide information in BSL. A tagged, context-based route in WCAG 3 would give UK and other regulators something concrete to point to.\n\nWCAG 2 placed sign language at AAA (1.2.6), where it was largely overlooked. The new tier model is a chance to do better than that, rather than repeat it.\n\nThank you for your work on this.\n\nJames\nDover, UK",
+      "url": "https://github.com/w3c/wcag3/issues/876",
+      "comments": []
+    },
+    "877": {
+      "number": 877,
+      "title": "And/or in “Error messages collocated” is confusing",
+      "state": "open",
+      "labels": [
+        "P - Error messages collocated"
+      ],
+      "user": "hidde",
+      "created": "2026-09-28T15:55:40Z",
+      "updated": "2026-09-28T15:55:49Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Provision text:\n\n> Error messages are visually collocated with the error source or the focus is moved to the error message and a mechanism is available to move to the input that is in error.\n\nThe use of 'or' and 'and' is confusing as there are multiple ways to interpret it.\n\nLet's fix this.",
+      "url": "https://github.com/w3c/wcag3/issues/877",
+      "comments": []
     }
   },
-  "fetchedAt": "2026-09-21T18:26:48.928Z"
+  "fetchedAt": "2026-09-28T19:58:25.386Z"
 }
