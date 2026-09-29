@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-21T18:26:48.928Z",
+  "generatedAt": "2026-09-28T19:58:25.386Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 475,
-    "issuesWithProvisionLabel": 233,
+    "issuesTotal": 478,
+    "issuesWithProvisionLabel": 235,
     "provisionsWithDiscussion": 152,
-    "generalIssues": 242,
+    "generalIssues": 243,
     "summarized": 36,
     "awaitingSummary": 116
   },
@@ -687,11 +687,11 @@
       "guideline": "correct-errors",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "790@2026-08-02T18:15:58Z",
+      "openCount": 2,
+      "fingerprint": "790@2026-08-02T18:15:58Z,877@2026-09-28T15:55:49Z",
       "threads": [
         {
           "number": 790,
@@ -704,6 +704,16 @@
           "labels": [
             "coga"
           ]
+        },
+        {
+          "number": 877,
+          "title": "And/or in “Error messages collocated” is confusing",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/877",
+          "created": "2026-09-28",
+          "updated": "2026-09-28",
+          "comments": 0,
+          "labels": []
         }
       ]
     },
@@ -6279,18 +6289,18 @@
       "type": "recommended practice",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "450@2026-03-29T22:44:48Z",
+      "commentCount": 1,
+      "openCount": 0,
+      "fingerprint": "450@2026-09-24T14:30:09Z",
       "threads": [
         {
           "number": 450,
           "title": "Starting point position - Clarify the differences between good practice and best practice",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/450",
           "created": "2025-12-24",
-          "updated": "2026-03-29",
-          "comments": 0,
+          "updated": "2026-09-24",
+          "comments": 1,
           "labels": [
             "Conformance",
             "Path: User orientation⹁ layout and structure"
@@ -7684,11 +7694,11 @@
       "guideline": "text-appearance",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 4,
+      "threadCount": 5,
       "noRecordedDiscussion": false,
-      "commentCount": 32,
-      "openCount": 4,
-      "fingerprint": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z",
+      "commentCount": 41,
+      "openCount": 5,
+      "fingerprint": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z,744@2026-09-22T02:13:49Z",
       "threads": [
         {
           "number": 29,
@@ -7739,6 +7749,19 @@
           "comments": 5,
           "labels": [
             "Path: Single sense and contrast"
+          ]
+        },
+        {
+          "number": 744,
+          "title": "Update the definition of text",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/744",
+          "created": "2026-07-01",
+          "updated": "2026-09-22",
+          "comments": 9,
+          "labels": [
+            "Path: Text and wording",
+            "Other: Definitions & Terminology"
           ]
         }
       ],
@@ -7791,7 +7814,7 @@
         ],
         "note": "Issue #29 is a standing evidence dossier rather than a discussion: opened in October 2023, reorganised in March 2025, last touched April 2026, and carrying no comments at all. sdw32's March 2026 objection in #266 tagged nine working group members by name (rachaelbradley, alastc, iadawn, giacomo-petri, julierawe, fstrr, MakotoUeki, hidde, GreggVan) and drew no reply in the thread; the only later comment is tsmd's note that x-height does not transfer to Japanese, Chinese or Korean."
       },
-      "summaryOf": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z",
+      "summaryOf": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z,744@2026-09-22T02:13:49Z",
       "summarySource": "batch-2026-09-15.json"
     },
     "text-customizations-retained": {
