@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T02:40:25.858Z",
+  "generatedAt": "2026-10-05T21:01:46.297Z",
   "window": {
     "from": "2026-09-28",
     "to": "2026-10-05",
@@ -9,19 +9,19 @@
   "note": "Pull requests are proposals until merged into the editor’s draft; merged changes still need working-group consensus and a published Working Draft before they are official.",
   "counts": {
     "adopted": 1,
-    "proposals": 10,
-    "newProposals": 8,
+    "proposals": 12,
+    "newProposals": 9,
     "declined": 0,
-    "newIssues": 13,
+    "newIssues": 11,
     "closedIssues": 1,
     "activeThreads": 3
   },
   "topics": {
     "conformance": 2,
+    "other": 1,
     "provision": 15,
     "definitions": 8,
-    "scope": 1,
-    "other": 1
+    "scope": 1
   },
   "provisionsInFocus": [
     {
@@ -33,6 +33,11 @@
       "slug": "risk-comparable",
       "title": "Risk Comparable",
       "items": 2
+    },
+    {
+      "slug": "page-view-change-notified",
+      "title": "Page View Change Notified",
+      "items": 1
     },
     {
       "slug": "change-of-content-notified",
@@ -58,11 +63,6 @@
       "slug": "all-steps-listed",
       "title": "All Steps Listed",
       "items": 1
-    },
-    {
-      "slug": "interactive-element-names-available",
-      "title": "Interactive Element Names Available",
-      "items": 1
     }
   ],
   "adopted": [
@@ -87,12 +87,43 @@
       "url": "https://github.com/w3c/wcag3/pull/864",
       "state": "open",
       "created": "2026-09-14",
-      "updated": "2026-10-02",
+      "updated": "2026-10-05",
       "comments": 3,
       "labels": [],
       "provisions": [],
       "isNew": false,
       "topic": "conformance"
+    },
+    {
+      "number": 859,
+      "title": "Add additional sign language provisions",
+      "url": "https://github.com/w3c/wcag3/pull/859",
+      "state": "open",
+      "created": "2026-09-10",
+      "updated": "2026-10-05",
+      "comments": 2,
+      "labels": [],
+      "provisions": [],
+      "isNew": false,
+      "topic": "other"
+    },
+    {
+      "number": 898,
+      "title": "Revise provision 'Page/view change notified' to reference term 'programmatically detectable' instead of the term 'programmatic'",
+      "url": "https://github.com/w3c/wcag3/pull/898",
+      "state": "open",
+      "created": "2026-10-05",
+      "updated": "2026-10-05",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "page-view-change-notified",
+          "title": "Page View Change Notified"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
     },
     {
       "number": 896,
@@ -259,6 +290,21 @@
       "topic": "definitions"
     },
     {
+      "number": 885,
+      "title": "Definition of \"programmatically determinable\" is not fit for purpose",
+      "url": "https://github.com/w3c/wcag3/issues/885",
+      "state": "open",
+      "created": "2026-10-02",
+      "updated": "2026-10-05",
+      "comments": 1,
+      "labels": [
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [],
+      "isNew": true,
+      "topic": "definitions"
+    },
+    {
       "number": 892,
       "title": "Provision \"All steps listed\" should not include redundant programmatic availability requirements",
       "url": "https://github.com/w3c/wcag3/issues/892",
@@ -315,21 +361,6 @@
       ],
       "isNew": true,
       "topic": "provision"
-    },
-    {
-      "number": 885,
-      "title": "Definition of \"programmatically determinable\" is not fit for purpose",
-      "url": "https://github.com/w3c/wcag3/issues/885",
-      "state": "open",
-      "created": "2026-10-02",
-      "updated": "2026-10-03",
-      "comments": 1,
-      "labels": [
-        "Other: Definitions & Terminology"
-      ],
-      "provisions": [],
-      "isNew": true,
-      "topic": "definitions"
     },
     {
       "number": 884,
@@ -442,39 +473,6 @@
       ],
       "isNew": true,
       "topic": "provision"
-    },
-    {
-      "number": 877,
-      "title": "And/or in “Error messages collocated” is confusing",
-      "url": "https://github.com/w3c/wcag3/issues/877",
-      "state": "open",
-      "created": "2026-09-28",
-      "updated": "2026-09-28",
-      "comments": 0,
-      "labels": [],
-      "provisions": [
-        {
-          "slug": "error-messages-collocated",
-          "title": "Error Messages Collocated"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    },
-    {
-      "number": 876,
-      "title": "Sign language: make it count in tiers and usable by policy tags",
-      "url": "https://github.com/w3c/wcag3/issues/876",
-      "state": "open",
-      "created": "2026-09-28",
-      "updated": "2026-09-28",
-      "comments": 0,
-      "labels": [
-        "Path: Sign language"
-      ],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
     }
   ],
   "closedIssues": [
