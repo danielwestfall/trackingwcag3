@@ -73,19 +73,19 @@
   },
   {
     "id": "eliminating-alternate-versions",
-    "topic": "🚫 Phasing Out Conforming Alternate Versions (CAV)",
+    "topic": "🔀 Conforming Alternate Versions & Equivalents",
     "category": "Architecture & Compliance",
-    "debateSummary": "WCAG 2.2 permitted non-accessible web pages if a secondary accessible 'text-only' alternate version was provided.",
-    "whyItIsHeated": "The working group strongly emphasizes native, inclusive accessibility to prevent secondary experiences that often become stale or segregated. Discussions focus on how to handle legitimate media alternatives and responsive views.",
-    "currentWorkingGroupTrajectory": "Strong consensus to eliminate separate alternate URLs in favor of responsive page variations and native equivalents embedded within the primary product.",
-    "w3cStatus": "Active Discussion in #623 and #682",
+    "debateSummary": "WCAG 2.2 accepts a conforming alternate version (one that provides all the same information and functionality and is reachable accessibly) as a fallback when a page itself does not conform. The WCAG 3 draft does not yet say anything about alternate versions.",
+    "whyItIsHeated": "Members disagree on whether WCAG 2's fallback should carry over unchanged, how 'primary' and 'alternative' apply when desktop and mobile versions are both primary, whether equivalents belong in each provision or in one global exception, and whether the CAV term is too confusing for regulators.",
+    "currentWorkingGroupTrajectory": "Exploring one universal mechanism covering both conforming alternate versions and per-provision equivalents exceptions (AG meeting 17 March 2026). No proposal has been adopted into the draft.",
+    "w3cStatus": "Open: discussion #623, issue #682",
     "links": [
       {
-        "title": "W3C WCAG 3 Discussion #623: Conforming Alternate Versions in WCAG 3",
+        "title": "W3C WCAG 3 Discussion #623: Conforming alternate versions / equivalents",
         "url": "https://github.com/w3c/wcag3/discussions/623"
       },
       {
-        "title": "W3C WCAG 3 Issue #682: Page Variations Conformance Requirement",
+        "title": "W3C WCAG 3 Issue #682: We need a Page Variations conformance requirement",
         "url": "https://github.com/w3c/wcag3/issues/682"
       }
     ]

@@ -28,7 +28,7 @@ An accessible, fast, decoupled educational web application built with **Astro**,
 
 ### 4. 🔄 Removals & Architectural Shifts (`/plain-english/removals/`)
 - **Phased Out & Redesigned Concepts in WCAG 3**:
-  1. *Conforming Alternate Versions (CAV)* phased out in favor of native accessibility and responsive page variations.
+  1. *Conforming Alternate Versions (CAV)*: not in the current draft; the working group is discussing one mechanism for alternate versions and equivalents (#623).
   2. *Page-by-Page Binary Pass/Fail Conformance* replaced by defined Conformance Scope (with alternative task-scoring under review).
   3. *Strict A / AA / AAA Conformance Levels* replaced by a single core conformance threshold wrapped in six reporting tiers.
   4. *Author-Defined 'Accessibility Supported' Baselines* standardized into defined Default and Alternative Accessibility Support Sets.

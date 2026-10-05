@@ -35,6 +35,59 @@ if (fs.existsSync(removalsCatalogPath)) {
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
+
+// ---- "This week at the W3C": written by scripts/fetch-provision-discussions.mjs
+// (public/data/wcag3-recent-activity.json) plus optional hand-written notes.
+const readJson = (file: string) => {
+  const p = path.join(process.cwd(), "public", "data", file);
+  try { return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : null; } catch (e) { return null; }
+};
+const recent = readJson("wcag3-recent-activity.json");
+const weeklyNotes = readJson("wcag3-weekly-notes.json");
+const conformanceData = readJson("wcag3-conformance.json");
+const catalogTitles = new Map<string, string>();
+try {
+  for (const p of JSON.parse(fs.readFileSync(wcag3CatalogPath, "utf8"))) catalogTitles.set(p.slug, p.title);
+} catch (e) {}
+
+const fmtDate = (iso: string, withYear = false) =>
+  new Date(iso.length === 10 ? iso + "T12:00:00Z" : iso).toLocaleDateString("en-US", {
+    month: "short", day: "numeric", ...(withYear ? { year: "numeric" } : {}), timeZone: "UTC",
+  });
+const windowLabel = recent ? `${fmtDate(recent.window.from)} – ${fmtDate(recent.window.to, true)}` : "";
+const weekNote = recent && weeklyNotes?.notes
+  ? weeklyNotes.notes.find((n: any) => n.date >= recent.window.from && n.date <= recent.window.to) ?? null
+  : null;
+const syncedOn = recent ? fmtDate(recent.generatedAt, true) : null;
+const draftCommit = conformanceData?.draftState?.baselineCommit ?? null;
+const draftDate = conformanceData?.draftState?.baselineDate ?? null;
+
+const TOPIC_LABELS: Record<string, string> = {
+  conformance: "Conformance", scope: "Scope", definitions: "Definitions",
+  provision: "Provision", explainer: "Explainer", other: "General",
+};
+const PER_LIST = 6;
+const ghLink = (n: number) => `${recent?.repo ?? "https://github.com/w3c/wcag3"}/issues/${n}`;
+const activityLists = recent
+  ? [
+      {
+        id: "adopted", title: "Merged into the editor's draft", items: recent.adopted,
+        empty: "Nothing merged this week.", more: `${recent.repo}/pulls?q=is%3Apr+is%3Amerged`,
+        hint: "Changes the editors accepted. Still a draft until W3C publishes a new Working Draft.",
+      },
+      {
+        id: "proposals", title: "Open proposals", items: recent.proposals,
+        empty: "No open pull requests moved this week.", more: `${recent.repo}/pulls`,
+        hint: "Pull requests proposing new wording. Nothing here is in the draft yet.",
+      },
+      {
+        id: "new-issues", title: "New issues raised", items: recent.newIssues,
+        empty: "No new issues this week.", more: `${recent.repo}/issues?q=is%3Aissue+sort%3Acreated-desc`,
+        hint: "Problems and questions filed against the draft.",
+      },
+    ]
+  : [];
+const alsoMoved = recent ? [...recent.closedIssues.map((i: any) => ({ ...i, why: "closed" })), ...recent.active.slice(0, 4).map((i: any) => ({ ...i, why: "active" }))] : [];
 ---
 
 <PlainEnglishLayout title="Welcome to the WCAG 3 & 2.2 Plain English Reference Hub" activeTab="home">
@@ -67,13 +120,113 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       </form>
       <div class="search-hints">
         <span>Popular:</span>
-        <a href={link("/plain-english/provision/focus-visible-enhanced/")}>Focus Visible</a>
+        <a href={link("/plain-english/provision/focus-indicator-contrast-sufficient/")}>Focus Indicator Contrast</a>
         <a href={link("/plain-english/wcag22/1-4-3/")}>Contrast Minimum</a>
-        <a href={link("/plain-english/provision/text-alternatives/")}>Text Alternatives</a>
+        <a href={link("/plain-english/provision/image-alternatives-available/")}>Image Alternatives</a>
         <a href={link("/plain-english/removals/")}>Conforming Alternate Versions</a>
       </div>
     </div>
   </section>
+
+
+  <!-- This week at the W3C (data: wcag3-recent-activity.json, wcag3-weekly-notes.json) -->
+  {recent && (
+    <section class="weekly-news" aria-labelledby="weekly-news-heading">
+      <div class="weekly-news-header">
+        <div>
+          <p class="weekly-kicker">W3C activity · {windowLabel}</p>
+          <h2 id="weekly-news-heading">This week at the W3C</h2>
+        </div>
+        <p class="weekly-sync">
+          Checked {syncedOn}
+          {draftCommit && <>{" · "}draft at <a href={`https://github.com/w3c/wcag3/commit/${draftCommit}`}><code>{draftCommit}</code></a>{draftDate && ` (${fmtDate(draftDate)})`}</>}
+        </p>
+      </div>
+
+      {weekNote && (
+        <div class="weekly-note">
+          <h3>{weekNote.headline}</h3>
+          <ul>
+            {weekNote.points.map((pt: any) => (
+              <li>
+                {pt.text}{" "}
+                {pt.refs?.length > 0 && (
+                  <span class="weekly-refs">
+                    ({pt.refs.map((n: number, idx: number) => (
+                      <>{idx > 0 && ", "}<a href={ghLink(n)}>#{n}</a></>
+                    ))})
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <ul class="weekly-counts" aria-label="This week in numbers">
+        <li><strong>{recent.counts.adopted}</strong> merged</li>
+        <li><strong>{recent.counts.proposals}</strong> open proposals{recent.counts.newProposals > 0 && <> ({recent.counts.newProposals} new)</>}</li>
+        <li><strong>{recent.counts.newIssues}</strong> new issues</li>
+        <li><strong>{recent.counts.closedIssues}</strong> closed</li>
+      </ul>
+
+      <div class="weekly-grid">
+        {activityLists.map((list: any) => (
+          <div class="weekly-col" id={`weekly-${list.id}`}>
+            <h3>{list.title} <span class="weekly-col-count">({list.items.length})</span></h3>
+            <p class="weekly-hint">{list.hint}</p>
+            {list.items.length === 0 ? (
+              <p class="weekly-empty">{list.empty}</p>
+            ) : (
+              <ul class="weekly-items">
+                {list.items.slice(0, PER_LIST).map((it: any) => (
+                  <li class="weekly-item">
+                    <a class="weekly-item-title" href={it.url}>
+                      <span class="weekly-num">#{it.number}</span> {it.title}
+                    </a>
+                    <div class="weekly-meta">
+                      <span class={`weekly-topic topic-${it.topic}`}>{TOPIC_LABELS[it.topic] ?? it.topic}</span>
+                      {it.provisions.slice(0, 2).map((p: any) => (
+                        catalogTitles.has(p.slug)
+                          ? <a class="weekly-prov" href={link(`/plain-english/provision/${p.slug}/`)}>{catalogTitles.get(p.slug)}</a>
+                          : <span class="weekly-prov">{p.title}</span>
+                      ))}
+                      {it.provisions.length > 2 && <span class="weekly-prov-more">+{it.provisions.length - 2} more</span>}
+                      {it.comments > 0 && <span class="weekly-comments">{it.comments} {it.comments === 1 ? "comment" : "comments"}</span>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {list.items.length > PER_LIST && (
+              <p class="weekly-more"><a href={list.more}>{list.items.length - PER_LIST} more on GitHub</a></p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {alsoMoved.length > 0 && (
+        <div class="weekly-also">
+          <h3>Also moved</h3>
+          <ul>
+            {alsoMoved.map((it: any) => (
+              <li>
+                <a href={it.url}>#{it.number} {it.title}</a>{" "}
+                <span class="weekly-also-why">
+                  {it.why === "closed" ? `closed ${fmtDate(it.closedAt)}` : `${it.weekComments} new ${it.weekComments === 1 ? "comment" : "comments"}`}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <p class="weekly-footnote">
+        {recent.note} Pulled automatically from <a href={recent.repo}>w3c/wcag3</a> every Monday.
+        See the <a href={link("/plain-english/discussions/")}>discussions tracker</a> for every provision's threads.
+      </p>
+    </section>
+  )}
 
   <!-- 4 Flagship Portal Cards -->
   <section class="feature-portals-section">
@@ -159,10 +312,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="portal-tag tag-shift">2.2 vs 3 Evolution</span>
         </div>
         <h3>Removals & Architectural Shifts</h3>
-        <p>In-depth analysis of concepts allowed in WCAG 2.2 that are phased out or omitted in WCAG 3 (such as Conforming Alternate Versions) with direct W3C debate links.</p>
+        <p>How WCAG 2.2 concepts such as page-by-page pass/fail, A/AA/AAA levels and conforming alternate versions are being replaced, redesigned or left open in WCAG 3, with direct W3C debate links.</p>
         <div class="portal-metrics">
           <span class="metric-pill"><strong>{removalsCount}</strong> Major Shifts</span>
-          <span class="metric-pill">No Alternate Versions</span>
+          <span class="metric-pill">Conformance Model</span>
           <span class="metric-pill">GitHub Debate Links</span>
         </div>
         <span class="portal-cta">Inspect Architectural Shifts &rarr;</span>
@@ -280,13 +433,159 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </div>
     <div class="metric-divider" aria-hidden="true"></div>
     <div class="metric-item">
-      <span class="metric-number highlight-sync">Up-to-Date</span>
-      <span class="metric-label">Decoupled W3C Sync</span>
+      <span class="metric-number highlight-sync">{syncedOn ?? "Weekly"}</span>
+      <span class="metric-label">Last W3C Sync</span>
     </div>
   </section>
 </PlainEnglishLayout>
 
 <style>
+
+  /* This week at the W3C */
+  .weekly-news {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+    padding: 28px 28px 24px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+  }
+  .weekly-news-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 8px 24px;
+    margin-bottom: 18px;
+  }
+  .weekly-kicker {
+    margin: 0 0 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-accent);
+  }
+  .weekly-news h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-pure);
+  }
+  .weekly-sync {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .weekly-news a { color: var(--text-accent); text-decoration: underline; text-underline-offset: 2px; }
+  .weekly-news a:hover { text-decoration-thickness: 2px; }
+  .weekly-news code { font-family: var(--font-mono); font-size: 0.85em; }
+  .weekly-note {
+    border-left: 4px solid var(--accent-blue);
+    background: var(--surface-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 18px;
+  }
+  .weekly-note h3 {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+    color: var(--text-pure);
+  }
+  .weekly-note ul { margin: 0; padding-left: 1.2em; }
+  .weekly-note li {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .weekly-refs { white-space: normal; color: var(--text-muted); }
+  .weekly-counts {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+  .weekly-counts li {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    padding: 4px 14px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  .weekly-counts strong { color: var(--text-pure); }
+  .weekly-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 20px;
+  }
+  .weekly-col {
+    min-width: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    background: var(--surface-base);
+  }
+  .weekly-col h3 {
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+    color: var(--text-pure);
+  }
+  .weekly-col-count { color: var(--text-muted); font-weight: 400; }
+  .weekly-hint, .weekly-empty {
+    margin: 0 0 12px;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .weekly-items { list-style: none; margin: 0; padding: 0; }
+  .weekly-item {
+    padding: 10px 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .weekly-item-title {
+    display: block;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .weekly-num { font-family: var(--font-mono); font-size: 0.9em; }
+  .weekly-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .weekly-topic, .weekly-prov, .weekly-prov-more {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    padding: 1px 8px;
+    color: var(--text-secondary);
+  }
+  .weekly-news a.weekly-prov { color: var(--text-accent); text-decoration: none; }
+  .weekly-news a.weekly-prov:hover { text-decoration: underline; }
+  .weekly-topic.topic-conformance { border-color: var(--tier-gold); }
+  .weekly-topic.topic-scope { border-color: var(--accent-purple); }
+  .weekly-topic.topic-definitions { border-color: var(--accent-blue); }
+  .weekly-comments { padding: 1px 0; }
+  .weekly-more { margin: 10px 0 0; font-size: 0.88rem; }
+  .weekly-also { margin-top: 20px; }
+  .weekly-also h3 { margin: 0 0 8px; font-size: 1rem; color: var(--text-pure); }
+  .weekly-also ul { margin: 0; padding-left: 1.2em; }
+  .weekly-also li { color: var(--text-secondary); line-height: 1.6; overflow-wrap: anywhere; }
+  .weekly-also-why { color: var(--text-muted); font-size: 0.88rem; }
+  .weekly-footnote {
+    margin: 20px 0 0;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  @media (max-width: 768px) {
+    .weekly-news { margin: 0 0 48px; padding: 20px 14px; }
+    .weekly-note { padding: 12px 12px 12px 14px; }
+    .weekly-col { padding: 14px 12px; }
+  }
   /* Portal Hero */
   .portal-hero {
     text-align: center;

@@ -1,0 +1,31 @@
+{
+  "_readme": "Hand-written editorial notes for the home page's 'This week at the W3C' section. Newest first. The page shows the newest note whose date falls inside the current activity window (public/data/wcag3-recent-activity.json), so a note disappears on its own once the window moves past it. Keep each point checkable against a linked issue or pull request.",
+  "notes": [
+    {
+      "date": "2026-10-04",
+      "headline": "The draft text barely moved; the issue tracker did.",
+      "points": [
+        {
+          "text": "A coordinated cleanup of the word “programmatically”: about a dozen issues and pull requests propose moving provisions such as Change of content notified, Preselections visible, Relationships detectable and Errors associated onto formally defined terms (“programmatically determinable”, “programmatically detectable”).",
+          "refs": [885, 886, 888, 891, 895, 896, 897]
+        },
+        {
+          "text": "A proposed new scoping statement would describe WCAG 3 as covering “user facing digital content”, name AI-generated content explicitly, and say 3.0 focuses on web content and is not yet complete for software and documents.",
+          "refs": [880]
+        },
+        {
+          "text": "The definition of decorative images drew 34 comments in its first week, alongside a new issue arguing decorative images should not have to be “programmatically hidden”.",
+          "refs": [878, 884]
+        },
+        {
+          "text": "Two conformance proposals are open: removing the dependency on conformance claims, and rewriting the Explainer's conformance section.",
+          "refs": [861, 864]
+        },
+        {
+          "text": "The only change merged into the editor's draft was editorial: the Explainer's glossary definitions were tidied. No provision or conformance text changed.",
+          "refs": [872]
+        }
+      ]
+    }
+  ]
+}

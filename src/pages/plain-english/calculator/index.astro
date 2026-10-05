@@ -100,9 +100,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     <div class="notice-text">
       <strong>Specification Context &bull; Silver Prototype vs Normative Draft:</strong>
       <p>
-        This interactive audit tool models the <em>Silver Task Force's points-based scoring prototype</em>
-        (Bronze 70%, Silver 80%, Gold 90%). In contrast, the current normative W3C Editors' Draft
-        defines a single baseline conformance threshold evaluated across 6 reporting tiers rather than percentage scoring.
+        This interactive tool is inspired by the <em>Silver Task Force's points-based scoring prototype</em>,
+        which did not set numeric thresholds (it said the point system still needed "considerable work").
+        The percentages used here (Bronze 70%, Silver 80%, Gold 90%; 60/75/85% per category) are
+        <strong>this site's illustrative assumptions, not W3C figures</strong>. In the current W3C draft,
+        conformance means meeting all core requirements, and Bronze, Silver and Gold are reporting tiers
+        4&ndash;6 that sit <em>above</em> conformance. A competing scoring-then-awards proposal is open for comment.
         Both models are maintained here for comparative exploration, developer education, and gap analysis.
       </p>
       <div class="notice-links">
@@ -147,7 +150,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <div class="milestone-item milestone-bronze" id="milestone-bronze">
               <div class="milestone-icon">🥉</div>
               <div class="milestone-text">
-                <strong>Bronze Target (70%)</strong>
+                <strong>Bronze (illustrative 70%)</strong>
                 <span>0 Blockers + 60% per category</span>
               </div>
               <span class="milestone-status" id="status-bronze-check">❌ Not Met</span>
@@ -156,7 +159,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <div class="milestone-item milestone-silver" id="milestone-silver">
               <div class="milestone-icon">🥈</div>
               <div class="milestone-text">
-                <strong>Silver Target (80%)</strong>
+                <strong>Silver (illustrative 80%)</strong>
                 <span>Bronze Met + 75% per category</span>
               </div>
               <span class="milestone-status" id="status-silver-check">❌ Not Met</span>
@@ -165,7 +168,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <div class="milestone-item milestone-gold" id="milestone-gold">
               <div class="milestone-icon">🥇</div>
               <div class="milestone-text">
-                <strong>Gold Target (90%)</strong>
+                <strong>Gold (illustrative 90%)</strong>
                 <span>Silver Met + 85% per category + 50% Supp.</span>
               </div>
               <span class="milestone-status" id="status-gold-check">❌ Not Met</span>
@@ -492,16 +495,16 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         // Tier Badge Status
         if (tierBadgeEl) {
           if (meetsGold) {
-            tierBadgeEl.textContent = '🥇 Gold Conforming';
+            tierBadgeEl.textContent = '🥇 Gold threshold met (illustrative)';
             tierBadgeEl.className = 'tier-pill tier-gold';
           } else if (meetsSilver) {
-            tierBadgeEl.textContent = '🥈 Silver Conforming';
+            tierBadgeEl.textContent = '🥈 Silver threshold met (illustrative)';
             tierBadgeEl.className = 'tier-pill tier-silver';
           } else if (meetsBronze) {
-            tierBadgeEl.textContent = '🥉 Bronze Conforming';
+            tierBadgeEl.textContent = '🥉 Bronze threshold met (illustrative)';
             tierBadgeEl.className = 'tier-pill tier-bronze';
           } else {
-            tierBadgeEl.textContent = '❌ Uncertified (Non-Conforming)';
+            tierBadgeEl.textContent = '❌ Below illustrative Bronze threshold';
             tierBadgeEl.className = 'tier-pill tier-uncertified';
           }
         }

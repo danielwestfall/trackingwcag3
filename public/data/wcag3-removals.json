@@ -1,22 +1,26 @@
 [
   {
     "id": "conforming-alternate-versions",
-    "title": "Conforming Alternate Versions & Page Variations",
-    "wcag22Concept": "WCAG 2.2 Conformance Requirement 5.2.2 permitted non-accessible web pages if an accessible 'Conforming Alternate Version' (a secondary accessible page with identical information and functionality) was provided.",
-    "wcag3Status": "Phased Out / Under Active Redesign",
-    "plainEnglishSummary": "In WCAG 2.2, developers could achieve conformance under Requirement 5.2.2 by providing a qualifying alternate version of a non-accessible page. WCAG 3 proposals eliminate secondary fallback pages, requiring the primary digital product itself to be natively accessible across user variations.",
-    "workingGroupDebate": "W3C AGWG members broadly agree that alternate versions lead to stale, poorly maintained secondary experiences that stigmatize disabled users. Current W3C discussions focus on page variations (e.g. responsive breakpoints) rather than allowing separate fallback pages.",
+    "title": "Conforming Alternate Versions & Equivalents",
+    "wcag22Concept": "WCAG 2.2 Conformance Requirement 5.2.1 lets a non-conforming page count toward conformance if a 'conforming alternate version' exists: a version that meets the requirements, provides all the same information and functionality, is as up to date, and can be reached from the non-conforming page in an accessible way. W3C describes it as a fallback, not a goal.",
+    "wcag3Status": "Not in the current draft · undecided",
+    "plainEnglishSummary": "The current WCAG 3 draft does not mention conforming alternate versions at all, so it neither keeps nor removes them. The working group is discussing how to bring alternate versions and the 'equivalents' exceptions scattered across individual provisions together into one mechanism. Until that lands, treat alternate versions as an open question, not as something WCAG 3 has dropped.",
+    "workingGroupDebate": "Discussion #623 (opened 23 March 2026) asks which requirements use an equivalents exception and how a single, global exception or conforming alternate version would work. Views differ: some members want WCAG 2's approach kept as a last-resort fallback; others note that desktop and mobile versions can both be 'primary', that it is content rather than requirements that has equivalents, and that regulators find the CAV term confusing. Issue #682 separately asks for a requirement that every variation of a page (e.g. responsive breakpoints) must conform.",
     "debateLinks": [
       {
-        "title": "W3C WCAG 3 GitHub Discussion #623: Conforming Alternate Versions in WCAG 3",
+        "title": "W3C WCAG 3 Discussion #623: Conforming alternate versions / equivalents",
         "url": "https://github.com/w3c/wcag3/discussions/623"
+      },
+      {
+        "title": "W3C WCAG 3 Issue #682: We need a Page Variations conformance requirement",
+        "url": "https://github.com/w3c/wcag3/issues/682"
       }
     ],
     "personaImpact": {
-      "designer": "Design primary UI components to be natively accessible. Do not rely on 'text-only' toggles.",
-      "developer": "Build a single, inclusive codebase. Avoid routing screen reader users to a separate accessible domain.",
-      "qa": "Audit the main user flow. Alternate version pages no longer grant conformance.",
-      "productManager": "Budget for primary product accessibility rather than secondary fallback maintenance."
+      "designer": "Design the main experience to be accessible. If an alternative view exists, make sure it is reachable accessibly and kept in step with the original.",
+      "developer": "Don't plan on an alternate accessible version being an accepted route under WCAG 3 yet, and don't assume it has been banned either. Each responsive variation may need to meet requirements on its own (#682).",
+      "qa": "Under WCAG 2.2, check that any alternate version is complete, current and reachable. For WCAG 3, record which variations you tested; the rules are not settled.",
+      "productManager": "Budget for accessibility in the primary product. Treat alternate versions as a WCAG 2 fallback whose WCAG 3 status is still undecided."
     },
     "supportingLinks": [
       {

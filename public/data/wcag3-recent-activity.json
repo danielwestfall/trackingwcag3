@@ -1,0 +1,590 @@
+{
+  "generatedAt": "2026-10-05T02:40:25.858Z",
+  "window": {
+    "from": "2026-09-28",
+    "to": "2026-10-05",
+    "days": 7
+  },
+  "repo": "https://github.com/w3c/wcag3",
+  "note": "Pull requests are proposals until merged into the editor’s draft; merged changes still need working-group consensus and a published Working Draft before they are official.",
+  "counts": {
+    "adopted": 1,
+    "proposals": 10,
+    "newProposals": 8,
+    "declined": 0,
+    "newIssues": 13,
+    "closedIssues": 1,
+    "activeThreads": 3
+  },
+  "topics": {
+    "conformance": 2,
+    "provision": 15,
+    "definitions": 8,
+    "scope": 1,
+    "other": 1
+  },
+  "provisionsInFocus": [
+    {
+      "slug": "decorative-images-hidden",
+      "title": "Decorative Images Hidden",
+      "items": 2
+    },
+    {
+      "slug": "risk-comparable",
+      "title": "Risk Comparable",
+      "items": 2
+    },
+    {
+      "slug": "change-of-content-notified",
+      "title": "Change Of Content Notified",
+      "items": 1
+    },
+    {
+      "slug": "preselections-visible",
+      "title": "Preselections Visible",
+      "items": 1
+    },
+    {
+      "slug": "relationships-detectable",
+      "title": "Relationships Detectable",
+      "items": 1
+    },
+    {
+      "slug": "errors-associated",
+      "title": "Errors Associated",
+      "items": 1
+    },
+    {
+      "slug": "all-steps-listed",
+      "title": "All Steps Listed",
+      "items": 1
+    },
+    {
+      "slug": "interactive-element-names-available",
+      "title": "Interactive Element Names Available",
+      "items": 1
+    }
+  ],
+  "adopted": [
+    {
+      "number": 872,
+      "title": "Tidy up explainer definitions",
+      "url": "https://github.com/w3c/wcag3/pull/872",
+      "state": "closed",
+      "created": "2026-09-18",
+      "updated": "2026-10-02",
+      "comments": 1,
+      "labels": [],
+      "provisions": [],
+      "mergedAt": "2026-10-02",
+      "topic": "definitions"
+    }
+  ],
+  "proposals": [
+    {
+      "number": 864,
+      "title": "Update conformance section in Explainer",
+      "url": "https://github.com/w3c/wcag3/pull/864",
+      "state": "open",
+      "created": "2026-09-14",
+      "updated": "2026-10-02",
+      "comments": 3,
+      "labels": [],
+      "provisions": [],
+      "isNew": false,
+      "topic": "conformance"
+    },
+    {
+      "number": 896,
+      "title": "Revise provision \"Change of content notified\" to reference term \"programmatically detectable\" instead of the term \"programmatically\"",
+      "url": "https://github.com/w3c/wcag3/pull/896",
+      "state": "open",
+      "created": "2026-10-05",
+      "updated": "2026-10-05",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "change-of-content-notified",
+          "title": "Change Of Content Notified"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 895,
+      "title": "Revise provision \"Preselections visible\" to reference term \"programmatically available\" instead of the term \"programmaticallly\"",
+      "url": "https://github.com/w3c/wcag3/pull/895",
+      "state": "open",
+      "created": "2026-10-04",
+      "updated": "2026-10-04",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "preselections-visible",
+          "title": "Preselections Visible"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 893,
+      "title": "Revise provision 'current step indicated' to reference 'programmatically indicated' instead of 'programmatically'",
+      "url": "https://github.com/w3c/wcag3/pull/893",
+      "state": "open",
+      "created": "2026-10-04",
+      "updated": "2026-10-04",
+      "comments": 1,
+      "labels": [],
+      "provisions": [],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 891,
+      "title": "Revise glossary reference in relationships-detectable to use the term \"programmatically detectable\"",
+      "url": "https://github.com/w3c/wcag3/pull/891",
+      "state": "open",
+      "created": "2026-10-03",
+      "updated": "2026-10-03",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "relationships-detectable",
+          "title": "Relationships Detectable"
+        }
+      ],
+      "isNew": true,
+      "topic": "definitions"
+    },
+    {
+      "number": 888,
+      "title": "Revise provision \"errors associated\" to use programmatically determinable instead of programmatically associated",
+      "url": "https://github.com/w3c/wcag3/pull/888",
+      "state": "open",
+      "created": "2026-10-03",
+      "updated": "2026-10-03",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "errors-associated",
+          "title": "Errors Associated"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 887,
+      "title": "Revise definition of \"text alternative\" to remove dependence  on undefined term \"programmatically associated\"",
+      "url": "https://github.com/w3c/wcag3/pull/887",
+      "state": "open",
+      "created": "2026-10-02",
+      "updated": "2026-10-03",
+      "comments": 1,
+      "labels": [
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [],
+      "isNew": true,
+      "topic": "definitions"
+    },
+    {
+      "number": 886,
+      "title": "Revise definition and synonym list for term \"programmatically determinable\"",
+      "url": "https://github.com/w3c/wcag3/pull/886",
+      "state": "open",
+      "created": "2026-10-02",
+      "updated": "2026-10-03",
+      "comments": 1,
+      "labels": [
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [],
+      "isNew": true,
+      "topic": "definitions"
+    },
+    {
+      "number": 880,
+      "title": "Scoping statement update",
+      "url": "https://github.com/w3c/wcag3/pull/880",
+      "state": "open",
+      "created": "2026-09-30",
+      "updated": "2026-10-02",
+      "comments": 1,
+      "labels": [
+        "Other: Introduction"
+      ],
+      "provisions": [],
+      "isNew": true,
+      "topic": "scope"
+    },
+    {
+      "number": 861,
+      "title": "Remove dependency on conformance claims from content conformance requirements",
+      "url": "https://github.com/w3c/wcag3/pull/861",
+      "state": "open",
+      "created": "2026-09-11",
+      "updated": "2026-10-02",
+      "comments": 1,
+      "labels": [],
+      "provisions": [],
+      "isNew": false,
+      "topic": "conformance"
+    }
+  ],
+  "declined": [],
+  "newIssues": [
+    {
+      "number": 878,
+      "title": "Definition of decorative images update",
+      "url": "https://github.com/w3c/wcag3/issues/878",
+      "state": "open",
+      "created": "2026-09-29",
+      "updated": "2026-10-03",
+      "comments": 34,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "decorative-images-hidden",
+          "title": "Decorative Images Hidden"
+        }
+      ],
+      "isNew": true,
+      "topic": "definitions"
+    },
+    {
+      "number": 892,
+      "title": "Provision \"All steps listed\" should not include redundant programmatic availability requirements",
+      "url": "https://github.com/w3c/wcag3/issues/892",
+      "state": "open",
+      "created": "2026-10-04",
+      "updated": "2026-10-04",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "all-steps-listed",
+          "title": "All Steps Listed"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 890,
+      "title": "Separate visual label and programmatic name requirements for interactive elements",
+      "url": "https://github.com/w3c/wcag3/issues/890",
+      "state": "open",
+      "created": "2026-10-03",
+      "updated": "2026-10-03",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "interactive-element-names-available",
+          "title": "Interactive Element Names Available"
+        },
+        {
+          "slug": "roles-values-states-properties-available",
+          "title": "Roles Values States Properties Available"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 889,
+      "title": "Provision \"Changes to elements notified\" should not reference the term \"programmatically\" and should not include \"visually indicate\"",
+      "url": "https://github.com/w3c/wcag3/issues/889",
+      "state": "open",
+      "created": "2026-10-03",
+      "updated": "2026-10-03",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "changes-to-elements-notified",
+          "title": "Changes To Elements Notified"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 885,
+      "title": "Definition of \"programmatically determinable\" is not fit for purpose",
+      "url": "https://github.com/w3c/wcag3/issues/885",
+      "state": "open",
+      "created": "2026-10-02",
+      "updated": "2026-10-03",
+      "comments": 1,
+      "labels": [
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [],
+      "isNew": true,
+      "topic": "definitions"
+    },
+    {
+      "number": 884,
+      "title": "Decorative images should NOT be \"programmatically hidden\"",
+      "url": "https://github.com/w3c/wcag3/issues/884",
+      "state": "open",
+      "created": "2026-10-02",
+      "updated": "2026-10-03",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "decorative-images-hidden",
+          "title": "Decorative Images Hidden"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 879,
+      "title": "It is unclear why Hover content persistent has been broken into a separate requirement",
+      "url": "https://github.com/w3c/wcag3/issues/879",
+      "state": "open",
+      "created": "2026-09-29",
+      "updated": "2026-09-29",
+      "comments": 1,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "hover-content-persistent",
+          "title": "Hover Content Persistent"
+        },
+        {
+          "slug": "hover-or-focus-content-persistent",
+          "title": "Hover Or Focus Content Persistent"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 897,
+      "title": "The intent of using term \"programmatically\" in provision \"Change of focus notified\" is not clear",
+      "url": "https://github.com/w3c/wcag3/issues/897",
+      "state": "open",
+      "created": "2026-10-05",
+      "updated": "2026-10-05",
+      "comments": 0,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "change-of-focus-notified",
+          "title": "Change Of Focus Notified"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 894,
+      "title": "Provision \"Return to start prominent\" includes unclear use of the term \"programmatically\"",
+      "url": "https://github.com/w3c/wcag3/issues/894",
+      "state": "open",
+      "created": "2026-10-04",
+      "updated": "2026-10-04",
+      "comments": 0,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "return-to-start-prominent",
+          "title": "Return To Start Prominent"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 883,
+      "title": "In provision \"risk comparable\", change \"programmatically hidden\" to \"programmatically indicated as masked\"",
+      "url": "https://github.com/w3c/wcag3/issues/883",
+      "state": "open",
+      "created": "2026-10-02",
+      "updated": "2026-10-03",
+      "comments": 0,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "risk-comparable",
+          "title": "Risk Comparable"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 882,
+      "title": "Requiring sensitive information to be hidden by default is not within WCAG scope and is not desirable",
+      "url": "https://github.com/w3c/wcag3/issues/882",
+      "state": "open",
+      "created": "2026-10-02",
+      "updated": "2026-10-02",
+      "comments": 0,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "risk-comparable",
+          "title": "Risk Comparable"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 877,
+      "title": "And/or in “Error messages collocated” is confusing",
+      "url": "https://github.com/w3c/wcag3/issues/877",
+      "state": "open",
+      "created": "2026-09-28",
+      "updated": "2026-09-28",
+      "comments": 0,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "error-messages-collocated",
+          "title": "Error Messages Collocated"
+        }
+      ],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 876,
+      "title": "Sign language: make it count in tiers and usable by policy tags",
+      "url": "https://github.com/w3c/wcag3/issues/876",
+      "state": "open",
+      "created": "2026-09-28",
+      "updated": "2026-09-28",
+      "comments": 0,
+      "labels": [
+        "Path: Sign language"
+      ],
+      "provisions": [],
+      "isNew": true,
+      "topic": "other"
+    }
+  ],
+  "closedIssues": [
+    {
+      "number": 643,
+      "title": "single pointer and simple pointer are too confusable",
+      "url": "https://github.com/w3c/wcag3/issues/643",
+      "state": "closed",
+      "created": "2026-04-08",
+      "updated": "2026-10-04",
+      "comments": 7,
+      "labels": [
+        "Path: Input and focus⹁ interactive components",
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [
+        {
+          "slug": "simple-pointer-input-available",
+          "title": "Simple Pointer Input Available"
+        }
+      ],
+      "closedAt": "2026-10-04",
+      "topic": "definitions"
+    }
+  ],
+  "active": [
+    {
+      "number": 572,
+      "title": "Biometrics overlap",
+      "url": "https://github.com/w3c/wcag3/issues/572",
+      "state": "open",
+      "created": "2026-02-16",
+      "updated": "2026-09-29",
+      "comments": 2,
+      "labels": [
+        "Path: Input and focus⹁ interactive components"
+      ],
+      "provisions": [
+        {
+          "slug": "biometrics-not-relied-on",
+          "title": "Biometrics Not Relied On"
+        },
+        {
+          "slug": "multiple-biometrics-available",
+          "title": "Multiple Biometrics Available"
+        },
+        {
+          "slug": "voice-identification-not-relied-on",
+          "title": "Voice Identification Not Relied On"
+        }
+      ],
+      "weekComments": 2,
+      "topic": "provision"
+    },
+    {
+      "number": 535,
+      "title": "Media Alternative - What is a meaningful sound?",
+      "url": "https://github.com/w3c/wcag3/issues/535",
+      "state": "open",
+      "created": "2026-01-15",
+      "updated": "2026-10-03",
+      "comments": 6,
+      "labels": [
+        "Path: Image and media alternatives",
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [
+        {
+          "slug": "audio-descriptions-available-prerecorded",
+          "title": "Audio Descriptions Available Prerecorded"
+        },
+        {
+          "slug": "descriptive-transcripts-available",
+          "title": "Descriptive Transcripts Available"
+        }
+      ],
+      "weekComments": 1,
+      "topic": "definitions"
+    },
+    {
+      "number": 611,
+      "title": "2.1.2 Media Alternatives - Test case (and definitions)",
+      "url": "https://github.com/w3c/wcag3/issues/611",
+      "state": "open",
+      "created": "2026-03-05",
+      "updated": "2026-10-03",
+      "comments": 2,
+      "labels": [
+        "Path: Image and media alternatives"
+      ],
+      "provisions": [
+        {
+          "slug": "transcripts-equivalent-prerecorded",
+          "title": "Transcripts Equivalent Prerecorded"
+        },
+        {
+          "slug": "audio-descriptions-equivalent-prerecorded",
+          "title": "Audio Descriptions Equivalent Prerecorded"
+        },
+        {
+          "slug": "image-alternatives-equivalent",
+          "title": "Image Alternatives Equivalent"
+        },
+        {
+          "slug": "captions-equivalent-prerecorded",
+          "title": "Captions Equivalent Prerecorded"
+        }
+      ],
+      "weekComments": 1,
+      "topic": "definitions"
+    }
+  ]
+}

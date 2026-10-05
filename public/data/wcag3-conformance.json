@@ -1,8 +1,8 @@
 {
   "draftState": {
-    "baselineCommit": "091d074",
-    "baselineDate": "2026-09-17",
-    "generatedAt": "2026-09-28",
+    "baselineCommit": "18c12bf",
+    "baselineDate": "2026-10-02",
+    "generatedAt": "2026-10-05",
     "provisionCount": 245,
     "byType": {
       "foundational": 114,
@@ -68,6 +68,10 @@
     {
       "label": "Physical harm",
       "definition": "Not meeting the requirement can cause someone with a disability immediate physical harm."
+    },
+    {
+      "label": "Risk",
+      "definition": "Not meeting the requirement unreasonably increases financial, medical, legal, privacy, or security risk for someone with a disability."
     },
     {
       "label": "Barrier",

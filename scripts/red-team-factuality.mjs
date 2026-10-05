@@ -322,9 +322,9 @@ class RedTeamFactualityAudit {
     this.check('Zero speculative percentage likelihoods in removals dataset', specHits === 0);
 
     this.addSource(
-      'Conforming Alternate Versions removal & page variations debate',
+      'Conforming alternate versions / equivalents discussion',
       'https://github.com/w3c/wcag3/discussions/623',
-      'W3C AGWG discussion on phasing out CAV in favor of inclusive native accessibility.'
+      'W3C AGWG discussion (March 2026) on how to bring conforming alternate versions and equivalents exceptions into WCAG 3 as one mechanism; not yet in the draft.'
     );
     this.addSource(
       'WCAG 3 Conformance Architecture & Non-Binary Assessment',

@@ -13,6 +13,9 @@
  * Writes:
  *   tracking/discussions-raw.json          full issue + comment bodies (cache)
  *   public/data/wcag3-discussions.json     grouped by provision, for the site
+ *   public/data/wcag3-recent-activity.json the last 7 days of issues and pull
+ *                                          requests, for the home page's
+ *                                          "This week at the W3C" section
  *
  * The raw cache is what a summarizing pass reads; the public file carries the
  * thread metadata the site renders plus whatever summaries have been written
@@ -25,6 +28,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const RAW_FILE = path.join(ROOT, 'tracking', 'discussions-raw.json');
+const RECENT_FILE = path.join(ROOT, 'public', 'data', 'wcag3-recent-activity.json');
+const RECENT_DAYS = 7;
 const PUBLIC_FILE = path.join(ROOT, 'public', 'data', 'wcag3-discussions.json');
 const REPO = 'w3c/wcag3';
 const API = `https://api.github.com/repos/${REPO}`;
@@ -219,13 +224,33 @@ function buildLabelIndex(provisions) {
 }
 
 // ------------------------------------------------------------------ fetch
+const pulls = [];
+
 async function fetchIssues() {
   const all = [];
   for (let page = 1; page <= 20; page++) {
     const batch = await api(`${API}/issues?state=all&per_page=100&page=${page}`);
     if (!batch.length) break;
     for (const i of batch) {
-      if (i.pull_request) continue;
+      if (i.pull_request) {
+        // Pull requests are proposed edits to the draft. They cost nothing
+        // extra (same listing), and feed the weekly activity file.
+        pulls.push({
+          number: i.number,
+          title: i.title,
+          state: i.state,
+          merged: !!i.pull_request.merged_at,
+          mergedAt: i.pull_request.merged_at ?? null,
+          labels: i.labels.map((l) => l.name),
+          user: i.user?.login ?? null,
+          created: i.created_at,
+          updated: i.updated_at,
+          closed: i.closed_at,
+          commentCount: i.comments,
+          url: `${WEB}/pull/${i.number}`,
+        });
+        continue;
+      }
       all.push({
         number: i.number,
         title: i.title,
@@ -258,6 +283,111 @@ async function fetchComments(issue) {
     if (batch.length < 100) break;
   }
   return out;
+}
+
+// ------------------------------------------------------- weekly activity
+const isSpam = (i) => /^\s*\[spam\]/i.test(i.title) || i.labels.some((l) => /spam|invalid/i.test(l));
+
+/** Rough topic for a thread, from its labels and title. Used for grouping only. */
+function topicOf(item) {
+  const l = item.labels.join(' | ');
+  const t = item.title;
+  if (/\bConformance\b/i.test(l) || /conformance|reporting tier|bronze|silver|gold/i.test(t)) return 'conformance';
+  if (/Introduction/i.test(l) || /\bscop(e|ing) (statement|update|section)\b/i.test(t)) return 'scope';
+  if (/Definitions/i.test(l) || /definition|glossary/i.test(t)) return 'definitions';
+  if (item.provisions.length || /\bprovision\b/i.test(t)) return 'provision';
+  if (/explainer/i.test(t)) return 'explainer';
+  return 'other';
+}
+
+function buildRecentActivity(issuesCache, resolve, provisionTitles, runAt) {
+  const end = new Date(runAt);
+  const start = new Date(end.getTime() - RECENT_DAYS * 86400000);
+  const inWindow = (d) => !!d && new Date(d) >= start && new Date(d) <= end;
+  const provsOf = (labels) =>
+    [...new Set(labels.filter((l) => l.startsWith('P - ')).map(resolve).filter(Boolean))].map((slug) => ({
+      slug,
+      title: provisionTitles.get(slug) || slug,
+    }));
+  const shape = (i, extra = {}) => {
+    const item = {
+      number: i.number,
+      title: i.title.trim(),
+      url: i.url,
+      state: i.state,
+      created: i.created.slice(0, 10),
+      updated: i.updated.slice(0, 10),
+      comments: i.commentCount ?? i.comments?.length ?? 0,
+      labels: i.labels.filter((l) => !l.startsWith('P - ')),
+      provisions: provsOf(i.labels),
+      ...extra,
+    };
+    item.topic = topicOf(item);
+    return item;
+  };
+
+  const issues = Object.values(issuesCache).filter((i) => !isSpam(i));
+  const prs = pulls.filter((p) => !isSpam(p));
+
+  const adopted = prs.filter((p) => p.merged && inWindow(p.mergedAt)).map((p) => shape(p, { mergedAt: p.mergedAt.slice(0, 10) }));
+  const proposals = prs
+    .filter((p) => p.state === 'open' && (inWindow(p.created) || inWindow(p.updated)))
+    .map((p) => shape(p, { isNew: inWindow(p.created) }));
+  const declined = prs.filter((p) => !p.merged && p.state === 'closed' && inWindow(p.closed)).map((p) => shape(p));
+  const newIssues = issues.filter((i) => inWindow(i.created)).map((i) => shape(i, { isNew: true }));
+  const closedIssues = issues
+    .filter((i) => i.state === 'closed' && inWindow(i.closed) && !inWindow(i.created))
+    .map((i) => shape(i, { closedAt: i.closed.slice(0, 10) }));
+  // Older threads that moved this week, ranked by comments posted this week.
+  const active = issues
+    .filter((i) => !inWindow(i.created) && inWindow(i.updated) && !(i.state === 'closed' && inWindow(i.closed)))
+    .map((i) => {
+      const weekComments = (i.comments || []).filter((c) => inWindow(c.created)).length;
+      return shape(i, { weekComments });
+    })
+    .filter((i) => i.weekComments > 0)
+    .sort((a, b) => b.weekComments - a.weekComments || b.comments - a.comments);
+
+  const byNewest = (a, b) => (a.updated < b.updated ? 1 : a.updated > b.updated ? -1 : b.number - a.number);
+  // Busiest first, so a 34-comment thread is not buried under fresh one-liners.
+  const byBusiest = (a, b) => b.comments - a.comments || byNewest(a, b);
+  [proposals, newIssues].forEach((list) => list.sort(byBusiest));
+  [declined, closedIssues].forEach((list) => list.sort(byNewest));
+  adopted.sort((a, b) => (a.mergedAt < b.mergedAt ? 1 : -1));
+
+  // Count which provisions drew the most attention this week.
+  const provCount = new Map();
+  for (const it of [...proposals, ...newIssues, ...active, ...adopted]) {
+    for (const p of it.provisions) provCount.set(p.slug, (provCount.get(p.slug) || { ...p, items: 0 }));
+    for (const p of it.provisions) provCount.get(p.slug).items += 1;
+  }
+  const topicCount = {};
+  for (const it of [...proposals, ...newIssues, ...active, ...adopted]) topicCount[it.topic] = (topicCount[it.topic] || 0) + 1;
+
+  return {
+    generatedAt: end.toISOString(),
+    window: { from: start.toISOString().slice(0, 10), to: end.toISOString().slice(0, 10), days: RECENT_DAYS },
+    repo: WEB,
+    note:
+      'Pull requests are proposals until merged into the editor’s draft; merged changes still need working-group consensus and a published Working Draft before they are official.',
+    counts: {
+      adopted: adopted.length,
+      proposals: proposals.length,
+      newProposals: proposals.filter((p) => p.isNew).length,
+      declined: declined.length,
+      newIssues: newIssues.length,
+      closedIssues: closedIssues.length,
+      activeThreads: active.length,
+    },
+    topics: topicCount,
+    provisionsInFocus: [...provCount.values()].sort((a, b) => b.items - a.items).slice(0, 8),
+    adopted,
+    proposals,
+    declined,
+    newIssues,
+    closedIssues,
+    active: active.slice(0, 10),
+  };
 }
 
 // ------------------------------------------------------------------- main
@@ -438,11 +568,22 @@ async function main() {
         comments: t.comments?.length ?? 0,
         labels: t.labels.filter((l) => !l.startsWith('P - ')),
       })),
-      ...(prev && prev.summaryOf === fingerprint ? { summary: prev.summary, summaryOf: prev.summaryOf } : {}),
+      // Keep the summary even when the discussion has moved on: the site shows
+      // it with a "may be out of date" note (summaryOf != fingerprint).
+      ...(prev ? { summary: prev.summary, summaryOf: prev.summaryOf } : {}),
     };
   }
 
   fs.writeFileSync(PUBLIC_FILE, JSON.stringify(out, null, 2));
+
+  const titles = new Map(provisions.map((p) => [p.slug, p.title]));
+  const recent = buildRecentActivity(cache.issues, resolve, titles, cache.fetchedAt);
+  fs.writeFileSync(RECENT_FILE, JSON.stringify(recent, null, 2));
+  const c = recent.counts;
+  console.log(
+    `  this week (${recent.window.from} → ${recent.window.to}): ${c.adopted} merged, ${c.proposals} open proposals, ` +
+      `${c.newIssues} new issues, ${c.closedIssues} closed, ${c.activeThreads} older threads active`
+  );
 
   console.log('');
   console.log(`✔ ${out.totals.issuesTotal} issues cached (${out.totals.issuesWithProvisionLabel} provision-labelled)`);

@@ -1,14 +1,15 @@
 {
-  "generatedAt": "2026-09-28T19:58:25.386Z",
+  "generatedAt": "2026-10-05T02:40:25.858Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 478,
-    "issuesWithProvisionLabel": 235,
-    "provisionsWithDiscussion": 152,
-    "generalIssues": 243,
+    "issuesTotal": 490,
+    "issuesWithProvisionLabel": 245,
+    "provisionsWithDiscussion": 157,
+    "generalIssues": 245,
     "summarized": 36,
-    "awaitingSummary": 116
+    "staleSummaries": 4,
+    "awaitingSummary": 121
   },
   "provisions": {
     "audio-shifting-adjustable": {
@@ -1575,9 +1576,9 @@
       "type": "foundational",
       "threadCount": 3,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 6,
       "openCount": 3,
-      "fingerprint": "428@2026-03-29T23:07:20Z,454@2026-03-29T22:43:15Z,535@2026-09-10T00:26:03Z",
+      "fingerprint": "428@2026-03-29T23:07:20Z,454@2026-03-29T22:43:15Z,535@2026-10-03T11:31:56Z",
       "threads": [
         {
           "number": 428,
@@ -1612,8 +1613,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/535",
           "created": "2026-01-15",
-          "updated": "2026-09-10",
-          "comments": 0,
+          "updated": "2026-10-03",
+          "comments": 6,
           "labels": [
             "Path: Image and media alternatives",
             "Other: Definitions & Terminology"
@@ -1644,9 +1645,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "611@2026-09-10T00:16:25Z",
+      "fingerprint": "611@2026-10-03T11:25:36Z",
       "threads": [
         {
           "number": 611,
@@ -1654,8 +1655,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/611",
           "created": "2026-03-05",
-          "updated": "2026-09-10",
-          "comments": 0,
+          "updated": "2026-10-03",
+          "comments": 2,
           "labels": [
             "Path: Image and media alternatives"
           ]
@@ -2377,9 +2378,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "611@2026-09-10T00:16:25Z",
+      "fingerprint": "611@2026-10-03T11:25:36Z",
       "threads": [
         {
           "number": 611,
@@ -2387,8 +2388,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/611",
           "created": "2026-03-05",
-          "updated": "2026-09-10",
-          "comments": 0,
+          "updated": "2026-10-03",
+          "comments": 2,
           "labels": [
             "Path: Image and media alternatives"
           ]
@@ -2758,11 +2759,11 @@
       "guideline": "image-alternatives",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 9,
+      "threadCount": 11,
       "noRecordedDiscussion": false,
-      "commentCount": 41,
-      "openCount": 8,
-      "fingerprint": "238@2026-04-01T23:17:15Z,272@2026-04-02T22:58:14Z,357@2026-04-01T23:27:16Z,369@2026-04-01T23:15:37Z,466@2026-04-08T05:38:52Z,495@2026-03-29T22:28:32Z,573@2026-03-27T19:09:20Z,607@2026-03-27T18:53:10Z,614@2026-03-27T18:49:00Z",
+      "commentCount": 76,
+      "openCount": 10,
+      "fingerprint": "238@2026-04-01T23:17:15Z,272@2026-04-02T22:58:14Z,357@2026-04-01T23:27:16Z,369@2026-04-01T23:15:37Z,466@2026-04-08T05:38:52Z,495@2026-03-29T22:28:32Z,573@2026-03-27T19:09:20Z,607@2026-03-27T18:53:10Z,614@2026-03-27T18:49:00Z,878@2026-10-03T00:59:24Z,884@2026-10-03T01:11:27Z",
       "threads": [
         {
           "number": 238,
@@ -2875,6 +2876,26 @@
           "labels": [
             "Path: Image and media alternatives"
           ]
+        },
+        {
+          "number": 878,
+          "title": "Definition of decorative images update",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/878",
+          "created": "2026-09-29",
+          "updated": "2026-10-03",
+          "comments": 34,
+          "labels": []
+        },
+        {
+          "number": 884,
+          "title": "Decorative images should NOT be \"programmatically hidden\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/884",
+          "created": "2026-10-02",
+          "updated": "2026-10-03",
+          "comments": 1,
+          "labels": []
         }
       ],
       "summary": {
@@ -3101,9 +3122,9 @@
       "type": "foundational",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 8,
+      "commentCount": 10,
       "openCount": 2,
-      "fingerprint": "370@2026-09-10T00:17:00Z,611@2026-09-10T00:16:25Z",
+      "fingerprint": "370@2026-09-10T00:17:00Z,611@2026-10-03T11:25:36Z",
       "threads": [
         {
           "number": 370,
@@ -3124,8 +3145,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/611",
           "created": "2026-03-05",
-          "updated": "2026-09-10",
-          "comments": 0,
+          "updated": "2026-10-03",
+          "comments": 2,
           "labels": [
             "Path: Image and media alternatives"
           ]
@@ -3706,9 +3727,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 6,
       "openCount": 1,
-      "fingerprint": "535@2026-09-10T00:26:03Z",
+      "fingerprint": "535@2026-10-03T11:31:56Z",
       "threads": [
         {
           "number": 535,
@@ -3716,8 +3737,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/535",
           "created": "2026-01-15",
-          "updated": "2026-09-10",
-          "comments": 0,
+          "updated": "2026-10-03",
+          "comments": 6,
           "labels": [
             "Path: Image and media alternatives",
             "Other: Definitions & Terminology"
@@ -3929,9 +3950,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "611@2026-09-10T00:16:25Z",
+      "fingerprint": "611@2026-10-03T11:25:36Z",
       "threads": [
         {
           "number": 611,
@@ -3939,8 +3960,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/611",
           "created": "2026-03-05",
-          "updated": "2026-09-10",
-          "comments": 0,
+          "updated": "2026-10-03",
+          "comments": 2,
           "labels": [
             "Path: Image and media alternatives"
           ]
@@ -4065,9 +4086,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "572@2026-03-27T19:10:08Z",
+      "fingerprint": "572@2026-09-29T19:19:11Z",
       "threads": [
         {
           "number": 572,
@@ -4075,8 +4096,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/572",
           "created": "2026-02-16",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-09-29",
+          "comments": 2,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4092,9 +4113,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "572@2026-03-27T19:10:08Z",
+      "fingerprint": "572@2026-09-29T19:19:11Z",
       "threads": [
         {
           "number": 572,
@@ -4102,8 +4123,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/572",
           "created": "2026-02-16",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-09-29",
+          "comments": 2,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4119,9 +4140,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "572@2026-03-27T19:10:08Z",
+      "fingerprint": "572@2026-09-29T19:19:11Z",
       "threads": [
         {
           "number": 572,
@@ -4129,8 +4150,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/572",
           "created": "2026-02-16",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-09-29",
+          "comments": 2,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4172,12 +4193,23 @@
       "guideline": "input-operation",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
-      "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
+      "commentCount": 1,
+      "openCount": 1,
+      "fingerprint": "879@2026-09-29T19:05:23Z",
+      "threads": [
+        {
+          "number": 879,
+          "title": "It is unclear why Hover content persistent has been broken into a separate requirement",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/879",
+          "created": "2026-09-29",
+          "updated": "2026-09-29",
+          "comments": 1,
+          "labels": []
+        }
+      ]
     },
     "hover-or-focus-content-dismissible": {
       "slug": "hover-or-focus-content-dismissible",
@@ -4200,12 +4232,23 @@
       "guideline": "input-operation",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
-      "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
+      "commentCount": 1,
+      "openCount": 1,
+      "fingerprint": "879@2026-09-29T19:05:23Z",
+      "threads": [
+        {
+          "number": 879,
+          "title": "It is unclear why Hover content persistent has been broken into a separate requirement",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/879",
+          "created": "2026-09-29",
+          "updated": "2026-09-29",
+          "comments": 1,
+          "labels": []
+        }
+      ]
     },
     "input-method-flexible": {
       "slug": "input-method-flexible",
@@ -4624,18 +4667,18 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "643@2026-04-29T19:10:34Z",
+      "commentCount": 7,
+      "openCount": 0,
+      "fingerprint": "643@2026-10-04T01:11:14Z",
       "threads": [
         {
           "number": 643,
           "title": "single pointer and simple pointer are too confusable",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/643",
           "created": "2026-04-08",
-          "updated": "2026-04-29",
-          "comments": 0,
+          "updated": "2026-10-04",
+          "comments": 7,
           "labels": [
             "Path: Input and focus⹁ interactive components",
             "Other: Definitions & Terminology"
@@ -4719,12 +4762,23 @@
       "guideline": "control-information",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
-      "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
+      "commentCount": 1,
+      "openCount": 1,
+      "fingerprint": "889@2026-10-03T18:15:28Z",
+      "threads": [
+        {
+          "number": 889,
+          "title": "Provision \"Changes to elements notified\" should not reference the term \"programmatically\" and should not include \"visually indicate\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/889",
+          "created": "2026-10-03",
+          "updated": "2026-10-03",
+          "comments": 1,
+          "labels": []
+        }
+      ]
     },
     "input-constraints-used": {
       "slug": "input-constraints-used",
@@ -4877,11 +4931,11 @@
       "guideline": "control-information",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 3,
+      "threadCount": 4,
       "noRecordedDiscussion": false,
-      "commentCount": 33,
-      "openCount": 3,
-      "fingerprint": "93@2026-04-16T01:59:03Z,184@2026-05-02T15:07:00Z,194@2026-05-02T16:31:49Z",
+      "commentCount": 34,
+      "openCount": 4,
+      "fingerprint": "93@2026-04-16T01:59:03Z,184@2026-05-02T15:07:00Z,194@2026-05-02T16:31:49Z,890@2026-10-03T21:58:55Z",
       "threads": [
         {
           "number": 93,
@@ -4919,6 +4973,16 @@
             "Path: User orientation⹁ layout and structure",
             "Path: Input and focus⹁ interactive components"
           ]
+        },
+        {
+          "number": 890,
+          "title": "Separate visual label and programmatic name requirements for interactive elements",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/890",
+          "created": "2026-10-03",
+          "updated": "2026-10-03",
+          "comments": 1,
+          "labels": []
         }
       ],
       "summary": {
@@ -5048,12 +5112,23 @@
       "guideline": "control-information",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
-      "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
+      "commentCount": 1,
+      "openCount": 1,
+      "fingerprint": "890@2026-10-03T21:58:55Z",
+      "threads": [
+        {
+          "number": 890,
+          "title": "Separate visual label and programmatic name requirements for interactive elements",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/890",
+          "created": "2026-10-03",
+          "updated": "2026-10-03",
+          "comments": 1,
+          "labels": []
+        }
+      ]
     },
     "consistent-control-location": {
       "slug": "consistent-control-location",
@@ -6139,11 +6214,11 @@
       "guideline": "user-orientation",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "446@2026-03-29T22:46:22Z",
+      "commentCount": 1,
+      "openCount": 2,
+      "fingerprint": "446@2026-03-29T22:46:22Z,892@2026-10-04T03:43:57Z",
       "threads": [
         {
           "number": 446,
@@ -6156,6 +6231,16 @@
           "labels": [
             "Path: User orientation⹁ layout and structure"
           ]
+        },
+        {
+          "number": 892,
+          "title": "Provision \"All steps listed\" should not include redundant programmatic availability requirements",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/892",
+          "created": "2026-10-04",
+          "updated": "2026-10-04",
+          "comments": 1,
+          "labels": []
         }
       ]
     },
@@ -6287,11 +6372,11 @@
       "guideline": "user-orientation",
       "status": "developing",
       "type": "recommended practice",
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
       "commentCount": 1,
-      "openCount": 0,
-      "fingerprint": "450@2026-09-24T14:30:09Z",
+      "openCount": 1,
+      "fingerprint": "450@2026-09-24T14:30:09Z,894@2026-10-04T20:39:00Z",
       "threads": [
         {
           "number": 450,
@@ -6305,6 +6390,16 @@
             "Conformance",
             "Path: User orientation⹁ layout and structure"
           ]
+        },
+        {
+          "number": 894,
+          "title": "Provision \"Return to start prominent\" includes unclear use of the term \"programmatically\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/894",
+          "created": "2026-10-04",
+          "updated": "2026-10-04",
+          "comments": 0,
+          "labels": []
         }
       ]
     },
@@ -6452,11 +6547,11 @@
       "guideline": "risk",
       "status": "exploratory",
       "type": "foundational",
-      "threadCount": 2,
+      "threadCount": 4,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 2,
-      "fingerprint": "441@2026-03-29T22:48:29Z,442@2026-03-29T22:48:18Z",
+      "openCount": 4,
+      "fingerprint": "441@2026-03-29T22:48:29Z,442@2026-03-29T22:48:18Z,882@2026-10-02T05:06:01Z,883@2026-10-03T05:36:37Z",
       "threads": [
         {
           "number": 441,
@@ -6481,6 +6576,26 @@
           "labels": [
             "Path: Errors⹁ task completion and help"
           ]
+        },
+        {
+          "number": 882,
+          "title": "Requiring sensitive information to be hidden by default is not within WCAG scope and is not desirable",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/882",
+          "created": "2026-10-02",
+          "updated": "2026-10-02",
+          "comments": 0,
+          "labels": []
+        },
+        {
+          "number": 883,
+          "title": "In provision \"risk comparable\", change \"programmatically hidden\" to \"programmatically indicated as masked\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/883",
+          "created": "2026-10-02",
+          "updated": "2026-10-03",
+          "comments": 0,
+          "labels": []
         }
       ]
     },
@@ -7814,7 +7929,7 @@
         ],
         "note": "Issue #29 is a standing evidence dossier rather than a discussion: opened in October 2023, reorganised in March 2025, last touched April 2026, and carrying no comments at all. sdw32's March 2026 objection in #266 tagged nine working group members by name (rachaelbradley, alastc, iadawn, giacomo-petri, julierawe, fstrr, MakotoUeki, hidde, GreggVan) and drew no reply in the thread; the only later comment is tsmd's note that x-height does not transfer to Japanese, Chinese or Korean."
       },
-      "summaryOf": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z,744@2026-09-22T02:13:49Z",
+      "summaryOf": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z",
       "summarySource": "batch-2026-09-15.json"
     },
     "text-customizations-retained": {
@@ -8887,12 +9002,23 @@
       "guideline": "content-changes",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "897@2026-10-05T01:00:59Z",
+      "threads": [
+        {
+          "number": 897,
+          "title": "The intent of using term \"programmatically\" in provision \"Change of focus notified\" is not clear",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/897",
+          "created": "2026-10-05",
+          "updated": "2026-10-05",
+          "comments": 0,
+          "labels": []
+        }
+      ]
     },
     "change-of-user-agent-notified": {
       "slug": "change-of-user-agent-notified",

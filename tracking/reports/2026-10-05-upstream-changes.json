@@ -1,0 +1,219 @@
+{
+  "wcag22Impact": {
+    "brokenMappings": [],
+    "coarseMappings": [
+      {
+        "slug": "media-control",
+        "level": "guideline",
+        "criteria": [
+          {
+            "id": "1.4.2",
+            "name": "Audio Control",
+            "level": "A"
+          },
+          {
+            "id": "1.4.7",
+            "name": "Low or No Background Audio",
+            "level": "AAA"
+          }
+        ]
+      },
+      {
+        "slug": "user-control",
+        "level": "group",
+        "criteria": [
+          {
+            "id": "2.1.4",
+            "name": "Character Key Shortcuts",
+            "level": "A"
+          },
+          {
+            "id": "2.5.4",
+            "name": "Motion Actuation",
+            "level": "A"
+          },
+          {
+            "id": "2.5.6",
+            "name": "Concurrent Input Mechanisms",
+            "level": "AAA"
+          }
+        ]
+      },
+      {
+        "slug": "navigating-content",
+        "level": "guideline",
+        "criteria": [
+          {
+            "id": "2.4.1",
+            "name": "Bypass Blocks",
+            "level": "A"
+          },
+          {
+            "id": "2.4.2",
+            "name": "Page Titled",
+            "level": "A"
+          },
+          {
+            "id": "2.4.3",
+            "name": "Focus Order",
+            "level": "A"
+          },
+          {
+            "id": "2.4.8",
+            "name": "Location",
+            "level": "AAA"
+          },
+          {
+            "id": "2.4.5",
+            "name": "Multiple Ways",
+            "level": "AA"
+          }
+        ]
+      },
+      {
+        "slug": "clear-language",
+        "level": "guideline",
+        "criteria": [
+          {
+            "id": "3.1.3",
+            "name": "Unusual Words",
+            "level": "AAA"
+          },
+          {
+            "id": "3.1.4",
+            "name": "Abbreviations",
+            "level": "AAA"
+          },
+          {
+            "id": "3.1.5",
+            "name": "Reading Level",
+            "level": "AAA"
+          },
+          {
+            "id": "3.1.6",
+            "name": "Pronunciation",
+            "level": "AAA"
+          }
+        ]
+      },
+      {
+        "slug": "animation-and-movement",
+        "level": "group",
+        "criteria": [
+          {
+            "id": "2.3.3",
+            "name": "Animation from Interactions",
+            "level": "AAA"
+          }
+        ]
+      },
+      {
+        "slug": "error-handling",
+        "level": "group",
+        "criteria": [
+          {
+            "id": "3.3.3",
+            "name": "Error Suggestion",
+            "level": "AA"
+          }
+        ]
+      }
+    ],
+    "newToUs": [],
+    "goneFromUpstream": [],
+    "upstreamProvisionCount": 245
+  },
+  "draftShape": {
+    "taggedCount": 0,
+    "needsResearchCount": 13,
+    "statusTally": {
+      "developing": 216,
+      "exploratory": 29
+    },
+    "typeTally": {
+      "foundational": 114,
+      "supplemental": 86,
+      "assertion": 36,
+      "none": 8,
+      "recommended practice": 1
+    }
+  },
+  "generatedAt": "2026-10-05T02:28:05.689Z",
+  "range": {
+    "from": "091d074",
+    "fromDate": "2026-09-17",
+    "to": "18c12bf",
+    "toDate": "2026-10-02"
+  },
+  "upstream": "https://github.com/w3c/wcag3",
+  "commitCount": 1,
+  "commits": [
+    {
+      "hash": "18c12bf",
+      "date": "2026-10-02",
+      "subject": "Tidy up explainer definitions (#872)"
+    }
+  ],
+  "summary": {
+    "explainer-doc": {
+      "added": 0,
+      "removed": 0,
+      "renamed": 0,
+      "modified": 1
+    }
+  },
+  "changes": [
+    {
+      "op": "modified",
+      "kind": "explainer-doc",
+      "oldPath": "src/pages/explainer.astro",
+      "newPath": "src/pages/explainer.astro",
+      "commits": [
+        {
+          "hash": "18c12bf",
+          "date": "2026-10-02",
+          "subject": "Tidy up explainer definitions (#872)",
+          "pr": "[#872](https://github.com/w3c/wcag3/pull/872)"
+        }
+      ],
+      "prose": {
+        "removed": [
+          "Any web-based or non-web-based application(s) that can be used by authors (alone or collaboratively) to create or modify web content for use by other people (other authors or end users).",
+          "Evaluation conducted using software tools, typically evaluating code-level features and applying",
+          "Automated testing is contrasted with other types of testing that involve human judgement or",
+          "experience. [=Semi-automated evaluation=] allows machines to guide humans",
+          "to areas that need inspection. The emerging field of testing conducted via",
+          "machine learning is not included in this definition.",
+          "Satisfying all the requirements of the guidelines. Conformance is an important part of following",
+          "To declare something outdated and in the process of being phased out, usually in favor of a specified replacement.",
+          "the outcome of processes and actions that ensure the spectrum of human reality obtains what is needed to participate, not solely access. As equity relates to WCAG it is about the impact the standards/guidelines have on people with disabilities, along with actually including people with disabilities in the work.",
+          "The process of examining content for conformance to these",
+          "A statement that describes a specific gap in one’s ability, or a specific mismatch between ability and the designed environment or context.",
+          "A sequence of steps that need to be completed to accomplish an activity / task from",
+          "The reproducibility and consistency of scores, that is, the extent to which they are the same when evaluations of the same resources are carried out in different contexts (different tools, different people, different goals, different time). This would be particularly useful to ensure that similar results are achieved by different testers. It would also be useful to see if different testers would select the same path or off-path decisions. Representative sampling tests also fit in this category.",
+          "Benchmarking Web Accessibility Metrics , Vigo, Lopes, O Connor, Brajnik, Yesilada 2011.",
+          "Any software that retrieves, renders and facilitates end user interaction with web content (for example, web browsers, browser plug-ins, media players)."
+        ],
+        "added": [
+          "web-based or non-web-based application(s) that can be used by authors (alone or collaboratively) to create or modify web content for use by other people (other authors or end users)",
+          "evaluation conducted using software tools, typically evaluating code-level features and applying heuristics for other tests",
+          "Automated testing is contrasted with other types of testing that involve human judgement or experience. [=Semi-automated evaluation=] allows machines to guide humans to areas that need inspection. The emerging field of testing conducted via machine learning is not included in this definition.",
+          "satisfying all the requirements of the guidelines",
+          "Conformance is an important part of following",
+          "declare something outdated and in the process of being phased out, usually in favor of a specified replacement",
+          "outcome of processes and actions that ensure the spectrum of human reality obtains what is needed to participate, not solely access",
+          "As equity relates to WCAG it is about the impact the standards/guidelines have on people with disabilities, along with actually including people with disabilities in the work.",
+          "process of examining content for conformance to these guidelines",
+          "statement that describes a specific gap in one's ability, or a specific mismatch between ability and the designed environment or context",
+          "sequence of steps that need to be completed to accomplish an activity / task from",
+          "reproducibility and consistency of evaluation results",
+          "The extent to which evaluation results are the same when evaluations of the same resources are carried out in different contexts (different tools, different people, different goals, different time). This would be particularly useful to ensure that similar results are achieved by different testers. It would also be useful to see if different testers would select the same path or off-path decisions. Representative sampling tests also fit in this category.",
+          "Benchmarking Web Accessibility Metrics , Vigo, Lopes, O'Connor, Brajnik, Yesilada 2011.",
+          "software that retrieves, renders and facilitates end user interaction with web content",
+          "Web browsers, browser plug-ins, media players."
+        ]
+      },
+      "substantive": true
+    }
+  ]
+}
