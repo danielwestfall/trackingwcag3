@@ -82,6 +82,15 @@ const coreProvisionCount = new Set(core.flatMap((i: any) => i.provisions.map((p:
 const reviewCount = [...core, ...supplemental].filter((i: any) => i.needsReview).length;
 const statusesInUse = [...new Set(core.flatMap((i: any) => i.provisions.map((p: any) => p.status)))];
 const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s === "exploratory");
+
+// AA is the baseline most laws and policies point to, so it's the fair
+// comparison with WCAG 3 core requirements. The AAA verdict separates new
+// ground from AAA criteria that WCAG 3 promotes into the baseline.
+const aaaResults = curated.aaaResults || {};
+const AAA_ORDER = ["passes", "depends", "fails"];
+const aaaCount = (r: string) => core.filter((i: any) => i.aaa?.result === r).length;
+const scList = (list: any[]) => (list || []).map((sc: any) => sc.num).join(", ");
+const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing).map((p: any) => p.title).join(" · ");
 ---
 
 <PlainEnglishLayout title="Passes WCAG 2.2, Fails WCAG 3" activeTab="stricter">
@@ -98,6 +107,25 @@ const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s 
       <div><dt>Practices</dt><dd>{core.length}</dd></div>
       <div><dt>Core requirements cited</dt><dd>{coreProvisionCount}</dd></div>
       <div><dt>Draft baseline</dt><dd class="st-mono">{state.lastTrackedCommit || "—"}</dd></div>
+    </dl>
+  </section>
+
+  <section class="st-levels" aria-labelledby="st-levels-h">
+    <h2 id="st-levels-h">AA is the baseline; AAA is the stretch</h2>
+    <p>
+      Every practice here passes WCAG 2.2 <strong>Level AA</strong>, the level most laws, policies and
+      procurement rules point to. That makes AA the fair comparison with WCAG 3's
+      <strong>core requirements</strong>, which every conforming site must meet. Few organizations
+      target AAA, but each entry also says how the practice fares there. That shows whether WCAG 3 is
+      breaking new ground or moving an existing AAA criterion into the baseline.
+    </p>
+    <dl class="st-aaa-key">
+      {AAA_ORDER.map((r) => (
+        <div class={`st-aaa-key-item st-aaa-${r}`}>
+          <dt><span class={`st-verdict st-verdict-${r}`}>{aaaResults[r]?.label}</span> <span class="st-aaa-count">{aaaCount(r)}</span></dt>
+          <dd>{aaaResults[r]?.meaning}</dd>
+        </div>
+      ))}
     </dl>
   </section>
 
@@ -120,7 +148,8 @@ const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s 
         <strong>Requirement text is pulled live from the draft.</strong> The wording, status and exceptions
         below come from the tracker's catalog
         {state.lastTrackedDate && <> (upstream commit <code>{state.lastTrackedCommit}</code>, {state.lastTrackedDate})</>}.
-        The practices and "why it passes 2.2" notes are this site's interpretation.
+        The practices and the AA and AAA notes are this site's interpretation of WCAG 2.2 and its
+        Understanding documents.
       </li>
     </ul>
     {reviewCount > 0 && (
@@ -129,6 +158,35 @@ const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s 
         removed or changed type in the draft. Those entries are marked below and need review.
       </p>
     )}
+  </section>
+
+  <section class="st-glance" aria-labelledby="st-glance-h">
+    <h2 id="st-glance-h">At a glance</h2>
+    <div class="st-table-wrap">
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader" scope="col">Practice</th>
+            <th role="columnheader" scope="col">WCAG 2.2 AA</th>
+            <th role="columnheader" scope="col">WCAG 2.2 AAA</th>
+            <th role="columnheader" scope="col">WCAG 3 core requirement</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          {core.map((item: any) => (
+            <tr role="row">
+              <th role="rowheader" scope="row"><a href={`#${item.id}`}>{item.practice}</a></th>
+              <td role="cell"><span class="st-verdict st-verdict-passes">Passes</span></td>
+              <td role="cell">
+                <span class={`st-verdict st-verdict-${item.aaa.result}`}>{aaaResults[item.aaa.result]?.short}</span>
+                {item.aaa.result !== "passes" && item.aaa.criteria.length > 0 && <span class="st-mono st-sc-inline"> {scList(item.aaa.criteria)}</span>}
+              </td>
+              <td role="cell">{firstTitle(item)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <nav class="st-toc" aria-label="Categories on this page">
@@ -152,15 +210,25 @@ const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s 
 
             <div class="st-compare">
               <div class="st-col st-col-22">
-                <h4>Why it passes WCAG 2.2</h4>
-                {item.wcag22.length > 0 && (
+                <h4>WCAG 2.2 AA (baseline) <span class="st-verdict st-verdict-passes">Passes</span></h4>
+                {item.aa.criteria.length > 0 && (
                   <ul class="st-sc">
-                    {item.wcag22.map((sc: any) => (
+                    {item.aa.criteria.map((sc: any) => (
                       <li><span class="st-mono">{sc.num}</span> {sc.name} <span class="st-level">{sc.level}</span></li>
                     ))}
                   </ul>
                 )}
-                <p>{item.whyItPasses}</p>
+                <p>{item.aa.explanation}</p>
+
+                <h4 class="st-aaa-head">WCAG 2.2 AAA <span class={`st-verdict st-verdict-${item.aaa.result}`}>{aaaResults[item.aaa.result]?.label}</span></h4>
+                {item.aaa.criteria.length > 0 && (
+                  <ul class="st-sc">
+                    {item.aaa.criteria.map((sc: any) => (
+                      <li><span class="st-mono">{sc.num}</span> {sc.name} <span class="st-level">{sc.level}</span></li>
+                    ))}
+                  </ul>
+                )}
+                <p>{item.aaa.explanation}</p>
               </div>
 
               <div class="st-col st-col-3">
@@ -216,9 +284,14 @@ const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s 
         <article class="st-card st-card-compact" id={item.id}>
           <h3>{item.practice}</h3>
           <p class="st-why">
-            <strong>Passes 2.2:</strong>
-            {item.wcag22.map((sc: any) => <> <span class="st-mono">{sc.num}</span> {sc.name} ({sc.level}).</>)}
-            {" "}{item.whyItPasses}
+            <span class="st-verdict st-verdict-passes">AA: Passes</span>
+            {item.aa.criteria.map((sc: any) => <> <span class="st-mono">{sc.num}</span> {sc.name} ({sc.level}).</>)}
+            {" "}{item.aa.explanation}
+          </p>
+          <p class="st-why">
+            <span class={`st-verdict st-verdict-${item.aaa.result}`}>AAA: {aaaResults[item.aaa.result]?.short}</span>
+            {item.aaa.criteria.map((sc: any) => <> <span class="st-mono">{sc.num}</span> {sc.name} ({sc.level}).</>)}
+            {" "}{item.aaa.explanation}
           </p>
           {item.provisions.map((p: any) => p.missing ? (
             <p class="st-req-missing"><code>{p.slug}</code> is no longer in the draft. This entry needs review.</p>
@@ -344,6 +417,67 @@ const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s 
     border: 1px solid var(--accent-amber);
     color: var(--text-primary);
   }
+
+  .st-levels {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .st-levels h2 { font-size: 1.05rem; margin: 0 0 8px; color: var(--text-pure); }
+  .st-levels > p { color: var(--text-secondary); line-height: 1.6; margin: 0 0 14px; max-width: 860px; }
+  .st-aaa-key { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 0; }
+  .st-aaa-key-item { border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .st-aaa-key dt { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .st-aaa-key dd { margin: 6px 0 0; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+  .st-aaa-count { font-size: 1.3rem; font-weight: 800; color: var(--text-pure); font-variant-numeric: tabular-nums; }
+
+  /* Verdict chips: the word carries the meaning; the border color only reinforces it. */
+  .st-verdict {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    border-radius: var(--radius-full);
+    padding: 1px 9px;
+    border: 1.5px solid var(--border-default);
+    color: var(--text-primary);
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .st-verdict-passes { border-color: var(--accent-emerald); }
+  .st-verdict-depends { border-color: var(--accent-amber); border-style: dashed; }
+  .st-verdict-fails { border-color: var(--accent-rose); }
+
+  .st-glance { margin-bottom: 28px; }
+  .st-glance h2 { font-size: 1.4rem; font-weight: 800; color: var(--text-pure); margin: 0 0 12px; }
+  .st-table-wrap { border: 1px solid var(--border-default); border-radius: var(--radius-md); overflow: hidden; }
+  .st-glance table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .st-glance th, .st-glance td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border-subtle); vertical-align: top; color: var(--text-secondary); }
+  .st-glance thead th {
+    background: var(--surface-subtle);
+    color: var(--text-muted);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .st-glance tbody th { font-weight: 600; }
+  .st-glance tbody th a { color: var(--text-accent); }
+  .st-glance tbody tr:last-child > * { border-bottom: none; }
+  .st-sc-inline { font-size: 0.8rem; color: var(--text-muted); }
+  @media (max-width: 760px) {
+    .st-glance thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .st-glance tr { display: block; padding: 10px 12px; border-bottom: 1px solid var(--border-subtle); }
+    .st-glance tbody th, .st-glance td { display: block; padding: 2px 0; border: none; }
+    .st-glance td:nth-of-type(1)::before { content: "2.2 AA: "; color: var(--text-muted); }
+    .st-glance td:nth-of-type(2)::before { content: "2.2 AAA: "; color: var(--text-muted); }
+    .st-glance td:nth-of-type(3)::before { content: "WCAG 3: "; color: var(--text-muted); }
+  }
+
+  .st-aaa-head { margin-top: 16px !important; padding-top: 12px; border-top: 1px dashed var(--border-subtle); }
+  .st-col h4 { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
 
   .st-toc { margin-bottom: 32px; }
   .st-toc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }

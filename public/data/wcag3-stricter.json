@@ -1,6 +1,11 @@
 {
-  "_about": "Hand-curated list of practices that pass WCAG 2.2 Level AA but conflict with a WCAG 3 draft requirement. Requirement wording, type, status and exceptions are NOT stored here: the page reads them live from wcag3-catalog.json, so they follow the draft. If a provision is renamed, removed or changes type, the page flags that entry for review instead of showing stale text.",
+  "_about": "Hand-curated list of practices that pass WCAG 2.2 Level AA but conflict with a WCAG 3 draft requirement. Each entry records why it passes AA (the usual policy baseline, and the fair comparison with WCAG 3 core requirements) and, separately, how it fares at AAA. Requirement wording, type, status and exceptions are NOT stored here: the page reads them live from wcag3-catalog.json, so they follow the draft. If a provision is renamed, removed or changes type, the page flags that entry for review instead of showing stale text.",
   "written": "2026-10-05",
+  "aaaResults": {
+    "passes": { "label": "Passes AAA too", "short": "Passes", "meaning": "New ground. Even a full AAA programme would not catch this." },
+    "depends": { "label": "Depends at AAA", "short": "Depends", "meaning": "An AAA criterion catches some versions of this practice but not others." },
+    "fails": { "label": "Fails AAA", "short": "Fails", "meaning": "Already a AAA failure. WCAG 3 moves it into the baseline." }
+  },
   "categories": [
     { "id": "keyboard", "label": "Keyboard and focus", "icon": "⌨️" },
     { "id": "motion", "label": "Motion and user settings", "icon": "🎞️" },
@@ -15,8 +20,15 @@
       "category": "keyboard",
       "practice": "Making headings, paragraphs and other static text focusable so screen reader users \"can reach it\"",
       "example": "tabindex=\"0\" on every heading and paragraph in an article.",
-      "wcag22": [{ "num": "2.4.3", "name": "Focus Order", "level": "A" }],
-      "whyItPasses": "2.4.3 only asks that the focus order preserves meaning. It doesn't forbid extra tab stops, so a page full of focusable paragraphs usually passes.",
+      "aa": {
+        "criteria": [{ "num": "2.4.3", "name": "Focus Order", "level": "A" }],
+        "explanation": "2.4.3 only asks that the focus order preserves meaning. It doesn't forbid extra tab stops, so a page full of focusable paragraphs usually passes."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [],
+        "explanation": "No AAA criterion limits what can receive focus."
+      },
       "provisions": ["focus-relevant"],
       "note": "The draft's test procedure for this requirement checks that static elements and hidden elements don't receive focus, and that groups of repeated elements (like site navigation) can be skipped. Screen reader users already have reading commands; extra tab stops only slow keyboard users down."
     },
@@ -25,8 +37,15 @@
       "category": "keyboard",
       "practice": "Auto-focusing a field on page load, or moving focus to new content without the user asking",
       "example": "A search box with the autofocus attribute; focus jumping to a chat widget after it loads.",
-      "wcag22": [{ "num": "3.2.1", "name": "On Focus", "level": "A" }],
-      "whyItPasses": "3.2.1 bans a change of context when something receives focus. It says nothing about scripts moving focus in the first place.",
+      "aa": {
+        "criteria": [{ "num": "3.2.1", "name": "On Focus", "level": "A" }],
+        "explanation": "3.2.1 says a component receiving focus must not start a change of context. It says nothing about scripts moving focus in the first place."
+      },
+      "aaa": {
+        "result": "depends",
+        "criteria": [{ "num": "3.2.5", "name": "Change on Request", "level": "AAA" }],
+        "explanation": "3.2.5 requires changes of context to happen only on user request, and WCAG 2.2 defines a change of focus as a change of context. So focus jumping to a widget after load fails AAA. Whether autofocus on page load counts isn't addressed in the Understanding document."
+      },
       "provisions": ["focus-user-controlled"]
     },
     {
@@ -34,33 +53,51 @@
       "category": "keyboard",
       "practice": "Overriding browser or operating-system keyboard shortcuts",
       "example": "A web app that takes over Ctrl+F for its own search, or Ctrl+K for a command palette.",
-      "wcag22": [{ "num": "2.1.4", "name": "Character Key Shortcuts", "level": "A" }],
-      "whyItPasses": "2.1.4 only covers single-character shortcuts. Modifier-key shortcuts that clash with the browser or the screen reader are not addressed.",
+      "aa": {
+        "criteria": [{ "num": "2.1.4", "name": "Character Key Shortcuts", "level": "A" }],
+        "explanation": "2.1.4 only covers single-character shortcuts. Modifier-key shortcuts that clash with the browser or the screen reader are not addressed."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [],
+        "explanation": "No AAA criterion covers shortcut conflicts."
+      },
       "provisions": ["no-keyboard-conflicts"]
     },
     {
       "id": "faint-focus",
       "category": "keyboard",
-      "practice": "Replacing the browser focus ring with a faint custom one",
-      "example": "outline: 1px solid #ddd on a white background.",
-      "wcag22": [
-        { "num": "2.4.7", "name": "Focus Visible", "level": "AA" },
-        { "num": "2.4.13", "name": "Focus Appearance", "level": "AAA" }
-      ],
-      "whyItPasses": "2.4.7 only requires focus to be visible. The contrast and size rules are in 2.4.13, which is AAA.",
+      "practice": "Showing focus only by a subtle change in a control's color",
+      "example": "outline: none, with focus shown by shifting a button's background from one dark blue to a slightly different dark blue.",
+      "aa": {
+        "criteria": [
+          { "num": "2.4.7", "name": "Focus Visible", "level": "AA" },
+          { "num": "1.4.11", "name": "Non-text Contrast", "level": "AA" }
+        ],
+        "explanation": "2.4.7 only requires focus to be visible. The Understanding document for 1.4.11 says it \"does not directly compare the focused and unfocused states of a control\", so a color-only focus change has no minimum difference at AA."
+      },
+      "aaa": {
+        "result": "fails",
+        "criteria": [{ "num": "2.4.13", "name": "Focus Appearance", "level": "AAA" }],
+        "explanation": "2.4.13 requires the indicator to have \"a contrast ratio of at least 3:1 between the same pixels in the focused and unfocused states\" and a minimum area. A subtle color shift fails it."
+      },
       "provisions": ["focus-indicator-contrast-sufficient"],
-      "note": "This applies only when you replace the browser's default focus indicator, so leaving the default in place is the safe route. The matching size requirement (Focus indicator size sufficient) is supplemental."
+      "note": "A faint custom outline, such as 1px #ddd on white, already fails WCAG 2.2 AA: the Understanding document for 1.4.11 says an author-styled focus indicator must meet 3:1 against adjacent colors. This WCAG 3 requirement applies only when you replace the browser's default focus indicator, so leaving the default in place is the safe route. The matching size requirement (Focus indicator size sufficient) is supplemental."
     },
     {
       "id": "autoplay-motion",
       "category": "motion",
       "practice": "Autoplaying hero videos, background loops and carousels made \"accessible\" with a pause button",
       "example": "A looping background video behind the page headline, with a small pause control.",
-      "wcag22": [
-        { "num": "2.2.2", "name": "Pause, Stop, Hide", "level": "A" },
-        { "num": "2.3.3", "name": "Animation from Interactions", "level": "AAA" }
-      ],
-      "whyItPasses": "A pause control is enough to meet 2.2.2, and the motion-specific criterion 2.3.3 is AAA.",
+      "aa": {
+        "criteria": [{ "num": "2.2.2", "name": "Pause, Stop, Hide", "level": "A" }],
+        "explanation": "For moving content that starts automatically and lasts more than five seconds, 2.2.2 only requires a way to pause, stop or hide it."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [{ "num": "2.3.3", "name": "Animation from Interactions", "level": "AAA" }],
+        "explanation": "2.3.3 covers only animation triggered by the user's interaction. Its Understanding document says animation that starts automatically falls under 2.2.2 instead, so autoplay passes AAA with just a pause control."
+      },
       "provisions": ["no-visual-motion"],
       "note": "The draft offers no pause-button route. The only exception is motion that is essential."
     },
@@ -69,37 +106,71 @@
       "category": "motion",
       "practice": "Ignoring the user's OS and browser accessibility settings",
       "example": "Animations that run regardless of prefers-reduced-motion; a site that ignores the system dark mode or font size.",
-      "wcag22": [],
-      "whyItPasses": "No WCAG 2.2 success criterion requires content to respond to platform accessibility settings.",
+      "aa": {
+        "criteria": [],
+        "explanation": "No WCAG 2.2 AA criterion requires content to follow settings like reduced motion or color scheme. 1.4.4 Resize Text requires text to scale to 200%, but not that it follows the system font-size setting."
+      },
+      "aaa": {
+        "result": "depends",
+        "criteria": [{ "num": "2.3.3", "name": "Animation from Interactions", "level": "AAA" }],
+        "explanation": "2.3.3 requires that animation triggered by interaction can be disabled. Honoring prefers-reduced-motion is one way to meet it, but not required, so a site with its own motion toggle passes AAA while ignoring the setting. Color scheme and font-size settings aren't covered at any level."
+      },
       "provisions": ["user-settings-supported"]
     },
     {
       "id": "captcha",
       "category": "forms",
       "practice": "CAPTCHAs, puzzles and \"retype this code\" checks on sign-up, contact or checkout forms",
-      "example": "A distorted-text CAPTCHA on a contact form; \"select all images with traffic lights\" at checkout.",
-      "wcag22": [{ "num": "3.3.8", "name": "Accessible Authentication (Minimum)", "level": "AA" }],
-      "whyItPasses": "3.3.8 applies only to authentication, and even there it allows object-recognition tests. CAPTCHAs on any other form are out of its scope.",
+      "example": "A distorted-text CAPTCHA with an audio option on a contact form; \"select all images with traffic lights\" at checkout.",
+      "aa": {
+        "criteria": [
+          { "num": "1.1.1", "name": "Non-text Content", "level": "A" },
+          { "num": "3.3.8", "name": "Accessible Authentication (Minimum)", "level": "AA" }
+        ],
+        "explanation": "3.3.8 covers only logging in to an existing account (its Understanding document excludes account creation), and even there it allows object-recognition tests at AA. Elsewhere, 1.1.1 only requires an image CAPTCHA to have a text alternative describing its purpose and a version in another sense, such as audio."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [{ "num": "3.3.9", "name": "Accessible Authentication (Enhanced)", "level": "AAA" }],
+        "explanation": "3.3.9 drops the object-recognition exception, but like 3.3.8 it applies only to authentication. CAPTCHAs on sign-up, contact or checkout forms are outside it."
+      },
       "provisions": ["cognitive-test-alternatives-available"],
       "note": "The draft's test procedure lists \"a puzzle, image identification, gesture reproduction, math question, or character recognition/entry\". So object-recognition CAPTCHAs are covered too, and the requirement applies to any process, not just login."
     },
     {
       "id": "paste-block",
       "category": "forms",
-      "practice": "Blocking paste or autofill in personal-information fields",
-      "example": "A \"confirm email\" field that rejects pasted text; account-number fields with paste disabled.",
-      "wcag22": [{ "num": "3.3.8", "name": "Accessible Authentication (Minimum)", "level": "AA" }],
-      "whyItPasses": "Outside of login, WCAG 2.2 doesn't stop you blocking paste.",
+      "practice": "Blocking paste in personal-information fields outside of login",
+      "example": "A sign-up form whose \"confirm email\" and \"confirm password\" fields reject pasted text.",
+      "aa": {
+        "criteria": [
+          { "num": "3.3.7", "name": "Redundant Entry", "level": "A" },
+          { "num": "3.3.8", "name": "Accessible Authentication (Minimum)", "level": "AA" }
+        ],
+        "explanation": "3.3.8 fails blocked paste only when logging in to an existing account; its Understanding document excludes account creation. 3.3.7's Understanding document allows re-entry for security, such as confirming a new password."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [{ "num": "3.3.9", "name": "Accessible Authentication (Enhanced)", "level": "AAA" }],
+        "explanation": "3.3.9 has the same authentication-only scope as 3.3.8."
+      },
       "provisions": ["automated-entry-allowed"],
-      "note": "The draft's test sets up a test identity in the browser and checks that autofill populates the form, so switching off autofill would fail as well."
+      "note": "The draft's test sets up a test identity in the browser and checks that autofill populates the form. Switching off autofill would fail it too, though autocomplete=\"off\" on fields like name or email may already fail WCAG 2.2's 1.3.5 Identify Input Purpose."
     },
     {
       "id": "placeholder-label",
       "category": "forms",
       "practice": "Using placeholder text as the only label",
       "example": "An input whose only label is grey hint text that disappears once you type.",
-      "wcag22": [{ "num": "3.3.2", "name": "Labels or Instructions", "level": "A" }],
-      "whyItPasses": "Placeholder text is visible before input, so many audits accept it under 3.3.2.",
+      "aa": {
+        "criteria": [{ "num": "3.3.2", "name": "Labels or Instructions", "level": "A" }],
+        "explanation": "Placeholder text is visible before input, so many audits accept it under 3.3.2."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [],
+        "explanation": "No AAA criterion requires labels to stay visible during input."
+      },
       "provisions": ["interactive-element-names-available"],
       "note": "The test checks that the visual label persists during use. Icons still count as visible labels."
     },
@@ -107,9 +178,16 @@
       "id": "error-summary-only",
       "category": "forms",
       "practice": "Showing errors only in a summary at the top of the form",
-      "example": "\"Please fix 3 errors\" at the top, with nothing marked or announced on the fields themselves.",
-      "wcag22": [{ "num": "3.3.1", "name": "Error Identification", "level": "A" }],
-      "whyItPasses": "3.3.1 only requires the error to be identified and described in text, which a summary does.",
+      "example": "A summary at the top reading \"Email: enter an address like name@example.com\", with nothing marked on the Email field or tied to it in code.",
+      "aa": {
+        "criteria": [{ "num": "3.3.1", "name": "Error Identification", "level": "A" }],
+        "explanation": "3.3.1 requires that \"the item that is in error is identified and the error is described to the user in text\". A summary that names each field and describes its problem does that. A bare \"Please fix 3 errors\" doesn't, so it already fails 2.2."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [],
+        "explanation": "The AAA error criterion, 3.3.6 Error Prevention (All), is about checking or reversing submissions, not about where error messages appear."
+      },
       "provisions": ["errors-associated"]
     },
     {
@@ -117,8 +195,15 @@
       "category": "forms",
       "practice": "Multi-step checkouts or wizards with no list of steps or progress indicator",
       "example": "A checkout flow where each screen just has a Continue button.",
-      "wcag22": [{ "num": "2.4.8", "name": "Location", "level": "AAA" }],
-      "whyItPasses": "The closest 2.2 criterion, 2.4.8, is AAA.",
+      "aa": {
+        "criteria": [],
+        "explanation": "No AA criterion requires showing where you are in a process."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [{ "num": "2.4.8", "name": "Location", "level": "AAA" }],
+        "explanation": "2.4.8 is about location within a set of web pages. Its Understanding document uses checkout pages as an example of pages outside the set, so a checkout with no step list passes AAA."
+      },
       "provisions": ["all-steps-listed", "current-step-indicated"]
     },
     {
@@ -126,8 +211,15 @@
       "category": "forms",
       "practice": "Pre-ticked add-ons or opt-ins hidden in a collapsed section",
       "example": "Travel insurance pre-selected inside a closed \"Extras\" panel.",
-      "wcag22": [],
-      "whyItPasses": "WCAG 2.2 has no requirement about preselected options.",
+      "aa": {
+        "criteria": [],
+        "explanation": "WCAG 2.2 has no requirement about preselected options."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [],
+        "explanation": "Nothing at AAA covers it either."
+      },
       "provisions": ["preselections-visible"]
     },
     {
@@ -135,8 +227,15 @@
       "category": "forms",
       "practice": "Login that only works with biometrics",
       "example": "Face or fingerprint sign-in with no password or code fallback.",
-      "wcag22": [{ "num": "3.3.8", "name": "Accessible Authentication (Minimum)", "level": "AA" }],
-      "whyItPasses": "Biometrics aren't a cognitive function test, so they pass 3.3.8, and no 2.2 criterion requires a non-biometric alternative.",
+      "aa": {
+        "criteria": [{ "num": "3.3.8", "name": "Accessible Authentication (Minimum)", "level": "AA" }],
+        "explanation": "Biometrics aren't a cognitive function test, so they pass 3.3.8, and no 2.2 criterion requires a non-biometric alternative."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [{ "num": "3.3.9", "name": "Accessible Authentication (Enhanced)", "level": "AAA" }],
+        "explanation": "3.3.9 also only restricts cognitive function tests, so biometric-only login passes."
+      },
       "provisions": ["biometrics-not-relied-on"]
     },
     {
@@ -144,8 +243,15 @@
       "category": "spa",
       "practice": "Route changes that update the screen but announce nothing",
       "example": "A single-page app swaps the main content on navigation; screen reader users hear nothing.",
-      "wcag22": [{ "num": "2.4.2", "name": "Page Titled", "level": "A" }],
-      "whyItPasses": "Updating the page title is usually considered enough for 2.2. Nothing requires the change to be announced.",
+      "aa": {
+        "criteria": [{ "num": "2.4.2", "name": "Page Titled", "level": "A" }],
+        "explanation": "Updating the page title is usually considered enough for 2.2. Nothing requires the change to be announced."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [],
+        "explanation": "No AAA criterion requires announcing a view change the user asked for."
+      },
       "provisions": ["page-view-change-notified"]
     },
     {
@@ -153,12 +259,21 @@
       "category": "media",
       "practice": "Captions, but no transcript (or a transcript linked from somewhere else)",
       "example": "A captioned product video with no transcript next to it.",
-      "wcag22": [
-        { "num": "1.2.3", "name": "Audio Description or Media Alternative (Prerecorded)", "level": "A" },
-        { "num": "1.2.7", "name": "Extended Audio Description (Prerecorded)", "level": "AAA" },
-        { "num": "1.2.8", "name": "Media Alternative (Prerecorded)", "level": "AAA" }
-      ],
-      "whyItPasses": "1.2.3 lets you choose a transcript or audio description. A full transcript (1.2.8) and extended audio description (1.2.7) are both AAA.",
+      "aa": {
+        "criteria": [
+          { "num": "1.2.3", "name": "Audio Description or Media Alternative (Prerecorded)", "level": "A" },
+          { "num": "1.2.5", "name": "Audio Description (Prerecorded)", "level": "AA" }
+        ],
+        "explanation": "At Level A, 1.2.3 lets you choose a transcript or audio description. At AA, 1.2.5 requires audio description, so the transcript becomes optional."
+      },
+      "aaa": {
+        "result": "fails",
+        "criteria": [
+          { "num": "1.2.7", "name": "Extended Audio Description (Prerecorded)", "level": "AAA" },
+          { "num": "1.2.8", "name": "Media Alternative (Prerecorded)", "level": "AAA" }
+        ],
+        "explanation": "1.2.8 requires a text alternative (a full transcript) for all prerecorded video. 1.2.7 requires extended audio description where the pauses are too short."
+      },
       "provisions": [
         "dialogue-transcripts-available-prerecorded",
         "transcripts-findable",
@@ -170,8 +285,15 @@
       "category": "writing",
       "practice": "Acronyms that are never expanded",
       "example": "\"Submit your PTO request via the HRIS.\"",
-      "wcag22": [{ "num": "3.1.4", "name": "Abbreviations", "level": "AAA" }],
-      "whyItPasses": "3.1.4 is AAA.",
+      "aa": {
+        "criteria": [],
+        "explanation": "No AA criterion covers abbreviations."
+      },
+      "aaa": {
+        "result": "fails",
+        "criteria": [{ "num": "3.1.4", "name": "Abbreviations", "level": "AAA" }],
+        "explanation": "3.1.4 requires \"a mechanism ... for identifying the expanded form or meaning of abbreviations\"."
+      },
       "provisions": ["abbreviations-explained"]
     },
     {
@@ -179,18 +301,32 @@
       "category": "writing",
       "practice": "Long articles with no summary",
       "example": "A 1,500-word policy page with no overview.",
-      "wcag22": [{ "num": "3.1.5", "name": "Reading Level", "level": "AAA" }],
-      "whyItPasses": "The closest 2.2 criterion, 3.1.5, is AAA.",
+      "aa": {
+        "criteria": [],
+        "explanation": "No AA criterion asks for summaries."
+      },
+      "aaa": {
+        "result": "depends",
+        "criteria": [{ "num": "3.1.5", "name": "Reading Level", "level": "AAA" }],
+        "explanation": "3.1.5 requires supplementary content, such as a summary, or a simpler version only when the text needs reading ability above lower secondary education level. Plainly written long pages pass AAA without one."
+      },
       "provisions": ["summaries-available"],
       "note": "Applies to pages with 300 or more words of continuous text. The draft says the word threshold still needs research."
     },
     {
       "id": "sensory",
       "category": "writing",
-      "practice": "Instructions that refer to shape, color or position, even when the control also has a text label",
-      "example": "\"Click the round button on the right to continue.\"",
-      "wcag22": [{ "num": "1.3.3", "name": "Sensory Characteristics", "level": "A" }],
-      "whyItPasses": "1.3.3 says instructions must not rely \"solely\" on sensory characteristics.",
+      "practice": "Instructions that refer to shape, color or position, even when they also name the control",
+      "example": "\"Click the round Continue button on the right.\"",
+      "aa": {
+        "criteria": [{ "num": "1.3.3", "name": "Sensory Characteristics", "level": "A" }],
+        "explanation": "1.3.3 says instructions must not rely \"solely\" on sensory characteristics. Naming the button satisfies that. \"Click the round button on the right\", with no name, already fails 2.2."
+      },
+      "aaa": {
+        "result": "passes",
+        "criteria": [],
+        "explanation": "No AAA criterion goes further than 1.3.3."
+      },
       "provisions": ["sensory-characteristics-not-relied-on"],
       "uncertain": true,
       "note": "WCAG 3 dropped the word \"solely\". It's not yet clear whether that was meant to make this stricter, so treat this entry as uncertain."
@@ -201,17 +337,31 @@
       "id": "card-links",
       "category": "keyboard",
       "practice": "Card patterns where the image, the title and a \"Read more\" link all go to the same place",
-      "wcag22": [{ "num": "2.4.4", "name": "Link Purpose (In Context)", "level": "A" }],
-      "whyItPasses": "Each link has a clear purpose, so 2.4.4 passes. Nothing in 2.2 limits duplicate links.",
+      "aa": {
+        "criteria": [{ "num": "2.4.4", "name": "Link Purpose (In Context)", "level": "A" }],
+        "explanation": "Each link's purpose is clear from its context, so 2.4.4 passes. Nothing in 2.2 limits duplicate links."
+      },
+      "aaa": {
+        "result": "depends",
+        "criteria": [{ "num": "2.4.9", "name": "Link Purpose (Link Only)", "level": "AAA" }],
+        "explanation": "A bare \"Read more\" fails 2.4.9, which requires each link's purpose to be clear from its own text. If every link has a descriptive accessible name, the duplicates pass AAA."
+      },
       "provisions": ["no-repetitive-adjacent-interactive-elements"],
       "note": "Core requirement Focus relevant also mentions \"groups of repeated interactive elements\", but its test procedure uses site navigation as the example and only asks for a way to skip them. It doesn't appear to cover cards."
     },
     {
       "id": "time-limits",
       "category": "forms",
-      "practice": "Session or task time limits that rely on 2.2's extend-or-20-hour exceptions",
-      "wcag22": [{ "num": "2.2.1", "name": "Timing Adjustable", "level": "A" }],
-      "whyItPasses": "2.2.1 is met if users can turn off, adjust or extend the limit, or if it is longer than 20 hours.",
+      "practice": "Process time limits that users can extend",
+      "aa": {
+        "criteria": [{ "num": "2.2.1", "name": "Timing Adjustable", "level": "A" }],
+        "explanation": "2.2.1 is met if users can turn off, adjust or extend the limit, or if one of its exceptions applies: real-time, essential, or longer than 20 hours."
+      },
+      "aaa": {
+        "result": "fails",
+        "criteria": [{ "num": "2.2.3", "name": "No Timing", "level": "AAA" }],
+        "explanation": "2.2.3 requires that timing is not an essential part of the activity, except for non-interactive synchronized media and real-time events, so even an extendable limit fails AAA."
+      },
       "provisions": ["no-time-limits"]
     }
   ],
@@ -226,7 +376,7 @@
       "id": "text-values-tbd",
       "practice": "Text contrast, minimum font size and spacing",
       "provisions": ["text-contrast-sufficient-minimum", "text-style-readable-minimum", "blocks-of-text-readable-minimum"],
-      "explanation": "Can't be judged yet. The values in these core requirements are still placeholders in the draft (\"@@[values to be determined]\"), so nobody can say what passes or fails."
+      "explanation": "Can't be judged yet. The values in these core requirements are still placeholders in the draft (\"@@[contrast measure to be determined]\" and \"@@ [values to be determined]\"), so nobody can say what passes or fails."
     }
   ]
 }
