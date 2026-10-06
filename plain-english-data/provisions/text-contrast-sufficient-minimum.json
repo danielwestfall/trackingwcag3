@@ -6,8 +6,7 @@
   ],
   "translatedFrom": "guidelines/groups/text-and-wording/contrast/text-contrast-sufficient-minimum.md",
   "plainEnglish": {
-    "summary": "Text must maintain strong visual contrast against its background so it can be easily read by everyone, including people with low vision or under bright light.",
-    "whyItMatters": "Faint or low-contrast text forces users to strain their eyes and makes reading impossible for low-vision users."
+    "summary": "Text meets a minimum contrast against its background. The contrast measure is still to be determined in the draft. Exceptions include inactive controls, pure decoration, invisible text, text in pictures with significant other visual content, logos, and text that also appears elsewhere on the page in a form that meets the requirement.",
+    "whyItMatters": "Low-contrast text is hard or impossible to read for people with low vision, and for anyone in bright light."
   }
 }
-

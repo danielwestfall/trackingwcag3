@@ -1,0 +1,816 @@
+{
+  "_about": "Three-tier guidance for each WCAG 2.2 success criterion. Tier 1 (floor, notRequired) is written strictly from the normative text and glossary definitions in normative-text.json; anything drawn from informative notes or Understanding documents says so. Tiers 2 (gap) and 3 (bestPractice) are recommendations, not requirements. failsExamples lists known failures of this criterion or of related criteria, so they are never framed as mere usability gaps.",
+  "written": "2026-10-05",
+  "basedOn": "WCAG 2.2, W3C Recommendation 12 December 2024",
+  "criteria": [
+    {
+      "num": "1.1.1",
+      "floor": "Every piece of non-text content shown to users has a text alternative that serves the equivalent purpose. Controls and inputs need a name that describes their purpose. Time-based media, tests that would be invalid in text, and content meant to create a specific sensory experience only need a text alternative that identifies them. A CAPTCHA needs a text alternative describing its purpose and a version that uses a different sense. Content that is pure decoration, used only for visual formatting, or not presented to users must be implemented so assistive technology can ignore it.",
+      "notRequired": [
+        "A particular length or wording for alt text. The test is equivalent purpose, not a character count.",
+        "The alt attribute specifically. A text alternative is any text programmatically associated with the content, or referred to from text that is.",
+        "Describing every visual detail. Only the image's purpose has to be served."
+      ],
+      "gap": "Alt text can be present and equivalent yet still tiring to use, for example when it repeats the caption beside it or runs to a paragraph.",
+      "bestPractice": "Write alt text for the image's purpose in its context, as if replacing the image with words. Keep it short. Give charts and diagrams a brief alt plus a full description or data table nearby. Make the alt field required in your CMS, with an explicit \"decorative\" option.",
+      "failsExamples": [
+        "A chart whose alt text only names it (\"Sales chart\") without conveying what it shows doesn't serve the equivalent purpose."
+      ]
+    },
+    {
+      "num": "1.2.1",
+      "floor": "Prerecorded audio-only content has a text alternative that presents equivalent information (an \"alternative for time-based media\"). Prerecorded video-only content has either that text alternative or an audio track with equivalent information. Media that is itself an alternative for text, and clearly labeled as such, is exempt.",
+      "notRequired": [
+        "Captions on audio-only content such as podcasts. A text alternative satisfies this criterion.",
+        "Both a text alternative and an audio track for silent video. Either one is enough."
+      ],
+      "gap": "A transcript that technically exists but sits on another page, or is only linked from a footer, is easy to miss. Users who need it may never find it.",
+      "bestPractice": "Place the transcript, or a link to it, directly beside the player. For silent video, describe what happens on screen in the same place."
+    },
+    {
+      "num": "1.2.2",
+      "floor": "Prerecorded audio in synchronized media (video with sound) has captions. By definition, captions cover both speech and the non-speech audio needed to understand the content. Media that is a clearly labeled alternative for text is exempt.",
+      "notRequired": [
+        "Closed (user-toggleable) captions specifically. Open captions burned into the video meet the definition.",
+        "A particular caption style, font or position.",
+        "A numeric accuracy threshold. The definition asks for the information needed to understand the media."
+      ],
+      "gap": "Complete captions can still be hard to follow when they are split mid-phrase, cover on-screen text, or can't be resized.",
+      "bestPractice": "Use human-edited captions that identify speakers and meaningful sounds. Deliver them as closed captions through the player so users can resize and restyle them.",
+      "failsExamples": [
+        "Auto-generated captions that leave out speech or sounds needed to understand the media don't meet WCAG's definition of captions."
+      ]
+    },
+    {
+      "num": "1.2.3",
+      "floor": "Prerecorded video with sound has either a full text alternative for time-based media or audio description of the video. Media that is a clearly labeled alternative for text is exempt.",
+      "notRequired": [
+        "Audio description if a full text alternative is provided. Either option meets Level A; 1.2.5 at AA then requires audio description.",
+        "Extended audio description. That's 1.2.7, Level AAA."
+      ],
+      "gap": "Meeting Level A with a text document means blind users leave the video to read instead of experiencing it with everyone else.",
+      "bestPractice": "Plan for 1.2.5 from the start. Script videos so that key visual information is spoken in the main narration, which reduces or removes the need for separate description."
+    },
+    {
+      "num": "1.2.4",
+      "floor": "Live audio in synchronized media, such as a live-streamed event with video, has captions.",
+      "notRequired": [
+        "Captions for live audio-only streams. Those aren't synchronized media; 1.2.9 (AAA) covers them."
+      ],
+      "gap": "Complete live captions that lag well behind the speaker are hard to follow alongside the video.",
+      "bestPractice": "Book human real-time captioning (CART) for important live events. Correct the captions before publishing the recording.",
+      "failsExamples": [
+        "Live captions that leave out speech or sounds needed to understand the content don't meet WCAG's definition of captions."
+      ]
+    },
+    {
+      "num": "1.2.5",
+      "floor": "Prerecorded video in synchronized media has audio description: narration added to describe important visual details that can't be understood from the main soundtrack alone.",
+      "notRequired": [
+        "Added narration when the soundtrack already conveys all important visual information. The definition covers only details that can't be understood from the soundtrack.",
+        "Extended audio description that pauses the video. That's 1.2.7, Level AAA."
+      ],
+      "gap": "Description squeezed into short pauses can leave out context. A separate described version is often hard to find, or lags behind updates to the main video.",
+      "bestPractice": "Write description into the script so the narration explains what's on screen. Where a separate track is needed, offer it from the same player."
+    },
+    {
+      "num": "1.2.6",
+      "floor": "Prerecorded audio in synchronized media has sign language interpretation.",
+      "notRequired": [],
+      "gap": "A small or low-resolution interpreter window makes hand shapes and facial expressions hard to read.",
+      "bestPractice": "Use the sign language your audience uses. Size the interpreter large enough to read, and let users show or hide it."
+    },
+    {
+      "num": "1.2.7",
+      "floor": "Where pauses in the foreground audio are too short for audio description to convey the sense of the video, extended audio description is provided: the video pauses so there is time for more description. Applies to prerecorded video in synchronized media.",
+      "notRequired": [
+        "Pausing the video when the existing pauses are long enough for the description."
+      ],
+      "gap": "Frequent pauses can make the experience choppy if the description is longer than it needs to be.",
+      "bestPractice": "Keep extended descriptions tight. Offer the extended version as a choice alongside the standard one."
+    },
+    {
+      "num": "1.2.8",
+      "floor": "All prerecorded synchronized media and all prerecorded video-only media have an alternative for time-based media: a document with correctly sequenced text descriptions of the visual and auditory information, and a way to achieve the outcome of any interaction.",
+      "notRequired": [
+        "A specific location for the document."
+      ],
+      "gap": "A complete alternative is little use if users can't find it.",
+      "bestPractice": "Publish a descriptive transcript (dialogue plus visual descriptions) directly beneath the media.",
+      "failsExamples": [
+        "A dialogue-only transcript doesn't meet the definition of an alternative for time-based media, because it leaves out the visual information."
+      ]
+    },
+    {
+      "num": "1.2.9",
+      "floor": "Live audio-only content, such as a live audio stream, has an alternative that presents equivalent information.",
+      "notRequired": [],
+      "gap": "A text summary posted afterwards doesn't help people following the event live.",
+      "bestPractice": "Provide a live text stream from a human captioner, and publish a corrected transcript afterwards."
+    },
+    {
+      "num": "1.3.1",
+      "floor": "Information, structure and relationships conveyed through presentation can be programmatically determined, or are available in text. If something looks like a heading, list, table or group, that structure has to be available to software too.",
+      "notRequired": [
+        "Landmark regions or ARIA specifically. Structure can be conveyed by headings, lists, tables and other native semantics.",
+        "Heading levels in strict sequence with no skips. A skipped level is only a problem if the coded levels misrepresent the visual structure.",
+        "Exactly one h1 per page."
+      ],
+      "gap": "A page can convey its structure with the bare minimum of semantics and still be slow to navigate. Without landmarks or a sensible heading outline, screen reader users have fewer ways to jump around.",
+      "bestPractice": "Use native HTML: headings that follow the visual hierarchy, real lists, tables with header cells, landmark elements, and fieldset with legend for groups of controls."
+    },
+    {
+      "num": "1.3.2",
+      "floor": "When the order of content affects its meaning, a correct reading order can be programmatically determined.",
+      "notRequired": [
+        "Source order matching visual order everywhere. It only matters where the sequence affects meaning."
+      ],
+      "gap": "CSS that reorders content visually (flex order, grid placement) can still pass, yet keyboard and screen magnifier users see focus and reading jump around the screen.",
+      "bestPractice": "Keep source order and visual order the same. Treat CSS reordering as a code-review flag."
+    },
+    {
+      "num": "1.3.3",
+      "floor": "Instructions for understanding and operating content don't rely solely on sensory characteristics such as shape, color, size, visual location, orientation or sound.",
+      "notRequired": [
+        "Avoiding sensory words altogether. \"Select the round Start button\" passes because it also names the control."
+      ],
+      "gap": "Instructions that lead with position (\"in the panel on the right\") still slow down people who can't see the layout, or who see a reflowed version of it.",
+      "bestPractice": "Refer to controls by their visible label first. Add location or shape only as a secondary hint."
+    },
+    {
+      "num": "1.3.4",
+      "floor": "Content doesn't restrict its view and operation to a single display orientation (portrait or landscape) unless a specific orientation is essential.",
+      "notRequired": [
+        "A separately designed layout for each orientation. The requirement is not to lock orientation."
+      ],
+      "gap": "Content that technically rotates can still be awkward. In landscape on a phone, fixed headers and footers can leave only a sliver of usable space.",
+      "bestPractice": "Use responsive layouts tested in both orientations, especially on devices mounted to wheelchairs or beds."
+    },
+    {
+      "num": "1.3.5",
+      "floor": "Input fields collecting information about the user have a programmatically determinable purpose, when the field's purpose is one listed in WCAG's Input Purposes section and the technology supports it. (In HTML, W3C's sufficient technique is the autocomplete attribute; techniques are informative.)",
+      "notRequired": [
+        "Marking up fields about someone other than the user, such as a gift recipient's address.",
+        "Marking up fields whose purpose isn't on the Input Purposes list."
+      ],
+      "gap": "Correct autocomplete values don't help if scripts or browser workarounds stop autofill from working. People with motor or memory impairments are left retyping their details.",
+      "bestPractice": "Add the right autocomplete token to every personal-data field, and never block browser autofill."
+    },
+    {
+      "num": "1.3.6",
+      "floor": "In content built with markup languages, the purpose of user interface components, icons and regions can be programmatically determined.",
+      "notRequired": [],
+      "gap": "Tools that personalize interfaces for people with cognitive disabilities depend on semantics that most sites don't yet provide.",
+      "bestPractice": "Use landmark regions, autocomplete tokens and consistent, well-named icons, and follow emerging personalization semantics."
+    },
+    {
+      "num": "1.4.1",
+      "floor": "Color is not the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.",
+      "notRequired": [
+        "Avoiding color. Color can carry meaning as long as something else visual (text, an icon, a pattern, an underline) carries it too."
+      ],
+      "gap": "A second cue that meets 3:1 but is small, such as a small icon beside a red error message, is still easy for color-blind users to miss.",
+      "bestPractice": "Pair color with text or an icon. Underline links in running text. Give charts patterns or direct labels."
+    },
+    {
+      "num": "1.4.2",
+      "floor": "If audio plays automatically for more than 3 seconds, there is either a way to pause or stop it, or a way to control its volume separately from the system volume. Under WCAG's non-interference requirement this applies to everything on the page, even content not relied on to meet other criteria.",
+      "notRequired": [
+        "Avoiding autoplay altogether.",
+        "Controls for audio that plays for 3 seconds or less."
+      ],
+      "gap": "A pause button at the bottom of the page is hard to find for screen reader users, whose speech is drowned out by the audio while they look for it.",
+      "bestPractice": "Don't autoplay sound. If you must, start muted and put the control first in the page."
+    },
+    {
+      "num": "1.4.3",
+      "floor": "Text and images of text have a contrast ratio of at least 4.5:1. Large-scale text (at least 18pt, or 14pt bold) needs 3:1. Text in inactive components, pure decoration, invisible text, text inside pictures with significant other visual content, and logos have no contrast requirement.",
+      "notRequired": [
+        "Contrast for disabled controls.",
+        "Contrast for icons, borders and other non-text elements. That's 1.4.11.",
+        "APCA or any other algorithm. The normative measure is WCAG's contrast ratio formula."
+      ],
+      "gap": "4.5:1 is a floor. Thin or small fonts at exactly 4.5:1 can still be hard to read for people with low vision, in glare, or on low-quality screens.",
+      "bestPractice": "Aim above the minimum for body text, avoid very thin font weights, and build the contrast checks into your design tokens."
+    },
+    {
+      "num": "1.4.4",
+      "floor": "Apart from captions and images of text, text can be resized up to 200 percent without assistive technology and without loss of content or functionality.",
+      "notRequired": [
+        "On-page text-size controls. Browser zoom is a way to resize text.",
+        "Resizing beyond 200 percent."
+      ],
+      "gap": "Many people enlarge only the text, through browser or OS font settings rather than zoom. Layouts with fixed heights can clip that text even when they pass with page zoom.",
+      "bestPractice": "Size text and its containers in relative units, and test with browser text-size settings as well as zoom."
+    },
+    {
+      "num": "1.4.5",
+      "floor": "If the technology can produce the visual presentation, real text is used instead of images of text. Exceptions: the image of text can be visually customized (font, size, color and background can be set), or a particular presentation is essential.",
+      "notRequired": [
+        "Replacing logos. A W3C note says logotypes are considered essential."
+      ],
+      "gap": "Text baked into banners and social cards can't be resized, recolored or reflowed, and blurs when magnified.",
+      "bestPractice": "Render text as live text over background images, using CSS for the visual treatment."
+    },
+    {
+      "num": "1.4.6",
+      "floor": "Text and images of text have a contrast ratio of at least 7:1, and large-scale text at least 4.5:1, with the same exceptions as 1.4.3.",
+      "notRequired": [],
+      "gap": "Some readers find very high contrast uncomfortable, so a single fixed palette can't suit everyone.",
+      "bestPractice": "Offer 7:1 as a theme option, or a user-selectable high-contrast mode, rather than forcing it on everyone."
+    },
+    {
+      "num": "1.4.7",
+      "floor": "For prerecorded audio-only content that is mainly foreground speech (not an audio CAPTCHA, audio logo, or singing or rapping), one of these is true: there are no background sounds, they can be turned off, or they are at least 20 decibels quieter than the speech, apart from occasional sounds of one or two seconds.",
+      "notRequired": [],
+      "gap": "Even background music at 20dB lower can make speech hard to follow for people with hearing loss.",
+      "bestPractice": "Keep spoken-word recordings free of background music, or offer a speech-only version."
+    },
+    {
+      "num": "1.4.8",
+      "floor": "For blocks of text, a mechanism is available to: choose foreground and background colors; limit width to 80 characters (40 for CJK); avoid justified text; get line spacing of at least 1.5 and paragraph spacing at least 1.5 times the line spacing; and resize text to 200 percent without horizontal scrolling in a full-screen window.",
+      "notRequired": [
+        "Using these values by default. The requirement is that a mechanism is available, and W3C's note says it can be the browser."
+      ],
+      "gap": "Relying on users to find browser settings means many never benefit.",
+      "bestPractice": "Design body text that meets these values by default: short lines, left-aligned, generous spacing."
+    },
+    {
+      "num": "1.4.9",
+      "floor": "Images of text are used only for pure decoration, or where a particular presentation of text is essential.",
+      "notRequired": [
+        "Replacing logos. A W3C note says logotypes are considered essential."
+      ],
+      "gap": "None beyond 1.4.5. This removes 1.4.5's customization exception.",
+      "bestPractice": "Use live text everywhere except logos."
+    },
+    {
+      "num": "1.4.10",
+      "floor": "Content can be presented without losing information or functionality, and without scrolling in two directions, at a width of 320 CSS pixels (for vertically scrolling content) or a height of 256 CSS pixels (for horizontally scrolling content). Parts of the content that need a two-dimensional layout for their use or meaning are exempt.",
+      "notRequired": [
+        "A design that matches your mobile site. Any layout works, as long as nothing is lost and there's no two-way scrolling.",
+        "Reflowing parts that need two-dimensional layout. W3C's informative note gives maps, diagrams, video, games, data tables and toolbars as examples."
+      ],
+      "gap": "A page can reflow while hiding key actions behind menus, or by covering much of the small viewport with sticky headers. People using 400% zoom then see very little content at once.",
+      "bestPractice": "Design mobile-first, keep fixed or sticky elements small at narrow widths, and test at 1280px wide with 400% zoom."
+    },
+    {
+      "num": "1.4.11",
+      "floor": "These have a contrast ratio of at least 3:1 against adjacent colors: the visual information needed to identify user interface components and their states (except inactive components, and components whose appearance is set by the browser and not modified by the author), and the parts of graphics needed to understand the content (unless a particular presentation is essential).",
+      "notRequired": [
+        "Contrast between a component's own states, such as focused versus unfocused. Contrast is measured against adjacent colors.",
+        "A border on every input. If something else identifies the field, such as a contrasting background, the border needn't meet 3:1."
+      ],
+      "gap": "A state change that meets 3:1 but is shown only by a thin border change is easy to miss.",
+      "bestPractice": "Give inputs clear borders and focus indicators, and make states differ in more than color (for example a check mark or a thicker border).",
+      "failsExamples": [
+        "A state shown only by a change of color, such as a button whose background shifts shade on focus, fails 1.4.1 Use of Color. W3C's 1.4.11 Understanding document says 1.4.11 doesn't compare the two states, \"However, this would not pass Use of color.\""
+      ]
+    },
+    {
+      "num": "1.4.12",
+      "floor": "In content built with markup languages, nothing is lost and nothing stops working when a user sets line height to 1.5 times the font size, spacing after paragraphs to 2 times, letter spacing to 0.12 times and word spacing to 0.16 times, changing no other style. Languages and scripts that don't use one of these properties are exempt for that property.",
+      "notRequired": [
+        "Using these spacing values in your own design. Content only has to tolerate them when a user applies them."
+      ],
+      "gap": "Layouts can survive the test values exactly but break with slightly larger user settings, or with fonts swapped in for dyslexia.",
+      "bestPractice": "Avoid fixed heights on text containers, let buttons and labels grow, and test with a text-spacing bookmarklet."
+    },
+    {
+      "num": "1.4.13",
+      "floor": "When hover or keyboard focus makes extra content appear (such as a custom tooltip or submenu): it can be dismissed without moving the pointer or focus, unless it shows an input error or doesn't cover other content; if triggered by hover, the pointer can move onto it without it disappearing; and it stays visible until the trigger is removed, the user dismisses it, or its information is no longer valid. Content whose presentation the browser controls, such as a title-attribute tooltip, is exempt.",
+      "notRequired": [
+        "The Escape key specifically. The requirement is a mechanism to dismiss; Escape is the usual technique."
+      ],
+      "gap": "Hover content can pass and still be awkward on touch screens, where there is no hover, and for magnifier users who lose it off-screen.",
+      "bestPractice": "Dismiss with Escape, keep content open while hovered, and never put essential information only in hover content.",
+      "failsExamples": [
+        "Information that appears only on pointer hover, with no way to reach it by keyboard, fails 2.1.1 Keyboard. W3C's 1.4.13 Understanding document points to 2.1.1 for this."
+      ]
+    },
+    {
+      "num": "2.1.1",
+      "floor": "All functionality can be operated through a keyboard interface, without needing specific timing for individual keystrokes. The exception is functionality whose underlying function depends on the path of the user's movement, not just its endpoints (such as freehand drawing).",
+      "notRequired": [
+        "The Tab key specifically. Arrow keys and other keys count as a keyboard interface.",
+        "A visible focus indicator. That's 2.4.7.",
+        "Any limit on the number of keystrokes needed."
+      ],
+      "gap": "Something can be keyboard-operable yet take dozens of Tab presses, or rely on key combinations nobody would guess.",
+      "bestPractice": "Use native interactive elements, keep tab stops to the controls people need, and use arrow-key navigation inside composite widgets like menus, tabs and grids, following established keyboard patterns."
+    },
+    {
+      "num": "2.1.2",
+      "floor": "If keyboard focus can move into a component, it can move out again using only the keyboard. If leaving needs more than unmodified arrow or Tab keys or another standard exit method, the user is told how. Under WCAG's non-interference requirement this applies to everything on the page.",
+      "notRequired": [
+        "Letting focus leave an open modal dialog. Containing focus in a modal isn't a trap if the keyboard can close it."
+      ],
+      "gap": "A non-standard exit that is documented somewhere technically passes, but users rarely find the instructions.",
+      "bestPractice": "Make Escape close dialogs and menus, and return focus to the control that opened them."
+    },
+    {
+      "num": "2.1.3",
+      "floor": "All functionality can be operated through a keyboard interface without needing specific timing for individual keystrokes. Unlike 2.1.1, there is no exception for path-dependent input.",
+      "notRequired": [],
+      "gap": "Keyboard alternatives for drawing or gesture tools can be technically present but tedious.",
+      "bestPractice": "Offer structured alternatives for path-based tasks, such as shape tools, numeric input for positions, or snap-to-grid."
+    },
+    {
+      "num": "2.1.4",
+      "floor": "If a keyboard shortcut uses only a letter, punctuation, number or symbol key, at least one of these is true: it can be turned off; it can be remapped to include a non-printable key such as Ctrl or Alt; or it only works while the relevant component has focus.",
+      "notRequired": [
+        "Anything for shortcuts that already use a modifier key such as Ctrl or Alt."
+      ],
+      "gap": "A setting to turn shortcuts off that is hard to find leaves speech-input users accidentally triggering actions until they discover it.",
+      "bestPractice": "Avoid single-key shortcuts, or make them opt-in, and list all shortcuts in an easy-to-find help panel."
+    },
+    {
+      "num": "2.2.1",
+      "floor": "For each time limit the content sets, at least one is true: the user can turn it off before reaching it; adjust it to at least ten times the default; or is warned before it expires and given at least 20 seconds to extend it with a simple action, at least ten times. The limit is exempt if it's a required part of a real-time event with no possible alternative, if it's essential and extending it would invalidate the activity, or if it's longer than 20 hours.",
+      "notRequired": [
+        "Removing time limits. That's 2.2.3, Level AAA.",
+        "All the options. Any one of them satisfies the criterion."
+      ],
+      "gap": "Twenty seconds to respond to a warning is short for people using screen readers, switch access or speech input, especially if the warning doesn't take focus or isn't announced.",
+      "bestPractice": "Warn well before expiry, in an accessible dialog. Allow generous extensions, and save progress so a timeout doesn't lose work."
+    },
+    {
+      "num": "2.2.2",
+      "floor": "Moving, blinking or scrolling information that starts automatically, lasts more than five seconds and is shown alongside other content can be paused, stopped or hidden, unless the movement is essential. Auto-updating information that starts automatically and is shown alongside other content can be paused, stopped or hidden, or its update frequency controlled, unless essential. Under WCAG's non-interference requirement this applies to everything on the page.",
+      "notRequired": [
+        "Removing animation. A pause, stop or hide control satisfies it.",
+        "A control for motion that stops by itself within five seconds."
+      ],
+      "gap": "A small pause button that is hard to find, or that resets when the page reloads, still passes. Motion can distract people with attention-related disabilities long before they find it.",
+      "bestPractice": "Don't autoplay carousels or background video. If you must, honor reduced-motion settings and put an obvious pause control first."
+    },
+    {
+      "num": "2.2.3",
+      "floor": "Timing is not an essential part of the event or activity, except for non-interactive synchronized media and real-time events.",
+      "notRequired": [],
+      "gap": "Removing time limits can conflict with security policies, which need a design answer rather than an exception.",
+      "bestPractice": "Replace time limits with save-and-resume, and re-authenticate without losing data."
+    },
+    {
+      "num": "2.2.4",
+      "floor": "The user can postpone or suppress interruptions, except interruptions involving an emergency.",
+      "notRequired": [],
+      "gap": "Notification settings buried in account preferences are rarely discovered.",
+      "bestPractice": "Offer a \"do not disturb\" control where the interruptions appear."
+    },
+    {
+      "num": "2.2.5",
+      "floor": "When an authenticated session expires, the user can continue the activity without losing data after signing in again.",
+      "notRequired": [],
+      "gap": "Re-authentication that drops the user on a home page technically keeps their data but loses their place.",
+      "bestPractice": "Re-authenticate in place, for example in a dialog, and return the user to exactly where they were."
+    },
+    {
+      "num": "2.2.6",
+      "floor": "Users are warned how long they can be inactive before data is lost, unless the data is kept for more than 20 hours of inactivity.",
+      "notRequired": [],
+      "gap": "A warning shown once at the start of a long form is forgotten by the time it matters.",
+      "bestPractice": "Show the inactivity limit near the start of the task and preserve data where privacy rules allow."
+    },
+    {
+      "num": "2.3.1",
+      "floor": "Nothing on the page flashes more than three times in any one second, or the flashing is below the general flash and red flash thresholds defined in WCAG. Under WCAG's non-interference requirement this applies to everything on the page.",
+      "notRequired": [
+        "Avoiding animation in general. Only flashing is covered."
+      ],
+      "gap": "The thresholds are approximations. Content near them can still affect some people with photosensitive epilepsy, or cause migraines.",
+      "bestPractice": "Avoid flashing content. Where it can't be avoided, warn before it and offer a version without it."
+    },
+    {
+      "num": "2.3.2",
+      "floor": "Nothing on the page flashes more than three times in any one second. Unlike 2.3.1, there is no threshold exception for small or dim flashes.",
+      "notRequired": [],
+      "gap": "None beyond 2.3.1.",
+      "bestPractice": "Treat any rapid flashing as a defect."
+    },
+    {
+      "num": "2.3.3",
+      "floor": "Motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information conveyed.",
+      "notRequired": [
+        "Honoring prefers-reduced-motion specifically. Any way to disable the animation works.",
+        "Covering animation that starts automatically. That's 2.2.2."
+      ],
+      "gap": "A site-level toggle that users must find before they feel ill doesn't help on first visit.",
+      "bestPractice": "Honor the OS reduced-motion setting by default, and keep transitions subtle."
+    },
+    {
+      "num": "2.4.1",
+      "floor": "A mechanism is available to bypass blocks of content that are repeated on multiple pages.",
+      "notRequired": [
+        "A \"skip to content\" link specifically. The requirement is a mechanism; W3C's Understanding document also accepts properly marked-up headings or landmarks."
+      ],
+      "gap": "Headings and landmarks help screen reader users but do nothing for sighted keyboard users, who must still tab through the whole header.",
+      "bestPractice": "Provide a skip link that becomes visible on focus, as well as landmarks and headings."
+    },
+    {
+      "num": "2.4.2",
+      "floor": "Pages have titles that describe their topic or purpose.",
+      "notRequired": [
+        "Unique titles for every page. Two pages can share a title if it describes both, but a title that only names the site doesn't describe any page.",
+        "A particular format, such as \"Page – Site\"."
+      ],
+      "gap": "Descriptive titles with the site name first get cut off in narrow browser tabs, so users can't tell tabs apart.",
+      "bestPractice": "Put the specific page first, then the site name, and update the title on single-page-app route changes.",
+      "failsExamples": [
+        "The same title, such as the site name, on every page doesn't describe each page's topic or purpose. W3C documents this as failure F25 (informative)."
+      ]
+    },
+    {
+      "num": "2.4.3",
+      "floor": "If a page can be navigated sequentially and the order affects meaning or operation, focusable components receive focus in an order that preserves meaning and operability.",
+      "notRequired": [
+        "Focus order that exactly matches the visual layout. Only meaning and operability must be preserved.",
+        "Never using a positive tabindex. It isn't banned, though it often breaks the order."
+      ],
+      "gap": "An order that preserves meaning can still jump around the screen, which disorients sighted keyboard and magnifier users.",
+      "bestPractice": "Keep source order the same as visual order, avoid positive tabindex, and manage focus when dialogs open and close."
+    },
+    {
+      "num": "2.4.4",
+      "floor": "The purpose of each link can be determined from its text alone, or from its text together with its programmatically determined context, except where the purpose would be ambiguous to everyone.",
+      "notRequired": [
+        "Unique text for every link. \"Read more\" passes when its programmatically determined context (W3C's note gives the enclosing sentence, paragraph, list item or table cell as examples) makes the purpose clear.",
+        "Warning that a link opens in a new window."
+      ],
+      "gap": "Screen reader users who browse a list of links hear \"Read more\" ten times with no context, even though each link passes.",
+      "bestPractice": "Write link text that makes sense on its own, or add visually hidden text to make it unique."
+    },
+    {
+      "num": "2.4.5",
+      "floor": "There is more than one way to find a page within a set of pages, except pages that are the result of, or a step in, a process.",
+      "notRequired": [
+        "Site search specifically. Any two ways work, such as navigation, a site map, search, a table of contents or links between pages."
+      ],
+      "gap": "Two ways that both depend on a complex mega-menu don't really give users a choice.",
+      "bestPractice": "Offer search, clear navigation and a site map or index."
+    },
+    {
+      "num": "2.4.6",
+      "floor": "The headings and labels you provide describe their topic or purpose.",
+      "notRequired": [
+        "Having headings or labels at all. This criterion covers only the ones you provide; 3.3.2 and 2.4.10 deal with providing them."
+      ],
+      "gap": "Headings that are accurate but vague (\"Details\", \"More\") pass, yet make scanning slow.",
+      "bestPractice": "Write headings and labels that are specific enough to scan, putting the distinguishing word first."
+    },
+    {
+      "num": "2.4.7",
+      "floor": "Any keyboard-operable interface has a mode of operation in which the keyboard focus indicator is visible.",
+      "notRequired": [
+        "A specific size, color or contrast for the indicator. Size and focused-versus-unfocused contrast are 2.4.13 (AAA). W3C's Understanding document for 1.4.11 does expect author-styled indicators to meet 3:1 against adjacent colors.",
+        "Showing focus on mouse click. Showing it only for keyboard users, as :focus-visible does, is fine."
+      ],
+      "gap": "A visible indicator, even one that meets 3:1, can be hard to spot if it's thin or close in style to the hover state.",
+      "bestPractice": "Use a thick, high-contrast outline with an offset, applied consistently through :focus-visible in your design system.",
+      "failsExamples": [
+        "An author-styled focus indicator below 3:1 against adjacent colors fails 1.4.11 Non-text Contrast: WCAG's definition of state includes focus, and 1.4.11 covers visual information needed to identify states."
+      ]
+    },
+    {
+      "num": "2.4.8",
+      "floor": "Information about the user's location within a set of pages is available.",
+      "notRequired": [],
+      "gap": "Breadcrumbs that only reflect the URL structure may not match how users think about the site.",
+      "bestPractice": "Show breadcrumbs plus a current-page indicator in the navigation."
+    },
+    {
+      "num": "2.4.9",
+      "floor": "A mechanism is available so that the purpose of each link can be identified from the link text alone, except where the purpose would be ambiguous to everyone.",
+      "notRequired": [],
+      "gap": "Visually hidden text added to make links unique can mismatch what speech-input users see and say.",
+      "bestPractice": "Write visible link text that is descriptive on its own."
+    },
+    {
+      "num": "2.4.10",
+      "floor": "Section headings are used to organize the content.",
+      "notRequired": [
+        "Headings for user interface components. W3C's informative note says this covers sections within writing."
+      ],
+      "gap": "Headings used for styling rather than structure create a misleading outline.",
+      "bestPractice": "Break long content into headed sections that follow a logical outline."
+    },
+    {
+      "num": "2.4.11",
+      "floor": "When a component receives keyboard focus, it is not entirely hidden by content the author created.",
+      "notRequired": [
+        "Keeping the whole focused component visible. Partly covered passes at AA; no part hidden is 2.4.12 (AAA)."
+      ],
+      "gap": "A focused field that is 90% hidden behind a sticky footer passes, but keyboard users can't see what they're typing into.",
+      "bestPractice": "Use scroll-padding to match sticky headers and footers, and keep cookie banners and chat widgets from covering focused content."
+    },
+    {
+      "num": "2.4.12",
+      "floor": "When a component receives keyboard focus, no part of it is hidden by content the author created.",
+      "notRequired": [],
+      "gap": "None beyond 2.4.11. This is the full version.",
+      "bestPractice": "Make scroll-padding and focus-aware sticky elements part of the layout system."
+    },
+    {
+      "num": "2.4.13",
+      "floor": "When the focus indicator is visible, an area of it is at least as large as a 2 CSS pixel thick perimeter of the unfocused component, and has a contrast ratio of at least 3:1 between the same pixels in the focused and unfocused states. It doesn't apply if the browser sets the indicator and the author can't adjust it, or if the author hasn't modified the indicator or its background.",
+      "notRequired": [],
+      "gap": "An indicator can meet the area and contrast numbers yet be hard to spot if it is inside the component or similar to other states such as hover.",
+      "bestPractice": "Use a solid 2px or thicker outline with an offset, in a color that contrasts with both the component and the page."
+    },
+    {
+      "num": "2.5.1",
+      "floor": "Functionality that uses multipoint gestures (such as pinch) or path-based gestures (such as a swipe pattern) can also be operated with a single pointer without a path-based gesture, unless the gesture is essential.",
+      "notRequired": [
+        "Alternatives for browser or OS gestures such as pinch-zoom. W3C's informative note says it applies to gestures the content itself interprets."
+      ],
+      "gap": "A single-pointer alternative hidden in a menu technically passes but is rarely discovered.",
+      "bestPractice": "Pair gestures with visible buttons, such as previous and next arrows on carousels and zoom buttons on maps."
+    },
+    {
+      "num": "2.5.2",
+      "floor": "For single-pointer functionality, at least one is true: nothing happens on the down-event; the function completes on the up-event and can be aborted before or undone after; the up-event reverses whatever the down-event did; or completing on the down-event is essential.",
+      "notRequired": [
+        "Confirmation dialogs. Normal click behavior completes on release, and W3C's Understanding document treats moving the pointer off the target before releasing as the way to abort."
+      ],
+      "gap": "Undo that is only available briefly in a toast is easy to miss for screen reader and magnifier users.",
+      "bestPractice": "Trigger actions on click (release), not mousedown or touchstart, and make undo easy to reach."
+    },
+    {
+      "num": "2.5.3",
+      "floor": "For components whose label includes text or images of text, the accessible name contains the text that is shown visually.",
+      "notRequired": [
+        "Starting the name with the visible label. W3C's informative note calls that a best practice, not a requirement.",
+        "An exact match. Extra words are allowed as long as the visible text is included."
+      ],
+      "gap": "If the visible words sit in the middle of a longer name, some speech-input tools match less reliably.",
+      "bestPractice": "Make the accessible name match the visible label, or start with it."
+    },
+    {
+      "num": "2.5.4",
+      "floor": "Functionality operated by device motion (such as shaking or tilting) or user motion can also be operated through interface components, and responding to motion can be turned off. Exceptions: the motion works through an accessibility-supported interface, or it's essential and doing it another way would invalidate the activity.",
+      "notRequired": [
+        "Avoiding motion-based features."
+      ],
+      "gap": "A motion setting that is off only once the user finds it means people with tremors may trigger actions by accident on first use.",
+      "bestPractice": "Keep motion features opt-in, with an on-screen control as the primary way to do the same thing."
+    },
+    {
+      "num": "2.5.5",
+      "floor": "Pointer targets are at least 44 by 44 CSS pixels. Exceptions: an equivalent target of that size is on the same page; the target is in a sentence or block of text; the browser sets the size and the author hasn't changed it; or the presentation is essential.",
+      "notRequired": [],
+      "gap": "None beyond 2.5.8. This is the stricter version.",
+      "bestPractice": "Make 44 by 44 the default for primary actions and touch interfaces."
+    },
+    {
+      "num": "2.5.6",
+      "floor": "Content doesn't restrict the input methods available on a platform, except where that is essential, needed for security, or needed to respect user settings.",
+      "notRequired": [],
+      "gap": "Switching off touch on \"desktop\" layouts strands people who use a touchscreen with a keyboard.",
+      "bestPractice": "Support mouse, touch, keyboard, stylus and speech at the same time, with no mode switches."
+    },
+    {
+      "num": "2.5.7",
+      "floor": "Functionality that uses dragging can also be done with a single pointer without dragging, unless dragging is essential or the browser provides the functionality and the author hasn't modified it.",
+      "notRequired": [
+        "A keyboard alternative. That's 2.1.1; this asks for a single-pointer alternative such as tap-to-select then tap-to-place.",
+        "Alternatives to path-based gestures. That's 2.5.1."
+      ],
+      "gap": "An alternative that takes many taps, or sits in an overflow menu, technically passes but is tiring for people with motor impairments.",
+      "bestPractice": "Pair drag-and-drop with visible controls, such as move up and move down buttons or a \"Move to…\" menu."
+    },
+    {
+      "num": "2.5.8",
+      "floor": "Pointer targets are at least 24 by 24 CSS pixels, except when: a 24 CSS pixel circle centered on each smaller target doesn't overlap another target or another such circle; the same function is available through another control on the page that meets this criterion; the target is in a sentence or limited by the line height of surrounding text; the browser sets the size and the author hasn't changed it; or the presentation is essential or legally required.",
+      "notRequired": [
+        "44 by 44 targets. That's 2.5.5 (AAA) and platform guidance.",
+        "A 24 by 24 visible size. A smaller target passes if it has enough space around it."
+      ],
+      "gap": "24 by 24 is still small for people with tremors or limited dexterity. Targets that pass only through spacing are easy to miss.",
+      "bestPractice": "Use 44 by 44 for primary and touch targets, and enlarge the clickable area of small icons with padding rather than relying on spacing."
+    },
+    {
+      "num": "3.1.1",
+      "floor": "The default human language of each page can be programmatically determined. (In HTML, W3C's sufficient technique is the lang attribute on the html element; techniques are informative.)",
+      "notRequired": [
+        "A region subtag such as en-US. A primary language code is enough."
+      ],
+      "gap": "A correct but generic code, such as en with no region, can't tell a screen reader which accent or spelling conventions to use.",
+      "bestPractice": "Set lang from the content's actual language in your templates and CMS, not as a hard-coded default.",
+      "failsExamples": [
+        "A lang value that doesn't match the page's language, such as a template's lang=\"en\" on a French page, means the default language isn't programmatically determined correctly."
+      ]
+    },
+    {
+      "num": "3.1.2",
+      "floor": "The human language of each passage or phrase can be programmatically determined. Exempt: proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the surrounding language.",
+      "notRequired": [
+        "Marking up borrowed words that have become part of the surrounding language, such as \"déjà vu\" in English.",
+        "Marking up the language of proper names."
+      ],
+      "gap": "Proper names and technical terms are exempt, so a page full of untagged foreign names can still be mispronounced.",
+      "bestPractice": "Add lang to language-switcher links (each written in its own language) and to quoted passages in another language.",
+      "failsExamples": [
+        "Unmarked passages in another language fail, as do language-switcher links written in their own languages without lang. W3C's Understanding document uses language links as its example."
+      ]
+    },
+    {
+      "num": "3.1.3",
+      "floor": "A mechanism is available for identifying specific definitions of words or phrases used in an unusual or restricted way, including idioms and jargon.",
+      "notRequired": [],
+      "gap": "A glossary on a separate page technically counts but interrupts reading.",
+      "bestPractice": "Define jargon inline on first use, or link it to a glossary entry."
+    },
+    {
+      "num": "3.1.4",
+      "floor": "A mechanism is available for identifying the expanded form or meaning of abbreviations.",
+      "notRequired": [],
+      "gap": "The abbr title attribute alone isn't reliably exposed to keyboard, touch or screen reader users.",
+      "bestPractice": "Spell out the term on first use followed by the abbreviation, for example \"Avoidant/Restrictive Food Intake Disorder (ARFID)\"."
+    },
+    {
+      "num": "3.1.5",
+      "floor": "When text needs reading ability above lower secondary education level (after removing proper names and titles), supplemental content or a simpler version is available.",
+      "notRequired": [],
+      "gap": "Readability formulas measure sentence and word length, not whether people actually understand the text.",
+      "bestPractice": "Write plainly from the start, lead with a summary, and test comprehension with real readers."
+    },
+    {
+      "num": "3.1.6",
+      "floor": "A mechanism is available for identifying the pronunciation of words whose meaning, in context, is ambiguous without knowing how they're pronounced.",
+      "notRequired": [],
+      "gap": "This rarely comes up in English but matters in languages like Japanese and Hebrew.",
+      "bestPractice": "Use ruby annotations or inline pronunciation guides where meaning depends on pronunciation."
+    },
+    {
+      "num": "3.2.1",
+      "floor": "When any component receives focus, that doesn't start a change of context. WCAG defines a change of context as a change of user agent, viewport, focus, or content that changes the meaning of the page.",
+      "notRequired": [
+        "Avoiding any visible change on focus. Showing a tooltip or highlighting a field isn't a change of context."
+      ],
+      "gap": "Focus-triggered changes that fall short of a \"change of context\", such as large panels expanding, can still disorient people using magnification.",
+      "bestPractice": "Reserve focus for showing where you are. Make actions happen on explicit activation."
+    },
+    {
+      "num": "3.2.2",
+      "floor": "Changing the setting of a component doesn't automatically cause a change of context, unless the user was told about this behavior before using the component.",
+      "notRequired": [
+        "A submit button on every form. A select that navigates on change is allowed if users are told beforehand."
+      ],
+      "gap": "Advance notice that is technically present, such as a sentence above the form, is easily missed. Keyboard users browsing a select with arrow keys can trigger navigation by accident.",
+      "bestPractice": "Pair selects and option groups with an explicit Apply or Go button."
+    },
+    {
+      "num": "3.2.3",
+      "floor": "Navigation that is repeated on multiple pages within a set of pages appears in the same relative order each time, unless the user changes it.",
+      "notRequired": [
+        "Identical navigation on every page. Items can be added or removed as long as the repeated ones keep their relative order."
+      ],
+      "gap": "The same order in a different place on the screen still makes users hunt for it.",
+      "bestPractice": "Keep shared navigation in a shared layout component so its position and order are consistent."
+    },
+    {
+      "num": "3.2.4",
+      "floor": "Components with the same functionality within a set of pages are identified consistently.",
+      "notRequired": [],
+      "gap": "Consistent labels with inconsistent icons, or the reverse, still undermine recognition.",
+      "bestPractice": "Define each recurring control once in the design system, with a fixed label, icon and accessible name."
+    },
+    {
+      "num": "3.2.5",
+      "floor": "Changes of context happen only at the user's request, or there's a mechanism to turn such changes off.",
+      "notRequired": [],
+      "gap": "Opening new windows or tabs without warning remains common and disorienting.",
+      "bestPractice": "Open links in the same tab by default, and never move focus or redirect automatically."
+    },
+    {
+      "num": "3.2.6",
+      "floor": "If pages in a set repeat any of these help mechanisms, they appear in the same order relative to other page content, unless the user changes it: human contact details, a human contact mechanism, a self-help option, or a fully automated contact mechanism.",
+      "notRequired": [
+        "Providing help at all. It only requires consistency when help is repeated across pages.",
+        "The same visual position on screen. It's the order relative to other page content that counts."
+      ],
+      "gap": "Consistently placed help can still be unhelpful, such as a chatbot that can't reach a person.",
+      "bestPractice": "Put help in the same spot in the shared layout, and always include a route to a human."
+    },
+    {
+      "num": "3.3.1",
+      "floor": "If an input error is automatically detected, the item in error is identified and the error is described to the user in text.",
+      "notRequired": [
+        "Inline messages next to each field.",
+        "Programmatically linking the message to the field (for example with aria-describedby or aria-invalid).",
+        "Detecting errors in the first place. It applies only when errors are automatically detected."
+      ],
+      "gap": "An error summary that names fields but is not linked to them makes screen reader users hunt back through the form to find each problem.",
+      "bestPractice": "Show the message next to the field, associate it programmatically, and for long forms add a summary that links to each field."
+    },
+    {
+      "num": "3.3.2",
+      "floor": "Labels or instructions are provided when content requires user input. WCAG defines a label as text, or a component with a text alternative, presented to the user to identify a component.",
+      "notRequired": [
+        "Labels that stay visible while typing. Placeholder text shown before input can meet the definition of a label presented to the user.",
+        "The HTML label element. W3C's note says a label isn't limited to it.",
+        "Programmatic association with the field. That's 1.3.1 and 4.1.2."
+      ],
+      "gap": "Placeholder-only labels disappear as soon as people type, so users with memory or attention difficulties lose track of what a field wants, and prefilled fields can't be checked.",
+      "bestPractice": "Put a persistent, visible label above every field, with format hints in helper text that stays on screen.",
+      "failsExamples": [
+        "Placeholder text used as the only label is text, so 1.4.3 requires 4.5:1 contrast. Many default placeholder colors fail it."
+      ]
+    },
+    {
+      "num": "3.3.3",
+      "floor": "If an input error is automatically detected and suggestions for correcting it are known, the suggestions are provided, unless that would compromise the security or purpose of the content.",
+      "notRequired": [
+        "Suggestions when the right answer can't be known or revealed, such as a wrong password."
+      ],
+      "gap": "Correct suggestions can still be hard to act on, for example when they appear only in a summary at the top of a long form.",
+      "bestPractice": "Say what's wrong and how to fix it, for example \"Enter the date as DD/MM/YYYY\".",
+      "failsExamples": [
+        "A generic message such as \"Invalid date\" when the expected format is known doesn't provide the known suggestion."
+      ]
+    },
+    {
+      "num": "3.3.4",
+      "floor": "For pages that create legal commitments or financial transactions, modify or delete user-controllable data, or submit test responses, at least one is true: submissions are reversible; input is checked for errors and the user can correct them; or the user can review, confirm and correct before final submission.",
+      "notRequired": [
+        "All three options. Any one satisfies it.",
+        "Covering ordinary forms such as contact or search forms."
+      ],
+      "gap": "A review step that users can click through without noticing errors technically confirms, but doesn't prevent costly mistakes.",
+      "bestPractice": "Use a clear review page for high-stakes submissions, and allow cancellation or undo where possible."
+    },
+    {
+      "num": "3.3.5",
+      "floor": "Context-sensitive help is available: help text related to the function currently being performed. A general help page doesn't meet the definition.",
+      "notRequired": [],
+      "gap": "Help that is technically context-sensitive but terse can still leave users stuck.",
+      "bestPractice": "Put short help text beside complex fields and steps, with links to more detail."
+    },
+    {
+      "num": "3.3.6",
+      "floor": "For pages that require the user to submit information, at least one is true: submissions are reversible; input is checked and the user can correct it; or the user can review, confirm and correct before final submission.",
+      "notRequired": [],
+      "gap": "None beyond 3.3.4. This extends it to every submission.",
+      "bestPractice": "Validate inline and provide undo wherever it is practical."
+    },
+    {
+      "num": "3.3.7",
+      "floor": "Information the user has already entered, or that was provided to them, and that must be entered again in the same process, is either auto-populated or available to select. Exceptions: re-entry is essential, is needed for security, or the earlier information is no longer valid.",
+      "notRequired": [
+        "Remembering information across separate processes or sessions.",
+        "Auto-population. Letting the user select it, such as a \"same as shipping address\" checkbox, is enough."
+      ],
+      "gap": "Offering the earlier value in a hard-to-find control satisfies \"available to select\" but still makes people re-enter data.",
+      "bestPractice": "Pre-fill repeated information by default and let users edit it."
+    },
+    {
+      "num": "3.3.8",
+      "floor": "No step of an authentication process requires a cognitive function test, unless that step offers one of: another method that doesn't rely on one; a mechanism to help complete it; a test that is recognizing objects; or a test that is identifying non-text content the user provided. WCAG defines a cognitive function test as remembering, manipulating or transcribing information, such as remembering a password, transcribing characters, correct spelling, calculations or puzzles. Name, email and phone number don't count.",
+      "notRequired": [
+        "Removing passwords. A password with help, such as password-manager support and paste (W3C's informative note gives these as examples of mechanisms), meets the Mechanism option.",
+        "Covering account sign-up. It covers authentication; W3C's Understanding document says creating an account is not covered."
+      ],
+      "gap": "Object-recognition CAPTCHAs are allowed at AA but are still very hard for many blind and low-vision users and people with cognitive disabilities.",
+      "bestPractice": "Support password managers and paste, and offer passkeys, email magic links or other non-memory options."
+    },
+    {
+      "num": "3.3.9",
+      "floor": "No step of an authentication process requires a cognitive function test, unless that step offers another method that doesn't rely on one, or a mechanism to help complete it. Unlike 3.3.8, there are no object-recognition or personal-content exceptions.",
+      "notRequired": [],
+      "gap": "None beyond 3.3.8. This removes 3.3.8's object-recognition and personal-content exceptions.",
+      "bestPractice": "Use passkeys or another method with no memory or puzzle component."
+    },
+    {
+      "num": "4.1.1",
+      "floor": "Nothing. WCAG 2.2 marks this criterion obsolete and removed, so it can't be failed under 2.2. WCAG 2.2's introduction notes that organizations required by policy to conform to WCAG 2.0 or 2.1 may still need to test and report it.",
+      "notRequired": [
+        "Valid HTML for WCAG 2.2 conformance."
+      ],
+      "gap": "Invalid markup that doesn't affect the accessibility tree isn't a WCAG failure, but it can make behavior inconsistent across browsers and assistive technologies.",
+      "bestPractice": "Keep markup valid as good engineering practice, and test the accessibility tree rather than validator output.",
+      "failsExamples": [
+        "Markup errors that break names, roles, states or relationships for assistive technology still fail, under 1.3.1 or 4.1.2."
+      ]
+    },
+    {
+      "num": "4.1.2",
+      "floor": "For all interface components (including form elements, links and scripted components), the name and role can be programmatically determined; states, properties and values the user can set can be programmatically set; and changes to them are notified to user agents, including assistive technologies.",
+      "notRequired": [
+        "Using ARIA. Standard HTML controls used as specified already meet it (W3C's informative note says so).",
+        "A visible label. That's 3.3.2 and 2.5.3."
+      ],
+      "gap": "Custom widgets can expose a valid name and role yet not match expected keyboard behavior or announce in a useful order.",
+      "bestPractice": "Use native elements first, and follow established ARIA design patterns when you must build custom widgets."
+    },
+    {
+      "num": "4.1.3",
+      "floor": "In content built with markup languages, status messages can be programmatically determined through role or properties, so assistive technologies can present them without them receiving focus. WCAG defines a status message as a change in content that isn't a change of context and that tells the user about success or results, waiting, progress, or errors.",
+      "notRequired": [
+        "Announcing messages that take focus or change context. Those aren't status messages by definition.",
+        "Announcing every dynamic change. Only status messages as defined."
+      ],
+      "gap": "Over-announcing (live regions for every update) can drown out the messages that matter.",
+      "bestPractice": "Use role=\"status\" for results and progress and role=\"alert\" sparingly for urgent errors, and keep messages short."
+    }
+  ]
+}

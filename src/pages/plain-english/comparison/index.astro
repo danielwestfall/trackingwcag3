@@ -18,12 +18,12 @@ const totalMappedProvisions = new Set(matrix.flatMap(m => m.provisions.map((p: a
 // Stats by change type
 const changeTypeCounts: Record<string, number> = {};
 for (const item of matrix) {
-  const type = item.changeAnalysis?.changeType || "direct";
+  const type = item.changeAnalysis?.changeType || "none";
   changeTypeCounts[type] = (changeTypeCounts[type] || 0) + 1;
 }
 
 const levelCounts = {
-  A: matrix.filter(m => m.level === "A").length,
+  A: matrix.filter(m => m.level === "A" && !m.obsolete).length,
   AA: matrix.filter(m => m.level === "AA").length,
   AAA: matrix.filter(m => m.level === "AAA").length,
 };
@@ -46,7 +46,7 @@ const principleCounts = {
           <span>Standards Evolution Matrix</span>
         </div>
         <h1>Old vs New: WCAG 2.2 vs 3.0 Evolution Matrix</h1>
-        <p>A side-by-side comparative analysis of all 87 official WCAG 2.2 Success Criteria against their draft WCAG 3.0 provision successors, examining how requirements expand and whether testing becomes more objective and automated.</p>
+        <p>Each WCAG 2.2 success criterion beside the provisions in the current WCAG 3 draft that succeed it, with both texts quoted so you can compare them directly.</p>
       </div>
 
       <div class="stats-grid">
@@ -59,12 +59,12 @@ const principleCounts = {
           <span class="stat-label">Mapped WCAG 3 Provisions</span>
         </div>
         <div class="stat-card stat-expanded">
-          <span class="stat-value highlight-expanded">{changeTypeCounts["expands-scope"] || 0}</span>
-          <span class="stat-label">Expanded Scope</span>
+          <span class="stat-value highlight-expanded">{changeTypeCounts["successor"] || 0}</span>
+          <span class="stat-label">With a Successor</span>
         </div>
         <div class="stat-card stat-testing">
-          <span class="stat-value highlight-testing">{changeTypeCounts["easier-testing"] || 0}</span>
-          <span class="stat-label">Easier / Algorithmic Testing</span>
+          <span class="stat-value highlight-testing">{changeTypeCounts["none"] || 0}</span>
+          <span class="stat-label">No Provision in Draft</span>
         </div>
       </div>
     </div>
@@ -76,9 +76,9 @@ const principleCounts = {
     <div class="alert-body">
       <h2>How to Read the Evolution Matrix</h2>
       <p>
-        <strong>Column 1</strong> displays the official <strong>WCAG 2.2 Recommendation (Baseline)</strong> with its level, plain-English summary, and rationale. 
-        <strong>Column 2</strong> displays the draft <strong>WCAG 3.0 Provision(s)</strong> that inherit or replace that requirement. 
-        <strong>Column 3</strong> details the <strong>Change &amp; Testing Impact</strong>: whether the requirement goes further, splits into granular functional outcomes, introduces perceptual algorithms (like APCA), or replaces subjective heuristics with machine-verifiable measurements.
+        <strong>Column 1</strong> shows the <strong>WCAG 2.2</strong> criterion: its level, the bare minimum it requires, and the usability gap that remains.
+        <strong>Column 2</strong> quotes the <strong>WCAG 3 draft provision(s)</strong> that succeed it, from the editor's draft at the tracked commit.
+        <strong>Column 3</strong> gives the <strong>mapping status</strong> and any related provisions. The mapping is this site's reviewed interpretation; W3C has not published one.
       </p>
     </div>
   </section>
@@ -123,15 +123,13 @@ const principleCounts = {
 
       <!-- Change / Evolution Type Filter -->
       <div class="filter-group">
-        <span class="filter-group-title">Evolution Type:</span>
-        <div class="filter-pills" id="type-pills" role="radiogroup" aria-label="Filter by Evolution Type">
+        <span class="filter-group-title">Mapping:</span>
+        <div class="filter-pills" id="type-pills" role="radiogroup" aria-label="Filter by mapping status">
           <button type="button" class="filter-pill active" data-type="all" role="radio" aria-checked="true">All Types</button>
-          <button type="button" class="filter-pill" data-type="expands-scope" role="radio" aria-checked="false">Expands Scope ({changeTypeCounts["expands-scope"] || 0})</button>
-          <button type="button" class="filter-pill" data-type="granular-split" role="radio" aria-checked="false">Granular Split ({changeTypeCounts["granular-split"] || 0})</button>
-          <button type="button" class="filter-pill" data-type="new-metric" role="radio" aria-checked="false">New Metric ({changeTypeCounts["new-metric"] || 0})</button>
-          <button type="button" class="filter-pill" data-type="easier-testing" role="radio" aria-checked="false">Easier Testing ({changeTypeCounts["easier-testing"] || 0})</button>
-          <button type="button" class="filter-pill" data-type="direct" role="radio" aria-checked="false">Direct ({changeTypeCounts["direct"] || 0})</button>
-          <button type="button" class="filter-pill" data-type="redesigned" role="radio" aria-checked="false">Redesigned ({changeTypeCounts["redesigned"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="successor" role="radio" aria-checked="false">Successor ({changeTypeCounts["successor"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="related-only" role="radio" aria-checked="false">Related only ({changeTypeCounts["related-only"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="none" role="radio" aria-checked="false">No provision ({changeTypeCounts["none"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="obsolete" role="radio" aria-checked="false">Obsolete ({changeTypeCounts["obsolete"] || 0})</button>
         </div>
       </div>
     </div>
@@ -161,11 +159,11 @@ const principleCounts = {
     </div>
     <div class="col-head col-head-new">
       <span class="col-head-num">2</span>
-      <span class="col-head-text">WCAG 3.0 Equivalent(s) (Draft)</span>
+      <span class="col-head-text">WCAG 3 Draft Successor(s)</span>
     </div>
     <div class="col-head col-head-delta">
       <span class="col-head-num">3</span>
-      <span class="col-head-text">The Change &amp; Testing Impact</span>
+      <span class="col-head-text">Mapping Status</span>
     </div>
   </div>
 
@@ -173,26 +171,23 @@ const principleCounts = {
   <div class="matrix-container" id="matrix-container">
     {matrix.map((item) => {
       const rowId = `sc-${item.id.replace(/\./g, "-")}`;
-      const changeType = item.changeAnalysis?.changeType || "direct";
-      const changeBadge = item.changeAnalysis?.changeBadge || "Direct Evolution";
-      const scopeDelta = item.changeAnalysis?.scopeDelta || "";
-      const testingImpact = item.changeAnalysis?.testingImpact || "";
-      const evolutionNote = item.changeAnalysis?.evolutionNote || "";
+      const changeType = item.changeAnalysis?.changeType || "none";
+      const changeBadge = item.changeAnalysis?.changeBadge || "";
+      const mappingNote = item.changeAnalysis?.note || "";
+      const related = item.related || [];
       const provCount = item.provisions.length;
 
       // Concatenate search blob for fast client-side filtering
       const searchBlob = [
         item.num,
         item.name,
-        `Level ${item.level}`,
+        item.obsolete ? "Obsolete" : `Level ${item.level}`,
         item.principle,
         item.summary,
         item.whyItMatters,
-        item.provisions.map((p: any) => `${p.title} ${p.slug} ${p.type} ${p.summary}`).join(" "),
+        [...item.provisions, ...related].map((p: any) => `${p.title} ${p.slug} ${p.typeLabel} ${p.text}`).join(" "),
         changeBadge,
-        scopeDelta,
-        testingImpact,
-        evolutionNote
+        mappingNote
       ].join(" ").toLowerCase();
 
       return (
@@ -225,7 +220,9 @@ const principleCounts = {
               </div>
 
               <div class="col-top-badges">
-                <span class={`level-badge level-${item.level}`}>Level {item.level}</span>
+                {item.obsolete
+                  ? <span class="level-badge level-obsolete">Obsolete</span>
+                  : <span class={`level-badge level-${item.level}`}>Level {item.level}</span>}
                 <span class="principle-badge">{item.principle}</span>
               </div>
 
@@ -236,12 +233,12 @@ const principleCounts = {
               </h2>
 
               <div class="summary-block">
-                <h3 class="block-subhead">Plain-English Meaning</h3>
+                <h3 class="block-subhead">Bare minimum (normative floor)</h3>
                 <p class="summary-text">{item.summary}</p>
               </div>
 
               <div class="why-block">
-                <h3 class="block-subhead">Why It Matters</h3>
+                <h3 class="block-subhead">Usability gap</h3>
                 <p class="why-text">{item.whyItMatters}</p>
               </div>
 
@@ -267,26 +264,26 @@ const principleCounts = {
             <section class="matrix-col col-new" aria-label={`WCAG 3.0 provisions for ${item.num}`}>
               <div class="col-mobile-header" aria-hidden="true">
                 <span class="col-mobile-step">2</span>
-                <span>WCAG 3.0 Equivalent(s) (Draft)</span>
+                <span>WCAG 3 Draft Successor(s)</span>
               </div>
 
               <div class="col-top-badges">
                 <span class="provisions-count-badge">
-                  {provCount === 1 ? "1 Mapped Provision" : `${provCount} Mapped Provisions`}
+                  {provCount === 1 ? "1 successor provision" : `${provCount} successor provisions`}
                 </span>
               </div>
 
               {provCount === 0 ? (
                 <div class="empty-provision-card">
-                  <p><strong>Holistic Coverage:</strong> No single 1:1 provision in current draft. Architectural requirement evaluated holistically across user tasks.</p>
+                  <p><strong>No successor provision</strong> in the current draft.</p>
                 </div>
               ) : (
                 <div class="provisions-stack">
                   {item.provisions.map((prov: any) => (
                     <div class="provision-card">
                       <div class="prov-card-header">
-                        <span class={`prov-type-badge type-${prov.type}`}>{prov.type}</span>
-                        <span class={`prov-status-badge status-${prov.status}`}>{prov.status}</span>
+                        <span class={`prov-type-badge type-${prov.type || "untyped"}`}>{prov.typeLabel}</span>
+                        {prov.status && <span class={`prov-status-badge status-${prov.status}`}>{prov.status}</span>}
                       </div>
 
                       <h3 class="prov-title">
@@ -295,17 +292,17 @@ const principleCounts = {
                         </a>
                       </h3>
 
-                      <p class="prov-summary">{prov.summary}</p>
+                      <blockquote class="prov-summary">{prov.text}</blockquote>
 
                       <div class="prov-footer-links">
                         <a href={link(prov.guideUrl)} class="action-link primary">
                           <span>WCAG 3 Guide</span>
                           <span aria-hidden="true">&rarr;</span>
                         </a>
-                        <a href={prov.sourceUrl} target="_blank" rel="noopener noreferrer" class="action-link w3c">
+                        {prov.sourceUrl && <a href={prov.sourceUrl} target="_blank" rel="noopener noreferrer" class="action-link w3c">
                           <span>W3C Source</span>
                           <span aria-hidden="true">&nearr;</span>
-                        </a>
+                        </a>}
                       </div>
                     </div>
                   ))}
@@ -319,40 +316,43 @@ const principleCounts = {
             <section class="matrix-col col-delta" aria-label={`Evolution and Testing Impact for ${item.num}`}>
               <div class="col-mobile-header" aria-hidden="true">
                 <span class="col-mobile-step">3</span>
-                <span>The Change &amp; Testing Impact</span>
+                <span>Mapping Status</span>
               </div>
 
               <div class="col-top-badges">
                 <span class={`change-badge change-${changeType}`}>{changeBadge}</span>
               </div>
 
-              <!-- Does it go further? -->
-              <div class="delta-card delta-scope">
-                <div class="delta-card-head">
-                  <span class="delta-icon" aria-hidden="true">📈</span>
-                  <h3 class="delta-heading">Does it go further?</h3>
-                </div>
-                <p class="delta-body">{scopeDelta}</p>
-              </div>
-
-              <!-- Is it easier to test? -->
-              <div class="delta-card delta-testing">
-                <div class="delta-card-head">
-                  <span class="delta-icon" aria-hidden="true">🧪</span>
-                  <h3 class="delta-heading">Is it easier to test?</h3>
-                </div>
-                <p class="delta-body">{testingImpact}</p>
-              </div>
-
-              <!-- Working Group Direction -->
-              {evolutionNote && (
+              {mappingNote && (
                 <div class="delta-card delta-context">
                   <div class="delta-card-head">
-                    <span class="delta-icon" aria-hidden="true">💡</span>
-                    <h3 class="delta-heading">W3C Working Group Context</h3>
+                    <span class="delta-icon" aria-hidden="true">📝</span>
+                    <h3 class="delta-heading">Mapping note</h3>
                   </div>
-                  <p class="delta-body">{evolutionNote}</p>
+                  <p class="delta-body">{mappingNote}</p>
                 </div>
+              )}
+
+              {related.length > 0 && (
+                <div class="delta-card delta-scope">
+                  <div class="delta-card-head">
+                    <span class="delta-icon" aria-hidden="true">↔️</span>
+                    <h3 class="delta-heading">Related, not a successor</h3>
+                  </div>
+                  <ul class="related-list">
+                    {related.map((prov: any) => (
+                      <li>
+                        <a href={link(prov.guideUrl)}>{prov.title}</a>
+                        <span class="related-type"> ({prov.typeLabel.toLowerCase()})</span>:
+                        <q>{prov.text}</q>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {!mappingNote && related.length === 0 && (
+                <p class="delta-body">The provision(s) in column 2 cover the same subject. Compare the two texts for differences in scope and strictness.</p>
               )}
             </section>
           </div>
@@ -363,6 +363,11 @@ const principleCounts = {
 </PlainEnglishLayout>
 
 <style>
+  .related-list { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; color: var(--text-secondary); line-height: 1.5; font-size: 0.92rem; }
+  .related-list a { color: var(--text-accent); font-weight: 600; }
+  .related-type { color: var(--text-muted); }
+  .level-obsolete { background: var(--surface-subtle); color: var(--text-muted); border: 1px solid var(--border-default); }
+  blockquote.prov-summary { margin: 0 0 12px; padding-left: 10px; border-left: 3px solid var(--border-active); }
   /* ==========================================================================
      Dashboard Hero Banner & Stats
      ========================================================================== */

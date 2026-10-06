@@ -333,10 +333,9 @@ function refreshDraftState(toSha, toDate) {
         supplemental: typeTally.supplemental ?? 0,
         assertion: typeTally.assertion ?? 0,
         'recommended practice': typeTally['recommended practice'] ?? 0,
-        // Provisions upstream leaves untyped. The catalog carries these as their
-        // own 'exploratory' type; the two names must match or the site publishes
-        // two different breakdowns of the same 245 provisions.
-        exploratory: typeTally.none ?? 0,
+        // Provisions upstream leaves untyped (W3C renders them as "Requirement").
+        // The catalog carries their type as null.
+        untyped: typeTally.none ?? 0,
       },
       byStatus: {
         developing: statusTally.developing ?? 0,

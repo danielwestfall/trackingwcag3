@@ -1,4 +1,8 @@
 ---
+import { readFileSync as __readState } from "node:fs";
+// Link W3C sources at the commit the site tracks, not the moving main branch.
+const trackedCommit: string = JSON.parse(__readState(`${process.cwd()}/tracking/state.json`, "utf8")).lastTrackedCommit || "main";
+import { provisionTypeLabel } from "@/lib/provision-labels";
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
 import fs from "fs";
 import path from "path";
@@ -60,7 +64,7 @@ const status = item?.status || "exploratory";
 // provision nobody has annotated - as long as the page says where it came from
 // and never dresses it up as this site's analysis.
 const derived = item?.derived || {};
-const srcUrl = (rel: string) => `https://github.com/w3c/wcag3/blob/main/${rel}`;
+const srcUrl = (rel: string) => `https://github.com/w3c/wcag3/blob/${trackedCommit}/${rel}`;
 const hasScope = (derived.appliesWhen?.length || derived.exceptWhen?.length || derived.notes?.length);
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -78,7 +82,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     
     <div class="header-badges">
       <span class={`status-badge status-${status}`}>{status}</span>
-      <span class="type-badge">{item.type || "Provision"}</span>
+      <span class="type-badge">{provisionTypeLabel(item.type)}</span>
     </div>
 
     <h1 class="page-title">{item.title}</h1>
@@ -373,10 +377,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       <div class="panel-section">
         <h2>WCAG 2.2 Criteria That Map Here</h2>
         <p class="derived-note">
-          Derived by inverting the hand-maintained WCAG&nbsp;2.2 &rarr; WCAG&nbsp;3
-          map, so every criterion below was matched to this provision by a
-          person. No editorial comparison of the two requirements has been
-          written yet.
+          From this site's reviewed WCAG&nbsp;2.2 &rarr; WCAG&nbsp;3 map. The map is
+          an interpretation, not a W3C mapping: W3C has not published one yet.
         </p>
 
         {inbound.direct.length > 0 ? (
@@ -386,7 +388,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
                 <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
                   <span>📘</span>
                   <strong>{sc.num} {sc.name}</strong>
-                  <span class="sc-level">Level {sc.level}</span>
+                  <span class="sc-level">{sc.obsolete ? "Obsolete" : `Level ${sc.level}`}</span>
                   <span class="link-arrow">&rarr;</span>
                 </a>
               </li>
@@ -406,7 +408,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
                   <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
                     <span>📘</span>
                     <strong>{sc.num} {sc.name}</strong>
-                    <span class="sc-level">Level {sc.level}</span>
+                    <span class="sc-level">{sc.obsolete ? "Obsolete" : `Level ${sc.level}`}</span>
                     <span class="link-arrow">&rarr;</span>
                   </a>
                 </li>
@@ -416,11 +418,28 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         ) : (
           <div class="new-outcome-box">
             <p>
-              ✨ <strong>No WCAG 2.2 predecessor.</strong> No criterion in the
-              curated WCAG&nbsp;2.2 map points at this provision, its guideline or
-              its group &mdash; it appears to be new in WCAG&nbsp;3 rather than a
-              restatement of existing guidance.
+              <strong>No mapping recorded.</strong> No WCAG&nbsp;2.2 criterion in
+              this site's map is recorded as a predecessor of this provision.
             </p>
+          </div>
+        )}
+
+        {(inbound.related || []).length > 0 && (
+          <div class="panel-section">
+            <h3>Related WCAG 2.2 criteria</h3>
+            <p class="derived-note">On a neighbouring subject, but this provision doesn't replace them.</p>
+            <ul class="matching-list">
+              {inbound.related.map((sc: any) => (
+                <li>
+                  <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
+                    <span>📘</span>
+                    <strong>{sc.num} {sc.name}</strong>
+                    <span class="sc-level">{sc.obsolete ? "Obsolete" : `Level ${sc.level}`}</span>
+                    <span class="link-arrow">&rarr;</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>

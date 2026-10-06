@@ -1,3 +1,16 @@
+// RETIRED 2026-10-06. This script hard-coded plain-English summaries, persona
+// advice and testing guides for every WCAG 2.2 criterion. An audit found that
+// much of it stated requirements the normative text doesn't contain (for
+// example "unique" page titles under 2.4.2, "DOM must match visual order"
+// under 1.3.2). wcag22-data/success-criteria.json is now derived by
+// scripts/sync-wcag-plain-english.mjs from normative-text.json (verbatim REC
+// text), three-tier-guidance.json and wcag22-to-wcag3-map.json. Running this
+// would overwrite that with the old prose, so it refuses to.
+if (!process.env.ALLOW_LEGACY_WCAG22_DATASET) {
+  console.error('build-full-wcag22-dataset.mjs is retired: edit wcag22-data/three-tier-guidance.json or wcag22-to-wcag3-map.json and run npm run sync:plain-english instead.');
+  process.exit(1);
+}
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -1053,7 +1066,7 @@ const allCriteria = [
     evolutionNote: "WCAG 3 includes section headings under readable text outcomes."
   },
   {
-    id: "2.5.5", num: "2.5.5", name: "Target Size (AAA)", level: "AAA", principle: "Operable",
+    id: "2.5.5", num: "2.5.5", name: "Target Size (Enhanced)", level: "AAA", principle: "Operable",
     summary: "Interactive target size is at least 44x44 CSS pixels (except for inline text links).",
     whyItMatters: "Ensures buttons and controls are easily tapable for users with severe hand tremors or motor disabilities.",
     realWorldExample: "All touchscreen buttons and icon controls span at least 44x44px in size.",

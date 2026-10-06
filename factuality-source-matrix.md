@@ -1,8 +1,8 @@
 # Factuality Source Matrix & Verification Registry
 
 > **Site Verification Standard:** Strict Factuality & Zero Unsourced Speculation  
-> **Generated:** 2026-10-05T02:32:08.065Z  
-> **Audit Suite:** `scripts/red-team-factuality.mjs` (2755 automated assertions, 0 failures)  
+> **Generated:** 2026-10-06T04:04:39.207Z  
+> **Audit Suite:** `scripts/red-team-factuality.mjs` (3021 automated assertions, 0 failures)  
 
 This document provides the authoritative, statement-by-statement upstream citation list for all content on Tracking WCAG 3. Every single standard, provision, criterion, status count, and architectural discussion is backed by direct links to primary W3C publications or official W3C Working Group repositories.
 
@@ -13,7 +13,7 @@ This document provides the authoritative, statement-by-statement upstream citati
 | **W3C Authoritative** | 245 WCAG 3 Draft Provisions & raw W3C source content | [https://github.com/w3c/wcag3/tree/main/guidelines](https://github.com/w3c/wcag3/tree/main/guidelines) | Upstream W3C repository containing normative provisions, scope conditions, and test procedures. |
 | **W3C Authoritative** | WCAG 2.2 Recommendation (all 87 Success Criteria, Level A/AA/AAA) | [https://www.w3.org/TR/WCAG22/](https://www.w3.org/TR/WCAG22/) | Official W3C Recommendation published 05 October 2023. |
 | **W3C Authoritative** | Understanding WCAG 2.2 guidance documents | [https://www.w3.org/WAI/WCAG22/Understanding/](https://www.w3.org/WAI/WCAG22/Understanding/) | Official W3C informative guidance detailing intent, examples, and techniques. |
-| **W3C Authoritative** | WCAG Evolution Matrix (Old vs New) | [https://www.w3.org/TR/WCAG22/ and https://w3c.github.io/wcag3/guidelines/](https://www.w3.org/TR/WCAG22/ and https://w3c.github.io/wcag3/guidelines/) | Comparative mapping of all 87 WCAG 2.2 Success Criteria to WCAG 3.0 draft provisions with scope and testing impact analysis. |
+| **W3C Authoritative** | WCAG Evolution Matrix (Old vs New) | [https://www.w3.org/TR/WCAG22/ and https://w3c.github.io/wcag3/guidelines/](https://www.w3.org/TR/WCAG22/ and https://w3c.github.io/wcag3/guidelines/) | Each WCAG 2.2 criterion beside the quoted text of its WCAG 3 draft successor provisions, from a reviewed map (wcag22-data/wcag22-to-wcag3-map.json). |
 | **W3C Authoritative** | Conforming alternate versions / equivalents discussion | [https://github.com/w3c/wcag3/discussions/623](https://github.com/w3c/wcag3/discussions/623) | W3C AGWG discussion (March 2026) on how to bring conforming alternate versions and equivalents exceptions into WCAG 3 as one mechanism; not yet in the draft. |
 | **W3C Authoritative** | WCAG 3 Conformance Architecture & Non-Binary Assessment | [https://www.w3.org/TR/accessibility-conformance-challenges/](https://www.w3.org/TR/accessibility-conformance-challenges/) | W3C Working Group Note: Challenges with Accessibility Guidelines Conformance and Testing. |
 | **W3C Authoritative** | WCAG 3 Conformance & Reporting Tiers Specification | [https://w3c.github.io/wcag3/guidelines/#conformance](https://w3c.github.io/wcag3/guidelines/#conformance) | W3C Editors Draft section defining conformance requirements and reporting tiers. |
@@ -87,7 +87,7 @@ Every criterion below is verified against the official **W3C Recommendation (05 
 | **2.4.8** | Location | **AAA** | Operable | [Recommendation](https://www.w3.org/TR/WCAG22/#location) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/location.html) |
 | **2.4.9** | Link Purpose (Link Only) | **AAA** | Operable | [Recommendation](https://www.w3.org/TR/WCAG22/#link-purpose-link-only) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-link-only.html) |
 | **2.4.10** | Section Headings | **AAA** | Operable | [Recommendation](https://www.w3.org/TR/WCAG22/#section-headings) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/section-headings.html) |
-| **2.5.5** | Target Size (AAA) | **AAA** | Operable | [Recommendation](https://www.w3.org/TR/WCAG22/#target-size-aaa) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/target-size-aaa.html) |
+| **2.5.5** | Target Size (Enhanced) | **AAA** | Operable | [Recommendation](https://www.w3.org/TR/WCAG22/#target-size-aaa) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/target-size-aaa.html) |
 | **3.1.3** | Unusual Words | **AAA** | Understandable | [Recommendation](https://www.w3.org/TR/WCAG22/#unusual-words) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/unusual-words.html) |
 | **3.1.4** | Abbreviations | **AAA** | Understandable | [Recommendation](https://www.w3.org/TR/WCAG22/#abbreviations) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/abbreviations.html) |
 | **3.1.5** | Reading Level | **AAA** | Understandable | [Recommendation](https://www.w3.org/TR/WCAG22/#reading-level) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/reading-level.html) |
@@ -112,14 +112,14 @@ Every criterion below is verified against the official **W3C Recommendation (05 
 | **3.3.3** | Error Suggestion | **AA** | Understandable | [Recommendation](https://www.w3.org/TR/WCAG22/#error-suggestion) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html) |
 | **3.3.4** | Error Prevention (Legal, Financial, Data) | **AA** | Understandable | [Recommendation](https://www.w3.org/TR/WCAG22/#error-prevention-legal-financial-data) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html) |
 | **3.3.9** | Accessible Authentication (Enhanced) | **AAA** | Understandable | [Recommendation](https://www.w3.org/TR/WCAG22/#accessible-authentication-enhanced) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html) |
-| **4.1.1** | Parsing (Obsolete) | **A** | Robust | [Recommendation](https://www.w3.org/TR/WCAG22/#parsing) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/parsing.html) |
+| **4.1.1** | Parsing | **null** | Robust | [Recommendation](https://www.w3.org/TR/WCAG22/#parsing) | [Understanding](https://www.w3.org/WAI/WCAG22/Understanding/parsing.html) |
 
 ## 3. WCAG 3.0 Architectural Shifts & Paradigm Changes
 
 | Shift / Topic | Factual Definition & Scope | Primary Discussion / Reference URL |
 | :--- | :--- | :--- |
 | **Conforming Alternate Versions & Equivalents** | The current WCAG 3 draft does not mention conforming alternate versions at all, so it neither keeps nor removes them. The working group is discussing how to bring alternate versions and the 'equivalents' exceptions scattered across individual provisions together into one mechanism. Until that lands, treat alternate versions as an open question, not as something WCAG 3 has dropped. | [W3C WCAG 2.2 Official Definition: Conforming Alternate Version](https://www.w3.org/TR/WCAG22/#dfn-conforming-alternate-version) |
-| **Page-by-Page Binary Pass/Fail Conformance** | WCAG 2.2 evaluated conformance on a strict page-by-page basis. WCAG 3 replaces single-page reliance with a defined 'conformance scope' (which may span entire products, complete processes, paths, views, or components) where all core requirements must be satisfied. An alternative continuous task-scoring model is also being explored by the working group. | [W3C WCAG 3.0 Editors' Draft: Defined Conformance Scope](https://w3c.github.io/wcag3/guidelines/#defined-conformance-scope) |
+| **Page-by-Page Binary Pass/Fail Conformance** | WCAG 2.2 evaluated conformance on a strict page-by-page basis. WCAG 3 replaces single-page reliance with a defined 'conformance scope' (which may span entire products, complete processes, paths, views, or components) where all core requirements must be satisfied. A scoring-based alternative is described in the Explainer, which says it is not included in the WCAG 3 draft. | [W3C WCAG 3.0 Editors' Draft: Defined Conformance Scope](https://w3c.github.io/wcag3/guidelines/#defined-conformance-scope) |
 | **Strict A / AA / AAA Conformance Levels** | The traditional A/AA/AAA tier structure from WCAG 2.x is omitted in WCAG 3. Instead, WCAG 3 defines a single conformance threshold (Tier 3: Conformance) requiring all core requirements to be satisfied, framed by six reporting tiers that express progress toward conformance (Tiers 1–2) and achievements beyond it (Tiers 4–6: Bronze, Silver, Gold). | [W3C WCAG 3.0 Editors' Draft: Conformance Requirements](https://w3c.github.io/wcag3/guidelines/#conformance) |
 | **Page-Level 'Accessibility Supported' Reliance** | In WCAG 2.2, authors relied on subjective, author-defined 'accessibility supported' baselines. WCAG 3 standardizes this by defining two explicit Accessibility Support Sets: a Default set (common browsers/AT supporting English content) and Alternative sets (for other languages, regions, or closed environments), which must be explicitly declared in conformance claims. | [W3C WCAG 3.0 Editors' Draft: Accessibility Support Sets](https://w3c.github.io/wcag3/guidelines/#accessibility-support-set) |
 
@@ -142,7 +142,7 @@ The current normative WCAG 3.0 Editors' Draft defines **6 reporting tiers** rath
 - **Foundational Provisions**: 114
 - **Supplemental Provisions**: 86
 - **Assertion Provisions**: 36
-- **Exploratory Type**: 8
+- **Untyped (shown by W3C as "Requirement")**: 8
 - **Recommended Practice**: 1
 - **Developing Status**: 216
 - **Exploratory Status**: 29
@@ -162,7 +162,7 @@ Every provision in the system is directly traced to its upstream Markdown file i
 | **Safe Content Review** | avoid-physical-harm | animation-and-movement | assertion | developing | [guidelines/groups/animation-and-movement/avoid-physical-harm/safe-content-review.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/safe-content-review.md) |
 | **Single Flash** | avoid-physical-harm | animation-and-movement | foundational | exploratory | [guidelines/groups/animation-and-movement/avoid-physical-harm/single-flash.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/single-flash.md) |
 | **Trigger Warning Available** | avoid-physical-harm | animation-and-movement | foundational | developing | [guidelines/groups/animation-and-movement/avoid-physical-harm/trigger-warning-available.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/trigger-warning-available.md) |
-| **Visual Stimulation** | avoid-physical-harm | animation-and-movement | exploratory | exploratory | [guidelines/groups/animation-and-movement/avoid-physical-harm/visual-stimulation.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/visual-stimulation.md) |
+| **Visual Stimulation** | avoid-physical-harm | animation-and-movement | null | exploratory | [guidelines/groups/animation-and-movement/avoid-physical-harm/visual-stimulation.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/animation-and-movement/avoid-physical-harm/visual-stimulation.md) |
 | **Consistent Navigation Labels** | consistency | consistency-across-views | supplemental | developing | [guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md) |
 | **Consistent Navigation Order** | consistency | consistency-across-views | supplemental | developing | [guidelines/groups/consistency-across-views/consistency/consistent-navigation-order.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/consistency-across-views/consistency/consistent-navigation-order.md) |
 | **Consistent Structural Order** | consistency | consistency-across-views | supplemental | developing | [guidelines/groups/consistency-across-views/consistency/consistent-structural-order.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/consistency-across-views/consistency/consistent-structural-order.md) |
@@ -180,7 +180,7 @@ Every provision in the system is directly traced to its upstream Markdown file i
 | **Consistent Help Available** | help-available | help-and-feedback | supplemental | developing | [guidelines/groups/help-and-feedback/help-available/consistent-help-available.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/help-and-feedback/help-available/consistent-help-available.md) |
 | **Contextual Help Available** | help-available | help-and-feedback | supplemental | developing | [guidelines/groups/help-and-feedback/help-available/contextual-help-available.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/help-and-feedback/help-available/contextual-help-available.md) |
 | **Conversational Support Available** | help-available | help-and-feedback | supplemental | exploratory | [guidelines/groups/help-and-feedback/help-available/conversational-support-available.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/help-and-feedback/help-available/conversational-support-available.md) |
-| **Data Visualizations** | help-available | help-and-feedback | exploratory | exploratory | [guidelines/groups/help-and-feedback/help-available/data-visualizations.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/help-and-feedback/help-available/data-visualizations.md) |
+| **Data Visualizations** | help-available | help-and-feedback | null | exploratory | [guidelines/groups/help-and-feedback/help-available/data-visualizations.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/help-and-feedback/help-available/data-visualizations.md) |
 | **Disabled Controls Explained** | help-available | help-and-feedback | supplemental | developing | [guidelines/groups/help-and-feedback/help-available/disabled-controls-explained.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/help-and-feedback/help-available/disabled-controls-explained.md) |
 | **Help Usability Testing** | help-available | help-and-feedback | assertion | developing | [guidelines/groups/help-and-feedback/help-available/help-usability-testing.md](https://github.com/w3c/wcag3/blob/main/guidelines/groups/help-and-feedback/help-available/help-usability-testing.md) |
 | *... and 215 more provisions* | *See catalog* | *See catalog* | *...* | *...* | [Full Guidelines Folder](https://github.com/w3c/wcag3/tree/main/guidelines) |

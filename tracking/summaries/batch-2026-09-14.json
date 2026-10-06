@@ -10,7 +10,7 @@
       {
         "label": "The metric does not measure the thing",
         "who": "Myndex, sdw32, TestPartners, patrickhlauke",
-        "detail": "CSS font-size is a poor proxy for legibility: x-height and stroke weight vary enormously between typefaces at the same nominal size, and rendering differs by OS and font cut. sdw32 points to EN 301 549, which specifies x-height in CSS px (8 CSS px minimum), and proposes handling weight by pixel density rather than the binary normal/bold split. Myndex argues a test that is merely testable, without being useful, gets codified into law with unintended consequences."
+        "detail": "CSS font-size is a poor proxy for legibility: x-height and stroke weight vary enormously between typefaces at the same nominal size, and rendering differs by OS and font cut. sdw32 points to the EN 301 549 draft, which gives an x-height of at least 8 CSS px for the smallest text as best practice, and proposes handling weight by pixel density rather than the binary normal/bold split. Myndex argues a test that is merely testable, without being useful, gets codified into law with unintended consequences."
       },
       {
         "label": "User autonomy over layout stability",
@@ -132,7 +132,7 @@
       {
         "label": "A warning is not a remedy",
         "who": "GreggVan, nattarnoff, mraccess77",
-        "detail": "GreggVan's reductio — that WCAG could otherwise be replaced by a single site-wide \"may not be safe for anyone with a disability\" notice — went unrebutted on the substance. nattarnoff, who experiences these effects, says a warning makes them leave and look for an alternative rather than granting access. mraccess77 notes timestamps on a flashing video still do not deliver the missed information."
+        "detail": "GreggVan's reductio — that WCAG could otherwise be replaced by a single site-wide \"this site may not be suitable or safe for anyone with a disability\" notice — went unrebutted on the substance. nattarnoff, who experiences these effects, says a warning makes them leave and look for an alternative rather than granting access. mraccess77 notes timestamps on a flashing video still do not deliver the missed information."
       }
     ],
     "agreed": [

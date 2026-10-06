@@ -93,14 +93,14 @@ const scList = (list: any[]) => (list || []).map((sc: any) => sc.num).join(", ")
 const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing).map((p: any) => p.title).join(" · ");
 ---
 
-<PlainEnglishLayout title="Passes WCAG 2.2, Fails WCAG 3" activeTab="stricter">
+<PlainEnglishLayout title="Passes WCAG 2.2, Fails the WCAG 3 Draft" activeTab="stricter">
   <section class="st-banner">
     <div class="st-banner-text">
       <p class="st-kicker"><span aria-hidden="true">🚫</span> Passes 2.2 · Fails the 3 draft</p>
-      <h1>Common practices WCAG 3 rules out</h1>
+      <h1>Common practices the WCAG 3 draft would rule out</h1>
       <p>
         Practices that are not great for people with disabilities but still pass WCAG 2.2 Level AA,
-        each matched to the WCAG 3 draft requirement that would no longer allow it.
+        each matched to the requirement in the current WCAG 3 draft that would not allow it.
       </p>
     </div>
     <dl class="st-stats">

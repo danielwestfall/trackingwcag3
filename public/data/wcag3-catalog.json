@@ -42,23 +42,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "2.2.2",
-          "name": "Pause, Stop, Hide",
-          "level": "A",
-          "principle": "Operable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -104,23 +91,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "2.2.2",
-          "name": "Pause, Stop, Hide",
-          "level": "A",
-          "principle": "Operable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -171,18 +145,13 @@
           "num": "2.3.2",
           "name": "Three Flashes",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -237,18 +206,13 @@
           "num": "2.3.1",
           "name": "Three Flashes or Below Threshold",
           "level": "A",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -292,14 +256,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -348,15 +306,18 @@
           "num": "2.2.2",
           "name": "Pause, Stop, Hide",
           "level": "A",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
+      "viaGroup": [],
+      "related": [
         {
           "num": "2.3.3",
           "name": "Animation from Interactions",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ]
@@ -405,14 +366,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -461,14 +416,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -516,14 +465,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -531,7 +474,7 @@
     "groupSlug": "animation-and-movement",
     "guidelineSlug": "avoid-physical-harm",
     "title": "Visual Stimulation",
-    "type": "exploratory",
+    "type": null,
     "status": "exploratory",
     "issueLabel": "",
     "needsAdditionalResearch": true,
@@ -567,14 +510,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.3.3",
-          "name": "Animation from Interactions",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -620,22 +557,25 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "3.2.3",
           "name": "Consistent Navigation",
           "level": "AA",
+          "obsolete": false,
           "principle": "Understandable"
         },
         {
           "num": "3.2.4",
           "name": "Consistent Identification",
           "level": "AA",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ],
-      "viaGuideline": [],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -686,11 +626,13 @@
           "num": "3.2.3",
           "name": "Consistent Navigation",
           "level": "AA",
+          "obsolete": false,
           "principle": "Understandable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -736,16 +678,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "3.2.4",
-          "name": "Consistent Identification",
-          "level": "AA",
-          "principle": "Understandable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -791,14 +727,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
-          "level": "AA",
-          "principle": "Understandable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -842,14 +772,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
-          "level": "AA",
-          "principle": "Understandable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -893,16 +817,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [],
-      "viaGroup": [
+      "direct": [
         {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
-          "level": "AA",
+          "num": "3.3.1",
+          "name": "Error Identification",
+          "level": "A",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ]
+      ],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -948,16 +874,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [],
-      "viaGroup": [
+      "direct": [
         {
           "num": "3.3.3",
           "name": "Error Suggestion",
           "level": "AA",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ]
+      ],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1001,16 +929,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [],
-      "viaGroup": [
+      "direct": [
         {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
-          "level": "AA",
+          "num": "3.3.1",
+          "name": "Error Identification",
+          "level": "A",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ]
+      ],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1056,14 +986,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
-          "level": "AA",
-          "principle": "Understandable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1107,14 +1031,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
-          "level": "AA",
-          "principle": "Understandable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1158,14 +1076,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
-          "level": "AA",
-          "principle": "Understandable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1211,16 +1123,25 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [],
-      "viaGroup": [
+      "direct": [
         {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
+          "num": "3.3.4",
+          "name": "Error Prevention (Legal, Financial, Data)",
           "level": "AA",
+          "obsolete": false,
+          "principle": "Understandable"
+        },
+        {
+          "num": "3.3.6",
+          "name": "Error Prevention (All)",
+          "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ]
+      ],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1266,14 +1187,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "3.3.3",
-          "name": "Error Suggestion",
-          "level": "AA",
-          "principle": "Understandable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1317,7 +1232,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1361,9 +1277,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "3.2.6",
+          "name": "Consistent Help",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Understandable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1405,9 +1330,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "3.3.5",
+          "name": "Help",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Understandable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1451,7 +1385,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1459,7 +1394,7 @@
     "groupSlug": "help-and-feedback",
     "guidelineSlug": "help-available",
     "title": "Data Visualizations",
-    "type": "exploratory",
+    "type": null,
     "status": "exploratory",
     "issueLabel": "",
     "needsAdditionalResearch": true,
@@ -1497,7 +1432,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1543,7 +1479,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1589,7 +1526,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1597,7 +1535,7 @@
     "groupSlug": "help-and-feedback",
     "guidelineSlug": "help-available",
     "title": "New Interfaces",
-    "type": "exploratory",
+    "type": null,
     "status": "exploratory",
     "issueLabel": "",
     "needsAdditionalResearch": true,
@@ -1637,7 +1575,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1645,7 +1584,7 @@
     "groupSlug": "help-and-feedback",
     "guidelineSlug": "help-available",
     "title": "Personalizable Help",
-    "type": "exploratory",
+    "type": null,
     "status": "exploratory",
     "issueLabel": "",
     "needsAdditionalResearch": true,
@@ -1683,7 +1622,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1727,9 +1667,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.3.3",
+          "name": "Sensory Characteristics",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1777,7 +1726,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1821,7 +1771,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1867,7 +1818,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1913,7 +1865,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -1957,7 +1910,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2001,7 +1955,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2045,7 +2000,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2096,17 +2052,20 @@
           "num": "1.2.3",
           "name": "Audio Description or Media Alternative (Prerecorded)",
           "level": "A",
+          "obsolete": false,
           "principle": "Perceivable"
         },
         {
           "num": "1.2.5",
           "name": "Audio Description (Prerecorded)",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2152,7 +2111,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2199,11 +2159,13 @@
           "num": "1.2.5",
           "name": "Audio Description (Prerecorded)",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2249,7 +2211,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2295,7 +2258,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2339,9 +2303,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.2.5",
+          "name": "Audio Description (Prerecorded)",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2387,7 +2360,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2436,11 +2410,13 @@
           "num": "1.2.7",
           "name": "Extended Audio Description (Prerecorded)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2487,11 +2463,13 @@
           "num": "1.2.7",
           "name": "Extended Audio Description (Prerecorded)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2535,7 +2513,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2585,7 +2564,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2631,7 +2611,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2681,7 +2662,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2725,9 +2707,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.2.5",
+          "name": "Audio Description (Prerecorded)",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2775,7 +2766,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2819,7 +2811,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2863,7 +2856,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2910,11 +2904,13 @@
           "num": "1.2.4",
           "name": "Captions (Live)",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -2963,11 +2959,13 @@
           "num": "1.2.2",
           "name": "Captions (Prerecorded)",
           "level": "A",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3013,7 +3011,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3057,7 +3056,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3103,7 +3103,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3152,11 +3153,13 @@
           "num": "1.2.2",
           "name": "Captions (Prerecorded)",
           "level": "A",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3202,7 +3205,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3248,7 +3252,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3290,9 +3295,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.2.2",
+          "name": "Captions (Prerecorded)",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3336,7 +3350,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3382,7 +3397,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3428,7 +3444,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3472,7 +3489,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3520,9 +3538,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.2.2",
+          "name": "Captions (Prerecorded)",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3568,7 +3595,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3618,7 +3646,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "1.2.2",
+          "name": "Captions (Prerecorded)",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ]
     }
   },
   {
@@ -3626,7 +3663,7 @@
     "groupSlug": "images-and-media",
     "guidelineSlug": "figure-captions",
     "title": "Figure Captions Persistent",
-    "type": "exploratory",
+    "type": null,
     "status": "exploratory",
     "issueLabel": "",
     "needsAdditionalResearch": true,
@@ -3662,7 +3699,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3706,7 +3744,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3748,9 +3787,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3792,9 +3840,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3836,9 +3893,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3884,7 +3950,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3932,7 +3999,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -3978,7 +4046,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ]
     }
   },
   {
@@ -4020,9 +4097,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.1.1",
+          "name": "Non-text Content",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4073,11 +4159,13 @@
           "num": "1.2.6",
           "name": "Sign Language (Prerecorded)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4123,16 +4211,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "1.2.6",
           "name": "Sign Language (Prerecorded)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
-      ],
-      "viaGuideline": [],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -4176,7 +4266,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4220,9 +4311,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.4.11",
+          "name": "Non-text Contrast",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4268,9 +4368,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.4.1",
+          "name": "Use of Color",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4318,7 +4427,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4364,7 +4474,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4408,7 +4519,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4459,23 +4571,27 @@
           "num": "1.2.1",
           "name": "Audio-only and Video-only (Prerecorded)",
           "level": "A",
+          "obsolete": false,
           "principle": "Perceivable"
         },
         {
           "num": "1.2.3",
           "name": "Audio Description or Media Alternative (Prerecorded)",
           "level": "A",
+          "obsolete": false,
           "principle": "Perceivable"
         },
         {
           "num": "1.2.8",
           "name": "Media Alternative (Prerecorded)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4524,11 +4640,13 @@
           "num": "1.2.9",
           "name": "Audio-only (Live)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4577,11 +4695,13 @@
           "num": "1.2.1",
           "name": "Audio-only and Video-only (Prerecorded)",
           "level": "A",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4625,7 +4745,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4675,7 +4796,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4721,7 +4843,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4771,7 +4894,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4817,14 +4941,23 @@
     "wcag22Inbound": {
       "direct": [
         {
+          "num": "1.2.1",
+          "name": "Audio-only and Video-only (Prerecorded)",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        },
+        {
           "num": "1.2.8",
           "name": "Media Alternative (Prerecorded)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4870,7 +5003,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4916,7 +5050,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -4962,7 +5097,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5008,7 +5144,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5052,9 +5189,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.2.8",
+          "name": "Media Alternative (Prerecorded)",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5100,7 +5246,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "3.3.8",
+          "name": "Accessible Authentication (Minimum)",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -5144,7 +5299,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5188,7 +5344,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5234,9 +5391,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.5.4",
+          "name": "Motion Actuation",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5285,7 +5451,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5334,9 +5501,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.4.13",
+          "name": "Content on Hover or Focus",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5387,20 +5563,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "2.4.11",
-          "name": "Focus Not Obscured (Minimum)",
+          "num": "1.4.13",
+          "name": "Content on Hover or Focus",
           "level": "AA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.12",
-          "name": "Focus Not Obscured (Enhanced)",
-          "level": "AAA",
-          "principle": "Operable"
+          "obsolete": false,
+          "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5449,9 +5621,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.4.13",
+          "name": "Content on Hover or Focus",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5495,9 +5676,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.5.6",
+          "name": "Concurrent Input Mechanisms",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5541,9 +5731,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.5.1",
+          "name": "Pointer Gestures",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5591,7 +5790,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5639,7 +5839,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5683,7 +5884,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5731,7 +5933,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5778,7 +5981,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5824,7 +6028,23 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "3.2.1",
+          "name": "On Focus",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        },
+        {
+          "num": "3.2.5",
+          "name": "Change on Request",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -5870,9 +6090,25 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        },
+        {
+          "num": "2.1.3",
+          "name": "Keyboard (No Exception)",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5914,9 +6150,25 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.1.1",
+          "name": "Keyboard",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        },
+        {
+          "num": "2.1.3",
+          "name": "Keyboard (No Exception)",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -5958,9 +6210,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.1.4",
+          "name": "Character Key Shortcuts",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6006,9 +6267,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.1.2",
+          "name": "No Keyboard Trap",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6054,7 +6324,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6100,7 +6371,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6148,7 +6420,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6196,7 +6469,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -6243,9 +6525,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.5.2",
+          "name": "Pointer Cancellation",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6293,7 +6584,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6341,7 +6633,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6388,9 +6681,25 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.5.1",
+          "name": "Pointer Gestures",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        },
+        {
+          "num": "2.5.7",
+          "name": "Dragging Movements",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6434,7 +6743,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6478,7 +6788,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6524,7 +6835,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6568,26 +6880,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "1.4.13",
-          "name": "Content on Hover or Focus",
-          "level": "AA",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "3.3.1",
-          "name": "Error Identification",
+          "num": "4.1.2",
+          "name": "Name, Role, Value",
           "level": "A",
-          "principle": "Understandable"
-        },
-        {
-          "num": "4.1.3",
-          "name": "Status Messages",
-          "level": "AA",
+          "obsolete": false,
           "principle": "Robust"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6633,20 +6935,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "3.3.1",
-          "name": "Error Identification",
-          "level": "A",
-          "principle": "Understandable"
-        },
-        {
           "num": "3.3.2",
           "name": "Labels or Instructions",
           "level": "A",
+          "obsolete": false,
           "principle": "Understandable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6695,11 +6993,13 @@
           "num": "1.4.11",
           "name": "Non-text Contrast",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6707,7 +7007,7 @@
     "groupSlug": "interactive-components",
     "guidelineSlug": "control-information",
     "title": "Interactive Element Importance Indicated",
-    "type": "exploratory",
+    "type": null,
     "status": "exploratory",
     "issueLabel": "",
     "needsAdditionalResearch": true,
@@ -6743,7 +7043,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6789,62 +7090,38 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "1.1.1",
-          "name": "Non-text Content",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "1.3.3",
-          "name": "Sensory Characteristics",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "1.3.6",
-          "name": "Identify Purpose",
-          "level": "AAA",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "2.4.4",
-          "name": "Link Purpose (In Context)",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.6",
-          "name": "Headings and Labels",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.9",
-          "name": "Link Purpose (Link Only)",
-          "level": "AAA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.3",
-          "name": "Label in Name",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
           "num": "3.3.2",
           "name": "Labels or Instructions",
           "level": "A",
+          "obsolete": false,
           "principle": "Understandable"
         },
         {
           "num": "4.1.2",
           "name": "Name, Role, Value",
           "level": "A",
+          "obsolete": false,
           "principle": "Robust"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "2.4.4",
+          "name": "Link Purpose (In Context)",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        },
+        {
+          "num": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -6886,70 +7163,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "1.3.1",
-          "name": "Info and Relationships",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "1.4.1",
-          "name": "Use of Color",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "2.1.1",
-          "name": "Keyboard",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.1.3",
-          "name": "Keyboard (No Exception)",
-          "level": "AAA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.3",
-          "name": "Focus Order",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.1",
-          "name": "Pointer Gestures",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.2",
-          "name": "Pointer Cancellation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.5",
-          "name": "Target Size (AAA)",
-          "level": "AAA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.7",
-          "name": "Dragging Movements",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.8",
-          "name": "Target Size (Minimum)",
-          "level": "AA",
-          "principle": "Operable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -6996,11 +7213,13 @@
           "num": "2.5.3",
           "name": "Label in Name",
           "level": "A",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7044,20 +7263,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "1.3.1",
-          "name": "Info and Relationships",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
           "num": "4.1.2",
           "name": "Name, Role, Value",
           "level": "A",
+          "obsolete": false,
           "principle": "Robust"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7105,7 +7320,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "3.2.4",
+          "name": "Consistent Identification",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -7149,7 +7373,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7195,7 +7420,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7237,16 +7463,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "2.4.7",
           "name": "Focus Visible",
           "level": "AA",
+          "obsolete": false,
           "principle": "Operable"
         }
-      ],
-      "viaGuideline": [],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -7292,20 +7520,24 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "2.4.7",
-          "name": "Focus Visible",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
           "num": "2.4.13",
           "name": "Focus Appearance",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "2.4.7",
+          "name": "Focus Visible",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -7351,20 +7583,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "2.4.7",
-          "name": "Focus Visible",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
           "num": "2.4.13",
           "name": "Focus Appearance",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7408,7 +7636,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7452,40 +7681,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [
-        {
-          "num": "2.4.1",
-          "name": "Bypass Blocks",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.2",
-          "name": "Page Titled",
-          "level": "A",
-          "principle": "Operable"
-        },
+      "direct": [
         {
           "num": "2.4.3",
           "name": "Focus Order",
           "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.5",
-          "name": "Multiple Ways",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.8",
-          "name": "Location",
-          "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7527,40 +7734,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [
+      "direct": [
         {
           "num": "2.4.1",
           "name": "Bypass Blocks",
           "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.2",
-          "name": "Page Titled",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.3",
-          "name": "Focus Order",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.5",
-          "name": "Multiple Ways",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.8",
-          "name": "Location",
-          "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7603,39 +7788,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "2.4.1",
-          "name": "Bypass Blocks",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.2",
-          "name": "Page Titled",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.3",
-          "name": "Focus Order",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.5",
-          "name": "Multiple Ways",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.8",
-          "name": "Location",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7681,7 +7836,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7725,7 +7881,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7773,7 +7930,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7821,7 +7979,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7869,7 +8028,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7917,7 +8077,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -7963,7 +8124,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8007,7 +8169,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8049,22 +8212,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "2.4.11",
-          "name": "Focus Not Obscured (Minimum)",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.4.12",
-          "name": "Focus Not Obscured (Enhanced)",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8108,7 +8259,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8152,7 +8304,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8194,9 +8347,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8240,7 +8402,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8284,9 +8447,25 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        },
+        {
+          "num": "2.4.10",
+          "name": "Section Headings",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8330,7 +8509,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8376,9 +8556,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8420,9 +8609,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8468,9 +8666,25 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        },
+        {
+          "num": "2.4.6",
+          "name": "Headings and Labels",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8516,7 +8730,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "2.4.8",
+          "name": "Location",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -8560,7 +8783,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "2.4.8",
+          "name": "Location",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -8606,7 +8838,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8650,7 +8883,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "3.2.2",
+          "name": "On Input",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -8694,9 +8936,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.4.2",
+          "name": "Page Titled",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8744,7 +8995,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8792,7 +9044,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8836,7 +9089,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8880,7 +9134,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8924,7 +9179,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -8970,7 +9226,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "3.3.4",
+          "name": "Error Prevention (Legal, Financial, Data)",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Understandable"
+        }
+      ]
     }
   },
   {
@@ -9014,7 +9279,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9058,7 +9324,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9106,7 +9373,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9154,9 +9422,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.2.3",
+          "name": "No Timing",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9200,7 +9477,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9246,9 +9524,26 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.2.1",
+          "name": "Timing Adjustable",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "2.2.6",
+          "name": "Timeouts",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ]
     }
   },
   {
@@ -9294,9 +9589,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "2.2.1",
+          "name": "Timing Adjustable",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Operable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9340,7 +9644,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9384,7 +9689,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9430,28 +9736,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "2.2.1",
-          "name": "Timing Adjustable",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.2.3",
-          "name": "No Timing",
-          "level": "AAA",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.2.6",
-          "name": "Timeouts",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9495,7 +9783,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9541,20 +9830,24 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "1.3.5",
-          "name": "Identify Input Purpose",
-          "level": "AA",
-          "principle": "Perceivable"
-        },
-        {
           "num": "3.3.8",
           "name": "Accessible Authentication (Minimum)",
           "level": "AA",
+          "obsolete": false,
           "principle": "Understandable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "1.3.5",
+          "name": "Identify Input Purpose",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ]
     }
   },
   {
@@ -9603,17 +9896,20 @@
           "num": "3.3.8",
           "name": "Accessible Authentication (Minimum)",
           "level": "AA",
+          "obsolete": false,
           "principle": "Understandable"
         },
         {
           "num": "3.3.9",
           "name": "Accessible Authentication (Enhanced)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9655,16 +9951,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "3.3.8",
-          "name": "Accessible Authentication (Minimum)",
-          "level": "AA",
-          "principle": "Understandable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9708,7 +9998,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9754,7 +10045,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9798,28 +10090,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
-          "num": "2.4.6",
-          "name": "Headings and Labels",
-          "level": "AA",
-          "principle": "Operable"
-        },
-        {
-          "num": "3.2.6",
-          "name": "Consistent Help",
+          "num": "3.3.2",
+          "name": "Labels or Instructions",
           "level": "A",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.3.5",
-          "name": "Help",
-          "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ],
-      "viaGuideline": [],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -9865,22 +10147,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "2.1.1",
-          "name": "Keyboard",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.1.2",
-          "name": "No Keyboard Trap",
-          "level": "A",
-          "principle": "Operable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9926,22 +10196,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "3.3.4",
-          "name": "Error Prevention (Legal, Financial, Data)",
-          "level": "AA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.3.6",
-          "name": "Error Prevention (All)",
-          "level": "AAA",
-          "principle": "Understandable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -9987,20 +10245,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "1.3.5",
-          "name": "Identify Input Purpose",
-          "level": "AA",
-          "principle": "Perceivable"
-        },
-        {
           "num": "3.3.7",
           "name": "Redundant Entry",
           "level": "A",
+          "obsolete": false,
           "principle": "Understandable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10046,34 +10300,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "2.2.5",
           "name": "Re-authenticating",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
-        },
-        {
-          "num": "3.3.4",
-          "name": "Error Prevention (Legal, Financial, Data)",
-          "level": "AA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.3.6",
-          "name": "Error Prevention (All)",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.3.7",
-          "name": "Redundant Entry",
-          "level": "A",
-          "principle": "Understandable"
         }
-      ],
-      "viaGuideline": [],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -10117,7 +10355,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10163,34 +10402,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [
-        {
-          "num": "3.1.3",
-          "name": "Unusual Words",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
+      "direct": [
         {
           "num": "3.1.4",
           "name": "Abbreviations",
           "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.5",
-          "name": "Reading Level",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
         }
       ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10233,33 +10456,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "3.1.3",
-          "name": "Unusual Words",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.5",
-          "name": "Reading Level",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
-          "principle": "Understandable"
-        }
-      ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10309,34 +10508,26 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [
+      "direct": [
         {
           "num": "3.1.3",
           "name": "Unusual Words",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
+        }
+      ],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "3.1.5",
           "name": "Reading Level",
           "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -10389,33 +10580,17 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "3.1.3",
-          "name": "Unusual Words",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.5",
-          "name": "Reading Level",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "3.1.6",
           "name": "Pronunciation",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -10462,33 +10637,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "3.1.3",
-          "name": "Unusual Words",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.5",
-          "name": "Reading Level",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
-          "principle": "Understandable"
-        }
-      ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10537,33 +10688,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "3.1.3",
-          "name": "Unusual Words",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.5",
-          "name": "Reading Level",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
-          "principle": "Understandable"
-        }
-      ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10609,34 +10736,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
-      "viaGuideline": [
+      "direct": [
         {
           "num": "3.1.3",
           "name": "Unusual Words",
           "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.5",
-          "name": "Reading Level",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
         }
       ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10683,33 +10794,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "3.1.3",
-          "name": "Unusual Words",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.5",
-          "name": "Reading Level",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
-          "principle": "Understandable"
-        }
-      ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10758,33 +10845,17 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "3.1.3",
-          "name": "Unusual Words",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "3.1.5",
           "name": "Reading Level",
           "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
+          "obsolete": false,
           "principle": "Understandable"
         }
-      ],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -10827,33 +10898,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "3.1.3",
-          "name": "Unusual Words",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.4",
-          "name": "Abbreviations",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.5",
-          "name": "Reading Level",
-          "level": "AAA",
-          "principle": "Understandable"
-        },
-        {
-          "num": "3.1.6",
-          "name": "Pronunciation",
-          "level": "AAA",
-          "principle": "Understandable"
-        }
-      ],
-      "viaGroup": []
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10903,14 +10950,23 @@
     "wcag22Inbound": {
       "direct": [
         {
+          "num": "1.4.8",
+          "name": "Visual Presentation",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        },
+        {
           "num": "1.4.12",
           "name": "Text Spacing",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -10954,22 +11010,10 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "1.4.8",
-          "name": "Visual Presentation",
-          "level": "AAA",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "2.4.10",
-          "name": "Section Headings",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ],
+      "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11013,9 +11057,18 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [],
+      "direct": [
+        {
+          "num": "1.4.8",
+          "name": "Visual Presentation",
+          "level": "AAA",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11068,11 +11121,13 @@
           "num": "1.4.8",
           "name": "Visual Presentation",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11122,20 +11177,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "1.4.3",
-          "name": "Contrast (Minimum)",
-          "level": "AA",
-          "principle": "Perceivable"
-        },
-        {
           "num": "1.4.6",
           "name": "Contrast (Enhanced)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11180,8 +11231,8 @@
       ],
       "translatedFrom": "guidelines/groups/text-and-wording/contrast/text-contrast-sufficient-minimum.md",
       "plainEnglish": {
-        "summary": "Text must maintain strong visual contrast against its background so it can be easily read by everyone, including people with low vision or under bright light.",
-        "whyItMatters": "Faint or low-contrast text forces users to strain their eyes and makes reading impossible for low-vision users."
+        "summary": "Text meets a minimum contrast against its background. The contrast measure is still to be determined in the draft. Exceptions include inactive controls, pure decoration, invisible text, text in pictures with significant other visual content, logos, and text that also appears elsewhere on the page in a form that meets the requirement.",
+        "whyItMatters": "Low-contrast text is hard or impossible to read for people with low vision, and for anyone in bright light."
       }
     },
     "wcag22Inbound": {
@@ -11190,11 +11241,13 @@
           "num": "1.4.3",
           "name": "Contrast (Minimum)",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11243,7 +11296,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11292,11 +11346,13 @@
           "num": "1.4.4",
           "name": "Resize Text",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11349,11 +11405,13 @@
           "num": "1.4.12",
           "name": "Text Spacing",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11399,7 +11457,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11445,7 +11504,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11494,17 +11554,20 @@
           "num": "3.1.1",
           "name": "Language of Page",
           "level": "A",
+          "obsolete": false,
           "principle": "Understandable"
         },
         {
           "num": "3.1.2",
           "name": "Language of Parts",
           "level": "AA",
+          "obsolete": false,
           "principle": "Understandable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11552,7 +11615,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11602,7 +11666,16 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": []
+      "viaGroup": [],
+      "related": [
+        {
+          "num": "1.3.1",
+          "name": "Info and Relationships",
+          "level": "A",
+          "obsolete": false,
+          "principle": "Perceivable"
+        }
+      ]
     }
   },
   {
@@ -11646,34 +11719,25 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
-        {
-          "num": "1.1.1",
-          "name": "Non-text Content",
-          "level": "A",
-          "principle": "Perceivable"
-        },
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "1.4.5",
           "name": "Images of Text",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         },
         {
           "num": "1.4.9",
           "name": "Images of Text (No Exception)",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Perceivable"
-        },
-        {
-          "num": "4.1.1",
-          "name": "Parsing (Obsolete)",
-          "level": "A",
-          "principle": "Robust"
         }
-      ],
-      "viaGuideline": [],
-      "viaGroup": []
+      ]
     }
   },
   {
@@ -11721,39 +11785,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "1.3.2",
-          "name": "Meaningful Sequence",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
           "num": "1.4.10",
           "name": "Reflow",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11802,30 +11843,13 @@
           "num": "1.3.4",
           "name": "Orientation",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11877,30 +11901,13 @@
           "num": "1.3.4",
           "name": "Orientation",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -11950,39 +11957,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "1.4.4",
-          "name": "Resize Text",
-          "level": "AA",
-          "principle": "Perceivable"
-        },
-        {
           "num": "1.4.10",
           "name": "Reflow",
           "level": "AA",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12026,26 +12010,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12096,30 +12062,13 @@
           "num": "2.2.4",
           "name": "Interruptions",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12165,23 +12114,13 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
+      "viaGroup": [],
+      "related": [
         {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
+          "num": "2.3.3",
+          "name": "Animation from Interactions",
           "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ]
@@ -12230,26 +12169,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12299,39 +12220,16 @@
     "wcag22Inbound": {
       "direct": [
         {
-          "num": "3.2.2",
-          "name": "On Input",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "3.2.5",
-          "name": "Change on Request",
-          "level": "AAA",
-          "principle": "Understandable"
+          "num": "4.1.3",
+          "name": "Status Messages",
+          "level": "AA",
+          "obsolete": false,
+          "principle": "Robust"
         }
       ],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12373,32 +12271,15 @@
       }
     },
     "wcag22Inbound": {
-      "direct": [
+      "direct": [],
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": [
         {
           "num": "3.2.1",
           "name": "On Focus",
           "level": "A",
-          "principle": "Operable"
-        }
-      ],
-      "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
+          "obsolete": false,
           "principle": "Operable"
         }
       ]
@@ -12445,24 +12326,21 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
+      "viaGroup": [],
+      "related": [
         {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
+          "num": "3.2.2",
+          "name": "On Input",
           "level": "A",
+          "obsolete": false,
           "principle": "Operable"
         },
         {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
+          "num": "3.2.5",
+          "name": "Change on Request",
           "level": "AAA",
-          "principle": "Operable"
+          "obsolete": false,
+          "principle": "Understandable"
         }
       ]
     }
@@ -12472,7 +12350,7 @@
     "groupSlug": "user-control",
     "guidelineSlug": "control-text",
     "title": "Background Adjustable",
-    "type": "exploratory",
+    "type": null,
     "status": "exploratory",
     "issueLabel": "",
     "needsAdditionalResearch": false,
@@ -12508,26 +12386,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12535,7 +12395,7 @@
     "groupSlug": "user-control",
     "guidelineSlug": "control-text",
     "title": "Font Size Not Relied On",
-    "type": "exploratory",
+    "type": null,
     "status": "exploratory",
     "issueLabel": "",
     "needsAdditionalResearch": false,
@@ -12571,26 +12431,8 @@
     "wcag22Inbound": {
       "direct": [],
       "viaGuideline": [],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12633,40 +12475,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "1.4.2",
-          "name": "Audio Control",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "1.4.7",
-          "name": "Low or No Background Audio",
-          "level": "AAA",
-          "principle": "Perceivable"
-        }
-      ],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12709,40 +12520,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "1.4.2",
-          "name": "Audio Control",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "1.4.7",
-          "name": "Low or No Background Audio",
-          "level": "AAA",
-          "principle": "Perceivable"
-        }
-      ],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12792,40 +12572,9 @@
     },
     "wcag22Inbound": {
       "direct": [],
-      "viaGuideline": [
-        {
-          "num": "1.4.2",
-          "name": "Audio Control",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "1.4.7",
-          "name": "Low or No Background Audio",
-          "level": "AAA",
-          "principle": "Perceivable"
-        }
-      ],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   },
   {
@@ -12866,7 +12615,7 @@
       ],
       "translatedFrom": "guidelines/groups/user-control/media-control/page-view-audio-adjustable.md",
       "plainEnglish": {
-        "summary": "Where audio plays automatically, there is a way to pause it, stop it, or adjust its volume separately from the system volume.",
+        "summary": "Where audio plays automatically, users can pause it, stop it, and adjust its volume separately from the system volume. All three are required, which is stricter than WCAG 2.2's 1.4.2, where any one of them is enough.",
         "whyItMatters": "Background audio masks a screen reader's speech, making the page unusable until it stops - and the system volume control turns off both at once."
       }
     },
@@ -12876,43 +12625,13 @@
           "num": "1.4.2",
           "name": "Audio Control",
           "level": "A",
+          "obsolete": false,
           "principle": "Perceivable"
         }
       ],
-      "viaGuideline": [
-        {
-          "num": "1.4.2",
-          "name": "Audio Control",
-          "level": "A",
-          "principle": "Perceivable"
-        },
-        {
-          "num": "1.4.7",
-          "name": "Low or No Background Audio",
-          "level": "AAA",
-          "principle": "Perceivable"
-        }
-      ],
-      "viaGroup": [
-        {
-          "num": "2.1.4",
-          "name": "Character Key Shortcuts",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.4",
-          "name": "Motion Actuation",
-          "level": "A",
-          "principle": "Operable"
-        },
-        {
-          "num": "2.5.6",
-          "name": "Concurrent Input Mechanisms",
-          "level": "AAA",
-          "principle": "Operable"
-        }
-      ]
+      "viaGuideline": [],
+      "viaGroup": [],
+      "related": []
     }
   }
 ]

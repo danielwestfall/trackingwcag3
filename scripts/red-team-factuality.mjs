@@ -65,7 +65,8 @@ const SPECULATIVE_PATTERNS = [
 
 // Valid W3C WCAG 3 taxonomies
 const VALID_STATUSES = new Set(['developing', 'exploratory', 'refining', 'mature']);
-const VALID_TYPES = new Set(['foundational', 'supplemental', 'assertion', 'exploratory', 'recommended practice']);
+// null = untyped upstream (W3C renders it as "Requirement"); 'exploratory' is a status, not a type.
+const VALID_TYPES = new Set(['foundational', 'supplemental', 'assertion', 'recommended practice', null]);
 const VALID_PRINCIPLES = new Set(['Perceivable', 'Operable', 'Understandable', 'Robust']);
 const VALID_LEVELS = new Set(['A', 'AA', 'AAA']);
 
@@ -209,7 +210,15 @@ class RedTeamFactualityAudit {
     for (const sc of criteria) {
       this.check(`SC ${sc.num} has valid numbering format`, scNumberRegex.test(sc.num), `Got ${sc.num}`);
       this.check(`SC ${sc.num} has valid principle`, VALID_PRINCIPLES.has(sc.principle), `Got ${sc.principle}`);
-      this.check(`SC ${sc.num} has valid level`, VALID_LEVELS.has(sc.level), `Got ${sc.level}`);
+      // 4.1.1 is "Obsolete and removed" in WCAG 2.2 and has no level.
+      if (sc.obsolete) {
+        this.check(`SC ${sc.num} is the only obsolete criterion and has no level`, sc.num === '4.1.1' && sc.level === null, `Got ${sc.num} level ${sc.level}`);
+      } else {
+        this.check(`SC ${sc.num} has valid level`, VALID_LEVELS.has(sc.level), `Got ${sc.level}`);
+      }
+      // Legacy advice fields mixed recommendations with requirements; they must not come back.
+      this.check(`SC ${sc.num} carries no legacy persona/testing/example fields`,
+        !sc.personaBreakdown && !sc.testingGuide && !sc.plainEnglish?.realWorldExample);
 
       if (levelCounts[sc.level] !== undefined) levelCounts[sc.level]++;
 
@@ -231,9 +240,7 @@ class RedTeamFactualityAudit {
 
       const scSummarizedText = JSON.stringify({
         plainEnglish: sc.plainEnglish,
-        personaBreakdown: sc.personaBreakdown,
-        testingGuide: sc.testingGuide,
-        evolutionNote: sc.wcag3Mapping?.evolutionNote
+        mappingNote: sc.wcag3Mapping?.note
       });
       for (const pat of SPECULATIVE_PATTERNS) {
         if (pat.test(scSummarizedText)) {
@@ -247,7 +254,7 @@ class RedTeamFactualityAudit {
     }
 
     // Official WCAG 2.2 distribution: Level A: 32, Level AA: 24, Level AAA: 31 = 87 total
-    this.check('WCAG 2.2 Level A count is 32', levelCounts.A === 32, `Got ${levelCounts.A}`);
+    this.check('WCAG 2.2 Level A count is 31 (4.1.1 is obsolete and has no level)', levelCounts.A === 31, `Got ${levelCounts.A}`);
     this.check('WCAG 2.2 Level AA count is 24', levelCounts.AA === 24, `Got ${levelCounts.AA}`);
     this.check('WCAG 2.2 Level AAA count is 31', levelCounts.AAA === 31, `Got ${levelCounts.AAA}`);
     this.check('All 87 SC have valid W3C TR URLs', validTrUrls === 87, `Got ${validTrUrls}`);
@@ -346,7 +353,7 @@ class RedTeamFactualityAudit {
     this.check('Foundational count is 114', s.byType.foundational === 114, `Got ${s.byType.foundational}`);
     this.check('Supplemental count is 86', s.byType.supplemental === 86, `Got ${s.byType.supplemental}`);
     this.check('Assertion count is 36', s.byType.assertion === 36, `Got ${s.byType.assertion}`);
-    this.check('Exploratory type count is 8', (s.byType.exploratory ?? 8) === 8);
+    this.check('Untyped provision count is 8', s.byType.untyped === 8, `Got ${s.byType.untyped}`);
     this.check('Recommended practice count is 1', (s.byType['recommended practice'] ?? 1) === 1);
 
     const typeSum = 114 + 86 + 36 + 8 + 1;
@@ -436,7 +443,8 @@ class RedTeamFactualityAudit {
     // Plain English index must provide direct W3C source links and no fake personas
     this.check(
       'Index.astro provides direct W3C Source links for reviewers',
-      plainEnglishIndex.includes('card-w3c-link') && plainEnglishIndex.includes('https://github.com/w3c/wcag3/blob/main/')
+      // Links are pinned to the tracked commit so the text can't drift from what the site describes.
+      plainEnglishIndex.includes('card-w3c-link') && plainEnglishIndex.includes('https://github.com/w3c/wcag3/blob/${trackedCommit}/') && !plainEnglishIndex.includes('wcag3/blob/main/')
     );
     this.check(
       'Index.astro does not contain persona-tip-box fallback artifacts',
@@ -509,11 +517,11 @@ class RedTeamFactualityAudit {
     const matrix = JSON.parse(fs.readFileSync(MATRIX_PATH, 'utf8'));
     this.check('Evolution matrix contains exactly 87 WCAG 2.2 criteria', matrix.length === 87, `Found ${matrix.length}`);
 
-    const validChangeTypes = new Set(['granular-split', 'expands-scope', 'new-metric', 'easier-testing', 'direct', 'redesigned']);
+    const validChangeTypes = new Set(['successor', 'related-only', 'none', 'obsolete']);
 
     for (const item of matrix) {
       this.check(`Criterion ${item.num} has valid ID and title`, !!item.id && !!item.name);
-      this.check(`Criterion ${item.num} has valid conformance level`, VALID_LEVELS.has(item.level), `Found ${item.level}`);
+      this.check(`Criterion ${item.num} has valid conformance level`, item.obsolete ? item.level === null : VALID_LEVELS.has(item.level), `Found ${item.level}`);
       this.check(`Criterion ${item.num} has valid principle`, VALID_PRINCIPLES.has(item.principle), `Found ${item.principle}`);
       this.check(`Criterion ${item.num} has W3C TR and Understanding URLs`, !!item.trUrl && !!item.understandingUrl);
       this.check(`Criterion ${item.num} has provisions array`, Array.isArray(item.provisions));
@@ -523,18 +531,16 @@ class RedTeamFactualityAudit {
       if (ca) {
         this.check(`Criterion ${item.num} has valid changeType`, validChangeTypes.has(ca.changeType), `Found ${ca.changeType}`);
         this.check(`Criterion ${item.num} has changeBadge`, !!ca.changeBadge);
-        this.check(`Criterion ${item.num} has scopeDelta explanation`, typeof ca.scopeDelta === 'string' && ca.scopeDelta.length > 10);
-        this.check(`Criterion ${item.num} has testingImpact explanation`, typeof ca.testingImpact === 'string' && ca.testingImpact.length > 10);
-
-        for (const pattern of SPECULATIVE_PATTERNS) {
-          if (pattern.test(ca.scopeDelta)) {
-            this.check(`No speculative forecasts in scopeDelta for ${item.num}`, false, `Matched ${pattern} in "${ca.scopeDelta}"`);
-          }
-          if (pattern.test(ca.testingImpact)) {
-            this.check(`No speculative forecasts in testingImpact for ${item.num}`, false, `Matched ${pattern} in "${ca.testingImpact}"`);
-          }
-          if (ca.evolutionNote && pattern.test(ca.evolutionNote)) {
-            this.check(`No speculative forecasts in evolutionNote for ${item.num}`, false, `Matched ${pattern} in "${ca.evolutionNote}"`);
+        // The comparison is now the two texts side by side. Every provision must
+        // be quoted from the draft and linked at the tracked commit, not main.
+        for (const prov of [...(item.provisions || []), ...(item.related || [])]) {
+          this.check(`Criterion ${item.num} → ${prov.slug} quotes the provision text`, typeof prov.text === 'string' && prov.text.length > 10);
+          this.check(`Criterion ${item.num} → ${prov.slug} source link is pinned to a commit`, !prov.sourceUrl || !/\/blob\/main\//.test(prov.sourceUrl), prov.sourceUrl);
+        }
+        this.check(`Criterion ${item.num} has no hand-written scope/testing analysis`, ca.scopeDelta === undefined && ca.testingImpact === undefined);
+        if (ca.note) {
+          for (const pattern of SPECULATIVE_PATTERNS) {
+            if (pattern.test(ca.note)) this.check(`No speculative forecasts in mapping note for ${item.num}`, false, `Matched ${pattern} in "${ca.note}"`);
           }
         }
       }
@@ -543,7 +549,7 @@ class RedTeamFactualityAudit {
     this.addSource(
       'WCAG Evolution Matrix (Old vs New)',
       'https://www.w3.org/TR/WCAG22/ and https://w3c.github.io/wcag3/guidelines/',
-      'Comparative mapping of all 87 WCAG 2.2 Success Criteria to WCAG 3.0 draft provisions with scope and testing impact analysis.'
+      'Each WCAG 2.2 criterion beside the quoted text of its WCAG 3 draft successor provisions, from a reviewed map (wcag22-data/wcag22-to-wcag3-map.json).'
     );
   }
 
@@ -599,7 +605,7 @@ class RedTeamFactualityAudit {
     md += `- **Foundational Provisions**: ${conf.draftState.byType.foundational}\n`;
     md += `- **Supplemental Provisions**: ${conf.draftState.byType.supplemental}\n`;
     md += `- **Assertion Provisions**: ${conf.draftState.byType.assertion}\n`;
-    md += `- **Exploratory Type**: ${conf.draftState.byType.exploratory ?? 8}\n`;
+    md += `- **Untyped (shown by W3C as "Requirement")**: ${conf.draftState.byType.untyped}\n`;
     md += `- **Recommended Practice**: ${conf.draftState.byType['recommended practice'] ?? 1}\n`;
     md += `- **Developing Status**: ${conf.draftState.byStatus.developing}\n`;
     md += `- **Exploratory Status**: ${conf.draftState.byStatus.exploratory}\n\n`;

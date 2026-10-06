@@ -362,7 +362,7 @@
       {
         "label": "Pseudo-motion should have no threshold and its own provision",
         "who": "julierawe, rachaelbradley, mraccess77",
-        "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"does not include pseudo-motion lasting longer than 5 seconds\", which is precisely the reading this no-exceptions variant is meant to foreclose. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache."
+        "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"content does not include pseudo-motion...lasting longer than 5 seconds\", which is precisely the reading this no-exceptions variant is meant to foreclose. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache."
       },
       {
         "label": "A respected user preference is not a safe substitute",
@@ -436,7 +436,7 @@
       {
         "label": "Typeface guidance can be a recommendation, not a \"shall\"",
         "who": "Myndex",
-        "detail": "Argues in #245 that a meaningful, testable normative standard covering all font use cases is out of reach, though blocks of body text might be a candidate. The reason is that line-height, letter-spacing, font-weight and font-size are all relative to decisions the font designer made, so two faces set at 16px and weight 400 rasterise at different real sizes and weights. Proposes CSS-level fixes — a property to set x-height directly, already filed with the CSSWG, and line-height expressed against x-height — and gives concrete targets: critical size is an x-height at least twice measured acuity height, lowercase aspect ratio under 1.5:1, baselines about 2.5 x-heights apart. Notes a century of research has produced little consensus beyond \"blackletter is hard to read\"."
+        "detail": "Argues in #245 that a meaningful, testable normative standard covering all font use cases is out of reach, though blocks of body text might be a candidate. The reason is that line-height, letter-spacing, font-weight and font-size are all relative to decisions the font designer made, so two faces set at 16px and weight 400 rasterise at different real sizes and weights. Proposes CSS-level fixes — a property to set x-height directly, already filed with the CSSWG, and line-height expressed against x-height — and gives concrete targets: critical size is an x-height at least twice measured acuity height, lowercase aspect ratio under 1.5:1, baselines about 2.5 x-heights apart. Notes a century of research has produced little consensus beyond \"blackletter fonts are hard to read\"."
       },
       {
         "label": "Dyslexia fonts are the wrong fix",

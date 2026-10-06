@@ -11,7 +11,7 @@
     "build:search-index": "node scripts/build-search-index.mjs",
     "check": "astro check",
     "cspell": "cspell .",
-    "test:factuality": "node scripts/red-team-factuality.mjs",
+    "test:factuality": "node scripts/red-team-factuality.mjs && node scripts/check-quotes.mjs",
     "fetch:discussions": "node scripts/fetch-provision-discussions.mjs",
     "merge:summaries": "node scripts/merge-discussion-summaries.mjs",
     "preview": "astro preview",
@@ -19,7 +19,8 @@
     "start": "astro dev",
     "sync": "astro sync --force",
     "sync:plain-english": "node scripts/sync-wcag-plain-english.mjs",
-    "track:upstream": "node scripts/track-upstream.mjs"
+    "track:upstream": "node scripts/track-upstream.mjs",
+    "check:quotes": "node scripts/check-quotes.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^6.3.11",

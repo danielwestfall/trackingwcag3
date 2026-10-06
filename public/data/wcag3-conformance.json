@@ -9,7 +9,7 @@
       "supplemental": 86,
       "assertion": 36,
       "recommended practice": 1,
-      "exploratory": 8
+      "untyped": 8
     },
     "byStatus": {
       "developing": 216,
@@ -172,21 +172,21 @@
     {
       "title": "Media alternatives fragmented",
       "criteria": "1.2.1 – 1.2.9",
-      "detail": "The single media-alternatives guideline was dissolved into captions, audio descriptions, transcripts, sign language and accessible media player. Nine criteria that used to point at one outcome now fan out across roughly forty provisions, each with its own speaker identification, non-verbal cues, equivalence, style guide and usability testing requirements."
+      "detail": "The single media-alternatives guideline was dissolved into captions, audio descriptions, transcripts, sign language and accessible media player. Nine criteria that used to point at one outcome now fan out across 54 provisions in the editor's draft (captions 19, audio descriptions 17, transcripts 13, sign language 3, accessible media player 2), each with its own speaker identification, non-verbal cues, equivalence, style guide and usability testing requirements."
     },
     {
       "title": "Flashing rebuilt around thresholds",
       "criteria": "2.3.1, 2.3.2",
-      "detail": "No Flashing became No Flashing Over Threshold, plus a no-exceptions variant. A new exploratory Single Flash provision has no 2.2 equivalent at all: content must not change contrast by more than 4.5:1 light-to-dark across more than 30% of the viewport. That is a constraint on ordinary page transitions and dark-mode toggles, not just on video."
+      "detail": "No Flashing became No Flashing Over Threshold, plus a no-exceptions variant. A new exploratory Single Flash provision has no 2.2 equivalent at all: content must not change contrast by more than 4.5:1 light-to-dark across more than 30% of the viewport. It could catch in-page transitions and theme toggles, not just video. Loading a new page/view is exempt, and an editor's note says the editors need data and \"a definition that includes size/intensity to avoid including non-triggers such as menus.\""
     },
     {
       "title": "Adjacent interactive elements generalized",
       "criteria": "no direct 2.2 criterion",
-      "detail": "No Repetitive Links became No Repetitive Adjacent Interactive Elements, and the wording widened from repeated links with the same destination to any adjacent interactive elements that achieve the same outcome. The common card pattern — thumbnail link, title link and Read more link all pointing at the same page — fails the new wording and passes most 2.2 audits today."
+      "detail": "No Repetitive Links became No Repetitive Adjacent Interactive Elements, and the wording widened from repeated links with the same destination to any adjacent interactive elements that achieve the same outcome. The common card pattern — thumbnail link, title link and Read more link all pointing at the same page — fails the new wording (a supplemental requirement, so not needed to conform) and passes WCAG 2.2."
     },
     {
       "title": "Focus Not Obscured has no successor yet",
-      "criteria": "2.4.12, 2.4.13",
+      "criteria": "2.4.11, 2.4.12",
       "detail": "The Sep 2026 draft contains no provision requiring that focus stay visible when content would obscure it. The nearest requirements make obscuring content dismissible, which is not the same obligation. Treat this as a genuine gap rather than a mapping we have not found."
     }
   ],

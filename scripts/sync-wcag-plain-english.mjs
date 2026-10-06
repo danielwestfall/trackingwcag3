@@ -218,8 +218,9 @@ async function sync() {
       // 'foundational' put the site's LEAST settled provisions — all of them
       // exploratory — under its STRONGEST type label, and disagreed with
       // track-upstream.mjs, which counts the same eight as untyped. They are
-      // carried as their own 'exploratory' type instead.
-      type: frontmatter.type || 'exploratory',
+      // carried as null (untyped), which W3C renders as "Requirement";
+      // 'exploratory' is a status, not a type.
+      type: frontmatter.type || null,
       status: frontmatter.status || 'exploratory',
       issueLabel: frontmatter.issueLabel || '',
       needsAdditionalResearch: frontmatter.needsAdditionalResearch === 'true',
@@ -231,6 +232,7 @@ async function sync() {
   }
 
   const provisionSlugs = new Set(wcag3Catalog.map((p) => p.slug));
+
   const guidelineSlugs = new Set(wcag3Catalog.map((p) => p.guidelineSlug));
   const groupSlugs = new Set(wcag3Catalog.map((p) => p.groupSlug));
 
@@ -241,25 +243,54 @@ async function sync() {
     console.log(`✅ Loaded ${wcag22Catalog.length} WCAG 2.2 Success Criteria entries`);
   }
 
+  // 2a. Derive every WCAG 2.2 fact the site shows from the reviewed sources,
+  // so the hand-written prose that used to live in success-criteria.json can't
+  // drift back in:
+  //  - name, level, obsolete: normative-text.json (verbatim from the REC tag)
+  //  - plainEnglish.summary / whyItMatters: three-tier-guidance.json (Tier 1
+  //    floor / Tier 2 gap), written from the normative text only
+  //  - wcag3Mapping: wcag22-to-wcag3-map.json (hand-reviewed; every slug must
+  //    exist in the draft, or the sync fails)
+  const readWcag22 = (f) => JSON.parse(fs.readFileSync(path.join(rootDir, 'wcag22-data', f), 'utf8'));
+  const normBy = new Map(readWcag22('normative-text.json').criteria.map((c) => [c.num, c]));
+  const tiersBy = new Map(readWcag22('three-tier-guidance.json').criteria.map((c) => [c.num, c]));
+  const reviewedMap = readWcag22('wcag22-to-wcag3-map.json').map;
+  const mapErrors = [];
+  for (const sc of wcag22Catalog) {
+    const norm = normBy.get(sc.num);
+    const tiers = tiersBy.get(sc.num);
+    const m = reviewedMap[sc.num];
+    if (!norm || !tiers || !m) { mapErrors.push(`${sc.num}: missing from normative text, tiers or map`); continue; }
+    sc.name = norm.name;
+    if (norm.obsolete) { sc.level = null; sc.obsolete = true; } else { sc.level = norm.level; delete sc.obsolete; }
+    sc.plainEnglish = { summary: tiers.floor, whyItMatters: tiers.gap };
+    delete sc.personaBreakdown;
+    delete sc.testingGuide;
+    for (const slug of [...m.provisions, ...(m.related || [])]) {
+      if (!provisionSlugs.has(slug)) mapErrors.push(`${sc.num}: "${slug}" is not a provision in the draft`);
+    }
+    sc.wcag3Mapping = { provisions: m.provisions, related: m.related || [], note: m.note || null };
+  }
+  if (mapErrors.length) {
+    console.error(`❌ WCAG 2.2 sources don't line up:\n  ${mapErrors.join('\n  ')}`);
+    process.exit(1);
+  }
+  fs.writeFileSync(wcag22Path, JSON.stringify(wcag22Catalog, null, 2) + '\n');
+
   // 2b. Invert the curated WCAG 2.2 -> WCAG 3 map.
   //
-  // wcag22-catalog.json is hand-maintained and trustworthy: every criterion's
-  // wcag3Mapping.provisions was reasoned by a person (0 broken, 0 missing at
-  // the last check). The WCAG 3 -> 2.2 direction never was — the old fallback
-  // guessed it from the group slug — so it is derived here by inverting the
-  // curated data instead of being invented alongside it.
-  //
-  // Some criteria point at a guideline or group slug rather than a provision
-  // (6 of them at the last count). Those are recorded against the guideline so
-  // the provision page can say the reference is coarse rather than silently
-  // claiming a provision-level match.
+  // The WCAG 3 -> 2.2 direction is derived by inverting the reviewed map
+  // (wcag22-data/wcag22-to-wcag3-map.json). Successors and related provisions
+  // are kept apart. The map only names provisions, so the guideline/group
+  // buckets stay empty; they are kept for older data.
   const inboundByProvision = new Map();
+  const inboundRelated = new Map();
   const inboundByGuideline = new Map();
   const inboundByGroup = new Map();
   for (const sc of wcag22Catalog) {
     const targets = sc.wcag3Mapping?.provisions || [];
     for (const slug of targets) {
-      const entry = { num: sc.num, name: sc.name, level: sc.level, principle: sc.principle };
+      const entry = { num: sc.num, name: sc.name, level: sc.level, obsolete: !!sc.obsolete, principle: sc.principle };
       const bucket = provisionSlugs.has(slug) ? inboundByProvision
         : guidelineSlugs.has(slug) ? inboundByGuideline
         : groupSlugs.has(slug) ? inboundByGroup
@@ -267,6 +298,10 @@ async function sync() {
       if (!bucket) continue;                       // dangling reference; the tracker reports these
       if (!bucket.has(slug)) bucket.set(slug, []);
       bucket.get(slug).push(entry);
+    }
+    for (const slug of sc.wcag3Mapping?.related || []) {
+      if (!inboundRelated.has(slug)) inboundRelated.set(slug, []);
+      inboundRelated.get(slug).push({ num: sc.num, name: sc.name, level: sc.level, obsolete: !!sc.obsolete, principle: sc.principle });
     }
   }
   const bySc = (a, b) => a.num.localeCompare(b.num, undefined, { numeric: true });
@@ -276,7 +311,8 @@ async function sync() {
     const direct = (inboundByProvision.get(provision.slug) || []).slice().sort(bySc);
     const viaGuideline = (inboundByGuideline.get(provision.guidelineSlug) || []).slice().sort(bySc);
     const viaGroup = (inboundByGroup.get(provision.groupSlug) || []).slice().sort(bySc);
-    provision.wcag22Inbound = { direct, viaGuideline, viaGroup };
+    const related = (inboundRelated.get(provision.slug) || []).slice().sort(bySc);
+    provision.wcag22Inbound = { direct, viaGuideline, viaGroup, related };
     if (direct.length) directCount += 1;
     if (!direct.length && (viaGuideline.length || viaGroup.length)) coarseCount += 1;
   }

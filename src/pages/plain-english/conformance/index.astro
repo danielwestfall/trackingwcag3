@@ -29,7 +29,7 @@ const roleLabel: Record<string, string> = {
         <h1>Conformance: What Changed &amp; How to Get Ready</h1>
         <p>
           Conformance is where WCAG 3 departs from WCAG 2.2 most sharply — and where it
-          changed again in the {s.baselineDate} draft. This page covers what moved, what it
+          changed again in the August–September 2026 editor's drafts (PRs #826, #827 and #834). This page covers what moved, what it
           means for a team conforming to 2.2 today, and what is worth doing now versus
           waiting on.
         </p>
@@ -58,10 +58,10 @@ const roleLabel: Record<string, string> = {
       Every figure on this page comes from that commit and is refreshed by the upstream tracker.
     </p>
     <ul class="draft-state-list">
-      <li><strong>{s.byType.foundational}</strong> foundational</li>
-      <li><strong>{s.byType.supplemental}</strong> supplemental</li>
+      <li><strong>{s.byType.foundational}</strong> core requirements</li>
+      <li><strong>{s.byType.supplemental}</strong> supplemental requirements</li>
       <li><strong>{s.byType.assertion}</strong> assertions</li>
-      <li><strong>{s.byType.exploratory ?? 8}</strong> exploratory type</li>
+      <li><strong>{s.byType.untyped ?? s.byType.exploratory}</strong> untyped (W3C shows these as "Requirement")</li>
       <li><strong>{s.byType['recommended practice'] ?? 1}</strong> recommended practice</li>
       <li><strong>{s.byStatus.developing}</strong> developing status</li>
       <li><strong>{s.byStatus.exploratory}</strong> exploratory status</li>

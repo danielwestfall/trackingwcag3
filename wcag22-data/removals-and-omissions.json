@@ -38,7 +38,7 @@
     "title": "Page-by-Page Binary Pass/Fail Conformance",
     "wcag22Concept": "WCAG 2.2 evaluates accessibility on a strict page-by-page basis (either a whole URL passes 100% of SCs at Level AA or the entire page fails).",
     "wcag3Status": "Replaced by Defined Conformance Scope (with Alternative Scoring Proposal)",
-    "plainEnglishSummary": "WCAG 2.2 evaluated conformance on a strict page-by-page basis. WCAG 3 replaces single-page reliance with a defined 'conformance scope' (which may span entire products, complete processes, paths, views, or components) where all core requirements must be satisfied. An alternative continuous task-scoring model is also being explored by the working group.",
+    "plainEnglishSummary": "WCAG 2.2 evaluated conformance on a strict page-by-page basis. WCAG 3 replaces single-page reliance with a defined 'conformance scope' (which may span entire products, complete processes, paths, views, or components) where all core requirements must be satisfied. A scoring-based alternative is described in the Explainer, which says it is not included in the WCAG 3 draft.",
     "workingGroupDebate": "Discussions focus on defining clear boundaries for limited scopes (like components and user processes) so that critical tasks cannot be blocked by severe friction, while exploring whether progress is better captured through reporting tiers or percentage scoring.",
     "debateLinks": [
       {
@@ -55,10 +55,10 @@
       }
     ],
     "personaImpact": {
-      "designer": "Focus on user flow journeys (e.g. registration to checkout) rather than isolated page screens.",
-      "developer": "Ensure complete end-to-end task flows operate smoothly without blocking friction.",
-      "qa": "Report accessibility health scores across complete user journeys rather than single-page pass/fail lists.",
-      "productManager": "Track accessibility maturity scores and task completion metrics in quarterly OKRs."
+      "designer": "Think about which processes and paths you would put in a conformance scope, not only individual screens.",
+      "developer": "Expect every core requirement to apply across whatever scope is claimed: pages or views, processes, paths or components.",
+      "qa": "Record the scope you tested (pages or views, processes, paths or components) alongside the results.",
+      "productManager": "Decide early which conformance scope boundaries you could defend; that is a product and legal question as much as a technical one."
     },
     "supportingLinks": [
       {
@@ -74,10 +74,10 @@
   {
     "id": "strict-conformance-levels-a-aa-aaa",
     "title": "Strict A / AA / AAA Conformance Levels",
-    "wcag22Concept": "WCAG 2.2 categorizes all criteria into rigid buckets: Level A (minimum), Level AA (standard target for legal compliance), and Level AAA (enhanced).",
+    "wcag22Concept": "WCAG 2.2 categorizes all criteria into rigid buckets: Level A (minimum), Level AA (the level most laws and policies reference), and Level AAA (enhanced).",
     "wcag3Status": "Replaced by Single Core Conformance Bar & 6 Reporting Tiers",
     "plainEnglishSummary": "The traditional A/AA/AAA tier structure from WCAG 2.x is omitted in WCAG 3. Instead, WCAG 3 defines a single conformance threshold (Tier 3: Conformance) requiring all core requirements to be satisfied, framed by six reporting tiers that express progress toward conformance (Tiers 1–2) and achievements beyond it (Tiers 4–6: Bronze, Silver, Gold).",
-    "workingGroupDebate": "The working group moved leveling from conformance to reporting in late 2026 drafts (PRs #826, #834), making Bronze an achievement tier above conformance rather than a baseline. A parallel alternative proposal exploring scoring toward conformance followed by Bronze/Silver/Gold awards remains open for public comment.",
+    "workingGroupDebate": "The working group moved leveling from conformance to reporting in the August–September 2026 editor's drafts (PRs #826, #834), making Bronze an achievement tier above conformance rather than a baseline. A parallel alternative proposal exploring scoring toward conformance followed by Bronze/Silver/Gold awards remains open for public comment.",
     "debateLinks": [
       {
         "title": "W3C WCAG 3 Pull Request #826: Update Conformance Section",
@@ -89,10 +89,10 @@
       }
     ],
     "personaImpact": {
-      "designer": "Strive for highest usability ratings across core and supplemental guidelines.",
-      "developer": "Implement foundational guidelines as baseline and supplemental for enhanced ratings.",
-      "qa": "Evaluate assertions and functional outcome coverage rather than AA checklists.",
-      "productManager": "Prepare compliance roadmaps for outcome-based scoring systems."
+      "designer": "Design to meet every core requirement first. Supplemental requirements and assertions count toward the reporting tiers above conformance.",
+      "developer": "Treat the core requirements as the conformance bar. Supplemental requirements count toward reporting tiers above it.",
+      "qa": "Test core requirements for conformance. Assertions need evidence, such as review and usability-testing records, rather than a pass/fail test.",
+      "productManager": "Plan for one conformance bar (all core requirements) with optional tiers above it; the tier details are still undecided."
     },
     "supportingLinks": [
       {

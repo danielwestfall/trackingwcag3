@@ -1,4 +1,5 @@
 ---
+import { provisionTypeLabel } from "@/lib/provision-labels";
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
 import fs from "fs";
 import path from "path";
@@ -41,7 +42,9 @@ function categorizeProvision(p: any): string {
 const categorizedProvisions: Record<string, any[]> = {};
 Object.keys(categoryMap).forEach(cat => { categorizedProvisions[cat] = []; });
 
-provisions.forEach(p => {
+// Recommended practices are informative ("do not need to be satisfied to
+// conform"), so they are not scored.
+provisions.filter((p: any) => p.type !== "recommended practice").forEach(p => {
   const cat = categorizeProvision(p);
   if (categorizedProvisions[cat]) {
     categorizedProvisions[cat].push({
@@ -72,8 +75,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         </div>
         <h1>WCAG 3.0 Conformance Score Calculator</h1>
         <p>
-          Evaluate your digital product against W3C WCAG 3.0 draft provisions across all 9 functional categories.
-          Calculate live points-based outcomes, identify fatal core blockers, and estimate your <strong>Bronze</strong>, <strong>Silver</strong>, or <strong>Gold</strong> conformance rating.
+          Evaluate your digital product against WCAG 3 draft provisions, grouped into 9 categories defined by this site (W3C's draft has 12 groups).
+          Calculate live points-based outcomes, identify fatal core blockers, and estimate an illustrative <strong>Bronze</strong>, <strong>Silver</strong> or <strong>Gold</strong> reporting tier. In the current draft these tiers sit above conformance; this calculator's scoring is this site's own model, not W3C's.
         </p>
       </div>
 
@@ -85,7 +88,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span>⚠️ Simulate Critical Blockers (~58%)</span>
         </button>
         <button id="btn-preset-gold" type="button" class="preset-btn btn-secondary-action">
-          <span>🏆 Set All to Pass (100% Gold)</span>
+          <span>🏆 Set All to Pass</span>
         </button>
         <button id="btn-reset-all" type="button" class="preset-btn btn-ghost-action">
           <span>🔄 Reset All</span>
@@ -130,7 +133,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       <!-- Main Tier Card -->
       <div class="tier-summary-card">
         <div class="tier-badge-wrap">
-          <span class="tier-pill" id="tier-badge-status">Uncertified</span>
+          <span class="tier-pill" id="tier-badge-status">No tier</span>
           <span class="tier-points-label" id="tier-points-detail">0 / {totalProvisionsCount} pts</span>
         </div>
 
@@ -181,7 +184,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="alert-symbol" aria-hidden="true">🚫</span>
           <div class="alert-content">
             <strong id="blockers-title">Critical Blockers Detected (<span id="blockers-count">0</span>)</strong>
-            <p id="blockers-desc">Under the Silver prototype scoring model, zero core/foundational provisions may fail to achieve Bronze, Silver, or Gold ratings.</p>
+            <p id="blockers-desc">In this site's illustrative model, a failed core requirement blocks every tier above conformance. (In the current draft, all core requirements must be met to conform.)</p>
           </div>
         </div>
       </div>
@@ -242,8 +245,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="f-label">Requirement Type:</span>
           <div class="f-pills">
             <button type="button" class="fpill-btn active" data-type-filter="all">All Types</button>
-            <button type="button" class="fpill-btn" data-type-filter="core">Foundational / Core Only</button>
-            <button type="button" class="fpill-btn" data-type-filter="supplemental">Supplemental Only</button>
+            <button type="button" class="fpill-btn" data-type-filter="core">Core requirements</button>
+            <button type="button" class="fpill-btn" data-type-filter="supplemental">Supplemental requirements</button>
+            <button type="button" class="fpill-btn" data-type-filter="assertion">Assertions</button>
+            <button type="button" class="fpill-btn" data-type-filter="untyped">Untyped</button>
           </div>
         </div>
       </div>
@@ -274,19 +279,20 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <div class="provisions-table-wrap">
               <div class="provisions-list">
                 {provList.map((p) => {
-                  const isCore = (p.type || "").toLowerCase() === "foundational" || (p.type || "").toLowerCase() === "core";
+                  const isCore = p.type === "foundational";
+                  const typeKey = isCore ? "core" : p.type === "supplemental" ? "supplemental" : p.type === "assertion" ? "assertion" : "untyped";
                   const summaryText = p.annotation?.plainEnglish?.summary || p.rawBody || "";
                   return (
                     <article 
                       class="provision-audit-item" 
                       data-provision-slug={p.slug}
                       data-category={catKey}
-                      data-type={isCore ? "core" : "supplemental"}
+                      data-type={typeKey}
                     >
                       <div class="item-header">
                         <div class="item-title-group">
                           <span class={`type-tag ${isCore ? "type-core" : "type-supp"}`}>
-                            {isCore ? "Core / Foundational" : "Supplemental"}
+                            {provisionTypeLabel(p.type)}
                           </span>
                           <h3>
                             <a href={link(`/plain-english/provision/${p.slug}/`)} target="_blank" title="Open detailed plain-English guide in new tab">
@@ -565,6 +571,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           let matchesType = currentTypeFilter === 'all';
           if (currentTypeFilter === 'core') matchesType = item.dataset.type === 'core';
           if (currentTypeFilter === 'supplemental') matchesType = item.dataset.type === 'supplemental';
+          if (currentTypeFilter === 'assertion') matchesType = item.dataset.type === 'assertion';
+          if (currentTypeFilter === 'untyped') matchesType = item.dataset.type === 'untyped';
 
           let matchesSearch = true;
           if (currentSearchQuery.trim()) {

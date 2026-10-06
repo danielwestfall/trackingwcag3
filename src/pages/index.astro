@@ -261,11 +261,11 @@ const alsoMoved = recent ? [...recent.closedIssues.map((i: any) => ({ ...i, why:
           <span class="portal-tag tag-standard">Current Official Standard</span>
         </div>
         <h3>WCAG 2.2 Reference Guide</h3>
-        <p>Complete plain-English translations of all 87 Level A, AA, and AAA success criteria with practical test checklists and Good vs. Bad accessible code examples.</p>
+        <p>All 86 WCAG 2.2 success criteria (plus the obsolete 4.1.1), each split into the normative floor, the usability gap and recommended best practice, with the criterion text quoted verbatim.</p>
         <div class="portal-metrics">
           <span class="metric-pill"><strong>{wcag22Count}</strong> Success Criteria</span>
           <span class="metric-pill">Level A / AA / AAA</span>
-          <span class="metric-pill">Testing Checklists</span>
+          <span class="metric-pill">Normative text verbatim</span>
         </div>
         <span class="portal-cta">Browse WCAG 2.2 Reference &rarr;</span>
       </a>
@@ -278,10 +278,10 @@ const alsoMoved = recent ? [...recent.closedIssues.map((i: any) => ({ ...i, why:
           <span class="portal-tag tag-interactive">Interactive Tool</span>
         </div>
         <h3>WCAG 3 Score Calculator</h3>
-        <p>Interactive audit worksheet to evaluate provisions, calculate category health scores, check for core blockers, and simulate Bronze, Silver, or Gold conformance under the draft model.</p>
+        <p>Interactive worksheet to evaluate draft provisions, check for core blockers, and estimate an illustrative Bronze, Silver or Gold reporting tier. The scoring is this site's own model, not W3C's.</p>
         <div class="portal-metrics">
           <span class="metric-pill">Bronze / Silver / Gold</span>
-          <span class="metric-pill">9 Categories</span>
+          <span class="metric-pill">9 site-defined categories</span>
           <span class="metric-pill">Export Report</span>
         </div>
         <span class="portal-cta">Launch Score Calculator &rarr;</span>
@@ -384,13 +384,13 @@ const alsoMoved = recent ? [...recent.closedIssues.map((i: any) => ({ ...i, why:
           <span class="role-icon">🧪</span>
           <h3>QA & Accessibility Testers</h3>
         </div>
-        <p>Execute automated audits with axe-core & Lighthouse, manual keyboard-only verification, and assistive technology testing with NVDA, JAWS, and VoiceOver.</p>
+        <p>Test against what each criterion's normative text actually requires, log usability gaps separately from WCAG failures, and use W3C's informative techniques for test procedures.</p>
         <div class="role-tag-list">
           <span>Automated Scans</span>
           <span>Screen Reader Audits</span>
           <span>Keyboard Traversal</span>
         </div>
-        <span class="role-action-link">View Testing Checklists &rarr;</span>
+        <span class="role-action-link">Start from the normative floor &rarr;</span>
       </a>
 
       <!-- PM -->

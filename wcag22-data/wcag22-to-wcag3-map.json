@@ -1,0 +1,543 @@
+{
+  "_about": "Hand-reviewed map from each WCAG 2.2 success criterion to provisions in the WCAG 3 editor's draft at the tracked commit. 'provisions' are successors: provisions about the same subject, whatever their wording or strictness. 'related' are provisions on a neighbouring subject that a reader comparing the two might want, but that do not replace the criterion. 'note' is a factual statement only; it never characterises testing difficulty or the working group's intent. scripts/sync-wcag-plain-english.mjs rejects any slug that does not exist in the draft.",
+  "reviewed": "2026-10-06",
+  "draftCommit": "18c12bf",
+  "map": {
+    "1.1.1": {
+      "provisions": [
+        "image-alternatives-available",
+        "image-alternatives-equivalent",
+        "decorative-images-hidden",
+        "non-text-content-not-relied-on"
+      ],
+      "related": [
+        "images-detectable"
+      ]
+    },
+    "1.2.1": {
+      "provisions": [
+        "descriptive-transcripts-available",
+        "dialogue-transcripts-available-prerecorded",
+        "transcripts-equivalent-prerecorded"
+      ]
+    },
+    "1.2.2": {
+      "provisions": [
+        "captions-available-prerecorded",
+        "captions-equivalent-prerecorded",
+        "captions-synchronized",
+        "sounds-identified-in-captions"
+      ],
+      "related": [
+        "speakers-identified-in-captions"
+      ]
+    },
+    "1.2.3": {
+      "provisions": [
+        "audio-descriptions-available-prerecorded",
+        "descriptive-transcripts-available"
+      ]
+    },
+    "1.2.4": {
+      "provisions": [
+        "captions-available-live"
+      ]
+    },
+    "1.2.5": {
+      "provisions": [
+        "audio-descriptions-available-prerecorded",
+        "audio-descriptions-equivalent-prerecorded",
+        "audio-descriptions-synchronized",
+        "visual-information-identified-in-audio-descriptions"
+      ]
+    },
+    "1.2.6": {
+      "provisions": [
+        "sign-language-available-prerecorded"
+      ],
+      "related": [
+        "sign-language-controllable"
+      ]
+    },
+    "1.2.7": {
+      "provisions": [
+        "extended-audio-descriptions-available",
+        "extended-audio-descriptions-equivalent"
+      ]
+    },
+    "1.2.8": {
+      "provisions": [
+        "descriptive-transcripts-available",
+        "transcripts-equivalent-prerecorded",
+        "visual-information-identified-in-transcripts"
+      ]
+    },
+    "1.2.9": {
+      "provisions": [
+        "dialogue-transcripts-available-live"
+      ]
+    },
+    "1.3.1": {
+      "provisions": [
+        "relationships-detectable",
+        "heading-structure-available",
+        "blocks-of-content-available-minimum",
+        "order-detectable",
+        "sections-labeled"
+      ],
+      "related": [
+        "text-appearance-not-relied-on"
+      ]
+    },
+    "1.3.2": {
+      "provisions": [],
+      "note": "No provision in the current draft addresses reading sequence."
+    },
+    "1.3.3": {
+      "provisions": [
+        "sensory-characteristics-not-relied-on"
+      ]
+    },
+    "1.3.4": {
+      "provisions": [
+        "orientation-supported-minimum",
+        "orientation-supported-enhanced"
+      ]
+    },
+    "1.3.5": {
+      "provisions": [],
+      "related": [
+        "automated-entry-allowed"
+      ],
+      "note": "No provision in the current draft requires identifying input purpose. Automated entry allowed covers not blocking autofill or paste."
+    },
+    "1.3.6": {
+      "provisions": [],
+      "note": "No provision in the current draft requires identifying the purpose of components, icons and regions."
+    },
+    "1.4.1": {
+      "provisions": [
+        "hue-not-relied-on"
+      ]
+    },
+    "1.4.2": {
+      "provisions": [
+        "page-view-audio-adjustable"
+      ]
+    },
+    "1.4.3": {
+      "provisions": [
+        "text-contrast-sufficient-minimum"
+      ],
+      "note": "The draft's contrast measure is still to be determined."
+    },
+    "1.4.4": {
+      "provisions": [
+        "text-size-adjustable"
+      ]
+    },
+    "1.4.5": {
+      "provisions": [],
+      "related": [
+        "text-detectable"
+      ],
+      "note": "No provision in the current draft restricts images of text."
+    },
+    "1.4.6": {
+      "provisions": [
+        "text-contrast-sufficient-enhanced"
+      ],
+      "note": "The draft's contrast measure is still to be determined."
+    },
+    "1.4.7": {
+      "provisions": [],
+      "note": "No provision in the current draft covers background audio levels."
+    },
+    "1.4.8": {
+      "provisions": [
+        "blocks-of-text-adjustable",
+        "blocks-of-text-readable-minimum",
+        "text-color-adjustable"
+      ]
+    },
+    "1.4.9": {
+      "provisions": [],
+      "related": [
+        "text-detectable"
+      ],
+      "note": "No provision in the current draft restricts images of text."
+    },
+    "1.4.10": {
+      "provisions": [
+        "layout-reflow-supported",
+        "text-reflow-supported"
+      ]
+    },
+    "1.4.11": {
+      "provisions": [
+        "interactive-element-contrast-sufficient",
+        "graphical-object-contrast-sufficient"
+      ]
+    },
+    "1.4.12": {
+      "provisions": [
+        "text-style-adjustable",
+        "blocks-of-text-adjustable"
+      ]
+    },
+    "1.4.13": {
+      "provisions": [
+        "hover-or-focus-content-dismissible",
+        "hover-content-persistent",
+        "hover-or-focus-content-persistent"
+      ]
+    },
+    "2.1.1": {
+      "provisions": [
+        "keyboard-operable",
+        "keyboard-accessible"
+      ]
+    },
+    "2.1.2": {
+      "provisions": [
+        "no-keyboard-traps"
+      ]
+    },
+    "2.1.3": {
+      "provisions": [
+        "keyboard-operable",
+        "keyboard-accessible"
+      ]
+    },
+    "2.1.4": {
+      "provisions": [
+        "no-keyboard-conflicts"
+      ]
+    },
+    "2.2.1": {
+      "provisions": [
+        "timeout-adjustable",
+        "time-limits-conveyed"
+      ]
+    },
+    "2.2.2": {
+      "provisions": [
+        "no-visual-motion"
+      ],
+      "note": "No provision in the current draft covers auto-updating content."
+    },
+    "2.2.3": {
+      "provisions": [
+        "no-time-limits"
+      ]
+    },
+    "2.2.4": {
+      "provisions": [
+        "notifications-adjustable"
+      ]
+    },
+    "2.2.5": {
+      "provisions": [],
+      "related": [
+        "progress-saved"
+      ],
+      "note": "No provision in the current draft covers re-authentication."
+    },
+    "2.2.6": {
+      "provisions": [],
+      "related": [
+        "time-limits-conveyed"
+      ],
+      "note": "No provision in the current draft covers warnings about inactivity timeouts."
+    },
+    "2.3.1": {
+      "provisions": [
+        "no-flashing-over-threshold"
+      ]
+    },
+    "2.3.2": {
+      "provisions": [
+        "no-flashing-over-threshold-no-exceptions"
+      ]
+    },
+    "2.3.3": {
+      "provisions": [],
+      "related": [
+        "user-settings-supported",
+        "no-visual-motion"
+      ],
+      "note": "No provision in the current draft is specific to animation triggered by interaction."
+    },
+    "2.4.1": {
+      "provisions": [
+        "focus-relevant"
+      ],
+      "note": "Focus relevant's test procedure asks for a way to skip groups of repeated interactive elements, such as site navigation."
+    },
+    "2.4.2": {
+      "provisions": [
+        "page-view-title-available"
+      ]
+    },
+    "2.4.3": {
+      "provisions": [
+        "focus-order-meaningful"
+      ]
+    },
+    "2.4.4": {
+      "provisions": [],
+      "related": [
+        "interactive-element-names-available"
+      ],
+      "note": "No provision in the current draft covers link purpose."
+    },
+    "2.4.5": {
+      "provisions": [],
+      "note": "No provision in the current draft requires more than one way to find a page."
+    },
+    "2.4.6": {
+      "provisions": [
+        "sections-labeled"
+      ],
+      "related": [
+        "interactive-element-names-available"
+      ]
+    },
+    "2.4.7": {
+      "provisions": [],
+      "related": [
+        "focus-indicator-contrast-sufficient",
+        "default-focus-indicator-used"
+      ],
+      "note": "No provision in the current draft requires a visible focus indicator as such; the related provisions cover its contrast and the use of the browser default."
+    },
+    "2.4.8": {
+      "provisions": [],
+      "related": [
+        "current-step-indicated",
+        "all-steps-listed"
+      ],
+      "note": "No provision in the current draft covers location within a set of pages."
+    },
+    "2.4.9": {
+      "provisions": [],
+      "note": "No provision in the current draft covers link purpose."
+    },
+    "2.4.10": {
+      "provisions": [
+        "heading-structure-available"
+      ]
+    },
+    "2.4.11": {
+      "provisions": [],
+      "note": "No provision in the current draft covers focus being obscured."
+    },
+    "2.4.12": {
+      "provisions": [],
+      "note": "No provision in the current draft covers focus being obscured."
+    },
+    "2.4.13": {
+      "provisions": [
+        "focus-indicator-contrast-sufficient",
+        "focus-indicator-size-sufficient"
+      ],
+      "note": "The draft says \"sufficient\" without giving numbers."
+    },
+    "2.5.1": {
+      "provisions": [
+        "path-based-gesture-not-relied-on",
+        "simple-pointer-input-available"
+      ]
+    },
+    "2.5.2": {
+      "provisions": [
+        "pointer-activation-controllable"
+      ],
+      "related": [
+        "consistent-pointer-cancellation"
+      ]
+    },
+    "2.5.3": {
+      "provisions": [
+        "label-included-in-programmatic-name"
+      ]
+    },
+    "2.5.4": {
+      "provisions": [
+        "body-movements-not-relied-on"
+      ]
+    },
+    "2.5.5": {
+      "provisions": [],
+      "note": "No provision in the current draft covers target size."
+    },
+    "2.5.6": {
+      "provisions": [
+        "input-method-flexible"
+      ]
+    },
+    "2.5.7": {
+      "provisions": [
+        "simple-pointer-input-available"
+      ]
+    },
+    "2.5.8": {
+      "provisions": [],
+      "note": "No provision in the current draft covers target size."
+    },
+    "3.1.1": {
+      "provisions": [
+        "human-language-detectable"
+      ]
+    },
+    "3.1.2": {
+      "provisions": [
+        "human-language-detectable"
+      ]
+    },
+    "3.1.3": {
+      "provisions": [
+        "non-literal-language-explained",
+        "common-words-used"
+      ]
+    },
+    "3.1.4": {
+      "provisions": [
+        "abbreviations-explained"
+      ]
+    },
+    "3.1.5": {
+      "provisions": [],
+      "related": [
+        "summaries-available",
+        "common-words-used"
+      ],
+      "note": "No provision in the current draft uses a reading-level test."
+    },
+    "3.1.6": {
+      "provisions": [],
+      "related": [
+        "diacritics-available"
+      ],
+      "note": "No provision in the current draft covers pronunciation."
+    },
+    "3.2.1": {
+      "provisions": [],
+      "related": [
+        "change-of-focus-notified",
+        "focus-user-controlled"
+      ],
+      "note": "No provision in the current draft forbids a change of context on focus; the related ones cover notification and focus movement."
+    },
+    "3.2.2": {
+      "provisions": [],
+      "related": [
+        "change-of-user-agent-notified",
+        "page-view-change-notified"
+      ],
+      "note": "No provision in the current draft forbids a change of context on input."
+    },
+    "3.2.3": {
+      "provisions": [
+        "consistent-navigation-order"
+      ],
+      "related": [
+        "consistent-navigation-labels"
+      ]
+    },
+    "3.2.4": {
+      "provisions": [],
+      "related": [
+        "consistent-navigation-labels",
+        "consistent-control-location"
+      ],
+      "note": "No provision in the current draft requires consistent identification of all same-function components."
+    },
+    "3.2.5": {
+      "provisions": [],
+      "related": [
+        "focus-user-controlled",
+        "change-of-user-agent-notified"
+      ],
+      "note": "No provision in the current draft restricts changes of context to user request."
+    },
+    "3.2.6": {
+      "provisions": [
+        "consistent-help-available"
+      ]
+    },
+    "3.3.1": {
+      "provisions": [
+        "error-notifications-available",
+        "errors-associated"
+      ]
+    },
+    "3.3.2": {
+      "provisions": [
+        "interactive-element-names-available",
+        "input-constraints-used"
+      ],
+      "related": [
+        "process-instructions-available"
+      ]
+    },
+    "3.3.3": {
+      "provisions": [
+        "error-suggestions-provided"
+      ]
+    },
+    "3.3.4": {
+      "provisions": [
+        "errors-preventable"
+      ],
+      "related": [
+        "consequences-explained-before-agreement"
+      ]
+    },
+    "3.3.5": {
+      "provisions": [
+        "contextual-help-available"
+      ]
+    },
+    "3.3.6": {
+      "provisions": [
+        "errors-preventable"
+      ]
+    },
+    "3.3.7": {
+      "provisions": [
+        "no-redundant-entry"
+      ]
+    },
+    "3.3.8": {
+      "provisions": [
+        "cognitive-test-alternatives-available",
+        "automated-entry-allowed"
+      ],
+      "related": [
+        "biometrics-not-relied-on"
+      ]
+    },
+    "3.3.9": {
+      "provisions": [
+        "cognitive-test-alternatives-available"
+      ]
+    },
+    "4.1.1": {
+      "provisions": [],
+      "note": "Obsolete and removed in WCAG 2.2."
+    },
+    "4.1.2": {
+      "provisions": [
+        "roles-values-states-properties-available",
+        "interactive-element-names-available",
+        "changes-to-elements-notified"
+      ]
+    },
+    "4.1.3": {
+      "provisions": [
+        "change-of-content-notified"
+      ]
+    }
+  }
+}

@@ -9,29 +9,20 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#non-text-content",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
     "plainEnglish": {
-      "summary": "Every image, icon, chart, or visual element carrying meaning must have a text description so blind users and screen readers understand what is on screen.",
-      "whyItMatters": "Screen readers cannot interpret pixel graphics. Text descriptions (alt text) turn visuals into spoken words or braille outputs.",
-      "realWorldExample": "A shopping cart button represented only by an icon must have alt text or aria-label set to 'Shopping Cart (3 items)'."
-    },
-    "personaBreakdown": {
-      "designer": "Specify alternative text for key visuals and mark decorative background flourishes as decorative (alt=\"\").",
-      "developer": "Add descriptive alt attributes to <img> tags. Use alt=\"\" or aria-hidden=\"true\" for purely decorative graphics.",
-      "qa": "Use axe-core or browser DevTools to inspect missing alt attributes and verify screen reader announcements on visual controls.",
-      "productManager": "Ensure content creators write alt text for hero banners, infographics, and chart figures in CMS inputs."
-    },
-    "testingGuide": {
-      "automated": "axe-core image-alt rule flags missing alt attributes.",
-      "manualKeyboard": "Ensure non-text buttons receive focus and display visible focus indicators.",
-      "screenReader": "Navigate with VoiceOver or NVDA. Confirm screen reader speaks the purpose of the image.",
-      "codeSnippetGood": "<img src=\"chart.png\" alt=\"Quarterly Sales graph showing a 25% increase in Q3\">",
-      "codeSnippetBad": "<img src=\"chart.png\">"
+      "summary": "Every piece of non-text content shown to users has a text alternative that serves the equivalent purpose. Controls and inputs need a name that describes their purpose. Time-based media, tests that would be invalid in text, and content meant to create a specific sensory experience only need a text alternative that identifies them. A CAPTCHA needs a text alternative describing its purpose and a version that uses a different sense. Content that is pure decoration, used only for visual formatting, or not presented to users must be implemented so assistive technology can ignore it.",
+      "whyItMatters": "Alt text can be present and equivalent yet still tiring to use, for example when it repeats the caption beside it or runs to a paragraph."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-element-names-available",
-        "text-detectable"
+        "image-alternatives-available",
+        "image-alternatives-equivalent",
+        "decorative-images-hidden",
+        "non-text-content-not-relied-on"
       ],
-      "evolutionNote": "WCAG 3 breaks non-text content into distinct functional outcomes: interactive element naming, media alternatives, and detectable text."
+      "related": [
+        "images-detectable"
+      ],
+      "note": null
     }
   },
   {
@@ -44,29 +35,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#audio-only-and-video-only-prerecorded",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-only-and-video-only-prerecorded.html",
     "plainEnglish": {
-      "summary": "Prerecorded audio files (podcasts) need transcripts, and prerecorded silent videos need text or audio descriptions.",
-      "whyItMatters": "Deaf users cannot hear audio podcasts; blind users cannot see silent video content.",
-      "realWorldExample": "A podcast player provides a link to a full text transcript directly below the player controls."
-    },
-    "personaBreakdown": {
-      "designer": "Design layout slots for text transcripts next to media players.",
-      "developer": "Provide accessible transcript containers and link text files to media players.",
-      "qa": "Verify that transcripts accurately represent all spoken content and key sound effects.",
-      "productManager": "Budget for transcript generation in media production workflows."
-    },
-    "testingGuide": {
-      "automated": "Manual inspection required for transcript accuracy.",
-      "manualKeyboard": "Ensure transcript toggle buttons are keyboard accessible.",
-      "screenReader": "Confirm screen reader can read the transcript content line by line.",
-      "codeSnippetGood": "<a href=\"transcript.html\">Read full transcript of Podcast Episode 4</a>",
-      "codeSnippetBad": "<audio src=\"podcast.mp3\" controls></audio> <!-- No transcript provided -->"
+      "summary": "Prerecorded audio-only content has a text alternative that presents equivalent information (an \"alternative for time-based media\"). Prerecorded video-only content has either that text alternative or an audio track with equivalent information. Media that is itself an alternative for text, and clearly labeled as such, is exempt.",
+      "whyItMatters": "A transcript that technically exists but sits on another page, or is only linked from a footer, is easy to miss. Users who need it may never find it."
     },
     "wcag3Mapping": {
       "provisions": [
         "descriptive-transcripts-available",
-        "dialogue-transcripts-available-prerecorded"
+        "dialogue-transcripts-available-prerecorded",
+        "transcripts-equivalent-prerecorded"
       ],
-      "evolutionNote": "WCAG 3 splits media alternatives apart: prerecorded audio-only and video-only are covered by the transcripts guideline rather than one combined outcome."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -79,29 +58,20 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#captions-prerecorded",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html",
     "plainEnglish": {
-      "summary": "Prerecorded video with spoken audio must have synchronized captions.",
-      "whyItMatters": "Deaf and hard-of-hearing users rely on captions to follow video dialogue and sound effects.",
-      "realWorldExample": "A YouTube product video includes closed captions (CC) synchronized with dialogue."
-    },
-    "personaBreakdown": {
-      "designer": "Ensure video player UI includes a prominent CC toggle button.",
-      "developer": "Provide WebVTT caption tracks via the HTML5 <track kind=\"captions\"> tag.",
-      "qa": "Watch videos with audio muted and confirm captions match speech accurately.",
-      "productManager": "Require synchronized captioning for all published video marketing assets."
-    },
-    "testingGuide": {
-      "automated": "axe-core video-caption rule checks for <track> elements.",
-      "manualKeyboard": "Ensure CC button can be toggled via keyboard.",
-      "screenReader": "Verify screen reader announces caption track status.",
-      "codeSnippetGood": "<video controls><track kind=\"captions\" src=\"captions.vtt\" srclang=\"en\"></video>",
-      "codeSnippetBad": "<video src=\"promo.mp4\" controls></video>"
+      "summary": "Prerecorded audio in synchronized media (video with sound) has captions. By definition, captions cover both speech and the non-speech audio needed to understand the content. Media that is a clearly labeled alternative for text is exempt.",
+      "whyItMatters": "Complete captions can still be hard to follow when they are split mid-phrase, cover on-screen text, or can't be resized."
     },
     "wcag3Mapping": {
       "provisions": [
         "captions-available-prerecorded",
-        "captions-equivalent-prerecorded"
+        "captions-equivalent-prerecorded",
+        "captions-synchronized",
+        "sounds-identified-in-captions"
       ],
-      "evolutionNote": "WCAG 3 separates whether captions exist from whether they are equivalent, and adds further provisions for speaker identification, sounds and non-verbal cues."
+      "related": [
+        "speakers-identified-in-captions"
+      ],
+      "note": null
     }
   },
   {
@@ -114,29 +84,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#audio-description-or-media-alternative-prerecorded",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html",
     "plainEnglish": {
-      "summary": "Prerecorded videos must provide an audio description or full text transcript describing visual actions.",
-      "whyItMatters": "Blind users miss crucial visual-only context in videos (such as text on screen or silent action sequences).",
-      "realWorldExample": "A video demonstration includes a secondary audio track describing visual steps on screen."
-    },
-    "personaBreakdown": {
-      "designer": "Account for audio description toggle options in custom video players.",
-      "developer": "Implement secondary audio tracks or detailed text description alternatives.",
-      "qa": "Listen to audio description tracks to verify visual scenes are adequately described.",
-      "productManager": "Plan for audio description recording during video editing."
-    },
-    "testingGuide": {
-      "automated": "Manual review required.",
-      "manualKeyboard": "Ensure audio description channel toggles are keyboard operable.",
-      "screenReader": "Verify description track status announcements.",
-      "codeSnippetGood": "<video controls><track kind=\"descriptions\" src=\"desc.vtt\"></video>",
-      "codeSnippetBad": "<video src=\"demo.mp4\"></video>"
+      "summary": "Prerecorded video with sound has either a full text alternative for time-based media or audio description of the video. Media that is a clearly labeled alternative for text is exempt.",
+      "whyItMatters": "Meeting Level A with a text document means blind users leave the video to read instead of experiencing it with everyone else."
     },
     "wcag3Mapping": {
       "provisions": [
         "audio-descriptions-available-prerecorded",
         "descriptive-transcripts-available"
       ],
-      "evolutionNote": "WCAG 3 keeps the either/or shape of 1.2.3: an audio description, or a descriptive transcript."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -149,28 +106,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#captions-live",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/captions-live.html",
     "plainEnglish": {
-      "summary": "Live streaming video with audio must have live synchronized captions.",
-      "whyItMatters": "Deaf users participating in live webinars, broadcasts, or meetings need real-time captions.",
-      "realWorldExample": "A live corporate webcast uses real-time CART captioners to display live subtitles."
-    },
-    "personaBreakdown": {
-      "designer": "Reserve UI space on live video players for real-time text overlays.",
-      "developer": "Integrate live WebSockets/WebRTC caption streams into video player components.",
-      "qa": "Monitor live streams and confirm latency of live captions remains minimal.",
-      "productManager": "Hire live CART captioning services for major live events."
-    },
-    "testingGuide": {
-      "automated": "Manual verification during live broadcast required.",
-      "manualKeyboard": "Ensure live caption toggle controls are keyboard accessible.",
-      "screenReader": "Verify live caption aria-live region announcements.",
-      "codeSnippetGood": "<div aria-live=\"polite\" id=\"live-captions\">[Speaker]: Welcome to the webcast</div>",
-      "codeSnippetBad": "<video id=\"live-stream\"></video> <!-- No live captions -->"
+      "summary": "Live audio in synchronized media, such as a live-streamed event with video, has captions.",
+      "whyItMatters": "Complete live captions that lag well behind the speaker are hard to follow alongside the video."
     },
     "wcag3Mapping": {
       "provisions": [
         "captions-available-live"
       ],
-      "evolutionNote": "WCAG 3 gives live captions their own provision under the captions guideline."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -183,29 +127,18 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#audio-description-prerecorded",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-description-prerecorded.html",
     "plainEnglish": {
-      "summary": "Prerecorded video content must provide audio descriptions for visual information.",
-      "whyItMatters": "Ensures blind viewers understand on-screen visual details that aren't spoken in the main soundtrack.",
-      "realWorldExample": "A movie stream provides a dedicated 'English - Audio Description' soundtrack option."
-    },
-    "personaBreakdown": {
-      "designer": "Design audio track selection controls in video player settings.",
-      "developer": "Provide multi-audio track selection using HTML5 media API.",
-      "qa": "Test video playback with the AD track enabled.",
-      "productManager": "Enforce audio description requirements across video library publishing."
-    },
-    "testingGuide": {
-      "automated": "Manual verification required.",
-      "manualKeyboard": "Verify audio track selection dropdown is keyboard operable.",
-      "screenReader": "Verify screen reader announces selected audio track.",
-      "codeSnippetGood": "<audio src=\"video-ad-track.mp3\" controls></audio>",
-      "codeSnippetBad": "<video src=\"video.mp4\"></video>"
+      "summary": "Prerecorded video in synchronized media has audio description: narration added to describe important visual details that can't be understood from the main soundtrack alone.",
+      "whyItMatters": "Description squeezed into short pauses can leave out context. A separate described version is often hard to find, or lags behind updates to the main video."
     },
     "wcag3Mapping": {
       "provisions": [
         "audio-descriptions-available-prerecorded",
-        "audio-descriptions-equivalent-prerecorded"
+        "audio-descriptions-equivalent-prerecorded",
+        "audio-descriptions-synchronized",
+        "visual-information-identified-in-audio-descriptions"
       ],
-      "evolutionNote": "WCAG 3 separates the existence of audio description from whether it conveys equivalent information."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -218,29 +151,21 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#info-and-relationships",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html",
     "plainEnglish": {
-      "summary": "Visual structures like headers, lists, form fields, and table headers must be coded in semantic HTML so screen readers understand relationships.",
-      "whyItMatters": "Sighted users see visual cues like bold text for headings or indentation for lists. Screen reader users rely on semantic HTML elements (<h1>, <ul>, <fieldset>, <th>) to perceive those exact relationships.",
-      "realWorldExample": "Form fields styled to look like a group must use <fieldset> and <legend> so screen readers announce group context."
-    },
-    "personaBreakdown": {
-      "designer": "Design logical heading hierarchies (H1 -> H2 -> H3) and clear form groupings.",
-      "developer": "Use standard HTML5 semantic elements (<h1>-<h6>, <nav>, <main>, <fieldset>, <th>, <ul>) rather than generic styled <div> elements.",
-      "qa": "Inspect page structure with HTML Headings Browser extensions or DOM inspection. Ensure table headers use <th>.",
-      "productManager": "Avoid mixing heading hierarchy levels in design systems."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks for skipped heading levels, orphaned form labels, and table header issues.",
-      "manualKeyboard": "Verify DOM tab order matches visual layout flow.",
-      "screenReader": "Press 'H' in NVDA/JAWS to navigate headings; press 'T' to navigate table headers.",
-      "codeSnippetGood": "<h2>Billing Address</h2>\n<label for=\"street\">Street Address</label>\n<input id=\"street\" type=\"text\">",
-      "codeSnippetBad": "<div class=\"heading-style\">Billing Address</div>\n<div>Street Address</div>\n<input type=\"text\">"
+      "summary": "Information, structure and relationships conveyed through presentation can be programmatically determined, or are available in text. If something looks like a heading, list, table or group, that structure has to be available to software too.",
+      "whyItMatters": "A page can convey its structure with the bare minimum of semantics and still be slow to navigate. Without landmarks or a sensible heading outline, screen reader users have fewer ways to jump around."
     },
     "wcag3Mapping": {
       "provisions": [
-        "roles-values-states-properties-available",
-        "interactive-elements-distinguishable"
+        "relationships-detectable",
+        "heading-structure-available",
+        "blocks-of-content-available-minimum",
+        "order-detectable",
+        "sections-labeled"
       ],
-      "evolutionNote": "WCAG 3 separates structural relationships into component-level information and process-level semantic hierarchy."
+      "related": [
+        "text-appearance-not-relied-on"
+      ],
+      "note": null
     }
   },
   {
@@ -253,28 +178,13 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#meaningful-sequence",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html",
     "plainEnglish": {
-      "summary": "The reading order in the underlying code (DOM) must match the visual logical order of the content.",
-      "whyItMatters": "Screen readers read content in DOM order. If CSS positioning moves visual text around out of order, screen reader users hear confusing, jumbled sentences.",
-      "realWorldExample": "A multi-column article layout reads column 1 top-to-bottom, then column 2, matching DOM structure."
-    },
-    "personaBreakdown": {
-      "designer": "Design linear content layouts that translate cleanly to single-column reading orders.",
-      "developer": "Avoid using CSS flexbox `order` or `absolute` positioning to rearrange content out of logical reading sequence.",
-      "qa": "Disable CSS styles and verify that the unstyled text flows logically from top to bottom.",
-      "productManager": "Ensure content structure specs maintain sequential logic."
-    },
-    "testingGuide": {
-      "automated": "Manual DOM review recommended.",
-      "manualKeyboard": "Tab through content and verify focus moves logically.",
-      "screenReader": "Listen to continuous screen reader reading (NVDA Insert+Down Arrow).",
-      "codeSnippetGood": "<article><h2>Title</h2><p>Paragraph 1</p><p>Paragraph 2</p></article>",
-      "codeSnippetBad": "<!-- CSS flex order reverses DOM sequence confusing screen readers -->"
+      "summary": "When the order of content affects its meaning, a correct reading order can be programmatically determined.",
+      "whyItMatters": "CSS that reorders content visually (flex order, grid placement) can still pass, yet keyboard and screen magnifier users see focus and reading jump around the screen."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "layout-reflow-supported"
-      ],
-      "evolutionNote": "WCAG 3 links meaningful sequence to layout reflow and visual presentation outcomes."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft addresses reading sequence."
     }
   },
   {
@@ -287,28 +197,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#sensory-characteristics",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics.html",
     "plainEnglish": {
-      "summary": "Instructions must not rely solely on shape, color, size, visual location, or sound (e.g., 'click the round green button on the right').",
-      "whyItMatters": "Blind users cannot see 'green' or 'round'; screen reader users do not experience spatial locations like 'on the right'.",
-      "realWorldExample": "Instructions say 'Click the green Submit button (marked with a checkmark icon)', combining color with text and icon details."
-    },
-    "personaBreakdown": {
-      "designer": "Pair spatial or color cues with explicit text labels.",
-      "developer": "Ensure button labels contain clear descriptive text rather than relying on location context.",
-      "qa": "Verify that instructions remain clear when viewed in greyscale or plain text.",
-      "productManager": "Audit copywriting for spatial or sensory assumptions."
-    },
-    "testingGuide": {
-      "automated": "Manual copywriting audit required.",
-      "manualKeyboard": "Ensure identified controls are keyboard focusable.",
-      "screenReader": "Verify instructions make sense when read out of visual context.",
-      "codeSnippetGood": "<button>Submit Application</button> <!-- Instructions say: Select 'Submit Application' -->",
-      "codeSnippetBad": "<!-- Instructions say: Click the blue circle on the right -->"
+      "summary": "Instructions for understanding and operating content don't rely solely on sensory characteristics such as shape, color, size, visual location, orientation or sound.",
+      "whyItMatters": "Instructions that lead with position (\"in the panel on the right\") still slow down people who can't see the layout, or who see a reflowed version of it."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-element-names-available"
+        "sensory-characteristics-not-relied-on"
       ],
-      "evolutionNote": "WCAG 3 integrates sensory independence into clear language and control information."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -321,29 +218,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#orientation",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/orientation.html",
     "plainEnglish": {
-      "summary": "Content must not lock display orientation to portrait or landscape unless essential.",
-      "whyItMatters": "Users with mobile devices mounted on wheelchairs cannot rotate their screens.",
-      "realWorldExample": "A banking app works seamlessly in both portrait and landscape orientation on tablets and smartphones."
-    },
-    "personaBreakdown": {
-      "designer": "Design responsive layouts for both portrait and landscape viewports.",
-      "developer": "Avoid CSS or JS orientation locks (`screen.orientation.lock('portrait')`).",
-      "qa": "Rotate test devices and confirm layout adjusts without losing content or functionality.",
-      "productManager": "Require dual-orientation support in mobile project acceptance criteria."
-    },
-    "testingGuide": {
-      "automated": "axe-core flags orientation locking CSS/JS.",
-      "manualKeyboard": "Test tabbing in both portrait and landscape modes.",
-      "screenReader": "Verify layout reflows without breaking accessibility tree.",
-      "codeSnippetGood": "@media (orientation: landscape) { .container { display: flex; } }",
-      "codeSnippetBad": "/* Forcing portrait mode via JS lock on load */"
+      "summary": "Content doesn't restrict its view and operation to a single display orientation (portrait or landscape) unless a specific orientation is essential.",
+      "whyItMatters": "Content that technically rotates can still be awkward. In landscape on a phone, fixed headers and footers can leave only a sliver of usable space."
     },
     "wcag3Mapping": {
       "provisions": [
         "orientation-supported-minimum",
         "orientation-supported-enhanced"
       ],
-      "evolutionNote": "WCAG 3 carries orientation support forward into minimum and enhanced viewport outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -356,29 +240,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#identify-input-purpose",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html",
     "plainEnglish": {
-      "summary": "Form inputs collecting personal user info must use standard HTML `autocomplete` attributes so browsers can auto-fill data.",
-      "whyItMatters": "Users with cognitive disabilities or motor impairments struggle to manually type personal details like address, name, or email.",
-      "realWorldExample": "An email input field uses `autocomplete=\"email\"`, allowing browsers to automatically populate the user's stored email."
-    },
-    "personaBreakdown": {
-      "designer": "Design standard form fields for user data collection.",
-      "developer": "Add correct HTML5 `autocomplete` attributes (e.g. `name`, `email`, `street-address`, `tel`).",
-      "qa": "Test form fields with browser autofill features.",
-      "productManager": "Enforce standard autocomplete attributes in design systems."
-    },
-    "testingGuide": {
-      "automated": "axe-core autocomplete-valid rule checks inputs.",
-      "manualKeyboard": "Verify browser autofill menu triggers cleanly on keyboard focus.",
-      "screenReader": "Verify screen reader announces field purpose.",
-      "codeSnippetGood": "<input type=\"text\" id=\"fname\" autocomplete=\"given-name\">",
-      "codeSnippetBad": "<input type=\"text\" id=\"field1\"> <!-- Missing autocomplete -->"
+      "summary": "Input fields collecting information about the user have a programmatically determinable purpose, when the field's purpose is one listed in WCAG's Input Purposes section and the technology supports it. (In HTML, W3C's sufficient technique is the autocomplete attribute; techniques are informative.)",
+      "whyItMatters": "Correct autocomplete values don't help if scripts or browser workarounds stop autofill from working. People with motor or memory impairments are left retyping their details."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "automated-entry-allowed",
-        "no-redundant-entry"
+      "provisions": [],
+      "related": [
+        "automated-entry-allowed"
       ],
-      "evolutionNote": "WCAG 3 expands autocomplete into automated entry and redundant entry outcomes."
+      "note": "No provision in the current draft requires identifying input purpose. Automated entry allowed covers not blocking autofill or paste."
     }
   },
   {
@@ -391,28 +261,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#use-of-color",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
     "plainEnglish": {
-      "summary": "Color must not be the only visual indicator used to convey information, indicate an action, or prompt a response.",
-      "whyItMatters": "Color-blind users (red-green, blue-yellow) cannot distinguish status changes signaled only by color changes.",
-      "realWorldExample": "Form error fields display a red border AND an alert icon with error text 'Email is required'."
-    },
-    "personaBreakdown": {
-      "designer": "Pair color indicators with text labels, underline styles, or icons.",
-      "developer": "Use text messages and distinct border/icon patterns alongside color changes.",
-      "qa": "View pages in greyscale (using Chrome DevTools color filter) and verify all information remains clear.",
-      "productManager": "Enforce multi-cue design requirements in brand guidelines."
-    },
-    "testingGuide": {
-      "automated": "axe-core flags links inside body text that rely solely on color without underlines.",
-      "manualKeyboard": "Inspect focused elements for non-color focus indicators.",
-      "screenReader": "Verify screen reader receives status announcements.",
-      "codeSnippetGood": "<a href=\"#\" style=\"color: #005fcc; text-decoration: underline;\">Read More</a>",
-      "codeSnippetBad": "<a href=\"#\" style=\"color: #005fcc; text-decoration: none;\">Read More</a> <!-- Color is only link indicator -->"
+      "summary": "Color is not the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.",
+      "whyItMatters": "A second cue that meets 3:1 but is small, such as a small icon beside a red error message, is still easy for color-blind users to miss."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-elements-distinguishable"
+        "hue-not-relied-on"
       ],
-      "evolutionNote": "WCAG 3 integrates use of color rules into distinguishable component outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -425,29 +282,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#audio-control",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html",
     "plainEnglish": {
-      "summary": "If audio plays automatically for more than 3 seconds, a mechanism must be available to pause, stop, or control the volume independently.",
-      "whyItMatters": "Autoplay audio drowns out screen reader speech, making it impossible for blind users to navigate the page.",
-      "realWorldExample": "A website background video plays silently by default and offers an explicit Mute/Play sound button."
-    },
-    "personaBreakdown": {
-      "designer": "Design prominent pause/mute controls for background media.",
-      "developer": "Avoid audio autoplay. If unavoidable, provide keyboard-accessible mute controls at top of page.",
-      "qa": "Load pages with audio and verify pause buttons work immediately.",
-      "productManager": "Prohibit autoplay background audio in site specifications."
-    },
-    "testingGuide": {
-      "automated": "axe-core video-autoplay rule checks media tags.",
-      "manualKeyboard": "Press Tab to reach the audio pause button immediately on load.",
-      "screenReader": "Confirm screen reader user can mute background audio instantly.",
-      "codeSnippetGood": "<video autoplay muted playsinline><source src=\"bg.mp4\"></video>",
-      "codeSnippetBad": "<audio src=\"music.mp3\" autoplay></audio> <!-- No pause control -->"
+      "summary": "If audio plays automatically for more than 3 seconds, there is either a way to pause or stop it, or a way to control its volume separately from the system volume. Under WCAG's non-interference requirement this applies to everything on the page, even content not relied on to meet other criteria.",
+      "whyItMatters": "A pause button at the bottom of the page is hard to find for screen reader users, whose speech is drowned out by the audio while they look for it."
     },
     "wcag3Mapping": {
       "provisions": [
-        "media-control",
         "page-view-audio-adjustable"
       ],
-      "evolutionNote": "WCAG 3 categorizes audio control under user media control outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -460,29 +303,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#contrast-minimum",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
     "plainEnglish": {
-      "summary": "Text must have enough color contrast against its background (at least 4.5:1 for normal text, 3:1 for large text).",
-      "whyItMatters": "Low contrast text is unreadable for people with low vision or under bright sunlight.",
-      "realWorldExample": "Dark grey text (#333333) on white background (#FFFFFF) achieves a 12.6:1 contrast ratio."
-    },
-    "personaBreakdown": {
-      "designer": "Select text color palettes that pass 4.5:1 contrast using Figma plugins.",
-      "developer": "Implement compliant CSS color tokens. Avoid low-opacity text on light backgrounds.",
-      "qa": "Use Chrome DevTools Color Picker to measure contrast ratios.",
-      "productManager": "Enforce contrast ratio requirements in design tokens."
-    },
-    "testingGuide": {
-      "automated": "axe-core color-contrast audit flags non-compliant ratios.",
-      "manualKeyboard": "Ensure contrast holds true for :focus and :hover states.",
-      "screenReader": "Visual check for sighted screen magnifier users.",
-      "codeSnippetGood": ".text-body { color: #2d3748; background-color: #ffffff; } /* 10.4:1 */",
-      "codeSnippetBad": ".text-body { color: #a0aec0; background-color: #ffffff; } /* 2.3:1 */"
+      "summary": "Text and images of text have a contrast ratio of at least 4.5:1. Large-scale text (at least 18pt, or 14pt bold) needs 3:1. Text in inactive components, pure decoration, invisible text, text inside pictures with significant other visual content, and logos have no contrast requirement.",
+      "whyItMatters": "4.5:1 is a floor. Thin or small fonts at exactly 4.5:1 can still be hard to read for people with low vision, in glare, or on low-quality screens."
     },
     "wcag3Mapping": {
       "provisions": [
-        "text-contrast-sufficient-minimum",
-        "text-contrast-sufficient-enhanced"
+        "text-contrast-sufficient-minimum"
       ],
-      "evolutionNote": "WCAG 3 transitions to advanced visual perceptual algorithms (APCA)."
+      "related": [],
+      "note": "The draft's contrast measure is still to be determined."
     }
   },
   {
@@ -495,29 +324,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#resize-text",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html",
     "plainEnglish": {
-      "summary": "Text must be resizable up to 200% using browser zoom without loss of content or functionality.",
-      "whyItMatters": "Users with low vision enlarge browser font size to read text without using a screen magnifier.",
-      "realWorldExample": "A news article scales cleanly up to 200% zoom without horizontal scrolling or text clipping."
-    },
-    "personaBreakdown": {
-      "designer": "Design flexible container layouts that accommodate larger text sizes.",
-      "developer": "Use relative CSS units (`rem`, `em`, `%`) rather than fixed pixel (`px`) heights on containers.",
-      "qa": "Zoom browser to 200% (Ctrl/Cmd + '+') and verify text does not overlap or get cut off.",
-      "productManager": "Include 200% text zoom requirements in QA acceptance criteria."
-    },
-    "testingGuide": {
-      "automated": "axe-core meta-viewport rule checks if user scaling is disabled.",
-      "manualKeyboard": "Verify controls remain keyboard accessible at 200% zoom.",
-      "screenReader": "Verify screen reader reads expanded text flow.",
-      "codeSnippetGood": "body { font-size: 1rem; line-height: 1.5; }",
-      "codeSnippetBad": "<meta name=\"viewport\" content=\"width=device-width, user-scalable=no\">"
+      "summary": "Apart from captions and images of text, text can be resized up to 200 percent without assistive technology and without loss of content or functionality.",
+      "whyItMatters": "Many people enlarge only the text, through browser or OS font settings rather than zoom. Layouts with fixed heights can clip that text even when they pass with page zoom."
     },
     "wcag3Mapping": {
       "provisions": [
-        "text-size-adjustable",
-        "text-reflow-supported"
+        "text-size-adjustable"
       ],
-      "evolutionNote": "WCAG 3 maps text resizing to text-size-adjustable outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -530,28 +345,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#images-of-text",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html",
     "plainEnglish": {
-      "summary": "Use real HTML text instead of images of text (pictures of text) wherever possible.",
-      "whyItMatters": "Images of text pixelate when zoomed, cannot be restyled by users, and fail custom high-contrast modes.",
-      "realWorldExample": "Hero banner titles use styled HTML <h1> elements overlaid on background images rather than baking text into PNG images."
-    },
-    "personaBreakdown": {
-      "designer": "Design banners with live web fonts rendered over background images.",
-      "developer": "Render live text styled with CSS typography instead of using flat text images.",
-      "qa": "Highlight text on web banners to confirm it is live selectable text.",
-      "productManager": "Require CMS templates to use live web fonts instead of static image banners."
-    },
-    "testingGuide": {
-      "automated": "axe-core flags image elements with text-like alt attributes.",
-      "manualKeyboard": "Inspect live text elements.",
-      "screenReader": "Confirm screen reader reads live text naturally.",
-      "codeSnippetGood": "<div class=\"hero-bg\"><h1>Summer Sale 50% Off</h1></div>",
-      "codeSnippetBad": "<img src=\"summer-sale-banner-with-text.png\" alt=\"Summer Sale 50% Off\">"
+      "summary": "If the technology can produce the visual presentation, real text is used instead of images of text. Exceptions: the image of text can be visually customized (font, size, color and background can be set), or a particular presentation is essential.",
+      "whyItMatters": "Text baked into banners and social cards can't be resized, recolored or reflowed, and blurs when magnified."
     },
     "wcag3Mapping": {
-      "provisions": [
+      "provisions": [],
+      "related": [
         "text-detectable"
       ],
-      "evolutionNote": "WCAG 3 requires detectable, selectable text across media."
+      "note": "No provision in the current draft restricts images of text."
     }
   },
   {
@@ -564,29 +366,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#reflow",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
     "plainEnglish": {
-      "summary": "Content must reflow into a single column at 400% zoom (viewport width 320px) without forcing 2D scrolling.",
-      "whyItMatters": "Low vision users zooming to 400% should read vertically without scrolling back and forth horizontally for every line.",
-      "realWorldExample": "A 3-column website layout collapses into a single vertical column on narrow or highly zoomed screens."
-    },
-    "personaBreakdown": {
-      "designer": "Design responsive single-column layouts for small viewports.",
-      "developer": "Use CSS flexbox/grid and media queries (`@media (max-width: ...)`). Avoid fixed pixel container widths.",
-      "qa": "Zoom browser to 400% at 1280x1024 resolution. Confirm horizontal scrollbar does not appear.",
-      "productManager": "Enforce responsive design standards across all web properties."
-    },
-    "testingGuide": {
-      "automated": "Lighthouse responsive layout audits.",
-      "manualKeyboard": "Tab through single-column reflow layout.",
-      "screenReader": "Verify screen reader reads single-column flow in sequence.",
-      "codeSnippetGood": ".container { width: 100%; max-width: 1200px; padding: 1rem; }",
-      "codeSnippetBad": ".container { width: 1280px; } /* Forces horizontal scroll at 400% zoom */"
+      "summary": "Content can be presented without losing information or functionality, and without scrolling in two directions, at a width of 320 CSS pixels (for vertically scrolling content) or a height of 256 CSS pixels (for horizontally scrolling content). Parts of the content that need a two-dimensional layout for their use or meaning are exempt.",
+      "whyItMatters": "A page can reflow while hiding key actions behind menus, or by covering much of the small viewport with sticky headers. People using 400% zoom then see very little content at once."
     },
     "wcag3Mapping": {
       "provisions": [
         "layout-reflow-supported",
         "text-reflow-supported"
       ],
-      "evolutionNote": "WCAG 3 groups 1.4.10 under layout-reflow-supported outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -599,28 +388,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#non-text-contrast",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html",
     "plainEnglish": {
-      "summary": "Visual indicators for interactive controls (buttons, input borders, icons, focus rings) must have at least 3:1 contrast against adjacent colors.",
-      "whyItMatters": "Low vision users cannot locate form inputs or button boundaries if input borders are faint light grey.",
-      "realWorldExample": "Input field borders use dark grey (#767676) against white backgrounds, achieving 4.5:1 contrast."
-    },
-    "personaBreakdown": {
-      "designer": "Specify 3:1+ contrast for form borders, UI icons, and focus rings.",
-      "developer": "Use CSS border and stroke colors meeting 3:1 contrast.",
-      "qa": "Use DevTools Color Picker to measure contrast on input borders and custom checkbox frames.",
-      "productManager": "Include UI component contrast specs in design systems."
-    },
-    "testingGuide": {
-      "automated": "axe-core non-text-contrast rules.",
-      "manualKeyboard": "Verify focused state border contrast.",
-      "screenReader": "Visual check for sighted keyboard users.",
-      "codeSnippetGood": "input { border: 2px solid #595959; } /* 4.5:1 contrast */",
-      "codeSnippetBad": "input { border: 1px solid #e2e8f0; } /* 1.4:1 contrast - Fails */"
+      "summary": "These have a contrast ratio of at least 3:1 against adjacent colors: the visual information needed to identify user interface components and their states (except inactive components, and components whose appearance is set by the browser and not modified by the author), and the parts of graphics needed to understand the content (unless a particular presentation is essential).",
+      "whyItMatters": "A state change that meets 3:1 but is shown only by a thin border change is easy to miss."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-element-contrast-sufficient"
+        "interactive-element-contrast-sufficient",
+        "graphical-object-contrast-sufficient"
       ],
-      "evolutionNote": "WCAG 3 adopts 1.4.11 into interactive-element-contrast-sufficient outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -633,29 +410,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#text-spacing",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html",
     "plainEnglish": {
-      "summary": "Content must accommodate custom user text spacing (line height 1.5x, paragraph spacing 2x, letter spacing 0.12em, word spacing 0.16em) without breaking layout.",
-      "whyItMatters": "Dyslexic readers apply custom CSS text spacing to improve reading comprehension.",
-      "realWorldExample": "A web app accommodates increased line height and word spacing without text overlapping or overflowing containers."
-    },
-    "personaBreakdown": {
-      "designer": "Design card containers with flexible vertical padding.",
-      "developer": "Avoid setting fixed `height` or `overflow: hidden` on text containers.",
-      "qa": "Apply text spacing bookmarklet CSS override and verify text stays inside containers.",
-      "productManager": "Verify text spacing adaptability in design system testing."
-    },
-    "testingGuide": {
-      "automated": "Manual CSS bookmarklet test recommended.",
-      "manualKeyboard": "Tab through text-spaced page layout.",
-      "screenReader": "Verify screen reader reads text spaced paragraphs cleanly.",
-      "codeSnippetGood": ".card { min-height: auto; padding: 1.5rem; }",
-      "codeSnippetBad": ".card { height: 100px; overflow: hidden; } /* Text clips when line height expands */"
+      "summary": "In content built with markup languages, nothing is lost and nothing stops working when a user sets line height to 1.5 times the font size, spacing after paragraphs to 2 times, letter spacing to 0.12 times and word spacing to 0.16 times, changing no other style. Languages and scripts that don't use one of these properties are exempt for that property.",
+      "whyItMatters": "Layouts can survive the test values exactly but break with slightly larger user settings, or with fonts swapped in for dyslexia."
     },
     "wcag3Mapping": {
       "provisions": [
-        "blocks-of-text-adjustable",
-        "text-style-adjustable"
+        "text-style-adjustable",
+        "blocks-of-text-adjustable"
       ],
-      "evolutionNote": "WCAG 3 maps text spacing to blocks-of-text-adjustable outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -668,28 +432,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#content-on-hover-or-focus",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html",
     "plainEnglish": {
-      "summary": "Additional content appearing on hover or focus (tooltips, popovers) must be dismissible, hoverable, and persistent.",
-      "whyItMatters": "Tooltips that disappear when moving the mouse pointer make reading impossible for screen magnifier users.",
-      "realWorldExample": "A tooltip stays open when the user moves the mouse pointer over the tooltip itself and closes when Esc is pressed."
-    },
-    "personaBreakdown": {
-      "designer": "Design tooltips that allow pointer interaction without disappearing.",
-      "developer": "Support Escape key dismissal and ensure hover popovers don't hide when mouse moves over popover content.",
-      "qa": "Hover over tooltips, move mouse onto tooltip body, and press Esc to dismiss.",
-      "productManager": "Require compliant tooltip library adoption across products."
-    },
-    "testingGuide": {
-      "automated": "Manual pointer & keyboard testing required.",
-      "manualKeyboard": "Press Tab to trigger tooltip; press Escape to dismiss.",
-      "screenReader": "Confirm screen reader announces tooltip text upon focus.",
-      "codeSnippetGood": "/* Tooltip stays open on hover & pointer entry; closes on Escape keydown listener */",
-      "codeSnippetBad": "/* Tooltip closes instantly when mouse leaves trigger element before reaching tooltip */"
+      "summary": "When hover or keyboard focus makes extra content appear (such as a custom tooltip or submenu): it can be dismissed without moving the pointer or focus, unless it shows an input error or doesn't cover other content; if triggered by hover, the pointer can move onto it without it disappearing; and it stays visible until the trigger is removed, the user dismisses it, or its information is no longer valid. Content whose presentation the browser controls, such as a title-attribute tooltip, is exempt.",
+      "whyItMatters": "Hover content can pass and still be awkward on touch screens, where there is no hover, and for magnifier users who lose it off-screen."
     },
     "wcag3Mapping": {
       "provisions": [
-        "changes-to-elements-notified"
+        "hover-or-focus-content-dismissible",
+        "hover-content-persistent",
+        "hover-or-focus-content-persistent"
       ],
-      "evolutionNote": "WCAG 3 incorporates hover/focus popovers into notification and state availability outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -702,29 +455,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#keyboard",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html",
     "plainEnglish": {
-      "summary": "All functionality must be usable using only a keyboard (Tab, Enter, Space, Arrows)—no mouse required.",
-      "whyItMatters": "Blind users, motor-impaired users, and power users operate web applications without a mouse.",
-      "realWorldExample": "A modal dialog opens on Enter, receives focus, and closes on Space or Escape key."
-    },
-    "personaBreakdown": {
-      "designer": "Design explicit keyboard interactions for custom dropdowns, tabs, and modals.",
-      "developer": "Use native HTML interactive elements (<button>, <a>). For custom widgets, handle keydown events (Enter/Space).",
-      "qa": "Unplug the mouse! Tab through the page and verify every button, link, and modal is reachable and actionable.",
-      "productManager": "Require keyboard accessibility specs in acceptance criteria."
-    },
-    "testingGuide": {
-      "automated": "axe-core flags onclick handlers on non-interactive elements like <div> without tabindex.",
-      "manualKeyboard": "Press Tab to move through controls. Press Enter/Space to trigger actions.",
-      "screenReader": "Ensure screen reader virtual cursor can activate controls.",
-      "codeSnippetGood": "<button type=\"button\" onclick=\"doAction()\">Submit</button>",
-      "codeSnippetBad": "<div onclick=\"doAction()\">Submit</div>"
+      "summary": "All functionality can be operated through a keyboard interface, without needing specific timing for individual keystrokes. The exception is functionality whose underlying function depends on the path of the user's movement, not just its endpoints (such as freehand drawing).",
+      "whyItMatters": "Something can be keyboard-operable yet take dozens of Tab presses, or rely on key combinations nobody would guess."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-elements-distinguishable",
-        "required-action-available"
+        "keyboard-operable",
+        "keyboard-accessible"
       ],
-      "evolutionNote": "WCAG 3 expands keyboard access into comprehensive input operation outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -737,28 +477,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#no-keyboard-trap",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html",
     "plainEnglish": {
-      "summary": "Keyboard focus must never get trapped or stuck inside a component; users must be able to navigate away using Tab or Shift+Tab.",
-      "whyItMatters": "If focus gets stuck inside a custom text editor or modal widget, keyboard users are completely trapped and must restart their browser.",
-      "realWorldExample": "A modal window allows tabbing through its internal controls and provides an explicit Close button or Escape key exit."
-    },
-    "personaBreakdown": {
-      "designer": "Provide clear visible exit controls on all overlay components.",
-      "developer": "Implement keyboard focus traps ONLY inside active modal dialogs, and ensure Escape key unlocks focus.",
-      "qa": "Tab into every interactive component, widget, and modal; verify you can tab back out.",
-      "productManager": "Treat keyboard traps as P0 release-blocking bugs."
-    },
-    "testingGuide": {
-      "automated": "axe-core traps focus in automated test runs.",
-      "manualKeyboard": "Tab into control, attempt to tab out forwards and backwards (Shift+Tab).",
-      "screenReader": "Verify screen reader cursor is not trapped in iframe or custom widget.",
-      "codeSnippetGood": "/* Modal traps focus inside while open, but pressing Esc or Close returns focus to trigger button */",
-      "codeSnippetBad": "/* Focus enters custom widget and Tab key ceases to work anywhere on page */"
+      "summary": "If keyboard focus can move into a component, it can move out again using only the keyboard. If leaving needs more than unmodified arrow or Tab keys or another standard exit method, the user is told how. Under WCAG's non-interference requirement this applies to everything on the page.",
+      "whyItMatters": "A non-standard exit that is documented somewhere technically passes, but users rarely find the instructions."
     },
     "wcag3Mapping": {
       "provisions": [
-        "required-action-available"
+        "no-keyboard-traps"
       ],
-      "evolutionNote": "WCAG 3 addresses keyboard traps under task completion and navigation provisions."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -771,28 +498,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#character-key-shortcuts",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html",
     "plainEnglish": {
-      "summary": "Single-character keyboard shortcuts (like pressing 'F' to search) must be turn-offable or remappable.",
-      "whyItMatters": "Speech recognition users say 'Find' and speech engines output the letter 'F', triggering unwanted shortcuts randomly.",
-      "realWorldExample": "A web webmail app allows users to disable single-letter shortcuts in settings or requires Ctrl/Cmd modifier keys."
-    },
-    "personaBreakdown": {
-      "designer": "Use modifier key combinations (Ctrl + K, Alt + S) for app shortcuts.",
-      "developer": "Provide user settings to disable or remap single-letter key listeners.",
-      "qa": "Turn on voice control or type single letters to ensure shortcuts don't fire unexpectedly.",
-      "productManager": "Avoid single-key shortcuts unless user customization options exist."
-    },
-    "testingGuide": {
-      "automated": "Manual shortcut audit required.",
-      "manualKeyboard": "Press single character keys ('s', 'f', 'm') when focus is not in an input.",
-      "screenReader": "Verify voice command input doesn't trigger rogue application shortcuts.",
-      "codeSnippetGood": "/* Shortcut requires Ctrl+K instead of plain 'K' */",
-      "codeSnippetBad": "/* Document keydown listener fires global action on single keypress 'F' */"
+      "summary": "If a keyboard shortcut uses only a letter, punctuation, number or symbol key, at least one of these is true: it can be turned off; it can be remapped to include a non-printable key such as Ctrl or Alt; or it only works while the relevant component has focus.",
+      "whyItMatters": "A setting to turn shortcuts off that is hard to find leaves speech-input users accidentally triggering actions until they discover it."
     },
     "wcag3Mapping": {
       "provisions": [
-        "user-control"
+        "no-keyboard-conflicts"
       ],
-      "evolutionNote": "WCAG 3 categorizes shortcut controls under user control outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -805,28 +519,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#timing-adjustable",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html",
     "plainEnglish": {
-      "summary": "Users must be given options to turn off, adjust, or extend time limits on pages.",
-      "whyItMatters": "Users with reading, cognitive, or physical disabilities need extra time to complete forms or read content.",
-      "realWorldExample": "A session timeout warning popup appears 2 minutes before expiration asking 'Do you need more time?'."
-    },
-    "personaBreakdown": {
-      "designer": "Include session extension warnings in user interface flows.",
-      "developer": "Implement timeout extension modals with at least a 20-minute window or simple extend button.",
-      "qa": "Test session timeouts and verify the extension dialog opens and extends the session cleanly.",
-      "productManager": "Set default session timeouts to maximum allowable security limits."
-    },
-    "testingGuide": {
-      "automated": "Manual session timer audit required.",
-      "manualKeyboard": "Ensure 'Extend Session' button in timeout warning modal is focused automatically.",
-      "screenReader": "Verify screen reader announces session warning (aria-live=\"assertive\").",
-      "codeSnippetGood": "<div role=\"alertdialog\" aria-label=\"Session Timeout Warning\"><button>Extend Session</button></div>",
-      "codeSnippetBad": "/* Silent 5-minute session timeout redirects user losing all form data */"
+      "summary": "For each time limit the content sets, at least one is true: the user can turn it off before reaching it; adjust it to at least ten times the default; or is warned before it expires and given at least 20 seconds to extend it with a simple action, at least ten times. The limit is exempt if it's a required part of a real-time event with no possible alternative, if it's essential and extending it would invalidate the activity, or if it's longer than 20 hours.",
+      "whyItMatters": "Twenty seconds to respond to a warning is short for people using screen readers, switch access or speech input, especially if the warning doesn't take focus or isn't announced."
     },
     "wcag3Mapping": {
       "provisions": [
-        "no-artificial-time-limits"
+        "timeout-adjustable",
+        "time-limits-conveyed"
       ],
-      "evolutionNote": "WCAG 3 moves timing controls to 'no-artificial-time-limits' under process completion."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -839,30 +541,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#pause-stop-hide",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
     "plainEnglish": {
-      "summary": "Moving, blinking, scrolling, or auto-updating content lasting >5 seconds must have controls to pause, stop, or hide it.",
-      "whyItMatters": "Moving carousels and animated tickers severely distract users with ADHD or cognitive impairments.",
-      "realWorldExample": "A homepage carousel slider includes a visible Pause/Play button."
-    },
-    "personaBreakdown": {
-      "designer": "Include a visible Pause button on all auto-rotating carousels and animated banners.",
-      "developer": "Respect `prefers-reduced-motion` CSS media query and provide explicit pause JS controls.",
-      "qa": "Verify carousels stop moving when Pause is clicked or when mouse hovers over slide.",
-      "productManager": "Prohibit auto-playing carousels without pause buttons."
-    },
-    "testingGuide": {
-      "automated": "axe-core flags auto-playing video/carousel elements.",
-      "manualKeyboard": "Tab to Pause button and press Space to halt motion.",
-      "screenReader": "Confirm screen reader user can pause live tickers.",
-      "codeSnippetGood": "<button aria-label=\"Pause slide animation\" onclick=\"pauseCarousel()\">Pause</button>",
-      "codeSnippetBad": "/* Auto-advancing image slider with no pause button */"
+      "summary": "Moving, blinking or scrolling information that starts automatically, lasts more than five seconds and is shown alongside other content can be paused, stopped or hidden, unless the movement is essential. Auto-updating information that starts automatically and is shown alongside other content can be paused, stopped or hidden, or its update frequency controlled, unless essential. Under WCAG's non-interference requirement this applies to everything on the page.",
+      "whyItMatters": "A small pause button that is hard to find, or that resets when the page reloads, still passes. Motion can distract people with attention-related disabilities long before they find it."
     },
     "wcag3Mapping": {
       "provisions": [
-        "no-visual-motion",
-        "audio-shifting-adjustable",
-        "haptic-stimulation-adjustable"
+        "no-visual-motion"
       ],
-      "evolutionNote": "WCAG 3 breaks pause/stop/hide apart by the kind of motion: visual motion, audio shifting, and haptic stimulation each get their own provision."
+      "related": [],
+      "note": "No provision in the current draft covers auto-updating content."
     }
   },
   {
@@ -875,28 +562,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#three-flashes-or-below-threshold",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html",
     "plainEnglish": {
-      "summary": "Web pages must not contain content that flashes more than three times per second to prevent seizures.",
-      "whyItMatters": "Rapidly flashing content can trigger photosensitive epileptic seizures.",
-      "realWorldExample": "Video elements and animations are audited to ensure flash rates remain below 3Hz."
-    },
-    "personaBreakdown": {
-      "designer": "Avoid strobe effects or rapid flashing animations in video or UI transitions.",
-      "developer": "Audit video files with PEAT (Photosensitive Epilepsy Analysis Tool).",
-      "qa": "Run PEAT tool on video marketing content before publishing.",
-      "productManager": "Ban flashing animations in creative briefs."
-    },
-    "testingGuide": {
-      "automated": "PEAT analysis tool audit.",
-      "manualKeyboard": "Visual inspection.",
-      "screenReader": "N/A directly; critical for physical user health.",
-      "codeSnippetGood": "/* Smooth CSS fade transition (0.3s) instead of rapid flash */",
-      "codeSnippetBad": "/* Rapid strobe effect flashing red/white 5 times a second */"
+      "summary": "Nothing on the page flashes more than three times in any one second, or the flashing is below the general flash and red flash thresholds defined in WCAG. Under WCAG's non-interference requirement this applies to everything on the page.",
+      "whyItMatters": "The thresholds are approximations. Content near them can still affect some people with photosensitive epilepsy, or cause migraines."
     },
     "wcag3Mapping": {
       "provisions": [
         "no-flashing-over-threshold"
       ],
-      "evolutionNote": "WCAG 3 restated this around explicit thresholds: flashes must stay below the general flash and red flash thresholds. A stricter no-exceptions variant and an exploratory single-flash provision sit alongside it."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -909,28 +583,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#bypass-blocks",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html",
     "plainEnglish": {
-      "summary": "Provide a mechanism (like a 'Skip to main content' link) to bypass repeated header/navigation blocks.",
-      "whyItMatters": "Keyboard and screen reader users should not have to tab through 50 top menu links on every page refresh.",
-      "realWorldExample": "Tabbing at the top of a page reveals a 'Skip to content' button that jumps focus directly to <main>."
-    },
-    "personaBreakdown": {
-      "designer": "Design visible skip link styling when focused.",
-      "developer": "Add `<a href=\"#main-content\" class=\"skip-link\">Skip to content</a>` as the first element in <body>.",
-      "qa": "Press Tab immediately on page load and confirm Skip Link appears and moves focus to main content.",
-      "productManager": "Enforce skip link implementation across site templates."
-    },
-    "testingGuide": {
-      "automated": "axe-core skip-link rule checks for bypass mechanism.",
-      "manualKeyboard": "Press Tab on fresh page load, press Enter on skip link, verify focus lands on <main>.",
-      "screenReader": "Confirm screen reader announces skip link as first focusable item.",
-      "codeSnippetGood": "<a href=\"#main-content\" class=\"skip-link\">Skip to content</a>",
-      "codeSnippetBad": "<!-- Page header has 60 links and no skip link -->"
+      "summary": "A mechanism is available to bypass blocks of content that are repeated on multiple pages.",
+      "whyItMatters": "Headings and landmarks help screen reader users but do nothing for sighted keyboard users, who must still tab through the whole header."
     },
     "wcag3Mapping": {
       "provisions": [
-        "navigating-content"
+        "focus-relevant"
       ],
-      "evolutionNote": "WCAG 3 groups skip links under navigating-content guidelines."
+      "related": [],
+      "note": "Focus relevant's test procedure asks for a way to skip groups of repeated interactive elements, such as site navigation."
     }
   },
   {
@@ -943,28 +604,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#page-titled",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html",
     "plainEnglish": {
-      "summary": "Web pages must have descriptive, unique `<title>` tags.",
-      "whyItMatters": "Screen reader users and browser tab users rely on title tags to know which page or app view is active.",
-      "realWorldExample": "The checkout page title reads 'Checkout - Step 2: Shipping | Acme Store'."
-    },
-    "personaBreakdown": {
-      "designer": "Define page title naming conventions for user journeys.",
-      "developer": "Dynamically set `<title>` tags on route changes in single-page apps (SPAs).",
-      "qa": "Navigate through site pages and verify browser tab title updates accurately.",
-      "productManager": "Include descriptive title tag requirements in SEO & a11y specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core document-title rule checks for non-empty <title>.",
-      "manualKeyboard": "Inspect document title in browser tab.",
-      "screenReader": "Screen reader speaks page title upon navigation.",
-      "codeSnippetGood": "<title>Shopping Cart (2 Items) - Acme Store</title>",
-      "codeSnippetBad": "<title>Document</title>"
+      "summary": "Pages have titles that describe their topic or purpose.",
+      "whyItMatters": "Descriptive titles with the site name first get cut off in narrow browser tabs, so users can't tell tabs apart."
     },
     "wcag3Mapping": {
       "provisions": [
-        "navigating-content"
+        "page-view-title-available"
       ],
-      "evolutionNote": "WCAG 3 incorporates page titles into navigation structure outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -977,29 +625,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#focus-order",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html",
     "plainEnglish": {
-      "summary": "Keyboard focus navigation order (Tab sequence) must preserve logical meaning and operability.",
-      "whyItMatters": "If tabbing jumps randomly around the page, keyboard users lose track of visual context.",
-      "realWorldExample": "Tabbing moves from form field 1 -> field 2 -> field 3 -> Submit button in natural sequence."
-    },
-    "personaBreakdown": {
-      "designer": "Design logical layout reading paths.",
-      "developer": "Match DOM node order to visual layout flow. Avoid positive `tabindex` values (tabindex=\"1\").",
-      "qa": "Tab through the entire page from top to bottom and verify focus indicator moves sequentially.",
-      "productManager": "Reject layouts that require positive tabindex hacks."
-    },
-    "testingGuide": {
-      "automated": "axe-core tabindex rule checks for positive tabindex values.",
-      "manualKeyboard": "Tab through page and track outline movement.",
-      "screenReader": "Confirm focus sequence matches logical reading order.",
-      "codeSnippetGood": "<input id=\"a\"><input id=\"b\"><button>Submit</button>",
-      "codeSnippetBad": "<input id=\"a\" tabindex=\"3\"><input id=\"b\" tabindex=\"1\">"
+      "summary": "If a page can be navigated sequentially and the order affects meaning or operation, focusable components receive focus in an order that preserves meaning and operability.",
+      "whyItMatters": "An order that preserves meaning can still jump around the screen, which disorients sighted keyboard and magnifier users."
     },
     "wcag3Mapping": {
       "provisions": [
-        "navigating-content",
-        "interactive-elements-distinguishable"
+        "focus-order-meaningful"
       ],
-      "evolutionNote": "WCAG 3 aligns focus order with navigating-content outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1012,28 +646,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#link-purpose-in-context",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
     "plainEnglish": {
-      "summary": "The purpose of each link must be understandable from its text alone or from its immediate context.",
-      "whyItMatters": "Screen reader users browse links out of context via a 'Links List' dialog. Vague links like 'Click Here' or 'Read More' become useless.",
-      "realWorldExample": "Link text reads 'Read full WCAG 3 report' instead of just 'Click Here'."
-    },
-    "personaBreakdown": {
-      "designer": "Write explicit link text that describes the destination.",
-      "developer": "Use descriptive link text or aria-label (e.g. `aria-label=\"Read more about Q3 Financials\"`).",
-      "qa": "Open screen reader Links List (NVDA Insert+F7) and review link text clarity.",
-      "productManager": "Prohibit vague 'Click Here' copy in content style guides."
-    },
-    "testingGuide": {
-      "automated": "axe-core link-name rule flags empty or vague links.",
-      "manualKeyboard": "Tab through links and inspect text.",
-      "screenReader": "Open Links List in NVDA/JAWS and verify destinations make sense.",
-      "codeSnippetGood": "<a href=\"report.pdf\">Download 2026 Annual Report (PDF)</a>",
-      "codeSnippetBad": "<a href=\"report.pdf\">Click Here</a>"
+      "summary": "The purpose of each link can be determined from its text alone, or from its text together with its programmatically determined context, except where the purpose would be ambiguous to everyone.",
+      "whyItMatters": "Screen reader users who browse a list of links hear \"Read more\" ten times with no context, even though each link passes."
     },
     "wcag3Mapping": {
-      "provisions": [
+      "provisions": [],
+      "related": [
         "interactive-element-names-available"
       ],
-      "evolutionNote": "WCAG 3 handles link purpose under interactive-element-names-available outcomes."
+      "note": "No provision in the current draft covers link purpose."
     }
   },
   {
@@ -1046,29 +667,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#headings-and-labels",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html",
     "plainEnglish": {
-      "summary": "Headings and form labels must be clear, descriptive, and accurately label the content or inputs.",
-      "whyItMatters": "Clear headings allow users to scan pages efficiently; clear labels prevent form input errors.",
-      "realWorldExample": "A form uses specific field labels like 'Mobile Phone Number' instead of generic 'Phone'."
-    },
-    "personaBreakdown": {
-      "designer": "Create descriptive heading and form label typography.",
-      "developer": "Associate `<label for=\"...\">` tags explicitly with form input IDs.",
-      "qa": "Review heading titles and form labels for clarity and conciseness.",
-      "productManager": "Enforce consistent copywriting across form fields."
-    },
-    "testingGuide": {
-      "automated": "axe-core label-title-only rule checks for missing label text.",
-      "manualKeyboard": "Click labels to verify focus transfers to form inputs.",
-      "screenReader": "Screen reader announces label when input gains focus.",
-      "codeSnippetGood": "<label for=\"phone\">Cell Phone Number (e.g. 555-0199)</label><input id=\"phone\">",
-      "codeSnippetBad": "<span>Phone:</span><input>"
+      "summary": "The headings and labels you provide describe their topic or purpose.",
+      "whyItMatters": "Headings that are accurate but vague (\"Details\", \"More\") pass, yet make scanning slow."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-element-names-available",
-        "process-instructions-available"
+        "sections-labeled"
       ],
-      "evolutionNote": "WCAG 3 maps 2.4.6 to process instructions and control naming."
+      "related": [
+        "interactive-element-names-available"
+      ],
+      "note": null
     }
   },
   {
@@ -1081,30 +690,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#focus-visible",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
     "plainEnglish": {
-      "summary": "Any keyboard-operable interface must have a clearly visible focus indicator when selected.",
-      "whyItMatters": "Without a visual focus outline, keyboard users cannot see where they are on screen when tabbing.",
-      "realWorldExample": "A solid blue ring or high-contrast border appears around a button when focused via Tab key."
-    },
-    "personaBreakdown": {
-      "designer": "Design high-contrast focus rings for light and dark themes.",
-      "developer": "Never set `outline: none` without providing a robust `:focus-visible` custom style.",
-      "qa": "Tab through all interactive controls and verify focus outline is bright and unobstructed.",
-      "productManager": "Reject designs or PRs that hide focus outlines for aesthetic reasons."
-    },
-    "testingGuide": {
-      "automated": "axe-core flags outline:0 or outline:none without focus overrides.",
-      "manualKeyboard": "Tab through page elements and inspect visual outline clarity.",
-      "screenReader": "N/A directly; visual focus is vital for sighted keyboard users.",
-      "codeSnippetGood": ":focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }",
-      "codeSnippetBad": "button:focus { outline: none; }"
+      "summary": "Any keyboard-operable interface has a mode of operation in which the keyboard focus indicator is visible.",
+      "whyItMatters": "A visible indicator, even one that meets 3:1, can be hard to spot if it's thin or close in style to the hover state."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "default-focus-indicator-used",
+      "provisions": [],
+      "related": [
         "focus-indicator-contrast-sufficient",
-        "focus-indicator-size-sufficient"
+        "default-focus-indicator-used"
       ],
-      "evolutionNote": "WCAG 3 replaces the binary focus-visible check with measurable provisions for focus indicator contrast and size."
+      "note": "No provision in the current draft requires a visible focus indicator as such; the related provisions cover its contrast and the use of the browser default."
     }
   },
   {
@@ -1117,29 +712,13 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#focus-not-obscured-minimum",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
     "plainEnglish": {
-      "summary": "New in WCAG 2.2! When an item receives keyboard focus, the item is at least partially visible and not entirely hidden behind sticky headers, banners, or popups.",
-      "whyItMatters": "Keyboard users must see what element is currently focused to navigate confidently.",
-      "realWorldExample": "When tabbing down a long page, focused links scroll into view below sticky top navigation bars."
-    },
-    "personaBreakdown": {
-      "designer": "Design scroll padding for sticky header regions.",
-      "developer": "Apply `scroll-margin-top` in CSS to account for fixed header heights.",
-      "qa": "Tab through long form pages with sticky header active; verify focus box is never hidden behind header.",
-      "productManager": "Include focus margin specs in header component design specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core focus visibility rules.",
-      "manualKeyboard": "Tab through page with sticky header pinned.",
-      "screenReader": "Confirm focused item stays visible.",
-      "codeSnippetGood": "html { scroll-padding-top: 80px; } /* Ensures focused element stays below sticky header */",
-      "codeSnippetBad": "/* Fixed header covers focused form inputs as user tabs down page */"
+      "summary": "When a component receives keyboard focus, it is not entirely hidden by content the author created.",
+      "whyItMatters": "A focused field that is 90% hidden behind a sticky footer passes, but keyboard users can't see what they're typing into."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "overlay-content-dismissible",
-        "hover-or-focus-content-dismissible"
-      ],
-      "evolutionNote": "No direct successor yet. The Sep 2026 draft has no provision that states focus must remain visible when obscured; the closest requirements make obscuring content dismissible."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft covers focus being obscured."
     }
   },
   {
@@ -1152,29 +731,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#label-in-name",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html",
     "plainEnglish": {
-      "summary": "The accessible name (for speech recognition & screen readers) must contain the text presented visually on screen.",
-      "whyItMatters": "Voice control users say 'Click Submit'. If visual text says 'Submit' but aria-label says 'Send Form', voice activation fails.",
-      "realWorldExample": "A button visually displaying 'Search' must have an accessible name starting with 'Search'."
-    },
-    "personaBreakdown": {
-      "designer": "Ensure visual label text matches intended functionality.",
-      "developer": "Make sure `aria-label` includes the exact text visible inside the button/control.",
-      "qa": "Compare visual label text with DOM accessible name in Chrome DevTools Accessibility tree.",
-      "productManager": "Maintain label consistency across UI copies and aria annotations."
-    },
-    "testingGuide": {
-      "automated": "axe-core label-in-name rule.",
-      "manualKeyboard": "Inspect DOM accessible name via DevTools.",
-      "screenReader": "Test voice activation (e.g. Voice Control or Dragon NaturallySpeaking).",
-      "codeSnippetGood": "<button aria-label=\"Search product catalog\">Search</button>",
-      "codeSnippetBad": "<button aria-label=\"Find Items\">Search</button>"
+      "summary": "For components whose label includes text or images of text, the accessible name contains the text that is shown visually.",
+      "whyItMatters": "If the visible words sit in the middle of a longer name, some speech-input tools match less reliably."
     },
     "wcag3Mapping": {
       "provisions": [
-        "label-included-in-programmatic-name",
-        "interactive-element-names-available"
+        "label-included-in-programmatic-name"
       ],
-      "evolutionNote": "WCAG 3 carries this requirement forward directly as 'label-included-in-programmatic-name'."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1187,28 +752,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#dragging-movements",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html",
     "plainEnglish": {
-      "summary": "New in WCAG 2.2! Any functionality requiring a dragging movement (drag-and-drop, sliders) must have a single-pointer alternative.",
-      "whyItMatters": "Users with motor tremors or operating eye-gaze tracking cannot perform smooth click-and-drag mouse movements.",
-      "realWorldExample": "A kanban board allowing drag-and-drop card moves also provides a 'Move to Column...' dropdown button menu."
-    },
-    "personaBreakdown": {
-      "designer": "Design tap/click button alternatives alongside drag-and-drop UI interactions.",
-      "developer": "Provide click-based button controls (e.g. Move Up / Move Down buttons) next to drag handles.",
-      "qa": "Attempt to operate drag-and-drop interfaces using single mouse clicks or spacebar keypresses.",
-      "productManager": "Require single-pointer button alternatives for all drag-and-drop features."
-    },
-    "testingGuide": {
-      "automated": "Manual pointer interaction audit required.",
-      "manualKeyboard": "Verify single-pointer buttons receive focus and trigger moves.",
-      "screenReader": "Confirm screen reader users can trigger card movements via menu buttons.",
-      "codeSnippetGood": "<button onclick=\"moveCard('column-2')\">Move to In Progress</button>",
-      "codeSnippetBad": "/* Drag handle is the ONLY way to reorder item on page */"
+      "summary": "Functionality that uses dragging can also be done with a single pointer without dragging, unless dragging is essential or the browser provides the functionality and the author hasn't modified it.",
+      "whyItMatters": "An alternative that takes many taps, or sits in an overflow menu, technically passes but is tiring for people with motor impairments."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-elements-distinguishable"
+        "simple-pointer-input-available"
       ],
-      "evolutionNote": "WCAG 3 incorporates single-pointer alternatives under pointer input operation outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1221,28 +773,13 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#target-size-minimum",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
     "plainEnglish": {
-      "summary": "New in WCAG 2.2! Interactive targets (buttons, links) must be at least 24x24 CSS pixels or have sufficient spacing around them.",
-      "whyItMatters": "People with hand tremors or using smartphones can easily mis-tap small, cramped buttons placed right next to each other.",
-      "realWorldExample": "Inline icons or small buttons are given padding/margin so the touch region spans at least 24x24px."
-    },
-    "personaBreakdown": {
-      "designer": "Design touch targets to at least 24x24px (44x44px recommended for mobile).",
-      "developer": "Use CSS `min-width: 24px; min-height: 24px;` or padding to expand click areas.",
-      "qa": "Inspect touch target size in DevTools for desktop and mobile viewports.",
-      "productManager": "Include target size minimums in mobile design guidelines."
-    },
-    "testingGuide": {
-      "automated": "Lighthouse mobile audit flags cramped tap targets.",
-      "manualKeyboard": "Inspect element bounding rect in Chrome DevTools.",
-      "screenReader": "N/A directly; vital for touch and pointer users.",
-      "codeSnippetGood": ".icon-btn { min-width: 24px; min-height: 24px; padding: 6px; }",
-      "codeSnippetBad": ".icon-btn { width: 12px; height: 12px; padding: 0; }"
+      "summary": "Pointer targets are at least 24 by 24 CSS pixels, except when: a 24 CSS pixel circle centered on each smaller target doesn't overlap another target or another such circle; the same function is available through another control on the page that meets this criterion; the target is in a sentence or limited by the line height of surrounding text; the browser sets the size and the author hasn't changed it; or the presentation is essential or legally required.",
+      "whyItMatters": "24 by 24 is still small for people with tremors or limited dexterity. Targets that pass only through spacing are easy to miss."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "interactive-elements-distinguishable"
-      ],
-      "evolutionNote": "WCAG 3 incorporates touch target metrics into comprehensive pointer control guidelines."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft covers target size."
     }
   },
   {
@@ -1255,28 +792,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#language-of-page",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html",
     "plainEnglish": {
-      "summary": "The default human language of each web page must be specified in HTML (`<html lang=\"en\">`).",
-      "whyItMatters": "Screen readers use the `lang` attribute to choose correct pronunciation rules, voice synthesizers, and accents.",
-      "realWorldExample": "An English site sets `<html lang=\"en-US\">`, allowing screen readers to speak in an American English voice."
-    },
-    "personaBreakdown": {
-      "designer": "Specify target page languages in site architecture docs.",
-      "developer": "Set valid ISO language codes in the `<html lang=\"...\">` attribute on every page.",
-      "qa": "Inspect DOM source code and verify `lang` attribute is present on `<html>`.",
-      "productManager": "Enforce `lang` attribute inclusion in template headers."
-    },
-    "testingGuide": {
-      "automated": "axe-core html-has-lang and html-lang-valid rules.",
-      "manualKeyboard": "Inspect html element attribute.",
-      "screenReader": "Listen to screen reader pronunciation when page loads.",
-      "codeSnippetGood": "<html lang=\"en-US\">",
-      "codeSnippetBad": "<html> <!-- Missing lang attribute -->"
+      "summary": "The default human language of each page can be programmatically determined. (In HTML, W3C's sufficient technique is the lang attribute on the html element; techniques are informative.)",
+      "whyItMatters": "A correct but generic code, such as en with no region, can't tell a screen reader which accent or spelling conventions to use."
     },
     "wcag3Mapping": {
       "provisions": [
         "human-language-detectable"
       ],
-      "evolutionNote": "WCAG 3 maps 3.1.1 directly to human-language-detectable."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1289,28 +813,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#language-of-parts",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html",
     "plainEnglish": {
-      "summary": "The human language of any passage or phrase in a page that differs from default language must be specified in code (`<span lang=\"fr\">`).",
-      "whyItMatters": "Without `lang=\"fr\"`, an English screen reader will pronounce French words using harsh English phonetics.",
-      "realWorldExample": "A French quote inside an English article uses `<blockquote lang=\"fr\">C'est la vie</blockquote>`."
-    },
-    "personaBreakdown": {
-      "designer": "Flag foreign phrases in content editor style guides.",
-      "developer": "Wrap foreign phrases in `span` or `div` elements with valid `lang` attributes.",
-      "qa": "Listen to screen reader pronunciation when reaching foreign quotes.",
-      "productManager": "Require CMS support for inline language tagging."
-    },
-    "testingGuide": {
-      "automated": "axe-core valid-lang rule checks inline lang tags.",
-      "manualKeyboard": "Inspect inline element attributes.",
-      "screenReader": "Verify screen reader switches voice engine accent for foreign phrase.",
-      "codeSnippetGood": "<p>She said <span lang=\"fr\">Bonjour</span> to everyone.</p>",
-      "codeSnippetBad": "<p>She said Bonjour to everyone.</p>"
+      "summary": "The human language of each passage or phrase can be programmatically determined. Exempt: proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the surrounding language.",
+      "whyItMatters": "Proper names and technical terms are exempt, so a page full of untagged foreign names can still be mispronounced."
     },
     "wcag3Mapping": {
       "provisions": [
         "human-language-detectable"
       ],
-      "evolutionNote": "WCAG 3 includes inline language in human-language-detectable outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1323,28 +834,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#on-focus",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/on-focus.html",
     "plainEnglish": {
-      "summary": "Receiving keyboard focus on a component must not automatically trigger a change of context (like submitting a form or opening a new page).",
-      "whyItMatters": "Tabbing through a form should never automatically submit data or jump to another URL without user confirmation.",
-      "realWorldExample": "Focusing an input field displays helper text below it, but does NOT submit the form or open a pop-up window."
-    },
-    "personaBreakdown": {
-      "designer": "Design predictable form focus behavior.",
-      "developer": "Avoid attaching navigation or form submit triggers to `onfocus` events.",
-      "qa": "Tab through all form fields and controls; confirm no unexpected page jumps or modal popups occur.",
-      "productManager": "Ban automatic navigation on focus in product requirements."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks for onfocus handlers causing context changes.",
-      "manualKeyboard": "Tab through elements and monitor window location.",
-      "screenReader": "Verify focus announcements remain predictable.",
-      "codeSnippetGood": "/* Focus displays subtle outline; action requires Enter/Space keypress */",
-      "codeSnippetBad": "<input onfocus=\"window.location.href='next.html'\">"
+      "summary": "When any component receives focus, that doesn't start a change of context. WCAG defines a change of context as a change of user agent, viewport, focus, or content that changes the meaning of the page.",
+      "whyItMatters": "Focus-triggered changes that fall short of a \"change of context\", such as large panels expanding, can still disorient people using magnification."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "change-of-focus-notified"
+      "provisions": [],
+      "related": [
+        "change-of-focus-notified",
+        "focus-user-controlled"
       ],
-      "evolutionNote": "WCAG 3 categorizes 3.2.1 under change-of-focus-notified outcomes."
+      "note": "No provision in the current draft forbids a change of context on focus; the related ones cover notification and focus movement."
     }
   },
   {
@@ -1357,28 +856,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#on-input",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/on-input.html",
     "plainEnglish": {
-      "summary": "Changing the setting of any user interface component must not automatically cause a change of context unless informed in advance.",
-      "whyItMatters": "Selecting a checkbox or radio button shouldn't suddenly navigate to a new page without warning.",
-      "realWorldExample": "A country select dropdown updates state silently; a separate 'Filter Results' button submits the change."
-    },
-    "personaBreakdown": {
-      "designer": "Include explicit 'Apply' or 'Submit' buttons for dropdown and radio selections.",
-      "developer": "Avoid triggering `location.href` or major layout replacements on `onchange` events without user warning.",
-      "qa": "Select options in dropdowns and checkboxes; verify context doesn't jump unexpectedly.",
-      "productManager": "Enforce explicit submit actions for major filter controls."
-    },
-    "testingGuide": {
-      "automated": "axe-core input-onchange rules.",
-      "manualKeyboard": "Use arrow keys to select dropdown options; confirm page doesn't submit automatically.",
-      "screenReader": "Confirm screen reader receives prior warning if input triggers context change.",
-      "codeSnippetGood": "<select id=\"country\"></select><button type=\"submit\">Apply Filter</button>",
-      "codeSnippetBad": "<select onchange=\"this.form.submit()\"> <!-- Submits form instantly on option hover/arrow -->"
+      "summary": "Changing the setting of a component doesn't automatically cause a change of context, unless the user was told about this behavior before using the component.",
+      "whyItMatters": "Advance notice that is technically present, such as a sentence above the form, is easily missed. Keyboard users browsing a select with arrow keys can trigger navigation by accident."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "change-of-content-notified"
+      "provisions": [],
+      "related": [
+        "change-of-user-agent-notified",
+        "page-view-change-notified"
       ],
-      "evolutionNote": "WCAG 3 addresses 3.2.2 under change-of-content-notified."
+      "note": "No provision in the current draft forbids a change of context on input."
     }
   },
   {
@@ -1391,28 +878,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-help",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html",
     "plainEnglish": {
-      "summary": "New in WCAG 2.2! Help features (contact info, live chat, FAQ links) appearing on multiple pages must be located in the same relative place.",
-      "whyItMatters": "Users seeking help or customer support should find support links in predictable locations across every page.",
-      "realWorldExample": "A 'Contact Support' link is located in the global site footer across all pages."
-    },
-    "personaBreakdown": {
-      "designer": "Place help widgets and contact links in standardized global header/footer templates.",
-      "developer": "Include help components inside shared layout wrappers across all routes.",
-      "qa": "Navigate across 5 random site pages and confirm Help/Contact links stay in the exact same relative DOM location.",
-      "productManager": "Standardize support channels in core navigation architecture."
-    },
-    "testingGuide": {
-      "automated": "Manual cross-page layout audit required.",
-      "manualKeyboard": "Verify tab sequence reaches Help link at consistent order across pages.",
-      "screenReader": "Confirm screen reader users find Help link in consistent nav landmark.",
-      "codeSnippetGood": "<!-- Shared Footer template included on all routes contains Help & FAQ links -->",
-      "codeSnippetBad": "<!-- Help link placed in header on Page 1, in sidebar on Page 2, and missing on Page 3 -->"
+      "summary": "If pages in a set repeat any of these help mechanisms, they appear in the same order relative to other page content, unless the user changes it: human contact details, a human contact mechanism, a self-help option, or a fully automated contact mechanism.",
+      "whyItMatters": "Consistently placed help can still be unhelpful, such as a chatbot that can't reach a person."
     },
     "wcag3Mapping": {
       "provisions": [
-        "process-instructions-available"
+        "consistent-help-available"
       ],
-      "evolutionNote": "WCAG 3 integrates 3.2.6 into process instructions and consistency outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1425,29 +899,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#error-identification",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
     "plainEnglish": {
-      "summary": "If an input error is automatically detected, the item in error must be identified and the error described to the user in text.",
-      "whyItMatters": "Red borders alone do not tell screen reader or color-blind users which field failed or why.",
-      "realWorldExample": "A failed email field displays text: 'Error: Email address must include an @ symbol'."
-    },
-    "personaBreakdown": {
-      "designer": "Design error text message callouts directly adjacent to failed input fields.",
-      "developer": "Use `aria-invalid=\"true\"` and connect error text via `aria-describedby=\"error-id\"`.",
-      "qa": "Submit invalid form data and verify error messages are announced by screen readers.",
-      "productManager": "Require descriptive validation error messages in form specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core form-field-multiple-labels and aria-describedby rules.",
-      "manualKeyboard": "Submit blank form, tab to invalid input, confirm error text is focused/announced.",
-      "screenReader": "Screen reader speaks field label AND error description upon focus.",
-      "codeSnippetGood": "<input id=\"email\" aria-invalid=\"true\" aria-describedby=\"email-err\">\n<span id=\"email-err\" class=\"error\">Please enter a valid email address.</span>",
-      "codeSnippetBad": "<input class=\"red-border\"> <!-- Color border only, no text error -->"
+      "summary": "If an input error is automatically detected, the item in error is identified and the error is described to the user in text.",
+      "whyItMatters": "An error summary that names fields but is not linked to them makes screen reader users hunt back through the form to find each problem."
     },
     "wcag3Mapping": {
       "provisions": [
-        "input-constraints-used",
-        "changes-to-elements-notified"
+        "error-notifications-available",
+        "errors-associated"
       ],
-      "evolutionNote": "WCAG 3 covers error identification under input-constraints-used outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1460,29 +921,18 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#labels-or-instructions",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
     "plainEnglish": {
-      "summary": "Labels or instructions must be provided when content requires user input.",
-      "whyItMatters": "Without clear labels or format instructions (e.g., 'MM/DD/YYYY'), users guess what data format is expected.",
-      "realWorldExample": "A date input field displays a visible label 'Date of Birth' and format hint '(MM/DD/YYYY)'."
-    },
-    "personaBreakdown": {
-      "designer": "Include persistent visible labels and format examples for complex input fields.",
-      "developer": "Pair `<label>` elements with inputs and use `aria-describedby` for helper text hints.",
-      "qa": "Inspect form inputs and confirm placeholder text is not used as a substitute for permanent labels.",
-      "productManager": "Prohibit placeholder-only form designs in design reviews."
-    },
-    "testingGuide": {
-      "automated": "axe-core label rule checks for missing input labels.",
-      "manualKeyboard": "Tab to field and verify label is spoken.",
-      "screenReader": "Confirm screen reader announces both label and format instruction text.",
-      "codeSnippetGood": "<label for=\"dob\">Date of Birth</label>\n<span id=\"dob-hint\">Format: MM/DD/YYYY</span>\n<input id=\"dob\" aria-describedby=\"dob-hint\">",
-      "codeSnippetBad": "<input placeholder=\"Date of Birth (MM/DD/YYYY)\"> <!-- Placeholder disappears on typing -->"
+      "summary": "Labels or instructions are provided when content requires user input. WCAG defines a label as text, or a component with a text alternative, presented to the user to identify a component.",
+      "whyItMatters": "Placeholder-only labels disappear as soon as people type, so users with memory or attention difficulties lose track of what a field wants, and prefilled fields can't be checked."
     },
     "wcag3Mapping": {
       "provisions": [
-        "input-constraints-used",
-        "interactive-element-names-available"
+        "interactive-element-names-available",
+        "input-constraints-used"
       ],
-      "evolutionNote": "WCAG 3 maps 3.3.2 to input constraints and element naming."
+      "related": [
+        "process-instructions-available"
+      ],
+      "note": null
     }
   },
   {
@@ -1495,29 +945,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#redundant-entry",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html",
     "plainEnglish": {
-      "summary": "New in WCAG 2.2! Information previously entered by the user in the same process must be automatically populated or available for selection.",
-      "whyItMatters": "Re-typing information like billing/shipping address causes significant cognitive fatigue and errors.",
-      "realWorldExample": "A multi-step checkout form includes a checkbox: 'Same as shipping address'."
-    },
-    "personaBreakdown": {
-      "designer": "Include 'Use stored info' or 'Same as...' options in multi-step form designs.",
-      "developer": "Store previous step inputs in state and pre-fill downstream form fields.",
-      "qa": "Complete multi-step form flows and verify user data is auto-populated or easily selectable.",
-      "productManager": "Prioritize seamless data retention across onboarding and checkout funnels."
-    },
-    "testingGuide": {
-      "automated": "Manual multi-step form flow test required.",
-      "manualKeyboard": "Fill form step 1, advance to step 2, confirm auto-population.",
-      "screenReader": "Verify screen reader announces pre-filled input values.",
-      "codeSnippetGood": "<label><input type=\"checkbox\" id=\"same-addr\" onclick=\"copyAddress()\"> Billing address same as shipping</label>",
-      "codeSnippetBad": "<!-- Forcing manual re-entry of 10 address fields without auto-fill -->"
+      "summary": "Information the user has already entered, or that was provided to them, and that must be entered again in the same process, is either auto-populated or available to select. Exceptions: re-entry is essential, is needed for security, or the earlier information is no longer valid.",
+      "whyItMatters": "Offering the earlier value in a hard-to-find control satisfies \"available to select\" but still makes people re-enter data."
     },
     "wcag3Mapping": {
       "provisions": [
-        "no-redundant-entry",
-        "progress-saved"
+        "no-redundant-entry"
       ],
-      "evolutionNote": "WCAG 3 adopts 3.3.7 directly into 'no-redundant-entry' under the retain information group."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1530,30 +966,18 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#accessible-authentication-minimum",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html",
     "plainEnglish": {
-      "summary": "New in WCAG 2.2! Authentication processes must not rely on cognitive function tests (memorizing passwords or solving puzzles) unless alternatives like passkeys or copy-paste exist.",
-      "whyItMatters": "CAPTCHA puzzles and anti-copy password fields create huge barriers for people with cognitive impairments or dyslexia.",
-      "realWorldExample": "A login form allows users to paste passwords from password managers and supports passkeys/biometrics."
-    },
-    "personaBreakdown": {
-      "designer": "Design passwordless login options (passkeys, magic links).",
-      "developer": "Never disable copy-paste (`onpaste=\"return false\"`) on password fields and implement WebAuthn API.",
-      "qa": "Verify password manager auto-fill and copy-pasting work cleanly on login inputs.",
-      "productManager": "Implement modern authentication protocols (WebAuthn / Passkeys)."
-    },
-    "testingGuide": {
-      "automated": "Check for onpaste=\"return false\" scripts on input fields.",
-      "manualKeyboard": "Attempt to copy and paste text into password fields.",
-      "screenReader": "Test screen reader interaction with authentication prompts.",
-      "codeSnippetGood": "<input type=\"password\" id=\"pwd\" autocomplete=\"current-password\">",
-      "codeSnippetBad": "<input type=\"password\" id=\"pwd\" onpaste=\"return false;\">"
+      "summary": "No step of an authentication process requires a cognitive function test, unless that step offers one of: another method that doesn't rely on one; a mechanism to help complete it; a test that is recognizing objects; or a test that is identifying non-text content the user provided. WCAG defines a cognitive function test as remembering, manipulating or transcribing information, such as remembering a password, transcribing characters, correct spelling, calculations or puzzles. Name, email and phone number don't count.",
+      "whyItMatters": "Object-recognition CAPTCHAs are allowed at AA but are still very hard for many blind and low-vision users and people with cognitive disabilities."
     },
     "wcag3Mapping": {
       "provisions": [
         "cognitive-test-alternatives-available",
-        "automated-entry-allowed",
-        "copying-supported"
+        "automated-entry-allowed"
       ],
-      "evolutionNote": "WCAG 3 breaks accessible authentication into cognitive test alternatives, automated entry, and copying support."
+      "related": [
+        "biometrics-not-relied-on"
+      ],
+      "note": null
     }
   },
   {
@@ -1566,29 +990,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#name-role-value",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
     "plainEnglish": {
-      "summary": "For all custom UI controls, the name (label), role (what component it is), and value/state (expanded, checked, selected) must be programmatically available.",
-      "whyItMatters": "Screen readers need to know if an element is a button, checkbox, tab, or slider, and whether it is currently checked or expanded.",
-      "realWorldExample": "A custom accordion header uses `role=\"button\"` and `aria-expanded=\"true\"` or `aria-expanded=\"false\"`."
-    },
-    "personaBreakdown": {
-      "designer": "Document component states (expanded/collapsed, active/disabled) in component specifications.",
-      "developer": "Use standard HTML elements (<button>, <details>) or appropriate ARIA roles/states (role=\"tab\", aria-selected=\"true\").",
-      "qa": "Inspect accessibility tree in Chrome DevTools or inspect screen reader announcements.",
-      "productManager": "Ensure custom design system components include ARIA accessibility specifications."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks for valid ARIA roles, attributes, and values.",
-      "manualKeyboard": "Toggle custom controls with Space/Enter and verify state changes.",
-      "screenReader": "Listen to screen reader output when expanding or checking controls.",
-      "codeSnippetGood": "<button aria-expanded=\"true\" aria-controls=\"faq-1\">What is WCAG 3?</button>",
-      "codeSnippetBad": "<div class=\"accordion-header\" onclick=\"toggle()\">What is WCAG 3?</div>"
+      "summary": "For all interface components (including form elements, links and scripted components), the name and role can be programmatically determined; states, properties and values the user can set can be programmatically set; and changes to them are notified to user agents, including assistive technologies.",
+      "whyItMatters": "Custom widgets can expose a valid name and role yet not match expected keyboard behavior or announce in a useful order."
     },
     "wcag3Mapping": {
       "provisions": [
         "roles-values-states-properties-available",
-        "interactive-element-names-available"
+        "interactive-element-names-available",
+        "changes-to-elements-notified"
       ],
-      "evolutionNote": "WCAG 3 maps 4.1.2 to 'roles-values-states-properties-available'."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1601,28 +1013,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#status-messages",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
     "plainEnglish": {
-      "summary": "Status messages (success alerts, search result counts) must be announced to assistive tech without receiving focus.",
-      "whyItMatters": "Screen reader users need to hear '3 results found' or 'Item added to cart' without having their focus focus abruptly moved away from their current input.",
-      "realWorldExample": "A search results count updates dynamically and uses `role=\"status\"` (`aria-live=\"polite\"`)."
-    },
-    "personaBreakdown": {
-      "designer": "Design non-intrusive status toast and alert regions.",
-      "developer": "Use ARIA live regions (`role=\"status\"` or `role=\"alert\"`) for dynamic content updates.",
-      "qa": "Trigger dynamic updates and verify screen reader speaks the message without moving keyboard focus.",
-      "productManager": "Include live region announcements in dynamic UI specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks valid ARIA live region attributes.",
-      "manualKeyboard": "Trigger action and confirm keyboard focus remains on active input.",
-      "screenReader": "Verify screen reader speaks live status message asynchronously.",
-      "codeSnippetGood": "<div role=\"status\" aria-live=\"polite\">Showing 15 search results</div>",
-      "codeSnippetBad": "<!-- Dynamic text updates silently with no ARIA live region -->"
+      "summary": "In content built with markup languages, status messages can be programmatically determined through role or properties, so assistive technologies can present them without them receiving focus. WCAG defines a status message as a change in content that isn't a change of context and that tells the user about success or results, waiting, progress, or errors.",
+      "whyItMatters": "Over-announcing (live regions for every update) can drown out the messages that matter."
     },
     "wcag3Mapping": {
       "provisions": [
-        "changes-to-elements-notified"
+        "change-of-content-notified"
       ],
-      "evolutionNote": "WCAG 3 handles status messages under changes-to-elements-notified outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1635,29 +1034,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#sign-language-prerecorded",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/sign-language-prerecorded.html",
     "plainEnglish": {
-      "summary": "Sign language interpretation is provided for all prerecorded audio content in synchronized media.",
-      "whyItMatters": "For many Deaf people a signed language is their first language and written captions are a second language, so captions alone do not give equal access.",
-      "realWorldExample": "A prerecorded training video carries a picture-in-picture sign language interpreter alongside the captions."
-    },
-    "personaBreakdown": {
-      "designer": "Reserve a stable region of the video frame for the interpreter and keep it clear of captions and controls.",
-      "developer": "Ship the interpreter as a selectable track or a synchronized second video rather than burning it into one rendition.",
-      "qa": "Confirm the interpretation is present, synchronized, and can be shown and hidden without losing playback position.",
-      "productManager": "Budget interpreters for prerecorded media and decide which sign language each audience region needs."
-    },
-    "testingGuide": {
-      "automated": "No automated check; presence of an interpretation must be confirmed manually.",
-      "manualKeyboard": "Verify any show/hide control for the interpretation is keyboard operable.",
-      "screenReader": "Verify the interpretation track is announced and labelled.",
-      "codeSnippetGood": "<video><track kind=\"sign\" src=\"asl.vtt\" srclang=\"ase\" label=\"American Sign Language\"></video>",
-      "codeSnippetBad": "<video src=\"training.mp4\"></video> <!-- captions only, no signed interpretation -->"
+      "summary": "Prerecorded audio in synchronized media has sign language interpretation.",
+      "whyItMatters": "A small or low-resolution interpreter window makes hand shapes and facial expressions hard to read."
     },
     "wcag3Mapping": {
       "provisions": [
-        "sign-language-available-prerecorded",
+        "sign-language-available-prerecorded"
+      ],
+      "related": [
         "sign-language-controllable"
       ],
-      "evolutionNote": "WCAG 3 gives sign language its own guideline, and adds a provision for showing and hiding the interpretation."
+      "note": null
     }
   },
   {
@@ -1670,29 +1057,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#extended-audio-description-prerecorded",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/extended-audio-description-prerecorded.html",
     "plainEnglish": {
-      "summary": "Where pauses in main video dialogue are insufficient for audio descriptions, provide extended audio descriptions by pausing video playback.",
-      "whyItMatters": "Blind users miss visual storytelling details when dialogue is too fast for standard audio description gaps.",
-      "realWorldExample": "A instructional video automatically pauses visual playback while a narrator describes complex visual steps."
-    },
-    "personaBreakdown": {
-      "designer": "Design video player components supporting auto-pausing extended descriptions.",
-      "developer": "Implement media player JS event listeners to pause video when playing extended description tracks.",
-      "qa": "Test video playback with extended audio description enabled.",
-      "productManager": "Budget for extended audio description narration."
-    },
-    "testingGuide": {
-      "automated": "Manual media inspection required.",
-      "manualKeyboard": "Verify extended description toggle is keyboard accessible.",
-      "screenReader": "Confirm screen reader announces extended description status.",
-      "codeSnippetGood": "/* Media player auto-pauses main video track during extended audio narration */",
-      "codeSnippetBad": "/* Audio description is truncated because main video track dialogue does not pause */"
+      "summary": "Where pauses in the foreground audio are too short for audio description to convey the sense of the video, extended audio description is provided: the video pauses so there is time for more description. Applies to prerecorded video in synchronized media.",
+      "whyItMatters": "Frequent pauses can make the experience choppy if the description is longer than it needs to be."
     },
     "wcag3Mapping": {
       "provisions": [
         "extended-audio-descriptions-available",
         "extended-audio-descriptions-equivalent"
       ],
-      "evolutionNote": "WCAG 3 splits extended audio description into availability and equivalence."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1705,29 +1079,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#media-alternative-prerecorded",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/media-alternative-prerecorded.html",
     "plainEnglish": {
-      "summary": "A full text transcript describing all visual scenes, dialogue, and audio cues must be provided for all prerecorded synchronized media.",
-      "whyItMatters": "Deaf-blind users relying on screen reader braille displays need full descriptive text transcripts of videos.",
-      "realWorldExample": "A video presentation includes a comprehensive text alternative document covering dialogue and visual actions."
-    },
-    "personaBreakdown": {
-      "designer": "Include links to full text transcripts next to video embed frames.",
-      "developer": "Provide accessible transcript containers and link text files.",
-      "qa": "Read full text transcript while watching video to verify visual details are fully captured.",
-      "productManager": "Require full text transcripts for all published media assets."
-    },
-    "testingGuide": {
-      "automated": "Manual transcript audit.",
-      "manualKeyboard": "Tab to transcript link.",
-      "screenReader": "Read transcript via braille display or screen reader speech.",
-      "codeSnippetGood": "<a href=\"video-transcript.html\">Read full descriptive text transcript</a>",
-      "codeSnippetBad": "<video src=\"promo.mp4\"></video>"
+      "summary": "All prerecorded synchronized media and all prerecorded video-only media have an alternative for time-based media: a document with correctly sequenced text descriptions of the visual and auditory information, and a way to achieve the outcome of any interaction.",
+      "whyItMatters": "A complete alternative is little use if users can't find it."
     },
     "wcag3Mapping": {
       "provisions": [
         "descriptive-transcripts-available",
-        "transcripts-equivalent-prerecorded"
+        "transcripts-equivalent-prerecorded",
+        "visual-information-identified-in-transcripts"
       ],
-      "evolutionNote": "The WCAG 2.2 media alternative becomes the descriptive transcript in WCAG 3, with a separate equivalence provision."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1740,28 +1102,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#contrast-enhanced",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html",
     "plainEnglish": {
-      "summary": "Text must have an enhanced color contrast ratio of at least 7:1 for normal text and 4.5:1 for large text.",
-      "whyItMatters": "Provides maximum readability for users with severe low vision without requiring screen magnifiers.",
-      "realWorldExample": "High-contrast black text (#000000) on white background (#FFFFFF) achieves a 21:1 contrast ratio."
-    },
-    "personaBreakdown": {
-      "designer": "Select high-contrast color palettes meeting 7:1 ratios.",
-      "developer": "Implement high-contrast CSS color variables.",
-      "qa": "Measure contrast using DevTools Color Picker.",
-      "productManager": "Enforce enhanced contrast in accessible design systems."
-    },
-    "testingGuide": {
-      "automated": "axe-core color-contrast-enhanced rule.",
-      "manualKeyboard": "Inspect focused state contrast.",
-      "screenReader": "Visual check for low-vision users.",
-      "codeSnippetGood": ".text-enhanced { color: #000000; background: #ffffff; } /* 21:1 */",
-      "codeSnippetBad": ".text-enhanced { color: #767676; background: #ffffff; } /* 4.5:1 - Passes AA but fails AAA */"
+      "summary": "Text and images of text have a contrast ratio of at least 7:1, and large-scale text at least 4.5:1, with the same exceptions as 1.4.3.",
+      "whyItMatters": "Some readers find very high contrast uncomfortable, so a single fixed palette can't suit everyone."
     },
     "wcag3Mapping": {
       "provisions": [
         "text-contrast-sufficient-enhanced"
       ],
-      "evolutionNote": "WCAG 3 maps 1.4.6 to text-contrast-sufficient-enhanced."
+      "related": [],
+      "note": "The draft's contrast measure is still to be determined."
     }
   },
   {
@@ -1774,28 +1123,13 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#low-or-no-background-audio",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/low-or-no-background-audio.html",
     "plainEnglish": {
-      "summary": "Background audio under spoken dialogue must be muted by default or at least 20dB lower than speech.",
-      "whyItMatters": "Hard-of-hearing users cannot isolate spoken words when background music or noise is loud.",
-      "realWorldExample": "A video documentary isolates voice narration, turning off background music or reducing it to -20dB."
-    },
-    "personaBreakdown": {
-      "designer": "Design audio production specs with separate music and speech tracks.",
-      "developer": "Provide multi-track audio selection or clear speech audio streams.",
-      "qa": "Listen to audio track levels with decibel measurement tools.",
-      "productManager": "Require low background noise in audio production guidelines."
-    },
-    "testingGuide": {
-      "automated": "Manual audio track audit.",
-      "manualKeyboard": "Verify audio track selection controls.",
-      "screenReader": "Verify speech clarity.",
-      "codeSnippetGood": "/* Background music track is set to -20dB relative to voice track */",
-      "codeSnippetBad": "/* Loud background music plays at same volume as speaker voice */"
+      "summary": "For prerecorded audio-only content that is mainly foreground speech (not an audio CAPTCHA, audio logo, or singing or rapping), one of these is true: there are no background sounds, they can be turned off, or they are at least 20 decibels quieter than the speech, apart from occasional sounds of one or two seconds.",
+      "whyItMatters": "Even background music at 20dB lower can make speech hard to follow for people with hearing loss."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "media-control"
-      ],
-      "evolutionNote": "WCAG 3 includes background audio control under media outcomes."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft covers background audio levels."
     }
   },
   {
@@ -1808,29 +1142,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#visual-presentation",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/visual-presentation.html",
     "plainEnglish": {
-      "summary": "Allow users to customize foreground/background colors, line spacing (1.5x), paragraph spacing (2x), and text width (<80 characters).",
-      "whyItMatters": "Readers with cognitive disabilities or dyslexia require specific layout dimensions and custom color combinations.",
-      "realWorldExample": "A reading app offers a 'Reader View' setting to change background color, line height, and column width."
-    },
-    "personaBreakdown": {
-      "designer": "Design customizable typography layouts with max-width 80ch.",
-      "developer": "Avoid setting fixed container widths and support user CSS custom stylesheets.",
-      "qa": "Test text customization controls in reader settings.",
-      "productManager": "Include Reader View functionality in product specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks for line-height and max-width metrics.",
-      "manualKeyboard": "Tab through reader setting controls.",
-      "screenReader": "Verify text reflows cleanly.",
-      "codeSnippetGood": "p { max-width: 80ch; line-height: 1.5; margin-bottom: 2em; }",
-      "codeSnippetBad": "p { width: 1400px; text-align: justify; } /* Fails AAA visual presentation */"
+      "summary": "For blocks of text, a mechanism is available to: choose foreground and background colors; limit width to 80 characters (40 for CJK); avoid justified text; get line spacing of at least 1.5 and paragraph spacing at least 1.5 times the line spacing; and resize text to 200 percent without horizontal scrolling in a full-screen window.",
+      "whyItMatters": "Relying on users to find browser settings means many never benefit."
     },
     "wcag3Mapping": {
       "provisions": [
-        "blocks-of-text-readable-enhanced",
+        "blocks-of-text-adjustable",
+        "blocks-of-text-readable-minimum",
         "text-color-adjustable"
       ],
-      "evolutionNote": "WCAG 3 categorizes 1.4.8 under blocks-of-text-readable-enhanced outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1843,28 +1165,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#images-of-text-no-exception",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text-no-exception.html",
     "plainEnglish": {
-      "summary": "Images of text must not be used under any circumstances except for logos or brand names.",
-      "whyItMatters": "Ensures text is 100% scalable, restylable, and accessible across all assistive technologies.",
-      "realWorldExample": "All site banners, infographics, and callouts use live HTML text with web fonts."
-    },
-    "personaBreakdown": {
-      "designer": "Eliminate static text graphics in favor of live typography.",
-      "developer": "Render all content text using live HTML elements.",
-      "qa": "Select all text on page to verify zero images of text exist.",
-      "productManager": "Prohibit static text graphics across marketing team assets."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks image alt text for text duplication.",
-      "manualKeyboard": "Inspect page elements.",
-      "screenReader": "Confirm live text rendering.",
-      "codeSnippetGood": "<h1>Live HTML Header</h1>",
-      "codeSnippetBad": "<img src=\"header-text.png\">"
+      "summary": "Images of text are used only for pure decoration, or where a particular presentation of text is essential.",
+      "whyItMatters": "None beyond 1.4.5. This removes 1.4.5's customization exception."
     },
     "wcag3Mapping": {
-      "provisions": [
+      "provisions": [],
+      "related": [
         "text-detectable"
       ],
-      "evolutionNote": "WCAG 3 maps 1.4.9 to text-detectable."
+      "note": "No provision in the current draft restricts images of text."
     }
   },
   {
@@ -1877,28 +1186,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#keyboard-no-exception",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard-no-exception.html",
     "plainEnglish": {
-      "summary": "All page functionality must be operable via keyboard without exception (no mouse-only path allowed under any circumstances).",
-      "whyItMatters": "Ensures 100% of features can be activated by keyboard users.",
-      "realWorldExample": "Even complex freehand drawing canvases provide keyboard arrow-key drawing controls."
-    },
-    "personaBreakdown": {
-      "designer": "Design keyboard control schemes for 100% of UI interactions.",
-      "developer": "Implement keyboard event handlers for all canvas, map, and drawing widgets.",
-      "qa": "Test 100% of site features using only keyboard.",
-      "productManager": "Require keyboard parity for all custom widgets."
-    },
-    "testingGuide": {
-      "automated": "axe-core keyboard accessibility audits.",
-      "manualKeyboard": "Test entire application without touching mouse.",
-      "screenReader": "Verify screen reader accessibility for all features.",
-      "codeSnippetGood": "<canvas tabIndex=\"0\" aria-label=\"Interactive Canvas (Use arrow keys to draw)\"></canvas>",
-      "codeSnippetBad": "/* Canvas drawing features only work on mouse drag */"
+      "summary": "All functionality can be operated through a keyboard interface without needing specific timing for individual keystrokes. Unlike 2.1.1, there is no exception for path-dependent input.",
+      "whyItMatters": "Keyboard alternatives for drawing or gesture tools can be technically present but tedious."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-elements-distinguishable"
+        "keyboard-operable",
+        "keyboard-accessible"
       ],
-      "evolutionNote": "WCAG 3 builds on complete keyboard operability."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1911,28 +1208,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#no-timing",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/no-timing.html",
     "plainEnglish": {
-      "summary": "Content must not have any time limits whatsoever (except for non-interactive live broadcasts).",
-      "whyItMatters": "Users can take as long as necessary to read, process, and complete actions without session expiration stress.",
-      "realWorldExample": "Form applications allow users to take hours or days to complete without logging out."
-    },
-    "personaBreakdown": {
-      "designer": "Design workflows without session timer indicators.",
-      "developer": "Avoid setting automatic server-side session timeouts.",
-      "qa": "Leave form open for 2 hours and verify data submits successfully without session timeout errors.",
-      "productManager": "Eliminate artificial time limits across customer user journeys."
-    },
-    "testingGuide": {
-      "automated": "Manual session timer audit.",
-      "manualKeyboard": "Verify form remains active over long periods.",
-      "screenReader": "Confirm no time limit warnings interrupt reading.",
-      "codeSnippetGood": "/* Form data auto-saves and session never expires silently */",
-      "codeSnippetBad": "/* 10-minute hard timer logs user out without option to extend */"
+      "summary": "Timing is not an essential part of the event or activity, except for non-interactive synchronized media and real-time events.",
+      "whyItMatters": "Removing time limits can conflict with security policies, which need a design answer rather than an exception."
     },
     "wcag3Mapping": {
       "provisions": [
-        "no-artificial-time-limits"
+        "no-time-limits"
       ],
-      "evolutionNote": "WCAG 3 incorporates 2.2.3 into 'no-artificial-time-limits'."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1945,28 +1229,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#interruptions",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/interruptions.html",
     "plainEnglish": {
-      "summary": "Interruptions (like non-emergency popups or alerts) can be postponed or suppressed by the user.",
-      "whyItMatters": "Users with cognitive disabilities can focus on reading without unexpected popups breaking concentration.",
-      "realWorldExample": "A web app includes a 'Do Not Disturb' toggle that holds all incoming notifications in a inbox queue."
-    },
-    "personaBreakdown": {
-      "designer": "Design notification settings controls for holding non-critical alerts.",
-      "developer": "Implement notification queueing system respecting user status.",
-      "qa": "Enable Do Not Disturb and verify non-emergency toasts do not pop up automatically.",
-      "productManager": "Provide user notification controls in account settings."
-    },
-    "testingGuide": {
-      "automated": "Manual notification audit.",
-      "manualKeyboard": "Verify notification toggle is keyboard accessible.",
-      "screenReader": "Confirm live notifications are held back when suppressed.",
-      "codeSnippetGood": "/* Notifications queued silently in inbox when Do Not Disturb is enabled */",
-      "codeSnippetBad": "/* Popups interrupt user focus every 30 seconds */"
+      "summary": "The user can postpone or suppress interruptions, except interruptions involving an emergency.",
+      "whyItMatters": "Notification settings buried in account preferences are rarely discovered."
     },
     "wcag3Mapping": {
       "provisions": [
         "notifications-adjustable"
       ],
-      "evolutionNote": "WCAG 3 maps 2.2.4 to notifications-adjustable."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -1979,28 +1250,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#three-flashes",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes.html",
     "plainEnglish": {
-      "summary": "Content must not contain any component that flashes more than three times in any one-second period (no exceptions).",
-      "whyItMatters": "Eliminates all seizure risks caused by visual flashing.",
-      "realWorldExample": "All web animations strictly cap state changes below 2 flashes per second."
-    },
-    "personaBreakdown": {
-      "designer": "Ban all flashing transitions in design systems.",
-      "developer": "Enforce smooth CSS transition timing functions.",
-      "qa": "Test animations with PEAT tool.",
-      "productManager": "Enforce zero-flash policy in content creation."
-    },
-    "testingGuide": {
-      "automated": "PEAT tool analysis.",
-      "manualKeyboard": "Visual inspection.",
-      "screenReader": "N/A directly.",
-      "codeSnippetGood": "/* Smooth fade animation (0.5s) */",
-      "codeSnippetBad": "/* Rapid strobe flashing 4 times a second */"
+      "summary": "Nothing on the page flashes more than three times in any one second. Unlike 2.3.1, there is no threshold exception for small or dim flashes.",
+      "whyItMatters": "None beyond 2.3.1."
     },
     "wcag3Mapping": {
       "provisions": [
         "no-flashing-over-threshold-no-exceptions"
       ],
-      "evolutionNote": "The AAA no-exceptions variant survives in WCAG 3 as a separate provision that drops the minimum-size allowance."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2013,28 +1271,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#location",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/location.html",
     "plainEnglish": {
-      "summary": "Information about the user's location within a set of web pages is available (e.g. breadcrumbs).",
-      "whyItMatters": "Helps users orient themselves within deep hierarchical websites.",
-      "realWorldExample": "A documentation page includes a breadcrumb trail: Home > Docs > WCAG 3 > Guidelines."
-    },
-    "personaBreakdown": {
-      "designer": "Include breadcrumb navigation trails on all sub-pages.",
-      "developer": "Implement semantic `<nav aria-label=\"Breadcrumb\"><ol>` lists.",
-      "qa": "Verify breadcrumb trail updates accurately on deep navigation routes.",
-      "productManager": "Require breadcrumbs in site architecture guidelines."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks breadcrumb aria labels.",
-      "manualKeyboard": "Tab through breadcrumb link sequence.",
-      "screenReader": "Confirm screen reader announces breadcrumb navigation landmark.",
-      "codeSnippetGood": "<nav aria-label=\"Breadcrumb\"><ol><li><a href=\"/\">Home</a></li><li>Docs</li></ol></nav>",
-      "codeSnippetBad": "<!-- Deep subpage with no location indicators -->"
+      "summary": "Information about the user's location within a set of pages is available.",
+      "whyItMatters": "Breadcrumbs that only reflect the URL structure may not match how users think about the site."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "navigating-content"
+      "provisions": [],
+      "related": [
+        "current-step-indicated",
+        "all-steps-listed"
       ],
-      "evolutionNote": "WCAG 3 includes location in navigating-content outcomes."
+      "note": "No provision in the current draft covers location within a set of pages."
     }
   },
   {
@@ -2047,28 +1293,13 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#link-purpose-link-only",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-link-only.html",
     "plainEnglish": {
-      "summary": "A mechanism is available to allow the purpose of each link to be identified from link text alone.",
-      "whyItMatters": "Users browsing links out of context can understand every link destination without reading surrounding sentences.",
-      "realWorldExample": "Link text reads 'Download Q3 Financial Spreadsheet (XLSX, 2MB)' instead of 'Click Here'."
-    },
-    "personaBreakdown": {
-      "designer": "Write self-describing link labels for all links.",
-      "developer": "Provide explicit descriptive text inside `<a>` tags.",
-      "qa": "Inspect link text across entire application.",
-      "productManager": "Enforce self-describing link text in copywriting style guides."
-    },
-    "testingGuide": {
-      "automated": "axe-core link-name rule.",
-      "manualKeyboard": "Tab through links.",
-      "screenReader": "Read links list in NVDA.",
-      "codeSnippetGood": "<a href=\"file.pdf\">Download 2026 Accessibility Guide (PDF)</a>",
-      "codeSnippetBad": "<a href=\"file.pdf\">More Info</a>"
+      "summary": "A mechanism is available so that the purpose of each link can be identified from the link text alone, except where the purpose would be ambiguous to everyone.",
+      "whyItMatters": "Visually hidden text added to make links unique can mismatch what speech-input users see and say."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "interactive-element-names-available"
-      ],
-      "evolutionNote": "WCAG 3 maps link purpose to interactive-element-names-available."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft covers link purpose."
     }
   },
   {
@@ -2081,62 +1312,34 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#section-headings",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/section-headings.html",
     "plainEnglish": {
-      "summary": "Section headings are used to organize content into distinct visual and semantic sections.",
-      "whyItMatters": "Break up long walls of text into digestible sections for readers with cognitive impairments.",
-      "realWorldExample": "Every major paragraph section is introduced by a descriptive `<h3>` heading."
-    },
-    "personaBreakdown": {
-      "designer": "Design visual section headers for all content blocks.",
-      "developer": "Structure document content using proper heading tags (`<h2>`, `<h3>`).",
-      "qa": "Verify section headings organize all major content blocks.",
-      "productManager": "Require section heading structure in editorial specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core heading-order rules.",
-      "manualKeyboard": "Tab through headings.",
-      "screenReader": "Navigate headings using 'H' key in NVDA.",
-      "codeSnippetGood": "<h3>Section 1: Installation</h3><p>Content...</p>",
-      "codeSnippetBad": "<!-- Wall of 2000 words without any section headings -->"
+      "summary": "Section headings are used to organize the content.",
+      "whyItMatters": "Headings used for styling rather than structure create a misleading outline."
     },
     "wcag3Mapping": {
       "provisions": [
-        "blocks-of-text-readable-enhanced"
+        "heading-structure-available"
       ],
-      "evolutionNote": "WCAG 3 includes section headings under readable text outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
     "id": "2.5.5",
     "num": "2.5.5",
-    "name": "Target Size (AAA)",
+    "name": "Target Size (Enhanced)",
     "level": "AAA",
     "principle": "Operable",
     "w3cSlug": "target-size-aaa",
     "trUrl": "https://www.w3.org/TR/WCAG22/#target-size-aaa",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-aaa.html",
     "plainEnglish": {
-      "summary": "Interactive target size is at least 44x44 CSS pixels (except for inline text links).",
-      "whyItMatters": "Ensures buttons and controls are easily tapable for users with severe hand tremors or motor disabilities.",
-      "realWorldExample": "All touchscreen buttons and icon controls span at least 44x44px in size."
-    },
-    "personaBreakdown": {
-      "designer": "Design interactive targets to at least 44x44px.",
-      "developer": "Apply `min-width: 44px; min-height: 44px;` in CSS.",
-      "qa": "Measure button bounding boxes in Chrome DevTools.",
-      "productManager": "Require 44x44px target size across design tokens."
-    },
-    "testingGuide": {
-      "automated": "Lighthouse tap target audit.",
-      "manualKeyboard": "Inspect target dimensions.",
-      "screenReader": "N/A directly; critical for touch/pointer users.",
-      "codeSnippetGood": "button { min-width: 44px; min-height: 44px; padding: 10px; }",
-      "codeSnippetBad": "button { width: 16px; height: 16px; }"
+      "summary": "Pointer targets are at least 44 by 44 CSS pixels. Exceptions: an equivalent target of that size is on the same page; the target is in a sentence or block of text; the browser sets the size and the author hasn't changed it; or the presentation is essential.",
+      "whyItMatters": "None beyond 2.5.8. This is the stricter version."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "interactive-elements-distinguishable"
-      ],
-      "evolutionNote": "WCAG 3 integrates 44x44px target sizes under target size outcomes."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft covers target size."
     }
   },
   {
@@ -2149,28 +1352,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#unusual-words",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/unusual-words.html",
     "plainEnglish": {
-      "summary": "Provide a mechanism for identifying specific definitions of unusual words, jargon, or idioms.",
-      "whyItMatters": "Helps readers with cognitive disabilities understand specialized terminology.",
-      "realWorldExample": "A technical article includes inline glossary definitions for specialized terms."
-    },
-    "personaBreakdown": {
-      "designer": "Design tooltip or inline glossary definition indicators.",
-      "developer": "Use HTML `<dfn>` and definition lists (`<dl>`, `<dt>`, `<dd>`).",
-      "qa": "Test word definition links and glossary tooltips.",
-      "productManager": "Provide glossary terms for technical documentation."
-    },
-    "testingGuide": {
-      "automated": "Manual glossary audit.",
-      "manualKeyboard": "Tab to definition terms.",
-      "screenReader": "Verify screen reader reads definitions.",
-      "codeSnippetGood": "<dfn id=\"a11y\">Accessibility (a11y)</dfn>",
-      "codeSnippetBad": "<!-- Using complex jargon without any definitions or explanations -->"
+      "summary": "A mechanism is available for identifying specific definitions of words or phrases used in an unusual or restricted way, including idioms and jargon.",
+      "whyItMatters": "A glossary on a separate page technically counts but interrupts reading."
     },
     "wcag3Mapping": {
       "provisions": [
-        "clear-language"
+        "non-literal-language-explained",
+        "common-words-used"
       ],
-      "evolutionNote": "WCAG 3 maps 3.1.3 to clear-language outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2183,28 +1374,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#abbreviations",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/abbreviations.html",
     "plainEnglish": {
-      "summary": "Provide a mechanism for identifying the expanded form or definition of abbreviations.",
-      "whyItMatters": "Screen reader users and cognitive readers need to know what acronyms (like W3C or WCAG) stand for.",
-      "realWorldExample": "Abbreviations use `<abbr title=\"World Wide Web Consortium\">W3C</abbr>`."
-    },
-    "personaBreakdown": {
-      "designer": "Include abbreviation expansion styling.",
-      "developer": "Wrap acronyms in `<abbr title=\"...\">` tags on first use.",
-      "qa": "Hover over abbreviations and verify title expansion tooltip appears.",
-      "productManager": "Require abbreviation definitions in content guidelines."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks for valid <abbr> tags.",
-      "manualKeyboard": "Tab to abbreviation tags.",
-      "screenReader": "Confirm screen reader speaks expanded abbreviation title.",
-      "codeSnippetGood": "<abbr title=\"World Wide Web Consortium\">W3C</abbr>",
-      "codeSnippetBad": "W3C <!-- Acronym used with no expansion -->"
+      "summary": "A mechanism is available for identifying the expanded form or meaning of abbreviations.",
+      "whyItMatters": "The abbr title attribute alone isn't reliably exposed to keyboard, touch or screen reader users."
     },
     "wcag3Mapping": {
       "provisions": [
-        "clear-language"
+        "abbreviations-explained"
       ],
-      "evolutionNote": "WCAG 3 includes abbreviations in clear-language outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2217,28 +1395,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#reading-level",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/reading-level.html",
     "plainEnglish": {
-      "summary": "When text requires advanced reading ability beyond lower secondary education level, supplemental clear language versions are available.",
-      "whyItMatters": "Ensures complex medical, legal, or technical documentation can be comprehended by all readers.",
-      "realWorldExample": "A legal terms page includes a 'Plain English Summary' at the top of each section."
-    },
-    "personaBreakdown": {
-      "designer": "Design plain-English summary callouts at the top of complex articles.",
-      "developer": "Provide simplified text alternatives or toggle views.",
-      "qa": "Test readability score using Flesch-Kincaid grade level analyzers.",
-      "productManager": "Require plain English summaries for legal and technical documentation."
-    },
-    "testingGuide": {
-      "automated": "Flesch-Kincaid readability scoring tools.",
-      "manualKeyboard": "Inspect plain English summary callouts.",
-      "screenReader": "Verify screen reader reads plain English summaries first.",
-      "codeSnippetGood": "<div class=\"plain-english-summary\"><h3>Plain English Summary</h3><p>...</p></div>",
-      "codeSnippetBad": "<!-- Dense 50-page legal text with zero summary -->"
+      "summary": "When text needs reading ability above lower secondary education level (after removing proper names and titles), supplemental content or a simpler version is available.",
+      "whyItMatters": "Readability formulas measure sentence and word length, not whether people actually understand the text."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "clear-language"
+      "provisions": [],
+      "related": [
+        "summaries-available",
+        "common-words-used"
       ],
-      "evolutionNote": "WCAG 3 promotes clear language and plain-English translations."
+      "note": "No provision in the current draft uses a reading-level test."
     }
   },
   {
@@ -2251,28 +1417,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#change-on-request",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html",
     "plainEnglish": {
-      "summary": "Changes of context are initiated ONLY by user request or a mechanism is available to turn off such changes.",
-      "whyItMatters": "Users with cognitive disabilities are easily disoriented when pages auto-redirect or refresh automatically.",
-      "realWorldExample": "Selecting an option in a dropdown updates internal state silently without auto-submitting or auto-redirecting."
-    },
-    "personaBreakdown": {
-      "designer": "Design explicit submit actions for all form changes.",
-      "developer": "Eliminate automatic page reloads or redirects triggered by selection changes.",
-      "qa": "Select options in dropdowns; confirm page never auto-submits.",
-      "productManager": "Prohibit auto-submitting inputs."
-    },
-    "testingGuide": {
-      "automated": "axe-core input-onchange rules.",
-      "manualKeyboard": "Use arrow keys in dropdowns without auto-submitting.",
-      "screenReader": "Confirm context remains stable.",
-      "codeSnippetGood": "<select id=\"opt\"></select><button type=\"submit\">Submit</button>",
-      "codeSnippetBad": "<select onchange=\"location.href=this.value\">"
+      "summary": "Changes of context happen only at the user's request, or there's a mechanism to turn such changes off.",
+      "whyItMatters": "Opening new windows or tabs without warning remains common and disorienting."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "change-of-content-notified"
+      "provisions": [],
+      "related": [
+        "focus-user-controlled",
+        "change-of-user-agent-notified"
       ],
-      "evolutionNote": "WCAG 3 maps 3.2.5 to change-of-content-notified outcomes."
+      "note": "No provision in the current draft restricts changes of context to user request."
     }
   },
   {
@@ -2285,28 +1439,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#help",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/help.html",
     "plainEnglish": {
-      "summary": "Context-sensitive help is available for complex form fields.",
-      "whyItMatters": "Provides immediate guidance for users filling out complex financial or tax forms.",
-      "realWorldExample": "Next to a 'Tax ID' field, a tooltip button 'What is this?' opens explicit instructions."
-    },
-    "personaBreakdown": {
-      "designer": "Design context-sensitive help icons and modal popovers.",
-      "developer": "Provide `aria-describedby` links to contextual help dialogs.",
-      "qa": "Click help icons next to form fields and verify guidance text appears.",
-      "productManager": "Require context-sensitive help on complex input workflows."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks aria-describedby links.",
-      "manualKeyboard": "Tab to help buttons and press Enter.",
-      "screenReader": "Verify screen reader reads help text.",
-      "codeSnippetGood": "<label for=\"ssn\">SSN</label><button aria-label=\"Help for SSN field\" onclick=\"openHelp()\">?</button>",
-      "codeSnippetBad": "<!-- Complex input field with zero instructions or help options -->"
+      "summary": "Context-sensitive help is available: help text related to the function currently being performed. A general help page doesn't meet the definition.",
+      "whyItMatters": "Help that is technically context-sensitive but terse can still leave users stuck."
     },
     "wcag3Mapping": {
       "provisions": [
-        "process-instructions-available"
+        "contextual-help-available"
       ],
-      "evolutionNote": "WCAG 3 includes contextual help in process-instructions-available."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2319,29 +1460,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#error-prevention-all",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-all.html",
     "plainEnglish": {
-      "summary": "For ALL web forms submitting user data, submissions are reversible, verified, or confirmed before final submission.",
-      "whyItMatters": "Prevents accidental data loss or irreversible errors across all form submissions.",
-      "realWorldExample": "Before submitting any form, a confirmation modal displays a summary of entered data for review."
-    },
-    "personaBreakdown": {
-      "designer": "Design confirmation review steps for all forms.",
-      "developer": "Implement confirmation review screens before processing data writes.",
-      "qa": "Submit forms and confirm review step allows editing data before final submit.",
-      "productManager": "Require review/confirmation steps across all application forms."
-    },
-    "testingGuide": {
-      "automated": "Manual form flow audit.",
-      "manualKeyboard": "Tab through confirmation review screen.",
-      "screenReader": "Confirm screen reader reads summary details.",
-      "codeSnippetGood": "<!-- Confirmation review step displays entered data with Edit and Confirm buttons -->",
-      "codeSnippetBad": "<!-- Form submits instantly with zero opportunity to review or edit data -->"
+      "summary": "For pages that require the user to submit information, at least one is true: submissions are reversible; input is checked and the user can correct it; or the user can review, confirm and correct before final submission.",
+      "whyItMatters": "None beyond 3.3.4. This extends it to every submission."
     },
     "wcag3Mapping": {
       "provisions": [
-        "going-back-supported",
-        "progress-saved"
+        "errors-preventable"
       ],
-      "evolutionNote": "WCAG 3 covers error prevention under going-back-supported and progress-saved outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2354,28 +1481,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#audio-only-live",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/audio-only-live.html",
     "plainEnglish": {
-      "summary": "Live audio-only content provides a live text alternative (such as real-time CART captions or live transcript text).",
-      "whyItMatters": "Deaf users listening to live radio webcasts or press conferences need live text representations.",
-      "realWorldExample": "A live audio broadcast stream displays an integrated live text transcript feed."
-    },
-    "personaBreakdown": {
-      "designer": "Design live transcript overlay containers for live audio players.",
-      "developer": "Stream CART or live speech-to-text API outputs into live `aria-live=\"polite\"` containers.",
-      "qa": "Test live audio streams with real-time text transcription feeds.",
-      "productManager": "Contract live CART transcribers for major live audio events."
-    },
-    "testingGuide": {
-      "automated": "Manual live stream audit.",
-      "manualKeyboard": "Verify live transcript toggle is keyboard focusable.",
-      "screenReader": "Verify aria-live region updates speak live transcript text.",
-      "codeSnippetGood": "<div role=\"region\" aria-live=\"polite\">[Live Audio Transcript]: Welcome...</div>",
-      "codeSnippetBad": "<audio src=\"live-broadcast\"></audio>"
+      "summary": "Live audio-only content, such as a live audio stream, has an alternative that presents equivalent information.",
+      "whyItMatters": "A text summary posted afterwards doesn't help people following the event live."
     },
     "wcag3Mapping": {
       "provisions": [
         "dialogue-transcripts-available-live"
       ],
-      "evolutionNote": "WCAG 3 covers live audio-only under live dialogue transcripts."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2388,28 +1502,13 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#identify-purpose",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/identify-purpose.html",
     "plainEnglish": {
-      "summary": "In content implemented using markup languages, the purpose of UI components and icons can be programmatically determined.",
-      "whyItMatters": "Allows assistive tools to substitute standard icons (like a home icon) with personalized symbol sets for users with cognitive or speech disabilities.",
-      "realWorldExample": "Navigation links use standard microdata or HTML autocomplete/purpose attributes allowing custom symbol overlays."
-    },
-    "personaBreakdown": {
-      "designer": "Use consistent icon semantics across UI design components.",
-      "developer": "Annotate UI controls with standard microdata/ARIA purpose attributes.",
-      "qa": "Inspect markup for standardized purpose attributes.",
-      "productManager": "Specify symbol-overlay compatibility in design system specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core purpose attribute validation.",
-      "manualKeyboard": "Inspect navigation element markup.",
-      "screenReader": "Confirm screen reader identifies element purpose.",
-      "codeSnippetGood": "<a href=\"/\" aria-label=\"Home page\"><svg aria-hidden=\"true\"><use href=\"#home-icon\"></use></svg> Home</a>",
-      "codeSnippetBad": "<a href=\"/\"><i class=\"icon-12\"></i></a>"
+      "summary": "In content built with markup languages, the purpose of user interface components, icons and regions can be programmatically determined.",
+      "whyItMatters": "Tools that personalize interfaces for people with cognitive disabilities depend on semantics that most sites don't yet provide."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "interactive-element-names-available"
-      ],
-      "evolutionNote": "WCAG 3 maps 1.3.6 to element identification and name outcomes."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft requires identifying the purpose of components, icons and regions."
     }
   },
   {
@@ -2422,28 +1521,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#re-authenticating",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/re-authenticating.html",
     "plainEnglish": {
-      "summary": "When an authenticated session expires, the user can continue the activity without loss of data after re-authenticating.",
-      "whyItMatters": "Users who take extra time to complete forms due to motor or cognitive disabilities do not lose their typed work if logged out.",
-      "realWorldExample": "A banking session times out, but after logging back in, the user's filled-out wire transfer form is completely restored."
-    },
-    "personaBreakdown": {
-      "designer": "Design re-authentication modal dialogs that preserve current page state.",
-      "developer": "Store form state locally in encrypted sessionStorage during re-auth.",
-      "qa": "Let session expire while filling out form, log back in, and verify data remains intact.",
-      "productManager": "Require state preservation across re-authentication flows."
-    },
-    "testingGuide": {
-      "automated": "Manual session expiration audit.",
-      "manualKeyboard": "Test re-authentication modal using keyboard.",
-      "screenReader": "Verify screen reader announces saved state restoration.",
-      "codeSnippetGood": "/* Form data saved securely to sessionStorage and restored after login */",
-      "codeSnippetBad": "/* Session expires and redirects to home page, wiping 30 minutes of typed form data */"
+      "summary": "When an authenticated session expires, the user can continue the activity without losing data after signing in again.",
+      "whyItMatters": "Re-authentication that drops the user on a home page technically keeps their data but loses their place."
     },
     "wcag3Mapping": {
-      "provisions": [
+      "provisions": [],
+      "related": [
         "progress-saved"
       ],
-      "evolutionNote": "WCAG 3 handles re-authentication under progress-saved outcomes."
+      "note": "No provision in the current draft covers re-authentication."
     }
   },
   {
@@ -2456,28 +1542,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#timeouts",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/timeouts.html",
     "plainEnglish": {
-      "summary": "Users are warned about the duration of any user inactivity that could cause data loss.",
-      "whyItMatters": "Prevents surprise session expirations for users taking extra time to complete forms.",
-      "realWorldExample": "A session timeout modal appears 5 minutes before expiration, explicitly stating 'Your session will expire in 5 minutes due to inactivity.'"
-    },
-    "personaBreakdown": {
-      "designer": "Design prominent session timeout warning dialogs.",
-      "developer": "Implement inactivity timer events that display Accessible Warning Modals before session expiration.",
-      "qa": "Wait for inactivity threshold and verify warning dialog pops up with extension option.",
-      "productManager": "Require timeout warnings across all authenticated user workflows."
-    },
-    "testingGuide": {
-      "automated": "Manual timeout alert audit.",
-      "manualKeyboard": "Focus extend button in timeout warning modal.",
-      "screenReader": "Verify alert role announces timeout warning asynchronously.",
-      "codeSnippetGood": "<div role=\"alertdialog\" aria-label=\"Session Timeout Warning\">Session expires in 5 mins...</div>",
-      "codeSnippetBad": "/* System times out silently with zero advance warning */"
+      "summary": "Users are warned how long they can be inactive before data is lost, unless the data is kept for more than 20 hours of inactivity.",
+      "whyItMatters": "A warning shown once at the start of a long form is forgotten by the time it matters."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "no-artificial-time-limits"
+      "provisions": [],
+      "related": [
+        "time-limits-conveyed"
       ],
-      "evolutionNote": "WCAG 3 integrates timeout warnings under time limit outcomes."
+      "note": "No provision in the current draft covers warnings about inactivity timeouts."
     }
   },
   {
@@ -2490,28 +1563,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#animation-from-interactions",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
     "plainEnglish": {
-      "summary": "Motion animation triggered by user interaction can be disabled, unless the animation is essential.",
-      "whyItMatters": "Users with vestibular spectrum disorders experience severe nausea or dizziness from parallax scrolling or zoom animations.",
-      "realWorldExample": "A website respects `prefers-reduced-motion: reduce` by disabling scroll parallax and hover zoom effects."
-    },
-    "personaBreakdown": {
-      "designer": "Design alternative static states for all interaction animations.",
-      "developer": "Wrap all CSS animations in `@media (prefers-reduced-motion: reduce)` media queries.",
-      "qa": "Enable 'Reduce Motion' in OS settings and verify UI animations are suppressed.",
-      "productManager": "Require reduced motion compliance in design system animation guidelines."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks for prefers-reduced-motion queries.",
-      "manualKeyboard": "Trigger hover/focus effects with reduced motion enabled.",
-      "screenReader": "Confirm visual stability.",
-      "codeSnippetGood": "@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }",
-      "codeSnippetBad": "/* Parallax scrolling animations play regardless of OS motion preferences */"
+      "summary": "Motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information conveyed.",
+      "whyItMatters": "A site-level toggle that users must find before they feel ill doesn't help on first visit."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "animation-and-movement"
+      "provisions": [],
+      "related": [
+        "user-settings-supported",
+        "no-visual-motion"
       ],
-      "evolutionNote": "WCAG 3 maintains motion controls under animation-and-movement outcomes."
+      "note": "No provision in the current draft is specific to animation triggered by interaction."
     }
   },
   {
@@ -2524,28 +1585,13 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#multiple-ways",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html",
     "plainEnglish": {
-      "summary": "Provide more than one way to locate a web page within a set of web pages (e.g. site search, sitemap, main navigation).",
-      "whyItMatters": "Different users have different preferences for finding information; some prefer top navigation menus, while others rely on search bars or sitemaps.",
-      "realWorldExample": "A corporate website provides top header navigation menus, a header search input, and a footer sitemap link."
-    },
-    "personaBreakdown": {
-      "designer": "Design persistent search bars and sitemap footers across all site layouts.",
-      "developer": "Implement header search inputs and semantic footer sitemap links.",
-      "qa": "Verify users can find pages using both main menu and search/sitemap.",
-      "productManager": "Require multi-path navigation across site architecture."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks for navigation landmarks.",
-      "manualKeyboard": "Tab through search bar, navigation menu, and footer sitemap links.",
-      "screenReader": "Confirm screen reader announces search and navigation landmarks.",
-      "codeSnippetGood": "<!-- Top Nav + Search Bar + Footer Sitemap link provided -->",
-      "codeSnippetBad": "<!-- Site only offers a single nested hamburger menu with zero search or sitemap option -->"
+      "summary": "There is more than one way to find a page within a set of pages, except pages that are the result of, or a step in, a process.",
+      "whyItMatters": "Two ways that both depend on a complex mega-menu don't really give users a choice."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "navigating-content"
-      ],
-      "evolutionNote": "WCAG 3 incorporates multiple ways under navigating-content outcomes."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft requires more than one way to find a page."
     }
   },
   {
@@ -2558,29 +1604,13 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#focus-not-obscured-enhanced",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced.html",
     "plainEnglish": {
-      "summary": "When an item receives keyboard focus, no part of the item is obscured by author-created content (100% of focus box is completely visible).",
-      "whyItMatters": "Provides maximum visibility for keyboard users so zero pixels of the focused element are covered.",
-      "realWorldExample": "A sticky chat widget automatically repositions or hides if keyboard focus lands on a link behind it."
-    },
-    "personaBreakdown": {
-      "designer": "Design floating widgets to avoid overlapping focusable elements.",
-      "developer": "Dynamically adjust floating overlay positions on element focus.",
-      "qa": "Tab through all page elements and verify 100% of focused boundary box is visible.",
-      "productManager": "Require zero focus obscuration across floating UI components."
-    },
-    "testingGuide": {
-      "automated": "Manual focus visibility audit.",
-      "manualKeyboard": "Tab through page and inspect floating widget overlaps.",
-      "screenReader": "Confirm full visibility.",
-      "codeSnippetGood": "/* Floating widgets reposition to avoid overlapping focused content elements */",
-      "codeSnippetBad": "/* Sticky chat widget covers bottom half of focused button */"
+      "summary": "When a component receives keyboard focus, no part of it is hidden by content the author created.",
+      "whyItMatters": "None beyond 2.4.11. This is the full version."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "overlay-content-dismissible",
-        "hover-or-focus-content-dismissible"
-      ],
-      "evolutionNote": "No direct successor yet. The enhanced (fully unobscured) variant has no counterpart in the Sep 2026 draft at all."
+      "provisions": [],
+      "related": [],
+      "note": "No provision in the current draft covers focus being obscured."
     }
   },
   {
@@ -2593,29 +1623,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#focus-appearance",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html",
     "plainEnglish": {
-      "summary": "New in WCAG 2.2! Focus indicators must have an area of at least the size of a 2 CSS pixel perimeter and a contrast ratio of at least 3:1 between the indicator and the unfocused state.",
-      "whyItMatters": "Faint 1px grey focus dots are technically 'visible' under 2.4.7, but fail 2.4.13 because low vision users miss them.",
-      "realWorldExample": "Focus indicators must have an area of at least 2-pixel thickness around the element periphery and 3:1 contrast against adjacent colors."
-    },
-    "personaBreakdown": {
-      "designer": "Specify 2px+ thick focus outlines with distinct contrast relative to adjacent background colors.",
-      "developer": "Use standard `outline` or `box-shadow` CSS rules with at least 2px thickness.",
-      "qa": "Measure focus indicator dimensions and contrast against background colors.",
-      "productManager": "Ensure design tokens include standardized focus indicators passing WCAG 2.2 AAA."
-    },
-    "testingGuide": {
-      "automated": "Manual element inspector check in DevTools recommended.",
-      "manualKeyboard": "Tab through elements and visually confirm focus outline contrast and thickness.",
-      "screenReader": "Verify focus announcements match focused controls.",
-      "codeSnippetGood": "button:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }",
-      "codeSnippetBad": "button:focus-visible { outline: 1px solid #cccccc; } /* Too faint */"
+      "summary": "When the focus indicator is visible, an area of it is at least as large as a 2 CSS pixel thick perimeter of the unfocused component, and has a contrast ratio of at least 3:1 between the same pixels in the focused and unfocused states. It doesn't apply if the browser sets the indicator and the author can't adjust it, or if the author hasn't modified the indicator or its background.",
+      "whyItMatters": "An indicator can meet the area and contrast numbers yet be hard to spot if it is inside the component or similar to other states such as hover."
     },
     "wcag3Mapping": {
       "provisions": [
         "focus-indicator-contrast-sufficient",
         "focus-indicator-size-sufficient"
       ],
-      "evolutionNote": "WCAG 3 carries the quantitative focus appearance metrics into separate contrast and size provisions."
+      "related": [],
+      "note": "The draft says \"sufficient\" without giving numbers."
     }
   },
   {
@@ -2628,28 +1645,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#pointer-gestures",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures.html",
     "plainEnglish": {
-      "summary": "All functionality that operates using multipoint or path-based gestures (like pinch-zoom, swiping, or two-finger drag) can be operated with a single pointer without a path-based gesture.",
-      "whyItMatters": "Users with motor disabilities or users using head pointers/eye trackers cannot perform complex multi-finger gestures.",
-      "realWorldExample": "An interactive map allows two-finger pinch-zooming but ALSO provides accessible '+' and '-' zoom buttons."
-    },
-    "personaBreakdown": {
-      "designer": "Include single-tap alternative buttons for all gesture-based controls.",
-      "developer": "Provide click event handlers on visible button controls alongside touch gesture handlers.",
-      "qa": "Test gesture widgets using single mouse clicks or single-finger taps.",
-      "productManager": "Require single-pointer button alternatives for gesture features."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks pointer event handlers.",
-      "manualKeyboard": "Verify single-tap button controls.",
-      "screenReader": "Verify accessible names for single-tap gesture buttons.",
-      "codeSnippetGood": "<button aria-label=\"Zoom in\" onclick=\"zoomIn()\"><svg>...</svg></button>",
-      "codeSnippetBad": "/* Map view can only be zoomed by performing a two-finger pinch gesture */"
+      "summary": "Functionality that uses multipoint gestures (such as pinch) or path-based gestures (such as a swipe pattern) can also be operated with a single pointer without a path-based gesture, unless the gesture is essential.",
+      "whyItMatters": "A single-pointer alternative hidden in a menu technically passes but is rarely discovered."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-elements-distinguishable"
+        "path-based-gesture-not-relied-on",
+        "simple-pointer-input-available"
       ],
-      "evolutionNote": "WCAG 3 includes pointer gesture alternatives under gesture outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2662,28 +1667,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#pointer-cancellation",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pointer-cancellation.html",
     "plainEnglish": {
-      "summary": "For functionality that can be operated using a single pointer, completion of the function is on the up-event (like mouseup or touchend), or a mechanism is available to abort the function before completion.",
-      "whyItMatters": "Prevents accidental clicks when users accidentally touch an screen element and want to drag their finger away before releasing.",
-      "realWorldExample": "A button action triggers on `click` (mouseup), allowing users to slide off the button to cancel the press."
-    },
-    "personaBreakdown": {
-      "designer": "Design interactive controls expecting standard up-event triggers.",
-      "developer": "Use standard `click` or `mouseup` event handlers instead of `mousedown` or `touchstart`.",
-      "qa": "Press down mouse on button, drag cursor outside button, release mouse; verify action did NOT execute.",
-      "productManager": "Prohibit mousedown/touchstart action triggers in technical specs."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks pointer event listener types.",
-      "manualKeyboard": "Inspect event listener bindings.",
-      "screenReader": "Confirm standard click activation.",
-      "codeSnippetGood": "<button onclick=\"submitForm()\">Submit</button>",
-      "codeSnippetBad": "<button onmousedown=\"submitForm()\">Submit</button> /* Triggers instantly on down-press */"
+      "summary": "For single-pointer functionality, at least one is true: nothing happens on the down-event; the function completes on the up-event and can be aborted before or undone after; the up-event reverses whatever the down-event did; or completing on the down-event is essential.",
+      "whyItMatters": "Undo that is only available briefly in a toast is easy to miss for screen reader and magnifier users."
     },
     "wcag3Mapping": {
       "provisions": [
-        "interactive-elements-distinguishable"
+        "pointer-activation-controllable"
       ],
-      "evolutionNote": "WCAG 3 handles pointer cancellation under input operation outcomes."
+      "related": [
+        "consistent-pointer-cancellation"
+      ],
+      "note": null
     }
   },
   {
@@ -2696,28 +1690,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#motion-actuation",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation.html",
     "plainEnglish": {
-      "summary": "Functionality triggered by device motion (like shaking or tilting a phone) can also be operated by conventional user interface components, and motion can be disabled.",
-      "whyItMatters": "Users with motor impairments who have mobile devices mounted to wheelchairs cannot shake or tilt their device.",
-      "realWorldExample": "A mobile app allows shaking device to undo typing, but ALSO provides an 'Undo' button and an option to turn off shake-to-undo."
-    },
-    "personaBreakdown": {
-      "designer": "Include UI button fallbacks for all device-motion features.",
-      "developer": "Provide accessible button triggers and a setting to disable `devicemotion` listeners.",
-      "qa": "Disable device motion in app settings and verify UI button triggers operate feature.",
-      "productManager": "Require motion actuation toggles and button fallbacks in mobile app specs."
-    },
-    "testingGuide": {
-      "automated": "Manual mobile device testing.",
-      "manualKeyboard": "Verify UI undo button is keyboard focusable.",
-      "screenReader": "Confirm screen reader announces undo button.",
-      "codeSnippetGood": "<button onclick=\"undo()\">Undo Typing</button>",
-      "codeSnippetBad": "/* App undo feature ONLY works by physically shaking device */"
+      "summary": "Functionality operated by device motion (such as shaking or tilting) or user motion can also be operated through interface components, and responding to motion can be turned off. Exceptions: the motion works through an accessibility-supported interface, or it's essential and doing it another way would invalidate the activity.",
+      "whyItMatters": "A motion setting that is off only once the user finds it means people with tremors may trigger actions by accident on first use."
     },
     "wcag3Mapping": {
       "provisions": [
-        "user-control"
+        "body-movements-not-relied-on"
       ],
-      "evolutionNote": "WCAG 3 includes motion actuation fallbacks under user-control outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2730,28 +1711,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#concurrent-input-mechanisms",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/concurrent-input-mechanisms.html",
     "plainEnglish": {
-      "summary": "Web content does not restrict use of input mechanisms available on a device (e.g. allowing users to switch freely between mouse, keyboard, touch, and stylus).",
-      "whyItMatters": "Users frequently switch between touchscreens, external mice, and keyboards depending on task context.",
-      "realWorldExample": "A user tabs using keyboard, then taps a touchscreen button, and then uses a mouse without the app blocking any input mode."
-    },
-    "personaBreakdown": {
-      "designer": "Design components supporting simultaneous touch, hover, and focus states.",
-      "developer": "Avoid locking input modes based on initial device touch detection.",
-      "qa": "Switch between mouse, touchscreen, and keyboard on touchscreen laptop during single session.",
-      "productManager": "Prohibit single-input lockouts in device support guidelines."
-    },
-    "testingGuide": {
-      "automated": "axe-core pointer input validation.",
-      "manualKeyboard": "Test switching between input devices.",
-      "screenReader": "Confirm seamless input switching.",
-      "codeSnippetGood": "/* Event listeners support click, touch, and keydown seamlessly */",
-      "codeSnippetBad": "/* App detects touchscreen on load and disables mouse hover listeners entirely */"
+      "summary": "Content doesn't restrict the input methods available on a platform, except where that is essential, needed for security, or needed to respect user settings.",
+      "whyItMatters": "Switching off touch on \"desktop\" layouts strands people who use a touchscreen with a keyboard."
     },
     "wcag3Mapping": {
       "provisions": [
-        "user-control"
+        "input-method-flexible"
       ],
-      "evolutionNote": "WCAG 3 integrates input mode flexibility under user-control outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2764,28 +1732,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#pronunciation",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/pronunciation.html",
     "plainEnglish": {
-      "summary": "A mechanism is available for identifying specific pronunciation of words where meaning is ambiguous without knowing pronunciation.",
-      "whyItMatters": "Helps screen readers and cognitive readers pronounce heteronyms correctly (e.g., 'read' past vs present, 'desert' verb vs noun).",
-      "realWorldExample": "Ambiguous words use ruby annotations or explicit IPA pronunciation guides."
-    },
-    "personaBreakdown": {
-      "designer": "Design inline pronunciation tooltips for ambiguous words.",
-      "developer": "Use HTML `<ruby>` / `<rt>` tags or SSML annotations.",
-      "qa": "Test pronunciation guides in NVDA/VoiceOver.",
-      "productManager": "Provide pronunciation specs for complex medical/legal terminology."
-    },
-    "testingGuide": {
-      "automated": "Manual pronunciation audit.",
-      "manualKeyboard": "Tab to pronunciation indicators.",
-      "screenReader": "Verify screen reader speaks correct pronunciation.",
-      "codeSnippetGood": "<ruby>desert<rt>/dɪˈzɜːrt/</rt></ruby>",
-      "codeSnippetBad": "<!-- Using heteronym words with zero context or pronunciation guidance -->"
+      "summary": "A mechanism is available for identifying the pronunciation of words whose meaning, in context, is ambiguous without knowing how they're pronounced.",
+      "whyItMatters": "This rarely comes up in English but matters in languages like Japanese and Hebrew."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "clear-language"
+      "provisions": [],
+      "related": [
+        "diacritics-available"
       ],
-      "evolutionNote": "WCAG 3 covers pronunciation under clear-language outcomes."
+      "note": "No provision in the current draft covers pronunciation."
     }
   },
   {
@@ -2798,29 +1753,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-navigation",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html",
     "plainEnglish": {
-      "summary": "Navigational mechanisms that are repeated on multiple web pages occur in the same relative order each time they are repeated.",
-      "whyItMatters": "Users with cognitive disabilities or visual impairments rely on predictable navigation locations across pages.",
-      "realWorldExample": "The main navigation bar header appears in identical order (Home, About, Products, Contact) on every page."
-    },
-    "personaBreakdown": {
-      "designer": "Design global header and footer navigation components used consistently across all template views.",
-      "developer": "Use shared layout components for headers, nav bars, and footers.",
-      "qa": "Navigate across 10 pages and verify navigation order remains 100% identical.",
-      "productManager": "Enforce global template header reuse across all team repositories."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks navigation landmark order.",
-      "manualKeyboard": "Tab through top nav across multiple pages.",
-      "screenReader": "Confirm navigation menu structure remains predictable.",
-      "codeSnippetGood": "<!-- Shared layout component renders identical header menu on all routes -->",
-      "codeSnippetBad": "<!-- Header navigation order changes arbitrarily between Home and Contact pages -->"
+      "summary": "Navigation that is repeated on multiple pages within a set of pages appears in the same relative order each time, unless the user changes it.",
+      "whyItMatters": "The same order in a different place on the screen still makes users hunt for it."
     },
     "wcag3Mapping": {
       "provisions": [
-        "consistent-navigation-order",
+        "consistent-navigation-order"
+      ],
+      "related": [
         "consistent-navigation-labels"
       ],
-      "evolutionNote": "WCAG 3 separates the order of repeated navigation from the labelling of it."
+      "note": null
     }
   },
   {
@@ -2833,29 +1776,16 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#consistent-identification",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html",
     "plainEnglish": {
-      "summary": "Components that have the same functionality within a set of web pages are identified consistently.",
-      "whyItMatters": "Users recognize functional elements (like a Search icon or Help button) when they look and act consistently site-wide.",
-      "realWorldExample": "A magnifying glass icon always represents 'Search' and uses `aria-label=\"Search\"` across every page."
-    },
-    "personaBreakdown": {
-      "designer": "Create shared design system icon components.",
-      "developer": "Reuse standardized UI component libraries across app modules.",
-      "qa": "Inspect buttons across site to verify identical names and icons for identical functions.",
-      "productManager": "Enforce component design system reuse across engineering teams."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks accessible name consistency.",
-      "manualKeyboard": "Inspect icon button labels across pages.",
-      "screenReader": "Confirm screen reader hears consistent accessible names.",
-      "codeSnippetGood": "<button aria-label=\"Search\"><svg>...</svg></button>",
-      "codeSnippetBad": "<!-- Search button labeled 'Search' on page 1, 'Find' on page 2, and 'Go' on page 3 -->"
+      "summary": "Components with the same functionality within a set of pages are identified consistently.",
+      "whyItMatters": "Consistent labels with inconsistent icons, or the reverse, still undermine recognition."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "consistent-structural-order",
-        "consistent-navigation-labels"
+      "provisions": [],
+      "related": [
+        "consistent-navigation-labels",
+        "consistent-control-location"
       ],
-      "evolutionNote": "WCAG 3 covers consistent identification through consistent structural order and consistent labelling."
+      "note": "No provision in the current draft requires consistent identification of all same-function components."
     }
   },
   {
@@ -2868,28 +1798,15 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#error-suggestion",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html",
     "plainEnglish": {
-      "summary": "If an input error is automatically detected and suggestions for correction are known, the suggestion is provided to the user.",
-      "whyItMatters": "Users with cognitive disabilities or dyslexic readers benefit from explicit correction suggestions rather than generic error messages.",
-      "realWorldExample": "When a user types an invalid date format '13/25/2026', the error text states 'Invalid month. Enter month between 01 and 12 (MM/DD/YYYY)'."
-    },
-    "personaBreakdown": {
-      "designer": "Design detailed error message text patterns with correction suggestions.",
-      "developer": "Provide explicit error text tied to inputs via `aria-describedby`.",
-      "qa": "Enter common invalid data into form fields; verify error message tells user how to fix it.",
-      "productManager": "Require actionable error suggestions in form validation guidelines."
-    },
-    "testingGuide": {
-      "automated": "axe-core checks aria-describedby error message links.",
-      "manualKeyboard": "Tab to invalid input and inspect error text.",
-      "screenReader": "Verify screen reader reads helpful error correction message.",
-      "codeSnippetGood": "<input id=\"date\" aria-invalid=\"true\" aria-describedby=\"date-err\"><span id=\"date-err\">Please enter MM/DD/YYYY format.</span>",
-      "codeSnippetBad": "<input id=\"date\"><span class=\"red-text\">Invalid input</span>"
+      "summary": "If an input error is automatically detected and suggestions for correcting it are known, the suggestions are provided, unless that would compromise the security or purpose of the content.",
+      "whyItMatters": "Correct suggestions can still be hard to act on, for example when they appear only in a summary at the top of a long form."
     },
     "wcag3Mapping": {
       "provisions": [
-        "error-handling"
+        "error-suggestions-provided"
       ],
-      "evolutionNote": "WCAG 3 maps 3.3.3 to error-handling outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
@@ -2902,29 +1819,17 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#error-prevention-legal-financial-data",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html",
     "plainEnglish": {
-      "summary": "For web pages that cause legal commitments or financial transactions, submissions are reversible, verified, or confirmed before final submission.",
-      "whyItMatters": "Prevents accidental bank transfers, order purchases, or legal contract agreements.",
-      "realWorldExample": "An e-commerce checkout displays an explicit 'Review Order' step before final payment authorization."
-    },
-    "personaBreakdown": {
-      "designer": "Design confirmation review steps for financial and legal forms.",
-      "developer": "Require explicit confirmation step before processing POST actions.",
-      "qa": "Test order checkout flow; confirm user can review and edit cart data before final purchase.",
-      "productManager": "Mandate confirmation review steps for all transaction workflows."
-    },
-    "testingGuide": {
-      "automated": "Manual workflow audit.",
-      "manualKeyboard": "Tab through confirmation review screen.",
-      "screenReader": "Confirm screen reader announces transaction summary details.",
-      "codeSnippetGood": "<!-- Review & Confirm step required before final payment execution -->",
-      "codeSnippetBad": "<!-- One-click button executes non-refundable $1000 bank transfer with zero confirmation -->"
+      "summary": "For pages that create legal commitments or financial transactions, modify or delete user-controllable data, or submit test responses, at least one is true: submissions are reversible; input is checked for errors and the user can correct them; or the user can review, confirm and correct before final submission.",
+      "whyItMatters": "A review step that users can click through without noticing errors technically confirms, but doesn't prevent costly mistakes."
     },
     "wcag3Mapping": {
       "provisions": [
-        "going-back-supported",
-        "progress-saved"
+        "errors-preventable"
       ],
-      "evolutionNote": "WCAG 3 includes 3.3.4 in transaction safety outcomes."
+      "related": [
+        "consequences-explained-before-agreement"
+      ],
+      "note": null
     }
   },
   {
@@ -2937,62 +1842,35 @@
     "trUrl": "https://www.w3.org/TR/WCAG22/#accessible-authentication-enhanced",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html",
     "plainEnglish": {
-      "summary": "A cognitive function test (such as remembering a password or solving a puzzle) is not required for any step in an authentication process.",
-      "whyItMatters": "Eliminates all cognitive memory traps during login by supporting password managers, WebAuthn passkeys, or magic link emails.",
-      "realWorldExample": "Login screen fully supports copy-pasting passwords, browser autofill, and biometrics (Touch ID / Face ID)."
-    },
-    "personaBreakdown": {
-      "designer": "Design login screens supporting biometrics and passkeys.",
-      "developer": "Avoid blocking copy-paste or autofill on password fields.",
-      "qa": "Verify password manager can autofill credentials without script blocking.",
-      "productManager": "Require WebAuthn/Passkey support in authentication architecture."
-    },
-    "testingGuide": {
-      "automated": "axe-core autocomplete validation.",
-      "manualKeyboard": "Paste password from clipboard into password field.",
-      "screenReader": "Confirm accessible login flow.",
-      "codeSnippetGood": "<input type=\"password\" id=\"pwd\" autocomplete=\"current-password\">",
-      "codeSnippetBad": "<input type=\"password\" onpaste=\"return false;\"> /* Blocks password manager paste */"
+      "summary": "No step of an authentication process requires a cognitive function test, unless that step offers another method that doesn't rely on one, or a mechanism to help complete it. Unlike 3.3.8, there are no object-recognition or personal-content exceptions.",
+      "whyItMatters": "None beyond 3.3.8. This removes 3.3.8's object-recognition and personal-content exceptions."
     },
     "wcag3Mapping": {
       "provisions": [
         "cognitive-test-alternatives-available"
       ],
-      "evolutionNote": "WCAG 3 maps 3.3.9 to cognitive-test-alternatives-available outcomes."
+      "related": [],
+      "note": null
     }
   },
   {
     "id": "4.1.1",
     "num": "4.1.1",
-    "name": "Parsing (Obsolete)",
-    "level": "A",
+    "name": "Parsing",
+    "level": null,
     "principle": "Robust",
     "w3cSlug": "parsing",
     "trUrl": "https://www.w3.org/TR/WCAG22/#parsing",
     "understandingUrl": "https://www.w3.org/WAI/WCAG22/Understanding/parsing.html",
     "plainEnglish": {
-      "summary": "In WCAG 2.0/2.1, SC 4.1.1 (Parsing) required valid HTML syntax. As documented in W3C WCAG 2.2 Section 4.1.1 (https://www.w3.org/TR/WCAG22/#parsing), 4.1.1 was retired as obsolete in WCAG 2.2 because modern user agents build DOM trees automatically.",
-      "whyItMatters": "Modern web browsers and assistive technologies build DOM trees reliably without relying on legacy HTML 4 parsing rules.",
-      "realWorldExample": "W3C WCAG 2.2 errata formally retired SC 4.1.1. Accessibility audits focus on semantic HTML elements and ARIA roles instead."
-    },
-    "personaBreakdown": {
-      "designer": "N/A - Technical parser rule.",
-      "developer": "Rely on standard HTML validation tools; focus accessibility efforts on semantic elements and valid ARIA.",
-      "qa": "Refer to W3C WCAG 2.2 Section 4.1.1 regarding retired parsing checks; audit semantics under 1.3.1 and 4.1.2.",
-      "productManager": "Update internal accessibility testing policies to reflect W3C WCAG 2.2 errata regarding SC 4.1.1."
-    },
-    "testingGuide": {
-      "automated": "Automated testing engines (such as axe-core 4.x) omit automated rules for 4.1.1 in WCAG 2.2 audit presets. Refer to active testing engine documentation.",
-      "manualKeyboard": "N/A.",
-      "screenReader": "N/A.",
-      "codeSnippetGood": "<div id=\"example\">Semantic Content</div>",
-      "codeSnippetBad": "<!-- Duplicate IDs are audited under 1.3.1 / 4.1.2 rather than 4.1.1 -->"
+      "summary": "Nothing. WCAG 2.2 marks this criterion obsolete and removed, so it can't be failed under 2.2. WCAG 2.2's introduction notes that organizations required by policy to conform to WCAG 2.0 or 2.1 may still need to test and report it.",
+      "whyItMatters": "Invalid markup that doesn't affect the accessibility tree isn't a WCAG failure, but it can make behavior inconsistent across browsers and assistive technologies."
     },
     "wcag3Mapping": {
-      "provisions": [
-        "text-detectable"
-      ],
-      "evolutionNote": "WCAG 3 draft omits parsing completely in favor of outcome-based DOM state testing."
-    }
+      "provisions": [],
+      "related": [],
+      "note": "Obsolete and removed in WCAG 2.2."
+    },
+    "obsolete": true
   }
 ]

@@ -38,7 +38,7 @@ for (const sc of wcag22) {
   const directTerms = [
     sc.num,
     sc.name,
-    `Level ${sc.level}`,
+    sc.obsolete ? "Obsolete" : `Level ${sc.level}`,
     sc.principle,
     sc.w3cSlug,
     mappedProvs.join(' '),
@@ -57,7 +57,7 @@ for (const sc of wcag22) {
     num: sc.num,
     level: sc.level,
     principle: sc.principle,
-    badge: `WCAG 2.2 ${sc.level}`,
+    badge: sc.obsolete ? "WCAG 2.2 obsolete" : `WCAG 2.2 ${sc.level}`,
     summary: sc.plainEnglish?.summary || '',
     whyItMatters: sc.plainEnglish?.whyItMatters || '',
     url: `/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`,

@@ -1,4 +1,8 @@
 ---
+import { readFileSync as __readState } from "node:fs";
+// Link W3C sources at the commit the site tracks, not the moving main branch.
+const trackedCommit: string = JSON.parse(__readState(`${process.cwd()}/tracking/state.json`, "utf8")).lastTrackedCommit || "main";
+import { provisionTypeLabel } from "@/lib/provision-labels";
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
 import fs from "fs";
 import path from "path";
@@ -19,7 +23,7 @@ if (fs.existsSync(wcag22Path)) {
 const wcag22SearchData = wcag22Catalog.map((sc) => ({
   num: sc.num,
   name: sc.name,
-  level: sc.level,
+  level: sc.obsolete ? "obsolete" : sc.level,
   principle: sc.principle,
   slug: sc.id.replace(/\./g, '-'),
   summary: sc.plainEnglish?.summary || '',
@@ -213,13 +217,13 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <ul class="tier-features">
           <li><strong>Bronze / Silver:</strong> …plus a to-be-decided number of supplemental requirements and assertions about content.</li>
           <li><strong>Gold:</strong> …plus assertions about the organization itself.</li>
-          <li><strong>Role:</strong> Not required to conform, but the substance a regulator or procurement process is most likely to ask for.</li>
+          <li><strong>Role:</strong> Not required to conform. The draft says the working group "might recommend regulators require organizations of a certain size complete the Silver tier".</li>
         </ul>
       </div>
     </div>
 
     <p class="rating-tier-caveat">
-      Tier placement is driven by tagging each core requirement as <em>physical harm</em>, <em>barrier</em> or <em>friction</em>.
+      Tier placement is driven by tagging each core requirement as <em>physical harm</em>, <em>risk</em>, <em>barrier</em> or <em>friction</em>.
       <strong>No provision in the draft carries such a tag yet</strong>, so no one — including this site — can currently tell you which tier a given provision falls into.
       <a href={link("/plain-english/conformance/")}>See the full conformance breakdown and readiness checklist &rarr;</a>
     </p>
@@ -253,7 +257,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <tr>
                 <td><strong>Tier Tagging</strong></td>
                 <td><span class="status-badge badge-wip">🛠️ In Progress</span></td>
-                <td>Core requirements must be tagged <em>physical harm</em>, <em>barrier</em> or <em>friction</em> to place them in reporting tiers. Zero of 245 provisions carry a tag so far.</td>
+                <td>Core requirements must be tagged <em>physical harm</em>, <em>risk</em>, <em>barrier</em> or <em>friction</em> to place them in reporting tiers. Zero of 245 provisions carry a tag so far.</td>
               </tr>
               <tr>
                 <td><strong>Policy Guidance</strong></td>
@@ -263,20 +267,20 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <tr>
                 <td><strong>Structural Framework</strong></td>
                 <td><span class="status-badge badge-done">✅ Drafted</span></td>
-                <td>Agreed 3-tier hierarchy: <em>Guideline &rarr; Outcome &rarr; Method (Testable Rules)</em>.</td>
+                <td>Drafted structure: <em>guidelines (outcome statements) &rarr; requirements and assertions &rarr; technology-specific methods</em>.</td>
               </tr>
               <tr>
                 <td><strong>{totalCount} Draft Provisions</strong></td>
                 <td><span class="status-badge badge-done">✅ Drafted</span></td>
-                <td>The {totalCount} provisions in this app are synced from W3C's active draft repository. None have reached <em>refining</em> or <em>mature</em> status yet.</td>
+                <td>The {totalCount} provisions in this app are synced from W3C's editor's draft. The published Working Draft leaves out exploratory provisions and those needing more research, so it has fewer. None have reached <em>refining</em> or <em>mature</em> status yet.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="w3c-notice-box">
-          <strong>⚠️ Official W3C Recommendation Notice:</strong>
-          <p>WCAG 3.0 is an exploratory W3C Working Draft. Organizations must continue to use <strong>WCAG 2.2</strong> as the official standard for legal compliance while monitoring WCAG 3.0 for future roadmap planning.</p>
+          <strong>⚠️ Note:</strong>
+          <p>WCAG 3.0 is a W3C Working Draft. Laws and policies reference WCAG 2.x versions (2.0, 2.1 or 2.2), so check which version applies to you, and treat WCAG 3 as something to plan for rather than conform to.</p>
         </div>
       </div>
     </details>
@@ -308,8 +312,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         <span class="filter-label">Requirement Type:</span>
         <div class="type-pills" id="type-pills" role="radiogroup" aria-label="Filter by requirement type">
           <button type="button" class="type-pill active" data-type="all" role="radio" aria-checked="true">All ({totalCount})</button>
-          <button type="button" class="type-pill" data-type="foundational" role="radio" aria-checked="false">Foundational ({typeCounts['foundational'] || 114})</button>
-          <button type="button" class="type-pill" data-type="supplemental" role="radio" aria-checked="false">Supplemental ({typeCounts['supplemental'] || 86})</button>
+          <button type="button" class="type-pill" data-type="foundational" role="radio" aria-checked="false">Core requirement ({typeCounts['foundational'] || 114})</button>
+          <button type="button" class="type-pill" data-type="supplemental" role="radio" aria-checked="false">Supplemental requirement ({typeCounts['supplemental'] || 86})</button>
           <button type="button" class="type-pill" data-type="assertion" role="radio" aria-checked="false">Assertion ({typeCounts['assertion'] || 36})</button>
         </div>
       </div>
@@ -387,12 +391,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <div class="card-top">
               <div class="badge-group">
                 <span class={`status-badge status-${status}`}>{status}</span>
-                <span class="type-badge">{item.type || "Provision"}</span>
+                <span class="type-badge">{provisionTypeLabel(item.type)}</span>
                 <span class="group-tag">{GROUP_NAMES[groupSlug] || groupSlug}</span>
               </div>
               {item.derived?.sources?.provision && (
                 <a
-                  href={`https://github.com/w3c/wcag3/blob/main/${item.derived.sources.provision}`}
+                  href={`https://github.com/w3c/wcag3/blob/${trackedCommit}/${item.derived.sources.provision}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="card-w3c-link"
@@ -535,7 +539,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
                 <div class="match-card-top">
                   <div class="match-badges">
                     <span class="match-badge num-badge">SC ${sc.num}</span>
-                    <span class="match-badge level-badge level-${sc.level}">Level ${sc.level}</span>
+                    <span class="match-badge level-badge level-${sc.level}">${sc.level === "obsolete" ? "Obsolete" : "Level " + sc.level}</span>
                     <span class="match-badge principle-badge">${sc.principle}</span>
                   </div>
                   <span class="standard-indicator">Standard</span>

@@ -9,9 +9,26 @@ if (fs.existsSync(wcag22Path)) {
   wcag22List = JSON.parse(fs.readFileSync(wcag22Path, "utf8"));
 }
 
-const levelACount = wcag22List.filter(item => item.level === "A").length;
+// The plain-English baseline for each card comes from the three-tier guidance,
+// which is written strictly from the normative text (wcag22-data/).
+const readData = (f: string) => {
+  const p = path.join(process.cwd(), "wcag22-data", f);
+  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : null;
+};
+const normative = readData("normative-text.json");
+const guidance = readData("three-tier-guidance.json");
+const normBy = new Map((normative?.criteria || []).map((c: any) => [c.num, c]));
+const tiersBy = new Map((guidance?.criteria || []).map((c: any) => [c.num, c]));
+const isObsolete = (sc: any) => !!normBy.get(sc.num)?.obsolete;
+const wcag3Path = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
+const wcag3Titles: Record<string, string> = fs.existsSync(wcag3Path)
+  ? Object.fromEntries(JSON.parse(fs.readFileSync(wcag3Path, "utf8")).map((p: any) => [p.slug, p.title]))
+  : {};
+
+const levelACount = wcag22List.filter(item => item.level === "A" && !isObsolete(item)).length;
 const levelAACount = wcag22List.filter(item => item.level === "AA").length;
 const levelAAACount = wcag22List.filter(item => item.level === "AAA").length;
+const obsoleteCount = wcag22List.filter(isObsolete).length;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + path}`;
@@ -26,7 +43,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span>Official W3C Standard</span>
         </div>
         <h1>WCAG 2.2 Plain English Reference</h1>
-        <p>A plain-English guide to the official W3C WCAG 2.2 standard for non-a11y professionals, with practical testing guides and direct links to WCAG 3 evolution.</p>
+        <p>Every WCAG 2.2 success criterion, split into what the normative text actually requires and what simply makes a better experience, with links to how each one maps to WCAG 3.</p>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
@@ -45,8 +62,49 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           <span class="stat-value highlight-levelaaa">{levelAAACount}</span>
           <span class="stat-label">Level AAA</span>
         </div>
+        {obsoleteCount > 0 && (
+          <div class="stat-card">
+            <span class="stat-value">{obsoleteCount}</span>
+            <span class="stat-label">Obsolete (4.1.1)</span>
+          </div>
+        )}
       </div>
     </div>
+  </section>
+
+  <!-- How to read: the three tiers -->
+  <section class="tiers-explainer" aria-labelledby="tiers-h">
+    <h2 id="tiers-h">How to read this reference: three tiers</h2>
+    <p class="tiers-lead">
+      Conflating best practice with WCAG failures is one of the quickest ways an accessibility team loses credibility.
+      When a ticket cites a WCAG failure the normative text doesn't support, an engineer who checks the spec will
+      reasonably start doubting every other ticket too, including the real blockers. Every criterion here is split three ways.
+    </p>
+    <ol class="tiers-grid">
+      <li class="tier-card tier-card-1">
+        <span class="tier-card-num" aria-hidden="true">1</span>
+        <h3>Baseline compliance</h3>
+        <p class="tier-card-what">The normative floor: what the criterion text and its glossary definitions require, and nothing else.</p>
+        <p class="tier-card-frame"><em>"This passes WCAG."</em> Only a failure here is a WCAG failure, so only cite a success criterion on a ticket when the normative text is violated.</p>
+      </li>
+      <li class="tier-card tier-card-2">
+        <span class="tier-card-num" aria-hidden="true">2</span>
+        <h3>Usability &amp; user impact</h3>
+        <p class="tier-card-what">The gap: where content can technically pass and still make things harder for people with disabilities.</p>
+        <p class="tier-card-frame"><em>"This meets the criterion, but it causes friction because…"</em> Raise it as a usability defect, with the user impact. If it also fails a related criterion, that's a WCAG failure, and Tier 1 lists the known ones.</p>
+      </li>
+      <li class="tier-card tier-card-3">
+        <span class="tier-card-num" aria-hidden="true">3</span>
+        <h3>Recommended best practice</h3>
+        <p class="tier-card-what">The golden path: the pattern that meets the floor, closes the gap and avoids audit disputes.</p>
+        <p class="tier-card-frame"><em>"Our standard pattern is…"</em> A design-system recommendation, not a requirement.</p>
+      </li>
+    </ol>
+    <p class="tiers-source">
+      What counts as normative: WCAG 2.2 says notes, examples and diagrams are informative, and that informative material "does not
+      create requirements that impact a conformance claim". W3C's Understanding documents and techniques are informative too. Each criterion page quotes the
+      normative text verbatim from {normative?.recommendation || "the W3C Recommendation"} and labels anything informative.
+    </p>
   </section>
 
   <!-- Old vs New Evolution Matrix CTA -->
@@ -108,15 +166,17 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           data-name={sc.name.toLowerCase()}
           data-level={sc.level}
           data-principle={sc.principle}
-          data-summary={sc.plainEnglish?.summary?.toLowerCase() || ""}
-          data-why={sc.plainEnglish?.whyItMatters?.toLowerCase() || ""}
-          data-example={sc.plainEnglish?.realWorldExample?.toLowerCase() || ""}
+          data-summary={(tiersBy.get(sc.num)?.floor || sc.plainEnglish?.summary || "").toLowerCase()}
+          data-why={(tiersBy.get(sc.num)?.gap || "").toLowerCase()}
+          data-example={(tiersBy.get(sc.num)?.bestPractice || "").toLowerCase()}
           data-mapped={(sc.wcag3Mapping?.provisions || []).join(" ").toLowerCase()}
         >
           <div class="card-header">
             <div class="header-badges">
               <span class="num-badge">SC {sc.num}</span>
-              <span class={`level-badge level-${sc.level}`}>Level {sc.level}</span>
+              {isObsolete(sc)
+                ? <span class="level-badge level-obsolete">Obsolete</span>
+                : <span class={`level-badge level-${sc.level}`}>Level {sc.level}</span>}
               <span class="principle-badge">{sc.principle}</span>
             </div>
           </div>
@@ -125,28 +185,31 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)}>{sc.name}</a>
           </h3>
 
-          <p class="summary-text">{sc.plainEnglish?.summary}</p>
-
-          <div class="example-box">
-            <strong>Real-World Example:</strong>
-            <p>{sc.plainEnglish?.realWorldExample}</p>
+          <div class="floor-summary">
+            <strong>Bare minimum:</strong>
+            <p class="summary-text">{tiersBy.get(sc.num)?.floor || sc.plainEnglish?.summary}</p>
           </div>
+          {tiersBy.get(sc.num)?.notRequired?.length > 0 && (
+            <p class="not-required-count">
+              Clears up {tiersBy.get(sc.num).notRequired.length} common {tiersBy.get(sc.num).notRequired.length === 1 ? "misconception" : "misconceptions"} about what it requires
+            </p>
+          )}
 
           <div class="card-footer">
             <div class="wcag3-evolution">
-              <span class="evo-label">WCAG 3 Mapping:</span>
+              <span class="evo-label">WCAG 3 draft successor:</span>
               <div class="provision-tags">
                 {sc.wcag3Mapping?.provisions?.length > 0 ? (
                   sc.wcag3Mapping.provisions.map((p: string) => (
-                    <a href={link(`/plain-english/provision/${p}/`)} class="prov-link">{p}</a>
+                    <a href={link(`/plain-english/provision/${p}/`)} class="prov-link">{wcag3Titles[p] || p}</a>
                   ))
                 ) : (
-                  <span class="no-map">Equivalent In-Progress</span>
+                  <span class="no-map">No successor in the draft</span>
                 )}
               </div>
             </div>
             <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)} class="detail-link">
-              Full Guide & Tests &rarr;
+              Requirement &amp; guidance &rarr;
             </a>
           </div>
         </article>
@@ -232,6 +295,38 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 </script>
 
 <style>
+  .tiers-explainer {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 24px 26px;
+    margin-bottom: 24px;
+  }
+  .tiers-explainer h2 { font-size: 1.3rem; font-weight: 800; color: var(--text-pure); margin: 0 0 8px; }
+  .tiers-lead, .tiers-source { color: var(--text-secondary); line-height: 1.6; max-width: 900px; margin: 0 0 16px; }
+  .tiers-source { font-size: 0.9rem; color: var(--text-muted); margin: 16px 0 0; }
+  .tiers-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .tier-card {
+    position: relative; min-width: 0;
+    border: 1px solid var(--border-subtle); border-top-width: 4px; border-radius: var(--radius-md);
+    padding: 16px 16px 14px; background: var(--surface-subtle);
+  }
+  .tier-card-1 { border-top-color: var(--accent-emerald); }
+  .tier-card-2 { border-top-color: var(--accent-amber); }
+  .tier-card-3 { border-top-color: var(--accent-blue); }
+  .tier-card-num {
+    display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; border-radius: 50%;
+    border: 1.5px solid var(--border-default); font-weight: 800; font-size: 0.85rem; color: var(--text-primary); margin-bottom: 6px;
+  }
+  .tier-card h3 { font-size: 1.02rem; font-weight: 700; color: var(--text-pure); margin: 0 0 6px; }
+  .tier-card-what { color: var(--text-primary); line-height: 1.55; margin: 0 0 8px; font-size: 0.94rem; }
+  .tier-card-frame { color: var(--text-secondary); line-height: 1.55; margin: 0; font-size: 0.9rem; }
+
+  .floor-summary { margin-bottom: 12px; }
+  .floor-summary strong { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 4px; }
+  .floor-summary .summary-text { margin: 0; }
+  .not-required-count { font-size: 0.86rem; color: var(--text-muted); margin: 0 0 12px; }
+  .level-obsolete { background: var(--surface-subtle); color: var(--text-muted); border: 1px solid var(--border-default); }
   .dashboard-banner {
     background: linear-gradient(135deg, rgba(19, 29, 49, 0.9) 0%, rgba(11, 17, 32, 0.95) 100%);
     border: 1px solid var(--border-default);

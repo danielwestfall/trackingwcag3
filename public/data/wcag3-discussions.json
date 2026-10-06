@@ -146,7 +146,7 @@
           {
             "label": "A warning is not a remedy",
             "who": "GreggVan, nattarnoff, mraccess77",
-            "detail": "GreggVan's reductio — that WCAG could otherwise be replaced by a single site-wide \"may not be safe for anyone with a disability\" notice — went unrebutted on the substance. nattarnoff, who experiences these effects, says a warning makes them leave and look for an alternative rather than granting access. mraccess77 notes timestamps on a flashing video still do not deliver the missed information."
+            "detail": "GreggVan's reductio — that WCAG could otherwise be replaced by a single site-wide \"this site may not be suitable or safe for anyone with a disability\" notice — went unrebutted on the substance. nattarnoff, who experiences these effects, says a warning makes them leave and look for an alternative rather than granting access. mraccess77 notes timestamps on a flashing video still do not deliver the missed information."
           }
         ],
         "agreed": [
@@ -225,7 +225,7 @@
           {
             "label": "Pseudo-motion should have no threshold and its own provision",
             "who": "julierawe, rachaelbradley, mraccess77",
-            "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"does not include pseudo-motion lasting longer than 5 seconds\", which is precisely the reading this no-exceptions variant is meant to foreclose. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache."
+            "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"content does not include pseudo-motion...lasting longer than 5 seconds\", which is precisely the reading this no-exceptions variant is meant to foreclose. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache."
           },
           {
             "label": "A respected user preference is not a safe substitute",
@@ -3063,7 +3063,7 @@
           {
             "label": "Available should mean visible, not just programmatic",
             "who": "MarcHaunschild, alastc",
-            "detail": "MarcHaunschild opened #191 arguing there is no icon everyone understands, and that an aria-label serves only screen reader users — the sighted majority, people who do not read the Latin alphabet, and speech-input users get nothing. His example is the GitHub editor toolbar, where a large A beside a small A could equally mean resize text; it actually means add header text, and he says he would never have guessed. He reports Germany's BITV-Test once required textual descriptions for icons and dropped the requirement to align with WCAG, which he treats as a regression. alastc drafted the requirement as \"a visible text equivalent for icons is available\" with icon defined as a non-text representation of a function or discrete piece of information, such as a printer for print or a green tick for complete; MarcHaunschild accepted it and asked for an \"unless essential\" carve-out for cases such as a game where guessing the shape is the point."
+            "detail": "MarcHaunschild opened #191 arguing there is no icon everyone understands, and that an aria-label serves only screen reader users — the sighted majority, people who do not read the Latin alphabet, and speech-input users get nothing. His example is the GitHub editor toolbar, where a large A beside a small A could equally mean resize text; it actually means add header text, and he says he would never have guessed. He reports Germany's BITV-Test once required textual descriptions for icons and dropped the requirement to align with WCAG, which he treats as a regression. alastc drafted the requirement as \"a visible text equivalent for icons is available\" with icon defined as a non-text representation of a function or discrete piece of information, such as a printer for print or a green tick for complete; MarcHaunschild accepted it and asked for a carve-out, \"unless it is essential to be without text\", for cases such as a game where guessing the shape is the point."
           },
           {
             "label": "It was tried and no mechanism survived touch",
@@ -6055,12 +6055,12 @@
           {
             "label": "Do not reinterpret 4.1.1 after the fact",
             "who": "bruce-usab, GreggVan",
-            "detail": "bruce-usab says it is bad to retcon a standard and refuses the \"use it for what people think it's for\" framing; GreggVan agrees and adds that 4.1.1 should be clarified to mean what the working group meant when it was written, not what people later want it to mean. bruce-usab separately notes the proposal arrived too late for WCAG 2.2. cstrobbe's own reply is that the intents differ: 4.1.1 is about a user agent building an unambiguous parse tree, while his proposal is about name, role, state and value being exposed unambiguously through an accessibility API, which puts it closer to 4.1.2."
+            "detail": "bruce-usab says it is bad to retcon a standard and refuses scottaohara's \"use 4.1.1 for what people think it's for\" framing; GreggVan agrees and adds that 4.1.1 should be clarified to mean what the working group meant when it was written, not what people later want it to mean. bruce-usab separately notes the proposal arrived too late for WCAG 2.2. cstrobbe's own reply is that the intents differ: 4.1.1 is about a user agent building an unambiguous parse tree, while his proposal is about name, role, state and value being exposed unambiguously through an accessibility API, which puts it closer to 4.1.2."
           },
           {
             "label": "Measure the label gap",
             "who": "detlevhfischer, mraccess77",
-            "detail": "detlevhfischer's #194 proposal caps the gap between a label and the element it labels at twice the smaller of the labelled element's width or height, illustrated with a 16 px-tall field passing at a 32 px gap and failing at 33 px. He later revised it to four times the smaller dimension of the label itself, to escape the problem that the original formula breaks for textarea. mraccess77 defends the need against demands for evidence, pointing out that the SC 3.3.2 Understanding document said in 2008 that labels close to their field help screen-magnifier users, that G162 already exists, and citing Nielsen Norman Group material on proximity and form white space; his answer to \"this is a common pattern\" is that a common pattern is not necessarily a correct one."
+            "detail": "detlevhfischer's #194 proposal caps the gap between a label and the element it labels at twice the smaller of the labelled element's width or height, illustrated with a 16 px-tall field passing at a 32 px gap and failing at 33 px. He later revised it to four times the smaller dimension of the label itself, to escape the problem that the original formula breaks for textarea. mraccess77 defends the need against demands for evidence, pointing out that the SC 3.3.2 Understanding document said in 2008 that labels close to their field help screen-magnifier users, that G162 already exists, and citing Nielsen Norman Group material on proximity and form white space; to the argument that proximity gaps are a common pattern he answers that \"because something is a common pattern doesn't mean it's a correct pattern.\""
           },
           {
             "label": "The gap metric breaks real designs and lacks evidence",
@@ -7791,7 +7791,7 @@
         "open": [
           "Whether a separate enhanced level should exist at all. Myndex's #207 proposal to dissolve it into the fluent and sub-fluent taxonomy has sat since February 2023 with no comment from anyone.",
           "What the enhanced threshold actually is. No participant in any of the three threads proposes or defends a numeric value for it. sdw32's Lc 30, 45, 60 and 75 are study conditions rather than proposals, and APC-RC's gold level is named but never given a value.",
-          "alastc's requirement list in #266 opens with \"Maximum text contrast: the rendered text against its background meets a maximum contrast ratio test for its text appearance,\" and no one in the thread's twenty-plus comments addressed the maximum. Myndex's argument against uniform maximum contrast bears on it but never names it.",
+          "alastc's requirement list in #266 opens with \"Maximum text contrast: The rendered text against its background meets a maximum ‘contrast ratio test’ for its text appearance.\" and no one in the thread's twenty-plus comments addressed the maximum. Myndex's argument against uniform maximum contrast bears on it but never names it.",
           "Whether an enhanced threshold stated in CSS colour values survives rendering at the sizes where it matters. nakano0949-web's measurements in #590 show anti-aliasing impact climbing sharply below 14px and dominating at 12px and below; only patrickhlauke and Myndex replied.",
           "Whether the protan compensator and SACAM change the enhanced-level answer once released. Both were described as forthcoming in April 2026 and neither is out.",
           "sdw32's pixel-density method for quantifying font weight was put to the group with three explicit questions — is everyone happy with the approach, does a public-domain algorithm exist, and will anyone reimplement it outside VBA to check his numbers. He asked on 20 January 2026 and re-asked on 10 February tagging Myndex and GreggVan by name. Neither answered.",
@@ -8071,7 +8071,7 @@
           {
             "label": "Typeface guidance can be a recommendation, not a \"shall\"",
             "who": "Myndex",
-            "detail": "Argues in #245 that a meaningful, testable normative standard covering all font use cases is out of reach, though blocks of body text might be a candidate. The reason is that line-height, letter-spacing, font-weight and font-size are all relative to decisions the font designer made, so two faces set at 16px and weight 400 rasterise at different real sizes and weights. Proposes CSS-level fixes — a property to set x-height directly, already filed with the CSSWG, and line-height expressed against x-height — and gives concrete targets: critical size is an x-height at least twice measured acuity height, lowercase aspect ratio under 1.5:1, baselines about 2.5 x-heights apart. Notes a century of research has produced little consensus beyond \"blackletter is hard to read\"."
+            "detail": "Argues in #245 that a meaningful, testable normative standard covering all font use cases is out of reach, though blocks of body text might be a candidate. The reason is that line-height, letter-spacing, font-weight and font-size are all relative to decisions the font designer made, so two faces set at 16px and weight 400 rasterise at different real sizes and weights. Proposes CSS-level fixes — a property to set x-height directly, already filed with the CSSWG, and line-height expressed against x-height — and gives concrete targets: critical size is an x-height at least twice measured acuity height, lowercase aspect ratio under 1.5:1, baselines about 2.5 x-heights apart. Notes a century of research has produced little consensus beyond \"blackletter fonts are hard to read\"."
           },
           {
             "label": "Dyslexia fonts are the wrong fix",
@@ -8355,7 +8355,7 @@
           {
             "label": "The metric does not measure the thing",
             "who": "Myndex, sdw32, TestPartners, patrickhlauke",
-            "detail": "CSS font-size is a poor proxy for legibility: x-height and stroke weight vary enormously between typefaces at the same nominal size, and rendering differs by OS and font cut. sdw32 points to EN 301 549, which specifies x-height in CSS px (8 CSS px minimum), and proposes handling weight by pixel density rather than the binary normal/bold split. Myndex argues a test that is merely testable, without being useful, gets codified into law with unintended consequences."
+            "detail": "CSS font-size is a poor proxy for legibility: x-height and stroke weight vary enormously between typefaces at the same nominal size, and rendering differs by OS and font cut. sdw32 points to the EN 301 549 draft, which gives an x-height of at least 8 CSS px for the smallest text as best practice, and proposes handling weight by pixel density rather than the binary normal/bold split. Myndex argues a test that is merely testable, without being useful, gets codified into law with unintended consequences."
           },
           {
             "label": "User autonomy over layout stability",
@@ -8929,7 +8929,7 @@
           "Dark mode and reduced motion are not merely aesthetic preferences; mgifford's framing that people need them to read text, avoid headaches or focus went unchallenged, and patrickhlauke noted the supporting evidence is mixed and mainly concerns cloudy ocular media."
         ],
         "open": [
-          "What \"respecting\" a preference concretely obliges an author to do. JAWS-test asked in 2020 and got only patrickhlauke's \"take the cue from the user's preference request and actually do something about it\" — no testable formulation followed.",
+          "What \"respecting\" a preference concretely obliges an author to do. JAWS-test asked in 2020 and got only patrickhlauke's \"taking the cue from the user's preference request and actually doing something about it\" — no testable formulation followed.",
           "Whether haptics belongs in the note, and whether Haptic stimulation adjustable can then be removed from the Animation section. Raised by julierawe for the COGA Task Force in #737; no replies.",
           "Whether the note's list of accessibility-related user settings is closed or illustrative (julierawe).",
           "How to indicate to the user when an on-site theme control diverges from their browser preference (mgifford).",
