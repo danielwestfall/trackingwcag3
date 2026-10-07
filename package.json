@@ -20,7 +20,8 @@
     "sync": "astro sync --force",
     "sync:plain-english": "node scripts/sync-wcag-plain-english.mjs",
     "track:upstream": "node scripts/track-upstream.mjs",
-    "check:quotes": "node scripts/check-quotes.mjs"
+    "check:quotes": "node scripts/check-quotes.mjs",
+    "check:quotes:built": "node scripts/check-quotes.mjs --built"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^6.3.11",

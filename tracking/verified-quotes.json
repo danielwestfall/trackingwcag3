@@ -96,6 +96,30 @@
       "kind": "informative",
       "source": "W3C Understanding SC 3.3.7 Redundant Entry, https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html: \"If the system requires the user to manually create a password that is not displayed, having users re-validate their new string is allowed as an exception.\"",
       "checked": "2026-10-06"
+    },
+    {
+      "text": "user facing digital content",
+      "kind": "external",
+      "source": "W3C wcag3 unmerged branch scope-update (PR #880), src/pages/guidelines/index.astro: \"The WCAG 3 guidelines address the accessibility of user facing digital content on desktops, laptops, tablets, phones, and devices.\" Not in the tracked draft until #880 merges.",
+      "checked": "2026-10-06"
+    },
+    {
+      "text": "Not in the draft",
+      "kind": "example",
+      "source": "Removals page: the site's own phrase, defined in the sentence that uses it.",
+      "checked": "2026-10-06"
+    },
+    {
+      "text": "This meets the criterion, but it causes friction because…",
+      "kind": "example",
+      "source": "WCAG 2.2 Reference index: example framing for Tier 2.",
+      "checked": "2026-10-06"
+    },
+    {
+      "text": "Our standard pattern is…",
+      "kind": "example",
+      "source": "WCAG 2.2 Reference index: example framing for Tier 3.",
+      "checked": "2026-10-06"
     }
   ]
 }

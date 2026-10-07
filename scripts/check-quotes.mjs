@@ -24,6 +24,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import * as cheerio from 'cheerio';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...p) => fs.readFileSync(path.join(ROOT, ...p), 'utf8');
@@ -110,6 +111,47 @@ const targets = [
 let checked = 0;
 const failures = [];
 const usedRegistry = new Set();
+
+// --built: also scan the rendered pages in dist/client, so quotations written
+// into page templates (not just data files) are checked. Run after `npm run build`.
+// Skipped: W3C's own documents mirrored on the site (guidelines, informative,
+// explainer, requirements), whose quotation marks are W3C's.
+const BUILT = process.argv.includes('--built');
+const builtQuotes = new Map(); // quote -> pages
+if (BUILT) {
+  const dist = path.join(ROOT, 'dist', 'client');
+  if (!fs.existsSync(dist)) { console.error('--built: dist/client not found; run `npm run build` first.'); process.exit(1); }
+  const SKIP = /^(guidelines|informative|explainer|requirements)(\/|$)/;
+  for (const f of walkFiles(dist, '.html')) {
+    const rel = path.relative(dist, f).split(path.sep).join('/');
+    if (SKIP.test(rel)) continue;
+    // Walk the parsed page and collect visible text block by block, so a
+    // stray quotation mark can't pair across paragraphs. <pre> is skipped: the
+    // provision pages use it to show W3C's raw source on purpose.
+    const $ = cheerio.load(fs.readFileSync(f, 'utf8'));
+    $('script, style, template, noscript, pre, code').remove();
+    const BLOCK = /^(p|li|dd|dt|h[1-6]|td|th|div|section|article|blockquote|summary|details|ul|ol|dl|table|tr|br|header|footer|nav|main|aside|label|button|figcaption|option)$/i;
+    const chunks = [];
+    let cur = '';
+    const walkDom = (node) => {
+      if (node.type === 'text') { cur += node.data; return; }
+      if (node.type !== 'tag' && node.type !== 'root') return;
+      const block = BLOCK.test(node.name);
+      if (block) { chunks.push(cur); cur = ''; }
+      for (const c of node.children || []) walkDom(c);
+      if (block) { chunks.push(cur); cur = ''; }
+    };
+    walkDom($.root()[0]);
+    chunks.push(cur);
+    for (const block of chunks) {
+      for (const q of quotesIn(block.replace(/\s+/g, ' '))) {
+        if (!builtQuotes.has(q)) builtQuotes.set(q, []);
+        if (!builtQuotes.get(q).includes(rel)) builtQuotes.get(q).push(rel);
+      }
+    }
+  }
+}
+
 for (const [file, sources] of targets) {
   const data = readJson(...file.split('/'));
   for (const [where, text] of strings(data)) {
@@ -123,8 +165,16 @@ for (const [file, sources] of targets) {
   }
 }
 
-const unusedRegistry = registry.filter((q) => !usedRegistry.has(q.text));
-console.log(`Checked ${checked} quotations in ${targets.length} files against WCAG 2.2 (${n22.sourceTag}), the WCAG 3 draft, ${Object.keys(raw).length} GitHub threads and ${registry.length} registry entries.`);
+for (const [q, pages] of builtQuotes) {
+  checked++;
+  if (['wcag22', 'wcag3', 'github'].some((src) => found(q, corpus[src]))) continue;
+  const reg = registryNorm.get(norm(q));
+  if (reg) { usedRegistry.add(reg.text); continue; }
+  failures.push({ file: `built page${pages.length > 1 ? 's' : ''} ${pages.slice(0, 3).join(', ')}${pages.length > 3 ? ` (+${pages.length - 3} more)` : ''}`, where: 'rendered text', quote: q });
+}
+
+const unusedRegistry = BUILT ? registry.filter((q) => !usedRegistry.has(q.text)) : [];
+console.log(`Checked ${checked} quotations in ${targets.length} data files${BUILT ? ` and ${builtQuotes.size} distinct quotations on built pages` : ''} against WCAG 2.2 (${n22.sourceTag}), the WCAG 3 draft, ${Object.keys(raw).length} GitHub threads and ${registry.length} registry entries.`);
 if (unusedRegistry.length) console.log(`Note: ${unusedRegistry.length} registry entries are no longer used and can be removed:\n  ${unusedRegistry.map((q) => q.text).join('\n  ')}`);
 if (failures.length) {
   console.error(`\n❌ ${failures.length} quotation(s) not found in their sources:`);

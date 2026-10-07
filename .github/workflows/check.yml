@@ -25,3 +25,7 @@ jobs:
         run: npm run check
       - name: Build production bundle
         run: npm run build
+      - name: Factuality checks (data, mapping, quotations)
+        run: npm run test:factuality
+      - name: Quotations on built pages match their sources
+        run: npm run check:quotes:built

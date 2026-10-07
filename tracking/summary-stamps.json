@@ -1,135 +1,135 @@
 {
   "text-style-readable-minimum": {
     "summaryOf": "99@2026-04-16T01:45:47Z,190@2026-05-02T15:25:02Z,245@2026-05-02T12:45:14Z,266@2026-09-02T01:31:20Z,407@2026-05-29T14:19:07Z,475@2026-03-29T22:35:08Z,536@2026-04-12T03:12:34Z,641@2026-04-15T00:45:28Z,642@2026-06-19T09:35:52Z",
-    "hash": "81f47a23a1dc7f59",
+    "hash": "4f6763935091611d",
     "source": "batch-2026-09-14.json",
     "stampedAt": "2026-10-06"
   },
   "text-reflow-supported": {
     "summaryOf": "156@2026-04-02T23:27:48Z,642@2026-06-19T09:35:52Z",
-    "hash": "aa52ee20c8f20560",
+    "hash": "6ee98e0f35ad7afe",
     "source": "batch-2026-09-14.json",
-    "stampedAt": "2026-09-14"
+    "stampedAt": "2026-10-06"
   },
   "no-visual-motion": {
     "summaryOf": "27@2026-04-16T03:46:54Z,181@2026-05-02T15:01:50Z,183@2026-05-02T15:03:50Z,629@2026-06-15T13:46:03Z,739@2026-08-03T22:19:47Z",
-    "hash": "08639e9b8c7a90ae",
+    "hash": "b6b93d66cbcbdd91",
     "source": "batch-2026-09-14.json",
-    "stampedAt": "2026-09-14"
+    "stampedAt": "2026-10-06"
   },
   "no-flashing-over-threshold": {
     "summaryOf": "629@2026-06-15T13:46:03Z,631@2026-08-03T15:48:14Z,632@2026-04-07T14:40:25Z,733@2026-06-26T16:43:37Z",
-    "hash": "a8d724169e31006d",
+    "hash": "2858ac17b396e56e",
     "source": "batch-2026-09-14.json",
     "stampedAt": "2026-10-06"
   },
   "trigger-warning-available": {
     "summaryOf": "88@2026-04-16T02:43:46Z,89@2026-04-16T02:13:57Z,541@2026-03-27T23:04:25Z,542@2026-03-27T22:54:40Z,632@2026-04-07T14:40:25Z,736@2026-06-26T18:06:37Z",
-    "hash": "f0cab0077a683e4b",
+    "hash": "3b1e4b723ac44121",
     "source": "batch-2026-09-14.json",
-    "stampedAt": "2026-09-14"
+    "stampedAt": "2026-10-06"
   },
   "captions-adjustable": {
     "summaryOf": "23@2026-09-11T16:16:34Z,119@2026-04-02T23:47:01Z,234@2026-05-01T23:55:58Z",
-    "hash": "75e0794b847d699d",
+    "hash": "c7192329fd18e91e",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "speakers-identified-in-captions": {
     "summaryOf": "23@2026-09-11T16:16:34Z,472@2026-09-10T00:29:12Z,512@2026-09-10T00:28:35Z,748@2026-09-11T16:15:17Z",
-    "hash": "f4ced66b7c9177b5",
+    "hash": "e357e4c5a11b9a86",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "speakers-identified-in-transcripts": {
     "summaryOf": "23@2026-09-11T16:16:34Z,472@2026-09-10T00:29:12Z,512@2026-09-10T00:28:35Z,748@2026-09-11T16:15:17Z",
-    "hash": "b06872b5bb082fdc",
+    "hash": "2acf8ddc1a911712",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "safe-content-review": {
     "summaryOf": "88@2026-04-16T02:43:46Z,89@2026-04-16T02:13:57Z",
-    "hash": "b19b1f733343f5b8",
+    "hash": "1392483568cec37c",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "interactive-element-contrast-sufficient": {
     "summaryOf": "193@2026-05-02T15:30:26Z,197@2026-05-02T16:19:45Z,207@2026-05-01T23:23:27Z,270@2026-04-02T23:03:09Z",
-    "hash": "714d141b29f3344c",
+    "hash": "75b6eb51f610682e",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "sections-labeled": {
     "summaryOf": "80@2026-04-16T02:57:52Z,170@2026-05-02T12:51:18Z,271@2026-04-02T23:01:19Z,477@2026-03-29T22:34:41Z",
-    "hash": "9e1cbeae8f2bc47f",
+    "hash": "c8c73bd18ce947da",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "blocks-of-content-available-minimum": {
     "summaryOf": "19@2026-04-20T13:50:14Z,476@2026-03-29T22:35:01Z",
-    "hash": "19084b5389dc53fc",
+    "hash": "e000196039363968",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "heading-structure-available": {
     "summaryOf": "19@2026-04-20T13:50:14Z,81@2026-04-16T02:56:17Z,271@2026-04-02T23:01:19Z,478@2026-03-29T22:34:22Z",
-    "hash": "54cdcee8e35ab76a",
+    "hash": "70b6977a40100b22",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "no-visual-motion-no-exceptions": {
     "summaryOf": "27@2026-04-16T03:46:54Z,629@2026-06-15T13:46:03Z,739@2026-08-03T22:19:47Z",
-    "hash": "b20d131506bc14bf",
+    "hash": "01c6a9a2333a6612",
     "source": "batch-2026-09-15-part2.json",
     "stampedAt": "2026-10-06"
   },
   "image-alternatives-equivalent": {
-    "summaryOf": "370@2026-09-10T00:17:00Z,611@2026-09-10T00:16:25Z",
-    "hash": "53bea85f2ea6a9d0",
+    "summaryOf": "370@2026-09-10T00:17:00Z,611@2026-10-03T11:25:36Z",
+    "hash": "abd2d4422f3f720c",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "text-style-adjustable": {
     "summaryOf": "161@2026-04-16T03:32:24Z,245@2026-05-02T12:45:14Z,340@2026-04-02T22:48:58Z,413@2026-03-29T23:14:00Z",
-    "hash": "33a60a693805fbb4",
+    "hash": "f0fb911b2e1d8d21",
     "source": "batch-2026-09-15-part2.json",
     "stampedAt": "2026-10-06"
   },
   "text-color-adjustable": {
     "summaryOf": "171@2026-05-02T12:56:41Z,178@2026-05-02T14:26:59Z,501@2026-03-27T23:42:24Z,618@2026-03-27T18:47:29Z",
-    "hash": "e6915d5cf035dd4c",
+    "hash": "0e53a61a6de5a69f",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "captions-available-live": {
     "summaryOf": "189@2026-05-02T15:17:33Z,325@2026-04-01T23:41:33Z,461@2026-03-29T22:41:25Z",
-    "hash": "37eda69efe2d4dd9",
+    "hash": "d85c88252fd90e7f",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "images-detectable": {
     "summaryOf": "272@2026-04-02T22:58:14Z,357@2026-04-01T23:27:16Z,467@2026-03-29T22:37:50Z,494@2026-03-29T22:29:15Z,605@2026-03-27T18:54:41Z,606@2026-03-27T18:54:20Z",
-    "hash": "ff8d8e03fe4e796c",
+    "hash": "d270a091691ef3a5",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "sign-language-available-prerecorded": {
     "summaryOf": "325@2026-04-01T23:41:33Z",
-    "hash": "17b95eab50d3ca6c",
+    "hash": "30c4ad1314e604f9",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "sign-language-policy-live": {
     "summaryOf": "325@2026-04-01T23:41:33Z,471@2026-06-25T07:58:48Z",
-    "hash": "0e9cbd2e47d0fc78",
+    "hash": "6a055a267fe0d068",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "text-detectable": {
     "summaryOf": "190@2026-05-02T15:25:02Z,202@2026-05-02T16:38:19Z,537@2026-03-27T22:56:58Z",
-    "hash": "a1ba55c945e040b4",
+    "hash": "c053a6329d3549c5",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "disabled-controls-explained": {
     "summaryOf": "197@2026-05-02T16:19:45Z,783@2026-08-02T16:33:10Z",
@@ -145,74 +145,74 @@
   },
   "page-view-audio-adjustable": {
     "summaryOf": "181@2026-05-02T15:01:50Z",
-    "hash": "ea3b7ae223d5ecd2",
+    "hash": "54bd7fa3f9f86e9a",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "no-nested-clauses": {
     "summaryOf": "529@2026-02-05T17:31:09Z,530@2026-03-27T23:05:22Z,552@2026-07-01T08:01:37Z,560@2026-03-27T19:12:35Z,569@2026-03-27T19:12:03Z",
-    "hash": "1afbc91d99beb7b0",
+    "hash": "7751abb71d4a0c44",
     "source": "batch-2026-09-15-part2.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "layout-reflow-supported": {
     "summaryOf": "156@2026-04-02T23:27:48Z,198@2026-05-02T16:34:31Z,642@2026-06-19T09:35:52Z,664@2026-05-01T01:23:24Z",
-    "hash": "c264bc99f4a872f8",
+    "hash": "f3d92a25461ae335",
     "source": "batch-2026-09-15.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "relationships-detectable": {
     "summaryOf": "166@2026-05-01T23:36:57Z,194@2026-05-02T16:31:49Z,271@2026-04-02T23:01:19Z,451@2026-03-29T22:44:02Z",
-    "hash": "40e98d0963ac48c3",
+    "hash": "de25093ca41f64a5",
     "source": "batch-2026-09-15.json",
     "stampedAt": "2026-10-06"
   },
   "decorative-images-hidden": {
-    "summaryOf": "238@2026-04-01T23:17:15Z,272@2026-04-02T22:58:14Z,357@2026-04-01T23:27:16Z,369@2026-04-01T23:15:37Z,466@2026-04-08T05:38:52Z,495@2026-03-29T22:28:32Z,573@2026-03-27T19:09:20Z,607@2026-03-27T18:53:10Z,614@2026-03-27T18:49:00Z",
-    "hash": "e8c314cdfc98989f",
+    "summaryOf": "238@2026-04-01T23:17:15Z,272@2026-04-02T22:58:14Z,357@2026-04-01T23:27:16Z,369@2026-04-01T23:15:37Z,466@2026-04-08T05:38:52Z,495@2026-03-29T22:28:32Z,573@2026-03-27T19:09:20Z,607@2026-03-27T18:53:10Z,614@2026-03-27T18:49:00Z,878@2026-10-03T00:59:24Z,884@2026-10-03T01:11:27Z",
+    "hash": "03cffb238574d7ce",
     "source": "batch-2026-09-15.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "interactive-element-names-available": {
-    "summaryOf": "93@2026-04-16T01:59:03Z,184@2026-05-02T15:07:00Z,194@2026-05-02T16:31:49Z",
-    "hash": "05f18a321918ced0",
+    "summaryOf": "93@2026-04-16T01:59:03Z,184@2026-05-02T15:07:00Z,194@2026-05-02T16:31:49Z,890@2026-10-03T21:58:55Z",
+    "hash": "61cc0943a84d3b6c",
     "source": "batch-2026-09-15.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "text-contrast-sufficient-minimum": {
-    "summaryOf": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z",
-    "hash": "e1154772166a24ce",
+    "summaryOf": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z,744@2026-09-22T02:13:49Z",
+    "hash": "0f436c689d056d77",
     "source": "batch-2026-09-15.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "user-settings-supported": {
     "summaryOf": "40@2026-05-04T19:24:46Z,182@2026-05-02T15:02:33Z,183@2026-05-02T15:03:50Z,737@2026-06-26T18:21:37Z",
-    "hash": "85e7167ccfa9a4e4",
+    "hash": "a0dd56a974f8b6d3",
     "source": "batch-2026-09-15.json",
     "stampedAt": "2026-10-06"
   },
   "text-contrast-sufficient-enhanced": {
     "summaryOf": "207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z",
-    "hash": "c82ecb6cdabf777c",
+    "hash": "13a2d172fd61461b",
     "source": "batch-2026-09-15.json",
     "stampedAt": "2026-10-06"
   },
   "text-style-readable-enhanced": {
     "summaryOf": "266@2026-09-02T01:31:20Z,484@2026-03-29T22:32:18Z,641@2026-04-15T00:45:28Z",
-    "hash": "9914360e97718b6f",
+    "hash": "1f634a17b1915222",
     "source": "batch-2026-09-15.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   },
   "image-alternatives-available": {
     "summaryOf": "191@2026-05-02T15:28:41Z,251@2026-05-02T12:47:08Z,272@2026-04-02T22:58:14Z,370@2026-09-10T00:17:00Z,371@2026-04-01T23:12:49Z,499@2026-03-27T23:45:11Z,518@2026-03-29T22:39:38Z",
-    "hash": "997bcff7afb0786f",
+    "hash": "b02348f40badfad9",
     "source": "batch-2026-09-15.json",
     "stampedAt": "2026-10-06"
   },
   "captions-available-prerecorded": {
     "summaryOf": "23@2026-09-11T16:16:34Z,325@2026-04-01T23:41:33Z,463@2026-03-29T22:40:41Z,525@2026-03-27T23:11:03Z",
-    "hash": "29d5d08e135c4b22",
+    "hash": "ad2e078709e77676",
     "source": "batch-2026-09-15.json",
-    "stampedAt": "2026-09-15"
+    "stampedAt": "2026-10-06"
   }
 }
