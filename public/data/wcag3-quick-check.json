@@ -1,0 +1,253 @@
+{
+  "about": "Quick check for the WCAG 3 audit calculator. Every question maps to one or more core requirements in the WCAG 3 editor's draft. meetsWhen says which answer means the requirement is met. A question with children asks them only after the answer named in when. A question with naWhenNo marks every requirement below it as not applicable when the answer is no. scripts/check-quick-check.mjs verifies every slug exists, is a core requirement, and that every core requirement is either asked about or listed in notTestableYet.",
+  "draftCommit": "18c12bf",
+  "standIns": {
+    "contrast-text": "The draft has not chosen a contrast measure yet. Until it does, WCAG 2.2's 4.5:1 for normal text and 3:1 for large text is a reasonable stand-in.",
+    "contrast-nontext": "The draft has not chosen a contrast measure yet. Until it does, WCAG 2.2's 3:1 for user interface components and graphics is a reasonable stand-in."
+  },
+  "notTestableYet": [
+    { "slug": "blocks-of-text-readable-minimum", "reason": "The draft has not set the minimum values for margins, line length and line height yet." },
+    { "slug": "text-style-readable-minimum", "reason": "The draft has not set the minimum values for typeface, font size, letter spacing and the other text style properties yet." }
+  ],
+  "sections": [
+    {
+      "id": "pages",
+      "title": "Pages and text",
+      "items": [
+        { "id": "title", "q": "Does every page or screen have a title that describes its name, topic or purpose?", "provisions": ["page-view-title-available"], "meetsWhen": "yes" },
+        { "id": "lang", "q": "Is the language of the content set in the code, including any passages in a different language?", "help": "For example the lang attribute on the html element, and on any element whose language differs.", "provisions": ["human-language-detectable"], "meetsWhen": "yes" },
+        { "id": "real-text", "q": "Is all visible text available to assistive technology as text, rather than only as pixels in an image, canvas or vector shapes?", "provisions": ["text-detectable"], "meetsWhen": "yes" },
+        { "id": "contrast", "q": "Does all text have enough contrast against its background?", "standIn": "contrast-text", "provisions": ["text-contrast-sufficient-minimum"], "meetsWhen": "yes" },
+        { "id": "text-size", "q": "Can text be enlarged to at least 200% of the platform's default body text size?", "provisions": ["text-size-adjustable"], "meetsWhen": "yes" },
+        { "id": "text-colours", "q": "Can people override text and background colours, for example with a high-contrast mode or browser settings, without losing content or functionality?", "provisions": ["text-color-adjustable"], "meetsWhen": "yes" },
+        { "id": "text-style", "q": "Can people override the typeface, font width, text decoration, capitalization and hyphenation of text without losing content or functionality?", "help": "For example with a user stylesheet or a reading extension.", "provisions": ["text-style-adjustable"], "meetsWhen": "yes" },
+        { "id": "text-blocks", "q": "Can people adjust margins, line length, line height and justification of paragraphs without losing content or functionality?", "provisions": ["blocks-of-text-adjustable"], "meetsWhen": "yes" },
+        { "id": "abbr", "q": "Are abbreviations explained or expanded the first time they are used?", "help": "Words like HTML or scuba that have their own dictionary entry don't need it.", "provisions": ["abbreviations-explained"], "meetsWhen": "yes" },
+        { "id": "numbers", "q": "Are dates, times, temperatures and Roman numerals written so they can't be misread, and marked up with a machine-readable equivalent?", "help": "For example 3 May 2025 rather than 03/05/2025, and a time element with a datetime value.", "provisions": ["numerical-metadata-available"], "meetsWhen": "yes" },
+        { "id": "text-style-meaning", "q": "Is bold, italic, size or other styling ever used to carry meaning beyond emphasis, such as marking an error?", "naWhenNo": true, "children": [
+          { "id": "text-style-meaning-2", "when": "yes", "q": "Is that meaning also available to assistive technology, for example as text or an icon with a name?", "provisions": ["text-appearance-not-relied-on"], "meetsWhen": "yes" }
+        ] },
+        { "id": "long-text", "q": "Do you have pages with long-form text, 300 words or more organized in paragraphs?", "naWhenNo": true, "children": [
+          { "id": "summary", "when": "yes", "q": "Does each of those pages have a summary that is marked as one, uses short sentences, and explains any uncommon words?", "help": "When long text continues across several pages, only the first one needs a summary.", "provisions": ["summaries-available"], "meetsWhen": "yes" }
+        ] },
+        { "id": "diacritics-lang", "q": "Is any content in a language that is often written without diacritics for proficient readers, such as Hebrew or Arabic?", "naWhenNo": true, "children": [
+          { "id": "diacritics", "when": "yes", "q": "Are the diacritics needed to identify the correct meaning of each word available?", "provisions": ["diacritics-available"], "meetsWhen": "yes" }
+        ] }
+      ]
+    },
+    {
+      "id": "structure",
+      "title": "Layout and structure",
+      "items": [
+        { "id": "blocks", "q": "Are distinct blocks of content, such as navigation, main content, sidebars and cards, marked up as such in the code and separated by enough space on screen?", "provisions": ["blocks-of-content-available-minimum"], "meetsWhen": "yes" },
+        { "id": "labels", "q": "Do those blocks have a heading or label that says what they're for, where the purpose isn't already obvious?", "provisions": ["sections-labeled"], "meetsWhen": "yes" },
+        { "id": "ordered", "q": "Are ordered items, such as numbered lists and the steps of a process, marked up so their position can be read out?", "provisions": ["order-detectable"], "meetsWhen": "yes" },
+        { "id": "orientation", "q": "Does the content work in the device's default orientation, or in both portrait and landscape on devices that have no default?", "provisions": ["orientation-supported-minimum"], "meetsWhen": "yes" },
+        { "id": "overlays", "q": "Does any content appear on top of the main content, such as cookie banners, pop-ups, chat widgets or dialogs?", "naWhenNo": true, "children": [
+          { "id": "overlays-dismiss", "when": "yes", "q": "Can every one of them be dismissed?", "provisions": ["overlay-content-dismissible"], "meetsWhen": "yes" }
+        ] },
+        { "id": "steps", "q": "Do you have multi-step processes, such as a checkout, sign-up or wizard?", "naWhenNo": true, "children": [
+          { "id": "steps-listed", "when": "yes", "q": "Is a list of all the steps shown and available to assistive technology at each step?", "help": "Not needed when the number of steps is unknown or depends on what the user does.", "provisions": ["all-steps-listed"], "meetsWhen": "yes" },
+          { "id": "steps-current", "when": "yes", "q": "Is the current step shown visually and in the code?", "provisions": ["current-step-indicated"], "meetsWhen": "yes" },
+          { "id": "steps-memory", "when": "yes", "q": "Can people finish without having to remember information from an earlier step?", "provisions": ["no-memorization"], "meetsWhen": "yes" }
+        ] }
+      ]
+    },
+    {
+      "id": "colour-sense",
+      "title": "Colour and the senses",
+      "items": [
+        { "id": "hue", "q": "Is any information shown by colour alone, such as red meaning an error or a line on a chart told apart only by colour?", "provisions": ["hue-not-relied-on"], "meetsWhen": "no" },
+        { "id": "sensory", "q": "Do any instructions rely only on shape, colour, size, position or sound, such as press the round button on the right?", "provisions": ["sensory-characteristics-not-relied-on"], "meetsWhen": "no" },
+        { "id": "sound-only", "q": "Is any information given by sound alone, such as a chime that is the only sign of a new message?", "help": "Audio-based media, such as a podcast, is exempt.", "provisions": ["sound-not-relied-on"], "meetsWhen": "no" }
+      ]
+    },
+    {
+      "id": "images",
+      "title": "Images and graphics",
+      "gate": { "id": "has-images", "q": "Does your site use images, icons, charts or other graphics?" },
+      "items": [
+        { "id": "alt", "q": "Does every image that isn't purely decorative have a text alternative?", "provisions": ["image-alternatives-available"], "meetsWhen": "yes" },
+        { "id": "alt-equivalent", "q": "Does each text alternative convey the same purpose as its image?", "provisions": ["image-alternatives-equivalent"], "meetsWhen": "yes" },
+        { "id": "decorative", "q": "Are purely decorative images hidden from assistive technology?", "provisions": ["decorative-images-hidden"], "meetsWhen": "yes" },
+        { "id": "detectable", "q": "Can assistive technology tell that informative images are images?", "help": "For example an img element, or role=img on a custom graphic.", "provisions": ["images-detectable"], "meetsWhen": "yes" },
+        { "id": "non-text", "q": "Does all other non-decorative non-text content, such as charts, canvas drawings and SVG icons, have an equivalent text alternative in the code?", "provisions": ["non-text-content-not-relied-on"], "meetsWhen": "yes" },
+        { "id": "graphic-contrast", "q": "Do the parts of graphics needed to understand them have enough contrast?", "standIn": "contrast-nontext", "provisions": ["graphical-object-contrast-sufficient"], "meetsWhen": "yes" },
+        { "id": "depth", "q": "Is any information conveyed only through visual depth, such as a 3D effect?", "provisions": ["visual-depth-not-relied-on"], "meetsWhen": "no" }
+      ]
+    },
+    {
+      "id": "media",
+      "title": "Audio and video",
+      "gate": { "id": "has-media", "q": "Does your site have prerecorded audio or video?" },
+      "items": [
+        { "id": "media-speech", "q": "Does any of it include speech or other sound that matters for understanding it?", "help": "Background music with no spoken content doesn't count.", "naWhenNo": true, "children": [
+          { "id": "captions", "when": "yes", "q": "Are captions available for all of it?", "help": "Media that is an alternative for text on the page, and clearly labelled as such, is exempt.", "provisions": ["captions-available-prerecorded"], "meetsWhen": "yes" },
+          { "id": "captions-equivalent", "when": "yes", "q": "Are the captions complete and accurate, so they are equivalent to the audio?", "provisions": ["captions-equivalent-prerecorded"], "meetsWhen": "yes" },
+          { "id": "captions-sync", "when": "yes", "q": "Are the captions in sync with the audio?", "provisions": ["captions-synchronized"], "meetsWhen": "yes" },
+          { "id": "captions-sounds", "when": "yes", "q": "Do the captions identify or describe sounds needed to understand the media, and explain nonverbal cues such as tone?", "provisions": ["sounds-identified-in-captions", "non-verbal-cues-identified-in-captions", "sounds-identified-in-audio-descriptions"], "meetsWhen": "yes" },
+          { "id": "transcripts", "when": "yes", "q": "Is a dialogue transcript available for all of it?", "provisions": ["dialogue-transcripts-available-prerecorded"], "meetsWhen": "yes" },
+          { "id": "transcripts-adjacent", "when": "yes", "q": "Is the transcript placed next to the audio or video it belongs to?", "provisions": ["transcripts-findable"], "meetsWhen": "yes" },
+          { "id": "transcripts-equivalent", "when": "yes", "q": "Are transcripts complete and accurate, including sounds and nonverbal cues needed to understand the media?", "provisions": ["transcripts-equivalent-prerecorded", "sounds-identified-in-transcripts", "non-verbal-cues-identified-in-transcripts", "sounds-identified-in-audio-descriptions"], "meetsWhen": "yes" }
+        ] },
+        { "id": "media-visual", "q": "Does any video show information that isn't in its audio, such as on-screen text, charts, actions or scene changes?", "naWhenNo": true, "children": [
+          { "id": "ad", "when": "yes", "q": "Are audio descriptions available that describe that visual information?", "provisions": ["audio-descriptions-available-prerecorded", "visual-information-identified-in-audio-descriptions"], "meetsWhen": "yes" },
+          { "id": "ad-equivalent", "when": "yes", "q": "Do the audio descriptions convey everything the visuals do, including nonverbal cues, and sounds where needed?", "provisions": ["audio-descriptions-equivalent-prerecorded", "non-verbal-cues-identified-in-audio-descriptions"], "meetsWhen": "yes" },
+          { "id": "ad-sync", "when": "yes", "q": "Do the audio descriptions fit in the gaps without talking over dialogue or other meaningful sound?", "provisions": ["audio-descriptions-synchronized"], "meetsWhen": "yes" },
+          { "id": "ad-gaps", "when": "yes", "q": "Are the natural pauses in the soundtrack ever too short to fit the descriptions?", "naWhenNo": true, "children": [
+            { "id": "ad-extended", "when": "yes", "q": "Does the video pause to make room for extended audio descriptions that cover the visual information completely?", "provisions": ["extended-audio-descriptions-available", "extended-audio-descriptions-equivalent"], "meetsWhen": "yes" }
+          ] },
+          { "id": "descriptive-transcripts", "when": "yes", "q": "Is a descriptive transcript available that includes the visual information as well as the dialogue?", "provisions": ["descriptive-transcripts-available", "visual-information-identified-in-transcripts"], "meetsWhen": "yes" }
+        ] }
+      ]
+    },
+    {
+      "id": "live",
+      "title": "Live audio, video and calls",
+      "gate": { "id": "has-live", "q": "Does your site stream live audio or video, or offer voice calls?" },
+      "items": [
+        { "id": "live-media", "q": "Do you stream live audio or video with speech?", "naWhenNo": true, "children": [
+          { "id": "live-captions", "when": "yes", "q": "Are captions available for all live audio?", "provisions": ["captions-available-live"], "meetsWhen": "yes" },
+          { "id": "live-transcripts", "when": "yes", "q": "Are dialogue transcripts available for all live audio and video?", "provisions": ["dialogue-transcripts-available-live"], "meetsWhen": "yes" }
+        ] },
+        { "id": "voice-calls", "q": "Do you offer real-time two-way voice communication, such as calls or voice chat?", "naWhenNo": true, "children": [
+          { "id": "rtt", "when": "yes", "q": "Is a real-time text option available?", "provisions": ["real-time-text-available"], "meetsWhen": "yes" }
+        ] }
+      ]
+    },
+    {
+      "id": "sound-auto",
+      "title": "Automatic sound",
+      "gate": { "id": "has-auto-audio", "q": "Does any audio play automatically, including notification sounds?" },
+      "items": [
+        { "id": "auto-audio", "q": "Can people pause it, stop it and set its volume separately from the system volume?", "help": "A single site-wide control that turns sounds off can meet this.", "provisions": ["page-view-audio-adjustable"], "meetsWhen": "yes" }
+      ]
+    },
+    {
+      "id": "motion",
+      "title": "Motion and flashing",
+      "gate": { "id": "has-motion", "q": "Does your site have animation, video, carousels or other moving or flashing content?" },
+      "items": [
+        { "id": "motion-5s", "q": "Does any motion or pseudo-motion last longer than 5 seconds, apart from motion that is essential?", "help": "Pseudo-motion is something that looks like it moves without moving, such as some patterns.", "provisions": ["no-visual-motion"], "meetsWhen": "no" },
+        { "id": "flash", "q": "Does anything flash above the general flash or red flash thresholds, apart from flashing that is essential?", "help": "If people can set an accessibility-supported preference that stops flashing and you respect it, answer no.", "provisions": ["no-flashing-over-threshold"], "meetsWhen": "no" },
+        { "id": "single-flash", "q": "Does any single change from light to dark, or dark to light, cover more than 30% of the screen with a contrast change over 4.5:1, other than a new page loading?", "provisions": ["single-flash"], "meetsWhen": "no" },
+        { "id": "triggers", "q": "Is there still any flashing, pseudo-motion, or motion over 5 seconds, for example because it is essential?", "naWhenNo": true, "children": [
+          { "id": "trigger-warning", "when": "yes", "q": "Is there a warning before people encounter it, and a way to get the same information without it?", "provisions": ["trigger-warning-available"], "meetsWhen": "yes" }
+        ] }
+      ]
+    },
+    {
+      "id": "keyboard",
+      "title": "Keyboard and focus",
+      "items": [
+        { "id": "kb-operate", "q": "Can every control be operated with a keyboard alone?", "provisions": ["keyboard-operable"], "meetsWhen": "yes" },
+        { "id": "kb-access", "q": "Can all content be reached with a keyboard alone, including content shown on hover or right-click and content far down a page?", "provisions": ["keyboard-accessible"], "meetsWhen": "yes" },
+        { "id": "kb-both-ways", "q": "Can the keyboard always move both forward to the next interactive element and back to the previous one?", "provisions": ["bidirectional-navigation"], "meetsWhen": "yes" },
+        { "id": "kb-traps", "q": "Can people always leave a component they entered with the keyboard, such as a dialog, menu, date picker or video player, using standard keys?", "help": "Non-standard keys are fine if they are explained on the page or earlier in the process.", "provisions": ["no-keyboard-traps"], "meetsWhen": "yes" },
+        { "id": "focus-order", "q": "Does keyboard focus move in an order that preserves meaning and lets people operate things?", "provisions": ["focus-order-meaningful"], "meetsWhen": "yes" },
+        { "id": "focus-relevant", "q": "Does focus skip hidden content and non-interactive content, and avoid stopping on long groups of repeated controls?", "provisions": ["focus-relevant"], "meetsWhen": "yes" },
+        { "id": "focus-user", "q": "Does focus move only when the user does something?", "help": "Exceptions include moving to the next field of a one-time code, safety warnings such as an imminent timeout, and moves the user is told about first and can avoid.", "provisions": ["focus-user-controlled"], "meetsWhen": "yes" },
+        { "id": "focus-notified", "q": "When focus changes automatically or when something receives focus, is the change shown on screen and announced?", "provisions": ["change-of-focus-notified"], "meetsWhen": "yes" },
+        { "id": "pointer-sets-focus", "q": "After someone clicks or taps on the page, does the next press of Tab start from where they clicked?", "provisions": ["pointer-accessible"], "meetsWhen": "yes" },
+        { "id": "custom-focus", "q": "Have you replaced the browser's default focus indicator with your own?", "naWhenNo": true, "children": [
+          { "id": "custom-focus-contrast", "when": "yes", "q": "Does your focus indicator have enough contrast against what is next to it, and a clear change of contrast from the unfocused state?", "standIn": "contrast-nontext", "provisions": ["focus-indicator-contrast-sufficient"], "meetsWhen": "yes" }
+        ] },
+        { "id": "shortcuts", "q": "Do you have custom keyboard shortcuts?", "naWhenNo": true, "children": [
+          { "id": "shortcuts-conflict", "when": "yes", "q": "Do they avoid conflicting with standard platform shortcuts, or can people remap them?", "provisions": ["no-keyboard-conflicts"], "meetsWhen": "yes" }
+        ] },
+        { "id": "hover", "q": "Does any content appear when people hover over or focus on something, such as tooltips or fly-out menus?", "help": "Browser tooltips from the title attribute don't count; this is about content you control.", "naWhenNo": true, "children": [
+          { "id": "hover-persist", "when": "yes", "q": "Can people move the pointer onto that content without it disappearing?", "provisions": ["hover-content-persistent"], "meetsWhen": "yes" },
+          { "id": "hover-dismiss", "when": "yes", "q": "If it covers other content, can people dismiss it without moving the pointer or focus, for example with Escape?", "provisions": ["hover-or-focus-content-dismissible"], "meetsWhen": "yes" }
+        ] }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": "Controls and pointer input",
+      "items": [
+        { "id": "names", "q": "Does every interactive element have a persistent visible label or icon, and an accessible name in the code that says what it does?", "help": "Placeholder text that disappears when people type isn't persistent.", "provisions": ["interactive-element-names-available"], "meetsWhen": "yes" },
+        { "id": "label-in-name", "q": "Does each accessible name include the visible label text?", "provisions": ["label-included-in-programmatic-name"], "meetsWhen": "yes" },
+        { "id": "rvs", "q": "Do custom controls expose an accurate name, role, value and state, such as expanded, selected or checked?", "provisions": ["roles-values-states-properties-available"], "meetsWhen": "yes" },
+        { "id": "rvs-change", "q": "When a control's name, role, value or state changes, is the change shown on screen and exposed in the code?", "provisions": ["changes-to-elements-notified"], "meetsWhen": "yes" },
+        { "id": "control-contrast", "q": "Do the visual parts that identify controls and their states, such as borders and checkmarks, have enough contrast?", "help": "Controls left in the browser's default style, and inactive controls, are exempt.", "standIn": "contrast-nontext", "provisions": ["interactive-element-contrast-sufficient"], "meetsWhen": "yes" },
+        { "id": "simple-pointer", "q": "Can everything done by dragging, double-clicking, swiping or multi-finger gestures also be done with single clicks or taps that don't need timing?", "provisions": ["simple-pointer-input-available"], "meetsWhen": "yes" },
+        { "id": "path-gesture", "q": "Is any function only possible with a path-based gesture, such as drawing a shape or swiping along a route, where that isn't essential?", "provisions": ["path-based-gesture-not-relied-on"], "meetsWhen": "no" },
+        { "id": "up-event", "q": "Do clicks and taps take effect when released rather than when pressed, or can people cancel or undo them?", "provisions": ["pointer-activation-controllable"], "meetsWhen": "yes" },
+        { "id": "pressure-speed", "q": "Does anything require a particular pointer pressure or speed, where that isn't essential?", "provisions": ["pointer-pressure-not-relied-on", "pointer-speed-not-relied-on"], "meetsWhen": "no" }
+      ]
+    },
+    {
+      "id": "forms",
+      "title": "Forms and data entry",
+      "gate": { "id": "has-forms", "q": "Does your site have forms or other places where people enter data?" },
+      "items": [
+        { "id": "constraints", "q": "Are input requirements, such as required fields, date formats and password rules, shown before people enter data?", "provisions": ["input-constraints-used"], "meetsWhen": "yes" },
+        { "id": "error-text", "q": "When an error is detected, is it identified and described in text?", "provisions": ["error-notifications-available"], "meetsWhen": "yes" },
+        { "id": "error-assoc", "q": "Is each validation error linked, visually and in the code, to the field that caused it or can fix it?", "provisions": ["errors-associated"], "meetsWhen": "yes" },
+        { "id": "review", "q": "Before submitting, can people review and correct what they entered, or the errors found?", "help": "Not needed when entries are saved automatically or can be reversed.", "provisions": ["errors-preventable"], "meetsWhen": "yes" },
+        { "id": "autofill", "q": "Can people paste, and use browser autofill or password managers, in every field for personal information?", "provisions": ["automated-entry-allowed"], "meetsWhen": "yes" }
+      ]
+    },
+    {
+      "id": "sign-in",
+      "title": "Signing in",
+      "gate": { "id": "has-login", "q": "Do people sign in or verify who they are?" },
+      "items": [
+        { "id": "cognitive-test", "q": "Can people complete sign-in without a cognitive function test, such as solving a puzzle or remembering and typing a password unaided?", "help": "Allowing password managers and paste, passkeys or email links are common ways to offer this.", "provisions": ["cognitive-test-alternatives-available"], "meetsWhen": "yes" },
+        { "id": "biometrics", "q": "Do you use biometrics, such as a face, fingerprint or voice?", "naWhenNo": true, "children": [
+          { "id": "biometrics-alt", "when": "yes", "q": "Is there always a way to sign in that isn't biometric?", "provisions": ["biometrics-not-relied-on", "voice-identification-not-relied-on", "multiple-biometrics-available"], "meetsWhen": "yes" }
+        ] }
+      ]
+    },
+    {
+      "id": "risk",
+      "title": "Choices with consequences",
+      "gate": { "id": "has-risk", "q": "Do people make choices with legal, financial, privacy or security consequences, such as purchases, consent or sharing data?" },
+      "items": [
+        { "id": "consequences", "q": "Is each of those choices accompanied by a description of its benefits, risks and potential consequences?", "provisions": ["consequences-of-choices-explained"], "meetsWhen": "yes" },
+        { "id": "preselected", "q": "Are preselected options that affect money, privacy or safety, such as opt-ins, visible and exposed in the code by default?", "provisions": ["preselections-visible"], "meetsWhen": "yes" },
+        { "id": "sensitive", "q": "Does the site show or ask for personal or sensitive information?", "naWhenNo": true, "children": [
+          { "id": "risk-equal", "when": "yes", "q": "Are people who use assistive technology, accessible versions or accessibility settings exposed to no extra risk, such as a password being read aloud?", "provisions": ["risk-comparable"], "meetsWhen": "yes" }
+        ] }
+      ]
+    },
+    {
+      "id": "changes",
+      "title": "Changes, settings and assistive technology",
+      "items": [
+        { "id": "content-changes", "q": "Are meaningful changes on screen, such as status messages, new content above the current position, or a changed number of results, conveyed to assistive technology?", "provisions": ["change-of-content-notified"], "meetsWhen": "yes" },
+        { "id": "view-change", "q": "When content changes to a new page or view without a full page load, is there a visible change and a programmatic notification?", "provisions": ["page-view-change-notified"], "meetsWhen": "yes" },
+        { "id": "ua-change", "q": "Does content ever open a new window, switch apps or change device settings automatically?", "naWhenNo": true, "children": [
+          { "id": "ua-change-notice", "when": "yes", "q": "Are people told before it happens?", "provisions": ["change-of-user-agent-notified"], "meetsWhen": "yes" }
+        ] },
+        { "id": "settings", "q": "Does the content respond to people's platform and browser accessibility settings, such as font size, colour scheme, magnification and reduced motion?", "provisions": ["user-settings-supported"], "meetsWhen": "yes" },
+        { "id": "at", "q": "Can the content be controlled with assistive and adaptive technology, such as screen readers, voice control and switch access?", "provisions": ["assistive-technology-supported"], "meetsWhen": "yes" },
+        { "id": "virtual-cursor", "q": "Can screen reader users reach all content and interactions in browse mode or with a virtual cursor, not only with Tab?", "provisions": ["virtual-cursor-supported"], "meetsWhen": "yes" }
+      ]
+    },
+    {
+      "id": "devices",
+      "title": "Devices and special input",
+      "gate": { "id": "has-special", "q": "Does your product use vibration, body movement, eye tracking, speech input, a custom or hidden pointer, touch-only or VR input, or 360-degree environments?" },
+      "items": [
+        { "id": "haptics", "q": "Does it trigger vibration or other haptic feedback?", "naWhenNo": true, "children": [
+          { "id": "haptics-adjust", "when": "yes", "q": "Can people reduce or turn off the haptic feedback?", "provisions": ["haptic-stimulation-adjustable"], "meetsWhen": "yes" }
+        ] },
+        { "id": "alt-input", "q": "Does any feature use body movement such as shaking, eye tracking, or speaking?", "naWhenNo": true, "children": [
+          { "id": "alt-input-other", "when": "yes", "q": "Is there always another way to use each of those features, unless that input is essential?", "provisions": ["body-movements-not-relied-on", "eye-tracking-not-relied-on", "speech-not-relied-on"], "meetsWhen": "yes" }
+        ] },
+        { "id": "pointer-custom", "q": "Do you change, hide or replace the pointer, or run on a platform without a visible pointer, such as touch or VR?", "naWhenNo": true, "children": [
+          { "id": "pointer-shown", "when": "yes", "q": "Is a visible pointer indicator always shown where the platform has one?", "help": "It may hide over a video when it isn't moving, or when the pointer steers the view in a virtual environment.", "provisions": ["pointer-focus-indicated", "pointer-visible"], "meetsWhen": "yes" },
+          { "id": "pointer-size", "when": "yes", "q": "If you change the pointer's look, is the default pointer at least as large as the platform's and does it have enough contrast?", "standIn": "contrast-nontext", "provisions": ["pointer-contrast-sufficient"], "meetsWhen": "yes" },
+          { "id": "pointer-activation", "when": "yes", "q": "Where there is no visible pointer, such as touch or VR, is there a visible sign that something has been selected?", "provisions": ["pointer-activation-indicated-minimum"], "meetsWhen": "yes" }
+        ] },
+        { "id": "immersive", "q": "Do you have 360-degree, virtual or augmented reality content?", "naWhenNo": true, "children": [
+          { "id": "immersive-captions", "when": "yes", "q": "Where people control where captions appear, do captions stay directly in front of them?", "provisions": ["captions-centered-immersive"], "meetsWhen": "yes" },
+          { "id": "immersive-direction", "when": "yes", "q": "When sound or speech comes from outside the current view, is its direction indicated?", "provisions": ["direction-indicated-immersive"], "meetsWhen": "yes" },
+          { "id": "immersive-spatial", "when": "yes", "q": "Is any information conveyed only by where a sound seems to come from?", "provisions": ["spatial-audio-not-relied-on"], "meetsWhen": "no" },
+          { "id": "immersive-shift", "when": "yes", "q": "If audio shifts to create a sense of motion, can people pause or turn that off?", "help": "Answer yes if the content never shifts audio this way.", "provisions": ["audio-shifting-adjustable"], "meetsWhen": "yes" }
+        ] }
+      ]
+    }
+  ]
+}

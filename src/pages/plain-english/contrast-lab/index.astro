@@ -1,0 +1,524 @@
+---
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+
+// Example pairs for the checker. No results are written here: the page measures
+// each pair in the browser, so the numbers shown always come from the formulas.
+const presets = [
+  { label: "Mid grey on white", fg: "#767676", bg: "#ffffff" },
+  { label: "White on orange", fg: "#ffffff", bg: "#f26b1d" },
+  { label: "Grey on black", fg: "#8a8a8a", bg: "#000000" },
+  { label: "Black on blue", fg: "#000000", bg: "#3b6cff" },
+  { label: "White on mid blue", fg: "#ffffff", bg: "#2f6fd6" },
+  { label: "Pale grey on white", fg: "#9a9a9a", bg: "#ffffff" },
+  { label: "White on striped blue", fg: "#ffffff", bg: "#1f4fbf", pattern: "stripes", pat: "#8fb0f0" },
+  { label: "Black on dotted yellow", fg: "#000000", bg: "#ffe14d", pattern: "dots", pat: "#9a7a00" },
+  { label: "Dark grey on a checkerboard", fg: "#333333", bg: "#ffffff", pattern: "checker", pat: "#a8a8a8" },
+  { label: "White on a gradient", fg: "#ffffff", bg: "#123a7a", pattern: "gradient", pat: "#7fa6e6" },
+];
+const steps = [16, 18, 24, 32, 40, 48, 56, 64];
+---
+
+<PlainEnglishLayout title="Contrast Lab: WCAG 2 Ratio and APCA" activeTab="contrast">
+  <section class="cl-banner">
+    <p class="cl-kicker">Contrast lab</p>
+    <h1>WCAG 2 contrast ratio and APCA, side by side</h1>
+    <p>
+      Pick any two colours, a text size, a weight and, if you like, a patterned background, and see how WCAG 2.2's contrast ratio and APCA score
+      the same pair. Further down, a heading changes colour with its own rendered size, and both measures
+      follow it as it scales.
+    </p>
+  </section>
+
+  <aside class="cl-status" aria-labelledby="cl-status-h">
+    <h2 id="cl-status-h">Which one is the requirement?</h2>
+    <p>
+      WCAG 2.2's contrast ratio is the only adopted measure: 4.5:1 for normal text and 3:1 for large text
+      under 1.4.3 (Level AA), 7:1 and 4.5:1 under 1.4.6 (AAA). The WCAG 3 draft leaves the measure open.
+      Its editor's note reads: “The contrast algorithm used in WCAG 3 is yet to be determined.” APCA is one
+      candidate discussed in the issue tracker, not adopted. Treat its numbers here as a second opinion, not
+      a pass or fail.
+    </p>
+  </aside>
+
+  <section class="cl-card" aria-labelledby="cl-check-h">
+    <h2 id="cl-check-h">Compare a colour pair</h2>
+
+    <div class="cl-check">
+      <form class="cl-form" id="cl-form">
+        <div class="cl-field">
+          <label for="cl-fg">Text colour</label>
+          <div class="cl-colour">
+            <input type="color" id="cl-fg" value="#767676" aria-describedby="cl-fg-hex-l" />
+            <input type="text" id="cl-fg-hex" value="#767676" spellcheck="false" autocomplete="off" inputmode="text" aria-label="Text colour hex value" />
+          </div>
+          <span class="cl-sr" id="cl-fg-hex-l">You can also type a hex value in the field next to it.</span>
+        </div>
+        <div class="cl-field">
+          <label for="cl-bg">Background colour</label>
+          <div class="cl-colour">
+            <input type="color" id="cl-bg" value="#ffffff" />
+            <input type="text" id="cl-bg-hex" value="#ffffff" spellcheck="false" autocomplete="off" aria-label="Background colour hex value" />
+          </div>
+        </div>
+        <div class="cl-field">
+          <label for="cl-pattern">Background pattern</label>
+          <select id="cl-pattern">
+            <option value="none" selected>None (solid)</option>
+            <option value="stripes">Diagonal stripes</option>
+            <option value="dots">Dots</option>
+            <option value="checker">Checkerboard</option>
+            <option value="gradient">Gradient</option>
+          </select>
+        </div>
+        <div class="cl-field" id="cl-pat-field" hidden>
+          <label for="cl-pat">Pattern colour</label>
+          <div class="cl-colour">
+            <input type="color" id="cl-pat" value="#b0b0b0" />
+            <input type="text" id="cl-pat-hex" value="#b0b0b0" spellcheck="false" autocomplete="off" aria-label="Pattern colour hex value" />
+          </div>
+        </div>
+        <button type="button" class="cl-btn" id="cl-swap">Swap text and background</button>
+        <div class="cl-field cl-wide">
+          <label for="cl-size">Font size <output id="cl-size-out" for="cl-size">16px</output></label>
+          <input type="range" id="cl-size" min="10" max="72" step="1" value="16" />
+        </div>
+        <div class="cl-field">
+          <label for="cl-weight">Weight</label>
+          <select id="cl-weight">
+            <option value="300">300 Light</option>
+            <option value="400" selected>400 Regular</option>
+            <option value="600">600 Semibold</option>
+            <option value="700">700 Bold</option>
+          </select>
+        </div>
+      </form>
+
+      <div class="cl-preview" id="cl-preview" data-pattern="none" style="color:#767676;--bg:#ffffff;--pat:#b0b0b0">
+        <p id="cl-sample" style="font-size:16px;font-weight:400">The quick brown fox jumps over the lazy dog.</p>
+      </div>
+
+      <div class="cl-results" aria-live="polite">
+        <div class="cl-result">
+          <h3>WCAG 2 contrast ratio</h3>
+          <p class="cl-big" id="w-ratio">—</p>
+          <p class="cl-line" id="w-class">—</p>
+          <p class="cl-line" id="w-parts" hidden>—</p>
+          <ul class="cl-verdicts">
+            <li><span id="w-aa" class="cl-chip">—</span> 1.4.3 Contrast (Minimum), AA</li>
+            <li><span id="w-aaa" class="cl-chip">—</span> 1.4.6 Contrast (Enhanced), AAA</li>
+          </ul>
+        </div>
+        <div class="cl-result">
+          <h3>APCA lightness contrast</h3>
+          <p class="cl-big" id="a-lc">—</p>
+          <p class="cl-line" id="a-polarity">—</p>
+          <p class="cl-line" id="a-parts" hidden>—</p>
+          <ul class="cl-verdicts">
+            <li><span id="a-guide" class="cl-chip">—</span> <span id="a-guide-l">Simplified guide level</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="cl-note" id="cl-agree">—</p>
+      <p class="cl-note" id="cl-pattern-note" hidden>
+        With a pattern, letters cross both colours, so each measure is taken against the background colour
+        and the pattern colour and the lower score is the one that counts. A gradient is checked at its two
+        ends, which are its extremes. Patterns also add visual noise that neither formula measures, so a
+        pair that passes on a solid colour can still be harder to read here.
+      </p>
+    </div>
+
+    <div class="cl-presets">
+      <h3 id="cl-presets-h">Try a pair</h3>
+      <ul aria-labelledby="cl-presets-h">
+        {presets.map((p) => (
+          <li>
+            <button type="button" class="cl-preset" data-fg={p.fg} data-bg={p.bg} data-ptype={p.pattern || "none"} data-pat={p.pat || ""}>
+              <span class="cl-swatch" data-pattern={p.pattern || "none"} style={`--bg:${p.bg};--pat:${p.pat || p.bg};color:${p.fg}`} aria-hidden="true">Aa</span>
+              <span>{p.label}<br /><code>{p.fg} on {p.bg}{p.pat ? ` + ${p.pat}` : ""}</code></span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="cl-card" aria-labelledby="cl-ramp-h">
+    <h2 id="cl-ramp-h">Contrast that follows text size</h2>
+    <p class="cl-lead">
+      The heading below takes its size from the window. Its colours are worked out from that rendered size:
+      at 64px it is a soft tone on a tinted panel, and as it shrinks the text moves to full black (white in
+      dark mode) and the panel to white (black). Resize the window, or set a size by hand.
+    </p>
+
+    <div class="cl-live specimen" id="cl-live"><span class="ink">The smaller I am, the more contrast I get.</span></div>
+
+    <div class="cl-mode" role="group" aria-label="Specimen size">
+      <label><input type="radio" name="cl-mode" id="cl-mode-window" value="window" checked /> Follow window width</label>
+      <label><input type="radio" name="cl-mode" id="cl-mode-manual" value="manual" /> Set size</label>
+      <label for="cl-live-size" class="cl-mode-range">
+        <span class="cl-sr">Specimen size</span>
+        <input type="range" id="cl-live-size" min="14" max="72" step="1" value="40" disabled />
+        <output id="cl-live-out" for="cl-live-size">40px</output>
+      </label>
+    </div>
+
+    <dl class="cl-readout" aria-live="polite">
+      <div><dt>Rendered size</dt><dd id="r-size">—</dd><dd class="cl-sub" id="r-class">—</dd></div>
+      <div><dt>Colours</dt><dd id="r-colours" class="cl-mono">—</dd><dd class="cl-sub">text on background</dd></div>
+      <div><dt>WCAG 2 ratio</dt><dd id="r-ratio">—</dd><dd class="cl-sub" id="r-need">—</dd></div>
+      <div><dt>APCA Lc</dt><dd id="r-lc">—</dd><dd class="cl-sub" id="r-lcneed">—</dd></div>
+    </dl>
+
+    <h3 class="cl-h3">The same rule at fixed sizes</h3>
+    <div class="cl-steps-wrap" tabindex="0" role="region" aria-label="Fixed-size samples">
+      <ul class="cl-steps">
+        {steps.map((px) => (
+          <li class="cl-step">
+            <div class="specimen" style={`font-size:${px}px`}><span class="ink">Aa</span></div>
+            <p class="cl-step-meta" data-px={px}>{px}px</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <h3 class="cl-h3">How it works</h3>
+    <p class="cl-lead">
+      <code>tan(atan2(1em, 1px))</code> turns an element's rendered font size into a plain number of CSS
+      pixels, which colour functions can use. The text colour sits on an inner element because Chromium
+      resolves <code>em</code> inside the <code>color</code> property against the parent's font size; the
+      inner element inherits the specimen's size, so it works either way.
+    </p>
+    <pre class="cl-code"><code>.specimen {"{"}
+  --s: tan(atan2(1em, 1px));                /* rendered size in px */
+  --t: clamp(0, (var(--s) - 18) / 46, 1);   /* 0 at 18px, 1 at 64px */
+  background: oklch(calc(1 - 0.09 * var(--t)) calc(0.035 * var(--t)) 250);
+{"}"}
+.specimen &gt; .ink {"{"}
+  color: oklch(calc(0.58 * var(--t)) calc(0.09 * var(--t)) 262);
+{"}"}</code></pre>
+  </section>
+
+  <section class="cl-card" aria-labelledby="cl-site-h">
+    <h2 id="cl-site-h">Where this site uses it</h2>
+    <p class="cl-lead">
+      Headings on this site that use the default text colour shift toward the accent colour as they get
+      larger, from 24px up to 44px, and keep full contrast at smaller sizes. Both ends of that range measure
+      at least 4.5:1 on every surface, in light and dark mode. The <strong>Heading tint</strong> slider under
+      Reading options turns it down or off, and it switches off by itself when your system asks for more
+      contrast or when you pick one of the panel's colour themes.
+    </p>
+  </section>
+
+  <section class="cl-card" aria-labelledby="cl-method-h">
+    <h2 id="cl-method-h">Method</h2>
+    <ul class="cl-list">
+      <li><strong>WCAG 2 ratio:</strong> relative luminance of each colour, then (lighter + 0.05) divided by (darker + 0.05). Large text is at least 24px, or at least 18.66px when bold (WCAG 2 defines it as 18 point, or 14 point bold).</li>
+      <li><strong>APCA:</strong> the 0.0.98G-4g constants published in the <a href="https://github.com/Myndex/apca-w3">apca-w3</a> reference code. The result is signed: positive for dark text on a light background, negative for light text on a dark one.</li>
+      <li><strong>APCA guide levels:</strong> a simplified reading of APCA's Bronze simple mode. Lc 75 for body-size text, Lc 60 for text from 24px (or 16px at 600 weight and heavier), Lc 45 from 36px (or 24px heavy). APCA's full font lookup table is finer than this.</li>
+      <li><strong>Neither measure</strong> sees anti-aliasing, the typeface's actual stroke width, or text over images. Colours are read as the browser paints them, after any opacity or theme.</li>
+    </ul>
+  </section>
+</PlainEnglishLayout>
+
+<style>
+  :global(:root) {
+    /* Specimen ramp ends (OKLCH lightness, chroma, hue): dark theme. */
+    --cl-t-small: 1;    --cl-t-large: 0.72; --cl-t-chroma: 0.05;  --cl-t-hue: 250;
+    --cl-b-small: 0.10; --cl-b-large: 0.28; --cl-b-chroma: 0.04;  --cl-b-hue: 262;
+    --cl-fallback-fg: #ffffff; --cl-fallback-bg: #000000;
+  }
+  :global(:root[data-theme="light"]) {
+    --cl-t-small: 0;    --cl-t-large: 0.58; --cl-t-chroma: 0.09;  --cl-t-hue: 262;
+    --cl-b-small: 1;    --cl-b-large: 0.91; --cl-b-chroma: 0.035; --cl-b-hue: 250;
+    --cl-fallback-fg: #000000; --cl-fallback-bg: #ffffff;
+  }
+
+  .cl-banner, .cl-card, .cl-status {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 24px clamp(16px, 3vw, 32px);
+    margin-bottom: 24px;
+    min-width: 0;
+  }
+  .cl-banner { border-left: 4px solid var(--accent-blue); }
+  .cl-kicker {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-muted); margin: 0 0 8px;
+  }
+  .cl-banner h1 { font-size: clamp(1.6rem, 1rem + 2.4vw, 2.6rem); font-weight: 800; color: var(--text-pure); letter-spacing: -0.02em; margin: 0 0 10px; text-wrap: balance; }
+  .cl-banner p:last-child, .cl-lead, .cl-status p { color: var(--text-secondary); line-height: 1.65; max-width: 72ch; }
+  .cl-status { border-left: 4px solid var(--accent-amber); }
+  .cl-status h2 { font-size: 1.05rem; color: var(--text-pure); margin: 0 0 6px; }
+  .cl-card h2 { font-size: 1.4rem; font-weight: 800; color: var(--text-pure); margin: 0 0 14px; }
+  .cl-h3, .cl-presets h3, .cl-result h3 { font-size: 1rem; font-weight: 700; color: var(--text-pure); margin: 22px 0 10px; }
+  .cl-result h3 { margin-top: 0; }
+  .cl-sr { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  code, .cl-mono { font-family: var(--font-mono); font-size: 0.88em; }
+
+  /* Checker */
+  .cl-check { display: grid; gap: 16px; }
+  .cl-form { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: flex-end; }
+  .cl-field { display: grid; gap: 6px; min-width: 0; }
+  .cl-field label { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); display: flex; gap: 8px; align-items: baseline; }
+  .cl-wide { flex: 1 1 220px; }
+  .cl-wide input[type="range"] { width: 100%; }
+  .cl-field output { font-family: var(--font-mono); font-weight: 500; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  .cl-colour { display: flex; gap: 6px; align-items: center; }
+  .cl-colour input[type="color"] { width: 44px; height: 40px; padding: 2px; border: 1px solid var(--border-default); border-radius: var(--radius-sm); background: var(--surface-base); cursor: pointer; }
+  .cl-colour input[type="text"], .cl-field select {
+    height: 40px; width: 8.5em; padding: 0 10px; border: 1px solid var(--border-default); border-radius: var(--radius-sm);
+    background: var(--surface-base); color: var(--text-primary); font-family: var(--font-mono); font-size: 0.9rem;
+  }
+  .cl-field select { width: auto; font-family: inherit; }
+  .cl-colour input[aria-invalid="true"] { border-color: var(--accent-rose); }
+  input[type="range"] { accent-color: var(--accent-blue); min-height: 24px; }
+  .cl-btn {
+    height: 40px; padding: 0 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-default);
+    background: var(--surface-card-hover); color: var(--text-primary); font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  }
+  .cl-btn:hover { border-color: var(--accent-blue); }
+  /* Background patterns: --bg is the base colour, --pat the pattern colour. */
+  [data-pattern] { background: var(--bg); }
+  [data-pattern="stripes"] { background: repeating-linear-gradient(45deg, var(--bg) 0 10px, var(--pat) 10px 20px); }
+  [data-pattern="dots"] { background: radial-gradient(circle, var(--pat) 3px, transparent 3.5px) 0 0 / 14px 14px, var(--bg); }
+  [data-pattern="checker"] { background: conic-gradient(var(--pat) 25%, var(--bg) 0 50%, var(--pat) 0 75%, var(--bg) 0) 0 0 / 24px 24px; }
+  [data-pattern="gradient"] { background: linear-gradient(90deg, var(--bg), var(--pat)); }
+  .cl-swatch[data-pattern="stripes"] { background: repeating-linear-gradient(45deg, var(--bg) 0 5px, var(--pat) 5px 10px); }
+  .cl-swatch[data-pattern="dots"] { background: radial-gradient(circle, var(--pat) 2px, transparent 2.5px) 0 0 / 8px 8px, var(--bg); }
+  .cl-swatch[data-pattern="checker"] { background: conic-gradient(var(--pat) 25%, var(--bg) 0 50%, var(--pat) 0 75%, var(--bg) 0) 0 0 / 12px 12px; }
+  .cl-preview { border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px; min-height: 96px; display: flex; align-items: center; overflow: hidden; }
+  .cl-preview p { margin: 0; line-height: 1.35; overflow-wrap: anywhere; }
+  .cl-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px; }
+  .cl-result { border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px 16px; min-width: 0; }
+  .cl-big { font-family: var(--font-mono); font-size: 1.9rem; font-weight: 600; color: var(--text-pure); font-variant-numeric: tabular-nums; margin: 0; }
+  .cl-line { color: var(--text-muted); font-size: 0.88rem; margin: 2px 0 10px; }
+  .cl-verdicts { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 0.9rem; color: var(--text-secondary); }
+  .cl-chip {
+    display: inline-block; min-width: 3.6em; text-align: center; font: 700 0.72rem/1 var(--font-mono); letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 4px 6px; border-radius: 4px; border: 1px solid currentColor; margin-right: 6px;
+  }
+  .cl-chip.pass { color: var(--code-ok); }
+  .cl-chip.fail { color: var(--code-bad); }
+  .cl-note { color: var(--text-secondary); font-size: 0.92rem; margin: 0; }
+  .cl-presets ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 8px; }
+  .cl-preset {
+    width: 100%; display: flex; gap: 10px; align-items: center; text-align: left; padding: 8px 10px;
+    border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface-base);
+    color: var(--text-primary); font: inherit; font-size: 0.88rem; cursor: pointer; min-height: 44px;
+  }
+  .cl-preset:hover { border-color: var(--accent-blue); }
+  .cl-preset code { color: var(--text-muted); font-size: 0.78rem; }
+  .cl-swatch { flex: none; width: 40px; height: 40px; border-radius: 6px; display: grid; place-items: center; font-weight: 700; border: 1px solid var(--border-subtle); }
+
+  /* Size-tracking specimen */
+  .specimen { font-weight: 400; line-height: 1.08; color: var(--cl-fallback-fg); background: var(--cl-fallback-bg); }
+  @supports (top: calc(tan(atan2(1px, 1px)) * 1px)) and (color: oklch(0.5 0.1 250)) {
+    .specimen {
+      --s: tan(atan2(1em, 1px));
+      --t: clamp(0, (var(--s) - 18) / 46, 1);
+      background: oklch(calc(var(--cl-b-small) + (var(--cl-b-large) - var(--cl-b-small)) * var(--t))
+                        calc(var(--cl-b-chroma) * var(--t)) var(--cl-b-hue));
+    }
+    .specimen > .ink {
+      color: oklch(calc(var(--cl-t-small) + (var(--cl-t-large) - var(--cl-t-small)) * var(--t))
+                   calc(var(--cl-t-chroma) * var(--t)) var(--cl-t-hue));
+      -webkit-text-fill-color: currentColor;
+    }
+  }
+  .cl-live {
+    font-size: var(--manual, clamp(1.125rem, -0.2rem + 5vw, 4rem));
+    padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
+    overflow-wrap: anywhere; text-wrap: balance; margin: 6px 0 12px;
+  }
+  .cl-mode { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 14px; }
+  .cl-mode label { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; min-height: 24px; }
+  .cl-mode-range input { width: min(15rem, 55vw); }
+  .cl-mode output { font-family: var(--font-mono); font-variant-numeric: tabular-nums; min-width: 4.5ch; }
+  .cl-readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; margin: 0; }
+  .cl-readout div { background: var(--surface-card); padding: 12px 14px; min-width: 0; }
+  .cl-readout dt { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); }
+  .cl-readout dd { margin: 4px 0 0; font-family: var(--font-mono); font-size: 1.15rem; color: var(--text-pure); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .cl-readout dd.cl-sub { font-family: inherit; font-size: 0.8rem; color: var(--text-muted); }
+  .cl-steps-wrap { overflow-x: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+  .cl-steps-wrap:focus-visible { outline: 3px solid var(--accent-blue); outline-offset: 2px; }
+  .cl-steps { list-style: none; margin: 0; padding: 0; display: flex; min-width: max-content; }
+  .cl-step { border-right: 1px solid var(--border-subtle); }
+  .cl-step:last-child { border-right: 0; }
+  .cl-step .specimen { padding: 8px 12px; min-height: 84px; display: flex; align-items: flex-end; }
+  .cl-step-meta { margin: 0; padding: 8px 12px 10px; font: 0.76rem/1.5 var(--font-mono); color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .cl-code { background: var(--code-surface); border: 1px solid var(--code-border); color: var(--code-text); border-radius: var(--radius-md); padding: 14px 16px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; margin: 0; }
+  .cl-list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; color: var(--text-secondary); line-height: 1.6; max-width: 80ch; }
+  .cl-list a { color: var(--text-accent); }
+  @media (prefers-reduced-motion: no-preference) { .cl-live { transition: font-size 0.12s ease-out; } }
+</style>
+
+<script>
+  // ---------- Shared maths ----------
+  const ctx = document.createElement("canvas").getContext("2d", { willReadFrequently: true })!;
+  ctx.canvas.width = ctx.canvas.height = 1;
+  function toRGB(css: string): [number, number, number] {
+    ctx.clearRect(0, 0, 1, 1);
+    ctx.fillStyle = "#000";
+    ctx.fillStyle = css;
+    ctx.fillRect(0, 0, 1, 1);
+    const d = ctx.getImageData(0, 0, 1, 1).data;
+    return [d[0], d[1], d[2]];
+  }
+  const hex = (c: number[]) => "#" + c.map((v) => v.toString(16).padStart(2, "0")).join("");
+  function relLum([r, g, b]: number[]) {
+    const f = (v: number) => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  }
+  function ratio(a: number[], b: number[]) {
+    const A = relLum(a), B = relLum(b);
+    return (Math.max(A, B) + 0.05) / (Math.min(A, B) + 0.05);
+  }
+  // APCA 0.0.98G-4g, text colour first.
+  function apca(txt: number[], bg: number[]) {
+    const Y = ([r, g, b]: number[]) => 0.2126729 * (r / 255) ** 2.4 + 0.7151522 * (g / 255) ** 2.4 + 0.072175 * (b / 255) ** 2.4;
+    let yt = Y(txt), yb = Y(bg);
+    if (yt < 0.022) yt += (0.022 - yt) ** 1.414;
+    if (yb < 0.022) yb += (0.022 - yb) ** 1.414;
+    if (Math.abs(yb - yt) < 0.0005) return 0;
+    let out;
+    if (yb > yt) { const s = (yb ** 0.56 - yt ** 0.57) * 1.14; out = s < 0.1 ? 0 : s - 0.027; }
+    else { const s = (yb ** 0.65 - yt ** 0.62) * 1.14; out = s > -0.1 ? 0 : s + 0.027; }
+    return out * 100;
+  }
+  const isLarge = (px: number, w: number) => px >= 24 || (w >= 700 && px >= 18.66);
+  function lcGuide(px: number, w: number) {
+    const heavy = w >= 600;
+    if (px >= 36 || (heavy && px >= 24)) return 45;
+    if (px >= 24 || (heavy && px >= 16)) return 60;
+    return 75;
+  }
+  const chip = (el: HTMLElement, ok: boolean) => { el.textContent = ok ? "Pass" : "Fail"; el.className = "cl-chip " + (ok ? "pass" : "fail"); };
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+
+  // ---------- Pair checker ----------
+  const fg = $("cl-fg") as HTMLInputElement, bg = $("cl-bg") as HTMLInputElement;
+  const fgHex = $("cl-fg-hex") as HTMLInputElement, bgHex = $("cl-bg-hex") as HTMLInputElement;
+  const size = $("cl-size") as HTMLInputElement, weight = $("cl-weight") as HTMLSelectElement;
+  const preview = $("cl-preview"), sample = $("cl-sample");
+  const pattern = $("cl-pattern") as HTMLSelectElement;
+  const pat = $("cl-pat") as HTMLInputElement, patHex = $("cl-pat-hex") as HTMLInputElement;
+  const HEX = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i;
+  const norm = (v: string) => {
+    let h = v.trim().replace(/^#/, "").toLowerCase();
+    if (h.length === 3) h = h.split("").map((c) => c + c).join("");
+    return "#" + h;
+  };
+
+  function check() {
+    const px = +size.value, w = +weight.value;
+    $("cl-size-out").textContent = px + "px";
+    const patterned = pattern.value !== "none";
+    preview.style.color = fg.value;
+    preview.style.setProperty("--bg", bg.value);
+    preview.style.setProperty("--pat", pat.value);
+    preview.dataset.pattern = pattern.value;
+    $("cl-pat-field").hidden = !patterned;
+    $("cl-pattern-note").hidden = !patterned;
+    sample.style.fontSize = px + "px";
+    sample.style.fontWeight = String(w);
+    const t = toRGB(fg.value), b = toRGB(bg.value), pc = toRGB(pat.value);
+    const rB = ratio(t, b), lcB = apca(t, b);
+    const rP = ratio(t, pc), lcP = apca(t, pc);
+    // With a pattern, the weaker of the two backgrounds decides.
+    const r = patterned ? Math.min(rB, rP) : rB;
+    const lc = patterned && Math.abs(lcP) < Math.abs(lcB) ? lcP : lcB;
+    const large = isLarge(px, w), need = lcGuide(px, w);
+    $("w-parts").hidden = $("a-parts").hidden = !patterned;
+    $("w-parts").textContent = `Lower of ${rB.toFixed(2)}:1 on the background and ${rP.toFixed(2)}:1 on the pattern`;
+    $("a-parts").textContent = `Weaker of Lc ${lcB.toFixed(1)} on the background and Lc ${lcP.toFixed(1)} on the pattern`;
+    $("w-ratio").textContent = r.toFixed(2) + ":1";
+    $("w-class").textContent = large ? "Large text: needs 3:1 (AA) or 4.5:1 (AAA)" : "Normal text: needs 4.5:1 (AA) or 7:1 (AAA)";
+    const aa = r >= (large ? 3 : 4.5), aaa = r >= (large ? 4.5 : 7);
+    chip($("w-aa"), aa);
+    chip($("w-aaa"), aaa);
+    $("a-lc").textContent = "Lc " + lc.toFixed(1);
+    $("a-polarity").textContent = lc === 0 ? "Too close to measure" : lc > 0 ? "Dark text on a light background" : "Light text on a dark background";
+    const ok = Math.abs(lc) >= need;
+    chip($("a-guide"), ok);
+    $("a-guide-l").textContent = "Lc " + need + " or more at this size and weight";
+    $("cl-agree").textContent = aa === ok
+      ? (aa ? "Both measures accept this pair at this size." : "Both measures reject this pair at this size.")
+      : aa ? "They disagree: WCAG 2 AA passes this pair, the APCA guide level does not." : "They disagree: the APCA guide level passes this pair, WCAG 2 AA does not.";
+  }
+  function syncFromPicker(picker: HTMLInputElement, field: HTMLInputElement) {
+    field.value = picker.value;
+    field.removeAttribute("aria-invalid");
+    check();
+  }
+  function syncFromField(field: HTMLInputElement, picker: HTMLInputElement) {
+    if (HEX.test(field.value.trim())) { picker.value = norm(field.value); field.removeAttribute("aria-invalid"); check(); }
+    else field.setAttribute("aria-invalid", "true");
+  }
+  fg.addEventListener("input", () => syncFromPicker(fg, fgHex));
+  bg.addEventListener("input", () => syncFromPicker(bg, bgHex));
+  fgHex.addEventListener("input", () => syncFromField(fgHex, fg));
+  bgHex.addEventListener("input", () => syncFromField(bgHex, bg));
+  pat.addEventListener("input", () => syncFromPicker(pat, patHex));
+  patHex.addEventListener("input", () => syncFromField(patHex, pat));
+  pattern.addEventListener("change", check);
+  size.addEventListener("input", check);
+  weight.addEventListener("change", check);
+  $("cl-swap").addEventListener("click", () => {
+    const a = fg.value; fg.value = bg.value; bg.value = a;
+    fgHex.value = fg.value; bgHex.value = bg.value; check();
+  });
+  $("cl-form").addEventListener("submit", (e) => e.preventDefault());
+  document.querySelectorAll<HTMLButtonElement>(".cl-preset").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      fg.value = fgHex.value = btn.dataset.fg!;
+      bg.value = bgHex.value = btn.dataset.bg!;
+      pattern.value = btn.dataset.ptype || "none";
+      if (btn.dataset.pat) pat.value = patHex.value = btn.dataset.pat;
+      check();
+    });
+  });
+  check();
+
+  // ---------- Size-tracking specimen ----------
+  const live = $("cl-live");
+  const liveSize = $("cl-live-size") as HTMLInputElement;
+  function measure(el: HTMLElement) {
+    const px = parseFloat(getComputedStyle(el).fontSize);
+    const t = toRGB(getComputedStyle(el.querySelector(".ink")!).color);
+    const b = toRGB(getComputedStyle(el).backgroundColor);
+    return { px, t, b, r: ratio(t, b), lc: apca(t, b), large: px >= 24 };
+  }
+  function updateSpecimen() {
+    const m = measure(live);
+    $("r-size").textContent = m.px.toFixed(1) + "px";
+    $("r-class").textContent = m.large ? "Large text at regular weight" : "Normal text (under 24px)";
+    $("r-colours").textContent = hex(m.t) + " on " + hex(m.b);
+    const need = m.large ? 3 : 4.5;
+    $("r-ratio").textContent = m.r.toFixed(2) + ":1";
+    $("r-need").textContent = (m.r >= need ? "Passes" : "Fails") + " 1.4.3 (needs " + need + ":1)";
+    const g = lcGuide(m.px, 400);
+    $("r-lc").textContent = m.lc.toFixed(1);
+    $("r-lcneed").textContent = (Math.abs(m.lc) >= g ? "Meets" : "Below") + " the Lc " + g + " guide level";
+    document.querySelectorAll<HTMLElement>(".cl-step").forEach((step) => {
+      const s = measure(step.querySelector(".specimen") as HTMLElement);
+      (step.querySelector(".cl-step-meta") as HTMLElement).textContent = `${s.px}px · ${s.r.toFixed(2)}:1 · Lc ${s.lc.toFixed(0)}`;
+    });
+  }
+  let raf = 0;
+  const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(updateSpecimen); };
+  function setMode() {
+    const manual = ($("cl-mode-manual") as HTMLInputElement).checked;
+    liveSize.disabled = !manual;
+    if (manual) live.style.setProperty("--manual", liveSize.value + "px");
+    else live.style.removeProperty("--manual");
+    schedule();
+  }
+  document.querySelectorAll('input[name="cl-mode"]').forEach((r) => r.addEventListener("change", setMode));
+  liveSize.addEventListener("input", () => { $("cl-live-out").textContent = liveSize.value + "px"; setMode(); });
+  live.addEventListener("transitionend", schedule);
+  new ResizeObserver(schedule).observe(document.documentElement);
+  new MutationObserver(schedule).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "style"] });
+  document.fonts?.ready.then(schedule);
+  schedule();
+</script>

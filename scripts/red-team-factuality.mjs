@@ -469,18 +469,23 @@ class RedTeamFactualityAudit {
       !wcag22Astro.includes('Ensure color contrast and visual focus states are defined in design tokens.')
     );
 
-    // Calculator must contain W3C specification context notice and no fake persona attributes
+    // Calculator must explain its model against the current draft and Explainer,
+    // and must not fall back to the retired 2021 Silver prototype thresholds.
     this.check(
-      'Calculator index.astro contains W3C Conformance Model disclaimer',
-      calcAstro.includes('conformance-model-notice') && calcAstro.includes('Silver Task Force')
+      'Calculator index.astro explains the draft conformance model',
+      calcAstro.includes('ac-model') && calcAstro.includes('every core requirement in scope is met')
     );
     this.check(
-      'Calculator index.astro links to Silver Conformance Prototype',
-      calcAstro.includes('https://w3c.github.io/silver/prototypes/ConformancePrototype/index.html')
+      'Calculator index.astro links to the Explainer scoring alternative',
+      calcAstro.includes('https://w3c.github.io/wcag3/explainer/#alternative-approach-scoring')
     );
     this.check(
       'Calculator index.astro links to normative WCAG 3 Conformance section',
       calcAstro.includes('https://w3c.github.io/wcag3/guidelines/#conformance')
+    );
+    this.check(
+      'Calculator index.astro has no partial credit or invented tier thresholds',
+      !calcAstro.includes('value="partial"') && !/\b(70|80|90)%/.test(calcAstro)
     );
     this.check(
       'Calculator index.astro contains no fake role data attributes',

@@ -1,0 +1,46 @@
+---
+// One quick-check question and, nested beneath it, the follow-ups that its
+// answer reveals. Recursive: follow-ups render through Astro.self.
+interface Props {
+  item: any;
+  standIns: Record<string, string>;
+  exploratory: Set<string>;
+  hidden?: boolean;
+  when?: string;
+}
+const { item, standIns, exploratory, hidden = false, when } = Astro.props;
+const provisions: string[] = item.provisions || [];
+const allExploratory = provisions.length > 0 && provisions.every((s) => exploratory.has(s));
+const children: any[] = item.children || [];
+const name = `qc-${item.id}`;
+---
+
+<div
+  class="qc-q"
+  data-qid={item.id}
+  data-when={when}
+  data-provisions={provisions.join(" ")}
+  data-meets={item.meetsWhen}
+  data-na-when-no={item.naWhenNo ? "true" : undefined}
+  data-all-exploratory={allExploratory ? "true" : undefined}
+  hidden={hidden}
+>
+  <fieldset class="qc-fieldset">
+    <legend class="qc-legend">{item.q}</legend>
+    {item.help && <p class="qc-help">{item.help}</p>}
+    {item.standIn && standIns[item.standIn] && <p class="qc-help qc-standin">{standIns[item.standIn]}</p>}
+    <div class="qc-answers">
+      <label class="qc-answer"><input type="radio" name={name} value="yes" /> <span>Yes</span></label>
+      <label class="qc-answer"><input type="radio" name={name} value="no" /> <span>No</span></label>
+      <label class="qc-answer"><input type="radio" name={name} value="unsure" /> <span>Not sure</span></label>
+    </div>
+    {allExploratory && <p class="qc-tag">Exploratory requirement: not in the published Working Draft</p>}
+  </fieldset>
+  {children.length > 0 && (
+    <div class="qc-children">
+      {children.map((c) => (
+        <Astro.self item={c} standIns={standIns} exploratory={exploratory} hidden={true} when={c.when} />
+      ))}
+    </div>
+  )}
+</div>

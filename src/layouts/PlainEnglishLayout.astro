@@ -1,7 +1,7 @@
 ---
 interface Props {
   title: string;
-  activeTab?: "home" | "wcag3" | "wcag22" | "comparison" | "conformance" | "calculator" | "removals" | "stricter" | "discussions" | "w3c";
+  activeTab?: "home" | "wcag3" | "wcag22" | "comparison" | "conformance" | "calculator" | "removals" | "stricter" | "discussions" | "contrast" | "w3c";
 }
 
 const { title, activeTab = "wcag3" } = Astro.props;
@@ -50,6 +50,28 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         } catch (e) {}
       })();
     </script>
+
+    <style is:global>
+      /* Size-linked heading tint.
+         Headings drawn in the default text colour shift toward the accent colour
+         as they get larger, and return to full contrast as they get smaller. The
+         ramp reads each heading's own rendered size (tan(atan2(1em, 1px)) turns
+         it into a number of CSS px): 24px or smaller keeps the heading's own
+         colour, 44px or larger reaches the accent. Both ends measure at least
+         4.5:1 on every page surface in both themes, so the mix never drops below
+         that. -webkit-text-fill-color is used rather than color because Chromium
+         resolves em inside the color property against the parent's font size.
+         The reading panel's "Heading tint" slider sets --fc-strength. */
+      :root { --fc-strength: 1; }
+      @media (prefers-contrast: more) { :root { --fc-strength: 0; } }
+      @supports (top: calc(tan(atan2(1px, 1px)) * 1px)) and (color: color-mix(in oklch, red, blue)) {
+        [data-fc] {
+          --fc-s: tan(atan2(1em, 1px));
+          --fc-t: clamp(0, (var(--fc-s) - 24) / 20, 1);
+          -webkit-text-fill-color: color-mix(in oklch, var(--text-accent) calc(var(--fc-t) * var(--fc-strength) * 100%), currentColor);
+        }
+      }
+    </style>
 
     <style is:global>
       /* ==========================================================================
@@ -1451,11 +1473,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <li><a href={link("/plain-english/")}>✨ WCAG 3.0 Explorer (245 Provisions)</a></li>
               <li><a href={link("/plain-english/wcag22/")}>📘 WCAG 2.2 Reference (87 Criteria)</a></li>
               <li><a href={link("/plain-english/comparison/")}>🔀 Old vs New: WCAG 2.2 vs 3.0 Evolution Matrix</a></li>
-              <li><a href={link("/plain-english/calculator/")}>🧮 WCAG 3 Score Calculator (Bronze/Silver/Gold)</a></li>
+              <li><a href={link("/plain-english/calculator/")}>🧮 WCAG 3 Audit Calculator (quick check and full audit)</a></li>
               <li><a href={link("/plain-english/conformance/")}>⚖️ Conformance: What Changed &amp; Readiness</a></li>
               <li><a href={link("/plain-english/removals/")}>🔄 WCAG 2.2 vs 3 Architectural Shifts</a></li>
               <li><a href={link("/plain-english/stricter/")}>🚫 Passes 2.2, Fails 3: Practices the WCAG 3 Draft Would Rule Out</a></li>
               <li><a href={link("/plain-english/discussions/")}>💬 W3C Working Group Discussions</a></li>
+              <li><a href={link("/plain-english/contrast-lab/")}>🌗 Contrast Lab: WCAG 2 Ratio and APCA</a></li>
               <li><a href={link("/guidelines/")}>📜 W3C Normative Guidelines</a></li>
               <li><a href={link("/informative/")}>📚 W3C Informative Documentation</a></li>
             </ul>
@@ -1480,6 +1503,29 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       </div>
     </footer>
 
+    <!-- Size-linked heading tint: mark the headings drawn in the site's default
+         text colour. Accent-coloured and gradient headings keep their own look. -->
+    <script is:inline>
+      (function () {
+        function mark() {
+          var probe = document.createElement('span');
+          document.body.appendChild(probe);
+          var defaults = ['--text-pure', '--text-primary'].map(function (t) {
+            probe.style.color = 'var(' + t + ')';
+            return getComputedStyle(probe).color;
+          });
+          probe.remove();
+          document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6').forEach(function (h) {
+            h.removeAttribute('data-fc');
+            var cs = getComputedStyle(h);
+            if (defaults.indexOf(cs.color) !== -1 && cs.webkitTextFillColor === cs.color) h.setAttribute('data-fc', '');
+          });
+        }
+        mark();
+        new MutationObserver(function () { requestAnimationFrame(mark); })
+          .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    </script>
     <script is:inline>
       window.a11yPanelConfig = {
         mount: '#reading-options',
@@ -1488,6 +1534,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         removable: false,
         label: 'Reading options',
         nativeTheme: { attr: 'data-theme', light: 'light', dark: 'dark', lightClass: 'light-theme', legacyKey: 'wcag_hub_theme' },
+        headingTint: true,
       };
     </script>
     <script>

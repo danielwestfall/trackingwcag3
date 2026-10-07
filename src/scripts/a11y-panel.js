@@ -22,7 +22,9 @@
   //               has its own light/dark theme; the Colors row then offers Auto / Light / Dark that set that
   //               attribute (and optional class) on <html>. legacyKey = localStorage key of an old theme toggle
   //               whose saved 'light'/'dark' choice should carry over (default 'theme').
-  const CFG = Object.assign({ autoOpen: true, removable: true, mount: null, layout: 'inline', label: 'Reading & accessibility options', nativeTheme: null }, window.a11yPanelConfig || {});
+  //   headingTint – the site has size-linked heading colours driven by the CSS variable --fc-strength
+  //               (0–1); adds a "Heading tint" slider that sets it. Panel colour themes switch the tint off.
+  const CFG = Object.assign({ autoOpen: true, removable: true, mount: null, layout: 'inline', label: 'Reading & accessibility options', nativeTheme: null, headingTint: false }, window.a11yPanelConfig || {});
   const NT = CFG.nativeTheme;
   const doc = document;
   const HOST_ID = 'a11yp-host';
@@ -30,12 +32,16 @@
   const STORE_KEY = 'a11yp:' + location.hostname;
 
   // ---------- Config ----------
+  // Each slider moves through fixed steps; the stored value is the step index.
   const STEPPERS = [
     { key: 'text', label: 'Text size', steps: [1, 1.15, 1.3, 1.5, 1.75, 2], fmt: v => Math.round(v * 100) + '%' },
     { key: 'lh', label: 'Line height', steps: [0, 1.5, 1.75, 2, 2.4], fmt: v => (v ? v + '×' : 'Site') },
     { key: 'ls', label: 'Letter spacing', steps: [0, 0.03, 0.06, 0.12], fmt: v => (v ? '+' + v + 'em' : 'Site') },
     { key: 'ws', label: 'Word spacing', steps: [0, 0.1, 0.16, 0.3], fmt: v => (v ? '+' + v + 'em' : 'Site') },
   ];
+  const TINT = { key: 'fc', label: 'Heading tint', steps: [0, 0.25, 0.5, 0.75, 1], fmt: v => (v ? Math.round(v * 100) + '%' : 'Off'),
+    hint: 'Large headings shift toward the accent colour; smaller ones stay at full contrast. Off keeps every heading at full contrast.' };
+  if (CFG.headingTint) STEPPERS.push(TINT);
   const SEGMENTS = [
     { key: 'font', label: 'Font', opts: [['default', 'Site'], ['legible', 'Hyperlegible'], ['lexend', 'Lexend'], ['dyslexic', 'Dyslexia-friendly']] },
     { key: 'theme', label: 'Colors', opts: NT
@@ -68,7 +74,7 @@
     yellow: { bg: '#000000', fg: '#ffff00', link: '#00ffff', line: '#ffff00', field: '#000000' },
   };
   const DEFAULTS = {
-    text: 0, lh: 0, ls: 0, ws: 0,
+    text: 0, lh: 0, ls: 0, ws: 0, fc: TINT.steps.length - 1,
     font: 'default', theme: 'none', sat: 'normal', guide: 'off', rate: '1',
     align: false, measure: false, links: false, headings: false,
     focus: false, motion: false, images: false, cursor: false,
@@ -153,7 +159,9 @@
     const f = FONTS[state.font];
     if (f) c.push(`body, body *:not(i):not(md-icon):not([class*="symbols"]):not([class*="icon"]):not([class*="Icon"]):not([class*="fa-"]):not([class^="fa"]):not([class*="material-"]):not(.glyphicon):not(code):not(pre):not(kbd):not(samp):not(pre *):not(code *):not(svg *) { font-family: ${f.stack} !important; }`);
 
+    if (CFG.headingTint && state.fc !== DEFAULTS.fc) c.push(`:root { --fc-strength: ${stepVal('fc')} !important; }`);
     const t = THEMES[state.theme];
+    if (t && CFG.headingTint) c.push(`body [data-fc] { -webkit-text-fill-color: currentColor !important; }`);
     if (t) c.push(
       `html, body { background: ${t.bg} !important; color: ${t.fg} !important; }`,
       `body *:not(img):not(video):not(canvas):not(picture) { background-color: ${t.bg} !important; color: ${t.fg} !important; border-color: ${t.line} !important; text-shadow: none !important; }`,
@@ -359,6 +367,13 @@ fieldset { border: 0; border-bottom: 1px solid var(--line); margin: 0; padding: 
 legend { float: left; width: 100%; padding: 0; margin-bottom: 6px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 legend + * { clear: both; }
 .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px 0; }
+.slider { margin: 6px 0 10px; }
+.slider .row { margin: 0 0 2px; }
+.slider label { cursor: pointer; }
+.slider output { font-variant-numeric: tabular-nums; font-weight: 600; }
+.slider input[type="range"] { display: block; width: 100%; height: 28px; margin: 0; accent-color: var(--accent); cursor: pointer; background: transparent; }
+.slider input[type="range"]:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; border-radius: 4px; }
+.slider .hint { margin-top: 0; }
 .step { display: flex; align-items: center; gap: 4px; }
 .step output { min-width: 62px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
 .ib { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line); background: var(--chip); cursor: pointer; font-size: 18px; line-height: 1; padding: 0; }
@@ -417,20 +432,24 @@ footer { display: flex; align-items: center; justify-content: space-between; gap
   else root.appendChild(h('style', { text: PANEL_CSS }));
 
   const set = (key, val) => { state[key] = val; apply(key); };
-  const bump = (key, d) => {
-    const s = STEPPERS.find(x => x.key === key);
-    const n = Math.max(0, Math.min(s.steps.length - 1, state[key] + d));
-    if (n !== state[key]) set(key, n);
-  };
 
   function stepper(s) {
-    const out = h('output', { 'aria-live': 'polite' });
-    const dec = h('button', { type: 'button', class: 'ib', 'aria-label': 'Decrease ' + s.label.toLowerCase(), onclick: () => bump(s.key, -1) }, ['−']);
-    const inc = h('button', { type: 'button', class: 'ib', 'aria-label': 'Increase ' + s.label.toLowerCase(), onclick: () => bump(s.key, 1) }, ['+']);
-    refs[s.key] = { out, dec, inc };
-    return h('div', { class: 'row' }, [
-      h('span', { id: 'l-' + s.key, text: s.label }),
-      h('div', { class: 'step', role: 'group', 'aria-labelledby': 'l-' + s.key }, [dec, out, inc]),
+    const id = 'a11yp-' + s.key;
+    const out = h('output', { for: id });
+    const input = h('input', {
+      type: 'range', id, min: '0', max: String(s.steps.length - 1), step: '1', value: String(state[s.key]),
+      'aria-describedby': s.hint ? id + '-hint' : null,
+    });
+    // Spacing and tint are cheap CSS changes, so they follow the thumb. Text size rescales every
+    // element, so it applies when the thumb is released (keyboard steps count as a release).
+    const commit = () => { const n = +input.value; if (n !== state[s.key]) set(s.key, n); };
+    input.addEventListener('input', () => { out.textContent = s.fmt(s.steps[+input.value]); input.setAttribute('aria-valuetext', out.textContent); if (s.key !== 'text') commit(); });
+    input.addEventListener('change', commit);
+    refs[s.key] = { out, input };
+    return h('div', { class: 'slider' }, [
+      h('div', { class: 'row' }, [h('label', { for: id, text: s.label }), out]),
+      input,
+      s.hint && h('p', { class: 'hint', id: id + '-hint', text: s.hint }),
     ]);
   }
   function segment(key) {
@@ -531,8 +550,8 @@ footer { display: flex; align-items: center; justify-content: space-between; gap
     STEPPERS.forEach(s => {
       const r = refs[s.key], i = state[s.key];
       r.out.textContent = s.fmt(s.steps[i]);
-      r.dec.setAttribute('aria-disabled', String(i === 0));
-      r.inc.setAttribute('aria-disabled', String(i === s.steps.length - 1));
+      r.input.value = String(i);
+      r.input.setAttribute('aria-valuetext', r.out.textContent);
     });
     SEGMENTS.forEach(s => (refs[s.key] || []).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.val === String(state[s.key])))));
     TOGGLES.forEach(([k]) => refs[k].setAttribute('aria-checked', String(!!state[k])));
