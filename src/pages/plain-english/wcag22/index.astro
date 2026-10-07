@@ -17,8 +17,8 @@ const readData = (f: string) => {
 };
 const normative = readData("normative-text.json");
 const guidance = readData("three-tier-guidance.json");
-const normBy = new Map((normative?.criteria || []).map((c: any) => [c.num, c]));
-const tiersBy = new Map((guidance?.criteria || []).map((c: any) => [c.num, c]));
+const normBy = new Map<string, any>((normative?.criteria || []).map((c: any) => [c.num, c]));
+const tiersBy = new Map<string, any>((guidance?.criteria || []).map((c: any) => [c.num, c]));
 const isObsolete = (sc: any) => !!normBy.get(sc.num)?.obsolete;
 const wcag3Path = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
 const wcag3Titles: Record<string, string> = fs.existsSync(wcag3Path)
