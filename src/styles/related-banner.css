@@ -1,0 +1,111 @@
+/* Dashboard banner used on the Related Standards pages. Copied from
+   plain-english/discussions/index.astro, where the same markup is styled
+   per page; kept identical so the section matches the rest of the site. */
+  .dashboard-banner {
+    background: linear-gradient(135deg, rgba(19, 29, 49, 0.95) 0%, rgba(11, 17, 32, 0.98) 100%);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .banner-badge {
+    /* 200% text scale: let this badge wrap its own label instead of
+       widening the page. Same component exists on several pages. */
+    flex-wrap: wrap;
+    max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56, 189, 248, 0.18);
+    color: #bae6fd;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+
+  /* The title block is a flex item, so it defaults to min-width: auto and
+     refuses to shrink below its longest line. At 200% text scale that line is
+     wider than a phone viewport and the page scrolls sideways. Letting it
+     shrink lets the heading wrap instead. */
+  .banner-title-group {
+    min-width: 0;
+  }
+
+  .banner-title-group h1,
+  .banner-title-group h2 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text-pure);
+    letter-spacing: -0.025em;
+  }
+
+  .banner-title-group p {
+    color: var(--text-secondary);
+    max-width: 680px;
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .stats-grid {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    background: rgba(7, 11, 20, 0.8);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    text-align: center;
+    min-width: 120px;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    margin-bottom: 2px;
+    color: var(--text-pure);
+  }
+  .highlight-shift { color: #c084fc; }
+
+  .stat-label {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Light theme, as on the Discussions page. */
+  html[data-theme="light"] .dashboard-banner {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  }
+  html[data-theme="light"] .banner-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #7dd3fc;
+  }
+  html[data-theme="light"] .stat-card {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }

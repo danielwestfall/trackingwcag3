@@ -1,0 +1,312 @@
+---
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import "@/styles/related-banner.css";
+import { loadRelated, loadCatalogBySlug, formatDate } from "@/lib/related-standards";
+import { provisionTypeLabel } from "@/lib/provision-labels";
+
+export async function getStaticPaths() {
+  const d = loadRelated();
+  return d.groups.map((g: any, i: number) => ({
+    params: { id: g.id },
+    props: { g, prev: d.groups[i - 1] ?? null, next: d.groups[i + 1] ?? null },
+  }));
+}
+
+const { g, prev, next } = Astro.props as any;
+const d = loadRelated();
+const catalog = loadCatalogBySlug();
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
+
+const provisions = (g.connection.provisions || []).map((slug: string) => {
+  const item = catalog[slug];
+  if (!item) throw new Error(`related-standards.json (${g.id}): provision "${slug}" is not in wcag3-catalog.json`);
+  return item;
+});
+const columns = [
+  { key: "doNow", icon: "✅", title: "Start now", sub: "Useful whatever happens next", cls: "ready-now" },
+  { key: "hedge", icon: "🔜", title: "Cheap hedges", sub: "Low cost, likely to pay off", cls: "ready-next" },
+  { key: "wait", icon: "⏸️", title: "Wait", sub: "Too early to build for", cls: "ready-wait" },
+];
+---
+
+<PlainEnglishLayout title={`${g.name}: ${g.fullName}`} activeTab="related">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href={link("/plain-english/related/")}>Related Standards</a></li>
+      <li><span aria-current="page">{g.name}</span></li>
+    </ol>
+  </nav>
+
+  <section class="dashboard-banner">
+    <div class="banner-content">
+      <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle" aria-hidden="true">{g.icon}</span>
+          <span>{g.group}</span>
+        </div>
+        <h1>{g.name}: {g.fullName}</h1>
+        <p>{g.tagline}</p>
+      </div>
+      <div class="stats-grid">
+        {g.stats.map((s: any) => (
+          <div class="stat-card">
+            <span class="stat-value">{s.value}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <p class="review-strip">
+    Reviewed {formatDate(d.lastReviewed)}. Publication dates are checked against the W3C
+    documents themselves every week{g.id === "act" ? `, and rule counts against the WAI rules data (${formatDate(d.act.checked)})` : ""}.
+    Every fact links to a source at the bottom of the page.
+  </p>
+
+  <section aria-labelledby="overview-h">
+    <h2 id="overview-h">In plain English</h2>
+    {g.overview.map((p: string) => <p class="prose">{p}</p>)}
+  </section>
+
+  <section aria-labelledby="current-h">
+    <h2 id="current-h">What is published today</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="current-h">
+      <table class="std-table">
+        <caption class="visually-hidden">Published documents for {g.name}, with status and date</caption>
+        <thead>
+          <tr>
+            <th scope="col">Document</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+            <th scope="col">What it is</th>
+          </tr>
+        </thead>
+        <tbody>
+          {g.current.map((c: any) => (
+            <tr>
+              <th scope="row"><a href={c.url}>{c.title}</a></th>
+              <td><span class="status-chip">{c.status}</span></td>
+              <td class="nowrap">{formatDate(c.date)}</td>
+              <td>{c.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="dev-h">
+    <h2 id="dev-h">In development</h2>
+    <div class="dev-grid">
+      {g.inDevelopment.map((x: any) => (
+        <article class="dev-card">
+          <div class="dev-top">
+            <h3><a href={x.url}>{x.title}</a></h3>
+            <span class="status-chip">{x.status}{x.date ? `, ${formatDate(x.date)}` : ""}</span>
+          </div>
+          <p>{x.summary}</p>
+          {x.changes.length > 0 && (
+            <ul class="change-list">
+              {x.changes.map((c: string) => <li>{c}</li>)}
+            </ul>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="conn-h">
+    <h2 id="conn-h">How it connects to WCAG</h2>
+    <div class="conn-grid">
+      <div class="conn-side">
+        <span class="side-label">WCAG 2.2</span>
+        <p>{g.connection.wcag22}</p>
+      </div>
+      <div class="conn-side conn-3">
+        <span class="side-label">WCAG 3 draft</span>
+        <p>{g.connection.wcag3}</p>
+        {provisions.length > 0 && (
+          <ul class="prov-list">
+            {provisions.map((p: any) => (
+              <li>
+                <a href={link(`/plain-english/provision/${p.slug}/`)}>{p.title}</a>
+                <span class="prov-meta">{provisionTypeLabel(p.type)}, {p.status}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="future-h">
+    <h2 id="future-h">What the future holds</h2>
+    <p class="section-lead">
+      Each item says how firm it is: something that has happened, a plan the group has stated,
+      a proposal not yet agreed, or this site's own reading of where things are heading.
+    </p>
+    <ol class="timeline">
+      {g.future.map((f: any) => (
+        <li class={`tl-item tl-${f.certainty}`}>
+          <span class="when">{f.when}</span>
+          <div class="tl-body">
+            <p>{f.what}</p>
+            <span class={`certainty certainty-${f.certainty}`}>{d.certaintyLabels[f.certainty]}</span>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section aria-labelledby="ready-h">
+    <h2 id="ready-h">What this means for your team</h2>
+    <div class="readiness-grid">
+      {columns.map((col) => (
+        <div class={`ready-col ${col.cls}`}>
+          <div class="ready-head">
+            <span class="ready-icon" aria-hidden="true">{col.icon}</span>
+            <h3>{col.title}</h3>
+            <p class="ready-sub">{col.sub}</p>
+          </div>
+          <ol class="ready-list">
+            {g[col.key].map((r: any) => (
+              <li>
+                <strong>{r.action}</strong>
+                <p>{r.why}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="watch-h">
+    <h2 id="watch-h">What this site watches</h2>
+    <ol class="watch-list">
+      {g.watch.map((w: string) => <li>{w}</li>)}
+    </ol>
+  </section>
+
+  <section aria-labelledby="src-h" class="sources">
+    <h2 id="src-h">Sources</h2>
+    <ul>
+      {g.sources.map((s: any) => <li><a href={s.url}>{s.title}</a></li>)}
+    </ul>
+  </section>
+
+  <nav class="pager" aria-label="Other related standards">
+    {prev ? <a href={link(`/plain-english/related/${prev.id}/`)}><span aria-hidden="true">←</span> {prev.name}</a> : <span></span>}
+    <a href={link("/plain-english/related/")}>All related standards</a>
+    {next ? <a href={link(`/plain-english/related/${next.id}/`)}>{next.name} <span aria-hidden="true">→</span></a> : <span></span>}
+  </nav>
+
+  <style>
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 0 0 0.75rem; }
+    h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 0.5rem; }
+    .section-lead, .prose { color: var(--text-secondary); max-width: 74ch; line-height: 1.7; margin: 0 0 1rem; }
+    a { color: var(--text-primary); text-underline-offset: 0.18em; }
+
+    .crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; padding: 0; font-size: 0.9rem; color: var(--text-secondary); }
+    .crumbs li + li::before { content: "/"; margin-right: 0.4rem; color: var(--text-muted); }
+
+    .review-strip {
+      background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 12px;
+      padding: 0.85rem 1.1rem; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;
+      margin: 0 0 2rem;
+    }
+
+    .status-chip {
+      display: inline-block; font-size: 0.78rem; font-weight: 600; padding: 0.2rem 0.6rem;
+      border-radius: 999px; border: 1px solid var(--border-default); color: var(--text-secondary);
+      max-width: 100%;
+    }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border-subtle); border-radius: 12px; }
+    .std-table { width: 100%; border-collapse: collapse; min-width: 44rem; background: var(--surface-card); }
+    .std-table th, .std-table td {
+      text-align: left; padding: 0.8rem 1rem; border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top; color: var(--text-secondary); line-height: 1.55;
+    }
+    .std-table thead th {
+      color: var(--text-primary); font-size: 0.82rem; text-transform: uppercase;
+      letter-spacing: 0.06em; background: var(--surface-elevated);
+    }
+    .std-table tbody th { font-weight: 700; }
+    .std-table tbody tr:last-child > * { border-bottom: 0; }
+    .nowrap { white-space: nowrap; }
+
+    .dev-grid { display: grid; gap: 1rem; }
+    .dev-card {
+      min-width: 0; background: var(--surface-card); border: 1px solid var(--border-subtle);
+      border-radius: 12px; padding: 1.1rem 1.25rem;
+    }
+    .dev-top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; flex-wrap: wrap; }
+    .dev-top > * { min-width: 0; }
+    .dev-card p { margin: 0.5rem 0 0; color: var(--text-secondary); line-height: 1.6; }
+    .change-list { margin: 0.75rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.45rem; color: var(--text-secondary); line-height: 1.55; }
+    .change-list li { min-width: 0; }
+
+    .conn-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr)); }
+    .conn-side {
+      min-width: 0; border: 1px solid var(--border-subtle); border-radius: 12px;
+      padding: 1rem 1.15rem; background: var(--surface-card);
+    }
+    .conn-3 { border-color: var(--border-active); }
+    .side-label { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); }
+    .conn-side p { margin: 0.4rem 0 0; color: var(--text-secondary); line-height: 1.65; }
+    .prov-list { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+    .prov-list li { min-width: 0; display: flex; flex-wrap: wrap; gap: 0.2rem 0.6rem; align-items: baseline; }
+    .prov-list a { font-weight: 600; }
+    .prov-meta { font-size: 0.82rem; color: var(--text-secondary); }
+
+    .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; max-width: 90ch; }
+    .tl-item {
+      display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); gap: 0.4rem 1rem;
+      padding: 0.75rem 1rem; background: var(--surface-card);
+      border: 1px solid var(--border-subtle); border-left-width: 4px; border-radius: 10px;
+    }
+    .tl-planned { border-left-color: var(--border-active); }
+    .tl-proposed { border-left-style: dashed; }
+    @media (max-width: 560px) { .tl-item { grid-template-columns: minmax(0, 1fr); } }
+    .when { font-weight: 700; color: var(--text-primary); }
+    .tl-body p { margin: 0 0 0.35rem; color: var(--text-secondary); line-height: 1.6; }
+    .certainty {
+      display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.5rem;
+      border-radius: 999px; border: 1px solid var(--border-default); color: var(--text-secondary);
+    }
+    .certainty-planned { border-color: var(--border-active); color: var(--text-primary); }
+    .certainty-proposed { border-style: dashed; }
+
+    .readiness-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr)); }
+    .ready-col {
+      min-width: 0; background: var(--surface-card); border: 1px solid var(--border-subtle);
+      border-radius: 12px; padding: 1.1rem 1.25rem;
+    }
+    .ready-now { border-color: var(--border-active); }
+    .ready-head { margin-bottom: 0.9rem; }
+    .ready-head h3 { display: inline; margin: 0; }
+    .ready-icon { margin-right: 0.4rem; }
+    .ready-sub { margin: 0.35rem 0 0; color: var(--text-secondary); font-size: 0.86rem; }
+    .ready-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.85rem; }
+    .ready-list li { min-width: 0; }
+    .ready-list strong { color: var(--text-primary); display: block; margin-bottom: 0.25rem; }
+    .ready-list p { margin: 0; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.55; }
+
+    .watch-list { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.5rem; color: var(--text-secondary); line-height: 1.6; max-width: 80ch; }
+
+    .sources ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.4rem; line-height: 1.55; }
+
+    .pager {
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      border-top: 1px solid var(--border-subtle); padding-top: 1.25rem; font-weight: 600;
+    }
+  </style>
+</PlainEnglishLayout>

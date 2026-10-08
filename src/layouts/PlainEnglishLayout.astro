@@ -1,7 +1,7 @@
 ---
 interface Props {
   title: string;
-  activeTab?: "home" | "wcag3" | "wcag22" | "comparison" | "conformance" | "calculator" | "removals" | "stricter" | "discussions" | "contrast" | "w3c";
+  activeTab?: "home" | "wcag3" | "wcag22" | "comparison" | "conformance" | "calculator" | "removals" | "stricter" | "discussions" | "related" | "contrast" | "w3c";
 }
 
 const { title, activeTab = "wcag3" } = Astro.props;
@@ -1441,6 +1441,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <span class="tab-text">Discussions</span>
             <span class="status-pill status-draft">Live</span>
           </a>
+          <a href={link("/plain-english/related/")} class={`nav-tab ${activeTab === "related" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">🧭</span>
+            <span class="tab-text">Related Standards</span>
+            <span class="status-pill status-draft">Weekly</span>
+          </a>
         </nav>
       </div>
 
@@ -1478,6 +1483,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <li><a href={link("/plain-english/removals/")}>🔄 WCAG 2.2 vs 3 Architectural Shifts</a></li>
               <li><a href={link("/plain-english/stricter/")}>🚫 Passes 2.2, Fails 3: Practices the WCAG 3 Draft Would Rule Out</a></li>
               <li><a href={link("/plain-english/discussions/")}>💬 W3C Working Group Discussions</a></li>
+              <li><a href={link("/plain-english/related/")}>🧭 Related Standards: ARIA, WCAG2Mobile, COGA and ACT</a></li>
               <li><a href={link("/plain-english/contrast-lab/")}>🌗 Contrast Lab: WCAG 2 Ratio and APCA</a></li>
               <li><a href={link("/guidelines/")}>📜 W3C Normative Guidelines</a></li>
               <li><a href={link("/informative/")}>📚 W3C Informative Documentation</a></li>

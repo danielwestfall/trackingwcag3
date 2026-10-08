@@ -104,6 +104,7 @@ const targets = [
   ['public/data/wcag3-conformance.json', ['wcag3', 'wcag22']],
   ['wcag22-data/removals-and-omissions.json', ['wcag3', 'wcag22', 'github']],
   ['wcag22-data/wcag22-to-wcag3-map.json', ['wcag3']],
+  ['public/data/related-standards.json', ['wcag22', 'wcag3']],
   ...fs.readdirSync(path.join(ROOT, 'plain-english-data', 'provisions')).map((f) => [`plain-english-data/provisions/${f}`, ['wcag3', 'wcag22']]),
   ...fs.readdirSync(path.join(ROOT, 'tracking', 'summaries')).filter((f) => f.endsWith('.json')).map((f) => [`tracking/summaries/${f}`, ['github', 'wcag3', 'wcag22']]),
 ];

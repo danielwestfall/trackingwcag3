@@ -20,6 +20,7 @@
     "sync": "astro sync --force",
     "sync:plain-english": "node scripts/sync-wcag-plain-english.mjs",
     "track:upstream": "node scripts/track-upstream.mjs",
+    "check:related": "node scripts/check-related-standards.mjs",
     "check:quotes": "node scripts/check-quotes.mjs",
     "check:quotes:built": "node scripts/check-quotes.mjs --built",
     "check:quick-check": "node scripts/check-quick-check.mjs"

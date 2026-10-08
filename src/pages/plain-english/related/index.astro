@@ -1,0 +1,176 @@
+---
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import "@/styles/related-banner.css";
+import { loadRelated, formatDate } from "@/lib/related-standards";
+
+const d = loadRelated();
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
+
+// Most recent dated publication for each group, from what the page lists.
+const latest = (g: any) =>
+  (g.trackedDocs || []).map((t: any) => ({ ...t, date: t.publishedDate }))
+    .filter((x: any) => x.date)
+    .sort((a: any, b: any) => b.date.localeCompare(a.date))[0];
+
+// Every planned or proposed item, across groups, in one list.
+const upcoming = d.groups.flatMap((g: any) =>
+  g.future
+    .filter((f: any) => f.certainty === "planned" || f.certainty === "proposed")
+    .map((f: any) => ({ ...f, group: g })),
+);
+---
+
+<PlainEnglishLayout title="Related Standards: ARIA, WCAG2Mobile, COGA and ACT" activeTab="related">
+  <section class="dashboard-banner">
+    <div class="banner-content">
+      <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle" aria-hidden="true">🧭</span>
+          <span>Related Standards</span>
+        </div>
+        <h1>Related Standards</h1>
+        <p>
+          WCAG is not written alone. Four other pieces of W3C work change how WCAG is met, read
+          and tested. This section covers what each one has already published, what it is
+          drafting now, and where it is heading. It is reviewed every week alongside the WCAG 3
+          tracker.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">{d.groups.length}</span>
+          <span class="stat-label">Groups tracked</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{d.groups.reduce((n: number, g: any) => n + g.inDevelopment.length, 0)}</span>
+          <span class="stat-label">Work items in development</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{formatDate(d.lastReviewed)}</span>
+          <span class="stat-label">Last reviewed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="groups-h">
+    <h2 id="groups-h">The four groups</h2>
+    <ul class="group-grid" role="list">
+      {d.groups.map((g: any) => {
+        const l = latest(g);
+        return (
+          <li class="group-card">
+            <div class="group-top">
+              <span class="group-icon" aria-hidden="true">{g.icon}</span>
+              <span class="status-chip">{g.statusPill}</span>
+            </div>
+            <h3>
+              <a href={link(`/plain-english/related/${g.id}/`)} class="group-link">{g.name}</a>
+            </h3>
+            <p class="group-full">{g.fullName}</p>
+            <p class="group-tagline">{g.tagline}</p>
+            <dl class="group-meta">
+              <div><dt>Who</dt><dd>{g.group}</dd></div>
+              {l && <div><dt>Latest publication</dt><dd>{l.title}, {formatDate(l.date)}</dd></div>}
+            </dl>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+
+  <section aria-labelledby="upcoming-h">
+    <h2 id="upcoming-h">What is coming, across all four</h2>
+    <p class="section-lead">
+      Items the groups have planned or proposed. Things that already happened, and this site's own
+      readings, are on each group's page.
+    </p>
+    <ul class="upcoming-list" role="list">
+      {upcoming.map((u: any) => (
+        <li class="upcoming-item">
+          <span class="when">{u.when}</span>
+          <div>
+            <p class="upcoming-what">
+              <a href={link(`/plain-english/related/${u.group.id}/`)}>{u.group.name}</a>: {u.what}
+            </p>
+            <span class={`certainty certainty-${u.certainty}`}>{d.certaintyLabels[u.certainty]}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section aria-labelledby="why-h" class="why-box">
+    <h2 id="why-h">Why these four</h2>
+    <p>
+      ARIA changes what correct markup is. WCAG2Mobile changes how WCAG is read for apps. COGA
+      shapes the cognitive provisions in WCAG 3, many of them assertions. ACT decides how tools
+      test all of it. Other W3C groups matter too, such as CSS for user preference media
+      queries, but these four are closest to WCAG itself.
+    </p>
+  </section>
+
+  <style>
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 0 0 0.75rem; }
+    h3 { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin: 0.6rem 0 0.2rem; }
+    .section-lead { color: var(--text-secondary); max-width: 72ch; margin: 0 0 1.25rem; line-height: 1.6; }
+
+    .group-grid {
+      list-style: none; margin: 0; padding: 0;
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+    }
+    .group-card {
+      min-width: 0;
+      position: relative;
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+    }
+    .group-card:hover, .group-card:focus-within { border-color: var(--border-active); }
+    .group-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .group-icon { font-size: 1.6rem; line-height: 1; }
+    .status-chip {
+      font-size: 0.78rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 999px;
+      border: 1px solid var(--border-default); color: var(--text-secondary);
+    }
+    .group-link { color: var(--text-primary); text-decoration: underline; text-underline-offset: 0.18em; }
+    /* Whole card is clickable; the real link stays the heading. */
+    .group-link::after { content: ""; position: absolute; inset: 0; border-radius: 12px; }
+    .group-link:focus-visible { outline: none; }
+    .group-card:has(.group-link:focus-visible) { outline: 3px solid var(--border-active); outline-offset: 2px; }
+    .group-full { margin: 0 0 0.6rem; color: var(--text-secondary); font-size: 0.9rem; }
+    .group-tagline { margin: 0 0 0.85rem; color: var(--text-primary); line-height: 1.55; }
+    .group-meta { margin: 0; display: grid; gap: 0.4rem; font-size: 0.88rem; }
+    .group-meta div { min-width: 0; }
+    .group-meta dt { display: inline; font-weight: 700; color: var(--text-primary); }
+    .group-meta dt::after { content: ": "; }
+    .group-meta dd { display: inline; margin: 0; color: var(--text-secondary); }
+
+    .upcoming-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; max-width: 90ch; }
+    .upcoming-item {
+      display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); gap: 0.4rem 1rem;
+      padding: 0.75rem 1rem; background: var(--surface-card);
+      border: 1px solid var(--border-subtle); border-radius: 10px;
+    }
+    @media (max-width: 560px) { .upcoming-item { grid-template-columns: minmax(0, 1fr); } }
+    .when { font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+    .upcoming-what { margin: 0 0 0.35rem; color: var(--text-secondary); line-height: 1.55; }
+    .upcoming-what a { color: var(--text-primary); font-weight: 600; }
+    .certainty {
+      display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.5rem;
+      border-radius: 999px; border: 1px solid var(--border-default); color: var(--text-secondary);
+    }
+    .certainty-planned { border-color: var(--border-active); color: var(--text-primary); }
+    .certainty-proposed { border-style: dashed; }
+
+    .why-box {
+      background: var(--surface-subtle); border: 1px solid var(--border-subtle);
+      border-radius: 12px; padding: 1rem 1.25rem;
+    }
+    .why-box p { margin: 0; color: var(--text-secondary); line-height: 1.65; max-width: 78ch; }
+  </style>
+</PlainEnglishLayout>
