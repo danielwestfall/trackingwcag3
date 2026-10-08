@@ -45,6 +45,7 @@ const readJson = (file: string) => {
 const recent = readJson("wcag3-recent-activity.json");
 const weeklyNotes = readJson("wcag3-weekly-notes.json");
 const conformanceData = readJson("wcag3-conformance.json");
+const publishedDraft = readJson("wcag3-published.json")?.latest ?? null;
 const catalogTitles = new Map<string, string>();
 try {
   for (const p of JSON.parse(fs.readFileSync(wcag3CatalogPath, "utf8"))) catalogTitles.set(p.slug, p.title);
@@ -59,6 +60,7 @@ const weekNote = recent && weeklyNotes?.notes
   ? weeklyNotes.notes.find((n: any) => n.date >= recent.window.from && n.date <= recent.window.to) ?? null
   : null;
 const syncedOn = recent ? fmtDate(recent.generatedAt, true) : null;
+const publishedShort = publishedDraft ? fmtDate(publishedDraft.date, true) : null;
 const draftCommit = conformanceData?.draftState?.baselineCommit ?? null;
 const draftDate = conformanceData?.draftState?.baselineDate ?? null;
 
@@ -73,7 +75,7 @@ const activityLists = recent
       {
         id: "adopted", title: "Merged into the editor's draft", items: recent.adopted,
         empty: "Nothing merged this week.", more: `${recent.repo}/pulls?q=is%3Apr+is%3Amerged`,
-        hint: "Changes the editors accepted. Still a draft until W3C publishes a new Working Draft.",
+        hint: `Changes the editors accepted. They reach a published Working Draft only when W3C publishes the next one${publishedShort ? ` (latest: ${publishedShort})` : ""}.`,
       },
       {
         id: "proposals", title: "Open proposals", items: recent.proposals,

@@ -22,7 +22,7 @@
   },
   "headline": {
     "quote": "This update to WCAG 3 moves the concept of leveling from conformance to reporting.",
-    "source": "W3C Accessibility Guidelines 3.0 editors' draft, conformance section",
+    "source": "W3C Accessibility Guidelines 3.0, 10 September 2026 Working Draft, conformance section (editor's note)",
     "summary": "A/AA/AAA has no successor. WCAG 3 has one conformance bar — all core requirements met — and wraps it in six reporting tiers that describe progress toward it and achievement beyond it.",
     "caveat": "The working group is running a competing proposal alongside this one: scoring toward conformance, then Bronze/Silver/Gold awards afterwards. They have explicitly asked for public comment on which approach to keep. Treat the tier table as the current direction, not a settled outcome."
   },

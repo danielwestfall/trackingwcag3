@@ -35,6 +35,8 @@ const normative = (p: any) =>
 
 // Recommended practices are informative ("do not need to be satisfied to conform"), so they are not scored.
 const scored = catalog.filter((p) => p.type !== "recommended practice");
+const publishedDate: string | null = (() => { try { return JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "data", "wcag3-published.json"), "utf8")).latest.date; } catch { return null; } })();
+const publishedLabel = publishedDate ? new Date(publishedDate + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : null;
 const recommendedCount = catalog.length - scored.length;
 const kind = (p: any) =>
   p.type === "foundational" ? "core" : p.type === "supplemental" ? "supplemental" : p.type === "assertion" ? "assertion" : "untyped";
@@ -119,7 +121,7 @@ const quickSections = (quick.sections || []).map((s: any) => ({
 
   <div class="ac-scope" role="group" aria-labelledby="ac-scope-label">
     <span id="ac-scope-label" class="ac-scope-label">Which draft?</span>
-    <label><input type="radio" name="ac-scope" value="wd" id="ac-scope-wd" checked /> Working Draft <span class="ac-dim">({counts.coreWd} core, {counts.wd} scored in all)</span></label>
+    <label><input type="radio" name="ac-scope" value="wd" id="ac-scope-wd" checked /> Working Draft{publishedLabel ? ` (${publishedLabel})` : ""} <span class="ac-dim">({counts.coreWd} core, {counts.wd} scored in all)</span></label>
     <label><input type="radio" name="ac-scope" value="ed" id="ac-scope-ed" /> Editor's Draft, including exploratory <span class="ac-dim">({counts.coreEd} core, {counts.ed} scored in all)</span></label>
   </div>
 

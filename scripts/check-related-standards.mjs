@@ -11,7 +11,9 @@
  *      page. W3C's own group publication lists lag (on 2026-10-08 they still
  *      showed HTML-AAM and SVG-AAM at August drafts), so the documents
  *      themselves are the source of truth.
- *   2. ACT rule counts, read from w3c/wcag-act-rules wcag-mapping.json and
+ *   2. The WCAG 3 Working Draft date in public/data/wcag3-published.json
+ *      (reported only, never written).
+ *   3. ACT rule counts, read from w3c/wcag-act-rules wcag-mapping.json and
  *      the list of EARL implementation reports.
  *
  * Usage:
@@ -79,6 +81,21 @@ for (const g of data.groups) {
   await check(g, g.trackedDocs, 'publishedDate', 'trackedDocs');
 }
 
+// The WCAG 3 Working Draft itself (public/data/wcag3-published.json). Report
+// only: a new draft means the date, URL, history and highlights all need a
+// human pass, and site copy that names the draft reads from that file.
+const PUB_FILE = path.join(ROOT, 'public', 'data', 'wcag3-published.json');
+try {
+  const pub = JSON.parse(fs.readFileSync(PUB_FILE, 'utf8'));
+  const live = publishedDate(await get(pub.latest.latestUrl));
+  cache.set(pub.latest.latestUrl, live);
+  if (live && live !== pub.latest.date) {
+    changes.push({ group: 'wcag3', where: 'wcag3-published.json', title: 'WCAG 3 Working Draft', was: pub.latest.date, now: live, url: pub.latest.latestUrl });
+  }
+} catch (e) {
+  failures.push(`WCAG 3 Working Draft: ${e.message}`);
+}
+
 // ACT counts
 try {
   const RAW = 'https://raw.githubusercontent.com/w3c/wcag-act-rules/main';
@@ -111,4 +128,5 @@ for (const c of changes) console.log(`  [${c.group}] ${c.where}: ${c.title}  ${c
 const reread = [...new Set(changes.filter((c) => c.where !== 'act counts').map((c) => `${c.group}: ${c.title}`))];
 if (reread.length) console.log(`\nRe-read against the new draft and update the narrative by hand:\n  ${reread.join('\n  ')}`);
 for (const f of failures) console.error(`  could not check ${f}`);
-process.exit(changes.length && !WRITE ? 1 : 0);
+if (changes.some((c) => c.group === 'wcag3')) console.log('\nA new WCAG 3 Working Draft is out: update public/data/wcag3-published.json by hand (--write does not touch it).');
+process.exit((changes.length && !WRITE) || changes.some((c) => c.group === 'wcag3') ? 1 : 0);

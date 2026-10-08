@@ -77,7 +77,7 @@
     "wcag22Concept": "WCAG 2.2 categorizes all criteria into rigid buckets: Level A (minimum), Level AA (the level most laws and policies reference), and Level AAA (enhanced).",
     "wcag3Status": "Replaced by Single Core Conformance Bar & 6 Reporting Tiers",
     "plainEnglishSummary": "The traditional A/AA/AAA tier structure from WCAG 2.x is omitted in WCAG 3. Instead, WCAG 3 defines a single conformance threshold (Tier 3: Conformance) requiring all core requirements to be satisfied, framed by six reporting tiers that express progress toward conformance (Tiers 1–2) and achievements beyond it (Tiers 4–6: Bronze, Silver, Gold).",
-    "workingGroupDebate": "The working group moved leveling from conformance to reporting in the August–September 2026 editor's drafts (PRs #826, #834), making Bronze an achievement tier above conformance rather than a baseline. A parallel alternative proposal exploring scoring toward conformance followed by Bronze/Silver/Gold awards remains open for public comment.",
+    "workingGroupDebate": "The working group moved leveling from conformance to reporting in the August–September 2026 editor's drafts (PRs #826, #834) and published that model in the 10 September 2026 Working Draft, making Bronze an achievement tier above conformance rather than a baseline. That draft also describes an alternative proposal, scoring toward conformance followed by Bronze/Silver/Gold awards, and invites public comment on which to keep.",
     "debateLinks": [
       {
         "title": "W3C WCAG 3 Pull Request #826: Update Conformance Section",

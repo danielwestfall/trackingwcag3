@@ -5,6 +5,8 @@ import path from "path";
 
 const dataPath = path.join(process.cwd(), "public", "data", "wcag3-conformance.json");
 const d = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+const pub = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "data", "wcag3-published.json"), "utf8")).latest;
+const pubLabel = new Date(pub.date + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
@@ -29,7 +31,9 @@ const roleLabel: Record<string, string> = {
         <h1>Conformance: What Changed &amp; How to Get Ready</h1>
         <p>
           Conformance is where WCAG 3 departs from WCAG 2.2 most sharply — and where it
-          changed again in the August–September 2026 editor's drafts (PRs #826, #827 and #834). This page covers what moved, what it
+          changed again in August–September 2026 (PRs #826, #827 and #834). Those changes are now
+          in the published <a href={pub.url}>{pubLabel} Working Draft</a>, which asks for public
+          comment on the reporting model. This page covers what moved, what it
           means for a team conforming to 2.2 today, and what is worth doing now versus
           waiting on.
         </p>
@@ -149,7 +153,7 @@ const roleLabel: Record<string, string> = {
     <h2 id="carry-h">Does your WCAG 2.2 work carry over?</h2>
     <blockquote class="spec-quote">
       <p>{d.carryOver.quote}</p>
-      <cite>W3C Accessibility Guidelines 3.0 editors' draft</cite>
+      <cite>W3C Accessibility Guidelines 3.0, {pubLabel} Working Draft (unchanged in the editors' draft)</cite>
     </blockquote>
     <p>{d.carryOver.reading}</p>
     <p class="transition-note">{d.carryOver.transition}</p>

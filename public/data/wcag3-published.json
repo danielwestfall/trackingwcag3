@@ -1,0 +1,61 @@
+{
+  "_about": "The latest WCAG 3 Working Draft published at /TR/, as distinct from the editors' draft this site tracks. scripts/check-related-standards.mjs checks /TR/wcag-3.0/ weekly and reports when a newer draft appears; update this file by hand then (date, url, history, sinceThen).",
+  "latest": {
+    "date": "2026-09-10",
+    "url": "https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/",
+    "latestUrl": "https://www.w3.org/TR/wcag-3.0/",
+    "excludes": "exploratory",
+    "highlights": [
+      "Leveling moves from conformance to reporting: one conformance bar, wrapped in reporting tiers.",
+      "An alternative scoring-then-Bronze/Silver/Gold proposal is described, and W3C invites public comment on which approach to keep.",
+      "Every requirement and assertion at developing status is included; exploratory ones are left out."
+    ]
+  },
+  "sinceThen": {
+    "checkedAgainst": "18c12bf",
+    "checkedOn": "2026-10-08",
+    "summary": "No change to provisions or the conformance section since publication. Later upstream commits are editorial (Explainer definitions), status resets and site tooling."
+  },
+  "history": [
+    {
+      "date": "2021-01-21",
+      "kind": "First Public Working Draft"
+    },
+    {
+      "date": "2021-06-08",
+      "kind": "Working Draft"
+    },
+    {
+      "date": "2021-12-07",
+      "kind": "Working Draft"
+    },
+    {
+      "date": "2023-07-24",
+      "kind": "Working Draft"
+    },
+    {
+      "date": "2024-05-16",
+      "kind": "Working Draft"
+    },
+    {
+      "date": "2024-05-28",
+      "kind": "Working Draft"
+    },
+    {
+      "date": "2024-12-12",
+      "kind": "Working Draft"
+    },
+    {
+      "date": "2025-09-04",
+      "kind": "Working Draft"
+    },
+    {
+      "date": "2026-03-03",
+      "kind": "Working Draft"
+    },
+    {
+      "date": "2026-09-10",
+      "kind": "Working Draft"
+    }
+  ]
+}

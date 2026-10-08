@@ -32,6 +32,9 @@ const wcag22SearchData = wcag22Catalog.map((sc) => ({
 }));
 
 const totalCount = catalog.length;
+const wdCount = catalog.filter((p: any) => p.status !== "exploratory").length;
+const published = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "data", "wcag3-published.json"), "utf8")).latest;
+const publishedLabel = new Date(published.date + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const matureCount = catalog.filter((item) => item.status === "mature" || item.status === "refining").length;
 const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.annotation.plainEnglish?.summary?.endsWith("...")).length;
 
@@ -272,7 +275,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               <tr>
                 <td><strong>{totalCount} Draft Provisions</strong></td>
                 <td><span class="status-badge badge-done">✅ Drafted</span></td>
-                <td>The {totalCount} provisions in this app are synced from W3C's editor's draft. The published Working Draft leaves out exploratory provisions and those needing more research, so it has fewer. None have reached <em>refining</em> or <em>mature</em> status yet.</td>
+                <td>The {totalCount} provisions in this app are synced from W3C's editor's draft. The latest published draft, the <a href={published.url}>{publishedLabel} Working Draft</a>, includes the {wdCount} at <em>developing</em> status and leaves out the {totalCount - wdCount} exploratory ones. None have reached <em>refining</em> or <em>mature</em> status yet.</td>
               </tr>
             </tbody>
           </table>
