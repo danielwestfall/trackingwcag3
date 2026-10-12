@@ -1,0 +1,36 @@
+{
+  "wcag22Impact": {
+    "brokenMappings": [],
+    "coarseMappings": [],
+    "newToUs": [],
+    "goneFromUpstream": [],
+    "upstreamProvisionCount": 245
+  },
+  "draftShape": {
+    "taggedCount": 0,
+    "needsResearchCount": 13,
+    "statusTally": {
+      "developing": 216,
+      "exploratory": 29
+    },
+    "typeTally": {
+      "foundational": 114,
+      "supplemental": 86,
+      "assertion": 36,
+      "none": 8,
+      "recommended practice": 1
+    }
+  },
+  "generatedAt": "2026-10-12T21:31:56.826Z",
+  "range": {
+    "from": "18c12bf",
+    "fromDate": "2026-10-02",
+    "to": "c110b49",
+    "toDate": "2026-10-07"
+  },
+  "upstream": "https://github.com/w3c/wcag3",
+  "commitCount": 0,
+  "commits": [],
+  "summary": {},
+  "changes": []
+}

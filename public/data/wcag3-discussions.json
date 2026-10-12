@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-10-05T21:01:46.297Z",
+  "generatedAt": "2026-10-12T21:32:03.662Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 490,
-    "issuesWithProvisionLabel": 245,
-    "provisionsWithDiscussion": 157,
-    "generalIssues": 245,
+    "issuesTotal": 493,
+    "issuesWithProvisionLabel": 246,
+    "provisionsWithDiscussion": 158,
+    "generalIssues": 247,
     "summarized": 36,
-    "staleSummaries": 0,
-    "awaitingSummary": 121
+    "staleSummaries": 6,
+    "awaitingSummary": 122
   },
   "provisions": {
     "audio-shifting-adjustable": {
@@ -177,9 +177,9 @@
       "type": "supplemental",
       "threadCount": 3,
       "noRecordedDiscussion": false,
-      "commentCount": 8,
+      "commentCount": 9,
       "openCount": 3,
-      "fingerprint": "27@2026-04-16T03:46:54Z,629@2026-06-15T13:46:03Z,739@2026-08-03T22:19:47Z",
+      "fingerprint": "27@2026-04-16T03:46:54Z,629@2026-06-15T13:46:03Z,739@2026-10-06T18:04:14Z",
       "threads": [
         {
           "number": 27,
@@ -212,8 +212,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/739",
           "created": "2026-06-26",
-          "updated": "2026-08-03",
-          "comments": 3,
+          "updated": "2026-10-06",
+          "comments": 4,
           "labels": [
             "coga"
           ]
@@ -268,9 +268,9 @@
       "type": "foundational",
       "threadCount": 5,
       "noRecordedDiscussion": false,
-      "commentCount": 34,
+      "commentCount": 35,
       "openCount": 5,
-      "fingerprint": "27@2026-04-16T03:46:54Z,181@2026-05-02T15:01:50Z,183@2026-05-02T15:03:50Z,629@2026-06-15T13:46:03Z,739@2026-08-03T22:19:47Z",
+      "fingerprint": "27@2026-04-16T03:46:54Z,181@2026-05-02T15:01:50Z,183@2026-05-02T15:03:50Z,629@2026-06-15T13:46:03Z,739@2026-10-06T18:04:14Z",
       "threads": [
         {
           "number": 27,
@@ -327,8 +327,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/739",
           "created": "2026-06-26",
-          "updated": "2026-08-03",
-          "comments": 3,
+          "updated": "2026-10-06",
+          "comments": 4,
           "labels": [
             "coga"
           ]
@@ -1482,11 +1482,11 @@
       "guideline": "audio-descriptions",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 2,
+      "threadCount": 3,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 2,
-      "fingerprint": "420@2026-03-29T23:12:24Z,452@2026-03-29T22:43:52Z",
+      "openCount": 3,
+      "fingerprint": "420@2026-03-29T23:12:24Z,452@2026-03-29T22:43:52Z,900@2026-10-06T03:13:22Z",
       "threads": [
         {
           "number": 420,
@@ -1511,6 +1511,16 @@
           "labels": [
             "Path: Image and media alternatives"
           ]
+        },
+        {
+          "number": 900,
+          "title": "Should \"language adjustable\" provisions use \"applies when\" format?",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/900",
+          "created": "2026-10-06",
+          "updated": "2026-10-06",
+          "comments": 0,
+          "labels": []
         }
       ]
     },
@@ -1966,12 +1976,23 @@
       "guideline": "captions",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "900@2026-10-06T03:13:22Z",
+      "threads": [
+        {
+          "number": 900,
+          "title": "Should \"language adjustable\" provisions use \"applies when\" format?",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/900",
+          "created": "2026-10-06",
+          "updated": "2026-10-06",
+          "comments": 0,
+          "labels": []
+        }
+      ]
     },
     "captions-adjustable": {
       "slug": "captions-adjustable",
@@ -2078,9 +2099,9 @@
       "type": "foundational",
       "threadCount": 3,
       "noRecordedDiscussion": false,
-      "commentCount": 6,
-      "openCount": 3,
-      "fingerprint": "189@2026-05-02T15:17:33Z,325@2026-04-01T23:41:33Z,461@2026-03-29T22:41:25Z",
+      "commentCount": 7,
+      "openCount": 2,
+      "fingerprint": "189@2026-05-02T15:17:33Z,325@2026-10-12T09:46:02Z,461@2026-03-29T22:41:25Z",
       "threads": [
         {
           "number": 189,
@@ -2097,11 +2118,11 @@
         {
           "number": 325,
           "title": "Clarifying and Enhancing Requirements for Sign Language and Subtitles in WCAG 3.0",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/325",
           "created": "2025-06-09",
-          "updated": "2026-04-01",
-          "comments": 6,
+          "updated": "2026-10-12",
+          "comments": 7,
           "labels": [
             "Path: Image and media alternatives",
             "Path: Sign language",
@@ -2169,9 +2190,9 @@
       "type": "foundational",
       "threadCount": 4,
       "noRecordedDiscussion": false,
-      "commentCount": 19,
-      "openCount": 4,
-      "fingerprint": "23@2026-09-11T16:16:34Z,325@2026-04-01T23:41:33Z,463@2026-03-29T22:40:41Z,525@2026-03-27T23:11:03Z",
+      "commentCount": 20,
+      "openCount": 3,
+      "fingerprint": "23@2026-09-11T16:16:34Z,325@2026-10-12T09:46:02Z,463@2026-03-29T22:40:41Z,525@2026-03-27T23:11:03Z",
       "threads": [
         {
           "number": 23,
@@ -2188,11 +2209,11 @@
         {
           "number": 325,
           "title": "Clarifying and Enhancing Requirements for Sign Language and Subtitles in WCAG 3.0",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/325",
           "created": "2025-06-09",
-          "updated": "2026-04-01",
-          "comments": 6,
+          "updated": "2026-10-12",
+          "comments": 7,
           "labels": [
             "Path: Image and media alternatives",
             "Path: Sign language",
@@ -3464,18 +3485,18 @@
       "type": "supplemental",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 6,
-      "openCount": 1,
-      "fingerprint": "325@2026-04-01T23:41:33Z",
+      "commentCount": 7,
+      "openCount": 0,
+      "fingerprint": "325@2026-10-12T09:46:02Z",
       "threads": [
         {
           "number": 325,
           "title": "Clarifying and Enhancing Requirements for Sign Language and Subtitles in WCAG 3.0",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/325",
           "created": "2025-06-09",
-          "updated": "2026-04-01",
-          "comments": 6,
+          "updated": "2026-10-12",
+          "comments": 7,
           "labels": [
             "Path: Image and media alternatives",
             "Path: Sign language",
@@ -3539,18 +3560,18 @@
       "type": "assertion",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 6,
-      "openCount": 1,
-      "fingerprint": "325@2026-04-01T23:41:33Z,471@2026-06-25T07:58:48Z",
+      "commentCount": 7,
+      "openCount": 0,
+      "fingerprint": "325@2026-10-12T09:46:02Z,471@2026-06-25T07:58:48Z",
       "threads": [
         {
           "number": 325,
           "title": "Clarifying and Enhancing Requirements for Sign Language and Subtitles in WCAG 3.0",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/325",
           "created": "2025-06-09",
-          "updated": "2026-04-01",
-          "comments": 6,
+          "updated": "2026-10-12",
+          "comments": 7,
           "labels": [
             "Path: Image and media alternatives",
             "Path: Sign language",
