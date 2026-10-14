@@ -2,6 +2,32 @@
   "_readme": "Hand-written editorial notes for the home page's 'This week at the W3C' section. Newest first. The page shows the newest note whose date falls inside the current activity window (public/data/wcag3-recent-activity.json), so a note disappears on its own once the window moves past it. Keep each point checkable against a linked issue or pull request.",
   "notes": [
     {
+      "date": "2026-10-12",
+      "headline": "Accessibility supported overhauled, sign language expands, and pseudo-motion advances.",
+      "points": [
+        {
+          "text": "“Accessibility supported” proposed for restructuring: Issue #901 and PR #902 propose relocating accessibility supported out of conformance into a new testing section and recasting it as “user agent supported” to resolve longstanding confusion.",
+          "refs": [901, 902]
+        },
+        {
+          "text": "Sign language requirements clustered: Multiple coordinated proposals (PR #858, PR #859, PR #904, and Issue #876) add provisions for sign language equivalents and major choices, and advocate making them count in reporting tiers and policy tags.",
+          "refs": [858, 859, 876, 904]
+        },
+        {
+          "text": "Pseudo-motion advances to a draft provision: In Issue #739, Charles Hall drafted a standalone pseudo-motion provision (currently supplemental) addressing vestibular harm comparable to actual motion and requiring controls to prevent or hide pseudo-motion.",
+          "refs": [739]
+        },
+        {
+          "text": "Normative phrasing refinements continue: Issue #900 asks whether “language adjustable” provisions should follow the “applies when” structure, while PR #898 moves “Page/view change notified” onto the defined term “programmatically detectable”.",
+          "refs": [898, 900]
+        },
+        {
+          "text": "A developer tooling update was merged (#867), and user-needs review threads across multiple functional categories received renewed attention.",
+          "refs": [867, 740, 741]
+        }
+      ]
+    },
+    {
       "date": "2026-10-04",
       "headline": "The draft text barely moved; the issue tracker did.",
       "points": [

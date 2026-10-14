@@ -1,12 +1,12 @@
 import type { ZodObject, ZodRawShape } from "astro/zod";
-import { render, type AnyEntryMap } from "astro:content";
+import { render } from "astro:content";
 
 /**
  * Renders a collection entry, with remarkPluginFrontmatter
  * validated/typed against an additional Zod schema.
  */
-export async function renderAndValidate<C extends keyof AnyEntryMap, T extends ZodRawShape>(
-  entry: AnyEntryMap[C][string],
+export async function renderAndValidate<T extends ZodRawShape>(
+  entry: any,
   schema: ZodObject<T>
 ) {
   const result = await render(entry);

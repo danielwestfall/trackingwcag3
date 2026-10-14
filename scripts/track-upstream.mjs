@@ -103,14 +103,14 @@ function preloadBlobs(specs) {
   for (const spec of wanted) {
     const nl = out.indexOf(0x0a, i);
     if (nl === -1) break;
-    const header = out.slice(i, nl).toString('utf8');
+    const header = out.subarray(i, nl).toString('utf8');
     if (/ (missing|ambiguous)$/.test(header)) {
       blobCache.set(spec, null);
       i = nl + 1;
       continue;
     }
     const size = Number(header.split(' ')[2]);
-    blobCache.set(spec, out.slice(nl + 1, nl + 1 + size).toString('utf8').replace(/\r\n/g, '\n'));
+    blobCache.set(spec, out.subarray(nl + 1, nl + 1 + size).toString('utf8').replace(/\r\n/g, '\n'));
     i = nl + 1 + size + 1; // object body is followed by a newline
   }
   for (const spec of wanted) if (!blobCache.has(spec)) blobCache.set(spec, null);

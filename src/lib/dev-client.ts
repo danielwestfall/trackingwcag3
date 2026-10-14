@@ -1,12 +1,10 @@
-/** @file Client-side utilities related to dev-mode-only pages */
-
-import { type Actions, type ActionReturnType, type ActionError, isInputError } from "astro:actions";
+import { actions, type ActionError, isInputError } from "astro:actions";
 import { createMessageBuilder } from "zod-validation-error/v3";
 
 const storageKey = "wcag3-dev";
 
 type Storage = {
-  [K in keyof Actions]: ActionReturnType<Actions[K]>["data"];
+  [K in keyof typeof actions]?: any;
 };
 
 function loadStorage() {
@@ -81,7 +79,7 @@ const messageBuilder = createMessageBuilder({ includePath: false });
 export function getActionErrorMessage(error: ActionError) {
   // Note: This needs to use MessageBuilder directly rather than fromError
   // because Astro wraps the error such that zod-validation-error no longer recognizes it
-  return isInputError(error) && error.issues.length
-    ? messageBuilder(error.issues as [(typeof error.issues)[number], ...typeof error.issues])
+  return isInputError(error) && (error as any).issues?.length
+    ? messageBuilder((error as any).issues)
     : error.message;
 }

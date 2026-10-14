@@ -15,10 +15,17 @@ dictionaryDefinitions:
 ignorePaths:
   - "guidelines/acknowledgements/**"
   - "src/components/**"
+  - "src/scripts/**"
+  - "scripts/**"
+  - "tracking/reports/**"
+  - "public/**"
+  - "factuality-source-matrix.md"
   - "*.css"
   - "*.json"
   - "*.svg"
   - "*.ts"
+  - "*.js"
+  - "*.mjs"
   - "*.yml"
   - "custom-words.txt"
 useGitignore: true
@@ -43,6 +50,10 @@ languageSettings:
       - encoded-citations
       - foreign-language
       - html-tags
+      # frontmatter
+      - /^---[\s\S]*?^---/gm
+      # script tags
+      - /<script\b[^>]*>[\s\S]*?<\/script>/g
       # pre/code tags
       - /<(pre|code)\b[^>]*>[\s\S]*?<\/\1>/g
       # style tags

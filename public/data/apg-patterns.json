@@ -2013,5 +2013,929 @@
       "html": "<!-- Standard HTML Fieldset (Separate Tab Stops) -->\n<fieldset class=\"toolbar-fieldset\">\n  <legend class=\"sr-only\">Text Formatting</legend>\n  <button type=\"button\"><strong>B</strong></button>\n  <button type=\"button\"><em>I</em></button>\n  <button type=\"button\"><u>U</u></button>\n</fieldset>",
       "notes": "For simple forms, separate tab stops are acceptable; for rich apps, the APG roving toolbar is essential."
     }
+  },
+  {
+    "id": "grid",
+    "name": "Grid (Data Grid & Editable Tables)",
+    "category": "Application Widgets",
+    "apgSlug": "grid",
+    "apgUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/grid/",
+    "firstRuleVerdict": "aria-required",
+    "verdictLabel": "ARIA Required for 2D Spreadsheet & Data Grid Navigation",
+    "semanticElement": "<table> with interactive cell controls",
+    "summary": "A composite interactive widget containing tabular rows and cells navigable in two dimensions using arrow keys. Unlike static HTML tables, a grid treats cells as active focus targets.",
+    "firstRuleExplanation": "Under the First Rule of ARIA, HTML <table> is specifically intended for presenting static structured tabular data, where screen readers operate in virtual reading mode. When building an editable spreadsheet or interactive data grid where users need 2D directional arrow-key navigation (Up/Down/Left/Right), cell editing (Enter/F2), and selection models without tabbing through every cell, HTML provides no native equivalent. The APG role=\"grid\", role=\"row\", and role=\"gridcell\" with roving tabindex or aria-activedescendant are required.",
+    "wcagCriteria": [
+      {
+        "num": "4.1.2",
+        "name": "Name, Role, Value",
+        "level": "A"
+      },
+      {
+        "num": "2.1.1",
+        "name": "Keyboard",
+        "level": "A"
+      },
+      {
+        "num": "2.1.2",
+        "name": "No Keyboard Trap",
+        "level": "A"
+      },
+      {
+        "num": "1.3.1",
+        "name": "Info and Relationships",
+        "level": "A"
+      }
+    ],
+    "wcag3Outcomes": [
+      "user-interface-component-information",
+      "keyboard-navigation-and-shortcuts",
+      "content-structure-and-relationships"
+    ],
+    "keyboardMatrix": [
+      {
+        "key": "Right Arrow",
+        "apgAction": "Moves focus to next cell in row",
+        "semanticAction": "Standard text navigation inside input or reading mode"
+      },
+      {
+        "key": "Left Arrow",
+        "apgAction": "Moves focus to previous cell in row",
+        "semanticAction": "Standard text navigation inside input or reading mode"
+      },
+      {
+        "key": "Down Arrow",
+        "apgAction": "Moves focus to cell in same column of next row",
+        "semanticAction": "Standard reading cursor or scroll down"
+      },
+      {
+        "key": "Up Arrow",
+        "apgAction": "Moves focus to cell in same column of previous row",
+        "semanticAction": "Standard reading cursor or scroll up"
+      },
+      {
+        "key": "Home / End",
+        "apgAction": "Moves focus to first / last cell in row",
+        "semanticAction": "Moves cursor to start / end of input"
+      },
+      {
+        "key": "Ctrl+Home / Ctrl+End",
+        "apgAction": "Moves focus to first / last cell in grid",
+        "semanticAction": "Scrolls to top / bottom of page"
+      },
+      {
+        "key": "Enter / F2",
+        "apgAction": "Enters edit mode for focused gridcell",
+        "semanticAction": "Activates button or submits form"
+      },
+      {
+        "key": "Tab",
+        "apgAction": "Moves focus completely out of the grid widget",
+        "semanticAction": "Moves focus sequentially to next focusable element"
+      }
+    ],
+    "ariaRequirements": [
+      "Container element has role=\"grid\" and aria-label or aria-labelledby.",
+      "Row elements have role=\"row\".",
+      "Header cells have role=\"columnheader\" or role=\"rowheader\".",
+      "Data cells have role=\"gridcell\".",
+      "Roving tabindex (tabindex=\"0\" on active cell, tabindex=\"-1\" on all others) or aria-activedescendant on the grid.",
+      "Arrow key handlers for 2D cell-by-cell directional navigation.",
+      "Enter/F2 toggles edit mode inside editable cells; Escape exits edit mode.",
+      "Single Tab stop: Tab moves focus into and out of the composite grid widget."
+    ],
+    "ariaKeyboardAndAt": {
+      "keyboard": [
+        "Single Tab stop for entire grid container",
+        "Arrow keys (← ↑ → ↓) navigate cells in 2D space",
+        "Home / End moves to first / last cell in current row",
+        "Enter or F2 activates cell editing mode; Escape cancels"
+      ],
+      "screenReader": "Announces \"Grid, N rows by M columns, row X, column Y: [content]\". Changes to edit mode announced dynamically."
+    },
+    "ariaEffort": {
+      "rating": "Extreme",
+      "linesOfCode": "~150-250 lines of JS + ARIA logic",
+      "summary": "2D coordinates tracking, roving tabindex matrix, edit mode state management, and assistive tech coordinate synchronization."
+    },
+    "semanticRequirements": [
+      "Standard <table> element with <thead>, <tbody>, <tr>, <th>, <td>.",
+      "Native <input> or <button> inside cells for interactivity.",
+      "Scope attributes (scope=\"col\", scope=\"row\") on headers."
+    ],
+    "semanticKeyboardAndAt": {
+      "keyboard": [
+        "Tab moves sequentially across every single interactive element in the table",
+        "Arrow keys navigate inside individual form inputs rather than across table cells"
+      ],
+      "screenReader": "Screen reader virtual table navigation (Ctrl+Alt+Arrows in NVDA/JAWS; VO+Arrows in VoiceOver)."
+    },
+    "semanticEffort": {
+      "rating": "Minimal (0 JS)",
+      "linesOfCode": "~20 lines of HTML",
+      "summary": "Standard native semantic table with embedded form controls."
+    },
+    "semanticLimitations": [
+      "Native tables have no single-tab roving keyboard navigation; every input in every cell is an individual Tab stop, making 50-row tables exhausting to tab through.",
+      "No built-in 2D arrow-key cell navigation without custom JavaScript."
+    ],
+    "cssCustomization": {
+      "semanticRecipe": ".data-table-wrap {\n  overflow-x: auto;\n  border: 1px solid var(--border-subtle);\n  border-radius: var(--radius-sm);\n}\n.data-table-wrap table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.data-table-wrap th, .data-table-wrap td {\n  padding: 8px 12px;\n  border-bottom: 1px solid var(--border-subtle);\n}",
+      "ariaRecipe": "[role=\"grid\"] [role=\"gridcell\"]:focus-visible {\n  outline: 2px solid var(--accent-blue);\n  outline-offset: -2px;\n  background: rgba(182, 196, 255, 0.15);\n}",
+      "tips": [
+        "Only use role=\"grid\" when cells are truly interactive or editable (like Airtable or Excel). For read-only data, native <table> is always superior."
+      ]
+    },
+    "apgCode": {
+      "html": "<!-- W3C APG ARIA Grid Pattern (Editable / Interactive Table) -->\n<div role=\"grid\" aria-label=\"Project Milestones\" aria-rowcount=\"3\" aria-colcount=\"3\" class=\"apg-grid\">\n  <div role=\"row\" aria-rowindex=\"1\" class=\"grid-row header-row\">\n    <span role=\"columnheader\" aria-colindex=\"1\">Milestone</span>\n    <span role=\"columnheader\" aria-colindex=\"2\">Owner</span>\n    <span role=\"columnheader\" aria-colindex=\"3\">Status</span>\n  </div>\n  <div role=\"row\" aria-rowindex=\"2\" class=\"grid-row\">\n    <span role=\"gridcell\" aria-colindex=\"1\" tabindex=\"0\">WCAG 3 Mapping</span>\n    <span role=\"gridcell\" aria-colindex=\"2\" tabindex=\"-1\">Alex R.</span>\n    <span role=\"gridcell\" aria-colindex=\"3\" tabindex=\"-1\">Complete</span>\n  </div>\n  <div role=\"row\" aria-rowindex=\"3\" class=\"grid-row\">\n    <span role=\"gridcell\" aria-colindex=\"1\" tabindex=\"-1\">Contrast Lab</span>\n    <span role=\"gridcell\" aria-colindex=\"2\" tabindex=\"-1\">Daniel W.</span>\n    <span role=\"gridcell\" aria-colindex=\"3\" tabindex=\"-1\">In Review</span>\n  </div>\n</div>"
+    },
+    "semanticCode": {
+      "html": "<!-- Native HTML Table with Interactive Inputs -->\n<table class=\"semantic-data-table\">\n  <caption class=\"sr-only\">Project Milestones</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">Milestone</th>\n      <th scope=\"col\">Owner</th>\n      <th scope=\"col\">Status</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td><input type=\"text\" value=\"WCAG 3 Mapping\" aria-label=\"Milestone 1\"></td>\n      <td><input type=\"text\" value=\"Alex R.\" aria-label=\"Owner 1\"></td>\n      <td>\n        <select aria-label=\"Status 1\">\n          <option selected>Complete</option>\n          <option>In Review</option>\n        </select>\n      </td>\n    </tr>\n  </tbody>\n</table>",
+      "notes": "Native HTML table inputs require separate Tab stops for each cell, but require 0 lines of JavaScript."
+    }
+  },
+  {
+    "id": "listbox",
+    "name": "Listbox",
+    "category": "Inputs & Controls",
+    "apgSlug": "listbox",
+    "apgUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/listbox/",
+    "firstRuleVerdict": "native-preferred",
+    "verdictLabel": "Native Element Preferred",
+    "semanticElement": "<select size=\"N\"> or <select multiple>",
+    "summary": "A widget that presents a visible, scrollable list of options where users can select one or more items. Native HTML <select size=\"N\"> provides this behavior with zero JavaScript.",
+    "firstRuleExplanation": "Under the First Rule of ARIA, HTML provides a native, perfectly accessible listbox using <select size=\"N\"> for single-selection and <select multiple size=\"N\"> for multi-selection. The native element automatically handles keyboard navigation (Arrow keys, Home, End, Shift+Arrows for multi-select, type-ahead character search) and form submission. The APG ARIA pattern requires custom role=\"listbox\", role=\"option\", aria-selected, roving tabindex or aria-activedescendant, and extensive JavaScript.",
+    "wcagCriteria": [
+      {
+        "num": "4.1.2",
+        "name": "Name, Role, Value",
+        "level": "A"
+      },
+      {
+        "num": "2.1.1",
+        "name": "Keyboard",
+        "level": "A"
+      },
+      {
+        "num": "1.3.1",
+        "name": "Info and Relationships",
+        "level": "A"
+      }
+    ],
+    "wcag3Outcomes": [
+      "user-interface-component-information",
+      "keyboard-navigation-and-shortcuts"
+    ],
+    "keyboardMatrix": [
+      {
+        "key": "Down / Up Arrow",
+        "apgAction": "Moves focus and selection to next / previous option",
+        "semanticAction": "Moves focus and selection natively to next / previous option"
+      },
+      {
+        "key": "Home / End",
+        "apgAction": "Moves focus to first / last option",
+        "semanticAction": "Moves focus to first / last option"
+      },
+      {
+        "key": "Space",
+        "apgAction": "In multi-select, toggles selection of focused option",
+        "semanticAction": "In multi-select, toggles option selection"
+      },
+      {
+        "key": "Shift+Down / Up",
+        "apgAction": "Extends contiguous selection range in multi-select",
+        "semanticAction": "Extends contiguous selection natively"
+      },
+      {
+        "key": "Type-ahead characters",
+        "apgAction": "Jumps focus to first option starting with typed key",
+        "semanticAction": "Built-in browser type-ahead jump"
+      }
+    ],
+    "ariaRequirements": [
+      "Container element has role=\"listbox\", tabindex=\"0\", and aria-label or aria-labelledby.",
+      "Child item elements have role=\"option\".",
+      "Selected option has aria-selected=\"true\" (unselected have aria-selected=\"false\").",
+      "For multi-selection, container has aria-multiselectable=\"true\".",
+      "Roving tabindex or aria-activedescendant management in JavaScript."
+    ],
+    "ariaKeyboardAndAt": {
+      "keyboard": [
+        "Single Tab stop on listbox container",
+        "Arrow keys (↑ / ↓) navigate and select options",
+        "Home / End moves to boundaries",
+        "Space toggles selection in multi-select mode"
+      ],
+      "screenReader": "Announces \"Listbox, N items, [Option Name], X of N, selected\"."
+    },
+    "ariaEffort": {
+      "rating": "High",
+      "linesOfCode": "~50-80 lines of JS + ARIA",
+      "summary": "Selection state management, roving tabindex or aria-activedescendant sync, scrollIntoView positioning, and type-ahead logic."
+    },
+    "semanticRequirements": [
+      "<select size=\"4\"> for single-select scrollable listbox.",
+      "<select multiple size=\"4\"> for multi-select listbox.",
+      "<option value=\"...\">Option Label</option> tags.",
+      "Associated <label for=\"...\">."
+    ],
+    "semanticKeyboardAndAt": {
+      "keyboard": [
+        "Arrow keys navigate options natively",
+        "Shift+Arrow keys select contiguous ranges in multi-select",
+        "Ctrl+Click / Cmd+Click selects non-contiguous items"
+      ],
+      "screenReader": "Native OS/browser listbox announcements with item count, position, and selected state."
+    },
+    "semanticEffort": {
+      "rating": "Minimal (0 JS)",
+      "linesOfCode": "~5 lines of HTML",
+      "summary": "Native declarative HTML with built-in form serialization."
+    },
+    "semanticLimitations": [
+      "Custom styling of native <option> elements (such as embedded avatars or custom badge markup) is historically restricted, though modern browser Customizable Select standards are closing this gap."
+    ],
+    "cssCustomization": {
+      "semanticRecipe": ".semantic-listbox {\n  width: 100%;\n  padding: 6px;\n  background: var(--surface-card);\n  border: 1px solid var(--border-default);\n  border-radius: var(--radius-sm);\n  color: var(--text-primary);\n  font-family: inherit;\n}\n.semantic-listbox option {\n  padding: 8px 12px;\n  border-radius: 4px;\n}",
+      "ariaRecipe": "[role=\"listbox\"] {\n  border: 1px solid var(--border-default);\n  background: var(--surface-card);\n  border-radius: var(--radius-sm);\n}\n[role=\"option\"][aria-selected=\"true\"] {\n  background: rgba(182, 196, 255, 0.2);\n  color: var(--text-primary);\n}",
+      "tips": [
+        "Always set size=\"4\" or greater on <select> to render as a listbox rather than a dropdown."
+      ]
+    },
+    "apgCode": {
+      "html": "<!-- W3C APG ARIA Listbox Pattern -->\n<div role=\"listbox\" aria-label=\"Conformance Target\" tabindex=\"0\" class=\"apg-listbox-widget\" id=\"apg-lb\">\n  <div role=\"option\" id=\"lb-opt-1\" aria-selected=\"true\" class=\"apg-lb-opt selected\">WCAG 2.2 Level AA</div>\n  <div role=\"option\" id=\"lb-opt-2\" aria-selected=\"false\" class=\"apg-lb-opt\">WCAG 2.2 Level AAA</div>\n  <div role=\"option\" id=\"lb-opt-3\" aria-selected=\"false\" class=\"apg-lb-opt\">WCAG 3.0 Bronze</div>\n  <div role=\"option\" id=\"lb-opt-4\" aria-selected=\"false\" class=\"apg-lb-opt\">WCAG 3.0 Silver</div>\n</div>"
+    },
+    "semanticCode": {
+      "html": "<!-- Native Semantic HTML Listbox -->\n<label for=\"sem-lb\">Conformance Target:</label>\n<select id=\"sem-lb\" size=\"4\" class=\"semantic-listbox\">\n  <option value=\"2.2-aa\" selected>WCAG 2.2 Level AA</option>\n  <option value=\"2.2-aaa\">WCAG 2.2 Level AAA</option>\n  <option value=\"3.0-bronze\">WCAG 3.0 Bronze</option>\n  <option value=\"3.0-silver\">WCAG 3.0 Silver</option>\n</select>",
+      "notes": "Native <select size=\"4\"> provides complete scrollable listbox accessibility with zero JavaScript."
+    }
+  },
+  {
+    "id": "menubar",
+    "name": "Menu and Menubar",
+    "category": "Navigation",
+    "apgSlug": "menubar",
+    "apgUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/menubar/",
+    "firstRuleVerdict": "hybrid-enhancement",
+    "verdictLabel": "Semantic HTML Preferred for Web Navigation",
+    "semanticElement": "<nav> + <ul> + <li> + <a> / Popover API",
+    "summary": "A desktop-application-style horizontal menu bar with dropdown submenus. For website navigation, semantic <nav> with standard links is strongly preferred over ARIA menubar.",
+    "firstRuleExplanation": "The W3C APG explicitly cautions that the ARIA menubar pattern is intended for web applications mimicking desktop software menus (e.g. Google Docs File/Edit/View), NOT for website site navigation bars. Using role=\"menubar\" on site navigation breaks standard tab navigation and hides links from screen reader landmark lists. For site navigation, the First Rule dictates using native <nav> with semantic lists (<ul>/<li>) and standard links (<a>) or Popover API buttons.",
+    "wcagCriteria": [
+      {
+        "num": "4.1.2",
+        "name": "Name, Role, Value",
+        "level": "A"
+      },
+      {
+        "num": "2.1.1",
+        "name": "Keyboard",
+        "level": "A"
+      },
+      {
+        "num": "2.4.4",
+        "name": "Link Purpose (In Context)",
+        "level": "A"
+      },
+      {
+        "num": "1.3.1",
+        "name": "Info and Relationships",
+        "level": "A"
+      }
+    ],
+    "wcag3Outcomes": [
+      "user-interface-component-information",
+      "keyboard-navigation-and-shortcuts",
+      "navigation-mechanisms"
+    ],
+    "keyboardMatrix": [
+      {
+        "key": "Right / Left Arrow",
+        "apgAction": "Moves focus to next / previous menuitem in menubar",
+        "semanticAction": "Standard reading cursor navigation"
+      },
+      {
+        "key": "Down Arrow",
+        "apgAction": "Opens dropdown menu and moves focus to first item",
+        "semanticAction": "Standard page scroll"
+      },
+      {
+        "key": "Up Arrow",
+        "apgAction": "Cycles up through open submenu items",
+        "semanticAction": "Standard page scroll"
+      },
+      {
+        "key": "Escape",
+        "apgAction": "Closes open submenu and restores focus to parent menubar item",
+        "semanticAction": "Dismisses open Popover / modal"
+      },
+      {
+        "key": "Tab",
+        "apgAction": "Moves focus completely out of the menubar widget",
+        "semanticAction": "Moves focus sequentially to next navigation link"
+      }
+    ],
+    "ariaRequirements": [
+      "Top-level container has role=\"menubar\" with aria-label.",
+      "Menu item buttons have role=\"menuitem\" (or menuitemcheckbox / menuitemradio).",
+      "Items with submenus have aria-haspopup=\"true\" and aria-expanded=\"false/true\".",
+      "Submenus have role=\"menu\" and aria-labelledby.",
+      "Arrow-key navigation in two dimensions (horizontal across menubar, vertical inside menus).",
+      "Escape dismisses submenus and restores focus to menubar parent."
+    ],
+    "ariaKeyboardAndAt": {
+      "keyboard": [
+        "Single Tab stop for entire menubar",
+        "Left / Right arrows navigate horizontal menubar items",
+        "Down arrow opens submenus and navigates down",
+        "Escape closes submenu and returns focus to top level"
+      ],
+      "screenReader": "Announces \"Menubar, N items\" and \"Menuitem, has submenu, expanded/collapsed\"."
+    },
+    "ariaEffort": {
+      "rating": "Extreme",
+      "linesOfCode": "~100-160 lines of JS + ARIA logic",
+      "summary": "Bi-directional arrow navigation, submenu positioning, hover/focus intent timers, and Escape key focus restoration."
+    },
+    "semanticRequirements": [
+      "<nav aria-label=\"Site Navigation\"> sectioning element.",
+      "Unordered list (<ul>) and list items (<li>) for page structure.",
+      "Native links (<a href=\"...\">) for pages.",
+      "Optional <button popovertarget=\"...\"> for accessible disclosure submenus."
+    ],
+    "semanticKeyboardAndAt": {
+      "keyboard": [
+        "Tab navigates sequentially through every navigation link",
+        "Enter activates link or opens popover dropdown"
+      ],
+      "screenReader": "Announces \"Navigation landmark, list with N items, link, [Link Text]\"."
+    },
+    "semanticEffort": {
+      "rating": "Minimal (0 JS)",
+      "linesOfCode": "~15 lines of HTML + CSS",
+      "summary": "Semantic HTML markup; zero JavaScript required with Popover API."
+    },
+    "semanticLimitations": [
+      "Hover-only CSS dropdown menus frequently collapse when users navigate with screen magnifiers or switch to keyboard; pairing with Popover API ensures click/Enter persistence."
+    ],
+    "cssCustomization": {
+      "semanticRecipe": ".semantic-nav-list {\n  display: flex;\n  gap: 16px;\n  list-style: none;\n}\n.semantic-nav-list a {\n  color: var(--text-primary);\n  text-decoration: none;\n  font-weight: 600;\n  padding: 6px 10px;\n  border-radius: var(--radius-sm);\n}\n.semantic-nav-list a:hover {\n  background: var(--surface-card-hover);\n  color: var(--accent-blue);\n}",
+      "ariaRecipe": "[role=\"menubar\"] {\n  display: flex;\n  background: var(--surface-elevated);\n  border-radius: var(--radius-sm);\n  padding: 4px;\n}\n[role=\"menuitem\"]:focus {\n  background: var(--accent-blue);\n  color: var(--on-accent);\n}",
+      "tips": [
+        "Never use role=\"menubar\" for website page navigation. Reserve it strictly for application menu bars (like Google Docs or VS Code)."
+      ]
+    },
+    "apgCode": {
+      "html": "<!-- W3C APG ARIA Application Menubar Pattern -->\n<div role=\"menubar\" aria-label=\"Editor Menu\" class=\"apg-menubar\" id=\"apg-menubar-demo\">\n  <div role=\"menuitem\" aria-haspopup=\"true\" aria-expanded=\"false\" tabindex=\"0\" class=\"apg-m-item\" id=\"m-file\">\n    File\n    <div role=\"menu\" aria-label=\"File Options\" class=\"apg-submenu\" hidden>\n      <div role=\"menuitem\" tabindex=\"-1\">New Document</div>\n      <div role=\"menuitem\" tabindex=\"-1\">Export PDF</div>\n    </div>\n  </div>\n  <div role=\"menuitem\" tabindex=\"-1\" class=\"apg-m-item\">Edit</div>\n  <div role=\"menuitem\" tabindex=\"-1\" class=\"apg-m-item\">View</div>\n</div>"
+    },
+    "semanticCode": {
+      "html": "<!-- Semantic Web Navigation (Recommended over ARIA Menubar) -->\n<nav aria-label=\"Site Navigation\" class=\"semantic-site-nav\">\n  <ul class=\"semantic-nav-list\">\n    <li><a href=\"/standards/\">Standards</a></li>\n    <li>\n      <button type=\"button\" popovertarget=\"nav-dropdown\" class=\"nav-popover-btn\">\n        Guidelines ▼\n      </button>\n      <div id=\"nav-dropdown\" popover class=\"nav-popover-menu\">\n        <a href=\"/wcag22/\">WCAG 2.2</a>\n        <a href=\"/wcag3/\">WCAG 3.0</a>\n      </div>\n    </li>\n    <li><a href=\"/about/\">About</a></li>\n  </ul>\n</nav>",
+      "notes": "Semantic <nav> maintains web link discoverability and standard browser Tab navigation."
+    }
+  },
+  {
+    "id": "alertdialog",
+    "name": "Alert Dialog (Modal Prompt)",
+    "category": "Dialogs & Overlays",
+    "apgSlug": "alertdialog",
+    "apgUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/",
+    "firstRuleVerdict": "native-preferred",
+    "verdictLabel": "Native Element Preferred",
+    "semanticElement": "<dialog> with autofocus on Cancel",
+    "summary": "A modal dialog that interrupts the user workflow to communicate an urgent message and require immediate confirmation or cancellation (e.g. confirming permanent deletion).",
+    "firstRuleExplanation": "Native HTML <dialog> invoked via .showModal() natively traps keyboard focus, renders in the top-layer, dims background content with ::backdrop, handles Escape key dismissal, and restores focus upon closing. For an alert dialog, placing the autofocus attribute on the least destructive button (e.g. Cancel) ensures screen readers immediately announce the message while preventing accidental confirmation.",
+    "wcagCriteria": [
+      {
+        "num": "4.1.2",
+        "name": "Name, Role, Value",
+        "level": "A"
+      },
+      {
+        "num": "2.1.1",
+        "name": "Keyboard",
+        "level": "A"
+      },
+      {
+        "num": "2.1.2",
+        "name": "No Keyboard Trap",
+        "level": "A"
+      },
+      {
+        "num": "2.4.3",
+        "name": "Focus Order",
+        "level": "A"
+      }
+    ],
+    "wcag3Outcomes": [
+      "user-interface-component-information",
+      "keyboard-navigation-and-shortcuts",
+      "focus-and-input-modalities"
+    ],
+    "keyboardMatrix": [
+      {
+        "key": "Tab / Shift+Tab",
+        "apgAction": "Cycles focus strictly between buttons inside the dialog",
+        "semanticAction": "Cycles focus natively between buttons inside <dialog>"
+      },
+      {
+        "key": "Escape",
+        "apgAction": "Closes dialog without performing action",
+        "semanticAction": "Fires native cancel event and closes <dialog>"
+      },
+      {
+        "key": "Space / Enter",
+        "apgAction": "Activates focused confirmation or cancel button",
+        "semanticAction": "Activates focused button or submits dialog form"
+      }
+    ],
+    "ariaRequirements": [
+      "Overlay window has role=\"alertdialog\" and aria-modal=\"true\".",
+      "aria-labelledby points to dialog title.",
+      "aria-describedby points to the alert message body.",
+      "Initial focus placed on the least destructive action button (Cancel).",
+      "JavaScript focus trap preventing Tab from escaping into main page.",
+      "Background marked inert or hidden via aria-hidden=\"true\"."
+    ],
+    "ariaKeyboardAndAt": {
+      "keyboard": [
+        "Focus trapped strictly inside alertdialog buttons",
+        "Escape cancels and closes",
+        "Tab cycles between Cancel and Confirm"
+      ],
+      "screenReader": "Screen reader automatically reads alert title and description, announcing \"Alert dialog, [Title], [Message], Cancel button, focused\"."
+    },
+    "ariaEffort": {
+      "rating": "High",
+      "linesOfCode": "~45 lines of JS + ARIA logic",
+      "summary": "Focus trapping, restoring previous active element, Escape listeners, and background inerting."
+    },
+    "semanticRequirements": [
+      "<dialog class=\"alert-dialog\"> element.",
+      "autofocus attribute on Cancel button.",
+      "Invoked with dialog.showModal()."
+    ],
+    "semanticKeyboardAndAt": {
+      "keyboard": [
+        "Native top-layer focus trapping",
+        "Escape closes natively with cancel event",
+        "Initial focus set via autofocus"
+      ],
+      "screenReader": "Native top-layer dialog announcement with immediate speech of content."
+    },
+    "semanticEffort": {
+      "rating": "Minimal (1-2 lines JS)",
+      "linesOfCode": "1 line JS (dialog.showModal())",
+      "summary": "100% native browser focus trap and top-layer rendering."
+    },
+    "semanticLimitations": [
+      "Requires dialog::backdrop CSS styling for custom tint and blur effects."
+    ],
+    "cssCustomization": {
+      "semanticRecipe": ".semantic-alert-dialog {\n  border: 2px solid var(--accent-rose);\n  border-radius: var(--radius-lg);\n  padding: 24px;\n  background: var(--surface-card);\n  color: var(--text-primary);\n  max-width: 440px;\n}\n.semantic-alert-dialog::backdrop {\n  background: rgba(0, 0, 0, 0.7);\n  backdrop-filter: blur(4px);\n}",
+      "ariaRecipe": "[role=\"alertdialog\"] {\n  border: 2px solid #ef4444;\n  background: var(--surface-card);\n  border-radius: var(--radius-lg);\n  padding: 24px;\n}",
+      "tips": [
+        "Always place autofocus on the CANCEL button for destructive alert dialogs so pressing Enter accidentally cannot trigger data loss."
+      ]
+    },
+    "apgCode": {
+      "html": "<!-- W3C APG ARIA Alert Dialog Pattern -->\n<div role=\"alertdialog\" aria-modal=\"true\" aria-labelledby=\"ad-title\" aria-describedby=\"ad-desc\" class=\"apg-alert-dialog\">\n  <h3 id=\"ad-title\">Discard Draft?</h3>\n  <p id=\"ad-desc\">You have unsaved changes. If you leave now, your edits will be permanently lost.</p>\n  <div class=\"ad-actions\">\n    <button type=\"button\" class=\"btn-cancel\" id=\"ad-cancel\">Keep Editing</button>\n    <button type=\"button\" class=\"btn-danger\" id=\"ad-confirm\">Discard</button>\n  </div>\n</div>"
+    },
+    "semanticCode": {
+      "html": "<!-- Native HTML <dialog> as Alert Dialog -->\n<dialog id=\"alert-dialog-el\" class=\"semantic-alert-dialog\">\n  <form method=\"dialog\">\n    <h3>Discard Draft?</h3>\n    <p>You have unsaved changes. If you leave now, your edits will be permanently lost.</p>\n    <div class=\"modal-actions\">\n      <button value=\"cancel\" autofocus class=\"demo-btn\">Keep Editing</button>\n      <button value=\"discard\" class=\"demo-btn btn-danger\">Discard</button>\n    </div>\n  </form>\n</dialog>",
+      "notes": "Using autofocus on \"Keep Editing\" prevents accidental destructive submission."
+    }
+  },
+  {
+    "id": "feed",
+    "name": "Feed (Dynamic Content Stream)",
+    "category": "Structure & Layout",
+    "apgSlug": "feed",
+    "apgUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/feed/",
+    "firstRuleVerdict": "hybrid-enhancement",
+    "verdictLabel": "Semantic HTML with Targeted ARIA",
+    "semanticElement": "<section aria-label=\"...\"> + <article> stream",
+    "summary": "A scrollable list of articles that automatically loads new content as the user scrolls, supporting PageUp/PageDown article-to-article keyboard navigation.",
+    "firstRuleExplanation": "Under the First Rule of ARIA, HTML provides the semantic building blocks for dynamic streams using <section> or <main> with child <article> elements. The ARIA role=\"feed\" pattern is an enhancement layered on top of semantic articles that introduces PageUp/PageDown keyboard shortcuts for jumping between article boundaries and aria-busy=\"true\" while fetching new batches.",
+    "wcagCriteria": [
+      {
+        "num": "4.1.2",
+        "name": "Name, Role, Value",
+        "level": "A"
+      },
+      {
+        "num": "1.3.1",
+        "name": "Info and Relationships",
+        "level": "A"
+      },
+      {
+        "num": "2.1.1",
+        "name": "Keyboard",
+        "level": "A"
+      }
+    ],
+    "wcag3Outcomes": [
+      "content-structure-and-relationships",
+      "keyboard-navigation-and-shortcuts"
+    ],
+    "keyboardMatrix": [
+      {
+        "key": "Page Down",
+        "apgAction": "Moves focus to next article in the feed",
+        "semanticAction": "Standard viewport page scroll"
+      },
+      {
+        "key": "Page Up",
+        "apgAction": "Moves focus to previous article in the feed",
+        "semanticAction": "Standard viewport page scroll"
+      },
+      {
+        "key": "Ctrl+End",
+        "apgAction": "Moves focus to the first focusable element after the feed",
+        "semanticAction": "Scrolls to bottom of page"
+      },
+      {
+        "key": "Tab",
+        "apgAction": "Navigates through focusable controls inside current article",
+        "semanticAction": "Navigates sequentially through controls in articles"
+      }
+    ],
+    "ariaRequirements": [
+      "Container has role=\"feed\" and aria-label or aria-labelledby.",
+      "Each post item has role=\"article\" and tabindex=\"0\" (or contains focusable heading).",
+      "Articles specify aria-posinset and aria-setsize when total count is known.",
+      "While new articles are being fetched asynchronously, container has aria-busy=\"true\".",
+      "PageUp / PageDown keyboard event listeners to jump focus between articles."
+    ],
+    "ariaKeyboardAndAt": {
+      "keyboard": [
+        "PageUp / PageDown moves focus between article boundaries",
+        "Tab explores interactive buttons and links within current article",
+        "Ctrl+End jumps past the infinite feed"
+      ],
+      "screenReader": "Announces \"Feed, Article X of Y, [Headline]\". Dynamically announces when new articles are loaded."
+    },
+    "ariaEffort": {
+      "rating": "High",
+      "linesOfCode": "~60-90 lines of JS + ARIA logic",
+      "summary": "PageUp/PageDown focus management, scroll triggers, aria-busy states, and setsize calculation."
+    },
+    "semanticRequirements": [
+      "<section aria-label=\"Activity Feed\"> or <main>.",
+      "Semantic <article> elements with header, time, and content.",
+      "IntersectionObserver for progressive infinite scroll."
+    ],
+    "semanticKeyboardAndAt": {
+      "keyboard": [
+        "Standard Tab navigation across article interactive controls",
+        "Standard spacebar or PageDown viewport scrolling"
+      ],
+      "screenReader": "Announces section landmark and article landmarks with heading hierarchy."
+    },
+    "semanticEffort": {
+      "rating": "Low",
+      "linesOfCode": "~15 lines of JS (IntersectionObserver)",
+      "summary": "Standard semantic HTML articles with standard web APIs."
+    },
+    "semanticLimitations": [
+      "Native HTML does not provide keyboard shortcuts to jump directly from article to article; keyboard users must Tab through all controls in an article to reach the next one unless using heading navigation (H key in screen readers)."
+    ],
+    "cssCustomization": {
+      "semanticRecipe": ".semantic-feed {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  max-width: 600px;\n}\n.semantic-feed article {\n  background: var(--surface-card);\n  border: 1px solid var(--border-subtle);\n  border-radius: var(--radius-md);\n  padding: 16px;\n}",
+      "ariaRecipe": "[role=\"feed\"] [role=\"article\"]:focus-visible {\n  outline: 2px solid var(--accent-blue);\n  outline-offset: 2px;\n}",
+      "tips": [
+        "Always provide a keyboard shortcut (like Ctrl+End or an explicit skip link) to allow keyboard users to jump past infinite feeds to footer content."
+      ]
+    },
+    "apgCode": {
+      "html": "<!-- W3C APG ARIA Feed Pattern -->\n<div role=\"feed\" aria-label=\"WCAG Updates Feed\" aria-busy=\"false\" class=\"apg-feed\">\n  <article role=\"article\" tabindex=\"0\" aria-posinset=\"1\" aria-setsize=\"2\" class=\"feed-card\">\n    <h4>WCAG 3 Working Draft Published</h4>\n    <p>New reporting-tier conformance model available for public review.</p>\n  </article>\n  <article role=\"article\" tabindex=\"0\" aria-posinset=\"2\" aria-setsize=\"2\" class=\"feed-card\">\n    <h4>APCA Contrast Lab Added</h4>\n    <p>Interactive tool comparing WCAG 2 contrast ratios with WCAG 3 APCA.</p>\n  </article>\n</div>"
+    },
+    "semanticCode": {
+      "html": "<!-- Semantic HTML Feed with Articles -->\n<section aria-label=\"WCAG Updates Stream\" class=\"semantic-feed\">\n  <article class=\"feed-card\">\n    <header><h3>WCAG 3 Working Draft Published</h3></header>\n    <p>New reporting-tier conformance model available for public review.</p>\n  </article>\n  <article class=\"feed-card\">\n    <header><h3>APCA Contrast Lab Added</h3></header>\n    <p>Interactive tool comparing WCAG 2 contrast ratios with WCAG 3 APCA.</p>\n  </article>\n</section>",
+      "notes": "Semantic articles provide instant landmark structure for assistive technologies without complex roving tabindex."
+    }
+  },
+  {
+    "id": "slider-multithumb",
+    "name": "Slider (Multi-Thumb Range)",
+    "category": "Inputs & Controls",
+    "apgSlug": "slider-multithumb",
+    "apgUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/",
+    "firstRuleVerdict": "hybrid-enhancement",
+    "verdictLabel": "Semantic Dual Inputs or Hybrid ARIA",
+    "semanticElement": "Dual <input type=\"range\"> or paired <input type=\"number\">",
+    "summary": "A slider featuring two or more draggable thumbs on a single rail (e.g. minimum and maximum price filter). HTML currently lacks a native dual-range input element.",
+    "firstRuleExplanation": "HTML does not yet provide a native <input type=\"range\" multiple> element. The accessible semantic alternative under the First Rule is pairing two native inputs: either two adjacent <input type=\"range\"> sliders (\"Minimum Budget\" and \"Maximum Budget\") or two paired <input type=\"number\"> controls. For a custom single-rail dual-thumb visual presentation, ARIA role=\"slider\" attributes on both handles are required.",
+    "wcagCriteria": [
+      {
+        "num": "4.1.2",
+        "name": "Name, Role, Value",
+        "level": "A"
+      },
+      {
+        "num": "2.1.1",
+        "name": "Keyboard",
+        "level": "A"
+      },
+      {
+        "num": "2.5.8",
+        "name": "Target Size (Minimum)",
+        "level": "AA"
+      }
+    ],
+    "wcag3Outcomes": [
+      "user-interface-component-information",
+      "keyboard-navigation-and-shortcuts"
+    ],
+    "keyboardMatrix": [
+      {
+        "key": "Right / Up Arrow",
+        "apgAction": "Increases value of focused thumb (constrained by upper bound)",
+        "semanticAction": "Increases native slider value by step"
+      },
+      {
+        "key": "Left / Down Arrow",
+        "apgAction": "Decreases value of focused thumb (constrained by lower bound)",
+        "semanticAction": "Decreases native slider value by step"
+      },
+      {
+        "key": "Home / End",
+        "apgAction": "Sets thumb to minimum / maximum allowed limit",
+        "semanticAction": "Sets native slider to min / max value"
+      },
+      {
+        "key": "Tab",
+        "apgAction": "Moves focus between the lower thumb and upper thumb",
+        "semanticAction": "Moves focus to next input control"
+      }
+    ],
+    "ariaRequirements": [
+      "Each thumb has role=\"slider\", tabindex=\"0\", aria-valuenow, aria-valuemin, aria-valuemax.",
+      "Explicit labels via aria-label (e.g. \"Minimum Price\" and \"Maximum Price\").",
+      "Collision prevention logic: Min thumb cannot exceed Max thumb value.",
+      "Active track highlight indicating selected range between the two thumbs."
+    ],
+    "ariaKeyboardAndAt": {
+      "keyboard": [
+        "Tab moves between Min Thumb and Max Thumb",
+        "Arrow keys adjust focused thumb position",
+        "Home / End moves to permitted extremes"
+      ],
+      "screenReader": "Announces \"Minimum price slider, $X, min $Y, max $Z\" and \"Maximum price slider, $A\"."
+    },
+    "ariaEffort": {
+      "rating": "High",
+      "linesOfCode": "~80-120 lines of JS + ARIA logic",
+      "summary": "Dual thumb coordinate math, collision boundary checks, touch/mouse drag handlers, and twin ARIA state synchronization."
+    },
+    "semanticRequirements": [
+      "Two <input type=\"range\"> elements with explicit <label> tags (Min & Max).",
+      "Or two <input type=\"number\"> controls with min/max bounds."
+    ],
+    "semanticKeyboardAndAt": {
+      "keyboard": [
+        "Native arrow key increments and Home/End on individual range sliders",
+        "Tab moves between the two inputs"
+      ],
+      "screenReader": "Native range slider announcements with complete browser accessibility."
+    },
+    "semanticEffort": {
+      "rating": "Low",
+      "linesOfCode": "~10 lines of HTML + 5 lines JS",
+      "summary": "Two standard HTML range inputs with light synchronization logic."
+    },
+    "semanticLimitations": [
+      "HTML has no single native control that paints two thumbs on one track; rendering a visual dual-thumb slider requires custom CSS or overlaying two transparent sliders."
+    ],
+    "cssCustomization": {
+      "semanticRecipe": ".dual-range-group {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n.dual-range-group input[type=\"range\"] {\n  accent-color: var(--accent-emerald);\n}",
+      "ariaRecipe": ".apg-range-rail {\n  position: relative;\n  height: 8px;\n  background: var(--surface-elevated);\n  border-radius: 4px;\n}\n.apg-range-thumb {\n  position: absolute;\n  width: 22px;\n  height: 22px;\n  background: #a855f7;\n  border: 2px solid #fff;\n  border-radius: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n}",
+      "tips": [
+        "Always provide numeric text readouts next to multi-thumb sliders so users know exact current values without having to calculate thumb pixel offsets."
+      ]
+    },
+    "apgCode": {
+      "html": "<!-- W3C APG ARIA Multi-Thumb Range Slider -->\n<div class=\"apg-multi-slider\">\n  <div class=\"slider-readout\">Budget: $<span id=\"min-val\">20</span> - $<span id=\"max-val\">80</span></div>\n  <div class=\"range-rail\" id=\"multi-rail\">\n    <div class=\"range-fill\" id=\"multi-fill\" style=\"left: 20%; width: 60%;\"></div>\n    <div role=\"slider\" tabindex=\"0\" aria-label=\"Minimum Budget\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"20\" class=\"thumb thumb-min\" id=\"thumb-min\" style=\"left: 20%;\"></div>\n    <div role=\"slider\" tabindex=\"0\" aria-label=\"Maximum Budget\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"80\" class=\"thumb thumb-max\" id=\"thumb-max\" style=\"left: 80%;\"></div>\n  </div>\n</div>"
+    },
+    "semanticCode": {
+      "html": "<!-- Semantic HTML Paired Range Inputs -->\n<fieldset class=\"semantic-range-pair\">\n  <legend>Budget Range ($):</legend>\n  <label>Min: <input type=\"range\" id=\"sem-min\" min=\"0\" max=\"100\" value=\"20\"></label>\n  <label>Max: <input type=\"range\" id=\"sem-max\" min=\"0\" max=\"100\" value=\"80\"></label>\n</fieldset>",
+      "notes": "Separate labeled range inputs work 100% natively on every mobile and desktop browser without JavaScript."
+    }
+  },
+  {
+    "id": "treegrid",
+    "name": "Treegrid (Hierarchical Data Grid)",
+    "category": "Application Widgets",
+    "apgSlug": "treegrid",
+    "apgUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/treegrid/",
+    "firstRuleVerdict": "aria-required",
+    "verdictLabel": "ARIA Required for Hierarchical 2D Grid",
+    "semanticElement": "<table> + nested <details> (Document only)",
+    "summary": "A composite widget combining a tree view and a data grid, presenting hierarchical tabular data with expandable rows and 2D cell keyboard navigation.",
+    "firstRuleExplanation": "HTML does not support a native hierarchical grid with row expansion and 2D cell arrow-key navigation. While nested <table> inside <details> can display hierarchical data statically, an application treegrid where users navigate cells across parent and child rows requires role=\"treegrid\", role=\"row\", aria-expanded, aria-level, and role=\"gridcell\".",
+    "wcagCriteria": [
+      {
+        "num": "4.1.2",
+        "name": "Name, Role, Value",
+        "level": "A"
+      },
+      {
+        "num": "1.3.1",
+        "name": "Info and Relationships",
+        "level": "A"
+      },
+      {
+        "num": "2.1.1",
+        "name": "Keyboard",
+        "level": "A"
+      }
+    ],
+    "wcag3Outcomes": [
+      "user-interface-component-information",
+      "keyboard-navigation-and-shortcuts",
+      "content-structure-and-relationships"
+    ],
+    "keyboardMatrix": [
+      {
+        "key": "Arrow keys (← ↑ → ↓)",
+        "apgAction": "2D navigation between cells across parent and child rows",
+        "semanticAction": "Standard text/input navigation"
+      },
+      {
+        "key": "Right Arrow",
+        "apgAction": "On collapsed parent row, expands child rows",
+        "semanticAction": "Standard cursor navigation"
+      },
+      {
+        "key": "Left Arrow",
+        "apgAction": "On expanded parent row, collapses child rows; on child, moves to parent",
+        "semanticAction": "Standard cursor navigation"
+      },
+      {
+        "key": "Enter",
+        "apgAction": "Enters edit mode for focused cell or triggers action",
+        "semanticAction": "Activates control"
+      }
+    ],
+    "ariaRequirements": [
+      "Container has role=\"treegrid\" and aria-label.",
+      "Rows have role=\"row\", aria-level=\"1/2/3\", and aria-setsize.",
+      "Expandable parent rows have aria-expanded=\"true/false\".",
+      "Cells have role=\"gridcell\" with roving tabindex.",
+      "Two-dimensional directional arrow key handling."
+    ],
+    "ariaKeyboardAndAt": {
+      "keyboard": [
+        "Single Tab stop for entire treegrid container",
+        "Arrow keys navigate in 2D space across rows and columns",
+        "Right / Left arrows expand and collapse hierarchical rows"
+      ],
+      "screenReader": "Announces \"Treegrid, row X of Y, level Z, expanded/collapsed, column Name: [value]\"."
+    },
+    "ariaEffort": {
+      "rating": "Extreme",
+      "linesOfCode": "~180-260 lines of JS + ARIA logic",
+      "summary": "Hierarchical node tree management, row collapse/reveal animations, 2D matrix navigation, and aria-level sync."
+    },
+    "semanticRequirements": [
+      "Standard <table> with indented text or nested <details> elements inside cells."
+    ],
+    "semanticKeyboardAndAt": {
+      "keyboard": [
+        "Tab navigates sequentially through disclosure triggers and links",
+        "Space toggles <details> open/closed"
+      ],
+      "screenReader": "Announces standard table with nested disclosure widgets."
+    },
+    "semanticEffort": {
+      "rating": "Minimal (0 JS)",
+      "linesOfCode": "~25 lines of HTML",
+      "summary": "HTML table with nested details; static document structure."
+    },
+    "semanticLimitations": [
+      "Native tables have no semantic concept of row hierarchy or child levels, and cannot support 2D arrow-key grid navigation."
+    ],
+    "cssCustomization": {
+      "semanticRecipe": ".treegrid-sem-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.treegrid-sem-table td {\n  padding: 8px 12px;\n  border-bottom: 1px solid var(--border-subtle);\n}",
+      "ariaRecipe": "[role=\"treegrid\"] [role=\"gridcell\"]:focus-visible {\n  outline: 2px solid var(--accent-blue);\n  background: rgba(182, 196, 255, 0.15);\n}",
+      "tips": [
+        "Only implement role=\"treegrid\" for complex enterprise data management (like file explorers with metadata columns or accounting workbooks)."
+      ]
+    },
+    "apgCode": {
+      "html": "<!-- W3C APG ARIA Treegrid Pattern -->\n<div role=\"treegrid\" aria-label=\"Directory Treegrid\" class=\"apg-treegrid\">\n  <div role=\"row\" aria-rowindex=\"1\" class=\"tg-row tg-header\">\n    <span role=\"columnheader\">Name</span>\n    <span role=\"columnheader\">Type</span>\n    <span role=\"columnheader\">Size</span>\n  </div>\n  <div role=\"row\" aria-rowindex=\"2\" aria-level=\"1\" aria-expanded=\"true\" class=\"tg-row\">\n    <span role=\"gridcell\" tabindex=\"0\">📂 src/</span>\n    <span role=\"gridcell\" tabindex=\"-1\">Folder</span>\n    <span role=\"gridcell\" tabindex=\"-1\">--</span>\n  </div>\n  <div role=\"row\" aria-rowindex=\"3\" aria-level=\"2\" class=\"tg-row tg-child\">\n    <span role=\"gridcell\" tabindex=\"-1\">📄 index.astro</span>\n    <span role=\"gridcell\" tabindex=\"-1\">Astro</span>\n    <span role=\"gridcell\" tabindex=\"-1\">12 KB</span>\n  </div>\n</div>"
+    },
+    "semanticCode": {
+      "html": "<!-- Semantic HTML Table with Details for Hierarchy -->\n<table class=\"semantic-tree-table\">\n  <thead>\n    <tr><th>Name</th><th>Type</th><th>Size</th></tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td colspan=\"3\">\n        <details open>\n          <summary>📂 src/</summary>\n          <table>\n            <tr><td>📄 index.astro</td><td>Astro</td><td>12 KB</td></tr>\n          </table>\n        </details>\n      </td>\n    </tr>\n  </tbody>\n</table>",
+      "notes": "Nested details works for document disclosure, but lacks 2D arrow-key roving focus."
+    }
+  },
+  {
+    "id": "windowsplitter",
+    "name": "Window Splitter (Resizable Split Pane)",
+    "category": "Application Widgets",
+    "apgSlug": "windowsplitter",
+    "apgUrl": "https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/",
+    "firstRuleVerdict": "hybrid-enhancement",
+    "verdictLabel": "Hybrid CSS / ARIA Splitter",
+    "semanticElement": "CSS resize property or <input type=\"range\"> controlling flex",
+    "summary": "A movable separator between two panes that enables keyboard and mouse resizing of adjacent layout areas.",
+    "firstRuleExplanation": "For simple layout resizing, modern CSS provides resize: horizontal with overflow: auto natively without any ARIA. For rich interactive application split panes, the ARIA separator pattern (role=\"separator\", tabindex=\"0\", aria-valuenow, aria-valuemin, aria-valuemax) communicates pane dimensions to screen readers and enables arrow key resizing. Alternatively, an accessible <input type=\"range\"> labeled \"Pane Divider\" can semantically control flex-basis.",
+    "wcagCriteria": [
+      {
+        "num": "4.1.2",
+        "name": "Name, Role, Value",
+        "level": "A"
+      },
+      {
+        "num": "2.1.1",
+        "name": "Keyboard",
+        "level": "A"
+      },
+      {
+        "num": "2.5.7",
+        "name": "Dragging Movements",
+        "level": "AA"
+      }
+    ],
+    "wcag3Outcomes": [
+      "user-interface-component-information",
+      "keyboard-navigation-and-shortcuts"
+    ],
+    "keyboardMatrix": [
+      {
+        "key": "Left / Up Arrow",
+        "apgAction": "Decreases pane size by 5% increments",
+        "semanticAction": "Standard range slider decrease or cursor movement"
+      },
+      {
+        "key": "Right / Down Arrow",
+        "apgAction": "Increases pane size by 5% increments",
+        "semanticAction": "Standard range slider increase or cursor movement"
+      },
+      {
+        "key": "Home / End",
+        "apgAction": "Resizes pane to minimum / maximum permitted boundary",
+        "semanticAction": "Moves range slider to min / max"
+      },
+      {
+        "key": "Enter",
+        "apgAction": "Toggles pane between collapsed and default width",
+        "semanticAction": "Submits form or activates control"
+      }
+    ],
+    "ariaRequirements": [
+      "Divider element has role=\"separator\" and tabindex=\"0\".",
+      "aria-valuenow, aria-valuemin, aria-valuemax defining current and allowed percentage/pixel size.",
+      "aria-orientation=\"vertical\" (for horizontal divider) or \"horizontal\" (for vertical divider).",
+      "aria-controls referencing the ID of the pane being resized.",
+      "Arrow key handlers for keyboard resizing and pointer event drag listeners."
+    ],
+    "ariaKeyboardAndAt": {
+      "keyboard": [
+        "Tab moves focus to the window splitter divider",
+        "Arrow keys (← / →) resize the adjacent panes",
+        "Home / End collapses or expands to bounds",
+        "Enter toggles default width"
+      ],
+      "screenReader": "Announces \"Splitter, N percent, min X, max Y\"."
+    },
+    "ariaEffort": {
+      "rating": "High",
+      "linesOfCode": "~70-110 lines of JS + ARIA logic",
+      "summary": "Pointer drag listeners, percentage calculations, min/max bounding, aria-valuenow updates, and keyboard handlers."
+    },
+    "semanticRequirements": [
+      "CSS resize: horizontal; overflow: auto; on container pane.",
+      "Or semantic <input type=\"range\" aria-label=\"Pane divider\"> controlling flex-basis in CSS."
+    ],
+    "semanticKeyboardAndAt": {
+      "keyboard": [
+        "Native range slider arrow keys for keyboard resizing"
+      ],
+      "screenReader": "Native range slider announcement."
+    },
+    "semanticEffort": {
+      "rating": "Minimal (0 JS for CSS; ~5 lines JS for flex range)",
+      "linesOfCode": "3 lines CSS (resize: horizontal)",
+      "summary": "Modern CSS resize property on layout containers."
+    },
+    "semanticLimitations": [
+      "CSS resize: horizontal renders a bottom-right corner gripper that is not keyboard operable without pairing with an accessible range input control."
+    ],
+    "cssCustomization": {
+      "semanticRecipe": ".css-resizable-pane {\n  resize: horizontal;\n  overflow: auto;\n  min-width: 120px;\n  max-width: 400px;\n  border: 1px solid var(--border-default);\n  padding: 12px;\n  background: var(--surface-card);\n}",
+      "ariaRecipe": "[role=\"separator\"][aria-orientation=\"vertical\"] {\n  width: 8px;\n  cursor: col-resize;\n  background: var(--border-default);\n  transition: background 0.2s;\n}\n[role=\"separator\"]:focus-visible {\n  outline: 2px solid var(--accent-blue);\n  background: var(--accent-blue);\n}",
+      "tips": [
+        "Always satisfy WCAG 2.2 SC 2.5.7 (Dragging Movements) by providing arrow keys or step buttons alongside mouse drag gestures on splitters."
+      ]
+    },
+    "apgCode": {
+      "html": "<!-- W3C APG ARIA Window Splitter Pattern -->\n<div class=\"apg-split-container\">\n  <div class=\"pane pane-left\" id=\"pane-1\" style=\"width: 40%;\">Primary Navigation</div>\n  <div role=\"separator\" tabindex=\"0\" aria-orientation=\"vertical\" aria-valuenow=\"40\" aria-valuemin=\"15\" aria-valuemax=\"85\" aria-controls=\"pane-1\" aria-label=\"Resize Navigation Pane\" class=\"apg-splitter-handle\" id=\"apg-splitter\"></div>\n  <div class=\"pane pane-right\" id=\"pane-2\" style=\"width: 60%;\">Main Workspace</div>\n</div>"
+    },
+    "semanticCode": {
+      "html": "<!-- Modern CSS Resizable Pane with Semantic Range Fallback -->\n<div class=\"css-split-layout\">\n  <div class=\"css-resizable-pane\">\n    <p>Resizable Navigation (Drag bottom-right corner)</p>\n  </div>\n  <div class=\"main-content-pane\">\n    <p>Main Workspace</p>\n  </div>\n</div>",
+      "notes": "CSS resize: horizontal enables native browser engine resizing without JavaScript."
+    }
   }
 ]

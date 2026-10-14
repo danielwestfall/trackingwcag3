@@ -22,7 +22,7 @@
         "groupSlug": "images-and-media",
         "text": "Text alternatives are available for non-decorative images.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/image-alternatives/image-alternatives-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/image-alternatives/image-alternatives-available.md",
         "guideUrl": "/plain-english/provision/image-alternatives-available/"
       },
       {
@@ -34,7 +34,7 @@
         "groupSlug": "images-and-media",
         "text": "Text alternatives for non-decorative images convey the equivalent purpose to the image.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/image-alternatives/image-alternatives-equivalent.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/image-alternatives/image-alternatives-equivalent.md",
         "guideUrl": "/plain-english/provision/image-alternatives-equivalent/"
       },
       {
@@ -46,7 +46,7 @@
         "groupSlug": "images-and-media",
         "text": "Decorative images are programmatically hidden.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/image-alternatives/decorative-images-hidden.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/image-alternatives/decorative-images-hidden.md",
         "guideUrl": "/plain-english/provision/decorative-images-hidden/"
       },
       {
@@ -58,7 +58,7 @@
         "groupSlug": "images-and-media",
         "text": "All non-text content that is not decorative includes a programmatically determinable equivalent text alternative.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/non-text-alternatives/non-text-content-not-relied-on.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/non-text-alternatives/non-text-content-not-relied-on.md",
         "guideUrl": "/plain-english/provision/non-text-content-not-relied-on/"
       }
     ],
@@ -72,7 +72,7 @@
         "groupSlug": "images-and-media",
         "text": "Non-decorative images are detectable.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/image-alternatives/images-detectable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/image-alternatives/images-detectable.md",
         "guideUrl": "/plain-english/provision/images-detectable/"
       }
     ],
@@ -107,7 +107,7 @@
         "exceptWhen": [
           "<ul>\n<li>The media is purely decorative.</li>\n<li>The media is already a media alternative for text and is clearly labeled as such.</li>\n<li>The visual track includes no information that is not already conveyed in the audio track (for example, a “talking head” video where only the speaker is visible against a static background).</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
         "guideUrl": "/plain-english/provision/descriptive-transcripts-available/"
       },
       {
@@ -121,7 +121,7 @@
         "exceptWhen": [
           "<ul>\n<li>The audio or video content is an alternative for text and is clearly labeled as such.</li>\n<li>The audio or video has no spoken content and serves only as background.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/transcripts/dialogue-transcripts-available-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/transcripts/dialogue-transcripts-available-prerecorded.md",
         "guideUrl": "/plain-english/provision/dialogue-transcripts-available-prerecorded/"
       },
       {
@@ -135,7 +135,7 @@
         "exceptWhen": [
           "<ul>\n<li>The audio or video has no spoken content and serves only as background.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/transcripts/transcripts-equivalent-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/transcripts/transcripts-equivalent-prerecorded.md",
         "guideUrl": "/plain-english/provision/transcripts-equivalent-prerecorded/"
       }
     ],
@@ -171,7 +171,7 @@
         "exceptWhen": [
           "<ul>\n<li>The audio content is an alternative for text and is clearly labeled as such.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/captions/captions-available-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/captions/captions-available-prerecorded.md",
         "guideUrl": "/plain-english/provision/captions-available-prerecorded/"
       },
       {
@@ -185,7 +185,7 @@
         "exceptWhen": [
           "<ul>\n<li>The audio or video has no spoken content and serves only as background.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/captions/captions-equivalent-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/captions/captions-equivalent-prerecorded.md",
         "guideUrl": "/plain-english/provision/captions-equivalent-prerecorded/"
       },
       {
@@ -197,7 +197,7 @@
         "groupSlug": "images-and-media",
         "text": "Captions are synchronized with the audio content of synchronized media.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/captions/captions-synchronized.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/captions/captions-synchronized.md",
         "guideUrl": "/plain-english/provision/captions-synchronized/"
       },
       {
@@ -211,7 +211,7 @@
         "exceptWhen": [
           "<ul>\n<li>the video is decorative.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/captions/sounds-identified-in-captions.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/captions/sounds-identified-in-captions.md",
         "guideUrl": "/plain-english/provision/sounds-identified-in-captions/"
       }
     ],
@@ -227,7 +227,7 @@
         "exceptWhen": [
           "<ul>\n<li>The speaker has a hidden identity as part of narrative structure.</li>\n<li>Identity is identifiable within the context of use.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/captions/speakers-identified-in-captions.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/captions/speakers-identified-in-captions.md",
         "guideUrl": "/plain-english/provision/speakers-identified-in-captions/"
       }
     ],
@@ -262,7 +262,7 @@
         "exceptWhen": [
           "<p>the video content is an alternative for text and is clearly labeled as such.</p>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-available-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-available-prerecorded.md",
         "guideUrl": "/plain-english/provision/audio-descriptions-available-prerecorded/"
       },
       {
@@ -276,7 +276,7 @@
         "exceptWhen": [
           "<ul>\n<li>The media is purely decorative.</li>\n<li>The media is already a media alternative for text and is clearly labeled as such.</li>\n<li>The visual track includes no information that is not already conveyed in the audio track (for example, a “talking head” video where only the speaker is visible against a static background).</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
         "guideUrl": "/plain-english/provision/descriptive-transcripts-available/"
       }
     ],
@@ -310,7 +310,7 @@
         "groupSlug": "images-and-media",
         "text": "Captions are available for all live audio content.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/captions/captions-available-live.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/captions/captions-available-live.md",
         "guideUrl": "/plain-english/provision/captions-available-live/"
       }
     ],
@@ -346,7 +346,7 @@
         "exceptWhen": [
           "<p>the video content is an alternative for text and is clearly labeled as such.</p>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-available-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-available-prerecorded.md",
         "guideUrl": "/plain-english/provision/audio-descriptions-available-prerecorded/"
       },
       {
@@ -358,7 +358,7 @@
         "groupSlug": "images-and-media",
         "text": "The information conveyed by audio descriptions is equivalent to the visual content needed to understand the media.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-equivalent-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-equivalent-prerecorded.md",
         "guideUrl": "/plain-english/provision/audio-descriptions-equivalent-prerecorded/"
       },
       {
@@ -372,7 +372,7 @@
         "exceptWhen": [
           "<ul>\n<li>There are no audio descriptions.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-synchronized.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/audio-descriptions/audio-descriptions-synchronized.md",
         "guideUrl": "/plain-english/provision/audio-descriptions-synchronized/"
       },
       {
@@ -384,7 +384,7 @@
         "groupSlug": "images-and-media",
         "text": "Visual information needed to understand the media is described in audio descriptions.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/audio-descriptions/visual-information-identified-in-audio-descriptions.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/audio-descriptions/visual-information-identified-in-audio-descriptions.md",
         "guideUrl": "/plain-english/provision/visual-information-identified-in-audio-descriptions/"
       }
     ],
@@ -418,7 +418,7 @@
         "groupSlug": "layout",
         "text": "Relationships of meaning between elements are conveyed programmatically.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/structure/relationships-detectable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/structure/relationships-detectable.md",
         "guideUrl": "/plain-english/provision/relationships-detectable/"
       },
       {
@@ -432,7 +432,7 @@
         "exceptWhen": [
           "<ul>\n<li>The technology does not support heading levels.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/structure/heading-structure-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/structure/heading-structure-available.md",
         "guideUrl": "/plain-english/provision/heading-structure-available/"
       },
       {
@@ -444,7 +444,7 @@
         "groupSlug": "layout",
         "text": "Meaningful blocks of content are programmatically determinable and visually presented with sufficient surrounding space.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/structure/blocks-of-content-available-minimum.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/structure/blocks-of-content-available-minimum.md",
         "guideUrl": "/plain-english/provision/blocks-of-content-available-minimum/"
       },
       {
@@ -458,7 +458,7 @@
         "exceptWhen": [
           "<ul>\n<li>The nature of the ordering of the content is presented immediately prior.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/structure/order-detectable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/structure/order-detectable.md",
         "guideUrl": "/plain-english/provision/order-detectable/"
       },
       {
@@ -472,7 +472,7 @@
         "exceptWhen": [
           "<ul>\n<li>A label is not needed to understand the purpose of the content within the context of use.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/structure/sections-labeled.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/structure/sections-labeled.md",
         "guideUrl": "/plain-english/provision/sections-labeled/"
       }
     ],
@@ -488,7 +488,7 @@
         "exceptWhen": [
           "<ul>\n<li>emphasis is the only additional meaning conveyed.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-to-speech/text-appearance-not-relied-on.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-to-speech/text-appearance-not-relied-on.md",
         "guideUrl": "/plain-english/provision/text-appearance-not-relied-on/"
       }
     ],
@@ -542,7 +542,7 @@
         "groupSlug": "help-and-feedback",
         "text": "Instructions and help do not rely on sensory characteristics.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/help-and-feedback/help-available/sensory-characteristics-not-relied-on.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/help-and-feedback/help-available/sensory-characteristics-not-relied-on.md",
         "guideUrl": "/plain-english/provision/sensory-characteristics-not-relied-on/"
       }
     ],
@@ -578,7 +578,7 @@
         "exceptWhen": [
           "<ul>\n<li>Content is aligned with the physical world.</li>\n<li>The orientation is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/adjustable-viewport/orientation-supported-minimum.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/adjustable-viewport/orientation-supported-minimum.md",
         "guideUrl": "/plain-english/provision/orientation-supported-minimum/"
       },
       {
@@ -592,7 +592,7 @@
         "exceptWhen": [
           "<ul>\n<li>Content is aligned with the physical world.</li>\n<li>The orientation is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/adjustable-viewport/orientation-supported-enhanced.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/adjustable-viewport/orientation-supported-enhanced.md",
         "guideUrl": "/plain-english/provision/orientation-supported-enhanced/"
       }
     ],
@@ -627,7 +627,7 @@
         "groupSlug": "process-and-task-completion",
         "text": "Automated input of personal information from user agents, third-party tools, or paste is not prevented.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/automated-entry-allowed.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/automated-entry-allowed.md",
         "guideUrl": "/plain-english/provision/automated-entry-allowed/"
       }
     ],
@@ -662,7 +662,7 @@
         "exceptWhen": [
           "<ul>\n<li>Content is artistic or expressive.</li>\n<li>Content is designed only for a device that is limited to presenting hues.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/single-sense/hue-not-relied-on.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/single-sense/hue-not-relied-on.md",
         "guideUrl": "/plain-english/provision/hue-not-relied-on/"
       }
     ],
@@ -696,7 +696,7 @@
         "groupSlug": "user-control",
         "text": "A mechanism is available to pause, stop, and adjust the volume independently of the overall system volume level, of any automatically playing audio in a page/view.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/media-control/page-view-audio-adjustable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/media-control/page-view-audio-adjustable.md",
         "guideUrl": "/plain-english/provision/page-view-audio-adjustable/"
       }
     ],
@@ -732,7 +732,7 @@
         "exceptWhen": [
           "<ul>\n<li>the text is:\n<ul>\n<li>also present elsewhere in the page/view which meets the requirement</li>\n<li>part of an inactive interactive element</li>\n<li>pure decoration</li>\n<li>not visible to anyone</li>\n<li>part of a picture that includes significant other visual content</li>\n<li>part of a logo or brand name</li>\n</ul>\n</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-appearance/text-contrast-sufficient-minimum.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-appearance/text-contrast-sufficient-minimum.md",
         "guideUrl": "/plain-english/provision/text-contrast-sufficient-minimum/"
       }
     ],
@@ -768,7 +768,7 @@
         "exceptWhen": [
           "<ul>\n<li>the same text is available elsewhere in the page/view which can be increased to at least 200% of the platform’s default body-text size.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-appearance/text-size-adjustable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-appearance/text-size-adjustable.md",
         "guideUrl": "/plain-english/provision/text-size-adjustable/"
       }
     ],
@@ -805,7 +805,7 @@
         "exceptWhen": [
           "<ul>\n<li>making visible text programmatically determinable would lead to duplication within the view.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
         "guideUrl": "/plain-english/provision/text-detectable/"
       }
     ],
@@ -840,7 +840,7 @@
         "exceptWhen": [
           "<ul>\n<li>2D relationships (for example, tables or electronic program guides)</li>\n<li>canvases of presentational content (for example, slides)</li>\n<li>multiple palettes or panels that act on content (for example, Photoshop or an IDE)</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/adjustable-viewport/layout-reflow-supported.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/adjustable-viewport/layout-reflow-supported.md",
         "guideUrl": "/plain-english/provision/layout-reflow-supported/"
       },
       {
@@ -854,7 +854,7 @@
         "exceptWhen": [
           "<ul>\n<li>The meaning of text relies on a two-dimensional structure.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/adjustable-viewport/text-reflow-supported.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/adjustable-viewport/text-reflow-supported.md",
         "guideUrl": "/plain-english/provision/text-reflow-supported/"
       }
     ],
@@ -890,7 +890,7 @@
         "exceptWhen": [
           "<ul>\n<li>The interactive element is inactive, or</li>\n<li>The appearance of the component is determined by the user agent and not modified by the content author.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/interactive-element-contrast-sufficient.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/interactive-element-contrast-sufficient.md",
         "guideUrl": "/plain-english/provision/interactive-element-contrast-sufficient/"
       },
       {
@@ -904,7 +904,7 @@
         "exceptWhen": [
           "<ul>\n<li>a particular presentation of graphical objects is essential to the information being conveyed.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/single-sense/graphical-object-contrast-sufficient.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/single-sense/graphical-object-contrast-sufficient.md",
         "guideUrl": "/plain-english/provision/graphical-object-contrast-sufficient/"
       }
     ],
@@ -940,7 +940,7 @@
         "exceptWhen": [
           "<ul>\n<li>the text style property is hard-coded, such as raw text that is capitalized or hyphenated.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-appearance/text-style-adjustable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-appearance/text-style-adjustable.md",
         "guideUrl": "/plain-english/provision/text-style-adjustable/"
       },
       {
@@ -954,7 +954,7 @@
         "exceptWhen": [
           "<ul>\n<li>the style attribute is hard-coded, such as raw text that is capitalized or hyphenated.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-adjustable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-adjustable.md",
         "guideUrl": "/plain-english/provision/blocks-of-text-adjustable/"
       }
     ],
@@ -988,7 +988,7 @@
         "groupSlug": "input-operation",
         "text": "A mechanism is available to dismiss content that appears on pointer hover or keyboard focus without moving pointer hover or keyboard focus, unless the additional content does not obscure or replace other content.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/input-operation/hover-or-focus-content-dismissible.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/input-operation/hover-or-focus-content-dismissible.md",
         "guideUrl": "/plain-english/provision/hover-or-focus-content-dismissible/"
       },
       {
@@ -1000,7 +1000,7 @@
         "groupSlug": "input-operation",
         "text": "If pointer hover can trigger content, then the pointer can be moved over the additional content without the additional content disappearing.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/input-operation/hover-content-persistent.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/input-operation/hover-content-persistent.md",
         "guideUrl": "/plain-english/provision/hover-content-persistent/"
       },
       {
@@ -1012,7 +1012,7 @@
         "groupSlug": "input-operation",
         "text": "Content that appears on pointer hover or keyboard focus remains visible until the hover or keyboard focus trigger is removed, the user dismisses it, or its information is no longer valid.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/input-operation/hover-or-focus-content-persistent.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/input-operation/hover-or-focus-content-persistent.md",
         "guideUrl": "/plain-english/provision/hover-or-focus-content-persistent/"
       }
     ],
@@ -1046,7 +1046,7 @@
         "groupSlug": "input-operation",
         "text": "All components on the page/view that can be operated by pointer, audio (voice or other), gesture, camera, or other means can be operated using keyboard interface only.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/keyboard-interface-input/keyboard-operable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/keyboard-interface-input/keyboard-operable.md",
         "guideUrl": "/plain-english/provision/keyboard-operable/"
       },
       {
@@ -1058,7 +1058,7 @@
         "groupSlug": "input-operation",
         "text": "All content that can be accessed by other input modalities can be accessed using keyboard interface only.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/keyboard-interface-input/keyboard-accessible.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/keyboard-interface-input/keyboard-accessible.md",
         "guideUrl": "/plain-english/provision/keyboard-accessible/"
       }
     ],
@@ -1094,7 +1094,7 @@
         "exceptWhen": [
           "<ul>\n<li>The non-standard keyboard navigation technique is described in the page/view or earlier in the process.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/keyboard-interface-input/no-keyboard-traps.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/keyboard-interface-input/no-keyboard-traps.md",
         "guideUrl": "/plain-english/provision/no-keyboard-traps/"
       }
     ],
@@ -1128,7 +1128,7 @@
         "groupSlug": "input-operation",
         "text": "Custom keyboard commands do not conflict with standard platform keyboard commands or they can be remapped.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/keyboard-interface-input/no-keyboard-conflicts.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/keyboard-interface-input/no-keyboard-conflicts.md",
         "guideUrl": "/plain-english/provision/no-keyboard-conflicts/"
       }
     ],
@@ -1164,7 +1164,7 @@
         "exceptWhen": [
           "<ul>\n<li>The time limit is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/adequate-time/timeout-adjustable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/adequate-time/timeout-adjustable.md",
         "guideUrl": "/plain-english/provision/timeout-adjustable/"
       },
       {
@@ -1178,7 +1178,7 @@
         "exceptWhen": [
           "<ul>\n<li>hiding the existence of the time limit is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/adequate-time/time-limits-conveyed.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/adequate-time/time-limits-conveyed.md",
         "guideUrl": "/plain-english/provision/time-limits-conveyed/"
       }
     ],
@@ -1214,7 +1214,7 @@
         "exceptWhen": [
           "<ul>\n<li>The motion or pseudo-motion is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/animation-and-movement/avoid-physical-harm/no-visual-motion.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/animation-and-movement/avoid-physical-harm/no-visual-motion.md",
         "guideUrl": "/plain-english/provision/no-visual-motion/"
       }
     ],
@@ -1250,7 +1250,7 @@
         "exceptWhen": [
           "<ul>\n<li>The flashing is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/animation-and-movement/avoid-physical-harm/no-flashing-over-threshold.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/animation-and-movement/avoid-physical-harm/no-flashing-over-threshold.md",
         "guideUrl": "/plain-english/provision/no-flashing-over-threshold/"
       }
     ],
@@ -1284,7 +1284,7 @@
         "groupSlug": "interactive-components",
         "text": "The focus order does not include hidden, static, or groups of repeated interactive elements.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/navigating-content/focus-relevant.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/navigating-content/focus-relevant.md",
         "guideUrl": "/plain-english/provision/focus-relevant/"
       }
     ],
@@ -1320,7 +1320,7 @@
         "exceptWhen": [
           "<ul>\n<li>The technology has no way to include a title.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/user-orientation/page-view-title-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/user-orientation/page-view-title-available.md",
         "guideUrl": "/plain-english/provision/page-view-title-available/"
       }
     ],
@@ -1354,7 +1354,7 @@
         "groupSlug": "interactive-components",
         "text": "The keyboard focus moves sequentially through content in an order and way that preserves meaning and operability.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/navigating-content/focus-order-meaningful.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/navigating-content/focus-order-meaningful.md",
         "guideUrl": "/plain-english/provision/focus-order-meaningful/"
       }
     ],
@@ -1389,7 +1389,7 @@
         "groupSlug": "interactive-components",
         "text": "Persistent names (including labels) that identify the purpose of the interactive element are visually and programmatically available.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
         "guideUrl": "/plain-english/provision/interactive-element-names-available/"
       }
     ],
@@ -1424,7 +1424,7 @@
         "exceptWhen": [
           "<ul>\n<li>A label is not needed to understand the purpose of the content within the context of use.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/structure/sections-labeled.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/structure/sections-labeled.md",
         "guideUrl": "/plain-english/provision/sections-labeled/"
       }
     ],
@@ -1438,7 +1438,7 @@
         "groupSlug": "interactive-components",
         "text": "Persistent names (including labels) that identify the purpose of the interactive element are visually and programmatically available.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
         "guideUrl": "/plain-english/provision/interactive-element-names-available/"
       }
     ],
@@ -1472,7 +1472,7 @@
         "groupSlug": "interactive-components",
         "text": "If a custom focus indicator is used, it has sufficient adjacent contrast and change of contrast.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-contrast-sufficient.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-contrast-sufficient.md",
         "guideUrl": "/plain-english/provision/focus-indicator-contrast-sufficient/"
       },
       {
@@ -1484,7 +1484,7 @@
         "groupSlug": "interactive-components",
         "text": "The focusable item uses the user agent default focus indicator.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/keyboard-focus-appearance/default-focus-indicator-used.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/keyboard-focus-appearance/default-focus-indicator-used.md",
         "guideUrl": "/plain-english/provision/default-focus-indicator-used/"
       }
     ],
@@ -1538,7 +1538,7 @@
         "groupSlug": "interactive-components",
         "text": "The programmatic name includes the visual label.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/label-included-in-programmatic-name.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/label-included-in-programmatic-name.md",
         "guideUrl": "/plain-english/provision/label-included-in-programmatic-name/"
       }
     ],
@@ -1572,7 +1572,7 @@
         "groupSlug": "input-operation",
         "text": "All functionality and content available using complex pointer inputs is also available using a simple pointer input, or a sequence of simple pointer inputs that do not require timing.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/pointer-input/simple-pointer-input-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/pointer-input/simple-pointer-input-available.md",
         "guideUrl": "/plain-english/provision/simple-pointer-input-available/"
       }
     ],
@@ -1629,7 +1629,7 @@
         "exceptWhen": [
           "<ul>\n<li>A language tag is not available in [[iso-639-2023]], or</li>\n<li>The technology used to create the view does not support indicating languages.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-to-speech/human-language-detectable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-to-speech/human-language-detectable.md",
         "guideUrl": "/plain-english/provision/human-language-detectable/"
       }
     ],
@@ -1665,7 +1665,7 @@
         "exceptWhen": [
           "<ul>\n<li>A language tag is not available in [[iso-639-2023]], or</li>\n<li>The technology used to create the view does not support indicating languages.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-to-speech/human-language-detectable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-to-speech/human-language-detectable.md",
         "guideUrl": "/plain-english/provision/human-language-detectable/"
       }
     ],
@@ -1700,7 +1700,7 @@
         "groupSlug": "user-control",
         "text": "When the focus changes on-focus or automatically, the user is notified visually and programmatically.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/content-changes/change-of-focus-notified.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/content-changes/change-of-focus-notified.md",
         "guideUrl": "/plain-english/provision/change-of-focus-notified/"
       },
       {
@@ -1714,7 +1714,7 @@
         "exceptWhen": [
           "<ul>\n<li>The keyboard focus automatically moves to the next interactive elements in keyboard navigation order on completion of some user action, such when the focus moves between the fields for a time-based one-time password (TOTP) code.</li>\n<li>The keyboard focus results from security or emergency situations, such as warning about an imminent session timeout that would cause the user to lose their work.</li>\n<li>The user is informed of the potential keyboard focus move before it happens and given the chance to avoid the move.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/keyboard-interface-input/focus-user-controlled.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/keyboard-interface-input/focus-user-controlled.md",
         "guideUrl": "/plain-english/provision/focus-user-controlled/"
       }
     ],
@@ -1748,7 +1748,7 @@
         "groupSlug": "user-control",
         "text": "When content triggers a device change or an automatic user agent change, the user is notified before the change occurs.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/content-changes/change-of-user-agent-notified.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/content-changes/change-of-user-agent-notified.md",
         "guideUrl": "/plain-english/provision/change-of-user-agent-notified/"
       },
       {
@@ -1760,7 +1760,7 @@
         "groupSlug": "layout",
         "text": "When content triggers a change of page/view there is a visual change within the view and programmatic notification of the change.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/user-orientation/page-view-change-notified.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/user-orientation/page-view-change-notified.md",
         "guideUrl": "/plain-english/provision/page-view-change-notified/"
       }
     ],
@@ -1793,7 +1793,7 @@
         "groupSlug": "help-and-feedback",
         "text": "Help is labeled consistently and is available in a consistent location relative to other content.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/help-and-feedback/help-available/consistent-help-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/help-and-feedback/help-available/consistent-help-available.md",
         "guideUrl": "/plain-english/provision/consistent-help-available/"
       }
     ],
@@ -1827,7 +1827,7 @@
         "groupSlug": "error-handling",
         "text": "Errors that are programmatically determined are identified and the problem is described to the user in text.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/error-handling/correct-errors/error-notifications-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/error-handling/correct-errors/error-notifications-available.md",
         "guideUrl": "/plain-english/provision/error-notifications-available/"
       },
       {
@@ -1839,7 +1839,7 @@
         "groupSlug": "error-handling",
         "text": "When input validation fails, the errors are visually and programmatically associated with the element that caused the error or that can resolve it.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/error-handling/correct-errors/errors-associated.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/error-handling/correct-errors/errors-associated.md",
         "guideUrl": "/plain-english/provision/errors-associated/"
       }
     ],
@@ -1873,7 +1873,7 @@
         "groupSlug": "interactive-components",
         "text": "Persistent names (including labels) that identify the purpose of the interactive element are visually and programmatically available.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
         "guideUrl": "/plain-english/provision/interactive-element-names-available/"
       },
       {
@@ -1885,7 +1885,7 @@
         "groupSlug": "interactive-components",
         "text": "Field constraints and conditions are available.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/input-constraints-used.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/input-constraints-used.md",
         "guideUrl": "/plain-english/provision/input-constraints-used/"
       }
     ],
@@ -1899,7 +1899,7 @@
         "groupSlug": "process-and-task-completion",
         "text": "The instructions needed to complete a multi-step process are available.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/complete-tasks/process-instructions-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/complete-tasks/process-instructions-available.md",
         "guideUrl": "/plain-english/provision/process-instructions-available/"
       }
     ],
@@ -1934,7 +1934,7 @@
         "exceptWhen": [
           "<ul>\n<li>Re-entering the information is essential,</li>\n<li>The information is required to ensure the security of the content, or</li>\n<li>Previously entered information is no longer valid.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/retain-information/no-redundant-entry.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/retain-information/no-redundant-entry.md",
         "guideUrl": "/plain-english/provision/no-redundant-entry/"
       }
     ],
@@ -1968,7 +1968,7 @@
         "groupSlug": "process-and-task-completion",
         "text": "Processes can be completed without a cognitive function test.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/cognitive-test-alternatives-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/cognitive-test-alternatives-available.md",
         "guideUrl": "/plain-english/provision/cognitive-test-alternatives-available/"
       },
       {
@@ -1980,7 +1980,7 @@
         "groupSlug": "process-and-task-completion",
         "text": "Automated input of personal information from user agents, third-party tools, or paste is not prevented.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/automated-entry-allowed.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/automated-entry-allowed.md",
         "guideUrl": "/plain-english/provision/automated-entry-allowed/"
       }
     ],
@@ -1994,7 +1994,7 @@
         "groupSlug": "input-operation",
         "text": "Biometric identification is not the only way to identify or authenticate.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/authentication/biometrics-not-relied-on.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/authentication/biometrics-not-relied-on.md",
         "guideUrl": "/plain-english/provision/biometrics-not-relied-on/"
       }
     ],
@@ -2027,7 +2027,7 @@
         "groupSlug": "interactive-components",
         "text": "Accurate names, roles, values, and states are available for interactive elements.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/roles-values-states-properties-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/roles-values-states-properties-available.md",
         "guideUrl": "/plain-english/provision/roles-values-states-properties-available/"
       },
       {
@@ -2039,7 +2039,7 @@
         "groupSlug": "interactive-components",
         "text": "Persistent names (including labels) that identify the purpose of the interactive element are visually and programmatically available.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/interactive-element-names-available.md",
         "guideUrl": "/plain-english/provision/interactive-element-names-available/"
       },
       {
@@ -2051,7 +2051,7 @@
         "groupSlug": "interactive-components",
         "text": "Changes to interactive element names, roles, values, or states are visually and programmatically indicated.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/control-information/changes-to-elements-notified.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/control-information/changes-to-elements-notified.md",
         "guideUrl": "/plain-english/provision/changes-to-elements-notified/"
       }
     ],
@@ -2087,7 +2087,7 @@
         "exceptWhen": [
           "<ul>\n<li>changes are continuous, without pause.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/content-changes/change-of-content-notified.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/content-changes/change-of-content-notified.md",
         "guideUrl": "/plain-english/provision/change-of-content-notified/"
       }
     ],
@@ -2123,7 +2123,7 @@
         "exceptWhen": [
           "<ul>\n<li>The audio content is an alternative for visual content and is clearly labeled as such.</li>\n<li>The audio content is decorative background sound.</li>\n<li>The audio is an interface sound effect.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/sign-language/sign-language-available-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/sign-language/sign-language-available-prerecorded.md",
         "guideUrl": "/plain-english/provision/sign-language-available-prerecorded/"
       }
     ],
@@ -2139,7 +2139,7 @@
         "exceptWhen": [
           "<ul>\n<li>Sign language interpretation is hard-coded into the video content.</li>\n<li>A sign language interpreted version is provided as a separate video.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/sign-language/sign-language-controllable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/sign-language/sign-language-controllable.md",
         "guideUrl": "/plain-english/provision/sign-language-controllable/"
       }
     ],
@@ -2172,7 +2172,7 @@
         "groupSlug": "images-and-media",
         "text": "The video pauses to extend the audio track and provides an extended audio description to describe visual information needed to understand the media.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/audio-descriptions/extended-audio-descriptions-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/audio-descriptions/extended-audio-descriptions-available.md",
         "guideUrl": "/plain-english/provision/extended-audio-descriptions-available/"
       },
       {
@@ -2184,7 +2184,7 @@
         "groupSlug": "images-and-media",
         "text": "The information conveyed by extended audio descriptions is equivalent to the visual content needed to understand the media.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/audio-descriptions/extended-audio-descriptions-equivalent.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/audio-descriptions/extended-audio-descriptions-equivalent.md",
         "guideUrl": "/plain-english/provision/extended-audio-descriptions-equivalent/"
       }
     ],
@@ -2220,7 +2220,7 @@
         "exceptWhen": [
           "<ul>\n<li>The media is purely decorative.</li>\n<li>The media is already a media alternative for text and is clearly labeled as such.</li>\n<li>The visual track includes no information that is not already conveyed in the audio track (for example, a “talking head” video where only the speaker is visible against a static background).</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/transcripts/descriptive-transcripts-available.md",
         "guideUrl": "/plain-english/provision/descriptive-transcripts-available/"
       },
       {
@@ -2234,7 +2234,7 @@
         "exceptWhen": [
           "<ul>\n<li>The audio or video has no spoken content and serves only as background.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/transcripts/transcripts-equivalent-prerecorded.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/transcripts/transcripts-equivalent-prerecorded.md",
         "guideUrl": "/plain-english/provision/transcripts-equivalent-prerecorded/"
       },
       {
@@ -2246,7 +2246,7 @@
         "groupSlug": "images-and-media",
         "text": "Visual information needed to understand the media is described in transcripts.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/transcripts/visual-information-identified-in-transcripts.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/transcripts/visual-information-identified-in-transcripts.md",
         "guideUrl": "/plain-english/provision/visual-information-identified-in-transcripts/"
       }
     ],
@@ -2282,7 +2282,7 @@
         "exceptWhen": [
           "<ul>\n<li>the text is:\n<ul>\n<li>also present elsewhere in the page/view which meets the requirement</li>\n<li>part of an inactive interactive element</li>\n<li>pure decoration</li>\n<li>not visible to anyone</li>\n<li>part of a picture that includes significant other visual content</li>\n<li>part of a logo</li>\n</ul>\n</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-appearance/text-contrast-sufficient-enhanced.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-appearance/text-contrast-sufficient-enhanced.md",
         "guideUrl": "/plain-english/provision/text-contrast-sufficient-enhanced/"
       }
     ],
@@ -2339,7 +2339,7 @@
         "exceptWhen": [
           "<ul>\n<li>the style attribute is hard-coded, such as raw text that is capitalized or hyphenated.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-adjustable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-adjustable.md",
         "guideUrl": "/plain-english/provision/blocks-of-text-adjustable/"
       },
       {
@@ -2351,7 +2351,7 @@
         "groupSlug": "text-and-wording",
         "text": "The default/authored presentation of blocks of text meets the minimum @@ [values to be determined] for: * inline margin * block margin * line length * line height",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-readable-minimum.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-appearance/blocks-of-text-readable-minimum.md",
         "guideUrl": "/plain-english/provision/blocks-of-text-readable-minimum/"
       },
       {
@@ -2365,7 +2365,7 @@
         "exceptWhen": [
           "<ul>\n<li>the text is:\n<ul>\n<li>also present elsewhere in the page/view which meets the requirement</li>\n<li>part of an inactive interactive element</li>\n<li>pure decoration</li>\n<li>not visible to anyone</li>\n<li>part of a picture that includes significant other visual content</li>\n<li>part of a logo</li>\n</ul>\n</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-appearance/text-color-adjustable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-appearance/text-color-adjustable.md",
         "guideUrl": "/plain-english/provision/text-color-adjustable/"
       }
     ],
@@ -2402,7 +2402,7 @@
         "exceptWhen": [
           "<ul>\n<li>making visible text programmatically determinable would lead to duplication within the view.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/text-to-speech/text-detectable.md",
         "guideUrl": "/plain-english/provision/text-detectable/"
       }
     ],
@@ -2435,7 +2435,7 @@
         "groupSlug": "input-operation",
         "text": "All components on the page/view that can be operated by pointer, audio (voice or other), gesture, camera, or other means can be operated using keyboard interface only.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/keyboard-interface-input/keyboard-operable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/keyboard-interface-input/keyboard-operable.md",
         "guideUrl": "/plain-english/provision/keyboard-operable/"
       },
       {
@@ -2447,7 +2447,7 @@
         "groupSlug": "input-operation",
         "text": "All content that can be accessed by other input modalities can be accessed using keyboard interface only.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/keyboard-interface-input/keyboard-accessible.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/keyboard-interface-input/keyboard-accessible.md",
         "guideUrl": "/plain-english/provision/keyboard-accessible/"
       }
     ],
@@ -2483,7 +2483,7 @@
         "exceptWhen": [
           "<ul>\n<li>the time limit is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/adequate-time/no-time-limits.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/adequate-time/no-time-limits.md",
         "guideUrl": "/plain-english/provision/no-time-limits/"
       }
     ],
@@ -2519,7 +2519,7 @@
         "exceptWhen": [
           "<ul>\n<li>The notification involves an emergency or is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/assistive-technology-control/notifications-adjustable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/assistive-technology-control/notifications-adjustable.md",
         "guideUrl": "/plain-english/provision/notifications-adjustable/"
       }
     ],
@@ -2553,7 +2553,7 @@
         "groupSlug": "animation-and-movement",
         "text": "Flashes are below the general flash and red flash thresholds without a minimum size.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/animation-and-movement/avoid-physical-harm/no-flashing-over-threshold-no-exceptions.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/animation-and-movement/avoid-physical-harm/no-flashing-over-threshold-no-exceptions.md",
         "guideUrl": "/plain-english/provision/no-flashing-over-threshold-no-exceptions/"
       }
     ],
@@ -2588,7 +2588,7 @@
         "groupSlug": "layout",
         "text": "The current step within a multi-step process is visually and programmatically indicated.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/user-orientation/current-step-indicated.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/user-orientation/current-step-indicated.md",
         "guideUrl": "/plain-english/provision/current-step-indicated/"
       },
       {
@@ -2602,7 +2602,7 @@
         "exceptWhen": [
           "<ul>\n<li>The total number of steps is unknown, or the sequence of steps depends on user actions.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/user-orientation/all-steps-listed.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/user-orientation/all-steps-listed.md",
         "guideUrl": "/plain-english/provision/all-steps-listed/"
       }
     ],
@@ -2658,7 +2658,7 @@
         "exceptWhen": [
           "<ul>\n<li>The technology does not support heading levels.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/layout/structure/heading-structure-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/layout/structure/heading-structure-available.md",
         "guideUrl": "/plain-english/provision/heading-structure-available/"
       }
     ],
@@ -2715,7 +2715,7 @@
         "exceptWhen": [
           "<ul>\n<li>text content is:\n<ul>\n<li>poetic,</li>\n<li>scriptural,</li>\n<li>artistic, or</li>\n<li>expressive rather than informational.</li>\n</ul>\n</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/clear-language/non-literal-language-explained.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/clear-language/non-literal-language-explained.md",
         "guideUrl": "/plain-english/provision/non-literal-language-explained/"
       },
       {
@@ -2729,7 +2729,7 @@
         "exceptWhen": [
           "<ul>\n<li>the words are for names of people or places, or</li>\n<li>the language does not have a high-frequency corpus.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/clear-language/common-words-used.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/clear-language/common-words-used.md",
         "guideUrl": "/plain-english/provision/common-words-used/"
       }
     ],
@@ -2765,7 +2765,7 @@
         "exceptWhen": [
           "<ul>\n<li>the abbreviation is:\n<ul>\n<li>used so often it has become a word with its own dictionary entry, such as “scuba,” “info,” and “HTML”,</li>\n<li>used in a logo, or</li>\n<li>included in a longer phrase, such as “brand DNA,” whose meaning needs to be defined to meet the <a href=\"#non-literal-language-explained\">non-literal language requirement</a>.</li>\n</ul>\n</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/clear-language/abbreviations-explained.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/clear-language/abbreviations-explained.md",
         "guideUrl": "/plain-english/provision/abbreviations-explained/"
       }
     ],
@@ -2802,7 +2802,7 @@
         "exceptWhen": [
           "<ul>\n<li>long-form text content continues on multiple pages/views, only the first page/view requires a summary.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/clear-language/summaries-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/clear-language/summaries-available.md",
         "guideUrl": "/plain-english/provision/summaries-available/"
       },
       {
@@ -2816,7 +2816,7 @@
         "exceptWhen": [
           "<ul>\n<li>the words are for names of people or places, or</li>\n<li>the language does not have a high-frequency corpus.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/clear-language/common-words-used.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/clear-language/common-words-used.md",
         "guideUrl": "/plain-english/provision/common-words-used/"
       }
     ],
@@ -2852,7 +2852,7 @@
         "exceptWhen": [
           "<ul>\n<li>The keyboard focus automatically moves to the next interactive elements in keyboard navigation order on completion of some user action, such when the focus moves between the fields for a time-based one-time password (TOTP) code.</li>\n<li>The keyboard focus results from security or emergency situations, such as warning about an imminent session timeout that would cause the user to lose their work.</li>\n<li>The user is informed of the potential keyboard focus move before it happens and given the chance to avoid the move.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/keyboard-interface-input/focus-user-controlled.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/keyboard-interface-input/focus-user-controlled.md",
         "guideUrl": "/plain-english/provision/focus-user-controlled/"
       },
       {
@@ -2864,7 +2864,7 @@
         "groupSlug": "user-control",
         "text": "When content triggers a device change or an automatic user agent change, the user is notified before the change occurs.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/content-changes/change-of-user-agent-notified.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/content-changes/change-of-user-agent-notified.md",
         "guideUrl": "/plain-english/provision/change-of-user-agent-notified/"
       }
     ],
@@ -2897,7 +2897,7 @@
         "groupSlug": "help-and-feedback",
         "text": "Context-sensitive help is available.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/help-and-feedback/help-available/contextual-help-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/help-and-feedback/help-available/contextual-help-available.md",
         "guideUrl": "/plain-english/provision/contextual-help-available/"
       }
     ],
@@ -2933,7 +2933,7 @@
         "exceptWhen": [
           "<ul>\n<li>entered data is auto-saved and/or reversible.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/error-handling/prevent-errors/errors-preventable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/error-handling/prevent-errors/errors-preventable.md",
         "guideUrl": "/plain-english/provision/errors-preventable/"
       }
     ],
@@ -2969,7 +2969,7 @@
         "exceptWhen": [
           "<ul>\n<li>The audio or video content is an alternative for text and is clearly labeled as such.</li>\n<li>The audio or video has no spoken content and serves only as background.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/images-and-media/transcripts/dialogue-transcripts-available-live.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/images-and-media/transcripts/dialogue-transcripts-available-live.md",
         "guideUrl": "/plain-english/provision/dialogue-transcripts-available-live/"
       }
     ],
@@ -3027,7 +3027,7 @@
         "exceptWhen": [
           "<ul>\n<li>The task completion is part of a real-time event, and no alternative to the time limit is possible.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/retain-information/progress-saved.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/retain-information/progress-saved.md",
         "guideUrl": "/plain-english/provision/progress-saved/"
       }
     ],
@@ -3063,7 +3063,7 @@
         "exceptWhen": [
           "<ul>\n<li>hiding the existence of the time limit is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/adequate-time/time-limits-conveyed.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/adequate-time/time-limits-conveyed.md",
         "guideUrl": "/plain-english/provision/time-limits-conveyed/"
       }
     ],
@@ -3097,7 +3097,7 @@
         "groupSlug": "user-control",
         "text": "Content responds to users’ platform and user agent accessibility-related settings.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/user-control/assistive-technology-control/user-settings-supported.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/user-control/assistive-technology-control/user-settings-supported.md",
         "guideUrl": "/plain-english/provision/user-settings-supported/"
       },
       {
@@ -3111,7 +3111,7 @@
         "exceptWhen": [
           "<ul>\n<li>The motion or pseudo-motion is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/animation-and-movement/avoid-physical-harm/no-visual-motion.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/animation-and-movement/avoid-physical-harm/no-visual-motion.md",
         "guideUrl": "/plain-english/provision/no-visual-motion/"
       }
     ],
@@ -3186,7 +3186,7 @@
         "groupSlug": "interactive-components",
         "text": "If a custom focus indicator is used, it has sufficient adjacent contrast and change of contrast.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-contrast-sufficient.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-contrast-sufficient.md",
         "guideUrl": "/plain-english/provision/focus-indicator-contrast-sufficient/"
       },
       {
@@ -3198,7 +3198,7 @@
         "groupSlug": "interactive-components",
         "text": "If a custom focus indicator is used, it has sufficient size and adjacency.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-size-sufficient.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/keyboard-focus-appearance/focus-indicator-size-sufficient.md",
         "guideUrl": "/plain-english/provision/focus-indicator-size-sufficient/"
       }
     ],
@@ -3234,7 +3234,7 @@
         "exceptWhen": [
           "<ul>\n<li>A path-based gesture is essential to the functionality.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/input-operation/path-based-gesture-not-relied-on.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/input-operation/path-based-gesture-not-relied-on.md",
         "guideUrl": "/plain-english/provision/path-based-gesture-not-relied-on/"
       },
       {
@@ -3246,7 +3246,7 @@
         "groupSlug": "input-operation",
         "text": "All functionality and content available using complex pointer inputs is also available using a simple pointer input, or a sequence of simple pointer inputs that do not require timing.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/pointer-input/simple-pointer-input-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/pointer-input/simple-pointer-input-available.md",
         "guideUrl": "/plain-english/provision/simple-pointer-input-available/"
       }
     ],
@@ -3282,7 +3282,7 @@
         "exceptWhen": [
           "<ul>\n<li>Completing the function on the down event is essential.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/pointer-input/pointer-activation-controllable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/pointer-input/pointer-activation-controllable.md",
         "guideUrl": "/plain-english/provision/pointer-activation-controllable/"
       }
     ],
@@ -3298,7 +3298,7 @@
         "exceptWhen": [
           "<ul>\n<li>It is essential to be different.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/pointer-input/consistent-pointer-cancellation.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/pointer-input/consistent-pointer-cancellation.md",
         "guideUrl": "/plain-english/provision/consistent-pointer-cancellation/"
       }
     ],
@@ -3333,7 +3333,7 @@
         "exceptWhen": [
           "<ul>\n<li>Full or gross body movement is essential to the functionality.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/input-operation/body-movements-not-relied-on.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/input-operation/body-movements-not-relied-on.md",
         "guideUrl": "/plain-english/provision/body-movements-not-relied-on/"
       }
     ],
@@ -3367,7 +3367,7 @@
         "groupSlug": "input-operation",
         "text": "The ability to switch between input methods is available at any time.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/input-operation/input-operation/input-method-flexible.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/input-operation/input-operation/input-method-flexible.md",
         "guideUrl": "/plain-english/provision/input-method-flexible/"
       }
     ],
@@ -3402,7 +3402,7 @@
         "groupSlug": "text-and-wording",
         "text": "Diacritics required to identify the correct meaning of each word are available.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/text-and-wording/clear-language/diacritics-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/text-and-wording/clear-language/diacritics-available.md",
         "guideUrl": "/plain-english/provision/diacritics-available/"
       }
     ],
@@ -3435,7 +3435,7 @@
         "groupSlug": "consistency-across-views",
         "text": "The relative order of navigation items is consistent within blocks of navigation that are repeated on multiple pages/views of the conformance scope or process.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/consistency-across-views/consistency/consistent-navigation-order.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/consistency-across-views/consistency/consistent-navigation-order.md",
         "guideUrl": "/plain-english/provision/consistent-navigation-order/"
       }
     ],
@@ -3451,7 +3451,7 @@
         "exceptWhen": [
           "<ul>\n<li>Labels for navigation items that are marked as ‘current’ within the conformance scope or process.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md",
         "guideUrl": "/plain-english/provision/consistent-navigation-labels/"
       }
     ],
@@ -3487,7 +3487,7 @@
         "exceptWhen": [
           "<ul>\n<li>Labels for navigation items that are marked as ‘current’ within the conformance scope or process.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/consistency-across-views/consistency/consistent-navigation-labels.md",
         "guideUrl": "/plain-english/provision/consistent-navigation-labels/"
       },
       {
@@ -3501,7 +3501,7 @@
         "exceptWhen": [
           "<ul>\n<li>The location changes due to a page variation or viewport change, or</li>\n<li>The layout changes due to being part of a process.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/interactive-components/expected-behavior/consistent-control-location.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/interactive-components/expected-behavior/consistent-control-location.md",
         "guideUrl": "/plain-english/provision/consistent-control-location/"
       }
     ],
@@ -3536,7 +3536,7 @@
         "exceptWhen": [
           "<ul>\n<li>including suggestions would jeopardize the security or purpose of the content.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/error-handling/correct-errors/error-suggestions-provided.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/error-handling/correct-errors/error-suggestions-provided.md",
         "guideUrl": "/plain-english/provision/error-suggestions-provided/"
       }
     ],
@@ -3572,7 +3572,7 @@
         "exceptWhen": [
           "<ul>\n<li>entered data is auto-saved and/or reversible.</li>\n</ul>"
         ],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/error-handling/prevent-errors/errors-preventable.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/error-handling/prevent-errors/errors-preventable.md",
         "guideUrl": "/plain-english/provision/errors-preventable/"
       }
     ],
@@ -3586,7 +3586,7 @@
         "groupSlug": "policy-and-protection",
         "text": "Legal, financial, privacy, and security consequences are provided before finalizing an agreement.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/policy-and-protection/risk/consequences-explained-before-agreement.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/policy-and-protection/risk/consequences-explained-before-agreement.md",
         "guideUrl": "/plain-english/provision/consequences-explained-before-agreement/"
       }
     ],
@@ -3619,7 +3619,7 @@
         "groupSlug": "process-and-task-completion",
         "text": "Processes can be completed without a cognitive function test.",
         "exceptWhen": [],
-        "sourceUrl": "https://github.com/w3c/wcag3/blob/18c12bf/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/cognitive-test-alternatives-available.md",
+        "sourceUrl": "https://github.com/w3c/wcag3/blob/c110b49/guidelines/groups/process-and-task-completion/avoid-exclusionary-cognitive-tasks/cognitive-test-alternatives-available.md",
         "guideUrl": "/plain-english/provision/cognitive-test-alternatives-available/"
       }
     ],

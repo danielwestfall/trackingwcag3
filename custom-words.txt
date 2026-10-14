@@ -1,13 +1,17 @@
 # Expected acronyms and abbreviations
 AGWG
+APCA
+APG
 ARFID
 ATAG
 CIE
 COGA
 CVD
+FOUC
 FTE
 ICT
 NOAA
+SEO
 SSTM
 TOTP
 UAAG
@@ -25,23 +29,46 @@ Yesilada
 Detweiler
 Omanson
 Ameritech
+Hyperlegible
+Lexend
+Neue
+Segoe
 
 # Words
+codea
+colour
+colours
+darkmode
 dyscalculia
 earcon
 earcons
+findability
 hoverable
+idx
 incentivizes
 inclusivity
 leetspeak
+lexend
 mouseup
+neighbouring
 numeronym
 numeronyms
+Nums
+operationalize
 oxymorons
 personalizable
+plannable
+retarget
 scriptable
 strobing
 subsite
+touchpoints
+userscript
+autoplaying
+refreshable
+unrequested
+multithumb
+windowsplitter
 
 # Intentional compound words
 # (since useCompoundWords is too permissive)

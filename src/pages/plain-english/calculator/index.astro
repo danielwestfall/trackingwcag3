@@ -322,7 +322,7 @@ const quickSections = (quick.sections || []).map((s: any) => ({
     )}
   </section>
 
-  <script type="application/json" id="ac-data" set:html={JSON.stringify(clientData)}></script>
+  <script type="application/json" id="ac-data" is:inline set:html={JSON.stringify(clientData)}></script>
 </PlainEnglishLayout>
 
 <style>

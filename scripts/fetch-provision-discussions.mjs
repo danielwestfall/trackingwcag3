@@ -318,6 +318,7 @@ function buildRecentActivity(issuesCache, resolve, provisionTitles, runAt) {
       created: i.created.slice(0, 10),
       updated: i.updated.slice(0, 10),
       comments: i.commentCount ?? i.comments?.length ?? 0,
+      weekComments: 0,
       labels: i.labels.filter((l) => !l.startsWith('P - ')),
       provisions: provsOf(i.labels),
       ...extra,

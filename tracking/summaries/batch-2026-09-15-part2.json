@@ -360,8 +360,8 @@
       },
       {
         "label": "Pseudo-motion should have no threshold and its own provision",
-        "who": "julierawe, rachaelbradley, mraccess77",
-        "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"Content does not include pseudo-motion…lasting longer than 5 seconds\"; the request names both No visual motion provisions, not this variant specifically. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache."
+        "who": "julierawe, rachaelbradley, mraccess77, charleshalldesign",
+        "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"Content does not include pseudo-motion…lasting longer than 5 seconds\"; the request names both No visual motion provisions, not this variant specifically. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache. In October 2026, Charles Hall drafted a standalone pseudo-motion provision (currently supplemental, with research indicating harm comparable to actual motion) and focusing on a mechanism to prevent, turn off, or hide pseudo-motion."
       },
       {
         "label": "A respected user preference is not a safe substitute",

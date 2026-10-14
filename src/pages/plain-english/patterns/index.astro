@@ -552,6 +552,256 @@ const categories = [
                     <span class="slider-hint">Single Tab stop; use ← → arrow keys</span>
                   </div>
                 )}
+
+                {pattern.id === "grid" && (
+                  <div class="apg-grid-demo">
+                    <div role="grid" aria-label="WCAG Issue Tracker" class="apg-data-grid" id="apg-data-grid-demo">
+                      <div role="rowgroup" class="grid-head">
+                        <div role="row" class="grid-row head-row">
+                          <span role="columnheader" class="grid-cell th-cell">ID</span>
+                          <span role="columnheader" class="grid-cell th-cell">Criterion</span>
+                          <span role="columnheader" class="grid-cell th-cell">Severity</span>
+                          <span role="columnheader" class="grid-cell th-cell">Status</span>
+                        </div>
+                      </div>
+                      <div role="rowgroup" class="grid-body">
+                        <div role="row" class="grid-row">
+                          <span role="gridcell" tabindex="0" class="grid-cell">ISS-101</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell">1.4.3 Contrast</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell cell-badge badge-high">High</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell cell-editable" contenteditable="plaintext-only">Open</span>
+                        </div>
+                        <div role="row" class="grid-row">
+                          <span role="gridcell" tabindex="-1" class="grid-cell">ISS-102</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell">2.1.1 Keyboard</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell cell-badge badge-crit">Critical</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell cell-editable" contenteditable="plaintext-only">In Review</span>
+                        </div>
+                        <div role="row" class="grid-row">
+                          <span role="gridcell" tabindex="-1" class="grid-cell">ISS-103</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell">4.1.2 Name/Role</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell cell-badge badge-med">Medium</span>
+                          <span role="gridcell" tabindex="-1" class="grid-cell cell-editable" contenteditable="plaintext-only">Resolved</span>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="slider-hint">Use ↑ ↓ ← → arrow keys to navigate 2D cells; click/edit Status</span>
+                  </div>
+                )}
+
+                {pattern.id === "listbox" && (
+                  <div class="apg-listbox-demo">
+                    <label id="apg-lb-label">WCAG Conformance Target:</label>
+                    <ul role="listbox" aria-labelledby="apg-lb-label" tabindex="0" class="apg-listbox-widget" id="apg-listbox-widget">
+                      <li role="option" id="lb-opt-1" aria-selected="true" class="lb-option selected">
+                        <span class="lb-check" aria-hidden="true">✓</span>
+                        <span>WCAG 2.1 Level AA</span>
+                      </li>
+                      <li role="option" id="lb-opt-2" aria-selected="false" class="lb-option">
+                        <span class="lb-check" aria-hidden="true">✓</span>
+                        <span>WCAG 2.2 Level AA (Current Standard)</span>
+                      </li>
+                      <li role="option" id="lb-opt-3" aria-selected="false" class="lb-option">
+                        <span class="lb-check" aria-hidden="true">✓</span>
+                        <span>WCAG 2.2 Level AAA</span>
+                      </li>
+                      <li role="option" id="lb-opt-4" aria-selected="false" class="lb-option">
+                        <span class="lb-check" aria-hidden="true">✓</span>
+                        <span>WCAG 3.0 Bronze Draft</span>
+                      </li>
+                    </ul>
+                    <span class="slider-hint">Navigate with ↑ ↓ arrow keys; Space to select</span>
+                  </div>
+                )}
+
+                {pattern.id === "menubar" && (
+                  <div class="apg-menubar-demo">
+                    <div role="menubar" aria-label="Editor Menubar" class="apg-menubar-widget" id="apg-menubar-widget">
+                      <div class="menubar-item-wrap">
+                        <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" class="apg-menubar-item" id="apg-menuitem-file">
+                          File ▾
+                        </button>
+                        <ul role="menu" id="apg-file-menu" class="apg-menubar-dropdown" aria-labelledby="apg-menuitem-file" hidden>
+                          <li role="menuitem" tabindex="-1">New Audit</li>
+                          <li role="menuitem" tabindex="-1">Open Report...</li>
+                          <li role="menuitem" tabindex="-1">Export PDF</li>
+                        </ul>
+                      </div>
+                      <div class="menubar-item-wrap">
+                        <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="apg-menubar-item" id="apg-menuitem-edit">
+                          Edit ▾
+                        </button>
+                        <ul role="menu" id="apg-edit-menu" class="apg-menubar-dropdown" aria-labelledby="apg-menuitem-edit" hidden>
+                          <li role="menuitem" tabindex="-1">Undo</li>
+                          <li role="menuitem" tabindex="-1">Redo</li>
+                          <li role="menuitem" tabindex="-1">Preferences</li>
+                        </ul>
+                      </div>
+                      <div class="menubar-item-wrap">
+                        <button type="button" role="menuitem" tabindex="-1" class="apg-menubar-item">
+                          Help
+                        </button>
+                      </div>
+                    </div>
+                    <span class="slider-hint">Use ← → between menus; ↓ opens dropdown; Esc closes</span>
+                  </div>
+                )}
+
+                {pattern.id === "alertdialog" && (
+                  <div class="apg-alertdialog-demo">
+                    <button type="button" class="demo-btn btn-danger" id="btn-open-apg-alertdialog">
+                      Trigger Alert Dialog (APG)
+                    </button>
+                    <div id="apg-alertdialog-overlay" class="apg-modal-overlay" hidden>
+                      <div
+                        role="alertdialog"
+                        aria-modal="true"
+                        aria-labelledby="apg-adlg-title"
+                        aria-describedby="apg-adlg-desc"
+                        class="apg-modal-window apg-alertdialog-window"
+                      >
+                        <div class="adlg-header">
+                          <span class="adlg-icon" aria-hidden="true">⚠️</span>
+                          <h3 id="apg-adlg-title">Discard Unsaved Changes?</h3>
+                        </div>
+                        <p id="apg-adlg-desc">
+                          You have 3 unsaved WCAG rule overrides. Leaving this view will permanently discard your work.
+                        </p>
+                        <div class="modal-actions">
+                          <button type="button" class="demo-btn" id="apg-adlg-cancel">Cancel (Keep Editing)</button>
+                          <button type="button" class="demo-btn btn-danger" id="apg-adlg-discard">Discard Changes</button>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="slider-hint">Focus placed on least destructive "Cancel" button; Esc closes</span>
+                  </div>
+                )}
+
+                {pattern.id === "feed" && (
+                  <div class="apg-feed-demo">
+                    <div role="feed" aria-label="W3C Accessibility News Feed" class="apg-feed-widget" id="apg-feed-widget" aria-busy="false">
+                      <article role="article" tabindex="0" aria-posinset="1" aria-setsize="3" class="feed-article" aria-labelledby="feed-h-1">
+                        <h4 id="feed-h-1">WCAG 2.2 Reaches REC Status</h4>
+                        <time datetime="2023-10-05">Oct 5, 2023</time>
+                        <p>Focus appearance, dragging movements, and accessible authentication are now formal recommendations.</p>
+                      </article>
+                      <article role="article" tabindex="-1" aria-posinset="2" aria-setsize="3" class="feed-article" aria-labelledby="feed-h-2">
+                        <h4 id="feed-h-2">WCAG 3 Working Draft Updated</h4>
+                        <time datetime="2024-04-18">Apr 18, 2024</time>
+                        <p>Explorations into scoring models, task-based outcomes, and equity metrics continue.</p>
+                      </article>
+                    </div>
+                    <div class="feed-controls">
+                      <button type="button" class="demo-btn-sm" id="btn-feed-add">Add Update to Feed</button>
+                      <span class="slider-hint">Use Page Up / Page Down to jump between articles</span>
+                    </div>
+                  </div>
+                )}
+
+                {pattern.id === "slider-multithumb" && (
+                  <div class="apg-multislider-demo">
+                    <div class="multislider-header">
+                      <span>Budget Range:</span>
+                      <strong class="slider-readout">$<span id="apg-ms-min-val">25</span> - $<span id="apg-ms-max-val">75</span></strong>
+                    </div>
+                    <div class="apg-multi-rail" id="apg-multi-rail">
+                      <div class="multi-highlight" id="apg-multi-fill" style="left: 25%; width: 50%;"></div>
+                      <div
+                        role="slider"
+                        tabindex="0"
+                        aria-label="Minimum Budget"
+                        aria-valuemin="0"
+                        aria-valuemax="75"
+                        aria-valuenow="25"
+                        id="apg-ms-thumb-min"
+                        class="apg-slider-handle multi-thumb min-thumb"
+                        style="left: 25%;"
+                      ></div>
+                      <div
+                        role="slider"
+                        tabindex="0"
+                        aria-label="Maximum Budget"
+                        aria-valuemin="25"
+                        aria-valuemax="100"
+                        aria-valuenow="75"
+                        id="apg-ms-thumb-max"
+                        class="apg-slider-handle multi-thumb max-thumb"
+                        style="left: 75%;"
+                      ></div>
+                    </div>
+                    <span class="slider-hint">Tab to select thumb; ← → arrows adjust without crossing</span>
+                  </div>
+                )}
+
+                {pattern.id === "treegrid" && (
+                  <div class="apg-treegrid-demo">
+                    <div role="treegrid" aria-label="Project Structure Treegrid" class="apg-treegrid-widget" id="apg-treegrid-widget">
+                      <div role="rowgroup" class="tg-head">
+                        <div role="row" class="tg-row tg-head-row">
+                          <span role="columnheader" class="tg-cell">Name</span>
+                          <span role="columnheader" class="tg-cell">Size</span>
+                          <span role="columnheader" class="tg-cell">Kind</span>
+                        </div>
+                      </div>
+                      <div role="rowgroup" class="tg-body">
+                        <div role="row" aria-level="1" aria-expanded="true" class="tg-row tg-branch" tabindex="0">
+                          <span role="gridcell" class="tg-cell tg-cell-name">
+                            <button type="button" class="tg-toggle" aria-label="Toggle src folder">▾</button> 📂 src/
+                          </span>
+                          <span role="gridcell" class="tg-cell">--</span>
+                          <span role="gridcell" class="tg-cell">Folder</span>
+                        </div>
+                        <div role="row" aria-level="2" class="tg-row tg-leaf tg-child-src" tabindex="-1">
+                          <span role="gridcell" class="tg-cell tg-cell-name tg-indent-1">📄 index.astro</span>
+                          <span role="gridcell" class="tg-cell">124 KB</span>
+                          <span role="gridcell" class="tg-cell">Astro Template</span>
+                        </div>
+                        <div role="row" aria-level="2" class="tg-row tg-leaf tg-child-src" tabindex="-1">
+                          <span role="gridcell" class="tg-cell tg-cell-name tg-indent-1">📄 patterns.ts</span>
+                          <span role="gridcell" class="tg-cell">152 KB</span>
+                          <span role="gridcell" class="tg-cell">TypeScript</span>
+                        </div>
+                        <div role="row" aria-level="1" aria-expanded="false" class="tg-row tg-branch" tabindex="-1">
+                          <span role="gridcell" class="tg-cell tg-cell-name">
+                            <button type="button" class="tg-toggle" aria-label="Toggle public folder">▸</button> 📂 public/
+                          </span>
+                          <span role="gridcell" class="tg-cell">--</span>
+                          <span role="gridcell" class="tg-cell">Folder</span>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="slider-hint">↑ ↓ moves rows; ← collapses/parents; → expands/children</span>
+                  </div>
+                )}
+
+                {pattern.id === "windowsplitter" && (
+                  <div class="apg-splitter-demo">
+                    <div class="apg-split-box" id="apg-split-box">
+                      <div class="split-pane left-pane" id="apg-pane-left" style="width: 50%;">
+                        <div class="pane-tag">Auditor View</div>
+                        <p class="pane-text">Contrast: 7.2:1 (Pass AAA)</p>
+                      </div>
+                      <div
+                        role="separator"
+                        tabindex="0"
+                        aria-label="Code and Preview Splitter"
+                        aria-valuenow="50"
+                        aria-valuemin="15"
+                        aria-valuemax="85"
+                        aria-orientation="vertical"
+                        class="apg-splitter-handle"
+                        id="apg-splitter-handle"
+                      >
+                        <span class="splitter-grip" aria-hidden="true">⋮</span>
+                      </div>
+                      <div class="split-pane right-pane" id="apg-pane-right" style="width: 50%;">
+                        <div class="pane-tag">Component Code</div>
+                        <code class="pane-text">&lt;button role="switch"&gt;</code>
+                      </div>
+                    </div>
+                    <span class="slider-hint">Use ← → arrow keys to resize panes; Home/End for extremes</span>
+                  </div>
+                )}
               </div>
 
               <!-- Live AT State Inspector Bar -->
@@ -874,6 +1124,175 @@ const categories = [
                       <button type="button" aria-label="Underline"><u>U</u></button>
                     </fieldset>
                     <span class="slider-hint">Standard Tab sequence across individual buttons</span>
+                  </div>
+                )}
+
+                {pattern.id === "grid" && (
+                  <div class="semantic-grid-demo">
+                    <table class="sem-data-table">
+                      <caption class="sr-only">WCAG Issue Tracker (Native HTML Table)</caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Criterion</th>
+                          <th scope="col">Severity</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">ISS-101</th>
+                          <td>1.4.3 Contrast</td>
+                          <td><span class="sem-badge sem-badge-high">High</span></td>
+                          <td><input type="text" value="Open" aria-label="Status for ISS-101" class="sem-cell-input" /></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">ISS-102</th>
+                          <td>2.1.1 Keyboard</td>
+                          <td><span class="sem-badge sem-badge-crit">Critical</span></td>
+                          <td><input type="text" value="In Review" aria-label="Status for ISS-102" class="sem-cell-input" /></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <span class="slider-hint">Standard Tab jumps between inputs; screen readers use native table keys</span>
+                  </div>
+                )}
+
+                {pattern.id === "listbox" && (
+                  <div class="semantic-listbox-demo">
+                    <label for="sem-native-select">WCAG Conformance Target:</label>
+                    <select id="sem-native-select" size="4" class="sem-native-listbox">
+                      <option value="2.1-aa" selected>WCAG 2.1 Level AA</option>
+                      <option value="2.2-aa">WCAG 2.2 Level AA (Current Standard)</option>
+                      <option value="2.2-aaa">WCAG 2.2 Level AAA</option>
+                      <option value="3.0-bronze">WCAG 3.0 Bronze Draft</option>
+                    </select>
+                    <span class="slider-hint">Native &lt;select size="4"&gt; provides zero-JS listbox with typeahead</span>
+                  </div>
+                )}
+
+                {pattern.id === "menubar" && (
+                  <div class="semantic-menubar-demo">
+                    <nav aria-label="Main Site Navigation" class="sem-nav-bar">
+                      <ul class="sem-nav-list">
+                        <li class="sem-nav-item">
+                          <a href="#pattern-menubar" class="sem-nav-link" aria-current="page">Dashboard</a>
+                        </li>
+                        <li class="sem-nav-item">
+                          <a href="#pattern-menubar" class="sem-nav-link">Reports</a>
+                        </li>
+                        <li class="sem-nav-item">
+                          <a href="#pattern-menubar" class="sem-nav-link">Settings</a>
+                        </li>
+                        <li class="sem-nav-item">
+                          <a href="#pattern-menubar" class="sem-nav-link">Docs</a>
+                        </li>
+                      </ul>
+                    </nav>
+                    <span class="slider-hint">W3C APG advice: Websites should use &lt;nav&gt; + links, not ARIA menubar</span>
+                  </div>
+                )}
+
+                {pattern.id === "alertdialog" && (
+                  <div class="semantic-alertdialog-demo">
+                    <button type="button" class="demo-btn btn-success" id="btn-open-sem-alertdialog">
+                      Open Native &lt;dialog&gt; Alert Prompt
+                    </button>
+                    <dialog id="native-alertdialog-el" class="semantic-modal-dialog">
+                      <form method="dialog" class="dialog-form">
+                        <div class="adlg-header">
+                          <span class="adlg-icon" aria-hidden="true">⚠️</span>
+                          <h3>Discard Unsaved Changes? (Native)</h3>
+                        </div>
+                        <p>You have 3 unsaved WCAG rule overrides. Leaving will discard them.</p>
+                        <div class="modal-actions">
+                          <button type="submit" value="cancel" autofocus class="demo-btn">Cancel (Autofocus)</button>
+                          <button type="submit" value="discard" class="demo-btn btn-danger">Discard</button>
+                        </div>
+                      </form>
+                    </dialog>
+                    <span class="slider-hint">Native &lt;dialog&gt; traps focus, Esc cancels, autofocus targets safe button</span>
+                  </div>
+                )}
+
+                {pattern.id === "feed" && (
+                  <div class="semantic-feed-demo">
+                    <section aria-label="W3C Accessibility Updates" class="sem-feed-stream">
+                      <article class="sem-feed-article">
+                        <h4>WCAG 2.2 Recommendation</h4>
+                        <time datetime="2023-10-05">Oct 5, 2023</time>
+                        <p>Standardized accessible authentication, focus appearance, and dragging.</p>
+                      </article>
+                      <article class="sem-feed-article">
+                        <h4>WCAG 3 Working Draft</h4>
+                        <time datetime="2024-04-18">Apr 18, 2024</time>
+                        <p>Evaluating holistic accessibility outcomes and disability equity.</p>
+                      </article>
+                    </section>
+                    <span class="slider-hint">Clean semantic HTML without complex feed roving focus JS</span>
+                  </div>
+                )}
+
+                {pattern.id === "slider-multithumb" && (
+                  <div class="semantic-multislider-demo">
+                    <fieldset class="sem-multirange-fieldset">
+                      <legend>Budget Range ($)</legend>
+                      <div class="sem-range-row">
+                        <label for="sem-range-min">Min:</label>
+                        <input type="range" id="sem-range-min" min="0" max="50" value="25" />
+                        <output for="sem-range-min" id="sem-range-min-out">$25</output>
+                      </div>
+                      <div class="sem-range-row">
+                        <label for="sem-range-max">Max:</label>
+                        <input type="range" id="sem-range-max" min="50" max="100" value="75" />
+                        <output for="sem-range-max" id="sem-range-max-out">$75</output>
+                      </div>
+                    </fieldset>
+                    <span class="slider-hint">Paired native &lt;input type="range"&gt; controls; full form and touch support</span>
+                  </div>
+                )}
+
+                {pattern.id === "treegrid" && (
+                  <div class="semantic-treegrid-demo">
+                    <table class="sem-data-table sem-tree-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Size</th>
+                          <th scope="col">Kind</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="tree-row-parent">
+                          <th scope="row">📂 src/</th>
+                          <td>--</td>
+                          <td>Folder</td>
+                        </tr>
+                        <tr class="tree-row-child">
+                          <td>&emsp;📄 index.astro</td>
+                          <td>124 KB</td>
+                          <td>Astro Template</td>
+                        </tr>
+                        <tr class="tree-row-child">
+                          <td>&emsp;📄 patterns.ts</td>
+                          <td>152 KB</td>
+                          <td>TypeScript</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <span class="slider-hint">HTML lacks native treegrid; ARIA treegrid is required for 2D roving keys</span>
+                  </div>
+                )}
+
+                {pattern.id === "windowsplitter" && (
+                  <div class="semantic-splitter-demo">
+                    <div class="sem-resizable-container">
+                      <div class="sem-resize-box">
+                        <div class="pane-tag">Resizable Box (CSS resize: horizontal)</div>
+                        <p class="pane-text">Drag bottom-right handle or use arrow keys if focused.</p>
+                      </div>
+                    </div>
+                    <span class="slider-hint">Native CSS resize property requires 0 JavaScript to resize</span>
                   </div>
                 )}
               </div>
@@ -1321,6 +1740,10 @@ const categories = [
     outline: none;
     font-family: inherit;
   }
+  .search-box input::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
   .search-clear-btn {
     background: transparent;
     border: none;
@@ -1385,13 +1808,13 @@ const categories = [
     border-color: var(--accent-blue);
   }
   .filter-pill.pill-native.active {
-    background: #059669;
-    border-color: #059669;
+    background: #047857;
+    border-color: #047857;
     color: #fff;
   }
   .filter-pill.pill-hybrid.active {
-    background: #d97706;
-    border-color: #d97706;
+    background: #b45309;
+    border-color: #b45309;
     color: #fff;
   }
   .filter-pill.pill-aria.active {
@@ -1668,7 +2091,7 @@ const categories = [
   /* Raw Default Toggle Mode */
   .raw-browser-default .demo-pane {
     border: 2px dashed var(--border-default) !important;
-    background: #000000 !important;
+    background: var(--surface-base) !important;
   }
   .raw-browser-default button,
   .raw-browser-default details,
@@ -1684,7 +2107,7 @@ const categories = [
     align-items: center;
     gap: 8px;
     padding: 8px 14px;
-    background: #09090b;
+    background: var(--code-surface);
     border-top: 1px solid var(--border-subtle);
     font-size: 0.75rem;
     font-family: var(--font-mono);
@@ -1694,7 +2117,7 @@ const categories = [
     font-weight: 700;
   }
   .at-code {
-    color: #38bdf8;
+    color: var(--text-accent);
     word-break: break-all;
   }
 
@@ -1874,9 +2297,9 @@ const categories = [
     border-color: var(--accent-blue);
   }
   .demo-btn.btn-success {
-    background: #059669;
+    background: #047857;
     color: #fff;
-    border-color: #059669;
+    border-color: #047857;
   }
   .demo-btn.btn-danger {
     background: #dc2626;
@@ -2089,8 +2512,8 @@ const categories = [
     transition: transform 0.2s;
   }
   .sem-switch-input:checked {
-    background: #059669;
-    border-color: #059669;
+    background: #047857;
+    border-color: #047857;
   }
   .sem-switch-input:checked::before {
     transform: translateX(20px);
@@ -2124,7 +2547,7 @@ const categories = [
   .sem-range-input {
     width: 100%;
     margin: 16px 0;
-    accent-color: #059669;
+    accent-color: #047857;
   }
 
   /* Meter Demo */
@@ -2291,7 +2714,7 @@ const categories = [
     background: var(--surface-elevated);
   }
   .apg-check-item[aria-checked="true"] .custom-chk-box {
-    background: #a855f7;
+    background: #7c3aed;
   }
   .apg-check-item[aria-checked="true"] .check-icon::before {
     content: '✓';
@@ -2586,6 +3009,463 @@ const categories = [
     outline: 2px solid var(--accent-blue);
   }
 
+  /* Grid Demo */
+  .apg-data-grid {
+    width: 100%;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--surface-card);
+  }
+  .grid-row {
+    display: flex;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .head-row {
+    background: var(--surface-elevated);
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .grid-cell {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    outline: none;
+    border-right: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+  }
+  .grid-cell:last-child {
+    border-right: none;
+  }
+  .grid-cell:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: -2px;
+    background: rgba(56, 189, 248, 0.12);
+  }
+  .cell-badge,
+  .sem-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .badge-high,
+  .sem-badge-high {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+  }
+  .badge-crit,
+  .sem-badge-crit {
+    background: rgba(220, 38, 38, 0.25);
+    color: #f87171;
+    border: 1px solid rgba(220, 38, 38, 0.5);
+  }
+  .badge-med {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fcd34d;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+  }
+  .cell-editable {
+    cursor: text;
+    background: var(--surface-base);
+  }
+  .sem-cell-input {
+    width: 100%;
+    padding: 4px 6px;
+    font-size: 0.8rem;
+    background: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    border-radius: 4px;
+  }
+
+  /* Listbox Demo */
+  .apg-listbox-widget {
+    list-style: none;
+    padding: 4px;
+    margin-top: 8px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    outline: none;
+  }
+  .apg-listbox-widget:focus-visible {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+  }
+  .lb-option {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    transition: background 0.15s;
+  }
+  .lb-option:hover {
+    background: var(--surface-elevated);
+  }
+  .lb-option.selected {
+    background: rgba(168, 85, 247, 0.2);
+    font-weight: 700;
+    color: #c084fc;
+  }
+  .lb-check {
+    visibility: hidden;
+    font-weight: 800;
+  }
+  .lb-option.selected .lb-check {
+    visibility: visible;
+  }
+  .sem-native-listbox {
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 0.85rem;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+  }
+
+  /* Menubar Demo */
+  .apg-menubar-widget {
+    display: flex;
+    gap: 6px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+  }
+  .menubar-item-wrap {
+    position: relative;
+  }
+  .apg-menubar-item {
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .apg-menubar-item:focus,
+  .apg-menubar-item:hover {
+    background: rgba(168, 85, 247, 0.2);
+    outline: 2px solid var(--accent-blue);
+  }
+  .apg-menubar-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 140px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    list-style: none;
+    padding: 4px;
+    z-index: 20;
+    box-shadow: var(--shadow-md);
+    margin-top: 4px;
+  }
+  .apg-menubar-dropdown li {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .apg-menubar-dropdown li:hover,
+  .apg-menubar-dropdown li:focus {
+    background: rgba(168, 85, 247, 0.25);
+    outline: none;
+  }
+  .sem-nav-bar {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+  }
+  .sem-nav-list {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .sem-nav-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  .sem-nav-link[aria-current="page"] {
+    color: var(--text-primary);
+    font-weight: 800;
+    background: rgba(56, 189, 248, 0.15);
+  }
+
+  /* Alert Dialog Demo */
+  .apg-alertdialog-window {
+    border-color: #ef4444;
+    border-left: 6px solid #ef4444;
+  }
+  .adlg-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .adlg-icon {
+    font-size: 1.5rem;
+  }
+
+  /* Feed Demo */
+  .apg-feed-widget,
+  .sem-feed-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 8px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+  }
+  .feed-article,
+  .sem-feed-article {
+    padding: 10px 14px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    font-size: 0.82rem;
+    outline: none;
+  }
+  .feed-article:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+  }
+  .feed-article h4,
+  .sem-feed-article h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 4px;
+  }
+  .feed-article time,
+  .sem-feed-article time {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .feed-article p,
+  .sem-feed-article p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .feed-controls {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Slider Multi-Thumb Demo */
+  .multislider-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+  .apg-multi-rail {
+    position: relative;
+    height: 10px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+    margin: 16px 8px;
+  }
+  .multi-highlight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: #a855f7;
+    border-radius: 999px;
+  }
+  .multi-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #c084fc;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+  }
+  .multi-thumb:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+  }
+  .sem-multirange-fieldset {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    background: var(--surface-card);
+  }
+  .sem-multirange-fieldset legend {
+    padding: 0 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .sem-range-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    margin: 6px 0;
+    color: var(--text-primary);
+  }
+  .sem-range-row input[type="range"] {
+    flex: 1;
+    accent-color: var(--accent-emerald);
+  }
+
+  /* Treegrid Demo */
+  .apg-treegrid-widget {
+    width: 100%;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--surface-card);
+    font-size: 0.82rem;
+  }
+  .tg-head-row {
+    background: var(--surface-elevated);
+    font-weight: 700;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .tg-row {
+    display: flex;
+    border-bottom: 1px solid var(--border-subtle);
+    outline: none;
+    color: var(--text-primary);
+  }
+  .tg-row:focus {
+    background: rgba(56, 189, 248, 0.12);
+    outline: 2px solid var(--accent-blue);
+    outline-offset: -2px;
+  }
+  .tg-cell {
+    padding: 6px 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .tg-cell-name {
+    flex: 2;
+  }
+  .tg-indent-1 {
+    padding-left: 24px;
+  }
+  .tg-toggle {
+    background: transparent;
+    border: none;
+    color: var(--accent-blue);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 2px 4px;
+    margin-right: 4px;
+  }
+
+  /* Window Splitter Demo */
+  .apg-split-box {
+    display: flex;
+    height: 110px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--surface-card);
+  }
+  .split-pane {
+    padding: 10px;
+    overflow: hidden;
+    font-size: 0.8rem;
+  }
+  .left-pane {
+    background: var(--surface-elevated);
+    border-right: 1px solid var(--border-subtle);
+  }
+  .right-pane {
+    background: var(--surface-card);
+  }
+  .pane-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pane-text {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 0.8rem;
+  }
+  .apg-splitter-handle {
+    width: 10px;
+    background: var(--surface-base);
+    cursor: col-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border-left: 1px solid var(--border-default);
+    border-right: 1px solid var(--border-default);
+    user-select: none;
+  }
+  .apg-splitter-handle:focus {
+    background: var(--accent-blue);
+    color: var(--on-accent);
+    outline: 2px solid var(--accent-blue);
+  }
+  .splitter-grip {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  .sem-resizable-container {
+    display: flex;
+    width: 100%;
+  }
+  .sem-resize-box {
+    resize: horizontal;
+    overflow: auto;
+    min-width: 120px;
+    max-width: 100%;
+    width: 60%;
+    height: 110px;
+    padding: 10px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+  }
+
   /* Inspector Tabs Section */
   .inspector-section {
     margin-top: 20px;
@@ -2668,7 +3548,7 @@ const categories = [
   .css-tips-box strong {
     display: block;
     margin-bottom: 6px;
-    color: #34d399;
+    color: var(--accent-emerald);
   }
   .css-tips-box ul {
     margin-left: 18px;
@@ -2682,7 +3562,7 @@ const categories = [
     background: var(--surface-elevated);
     padding: 8px 14px;
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-    border: 1px solid var(--border-subtle);
+    border: 1px solid var(--code-border);
     border-bottom: none;
     font-size: 0.75rem;
     font-weight: 600;
@@ -2702,11 +3582,11 @@ const categories = [
     border-color: var(--accent-blue);
   }
   .code-display {
-    background: #09090b;
-    color: #e4e4e7;
+    background: var(--code-surface);
+    color: var(--code-text);
     padding: 16px;
     border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-    border: 1px solid var(--border-subtle);
+    border: 1px solid var(--code-border);
     font-family: var(--font-mono);
     font-size: 0.82rem;
     line-height: 1.5;
@@ -2797,6 +3677,173 @@ const categories = [
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 999px;
+  }
+
+  /* ==========================================================================
+     Light Mode WCAG Contrast & Design Token Adaptations
+     ========================================================================== */
+  /* Stats card numbers in banner */
+  :root[data-theme="light"] .highlight-native { color: #047857; }
+  :root[data-theme="light"] .highlight-hybrid { color: #92400e; }
+  :root[data-theme="light"] .highlight-aria { color: #6d28d9; }
+
+  /* First rule banner & chips */
+  :root[data-theme="light"] .first-rule-banner { border-left-color: #047857; }
+  :root[data-theme="light"] .chip-native { border-left-color: #047857; }
+  :root[data-theme="light"] .chip-hybrid { border-left-color: #92400e; }
+  :root[data-theme="light"] .chip-aria { border-left-color: #6d28d9; }
+
+  /* Verdict badges */
+  :root[data-theme="light"] .verdict-native-preferred {
+    background: #d1fae5;
+    color: #065f46;
+    border-color: rgba(4, 120, 87, 0.35);
+  }
+  :root[data-theme="light"] .verdict-hybrid-enhancement {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: rgba(146, 64, 14, 0.35);
+  }
+  :root[data-theme="light"] .verdict-aria-required {
+    background: #f3e8ff;
+    color: #6d28d9;
+    border-color: rgba(109, 40, 217, 0.35);
+  }
+
+  /* Semantic code badge */
+  :root[data-theme="light"] .semantic-code-badge {
+    background: #d1fae5;
+    color: #047857;
+    border-color: rgba(4, 120, 87, 0.35);
+  }
+
+  /* Playground pane header badges and borders */
+  :root[data-theme="light"] .badge-apg { color: #6d28d9; }
+  :root[data-theme="light"] .badge-semantic { color: #047857; }
+  :root[data-theme="light"] .demo-apg { border-color: rgba(109, 40, 217, 0.35); }
+  :root[data-theme="light"] .demo-semantic { border-color: rgba(4, 120, 87, 0.35); }
+
+  /* Blueprint borders and effort pills */
+  :root[data-theme="light"] .blueprint-aria { border-top-color: #6d28d9; }
+  :root[data-theme="light"] .blueprint-semantic { border-top-color: #047857; }
+  :root[data-theme="light"] .effort-high,
+  :root[data-theme="light"] .effort-extreme {
+    background: #ffe4e6;
+    color: #be123c;
+    border-color: rgba(190, 18, 60, 0.35);
+  }
+  :root[data-theme="light"] .effort-medium {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: rgba(146, 64, 14, 0.35);
+  }
+  :root[data-theme="light"] .effort-minimal,
+  :root[data-theme="light"] .effort-low {
+    background: #d1fae5;
+    color: #047857;
+    border-color: rgba(4, 120, 87, 0.35);
+  }
+
+  /* Speech bubbles */
+  :root[data-theme="light"] .at-speech-bubble { border-left-color: #6d28d9; }
+  :root[data-theme="light"] .bubble-semantic { border-left-color: #047857; }
+
+  /* Interactive Demos in Light Mode */
+  :root[data-theme="light"] .semantic-modal-dialog { border-color: #047857; }
+  :root[data-theme="light"] .apg-modal-window { border-color: #6d28d9; }
+  :root[data-theme="light"] .switch-track,
+  :root[data-theme="light"] .sem-switch-input {
+    background: #e2e8f0;
+    border-color: var(--border-default);
+  }
+  :root[data-theme="light"] .switch-thumb,
+  :root[data-theme="light"] .sem-switch-input::before {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  :root[data-theme="light"] .apg-switch-btn[aria-checked="true"] .switch-track {
+    background: #6d28d9;
+    border-color: #6d28d9;
+  }
+  :root[data-theme="light"] .sem-switch-input:checked {
+    background: #047857;
+    border-color: #047857;
+  }
+  :root[data-theme="light"] .apg-slider-handle {
+    background: #6d28d9;
+  }
+  :root[data-theme="light"] .sem-range-input {
+    accent-color: #047857;
+  }
+  :root[data-theme="light"] .apg-radio-opt[aria-checked="true"] .radio-dot {
+    border-color: #6d28d9;
+  }
+  :root[data-theme="light"] .apg-radio-opt[aria-checked="true"] .radio-dot::after {
+    background: #6d28d9;
+  }
+  :root[data-theme="light"] .custom-chk-box {
+    border-color: #6d28d9;
+  }
+  :root[data-theme="light"] .apg-check-item[aria-checked="true"] .custom-chk-box {
+    background: #6d28d9;
+  }
+  :root[data-theme="light"] .apg-check-item[aria-checked="mixed"] .custom-chk-box {
+    background: #581c87;
+  }
+  :root[data-theme="light"] .apg-menu-popup {
+    border-color: #6d28d9;
+  }
+  :root[data-theme="light"] .sem-popover-box {
+    border-color: #047857;
+  }
+  :root[data-theme="light"] .btn-danger-link {
+    color: #be123c;
+  }
+  :root[data-theme="light"] .apg-tab.active {
+    color: #6d28d9;
+    border-bottom-color: #6d28d9;
+  }
+  :root[data-theme="light"] .live-alert-container:not(:empty) {
+    background: #ffe4e6;
+    border-color: #dc2626;
+    color: #991b1b;
+  }
+  :root[data-theme="light"] .badge-high,
+  :root[data-theme="light"] .sem-badge-high {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #f87171;
+  }
+  :root[data-theme="light"] .badge-crit,
+  :root[data-theme="light"] .sem-badge-crit {
+    background: #fef2f2;
+    color: #7f1d1d;
+    border-color: #ef4444;
+  }
+  :root[data-theme="light"] .badge-med {
+    background: #fef3c7;
+    color: #78350f;
+    border-color: #f59e0b;
+  }
+  :root[data-theme="light"] .lb-option.selected {
+    background: rgba(109, 40, 217, 0.12);
+    color: #5b21b6;
+  }
+  :root[data-theme="light"] .multi-highlight {
+    background: #6d28d9;
+  }
+  :root[data-theme="light"] .multi-thumb {
+    background: #6d28d9;
+    border-color: #fff;
+  }
+  :root[data-theme="light"] .apg-menubar-dropdown {
+    border-color: #6d28d9;
+  }
+  :root[data-theme="light"] .sem-nav-link {
+    color: #0369a1;
+  }
+  :root[data-theme="light"] .sem-nav-link[aria-current="page"] {
+    color: #0f172a;
+    background: rgba(14, 165, 233, 0.15);
   }
 </style>
 
@@ -2971,6 +4018,30 @@ const categories = [
       } else if (id === 'toolbar') {
         updateAtState('toolbar', 'apg', 'role="toolbar" | single Tab stop, roving arrows');
         updateAtState('toolbar', 'sem', '<fieldset> with individual Tab stops');
+      } else if (id === 'grid') {
+        updateAtState('grid', 'apg', 'role="grid" | active: ISS-101 (Row 1, Col 1)');
+        updateAtState('grid', 'sem', '<table> with native <th>, <td> and <input>');
+      } else if (id === 'listbox') {
+        updateAtState('listbox', 'apg', 'role="listbox" | selected: "WCAG 2.1 Level AA"');
+        updateAtState('listbox', 'sem', '<select size="4"> | selected: "WCAG 2.1 Level AA"');
+      } else if (id === 'menubar') {
+        updateAtState('menubar', 'apg', 'role="menubar" | active: File ▾ (closed)');
+        updateAtState('menubar', 'sem', '<nav aria-label="Main Site Navigation"> with <a> links');
+      } else if (id === 'alertdialog') {
+        updateAtState('alertdialog', 'apg', 'role="alertdialog" | closed');
+        updateAtState('alertdialog', 'sem', '<dialog> closed | ready for showModal()');
+      } else if (id === 'feed') {
+        updateAtState('feed', 'apg', 'role="feed" | active article 1 of 2');
+        updateAtState('feed', 'sem', '<section> with <article> items (native semantic stream)');
+      } else if (id === 'slider-multithumb') {
+        updateAtState('slider-multithumb', 'apg', 'role="slider" (multi-thumb) | min: $25, max: $75');
+        updateAtState('slider-multithumb', 'sem', '<input type="range"> (dual) | min: $25, max: $75');
+      } else if (id === 'treegrid') {
+        updateAtState('treegrid', 'apg', 'role="treegrid" | active row: "src/" (level 1, expanded)');
+        updateAtState('treegrid', 'sem', '<table> with hierarchical indentation | No native treegrid element');
+      } else if (id === 'windowsplitter') {
+        updateAtState('windowsplitter', 'apg', 'role="separator" | aria-valuenow="50%"');
+        updateAtState('windowsplitter', 'sem', 'CSS resize: horizontal | native browser dragging');
       }
     });
 
@@ -3344,6 +4415,382 @@ const categories = [
         semOutputBox.textContent = `Status: Calculation complete (#${outIdx++}). All criteria validated.`;
         updateAtState('alert', 'sem', '<output> | POLITE LIVE REGION ANNOUNCEMENT');
       }
+    });
+
+    // 6.14 Grid (Data Grid & Editable Cells)
+    const apgGridCells = Array.from(document.querySelectorAll('#apg-data-grid-demo .grid-body .grid-cell'));
+    const colsCount = 4;
+    apgGridCells.forEach((cell, idx) => {
+      cell.addEventListener('click', () => {
+        focusGridCell(idx);
+      });
+      cell.addEventListener('keydown', (e) => {
+        let targetIdx = idx;
+        if (e.key === 'ArrowRight') {
+          if ((idx + 1) % colsCount !== 0) targetIdx = idx + 1;
+        } else if (e.key === 'ArrowLeft') {
+          if (idx % colsCount !== 0) targetIdx = idx - 1;
+        } else if (e.key === 'ArrowDown') {
+          if (idx + colsCount < apgGridCells.length) targetIdx = idx + colsCount;
+        } else if (e.key === 'ArrowUp') {
+          if (idx - colsCount >= 0) targetIdx = idx - colsCount;
+        } else {
+          return;
+        }
+        e.preventDefault();
+        focusGridCell(targetIdx);
+      });
+      cell.addEventListener('input', () => {
+        const row = Math.floor(idx / colsCount) + 1;
+        const col = (idx % colsCount) + 1;
+        updateAtState('grid', 'apg', `role="grid" | cell edited: Row ${row}, Col ${col} = "${cell.textContent?.trim()}"`);
+      });
+    });
+
+    function focusGridCell(targetIdx) {
+      apgGridCells.forEach((c, i) => {
+        c.setAttribute('tabindex', i === targetIdx ? '0' : '-1');
+      });
+      const target = apgGridCells[targetIdx];
+      if (target) {
+        target.focus();
+        const row = Math.floor(targetIdx / colsCount) + 1;
+        const col = (targetIdx % colsCount) + 1;
+        updateAtState('grid', 'apg', `role="grid" | active: "${target.textContent?.trim()}" (Row ${row}, Col ${col})`);
+      }
+    }
+
+    document.querySelectorAll('.sem-cell-input').forEach((input) => {
+      input.addEventListener('input', (e) => {
+        updateAtState('grid', 'sem', `<table> <td> <input> value: "${e.target.value}"`);
+      });
+    });
+
+    // 6.15 Listbox
+    const apgListbox = document.getElementById('apg-listbox-widget');
+    const apgOptions = Array.from(document.querySelectorAll('#apg-listbox-widget .lb-option'));
+    let activeLbIdx = 0;
+
+    function selectListboxOption(targetIdx) {
+      activeLbIdx = targetIdx;
+      apgOptions.forEach((opt, i) => {
+        const isMatch = i === targetIdx;
+        opt.setAttribute('aria-selected', String(isMatch));
+        opt.classList.toggle('selected', isMatch);
+      });
+      const selectedName = apgOptions[targetIdx]?.querySelector('span:last-child')?.textContent || '';
+      updateAtState('listbox', 'apg', `role="listbox" | selected: "${selectedName}"`);
+    }
+
+    apgOptions.forEach((opt, idx) => {
+      opt.addEventListener('click', () => {
+        selectListboxOption(idx);
+        apgListbox?.focus();
+      });
+    });
+
+    apgListbox?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectListboxOption((activeLbIdx + 1) % apgOptions.length);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectListboxOption((activeLbIdx - 1 + apgOptions.length) % apgOptions.length);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        selectListboxOption(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        selectListboxOption(apgOptions.length - 1);
+      }
+    });
+
+    const semSelect = document.getElementById('sem-native-select');
+    semSelect?.addEventListener('change', () => {
+      const selectedText = semSelect.options[semSelect.selectedIndex]?.text || '';
+      updateAtState('listbox', 'sem', `<select size="4"> | selected: "${selectedText}"`);
+    });
+
+    // 6.16 Menubar
+    const menubarItems = Array.from(document.querySelectorAll('#apg-menubar-widget .apg-menubar-item'));
+    menubarItems.forEach((btn, idx) => {
+      btn.addEventListener('click', () => toggleMenubarDropdown(btn));
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          const next = (idx + 1) % menubarItems.length;
+          menubarItems[next]?.focus();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const prev = (idx - 1 + menubarItems.length) % menubarItems.length;
+          menubarItems[prev]?.focus();
+        } else if (e.key === 'ArrowDown' || e.key === 'Enter') {
+          e.preventDefault();
+          openMenubarDropdown(btn);
+        }
+      });
+    });
+
+    function toggleMenubarDropdown(btn) {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) closeAllMenubars();
+      else openMenubarDropdown(btn);
+    }
+
+    function openMenubarDropdown(btn) {
+      closeAllMenubars();
+      const wrap = btn.closest('.menubar-item-wrap');
+      const dropdown = wrap?.querySelector('.apg-menubar-dropdown');
+      if (dropdown) {
+        btn.setAttribute('aria-expanded', 'true');
+        dropdown.hidden = false;
+        const firstItem = dropdown.querySelector('[role="menuitem"]');
+        firstItem?.focus();
+        updateAtState('menubar', 'apg', `role="menubar" | ${btn.textContent?.trim()} open`);
+      }
+    }
+
+    function closeAllMenubars() {
+      document.querySelectorAll('#apg-menubar-widget .apg-menubar-item').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      document.querySelectorAll('#apg-menubar-widget .apg-menubar-dropdown').forEach((d) => d.hidden = true);
+    }
+
+    document.querySelectorAll('#apg-menubar-widget .apg-menubar-dropdown li').forEach((item) => {
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const wrap = item.closest('.menubar-item-wrap');
+          const btn = wrap?.querySelector('.apg-menubar-item');
+          closeAllMenubars();
+          btn?.focus();
+          updateAtState('menubar', 'apg', 'role="menubar" | dropdown closed');
+        }
+      });
+      item.addEventListener('click', () => {
+        closeAllMenubars();
+        updateAtState('menubar', 'apg', `role="menubar" | executed: "${item.textContent?.trim()}"`);
+      });
+    });
+
+    // 6.17 Alert Dialog
+    const btnOpenApgAdlg = document.getElementById('btn-open-apg-alertdialog');
+    const apgAdlgOverlay = document.getElementById('apg-alertdialog-overlay');
+    const apgAdlgCancel = document.getElementById('apg-adlg-cancel');
+    const apgAdlgDiscard = document.getElementById('apg-adlg-discard');
+
+    if (btnOpenApgAdlg && apgAdlgOverlay) {
+      btnOpenApgAdlg.addEventListener('click', () => {
+        apgAdlgOverlay.hidden = false;
+        apgAdlgCancel?.focus();
+        updateAtState('alertdialog', 'apg', 'role="alertdialog" OPEN | focus on Cancel (safe default)');
+      });
+      const closeAdlg = () => {
+        apgAdlgOverlay.hidden = true;
+        btnOpenApgAdlg.focus();
+        updateAtState('alertdialog', 'apg', 'role="alertdialog" closed | focus restored');
+      };
+      apgAdlgCancel?.addEventListener('click', closeAdlg);
+      apgAdlgDiscard?.addEventListener('click', closeAdlg);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !apgAdlgOverlay.hidden) closeAdlg();
+      });
+    }
+
+    const btnOpenSemAdlg = document.getElementById('btn-open-sem-alertdialog');
+    const semAdlg = document.getElementById('native-alertdialog-el');
+    if (btnOpenSemAdlg && semAdlg && typeof semAdlg.showModal === 'function') {
+      btnOpenSemAdlg.addEventListener('click', () => {
+        semAdlg.showModal();
+        updateAtState('alertdialog', 'sem', '<dialog>.showModal() | autofocus on Cancel');
+      });
+      semAdlg.addEventListener('close', () => {
+        updateAtState('alertdialog', 'sem', `<dialog> closed | action: "${semAdlg.returnValue}"`);
+      });
+    }
+
+    // 6.18 Feed
+    const feedWidget = document.getElementById('apg-feed-widget');
+    const btnFeedAdd = document.getElementById('btn-feed-add');
+    let feedCount = 2;
+
+    feedWidget?.addEventListener('keydown', (e) => {
+      const articles = Array.from(feedWidget.querySelectorAll('.feed-article'));
+      const activeIdx = articles.indexOf(document.activeElement);
+      if (activeIdx === -1) return;
+
+      if (e.key === 'PageDown' || e.key === 'ArrowDown') {
+        if (activeIdx + 1 < articles.length) {
+          e.preventDefault();
+          articles.forEach((a, i) => a.setAttribute('tabindex', i === activeIdx + 1 ? '0' : '-1'));
+          articles[activeIdx + 1]?.focus();
+          updateAtState('feed', 'apg', `role="feed" | focused article ${activeIdx + 2} of ${articles.length}`);
+        }
+      } else if (e.key === 'PageUp' || e.key === 'ArrowUp') {
+        if (activeIdx - 1 >= 0) {
+          e.preventDefault();
+          articles.forEach((a, i) => a.setAttribute('tabindex', i === activeIdx - 1 ? '0' : '-1'));
+          articles[activeIdx - 1]?.focus();
+          updateAtState('feed', 'apg', `role="feed" | focused article ${activeIdx} of ${articles.length}`);
+        }
+      }
+    });
+
+    btnFeedAdd?.addEventListener('click', () => {
+      feedCount++;
+      const newArticle = document.createElement('article');
+      newArticle.setAttribute('role', 'article');
+      newArticle.setAttribute('tabindex', '-1');
+      newArticle.setAttribute('aria-posinset', String(feedCount));
+      newArticle.setAttribute('aria-setsize', String(feedCount));
+      newArticle.className = 'feed-article';
+      newArticle.innerHTML = `<h4>W3C Advisory Board Update #${feedCount}</h4><time datetime="${new Date().toISOString().slice(0,10)}">Just now</time><p>Dynamic conformance guidelines updated with live testing feed.</p>`;
+      feedWidget?.appendChild(newArticle);
+      updateAtState('feed', 'apg', `role="feed" | article #${feedCount} appended dynamically`);
+    });
+
+    // 6.19 Slider Multi-Thumb
+    const msThumbMin = document.getElementById('apg-ms-thumb-min');
+    const msThumbMax = document.getElementById('apg-ms-thumb-max');
+    const msMinVal = document.getElementById('apg-ms-min-val');
+    const msMaxVal = document.getElementById('apg-ms-max-val');
+    const msFill = document.getElementById('apg-multi-fill');
+
+    let minVal = 25;
+    let maxVal = 75;
+
+    function renderMultiSlider() {
+      if (msThumbMin) {
+        msThumbMin.style.left = `${minVal}%`;
+        msThumbMin.setAttribute('aria-valuenow', String(minVal));
+        msThumbMin.setAttribute('aria-valuemax', String(maxVal));
+      }
+      if (msThumbMax) {
+        msThumbMax.style.left = `${maxVal}%`;
+        msThumbMax.setAttribute('aria-valuenow', String(maxVal));
+        msThumbMax.setAttribute('aria-valuemin', String(minVal));
+      }
+      if (msMinVal) msMinVal.textContent = String(minVal);
+      if (msMaxVal) msMaxVal.textContent = String(maxVal);
+      if (msFill) {
+        msFill.style.left = `${minVal}%`;
+        msFill.style.width = `${maxVal - minVal}%`;
+      }
+      updateAtState('slider-multithumb', 'apg', `role="slider" multi-thumb: $${minVal} - $${maxVal}`);
+    }
+
+    msThumbMin?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') minVal = Math.min(maxVal - 5, minVal + 5);
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') minVal = Math.max(0, minVal - 5);
+      else if (e.key === 'Home') minVal = 0;
+      else if (e.key === 'End') minVal = maxVal - 5;
+      else return;
+      e.preventDefault();
+      renderMultiSlider();
+    });
+
+    msThumbMax?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') maxVal = Math.min(100, maxVal + 5);
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') maxVal = Math.max(minVal + 5, maxVal - 5);
+      else if (e.key === 'Home') maxVal = minVal + 5;
+      else if (e.key === 'End') maxVal = 100;
+      else return;
+      e.preventDefault();
+      renderMultiSlider();
+    });
+
+    const semRangeMin = document.getElementById('sem-range-min');
+    const semRangeMax = document.getElementById('sem-range-max');
+    const semRangeMinOut = document.getElementById('sem-range-min-out');
+    const semRangeMaxOut = document.getElementById('sem-range-max-out');
+
+    semRangeMin?.addEventListener('input', (e) => {
+      if (semRangeMinOut) semRangeMinOut.textContent = `$${e.target.value}`;
+      updateAtState('slider-multithumb', 'sem', `<input type="range"> min: $${e.target.value}, max: $${semRangeMax?.value || 75}`);
+    });
+    semRangeMax?.addEventListener('input', (e) => {
+      if (semRangeMaxOut) semRangeMaxOut.textContent = `$${e.target.value}`;
+      updateAtState('slider-multithumb', 'sem', `<input type="range"> min: $${semRangeMin?.value || 25}, max: $${e.target.value}`);
+    });
+
+    // 6.20 Treegrid
+    const tgWidget = document.getElementById('apg-treegrid-widget');
+    const tgRows = Array.from(document.querySelectorAll('#apg-treegrid-widget .tg-row'));
+    const tgToggleSrc = document.querySelector('.tg-branch .tg-toggle');
+    const tgChildRows = document.querySelectorAll('.tg-child-src');
+
+    function toggleTreegridBranch() {
+      const branch = document.querySelector('.tg-branch');
+      const isExpanded = branch?.getAttribute('aria-expanded') === 'true';
+      branch?.setAttribute('aria-expanded', String(!isExpanded));
+      if (tgToggleSrc) tgToggleSrc.textContent = isExpanded ? '▸' : '▾';
+      tgChildRows.forEach((r) => r.hidden = isExpanded);
+      updateAtState('treegrid', 'apg', `role="treegrid" | row "src/" ${!isExpanded ? 'expanded' : 'collapsed'}`);
+    }
+
+    tgToggleSrc?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleTreegridBranch();
+    });
+
+    tgRows.forEach((row, idx) => {
+      row.addEventListener('click', () => {
+        focusTgRow(idx);
+      });
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          const visibleRows = tgRows.filter((r) => !r.hidden);
+          const curr = visibleRows.indexOf(row);
+          if (curr + 1 < visibleRows.length) focusTgRow(tgRows.indexOf(visibleRows[curr + 1]));
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          const visibleRows = tgRows.filter((r) => !r.hidden);
+          const curr = visibleRows.indexOf(row);
+          if (curr - 1 >= 0) focusTgRow(tgRows.indexOf(visibleRows[curr - 1]));
+        } else if (e.key === 'ArrowRight') {
+          if (row.classList.contains('tg-branch') && row.getAttribute('aria-expanded') === 'false') {
+            e.preventDefault();
+            toggleTreegridBranch();
+          }
+        } else if (e.key === 'ArrowLeft') {
+          if (row.classList.contains('tg-branch') && row.getAttribute('aria-expanded') === 'true') {
+            e.preventDefault();
+            toggleTreegridBranch();
+          }
+        }
+      });
+    });
+
+    function focusTgRow(targetIdx) {
+      tgRows.forEach((r, i) => r.setAttribute('tabindex', i === targetIdx ? '0' : '-1'));
+      const target = tgRows[targetIdx];
+      if (target) {
+        target.focus();
+        const name = target.querySelector('.tg-cell-name')?.textContent?.trim() || '';
+        updateAtState('treegrid', 'apg', `role="treegrid" | row: "${name}"`);
+      }
+    }
+
+    // 6.21 Window Splitter
+    const splitHandle = document.getElementById('apg-splitter-handle');
+    const paneLeft = document.getElementById('apg-pane-left');
+    const paneRight = document.getElementById('apg-pane-right');
+    let splitPct = 50;
+
+    function renderSplitter() {
+      if (paneLeft) paneLeft.style.width = `${splitPct}%`;
+      if (paneRight) paneRight.style.width = `${100 - splitPct}%`;
+      if (splitHandle) splitHandle.setAttribute('aria-valuenow', String(splitPct));
+      updateAtState('windowsplitter', 'apg', `role="separator" | width: ${splitPct}% / ${100 - splitPct}%`);
+    }
+
+    splitHandle?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') splitPct = Math.max(15, splitPct - 5);
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') splitPct = Math.min(85, splitPct + 5);
+      else if (e.key === 'Home') splitPct = 15;
+      else if (e.key === 'End') splitPct = 85;
+      else return;
+      e.preventDefault();
+      renderSplitter();
     });
   });
 </script>
