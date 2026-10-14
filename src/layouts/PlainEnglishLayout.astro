@@ -2,7 +2,7 @@
 import { readFileSync as __readPublished } from "node:fs";
 interface Props {
   title: string;
-  activeTab?: "home" | "wcag3" | "wcag22" | "comparison" | "conformance" | "calculator" | "removals" | "stricter" | "discussions" | "related" | "contrast" | "w3c";
+  activeTab?: "home" | "wcag3" | "wcag22" | "comparison" | "conformance" | "calculator" | "removals" | "stricter" | "discussions" | "related" | "contrast" | "w3c" | "patterns";
 }
 
 const { title, activeTab = "wcag3" } = Astro.props;
@@ -1458,6 +1458,11 @@ const publishedLabel = published
             <span class="tab-text">Related Standards</span>
             <span class="status-pill status-draft">Weekly</span>
           </a>
+          <a href={link("/plain-english/patterns/")} class={`nav-tab ${activeTab === "patterns" ? "active" : ""}`}>
+            <span class="tab-icon" aria-hidden="true">🧩</span>
+            <span class="tab-text">APG vs Semantic</span>
+            <span class="status-pill status-standard">Demos</span>
+          </a>
         </nav>
       </div>
 
@@ -1496,6 +1501,7 @@ const publishedLabel = published
               <li><a href={link("/plain-english/stricter/")}>🚫 Passes 2.2, Fails 3: Practices the WCAG 3 Draft Would Rule Out</a></li>
               <li><a href={link("/plain-english/discussions/")}>💬 W3C Working Group Discussions</a></li>
               <li><a href={link("/plain-english/related/")}>🧭 Related Standards: ARIA, WCAG2Mobile, COGA and ACT</a></li>
+              <li><a href={link("/plain-english/patterns/")}>🧩 APG Patterns vs Semantic HTML (Interactive Demos)</a></li>
               <li><a href={link("/plain-english/contrast-lab/")}>🌗 Contrast Lab: WCAG 2 Ratio and APCA</a></li>
               <li><a href={link("/guidelines/")}>📜 W3C Normative Guidelines</a></li>
               <li><a href={link("/informative/")}>📚 W3C Informative Documentation</a></li>
