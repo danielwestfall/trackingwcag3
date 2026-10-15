@@ -7,6 +7,7 @@
     "audit:contrast": "node scripts/audit-contrast.mjs",
     "audit:focus": "node scripts/test-focus.mjs",
     "audit:overflow": "node scripts/audit-overflow-scale.mjs",
+    "export:spreadsheet": "python scripts/generate_wcag_spreadsheet.py",
     "build": "node scripts/build-evolution-matrix.mjs && node scripts/build-search-index.mjs && astro build --force",
     "build:evolution-matrix": "node scripts/build-evolution-matrix.mjs",
     "build:search-index": "node scripts/build-search-index.mjs",
