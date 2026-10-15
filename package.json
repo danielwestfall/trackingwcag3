@@ -5,6 +5,7 @@
   "scripts": {
     "astro": "astro",
     "audit:contrast": "node scripts/audit-contrast.mjs",
+    "audit:focus": "node scripts/test-focus.mjs",
     "audit:overflow": "node scripts/audit-overflow-scale.mjs",
     "build": "node scripts/build-evolution-matrix.mjs && node scripts/build-search-index.mjs && astro build --force",
     "build:evolution-matrix": "node scripts/build-evolution-matrix.mjs",

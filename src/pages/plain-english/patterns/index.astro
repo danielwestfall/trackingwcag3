@@ -850,8 +850,8 @@ const categories = [
                         <h3>Confirm Deletion (Native)</h3>
                         <p>Rendered in browser Top Layer with native backdrop &amp; focus trap.</p>
                         <div class="modal-actions">
-                          <button value="delete" class="demo-btn btn-danger">Delete</button>
-                          <button value="cancel" class="demo-btn">Cancel (Esc)</button>
+                          <button value="delete" class="demo-btn btn-danger" id="sem-dlg-delete">Delete</button>
+                          <button value="cancel" class="demo-btn" id="sem-dlg-cancel">Cancel (Esc)</button>
                         </div>
                       </form>
                     </dialog>
@@ -995,14 +995,14 @@ const categories = [
 
                 {pattern.id === "menu-button" && (
                   <div class="semantic-menubtn-demo">
-                    <button type="button" popovertarget="sem-popover-menu" class="demo-btn btn-success">
+                    <button type="button" popovertarget="sem-popover-menu" class="demo-btn btn-success" id="btn-sem-popover-menu">
                       Popover API Menu ▼
                     </button>
                     <div id="sem-popover-menu" popover class="sem-popover-box">
                       <nav aria-label="Document Actions" class="popover-nav">
-                        <a href="#pattern-menu-button">📄 Export Audit (PDF)</a>
-                        <a href="#pattern-menu-button">📋 Copy JSON Results</a>
-                        <button type="button" class="btn-danger-link">🗑️ Clear Findings</button>
+                        <a href="#pattern-menu-button" id="sem-popover-export">📄 Export Audit (PDF)</a>
+                        <a href="#pattern-menu-button" id="sem-popover-copy">📋 Copy JSON Results</a>
+                        <button type="button" class="btn-danger-link" id="sem-popover-clear">🗑️ Clear Findings</button>
                       </nav>
                     </div>
                     <span class="slider-hint">Native Top Layer, light-dismiss &amp; Esc key support</span>
@@ -1094,7 +1094,7 @@ const categories = [
 
                 {pattern.id === "carousel" && (
                   <div class="semantic-carousel-demo">
-                    <div class="css-scroll-snap-carousel" tabindex="0" aria-label="Featured slides">
+                    <div class="css-scroll-snap-carousel" id="sem-carousel-container" tabindex="0" aria-label="Featured slides">
                       <div class="snap-slide">Slide 1: WCAG 3 Draft</div>
                       <div class="snap-slide">Slide 2: Conformance Tiers</div>
                       <div class="snap-slide">Slide 3: Contrast Lab</div>
@@ -1206,8 +1206,8 @@ const categories = [
                         </div>
                         <p>You have 3 unsaved WCAG rule overrides. Leaving will discard them.</p>
                         <div class="modal-actions">
-                          <button type="submit" value="cancel" autofocus class="demo-btn">Cancel (Autofocus)</button>
-                          <button type="submit" value="discard" class="demo-btn btn-danger">Discard</button>
+                          <button type="submit" value="cancel" autofocus class="demo-btn" id="sem-adlg-cancel">Cancel (Autofocus)</button>
+                          <button type="submit" value="discard" class="demo-btn btn-danger" id="sem-adlg-discard">Discard</button>
                         </div>
                       </form>
                     </dialog>
@@ -1802,6 +1802,11 @@ const categories = [
     color: var(--text-primary);
     border-color: var(--border-default);
   }
+  .filter-pill:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35);
+  }
   .filter-pill.active {
     background: var(--accent-blue);
     color: var(--on-accent);
@@ -2026,6 +2031,11 @@ const categories = [
   }
   .sandbox-toggle-btn:hover {
     border-color: var(--accent-blue);
+  }
+  .sandbox-toggle-btn:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35);
   }
 
   /* Playground Split View */
@@ -2291,6 +2301,31 @@ const categories = [
     background: var(--surface-card-hover);
     border-color: var(--accent-blue);
   }
+  .demo-btn:focus-visible,
+  .demo-btn-sm:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+  }
+  .demo-btn.btn-primary:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.6);
+  }
+  .demo-semantic .demo-btn:focus-visible,
+  .demo-semantic .demo-btn-sm:focus-visible,
+  .demo-semantic .demo-btn.btn-primary:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.45);
+  }
+  .demo-apg .demo-btn:focus-visible,
+  .demo-apg .demo-btn-sm:focus-visible,
+  .demo-apg .demo-btn.btn-primary:focus-visible {
+    outline: 3px solid #a855f7;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.45);
+  }
   .demo-btn.btn-primary {
     background: var(--accent-blue);
     color: var(--on-accent);
@@ -2386,6 +2421,17 @@ const categories = [
     cursor: pointer;
     color: var(--text-primary);
     list-style: disclosure-closed;
+    transition: var(--transition-fast);
+  }
+  .sem-details summary:hover {
+    background: rgba(52, 211, 153, 0.08);
+  }
+  .sem-details summary:focus-visible,
+  .sem-tree-details summary:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: -3px;
+    border-radius: var(--radius-sm);
+    background: rgba(52, 211, 153, 0.15);
   }
   .sem-details[open] summary {
     list-style: disclosure-open;
@@ -2497,8 +2543,12 @@ const categories = [
     border-radius: 999px;
     position: relative;
     cursor: pointer;
-    outline: none;
     transition: 0.2s;
+  }
+  .sem-switch-input:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
   }
   .sem-switch-input::before {
     content: '';
@@ -2548,6 +2598,11 @@ const categories = [
     width: 100%;
     margin: 16px 0;
     accent-color: #047857;
+  }
+  .sem-range-input:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
   }
 
   /* Meter Demo */
@@ -2627,6 +2682,13 @@ const categories = [
     font-size: 1rem;
     margin-top: 6px;
     width: 80px;
+    transition: var(--transition-fast);
+  }
+  .sem-number-input:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 1px;
+    border-color: #34d399;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
   }
 
   /* Radio Group Demo */
@@ -2690,6 +2752,12 @@ const categories = [
     font-size: 0.88rem;
     cursor: pointer;
   }
+  .sem-fieldset input[type="radio"]:focus-visible,
+  .sem-check-label input[type="checkbox"]:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 
   /* Tri-State Checkbox Demo */
   .apg-check-item {
@@ -2744,6 +2812,22 @@ const categories = [
     padding: 8px 12px;
     border-radius: var(--radius-sm);
     font-size: 0.88rem;
+  }
+  .semantic-combobox-demo input {
+    width: 100%;
+    margin-top: 6px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+  }
+  .semantic-combobox-demo input:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 1px;
+    border-color: #34d399;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
   }
   .apg-cb-list {
     position: absolute;
@@ -2812,6 +2896,14 @@ const categories = [
   .popover-nav a:hover,
   .btn-danger-link:hover {
     background: rgba(52, 211, 153, 0.15);
+  }
+  .popover-nav a:focus,
+  .popover-nav a:focus-visible,
+  .btn-danger-link:focus,
+  .btn-danger-link:focus-visible {
+    background: rgba(52, 211, 153, 0.25);
+    outline: 2px solid #34d399;
+    outline-offset: -2px;
   }
   .btn-danger-link { color: #f87171; }
 
@@ -2936,11 +3028,41 @@ const categories = [
   .sem-breadcrumbs a {
     color: var(--accent-blue);
     text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+  .sem-breadcrumbs a {
+    color: #34d399;
+  }
+  .sem-breadcrumbs a:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 2px;
+    background: rgba(52, 211, 153, 0.15);
+  }
+  .apg-breadcrumbs a:focus-visible {
+    outline: 3px solid #a855f7;
+    outline-offset: 2px;
+    background: rgba(168, 85, 247, 0.15);
   }
   .apg-breadcrumbs a[aria-current="page"],
   .sem-breadcrumbs span[aria-current="page"] {
     color: var(--text-primary);
     font-weight: 700;
+  }
+
+  /* Link Demo */
+  .sem-native-link {
+    color: #34d399;
+    font-weight: 700;
+    text-decoration: underline;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .sem-native-link:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 3px;
+    background: rgba(52, 211, 153, 0.15);
   }
 
   /* Alert Live Region Demo */
@@ -2971,6 +3093,13 @@ const categories = [
     scroll-snap-type: x mandatory;
     gap: 10px;
     padding: 10px 0;
+    border-radius: var(--radius-sm);
+  }
+  .css-scroll-snap-carousel:focus,
+  .css-scroll-snap-carousel:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
   }
   .snap-slide {
     flex: 0 0 85%;
@@ -3003,10 +3132,15 @@ const categories = [
     border-radius: 4px;
     cursor: pointer;
   }
-  .apg-toolbar-widget button:focus,
-  .sem-toolbar-fieldset button:focus {
+  .apg-toolbar-widget button:focus-visible {
     background: rgba(168, 85, 247, 0.25);
-    outline: 2px solid var(--accent-blue);
+    outline: 2px solid #a855f7;
+    outline-offset: 1px;
+  }
+  .sem-toolbar-fieldset button:focus-visible {
+    background: rgba(52, 211, 153, 0.25);
+    outline: 2px solid #34d399;
+    outline-offset: 1px;
   }
 
   /* Grid Demo */
@@ -3081,6 +3215,13 @@ const categories = [
     border: 1px solid var(--border-subtle);
     color: var(--text-primary);
     border-radius: 4px;
+    transition: var(--transition-fast);
+  }
+  .sem-cell-input:focus-visible {
+    outline: 2px solid #34d399;
+    outline-offset: -1px;
+    border-color: #34d399;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.35);
   }
 
   /* Listbox Demo */
@@ -3132,6 +3273,13 @@ const categories = [
     border: 1px solid var(--border-default);
     border-radius: var(--radius-sm);
     color: var(--text-primary);
+    transition: var(--transition-fast);
+  }
+  .sem-native-listbox:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 1px;
+    border-color: #34d399;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
   }
 
   /* Menubar Demo */
@@ -3207,6 +3355,13 @@ const categories = [
     font-weight: 600;
     padding: 4px 8px;
     border-radius: 4px;
+    transition: var(--transition-fast);
+  }
+  .sem-nav-link:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 2px;
+    background: rgba(52, 211, 153, 0.2);
+    color: var(--text-primary);
   }
   .sem-nav-link[aria-current="page"] {
     color: var(--text-primary);
@@ -3317,9 +3472,10 @@ const categories = [
     cursor: pointer;
     outline: none;
   }
-  .multi-thumb:focus {
-    outline: 2px solid var(--accent-blue);
-    outline-offset: 2px;
+  .multi-thumb:focus-visible {
+    outline: 3px solid #a855f7;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.4);
   }
   .sem-multirange-fieldset {
     border: 1px solid var(--border-default);
@@ -3344,6 +3500,11 @@ const categories = [
   .sem-range-row input[type="range"] {
     flex: 1;
     accent-color: var(--accent-emerald);
+  }
+  .sem-range-row input[type="range"]:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
   }
 
   /* Treegrid Demo */
@@ -3439,10 +3600,11 @@ const categories = [
     border-right: 1px solid var(--border-default);
     user-select: none;
   }
-  .apg-splitter-handle:focus {
-    background: var(--accent-blue);
-    color: var(--on-accent);
-    outline: 2px solid var(--accent-blue);
+  .apg-splitter-handle:focus-visible {
+    background: #a855f7;
+    color: #fff;
+    outline: 3px solid #a855f7;
+    outline-offset: 2px;
   }
   .splitter-grip {
     font-size: 0.75rem;
@@ -3465,6 +3627,10 @@ const categories = [
     border-radius: var(--radius-sm);
     font-size: 0.8rem;
   }
+  .sem-resize-box:focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 2px;
+  }
 
   /* Inspector Tabs Section */
   .inspector-section {
@@ -3484,6 +3650,11 @@ const categories = [
   }
   .inspector-summary:hover {
     color: var(--text-primary);
+  }
+  .inspector-summary:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
   }
   .summary-arrow {
     font-size: 0.7rem;
@@ -3511,6 +3682,12 @@ const categories = [
     font-weight: 600;
     padding: 8px 14px;
     cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .insp-tab:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: -2px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   }
   .insp-tab.active {
     color: var(--accent-blue);
@@ -3577,9 +3754,15 @@ const categories = [
     padding: 3px 8px;
     border-radius: 4px;
     cursor: pointer;
+    transition: var(--transition-fast);
   }
   .copy-code-btn:hover {
     border-color: var(--accent-blue);
+  }
+  .copy-code-btn:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 1px;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.35);
   }
   .code-display {
     background: var(--code-surface);
@@ -3844,6 +4027,107 @@ const categories = [
   :root[data-theme="light"] .sem-nav-link[aria-current="page"] {
     color: #0f172a;
     background: rgba(14, 165, 233, 0.15);
+  }
+  :root[data-theme="light"] .sem-breadcrumbs a {
+    color: #047857;
+  }
+  :root[data-theme="light"] .sem-native-link {
+    color: #047857;
+  }
+
+  /* Focus States in Light Mode (WCAG 2.2 AA / AAA Focus Appearance) */
+  :root[data-theme="light"] .demo-btn:focus-visible,
+  :root[data-theme="light"] .demo-btn-sm:focus-visible {
+    outline-color: #0369a1;
+    box-shadow: 0 0 0 4px rgba(3, 105, 161, 0.25);
+  }
+  :root[data-theme="light"] .demo-semantic .demo-btn:focus-visible,
+  :root[data-theme="light"] .demo-semantic .demo-btn-sm:focus-visible,
+  :root[data-theme="light"] .demo-semantic .demo-btn.btn-primary:focus-visible {
+    outline-color: #047857;
+    box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.25);
+  }
+  :root[data-theme="light"] .demo-apg .demo-btn:focus-visible,
+  :root[data-theme="light"] .demo-apg .demo-btn-sm:focus-visible,
+  :root[data-theme="light"] .demo-apg .demo-btn.btn-primary:focus-visible {
+    outline-color: #6d28d9;
+    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.25);
+  }
+  :root[data-theme="light"] .sem-details summary:focus-visible,
+  :root[data-theme="light"] .sem-tree-details summary:focus-visible {
+    outline-color: #047857;
+    background: rgba(4, 120, 87, 0.12);
+  }
+  :root[data-theme="light"] .sem-switch-input:focus-visible {
+    outline-color: #047857;
+    box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.25);
+  }
+  :root[data-theme="light"] .sem-range-input:focus-visible,
+  :root[data-theme="light"] .sem-range-row input[type="range"]:focus-visible {
+    outline-color: #047857;
+  }
+  :root[data-theme="light"] .sem-number-input:focus-visible,
+  :root[data-theme="light"] .semantic-combobox-demo input:focus-visible,
+  :root[data-theme="light"] .sem-cell-input:focus-visible,
+  :root[data-theme="light"] .sem-native-listbox:focus-visible {
+    outline-color: #047857;
+    border-color: #047857;
+    box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.25);
+  }
+  :root[data-theme="light"] .sem-fieldset input[type="radio"]:focus-visible,
+  :root[data-theme="light"] .sem-check-label input[type="checkbox"]:focus-visible {
+    outline-color: #047857;
+  }
+  :root[data-theme="light"] .popover-nav a:focus,
+  :root[data-theme="light"] .popover-nav a:focus-visible,
+  :root[data-theme="light"] .btn-danger-link:focus,
+  :root[data-theme="light"] .btn-danger-link:focus-visible {
+    outline-color: #047857;
+    background: rgba(4, 120, 87, 0.15);
+  }
+  :root[data-theme="light"] .css-scroll-snap-carousel:focus,
+  :root[data-theme="light"] .css-scroll-snap-carousel:focus-visible {
+    outline-color: #047857;
+    box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.25);
+  }
+  :root[data-theme="light"] .sem-toolbar-fieldset button:focus-visible {
+    outline-color: #047857;
+    background: rgba(4, 120, 87, 0.15);
+  }
+  :root[data-theme="light"] .sem-nav-link:focus-visible {
+    outline-color: #047857;
+    background: rgba(4, 120, 87, 0.15);
+  }
+  :root[data-theme="light"] .sem-breadcrumbs a:focus-visible {
+    outline-color: #047857;
+  }
+  :root[data-theme="light"] .sem-native-link:focus-visible {
+    outline-color: #047857;
+    background: rgba(4, 120, 87, 0.12);
+  }
+  :root[data-theme="light"] .sem-resize-box:focus-visible {
+    outline-color: #047857;
+  }
+  :root[data-theme="light"] .multi-thumb:focus-visible,
+  :root[data-theme="light"] .apg-splitter-handle:focus-visible {
+    outline-color: #6d28d9;
+    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.25);
+  }
+
+  /* Scoped Catch-All Focus Indicators for Total WCAG 2.2 Compliance */
+  .demo-semantic :is(button, input, select, textarea, a, summary, [tabindex="0"]):focus-visible {
+    outline: 3px solid #34d399;
+    outline-offset: 2px;
+  }
+  .demo-apg :is(button, input, select, textarea, a, summary, [tabindex="0"]):focus-visible {
+    outline: 3px solid #a855f7;
+    outline-offset: 2px;
+  }
+  :root[data-theme="light"] .demo-semantic :is(button, input, select, textarea, a, summary, [tabindex="0"]):focus-visible {
+    outline-color: #047857;
+  }
+  :root[data-theme="light"] .demo-apg :is(button, input, select, textarea, a, summary, [tabindex="0"]):focus-visible {
+    outline-color: #6d28d9;
   }
 </style>
 
