@@ -555,12 +555,18 @@
       ],
       "user": "KevinP-NZ",
       "created": "2024-05-16T23:34:48Z",
-      "updated": "2026-04-16T03:13:24Z",
+      "updated": "2026-10-13T14:18:42Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "Where, for example, a video is an alternate presentation of information found elsewhere and contasins no additional information it should be marked as such with a clear indication of the location of the base content.\r\n\r\nthis would ensure that say, a screenreader user, could just ignore the content in the knowledge that they have all they need in the text (or at least as much as anyone else). It's kind of the inverse of a transcript being the alternative to the video where the video is an audio visual presentation of the page text (or text on another page perhaps)",
       "url": "https://github.com/w3c/wcag3/issues/73",
-      "comments": []
+      "comments": [
+        {
+          "user": "mylonelycomputer",
+          "created": "2026-10-13T12:27:37Z",
+          "body": "The Image & Media Alternatives Subgroup has moved \"Transcripts findable\" provision to under \"Dialogue transcript available (prerecorded)\" and this issue is resolved."
+        }
+      ]
     },
     "74": {
       "number": 74,
@@ -7383,12 +7389,18 @@
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-01-14T21:03:25Z",
-      "updated": "2026-03-27T23:15:05Z",
+      "updated": "2026-10-13T12:30:33Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "This criterion contradicts \"transcripts available\", which states that transcripts are not needed when there is no spoken content. This criterion requires that sounds needed to identify the media are identified in transcripts, which may not include spoken content.",
       "url": "https://github.com/w3c/wcag3/issues/520",
-      "comments": []
+      "comments": [
+        {
+          "user": "mylonelycomputer",
+          "created": "2026-10-13T12:30:33Z",
+          "body": "The Image & Media Alternative Subgroup are considering changing \"Dialogue transcripts\" to \"Spoken language transcripts\", and split \"sounds identified\" into \"transcripts\" and \"captions\"."
+        }
+      ]
     },
     "521": {
       "number": 521,
@@ -7636,7 +7648,7 @@
     "535": {
       "number": 535,
       "title": "Media Alternative - What is a meaningful sound?",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: Image and media alternatives",
         "Other: Definitions & Terminology",
@@ -7645,8 +7657,8 @@
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-01-15T22:34:30Z",
-      "updated": "2026-10-03T11:31:56Z",
-      "closed": null,
+      "updated": "2026-10-13T16:25:03Z",
+      "closed": "2026-10-13T16:25:03Z",
       "commentCount": 6,
       "body": "What is a \"meaningful sound\"? We need a list, ie alarms, music, dog barking, applause.",
       "url": "https://github.com/w3c/wcag3/issues/535",
@@ -7679,7 +7691,7 @@
         {
           "user": "lauracarlson",
           "created": "2026-10-02T20:36:39Z",
-          "body": "### Image and Media Subgroup Draft Response\n\nThanks for raising this. Since this issue was opened, we've updated the transcript requirements into a [layered structure](https://docs.google.com/document/d/183pFoN0j12CpqyGYEI5yYWtsxXbMSBmkR-jBhEs03FM/edit?tab=t.49h767vspo9t) that separates collecting audio and visual details from writing the full descriptive transcript.\n\nDeciding whether a sound should be included is now handled by the dedicated audio requirement, Layer 2a Sounds Identified , rather than by the Descriptive Transcript provision itself.\n\nInstead of trying to maintain an exhaustive list of \"meaningful sounds,\" the current approach evaluates whether a sound conveys information that is needed to understand the content. This can include alarms, off-screen auditory cues, applause, laughter, environmental sounds, or background music when omitting them would change the information conveyed by the media.\n\nThis focuses on whether a sound helps someone understand what is happening, rather than relying on a fixed list that may miss important examples or become incomplete over time.\n\nThe Layer 3 [Descriptive Transcript](https://docs.google.com/document/d/1YLh5wiIxoxAz6tn7-SXrTpsk-Xw2iQ0N2NWu7Z-K4Oo/edit?pli=1&tab=t.0#heading=h.x1cofy92ijz) provision then incorporates the auditory information identified through the applicable Layer 2a provisions, together with the visual information identified through the applicable Layer 2b provisions, into a single continuous chronological narrative stream.\n\nIn short, determining which sounds should be represented happens at the audio-equivalence layer, while the Descriptive Transcript provision aggregates the information identified by the prerequisite audio and visual transcript provisions into a unified narrative.\n\nYou can read more about how these provisions relate to one another in the [Transcript Provisions Architecture document](https://docs.google.com/document/d/183pFoN0j12CpqyGYEI5yYWtsxXbMSBmkR-jBhEs03FM/edit?tab=t.49h767vspo9t)."
+          "body": "### Image and Media Subgroup Response, October 13, 2026\n\nThanks for raising this. Since this issue was opened, we've updated the transcript requirements into a [layered structure](https://docs.google.com/document/d/183pFoN0j12CpqyGYEI5yYWtsxXbMSBmkR-jBhEs03FM/edit?tab=t.49h767vspo9t) that separates collecting audio and visual details from writing the full descriptive transcript.\n\nDeciding whether a sound should be included is now handled by the dedicated audio requirement, Layer 2a Sounds Identified , rather than by the Descriptive Transcript provision itself.\n\nInstead of trying to maintain an exhaustive list of \"meaningful sounds,\" the current approach evaluates whether a sound conveys information that is needed to understand the content. This can include alarms, off-screen auditory cues, applause, laughter, environmental sounds, or background music when omitting them would change the information conveyed by the media.\n\nThis focuses on whether a sound helps someone understand what is happening, rather than relying on a fixed list that may miss important examples or become incomplete over time.\n\nThe Layer 3 [Descriptive Transcript](https://docs.google.com/document/d/1YLh5wiIxoxAz6tn7-SXrTpsk-Xw2iQ0N2NWu7Z-K4Oo/edit?pli=1&tab=t.0#heading=h.x1cofy92ijz) provision then incorporates the auditory information identified through the applicable Layer 2a provisions, together with the visual information identified through the applicable Layer 2b provisions, into a single continuous chronological narrative stream.\n\nIn short, determining which sounds should be represented happens at the audio-equivalence layer, while the Descriptive Transcript provision aggregates the information identified by the prerequisite audio and visual transcript provisions into a unified narrative.\n\nYou can read more about how these provisions relate to one another in the [Transcript Provisions Architecture document](https://docs.google.com/document/d/183pFoN0j12CpqyGYEI5yYWtsxXbMSBmkR-jBhEs03FM/edit?tab=t.49h767vspo9t)."
         }
       ]
     },
@@ -8371,7 +8383,7 @@
     "611": {
       "number": 611,
       "title": "2.1.2 Media Alternatives - Test case (and definitions)",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: Image and media alternatives",
         "P - Transcripts equivalent (prerecorded)",
@@ -8381,8 +8393,8 @@
       ],
       "user": "JasonAment",
       "created": "2026-03-05T17:59:58Z",
-      "updated": "2026-10-03T11:25:36Z",
-      "closed": null,
+      "updated": "2026-10-13T14:25:24Z",
+      "closed": "2026-10-13T14:25:24Z",
       "commentCount": 2,
       "body": "The document does not define what formats are usable for each medium. The definition for [media alternatives](https://www.w3.org/TR/wcag-3.0/#dfn-media-alternative) does not provide meaningful additional information about acceptable formats either.  The test should be broken out into separate tests for audio, video, and audio-video content. Each of these requires a different solution and as it is stated, it is not clear from WCAG 3.0 in its entirity when a particular solution is appropriate. \n\nAbsurd, but passing example due to the ambiguity of the media alternatives definition:\n1. video only content, a closed caption with no information could be included. This would meet the requirement as defined. \n\nRecommendation:\n\nExpand the test procedure (or remove it since  to be more clear about what medium is being tested and expected media alternative outputs for each. The procedures are examples and would require refinement.\n\n\nProcedure\n\nFor each instance of audio-only content:\n\n1. Check that a correctly sequenced text alternative is available for that content.\n2. Check that the content of the media alternative is equivalent to the meaningful information in the media content.\n \nExpected results\n\n#1 and #2 are true.\n\nProcedure\n\nFor each instance of video-only content:\n\n1. Check that a correctly sequenced text alternative is available for that content; or\n2. Check that an audio description alternative is available.\n3. Check that the content of the media alternative is equivalent to the meaningful information in the media content.Expected results\n\n#1 and #2 are true.\n\nProcedure\n\nFor each instance of audio-video content:\n\n1. Check that correctly sequenced closed captions are available for that content; or\nCheck that a descriptive transcript is available for that content; or\nCheck that Audio-descriptions are included when required.\n2. Check that the content of the media alternative is equivalent to the meaningful information in the media content.Expected results\n#1 and #2 are true.",
       "url": "https://github.com/w3c/wcag3/issues/611",
@@ -8395,7 +8407,7 @@
         {
           "user": "lauracarlson",
           "created": "2026-10-02T21:04:33Z",
-          "body": "### Image and Media Subgroup Draft Response\n\nThanks for raising this issue.\n\nSince this issue was filed, the transcript work has evolved into a layered architecture that separates transcript availability, audio equivalence, visual equivalence, and descriptive transcripts into separate provisions.\n\nOne concern raised here was that it was not clear which type of alternative was expected for audio-only, video-only, and audiovisual content. The current architecture addresses that by evaluating those requirements separately rather than through a single \"media alternative\" requirement.\n\nFor example:\n\n- **Layer 1** checks that a transcript is available.\n- **Layer 2a** evaluates audio information, including dialogue, speakers, language changes, and sounds.\n- **Layer 2b** evaluates visual information and non-verbal cues.\n- **Layer 3 Descriptive Transcript** evaluates the integration of audio and visual information into a single chronological narrative.\n\nAs a result, individual transcript provisions are no longer expected to determine when captions, audio descriptions, transcripts, or descriptive transcripts are appropriate. Those responsibilities are handled by separate provisions based on the characteristics of the media.\n\nThe current **Audio Transcript Equivalent (Prerecorded)** draft has also been updated so that:\n\n- Audio-only and audiovisual content are evaluated through separate ACT rules.\n- Applicability is limited to media that has an available transcript.\n- Equivalence is determined by conformance to the applicable Layer 2a audio provisions.\n- The requirement focuses on accurate representation of the audio information rather than a broad \"media alternative\" concept.\n\nBecause of these changes, we believe much of the ambiguity identified in this issue has now been addressed by the updated transcript framework.\n\nFor reference:\n\n- [Transcript Provisions Architecture](https://docs.google.com/document/d/183pFoN0j12CpqyGYEI5yYWtsxXbMSBmkR-jBhEs03FM/edit?tab=t.49h767vspo9t)\n- [Audio Transcript Equivalent (Prerecorded)](https://docs.google.com/document/d/10Fk1km-yEcTsVAJ7VqRAfsqDb4cckMJX_zG6nc4tkoI/edit?tab=t.0)\n- [Descriptive Transcript](https://docs.google.com/document/d/1YLh5wiIxoxAz6tn7-SXrTpsk-Xw2iQ0N2NWu7Z-K4Oo/edit?tab=t.0#heading=h.x1cofy92ijz)"
+          "body": "### Image and Media Subgroup Response October 13, 2026\n\nThanks for raising this issue.\n\nSince this issue was filed, the transcript work has evolved into a layered architecture that separates transcript availability, audio equivalence, visual equivalence, and descriptive transcripts into separate provisions.\n\nOne concern raised here was that it was not clear which type of alternative was expected for audio-only, video-only, and audiovisual content. The current architecture addresses that by evaluating those requirements separately rather than through a single \"media alternative\" requirement.\n\nFor example:\n\n- **Layer 1** checks that a transcript is available.\n- **Layer 2a** evaluates audio information, including dialogue, speakers, language changes, and sounds.\n- **Layer 2b** evaluates visual information and non-verbal cues.\n- **Layer 3 Descriptive Transcript** evaluates the integration of audio and visual information into a single chronological narrative.\n\nAs a result, individual transcript provisions are no longer expected to determine when captions, audio descriptions, transcripts, or descriptive transcripts are appropriate. Those responsibilities are handled by separate provisions based on the characteristics of the media.\n\nThe current **Audio Transcript Equivalent (Prerecorded)** draft has also been updated so that:\n\n- Audio-only and audiovisual content are evaluated through separate ACT rules.\n- Applicability is limited to media that has an available transcript.\n- Equivalence is determined by conformance to the applicable Layer 2a audio provisions.\n- The requirement focuses on accurate representation of the audio information rather than a broad \"media alternative\" concept.\n\nBecause of these changes, we believe much of the ambiguity identified in this issue has now been addressed by the updated transcript framework.\n\nFor reference:\n\n- [Transcript Provisions Architecture](https://docs.google.com/document/d/183pFoN0j12CpqyGYEI5yYWtsxXbMSBmkR-jBhEs03FM/edit?tab=t.49h767vspo9t)\n- [Audio Transcript Equivalent (Prerecorded)](https://docs.google.com/document/d/10Fk1km-yEcTsVAJ7VqRAfsqDb4cckMJX_zG6nc4tkoI/edit?tab=t.0)\n- [Descriptive Transcript](https://docs.google.com/document/d/1YLh5wiIxoxAz6tn7-SXrTpsk-Xw2iQ0N2NWu7Z-K4Oo/edit?tab=t.0#heading=h.x1cofy92ijz)"
         }
       ]
     },
@@ -10893,7 +10905,118 @@
       "body": "",
       "url": "https://github.com/w3c/wcag3/issues/905",
       "comments": []
+    },
+    "906": {
+      "number": 906,
+      "title": "Make the provision exception structure more flexible by removing the word \"when\"",
+      "state": "open",
+      "labels": [
+        "Other: Guideline Approach"
+      ],
+      "user": "mcking65",
+      "created": "2026-10-13T07:04:08Z",
+      "updated": "2026-10-13T07:04:08Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Provisions that have exceptions are forced to use the phrasing, \"except when\". For example:\n\n>Content or functionality does not rely on speech alone.\\\n>Except when speech input is essential to the functionality.\n\n\nWhile it is possible to force any provision to use \"except when\" phrasing, doing so has disadvantages:\n1. The temperal nature of the phrasing adds ambiguity that can make it vulnerable to intentional misinterpretation.\n2. In some cases, imposing the necessary grammar increases wording complexity.\n3. Avoiding complex language can require multiple provisions where one would be better.\n4. Attempts to simplify language can make it unintentionally permeable and thus more vulnerable to auditors who wish to justify exceptions that were not intended to be justifiable.\n\n## Less ambiguous exceptions\n\nThe \"except when\" phrasing creates ambiguity due to the temporality implied by the word \"when\":\n\n>Content or functionality does not rely on speech alone.\\\n>Except when speech input is essential to the functionality.\n\nOne interpretation is that at any moment in time when there is some functionality where speech input is essential, the exception applies. Given the above wording, at points in time when the exception applies, it applies to all content and functionality. In other words, if there is one function in the entire product where speech input is essential, than this provision does not apply to any functionality in the product.\n\nA simpler phrasing that is not vulnerable to such misunderstanding or potential abuse is:\n\n>Functionality does not rely on speech alone.\\\n>Except functionality for which speech input is essential.\n\n## More flexible exceptions\n\nConsider drafting a provision with the following logical structure:\n\n>Content is property-A and property-B.\n\nThen, suppose there is the need to make an exception for some elements of content. When individual elements are in state-X, they need property-A but not property-B. On the face of it, this seems straightforward:\n\n>Content is property-A and property-B.\n>Except when Elements are in state-X, then those elements do not need property-B.\n\nThis might sound good. However, if you analyze it closely, it does not say what we want it to say. For example, here is a valid interpretation:\n\n1. The content has an element in state-X so the exception applies.\n2. When the exception applies, the only requirement is that elements in state-X do not need property-B.\n3. I tested all elements in state-X and none of them have property-B.\n4. Conclusion: the content supports the provision.\n\nTo avoid that valid interpretation, we could write the provision as follows:\n\n>Content is property-A and property-B.\n>Except when content contains elements in state-X, then elements in state-X are property-A and all other elements are property-A and property-B.\n\nWhile logically tight, this wording is repetitive and complex. This would be especially the case if property-A and property-B are complex words or phrases.\n\nAnother option for keeping the “except when” structure is to have two provisions:\n\n>Provision 1: Content is property-A.\\\n>\\\n>Provision 2: Elements are property-B.\\\n>Except when elements are in state-X\n\nFor provisions where property-A and property-B are of the same nature, tested simultaneously, and closely related, multiple provisions is itself an unnecessary level of complexity an bloat.\n\nAlternatively, if the \"when\" is dropped, then exceptions can apply to any part of a provision. In this case, we could write:\n\n>Content is property-A and property-B.\\\n>Except elements in state-X for which only property-A is required.\n\nIn this case, there is a big difference between “except when elements” and “except elements”.\n\n## Tradeoffs\n\nIf more flexible exception language were allowed, one tradeoff is that readers need to understand both the provision and the exception before determining whether an exception applies. Forcing \"except when\" enables readers to ignore the entire provision as soon as they find a matching condition in the exception list. If exception language were able to create narrowly scoped holes in the provision, then readers need to understand both the provision and the exception conditions before they can toss a provision aside.\n\nRequiring readers to develop this modest level of understanding seems both reasonable and relatively low risk. The upsides are:\n1. More options for simplifying grammatical structure.\n2. Greater clarity, i.e., less ambiguity about the nature of exceptions.\n3. Increased potential for combining provisions. Each provision cut results in one less supporting page, which is a meaningful reduction in development and maintenance of understanding content, methods, and tests.",
+      "url": "https://github.com/w3c/wcag3/issues/906",
+      "comments": []
+    },
+    "908": {
+      "number": 908,
+      "title": "Change all occurrences of \"focus\"  to \"keyboard focus\"",
+      "state": "open",
+      "labels": [],
+      "user": "GreggVan",
+      "created": "2026-10-15T16:29:29Z",
+      "updated": "2026-10-15T17:14:08Z",
+      "closed": null,
+      "commentCount": 2,
+      "body": "In looking at the latest  draft   we currently call focus  “keyboard focus” in most places but not all - which is confusing.  \n\nChecking carefully - I can't find any instance in the requirements where focus means anything other than keyboard focus.\n\n- there is no \"pointer focus\" other than the pointer   and  \"hover effects\" are based on pointer position - not focus. \n- if you click with the pointer - it moves the keyboard focus to that point  (or it should)]\n- if you talk (speech) about something it would either be \"where I am pointing\" or  \"where I am looking\"   or  \"where the keyboard focus is\"\nit is never  \"where I am focusing \n\nAnd it is confusing to call the same thing (keyboard focus) by two different names in the same technical document.    \n\n>SUGGEST\n>we change all occurrences of \"focus\" to  \"keyboard focus\" \n\n",
+      "url": "https://github.com/w3c/wcag3/issues/908",
+      "comments": [
+        {
+          "user": "mraccess77",
+          "created": "2026-10-15T16:56:57Z",
+          "body": "Could programmatic focus and keyboard focus differ?\n"
+        },
+        {
+          "user": "hidde",
+          "created": "2026-10-15T17:13:48Z",
+          "body": "I think we should do the opposite and call it focus everywhere rather than keyboard focus.\n\nSure, most people move their system's focus using their keyboard, but a website could also move it via script (and many do), and on kiosks or tv interfaces people move focus with affordances that aren't keyboards, like switch-type controls and remote controls. "
+        }
+      ]
+    },
+    "909": {
+      "number": 909,
+      "title": "Move 2.3.3   Navigating content   down to the Keyboard Section of Inputs",
+      "state": "open",
+      "labels": [],
+      "user": "GreggVan",
+      "created": "2026-10-15T21:40:33Z",
+      "updated": "2026-10-15T21:40:33Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": " Move 2.3.3   Navigating content   down to 2.4.1   keyboard interface input   \nThis is where all the rest of they keyboard focus and navigation is.\n\nAs it is --  2.2.3 is a bit duplicative and separated from all the other keyboard nav stuff.\n\nNote that this is all about keyboard focus   not any other kind.   See issue 415\n",
+      "url": "https://github.com/w3c/wcag3/issues/909",
+      "comments": []
+    },
+    "910": {
+      "number": 910,
+      "title": "2.4.1 Keyboard -- Keyboard Operable - is missing key parts",
+      "state": "open",
+      "labels": [],
+      "user": "GreggVan",
+      "created": "2026-10-15T23:43:40Z",
+      "updated": "2026-10-15T23:47:52Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": " is missing two key parts\n\n1)  it should have  thins \n\n> \"*without requiring specific timings for individual keystrokes, *\" on the end of it \n\nso that it reads \n\n> All components on the page/view that can be operated by pointer, audio (voice or other), gesture, camera, or other means can be operated using keyboard interface only *without requiring specific timings for individual keystrokes, *.\n\n\n\n2)  it should have this exception\n\n> except where the underlying function requires keyboard input timing or timing that depends on the path of the user's movement and not just the endpoints.",
+      "url": "https://github.com/w3c/wcag3/issues/910",
+      "comments": []
+    },
+    "911": {
+      "number": 911,
+      "title": "No  WCAG3 provision  for audio that automatically plays for more than 5 sec",
+      "state": "open",
+      "labels": [],
+      "user": "GreggVan",
+      "created": "2026-10-16T00:07:16Z",
+      "updated": "2026-10-16T00:07:16Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "If a page plays audio automatically when you open it -- and it is more than 5 sec and yo can't stop it --- some people using a screen reader cannot access the page since they can't hear their screen reader clearly. \n\nneed a provision like \n\n\"1.4.2 Audio Control\nLevel A\"\t\"If any audio on a web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume level.\n\nNotes (informative):\n• Note: Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the web page (whether or not it is used to meet other success criteria) must meet this success criterion. See Conformance Requirement 5: Non-Interference.\"",
+      "url": "https://github.com/w3c/wcag3/issues/911",
+      "comments": []
+    },
+    "912": {
+      "number": 912,
+      "title": "Auto updating text is not mentioned in WCAG 3",
+      "state": "open",
+      "labels": [],
+      "user": "GreggVan",
+      "created": "2026-10-16T00:16:46Z",
+      "updated": "2026-10-16T00:16:46Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Auto updating text does not seem to be mentioned in WCAG 3 \n\nif it is included in \"visual motion\"  then we need to define \"Visual motion\" and make it clear that it is included.\n\nIf it is in Pseudo motion  -- then it needs to be added since that currently says \"static text\" ",
+      "url": "https://github.com/w3c/wcag3/issues/912",
+      "comments": []
+    },
+    "913": {
+      "number": 913,
+      "title": "There should be no exception on Flashing",
+      "state": "open",
+      "labels": [],
+      "user": "GreggVan",
+      "created": "2026-10-16T00:40:00Z",
+      "updated": "2026-10-16T00:40:00Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "it currently reads \n\n> No flashing over threshold\n> Developing\n> Core requirement\n> \n> Flashes are below the general flash and red flash thresholds.\n> \n> Applies when content includes flashes.\n> \n> Except when the flashing is essential.\n\nthat feels like == do not hit people over the head with glass bottle unless it is essential\n\nWhat requires flashing more than 3 times per seconds bright enough to cross the threshold?\n\nand when it does -- why would we want to declare the page as accessible?    \n\nit clearly is not accessible to anyone with a seizure disorder\n\nThose pages wil exist - but they should we warned about in advance and they should not be labeled as accessible.   \n\nyes?",
+      "url": "https://github.com/w3c/wcag3/issues/913",
+      "comments": []
     }
   },
-  "fetchedAt": "2026-10-12T21:32:03.662Z"
+  "fetchedAt": "2026-10-16T03:49:30.640Z"
 }

@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-10-12T21:32:03.662Z",
+  "generatedAt": "2026-10-16T03:49:30.640Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 493,
+    "issuesTotal": 500,
     "issuesWithProvisionLabel": 246,
     "provisionsWithDiscussion": 158,
-    "generalIssues": 247,
+    "generalIssues": 254,
     "summarized": 36,
-    "staleSummaries": 6,
+    "staleSummaries": 5,
     "awaitingSummary": 122
   },
   "provisions": {
@@ -229,8 +229,8 @@
           },
           {
             "label": "Pseudo-motion should have no threshold and its own provision",
-            "who": "julierawe, rachaelbradley, mraccess77",
-            "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"Content does not include pseudo-motion…lasting longer than 5 seconds\"; the request names both No visual motion provisions, not this variant specifically. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache."
+            "who": "julierawe, rachaelbradley, mraccess77, charleshalldesign",
+            "detail": "The COGA Task Force filed #739 asking that pseudo-motion be defined with examples - parallax scrolling, sharp color changes, dynamically updating content, zoom effects, diagonal lines in a background, optical illusions, stereographic art - and that \"No pseudo-motion\" be split into its own provision, because the current wording can be misread as \"Content does not include pseudo-motion…lasting longer than 5 seconds\"; the request names both No visual motion provisions, not this variant specifically. julierawe later added gamma oscillation images and sliced images. rachaelbradley offered the decoy font experiment as a candidate example and mraccess77 confirmed first-hand that those fonts appear blurry and give them a headache. In October 2026, Charles Hall drafted a standalone pseudo-motion provision (currently supplemental, with research indicating harm comparable to actual motion) and focusing on a mechanism to prevent, turn off, or hide pseudo-motion."
           },
           {
             "label": "A respected user preference is not a safe substitute",
@@ -256,7 +256,7 @@
         ],
         "note": "Thin, and largely inherited rather than specific to this variant. #27 is MarjaE2 alone - opened October 2023, one self-reply, no response from anyone else in nearly three years - and #629 and #739 are both labelled for the base No visual motion provision as well, so their discussion is shared. The COGA concern in #739 that the five-second wording could be read as permitting shorter pseudo-motion is raised against both No visual motion provisions alike, so nothing in these threads addresses the exception-free variant on its own terms."
       },
-      "summaryOf": "27@2026-04-16T03:46:54Z,629@2026-06-15T13:46:03Z,739@2026-08-03T22:19:47Z",
+      "summaryOf": "27@2026-04-16T03:46:54Z,629@2026-06-15T13:46:03Z,739@2026-10-06T18:04:14Z",
       "summarySource": "batch-2026-09-15-part2.json"
     },
     "no-visual-motion": {
@@ -364,14 +364,14 @@
         "open": [
           "Whether a user preference can be relied on to satisfy the requirement at all. In #629 alastc asked this of the flashing note and said it applies equally to reduced motion; julierawe called it dangerous for flashing, asking what happens when someone looks at another person's device, and alastc doubts such a preference is accessibility supported today.",
           "How to define a size and duration threshold that is testable without a screen ruler, which patrickhlauke raised as a reductio and mgifford answered by pointing out 4.5:1 looked equally arbitrary in 2008.",
-          "Whether \"pseudo-motion\" should get examples in its definition and its own provision. julierawe filed #739 for the COGA Task Force proposing parallax scrolling, sharp colour changes, dynamically updating content and others, and asking that No pseudo-motion stand alone so it cannot be read as allowed under 5 seconds; rachaelbradley suggested the decoy font as a possible example, mraccess77 said it gives him a headache, and julierawe added gamma-oscillation and sliced images. No one has responded for the group.",
+          "Whether \"pseudo-motion\" should get examples in its definition and its own provision. julierawe filed #739 for the COGA Task Force proposing parallax scrolling, sharp colour changes, dynamically updating content and others, and asking that No pseudo-motion stand alone so it cannot be read as allowed under 5 seconds; rachaelbradley suggested the decoy font as a possible example, mraccess77 said it gives him a headache, and julierawe added gamma-oscillation and sliced images. In October 2026, Charles Hall reported that pseudo-motion is now an active draft provision (currently supplemental, with research indicating harm comparable to actual motion) and includes a mechanism to prevent, turn off, or hide pseudo-motion.",
           "Whether small animations are triggers. alastc said the WCAG 2.1 work found small animations such as icons changing on hover were not, so a minimum size seemed necessary; mraccess77 replied that jiggling icons do impact some users and supplied a live example.",
           "Whether the Windows reduced-motion switch is too coarse. mraccess77 reports it blocks animations they want along with those they do not and wants finer control, whereas CharlesBelov and guyhickling treat the on/off switch as a clear statement that animation should stop.",
           "Whether the time limits for auto-playing audio (3 seconds) and moving or auto-updating content (5 seconds) should be unified. Wildebrew asked in #181 and recommended folding the auto-playing audio requirement into 2.2.2's equivalent; when alastc floated increasing 1.4.2's time instead, Wildebrew backed 5 seconds and asked that WCAG 3 group all page-level animation and sound together. alastc and bruce-usab were reluctant to change it within 2.x, and bruce-usab noted three seconds for both would also be logical.",
           "julierawe's separate objection (#733) that naming the guideline \"Avoid Physical Harm\" excludes the cognitive harm — lost focus, fatigue, re-orientation cost — that motion also causes."
         ]
       },
-      "summaryOf": "27@2026-04-16T03:46:54Z,181@2026-05-02T15:01:50Z,183@2026-05-02T15:03:50Z,629@2026-06-15T13:46:03Z,739@2026-08-03T22:19:47Z",
+      "summaryOf": "27@2026-04-16T03:46:54Z,181@2026-05-02T15:01:50Z,183@2026-05-02T15:03:50Z,629@2026-06-15T13:46:03Z,739@2026-10-06T18:04:14Z",
       "summarySource": "batch-2026-09-14.json"
     },
     "safe-content-review": {
@@ -1613,8 +1613,8 @@
       "threadCount": 3,
       "noRecordedDiscussion": false,
       "commentCount": 6,
-      "openCount": 3,
-      "fingerprint": "428@2026-03-29T23:07:20Z,454@2026-03-29T22:43:15Z,535@2026-10-03T11:31:56Z",
+      "openCount": 2,
+      "fingerprint": "428@2026-03-29T23:07:20Z,454@2026-03-29T22:43:15Z,535@2026-10-13T16:25:03Z",
       "threads": [
         {
           "number": 428,
@@ -1646,10 +1646,10 @@
         {
           "number": 535,
           "title": "Media Alternative - What is a meaningful sound?",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/535",
           "created": "2026-01-15",
-          "updated": "2026-10-03",
+          "updated": "2026-10-13",
           "comments": 6,
           "labels": [
             "Path: Image and media alternatives",
@@ -1682,16 +1682,16 @@
       "threadCount": 1,
       "noRecordedDiscussion": false,
       "commentCount": 2,
-      "openCount": 1,
-      "fingerprint": "611@2026-10-03T11:25:36Z",
+      "openCount": 0,
+      "fingerprint": "611@2026-10-13T14:25:24Z",
       "threads": [
         {
           "number": 611,
           "title": "2.1.2 Media Alternatives - Test case (and definitions)",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/611",
           "created": "2026-03-05",
-          "updated": "2026-10-03",
+          "updated": "2026-10-13",
           "comments": 2,
           "labels": [
             "Path: Image and media alternatives"
@@ -2426,16 +2426,16 @@
       "threadCount": 1,
       "noRecordedDiscussion": false,
       "commentCount": 2,
-      "openCount": 1,
-      "fingerprint": "611@2026-10-03T11:25:36Z",
+      "openCount": 0,
+      "fingerprint": "611@2026-10-13T14:25:24Z",
       "threads": [
         {
           "number": 611,
           "title": "2.1.2 Media Alternatives - Test case (and definitions)",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/611",
           "created": "2026-03-05",
-          "updated": "2026-10-03",
+          "updated": "2026-10-13",
           "comments": 2,
           "labels": [
             "Path: Image and media alternatives"
@@ -3174,8 +3174,8 @@
       "threadCount": 2,
       "noRecordedDiscussion": false,
       "commentCount": 10,
-      "openCount": 2,
-      "fingerprint": "370@2026-09-10T00:17:00Z,611@2026-10-03T11:25:36Z",
+      "openCount": 1,
+      "fingerprint": "370@2026-09-10T00:17:00Z,611@2026-10-13T14:25:24Z",
       "threads": [
         {
           "number": 370,
@@ -3193,10 +3193,10 @@
         {
           "number": 611,
           "title": "2.1.2 Media Alternatives - Test case (and definitions)",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/611",
           "created": "2026-03-05",
-          "updated": "2026-10-03",
+          "updated": "2026-10-13",
           "comments": 2,
           "labels": [
             "Path: Image and media alternatives"
@@ -3778,16 +3778,16 @@
       "threadCount": 1,
       "noRecordedDiscussion": false,
       "commentCount": 6,
-      "openCount": 1,
-      "fingerprint": "535@2026-10-03T11:31:56Z",
+      "openCount": 0,
+      "fingerprint": "535@2026-10-13T16:25:03Z",
       "threads": [
         {
           "number": 535,
           "title": "Media Alternative - What is a meaningful sound?",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/535",
           "created": "2026-01-15",
-          "updated": "2026-10-03",
+          "updated": "2026-10-13",
           "comments": 6,
           "labels": [
             "Path: Image and media alternatives",
@@ -3860,9 +3860,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 1,
       "openCount": 1,
-      "fingerprint": "520@2026-03-27T23:15:05Z",
+      "fingerprint": "520@2026-10-13T12:30:33Z",
       "threads": [
         {
           "number": 520,
@@ -3870,8 +3870,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/520",
           "created": "2026-01-14",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-13",
+          "comments": 1,
           "labels": [
             "Path: Image and media alternatives"
           ]
@@ -4001,16 +4001,16 @@
       "threadCount": 1,
       "noRecordedDiscussion": false,
       "commentCount": 2,
-      "openCount": 1,
-      "fingerprint": "611@2026-10-03T11:25:36Z",
+      "openCount": 0,
+      "fingerprint": "611@2026-10-13T14:25:24Z",
       "threads": [
         {
           "number": 611,
           "title": "2.1.2 Media Alternatives - Test case (and definitions)",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/611",
           "created": "2026-03-05",
-          "updated": "2026-10-03",
+          "updated": "2026-10-13",
           "comments": 2,
           "labels": [
             "Path: Image and media alternatives"
@@ -4027,9 +4027,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 1,
       "openCount": 1,
-      "fingerprint": "73@2026-04-16T03:13:24Z",
+      "fingerprint": "73@2026-10-13T14:18:42Z",
       "threads": [
         {
           "number": 73,
@@ -4037,8 +4037,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/73",
           "created": "2024-05-16",
-          "updated": "2026-04-16",
-          "comments": 0,
+          "updated": "2026-10-13",
+          "comments": 1,
           "labels": [
             "Path: Image and media alternatives"
           ]

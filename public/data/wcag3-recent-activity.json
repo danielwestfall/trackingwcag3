@@ -1,76 +1,64 @@
 {
-  "generatedAt": "2026-10-12T21:32:03.662Z",
+  "generatedAt": "2026-10-16T03:49:30.640Z",
   "window": {
-    "from": "2026-10-05",
-    "to": "2026-10-12",
+    "from": "2026-10-09",
+    "to": "2026-10-16",
     "days": 7
   },
   "repo": "https://github.com/w3c/wcag3",
   "note": "Pull requests are proposals until merged into the editor’s draft; merged changes still need working-group consensus and a published Working Draft before they are official.",
   "counts": {
-    "adopted": 1,
-    "proposals": 15,
-    "newProposals": 2,
+    "adopted": 0,
+    "proposals": 3,
+    "newProposals": 1,
     "declined": 0,
-    "newIssues": 2,
-    "closedIssues": 1,
+    "newIssues": 7,
+    "closedIssues": 3,
     "activeThreads": 2
   },
   "topics": {
-    "other": 17,
+    "definitions": 1,
     "scope": 1,
-    "provision": 2
+    "other": 6,
+    "provision": 4
   },
   "provisionsInFocus": [
     {
-      "slug": "audio-description-language-adjustable",
-      "title": "Audio Description Language Adjustable",
+      "slug": "relationships-detectable",
+      "title": "Relationships Detectable",
       "items": 1
     },
     {
-      "slug": "caption-language-adjustable",
-      "title": "Caption Language Adjustable",
+      "slug": "transcripts-findable",
+      "title": "Transcripts Findable",
       "items": 1
     },
     {
-      "slug": "no-visual-motion-no-exceptions",
-      "title": "No Visual Motion No Exceptions",
-      "items": 1
-    },
-    {
-      "slug": "no-visual-motion",
-      "title": "No Visual Motion",
+      "slug": "sounds-identified-in-transcripts",
+      "title": "Sounds Identified In Transcripts",
       "items": 1
     }
   ],
-  "adopted": [
-    {
-      "number": 867,
-      "title": "Pending issue labels dev page: account for renames due to long titles",
-      "url": "https://github.com/w3c/wcag3/pull/867",
-      "state": "closed",
-      "created": "2026-09-15",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "mergedAt": "2026-10-07",
-      "topic": "other"
-    }
-  ],
+  "adopted": [],
   "proposals": [
     {
-      "number": 740,
-      "title": "Text and wording user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/740",
+      "number": 891,
+      "title": "Revise glossary reference in relationships-detectable to use the term \"programmatically detectable\"",
+      "url": "https://github.com/w3c/wcag3/pull/891",
       "state": "open",
-      "created": "2026-06-29",
-      "updated": "2026-10-07",
+      "created": "2026-10-03",
+      "updated": "2026-10-14",
       "comments": 3,
+      "weekComments": 0,
       "labels": [],
-      "provisions": [],
+      "provisions": [
+        {
+          "slug": "relationships-detectable",
+          "title": "Relationships Detectable"
+        }
+      ],
       "isNew": false,
-      "topic": "other"
+      "topic": "definitions"
     },
     {
       "number": 880,
@@ -80,6 +68,7 @@
       "created": "2026-09-30",
       "updated": "2026-10-09",
       "comments": 2,
+      "weekComments": 0,
       "labels": [
         "Other: Introduction"
       ],
@@ -88,216 +77,183 @@
       "topic": "scope"
     },
     {
-      "number": 902,
-      "title": "Move accessibility supported to a new testing section and recast it as user agent supported",
-      "url": "https://github.com/w3c/wcag3/pull/902",
+      "number": 907,
+      "title": "Add three exploratory sign language provisions",
+      "url": "https://github.com/w3c/wcag3/pull/907",
       "state": "open",
-      "created": "2026-10-06",
-      "updated": "2026-10-07",
-      "comments": 2,
+      "created": "2026-10-14",
+      "updated": "2026-10-14",
+      "comments": 1,
+      "weekComments": 0,
       "labels": [],
       "provisions": [],
       "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 859,
-      "title": "Add additional sign language provisions",
-      "url": "https://github.com/w3c/wcag3/pull/859",
-      "state": "open",
-      "created": "2026-09-10",
-      "updated": "2026-10-06",
-      "comments": 2,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 904,
-      "title": "Add sign language for major choices",
-      "url": "https://github.com/w3c/wcag3/pull/904",
-      "state": "open",
-      "created": "2026-10-07",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 741,
-      "title": "User control user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/741",
-      "state": "open",
-      "created": "2026-06-30",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 732,
-      "title": "Process and task completion user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/732",
-      "state": "open",
-      "created": "2026-06-26",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 727,
-      "title": "Layout user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/727",
-      "state": "open",
-      "created": "2026-06-24",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 726,
-      "title": "Input/operation user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/726",
-      "state": "open",
-      "created": "2026-06-24",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 725,
-      "title": "Interactive components user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/725",
-      "state": "open",
-      "created": "2026-06-23",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 721,
-      "title": "Error handling user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/721",
-      "state": "open",
-      "created": "2026-06-22",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 720,
-      "title": "Help and feedback user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/720",
-      "state": "open",
-      "created": "2026-06-21",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 719,
-      "title": "Policy and protection user needs statements review",
-      "url": "https://github.com/w3c/wcag3/pull/719",
-      "state": "open",
-      "created": "2026-06-21",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 648,
-      "title": "Add user needs into informative section",
-      "url": "https://github.com/w3c/wcag3/pull/648",
-      "state": "open",
-      "created": "2026-04-16",
-      "updated": "2026-10-07",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 858,
-      "title": "Add sign language equivalent requirement",
-      "url": "https://github.com/w3c/wcag3/pull/858",
-      "state": "open",
-      "created": "2026-09-10",
-      "updated": "2026-10-06",
-      "comments": 1,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
       "topic": "other"
     }
   ],
   "declined": [],
   "newIssues": [
     {
-      "number": 901,
-      "title": "Accessibility supported lacks a clear purpose and meaning (problem analysis and proposal)",
-      "url": "https://github.com/w3c/wcag3/issues/901",
+      "number": 908,
+      "title": "Change all occurrences of \"focus\"  to \"keyboard focus\"",
+      "url": "https://github.com/w3c/wcag3/issues/908",
       "state": "open",
-      "created": "2026-10-06",
-      "updated": "2026-10-06",
-      "comments": 0,
-      "labels": [
-        "accessibility supported"
-      ],
+      "created": "2026-10-15",
+      "updated": "2026-10-15",
+      "comments": 2,
+      "weekComments": 0,
+      "labels": [],
       "provisions": [],
       "isNew": true,
       "topic": "other"
     },
     {
-      "number": 900,
-      "title": "Should \"language adjustable\" provisions use \"applies when\" format?",
-      "url": "https://github.com/w3c/wcag3/issues/900",
+      "number": 913,
+      "title": "There should be no exception on Flashing",
+      "url": "https://github.com/w3c/wcag3/issues/913",
       "state": "open",
-      "created": "2026-10-06",
-      "updated": "2026-10-06",
+      "created": "2026-10-16",
+      "updated": "2026-10-16",
       "comments": 0,
+      "weekComments": 0,
       "labels": [],
-      "provisions": [
-        {
-          "slug": "audio-description-language-adjustable",
-          "title": "Audio Description Language Adjustable"
-        },
-        {
-          "slug": "caption-language-adjustable",
-          "title": "Caption Language Adjustable"
-        }
+      "provisions": [],
+      "isNew": true,
+      "topic": "other"
+    },
+    {
+      "number": 912,
+      "title": "Auto updating text is not mentioned in WCAG 3",
+      "url": "https://github.com/w3c/wcag3/issues/912",
+      "state": "open",
+      "created": "2026-10-16",
+      "updated": "2026-10-16",
+      "comments": 0,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "isNew": true,
+      "topic": "other"
+    },
+    {
+      "number": 911,
+      "title": "No  WCAG3 provision  for audio that automatically plays for more than 5 sec",
+      "url": "https://github.com/w3c/wcag3/issues/911",
+      "state": "open",
+      "created": "2026-10-16",
+      "updated": "2026-10-16",
+      "comments": 0,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "isNew": true,
+      "topic": "provision"
+    },
+    {
+      "number": 910,
+      "title": "2.4.1 Keyboard -- Keyboard Operable - is missing key parts",
+      "url": "https://github.com/w3c/wcag3/issues/910",
+      "state": "open",
+      "created": "2026-10-15",
+      "updated": "2026-10-15",
+      "comments": 0,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "isNew": true,
+      "topic": "other"
+    },
+    {
+      "number": 909,
+      "title": "Move 2.3.3   Navigating content   down to the Keyboard Section of Inputs",
+      "url": "https://github.com/w3c/wcag3/issues/909",
+      "state": "open",
+      "created": "2026-10-15",
+      "updated": "2026-10-15",
+      "comments": 0,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "isNew": true,
+      "topic": "other"
+    },
+    {
+      "number": 906,
+      "title": "Make the provision exception structure more flexible by removing the word \"when\"",
+      "url": "https://github.com/w3c/wcag3/issues/906",
+      "state": "open",
+      "created": "2026-10-13",
+      "updated": "2026-10-13",
+      "comments": 0,
+      "weekComments": 0,
+      "labels": [
+        "Other: Guideline Approach"
       ],
+      "provisions": [],
       "isNew": true,
       "topic": "provision"
     }
   ],
   "closedIssues": [
+    {
+      "number": 611,
+      "title": "2.1.2 Media Alternatives - Test case (and definitions)",
+      "url": "https://github.com/w3c/wcag3/issues/611",
+      "state": "closed",
+      "created": "2026-03-05",
+      "updated": "2026-10-13",
+      "comments": 2,
+      "weekComments": 0,
+      "labels": [
+        "Path: Image and media alternatives"
+      ],
+      "provisions": [
+        {
+          "slug": "transcripts-equivalent-prerecorded",
+          "title": "Transcripts Equivalent Prerecorded"
+        },
+        {
+          "slug": "audio-descriptions-equivalent-prerecorded",
+          "title": "Audio Descriptions Equivalent Prerecorded"
+        },
+        {
+          "slug": "image-alternatives-equivalent",
+          "title": "Image Alternatives Equivalent"
+        },
+        {
+          "slug": "captions-equivalent-prerecorded",
+          "title": "Captions Equivalent Prerecorded"
+        }
+      ],
+      "closedAt": "2026-10-13",
+      "topic": "definitions"
+    },
+    {
+      "number": 535,
+      "title": "Media Alternative - What is a meaningful sound?",
+      "url": "https://github.com/w3c/wcag3/issues/535",
+      "state": "closed",
+      "created": "2026-01-15",
+      "updated": "2026-10-13",
+      "comments": 6,
+      "weekComments": 0,
+      "labels": [
+        "Path: Image and media alternatives",
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [
+        {
+          "slug": "audio-descriptions-available-prerecorded",
+          "title": "Audio Descriptions Available Prerecorded"
+        },
+        {
+          "slug": "descriptive-transcripts-available",
+          "title": "Descriptive Transcripts Available"
+        }
+      ],
+      "closedAt": "2026-10-13",
+      "topic": "definitions"
+    },
     {
       "number": 325,
       "title": "Clarifying and Enhancing Requirements for Sign Language and Subtitles in WCAG 3.0",
@@ -306,6 +262,7 @@
       "created": "2025-06-09",
       "updated": "2026-10-12",
       "comments": 7,
+      "weekComments": 0,
       "labels": [
         "Path: Image and media alternatives",
         "Path: Sign language",
@@ -335,43 +292,44 @@
   ],
   "active": [
     {
-      "number": 739,
-      "title": "Pseudo-motion: Expand to include examples, and consider making this its own provision.",
-      "url": "https://github.com/w3c/wcag3/issues/739",
+      "number": 73,
+      "title": "Image and media alternatives - Clear labelling",
+      "url": "https://github.com/w3c/wcag3/issues/73",
       "state": "open",
-      "created": "2026-06-26",
-      "updated": "2026-10-06",
-      "comments": 4,
+      "created": "2024-05-16",
+      "updated": "2026-10-13",
+      "comments": 1,
+      "weekComments": 1,
       "labels": [
-        "coga"
+        "Path: Image and media alternatives"
       ],
       "provisions": [
         {
-          "slug": "no-visual-motion-no-exceptions",
-          "title": "No Visual Motion No Exceptions"
-        },
-        {
-          "slug": "no-visual-motion",
-          "title": "No Visual Motion"
+          "slug": "transcripts-findable",
+          "title": "Transcripts Findable"
         }
       ],
-      "weekComments": 1,
       "topic": "provision"
     },
     {
-      "number": 876,
-      "title": "Sign language: make it count in tiers and usable by policy tags",
-      "url": "https://github.com/w3c/wcag3/issues/876",
+      "number": 520,
+      "title": "[Sounds Identified]: contradicts “transcripts available”?",
+      "url": "https://github.com/w3c/wcag3/issues/520",
       "state": "open",
-      "created": "2026-09-28",
-      "updated": "2026-10-08",
+      "created": "2026-01-14",
+      "updated": "2026-10-13",
       "comments": 1,
-      "labels": [
-        "Path: Sign language"
-      ],
-      "provisions": [],
       "weekComments": 1,
-      "topic": "other"
+      "labels": [
+        "Path: Image and media alternatives"
+      ],
+      "provisions": [
+        {
+          "slug": "sounds-identified-in-transcripts",
+          "title": "Sounds Identified In Transcripts"
+        }
+      ],
+      "topic": "provision"
     }
   ]
 }
