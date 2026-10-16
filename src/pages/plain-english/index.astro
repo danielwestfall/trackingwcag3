@@ -3,19 +3,20 @@ import { readFileSync as __readState } from "node:fs";
 // Link W3C sources at the commit the site tracks, not the moving main branch.
 const trackedCommit: string = JSON.parse(__readState(`${process.cwd()}/tracking/state.json`, "utf8")).lastTrackedCommit || "main";
 import { provisionTypeLabel } from "@/lib/provision-labels";
+import type { Wcag3CatalogItem, Wcag22CatalogItem, Wcag22InboundRef } from "@/lib/catalog-types";
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
 import fs from "fs";
 import path from "path";
 
 // Load compiled catalog
 const catalogPath = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
-let catalog: any[] = [];
+let catalog: Wcag3CatalogItem[] = [];
 if (fs.existsSync(catalogPath)) {
   catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 }
 
 const wcag22Path = path.join(process.cwd(), "public", "data", "wcag22-catalog.json");
-let wcag22Catalog: any[] = [];
+let wcag22Catalog: Wcag22CatalogItem[] = [];
 if (fs.existsSync(wcag22Path)) {
   wcag22Catalog = JSON.parse(fs.readFileSync(wcag22Path, "utf8"));
 }
@@ -32,7 +33,7 @@ const wcag22SearchData = wcag22Catalog.map((sc) => ({
 }));
 
 const totalCount = catalog.length;
-const wdCount = catalog.filter((p: any) => p.status !== "exploratory").length;
+const wdCount = catalog.filter((p) => p.status !== "exploratory").length;
 const published = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "data", "wcag3-published.json"), "utf8")).latest;
 const publishedLabel = new Date(published.date + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const matureCount = catalog.filter((item) => item.status === "mature" || item.status === "refining").length;
@@ -41,7 +42,10 @@ const customAnnotatedCount = catalog.filter((item) => item.annotation && !item.a
 // Type counts, read from the catalog rather than written into the prose below.
 // The site previously hardcoded 219 provisions in five places and went stale.
 const typeCounts: Record<string, number> = {};
-for (const item of catalog) typeCounts[item.type] = (typeCounts[item.type] || 0) + 1;
+for (const item of catalog) {
+  const tKey = item.type || "untyped";
+  typeCounts[tKey] = (typeCounts[tKey] || 0) + 1;
+}
 const typeBreakdown = Object.entries(typeCounts)
   .sort((a, b) => b[1] - a[1])
   .map(([t, n]) => `${n} ${t}`)
@@ -63,8 +67,8 @@ const GROUP_NAMES: Record<string, string> = {
   'user-control': '⚙️ User Control & Settings'
 };
 
-const groupedCategories: { slug: string; name: string; items: any[] }[] = [];
-const groupMap: Record<string, any[]> = {};
+const groupedCategories: { slug: string; name: string; items: Wcag3CatalogItem[] }[] = [];
+const groupMap: Record<string, Wcag3CatalogItem[]> = {};
 
 catalog.forEach((item) => {
   const gSlug = item.groupSlug || 'general';
@@ -86,7 +90,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
 <PlainEnglishLayout title="WCAG 3 Plain English Explorer" activeTab="wcag3">
   <!-- Quick Nav TOC Floating Toggle & Drawer -->
-  <button id="toc-toggle-btn" class="toc-toggle-btn" aria-expanded="false" aria-controls="toc-drawer" aria-label="Toggle Quick Navigation Table of Contents">
+  <button id="toc-toggle-btn" class="toc-toggle-btn" aria-expanded="false" aria-controls="toc-drawer" aria-label={`Quick Nav (TOC) ${totalCount} — Toggle Quick Navigation Table of Contents`}>
     <span class="toc-btn-icon" aria-hidden="true">📋</span>
     <span class="toc-btn-text">Quick Nav (TOC)</span>
     <span id="toc-count-badge" class="toc-count-badge">{totalCount}</span>
@@ -314,10 +318,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       <div class="filter-group">
         <span class="filter-label">Requirement Type:</span>
         <div class="type-pills" id="type-pills" role="radiogroup" aria-label="Filter by requirement type">
-          <button type="button" class="type-pill active" data-type="all" role="radio" aria-checked="true">All ({totalCount})</button>
-          <button type="button" class="type-pill" data-type="foundational" role="radio" aria-checked="false">Core requirement ({typeCounts['foundational'] || 114})</button>
-          <button type="button" class="type-pill" data-type="supplemental" role="radio" aria-checked="false">Supplemental requirement ({typeCounts['supplemental'] || 86})</button>
-          <button type="button" class="type-pill" data-type="assertion" role="radio" aria-checked="false">Assertion ({typeCounts['assertion'] || 36})</button>
+          <button type="button" class="type-pill active" data-type="all" role="radio" aria-checked="true" tabindex="0">All ({totalCount})</button>
+          <button type="button" class="type-pill" data-type="foundational" role="radio" aria-checked="false" tabindex="-1">Core requirement ({typeCounts['foundational'] || 114})</button>
+          <button type="button" class="type-pill" data-type="supplemental" role="radio" aria-checked="false" tabindex="-1">Supplemental requirement ({typeCounts['supplemental'] || 86})</button>
+          <button type="button" class="type-pill" data-type="assertion" role="radio" aria-checked="false" tabindex="-1">Assertion ({typeCounts['assertion'] || 36})</button>
         </div>
       </div>
 
@@ -371,10 +375,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         const groupSlug = item.groupSlug || "general";
         const directInbound = item.wcag22Inbound?.direct || [];
         const viaInbound = item.wcag22Inbound?.viaGuideline || [];
-        const directNums = directInbound.map((d: any) => typeof d === 'string' ? d : d.num);
-        const directSearchStr = directInbound.map((d: any) => typeof d === 'string' ? d : `${d.num} ${d.name}`).join(" ");
-        const viaNums = viaInbound.map((d: any) => typeof d === 'string' ? d : d.num);
-        const viaSearchStr = viaInbound.map((d: any) => typeof d === 'string' ? d : `${d.num} ${d.name}`).join(" ");
+        const directNums = directInbound.map((d: Wcag22InboundRef | string) => typeof d === 'string' ? d : d.num);
+        const directSearchStr = directInbound.map((d: Wcag22InboundRef | string) => typeof d === 'string' ? d : `${d.num} ${d.name}`).join(" ");
+        const viaNums = viaInbound.map((d: Wcag22InboundRef | string) => typeof d === 'string' ? d : d.num);
+        const viaSearchStr = viaInbound.map((d: Wcag22InboundRef | string) => typeof d === 'string' ? d : `${d.num} ${d.name}`).join(" ");
         const allPredecessors = `${directSearchStr} ${viaSearchStr}`.toLowerCase();
         
         return (
@@ -467,31 +471,38 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       searchInput.value = initialQuery;
     }
 
+    function activateTypePill(targetPill, focusIt = false) {
+      typePills.forEach(p => {
+        const isMatch = p === targetPill;
+        p.classList.toggle('active', isMatch);
+        p.setAttribute('aria-checked', String(isMatch));
+        p.setAttribute('tabindex', isMatch ? '0' : '-1');
+      });
+      activeType = targetPill.getAttribute('data-type');
+      if (focusIt) targetPill.focus();
+      filterCards();
+    }
+
     if (initialType) {
       typePills.forEach(pill => {
         if (pill.getAttribute('data-type') === initialType) {
-          typePills.forEach(p => {
-            p.classList.remove('active');
-            p.setAttribute('aria-checked', 'false');
-          });
-          pill.classList.add('active');
-          pill.setAttribute('aria-checked', 'true');
-          activeType = initialType;
+          activateTypePill(pill, false);
         }
       });
     }
 
-    // Type Pills Click
-    typePills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        typePills.forEach(p => {
-          p.classList.remove('active');
-          p.setAttribute('aria-checked', 'false');
-        });
-        pill.classList.add('active');
-        pill.setAttribute('aria-checked', 'true');
-        activeType = pill.getAttribute('data-type');
-        filterCards();
+    // Type Pills Click & Roving Tabindex
+    const typePillsArr = Array.from(typePills);
+    typePillsArr.forEach((pill, idx) => {
+      pill.addEventListener('click', () => activateTypePill(pill, false));
+      pill.addEventListener('keydown', (e) => {
+        let next = idx;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % typePillsArr.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + typePillsArr.length) % typePillsArr.length;
+        if (next !== idx) {
+          e.preventDefault();
+          activateTypePill(typePillsArr[next], true);
+        }
       });
     });
 
@@ -499,17 +510,24 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     // printable key, which speech-input users trigger by accident: WCAG 2.1.4.)
     window.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && !e.altKey && (e.key === 'k' || e.key === 'K')) {
-        e.preventDefault();
-        searchInput.focus();
-        searchInput.select();
-      }
-      if (e.key === 'Escape') {
-        toggleToc(false);
+        if (searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        }
       }
     });
 
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
     function filterCards() {
-      const query = searchInput.value.toLowerCase().trim();
+      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
       const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
       const selectedStatus = statusFilter ? statusFilter.value : 'all';
 
@@ -536,21 +554,21 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
           wcag22Section.hidden = false;
           wcag22Grid.innerHTML = wcag22Matches.slice(0, 4).map(m => {
             const sc = m.sc;
-            const detailUrl = `${base}/plain-english/wcag22/${sc.slug}/`;
+            const detailUrl = `${base}/plain-english/wcag22/${encodeURIComponent(sc.slug)}/`;
             return `
               <article class="wcag22-match-card">
                 <div class="match-card-top">
                   <div class="match-badges">
-                    <span class="match-badge num-badge">SC ${sc.num}</span>
-                    <span class="match-badge level-badge level-${sc.level}">${sc.level === "obsolete" ? "Obsolete" : "Level " + sc.level}</span>
-                    <span class="match-badge principle-badge">${sc.principle}</span>
+                    <span class="match-badge num-badge">SC ${escapeHtml(sc.num)}</span>
+                    <span class="match-badge level-badge level-${escapeHtml(sc.level)}">${sc.level === "obsolete" ? "Obsolete" : "Level " + escapeHtml(sc.level)}</span>
+                    <span class="match-badge principle-badge">${escapeHtml(sc.principle)}</span>
                   </div>
                   <span class="standard-indicator">Standard</span>
                 </div>
                 <h3 class="match-card-title">
-                  <a href="${detailUrl}">${sc.num} ${sc.name}</a>
+                  <a href="${detailUrl}">${escapeHtml(sc.num)} ${escapeHtml(sc.name)}</a>
                 </h3>
-                <p class="match-card-summary">${sc.summary}</p>
+                <p class="match-card-summary">${escapeHtml(sc.summary)}</p>
                 <div class="match-card-footer">
                   <a href="${detailUrl}" class="match-open-link">Open WCAG 2.2 Guide &rarr;</a>
                 </div>
@@ -601,10 +619,12 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         }
       });
 
-      if (query && matchedViaPredecessor > 0) {
-        resultCount.textContent = `Showing ${visible} of ${cards.length} WCAG 3 Provisions (${matchedViaPredecessor} matched via WCAG 2.2 predecessor)`;
-      } else {
-        resultCount.textContent = `Showing ${visible} of ${cards.length} WCAG 3 Provisions`;
+      if (resultCount) {
+        if (query && matchedViaPredecessor > 0) {
+          resultCount.textContent = `Showing ${visible} of ${cards.length} WCAG 3 Provisions (${matchedViaPredecessor} matched via WCAG 2.2 predecessor)`;
+        } else {
+          resultCount.textContent = `Showing ${visible} of ${cards.length} WCAG 3 Provisions`;
+        }
       }
       updateTocVisibility();
     }
@@ -618,6 +638,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     const tocItemLinks = document.querySelectorAll('.toc-item-link');
 
     function toggleToc(show) {
+      if (!tocDrawer || !tocToggleBtn) return;
       const isVisible = show !== undefined ? show : tocDrawer.hasAttribute('hidden');
       if (isVisible) {
         tocDrawer.removeAttribute('hidden');
@@ -626,11 +647,35 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       } else {
         tocDrawer.setAttribute('hidden', '');
         tocToggleBtn.setAttribute('aria-expanded', 'false');
+        tocToggleBtn.focus();
       }
     }
 
     if (tocToggleBtn) tocToggleBtn.addEventListener('click', () => toggleToc());
     if (tocCloseBtn) tocCloseBtn.addEventListener('click', () => toggleToc(false));
+
+    document.addEventListener('keydown', (e) => {
+      if (!tocDrawer || tocDrawer.hasAttribute('hidden')) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        toggleToc(false);
+      } else if (e.key === 'Tab') {
+        const focusable = Array.from(tocDrawer.querySelectorAll('button, input, summary, a[href]')).filter(el => {
+          return el.getClientRects().length > 0;
+        });
+        if (focusable.length > 0) {
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    });
 
     // Jump Link Smooth Scroll & Pulse Highlight
     tocItemLinks.forEach(link => {
@@ -659,7 +704,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         catBlock.querySelectorAll('[data-toc-item-slug]').forEach(itemLi => {
           const slug = itemLi.getAttribute('data-toc-item-slug');
           const card = document.getElementById(`provision-${slug}`);
-          const linkText = itemLi.textContent.toLowerCase();
+          const linkText = (itemLi.textContent || '').toLowerCase();
           
           const cardIsVisible = card && card.style.display !== 'none';
           const matchesInnerSearch = !innerQuery || linkText.includes(innerQuery);
@@ -674,18 +719,25 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         });
 
         const countBadge = catBlock.querySelector('.cat-count-badge');
-        if (countBadge) countBadge.textContent = catVisible;
+        if (countBadge) countBadge.textContent = String(catVisible);
         catBlock.style.display = catVisible > 0 ? 'block' : 'none';
       });
 
-      if (tocCountBadge) tocCountBadge.textContent = visibleTocCount;
+      if (tocCountBadge) tocCountBadge.textContent = String(visibleTocCount);
+      if (tocToggleBtn) tocToggleBtn.setAttribute('aria-label', `Quick Nav (TOC) ${visibleTocCount} — Toggle Quick Navigation Table of Contents`);
     }
 
     if (tocSearchInput) tocSearchInput.addEventListener('input', updateTocVisibility);
 
-    searchInput.addEventListener('input', filterCards);
+    let searchDebounceTimer = null;
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(filterCards, 80);
+      });
+    }
     if (categoryFilter) categoryFilter.addEventListener('change', filterCards);
-    statusFilter.addEventListener('change', filterCards);
+    if (statusFilter) statusFilter.addEventListener('change', filterCards);
 
     // Initial trigger
     filterCards();
@@ -1193,7 +1245,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .search-box input:focus {
     border-color: var(--accent-blue);
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
-    outline: none;
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
   }
 
   .filter-bar {
@@ -1280,7 +1333,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   .filter-select:focus {
     border-color: var(--accent-blue);
-    outline: none;
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
   }
 
   /* WCAG 2.2 Matching Standards Section */
@@ -1659,7 +1713,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     position: fixed;
     bottom: 24px;
     right: 24px;
-    z-index: 100;
+    z-index: 1050;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1701,7 +1755,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     width: 400px;
     max-width: calc(100vw - 48px);
     max-height: calc(100vh - 120px);
-    z-index: 101;
+    z-index: 2000;
     background: rgba(11, 17, 32, 0.96);
     backdrop-filter: blur(20px);
     border: 1px solid var(--border-default);
@@ -1769,7 +1823,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   .toc-search-box input:focus {
     border-color: var(--accent-blue);
-    outline: none;
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
   }
 
   .toc-categories-list {

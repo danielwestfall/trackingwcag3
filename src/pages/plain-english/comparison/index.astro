@@ -1,10 +1,11 @@
 ---
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import type { EvolutionMatrixItem, EvolutionMatrixProvisionCard } from "@/lib/catalog-types";
 import fs from "node:fs";
 import path from "node:path";
 
 const matrixPath = path.join(process.cwd(), "public", "data", "wcag-evolution-matrix.json");
-let matrix: any[] = [];
+let matrix: EvolutionMatrixItem[] = [];
 if (fs.existsSync(matrixPath)) {
   matrix = JSON.parse(fs.readFileSync(matrixPath, "utf8"));
 }
@@ -13,7 +14,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
 
 const totalSCs = matrix.length;
-const totalMappedProvisions = new Set(matrix.flatMap(m => m.provisions.map((p: any) => p.slug))).size;
+const totalMappedProvisions = new Set(matrix.flatMap(m => m.provisions.map((p) => p.slug))).size;
 
 // Stats by change type
 const changeTypeCounts: Record<string, number> = {};
@@ -102,10 +103,10 @@ const principleCounts = {
       <div class="filter-group">
         <span class="filter-group-title">Level:</span>
         <div class="filter-pills" id="level-pills" role="radiogroup" aria-label="Filter by WCAG 2.2 Level">
-          <button type="button" class="filter-pill active" data-level="all" role="radio" aria-checked="true">All ({totalSCs})</button>
-          <button type="button" class="filter-pill pill-a" data-level="A" role="radio" aria-checked="false">Level A ({levelCounts.A})</button>
-          <button type="button" class="filter-pill pill-aa" data-level="AA" role="radio" aria-checked="false">Level AA ({levelCounts.AA})</button>
-          <button type="button" class="filter-pill pill-aaa" data-level="AAA" role="radio" aria-checked="false">Level AAA ({levelCounts.AAA})</button>
+          <button type="button" class="filter-pill active" data-level="all" role="radio" aria-checked="true" tabindex="0">All ({totalSCs})</button>
+          <button type="button" class="filter-pill pill-a" data-level="A" role="radio" aria-checked="false" tabindex="-1">Level A ({levelCounts.A})</button>
+          <button type="button" class="filter-pill pill-aa" data-level="AA" role="radio" aria-checked="false" tabindex="-1">Level AA ({levelCounts.AA})</button>
+          <button type="button" class="filter-pill pill-aaa" data-level="AAA" role="radio" aria-checked="false" tabindex="-1">Level AAA ({levelCounts.AAA})</button>
         </div>
       </div>
 
@@ -125,11 +126,11 @@ const principleCounts = {
       <div class="filter-group">
         <span class="filter-group-title">Mapping:</span>
         <div class="filter-pills" id="type-pills" role="radiogroup" aria-label="Filter by mapping status">
-          <button type="button" class="filter-pill active" data-type="all" role="radio" aria-checked="true">All Types</button>
-          <button type="button" class="filter-pill" data-type="successor" role="radio" aria-checked="false">Successor ({changeTypeCounts["successor"] || 0})</button>
-          <button type="button" class="filter-pill" data-type="related-only" role="radio" aria-checked="false">Related only ({changeTypeCounts["related-only"] || 0})</button>
-          <button type="button" class="filter-pill" data-type="none" role="radio" aria-checked="false">No provision ({changeTypeCounts["none"] || 0})</button>
-          <button type="button" class="filter-pill" data-type="obsolete" role="radio" aria-checked="false">Obsolete ({changeTypeCounts["obsolete"] || 0})</button>
+          <button type="button" class="filter-pill active" data-type="all" role="radio" aria-checked="true" tabindex="0">All Types</button>
+          <button type="button" class="filter-pill" data-type="successor" role="radio" aria-checked="false" tabindex="-1">Successor ({changeTypeCounts["successor"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="related-only" role="radio" aria-checked="false" tabindex="-1">Related only ({changeTypeCounts["related-only"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="none" role="radio" aria-checked="false" tabindex="-1">No provision ({changeTypeCounts["none"] || 0})</button>
+          <button type="button" class="filter-pill" data-type="obsolete" role="radio" aria-checked="false" tabindex="-1">Obsolete ({changeTypeCounts["obsolete"] || 0})</button>
         </div>
       </div>
     </div>
@@ -185,7 +186,7 @@ const principleCounts = {
         item.principle,
         item.summary,
         item.whyItMatters,
-        [...item.provisions, ...related].map((p: any) => `${p.title} ${p.slug} ${p.typeLabel} ${p.text}`).join(" "),
+        [...item.provisions, ...related].map((p: EvolutionMatrixProvisionCard) => `${p.title} ${p.slug} ${p.typeLabel} ${p.text}`).join(" "),
         changeBadge,
         mappingNote
       ].join(" ").toLowerCase();
@@ -279,7 +280,7 @@ const principleCounts = {
                 </div>
               ) : (
                 <div class="provisions-stack">
-                  {item.provisions.map((prov: any) => (
+                  {item.provisions.map((prov: EvolutionMatrixProvisionCard) => (
                     <div class="provision-card">
                       <div class="prov-card-header">
                         <span class={`prov-type-badge type-${prov.type || "untyped"}`}>{prov.typeLabel}</span>
@@ -340,7 +341,7 @@ const principleCounts = {
                     <h3 class="delta-heading">Related, not a successor</h3>
                   </div>
                   <ul class="related-list">
-                    {related.map((prov: any) => (
+                    {related.map((prov: EvolutionMatrixProvisionCard) => (
                       <li>
                         <a href={link(prov.guideUrl)}>{prov.title}</a>
                         <span class="related-type"> ({prov.typeLabel.toLowerCase()})</span>:
@@ -455,13 +456,9 @@ const principleCounts = {
     letter-spacing: 0.04em;
   }
 
-  .highlight-mapped { color: #38bdf8; }
-  .highlight-expanded { color: #34d399; }
-  .highlight-testing { color: #fbbf24; }
-
-  :root[data-theme="light"] .highlight-mapped { color: #0284c7; }
-  :root[data-theme="light"] .highlight-expanded { color: #059669; }
-  :root[data-theme="light"] .highlight-testing { color: #d97706; }
+  .highlight-mapped { color: var(--accent-blue); }
+  .highlight-expanded { color: var(--accent-emerald); }
+  .highlight-testing { color: var(--accent-amber); }
 
   /* ==========================================================================
      Informative Callout Banner
@@ -550,7 +547,8 @@ const principleCounts = {
   }
 
   .search-box input:focus {
-    outline: none;
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
     border-color: var(--accent-blue);
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
   }
@@ -908,35 +906,35 @@ const principleCounts = {
 
   .level-A {
     background: rgba(245, 158, 11, 0.15);
-    color: #fbbf24;
+    color: var(--accent-amber);
     border: 1px solid rgba(245, 158, 11, 0.35);
   }
   :root[data-theme="light"] .level-A {
     background: #fef3c7;
-    color: #92400e;
-    border-color: #fcd34d;
+    color: var(--accent-amber);
+    border-color: rgba(146, 64, 14, 0.35);
   }
 
   .level-AA {
     background: rgba(56, 189, 248, 0.15);
-    color: #38bdf8;
+    color: var(--accent-blue);
     border: 1px solid rgba(56, 189, 248, 0.35);
   }
   :root[data-theme="light"] .level-AA {
     background: #e0f2fe;
-    color: #0369a1;
-    border-color: #bae6fd;
+    color: var(--accent-blue);
+    border-color: rgba(35, 55, 255, 0.35);
   }
 
   .level-AAA {
     background: rgba(52, 211, 153, 0.15);
-    color: #34d399;
+    color: var(--accent-emerald);
     border: 1px solid rgba(52, 211, 153, 0.35);
   }
   :root[data-theme="light"] .level-AAA {
     background: #d1fae5;
-    color: #065f46;
-    border-color: #6ee7b7;
+    color: var(--accent-emerald);
+    border-color: rgba(4, 120, 87, 0.35);
   }
 
   .principle-badge {
@@ -1052,13 +1050,13 @@ const principleCounts = {
     padding: 2px 8px;
     border-radius: var(--radius-sm);
     background: rgba(192, 132, 252, 0.12);
-    color: #c084fc;
+    color: var(--accent-purple);
     border: 1px solid rgba(192, 132, 252, 0.25);
   }
   :root[data-theme="light"] .provisions-count-badge {
     background: #f3e8ff;
-    color: #6b21a8;
-    border-color: #e9d5ff;
+    color: var(--accent-purple);
+    border-color: rgba(109, 40, 217, 0.35);
   }
 
   .provisions-stack {
@@ -1098,12 +1096,12 @@ const principleCounts = {
 
   .prov-type-badge.type-foundational {
     background: rgba(56, 189, 248, 0.12);
-    color: #38bdf8;
+    color: var(--accent-blue);
     border-color: rgba(56, 189, 248, 0.25);
   }
   :root[data-theme="light"] .prov-type-badge.type-foundational {
     background: #e0f2fe;
-    color: #0369a1;
+    color: var(--accent-blue);
   }
 
   .prov-status-badge {
@@ -1116,25 +1114,25 @@ const principleCounts = {
 
   .status-mature {
     background: rgba(52, 211, 153, 0.15);
-    color: #34d399;
+    color: var(--accent-emerald);
   }
   .status-refining {
     background: rgba(56, 189, 248, 0.15);
-    color: #38bdf8;
+    color: var(--accent-blue);
   }
   .status-developing {
     background: rgba(251, 191, 36, 0.15);
-    color: #fbbf24;
+    color: var(--accent-amber);
   }
   .status-exploratory {
     background: rgba(244, 63, 94, 0.15);
-    color: #fb7185;
+    color: var(--accent-rose);
   }
 
-  :root[data-theme="light"] .status-mature { background: #d1fae5; color: #065f46; }
-  :root[data-theme="light"] .status-refining { background: #e0f2fe; color: #0369a1; }
-  :root[data-theme="light"] .status-developing { background: #fef3c7; color: #92400e; }
-  :root[data-theme="light"] .status-exploratory { background: #ffe4e6; color: #9f1239; }
+  :root[data-theme="light"] .status-mature { background: #d1fae5; color: var(--accent-emerald); }
+  :root[data-theme="light"] .status-refining { background: #e0f2fe; color: var(--accent-blue); }
+  :root[data-theme="light"] .status-developing { background: #fef3c7; color: var(--accent-amber); }
+  :root[data-theme="light"] .status-exploratory { background: #ffe4e6; color: var(--accent-rose); }
 
   .prov-title {
     margin: 0;
@@ -1198,22 +1196,22 @@ const principleCounts = {
 
   .change-expands-scope {
     background: rgba(52, 211, 153, 0.15);
-    color: #34d399;
+    color: var(--accent-emerald);
     border: 1px solid rgba(52, 211, 153, 0.35);
   }
   .change-granular-split {
     background: rgba(56, 189, 248, 0.15);
-    color: #38bdf8;
+    color: var(--accent-blue);
     border: 1px solid rgba(56, 189, 248, 0.35);
   }
   .change-new-metric {
     background: rgba(192, 132, 252, 0.15);
-    color: #c084fc;
+    color: var(--accent-purple);
     border: 1px solid rgba(192, 132, 252, 0.35);
   }
   .change-easier-testing {
     background: rgba(251, 191, 36, 0.15);
-    color: #fbbf24;
+    color: var(--accent-amber);
     border: 1px solid rgba(251, 191, 36, 0.35);
   }
   .change-direct {
@@ -1223,16 +1221,16 @@ const principleCounts = {
   }
   .change-redesigned {
     background: rgba(251, 113, 133, 0.15);
-    color: #fb7185;
+    color: var(--accent-rose);
     border: 1px solid rgba(251, 113, 133, 0.35);
   }
 
-  :root[data-theme="light"] .change-expands-scope { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
-  :root[data-theme="light"] .change-granular-split { background: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
-  :root[data-theme="light"] .change-new-metric { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
-  :root[data-theme="light"] .change-easier-testing { background: #fef3c7; color: #92400e; border-color: #fde68a; }
-  :root[data-theme="light"] .change-direct { background: #f1f5f9; color: #334155; border-color: #cbd5e1; }
-  :root[data-theme="light"] .change-redesigned { background: #ffe4e6; color: #9f1239; border-color: #fecdd3; }
+  :root[data-theme="light"] .change-expands-scope { background: #d1fae5; color: var(--accent-emerald); border-color: rgba(4, 120, 87, 0.35); }
+  :root[data-theme="light"] .change-granular-split { background: #e0f2fe; color: var(--accent-blue); border-color: rgba(35, 55, 255, 0.35); }
+  :root[data-theme="light"] .change-new-metric { background: #f3e8ff; color: var(--accent-purple); border-color: rgba(109, 40, 217, 0.35); }
+  :root[data-theme="light"] .change-easier-testing { background: #fef3c7; color: var(--accent-amber); border-color: rgba(146, 64, 14, 0.35); }
+  :root[data-theme="light"] .change-direct { background: #f1f5f9; color: var(--text-secondary); border-color: var(--border-default); }
+  :root[data-theme="light"] .change-redesigned { background: #ffe4e6; color: var(--accent-rose); border-color: rgba(190, 18, 60, 0.35); }
 
   .delta-card {
     background: var(--surface-card);
@@ -1386,31 +1384,55 @@ const principleCounts = {
       });
     }
 
-    // Level Pills
-    levelPills.forEach((pill) => {
-      pill.addEventListener("click", () => {
-        levelPills.forEach((p) => {
-          p.classList.remove("active");
-          p.setAttribute("aria-checked", "false");
-        });
-        pill.classList.add("active");
-        pill.setAttribute("aria-checked", "true");
-        activeLevel = pill.getAttribute("data-level") || "all";
-        filterRows();
+    // Level Pills (with Roving Tabindex)
+    const levelPillsArr = Array.from(levelPills);
+    function activateLevelPill(pill, focusIt = false) {
+      levelPillsArr.forEach((p) => {
+        const isMatch = p === pill;
+        p.classList.toggle("active", isMatch);
+        p.setAttribute("aria-checked", String(isMatch));
+        p.setAttribute("tabindex", isMatch ? "0" : "-1");
+      });
+      activeLevel = pill.getAttribute("data-level") || "all";
+      if (focusIt) pill.focus();
+      filterRows();
+    }
+    levelPillsArr.forEach((pill, idx) => {
+      pill.addEventListener("click", () => activateLevelPill(pill, false));
+      pill.addEventListener("keydown", (e) => {
+        let next = idx;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (idx + 1) % levelPillsArr.length;
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (idx - 1 + levelPillsArr.length) % levelPillsArr.length;
+        if (next !== idx) {
+          e.preventDefault();
+          activateLevelPill(levelPillsArr[next], true);
+        }
       });
     });
 
-    // Type Pills
-    typePills.forEach((pill) => {
-      pill.addEventListener("click", () => {
-        typePills.forEach((p) => {
-          p.classList.remove("active");
-          p.setAttribute("aria-checked", "false");
-        });
-        pill.classList.add("active");
-        pill.setAttribute("aria-checked", "true");
-        activeType = pill.getAttribute("data-type") || "all";
-        filterRows();
+    // Type Pills (with Roving Tabindex)
+    const typePillsArr = Array.from(typePills);
+    function activateTypePill(pill, focusIt = false) {
+      typePillsArr.forEach((p) => {
+        const isMatch = p === pill;
+        p.classList.toggle("active", isMatch);
+        p.setAttribute("aria-checked", String(isMatch));
+        p.setAttribute("tabindex", isMatch ? "0" : "-1");
+      });
+      activeType = pill.getAttribute("data-type") || "all";
+      if (focusIt) pill.focus();
+      filterRows();
+    }
+    typePillsArr.forEach((pill, idx) => {
+      pill.addEventListener("click", () => activateTypePill(pill, false));
+      pill.addEventListener("keydown", (e) => {
+        let next = idx;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (idx + 1) % typePillsArr.length;
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (idx - 1 + typePillsArr.length) % typePillsArr.length;
+        if (next !== idx) {
+          e.preventDefault();
+          activateTypePill(typePillsArr[next], true);
+        }
       });
     });
 
@@ -1436,12 +1458,14 @@ const principleCounts = {
         const isAll = p.getAttribute("data-level") === "all";
         p.classList.toggle("active", isAll);
         p.setAttribute("aria-checked", isAll ? "true" : "false");
+        p.setAttribute("tabindex", isAll ? "0" : "-1");
       });
 
       typePills.forEach((p) => {
         const isAll = p.getAttribute("data-type") === "all";
         p.classList.toggle("active", isAll);
         p.setAttribute("aria-checked", isAll ? "true" : "false");
+        p.setAttribute("tabindex", isAll ? "0" : "-1");
       });
 
       filterRows();

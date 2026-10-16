@@ -1,7 +1,30 @@
 ---
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import type { Wcag3CatalogItem, Wcag3StricterCurated, Wcag3StricterItem, Wcag3StricterCategory } from "@/lib/catalog-types";
 import fs from "fs";
 import path from "path";
+
+interface ResolvedStricterProvision {
+  slug: string;
+  missing?: boolean;
+  title?: string;
+  type?: string;
+  typeLabel?: string;
+  status?: string;
+  text?: string;
+  bullets: string[];
+  appliesWhen: string[];
+  exceptWhen: string[];
+  notes: string[];
+  drifted?: boolean;
+}
+
+interface StricterItemWithProvisions extends Omit<Wcag3StricterItem, 'provisions'> {
+  provisions: ResolvedStricterProvision[];
+  needsReview?: boolean;
+  explanation?: string;
+  uncertain?: boolean;
+}
 
 // Hand-curated practices (public/data/wcag3-stricter.json) joined against the
 // live catalog. The requirement wording, type, status and exceptions always come
@@ -9,13 +32,13 @@ import path from "path";
 // provision disappears or stops being a core requirement, the entry is flagged
 // for review rather than shown with stale wording.
 const dataDir = path.join(process.cwd(), "public", "data");
-const read = (f: string, fallback: any) => {
+const read = <T>(f: string, fallback: T): T => {
   const p = path.join(dataDir, f);
   return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : fallback;
 };
-const curated = read("wcag3-stricter.json", { categories: [], core: [], supplemental: [], notRuledOut: [] });
-const catalog: any[] = read("wcag3-catalog.json", []);
-const bySlug = new Map(catalog.map((p) => [p.slug, p]));
+const curated: Wcag3StricterCurated = read("wcag3-stricter.json", { categories: [], core: [], supplemental: [], notRuledOut: [] });
+const catalog: Wcag3CatalogItem[] = read("wcag3-catalog.json", []);
+const bySlug = new Map<string, Wcag3CatalogItem>(catalog.map((p) => [p.slug, p]));
 
 const statePath = path.join(process.cwd(), "tracking", "state.json");
 const state = fs.existsSync(statePath) ? JSON.parse(fs.readFileSync(statePath, "utf8")) : {};
@@ -44,15 +67,15 @@ const TYPE_LABEL: Record<string, string> = {
   "recommended practice": "Recommended practice",
 };
 
-function resolve(slugs: string[], expectedType: string) {
+function resolve(slugs: string[], expectedType: string): ResolvedStricterProvision[] {
   return slugs.map((slug) => {
     const p = bySlug.get(slug);
-    if (!p) return { slug, missing: true };
+    if (!p) return { slug, missing: true, bullets: [], appliesWhen: [], exceptWhen: [], notes: [] };
     return {
       slug,
       title: p.title,
       type: p.type || "",
-      typeLabel: TYPE_LABEL[p.type] || "Untyped",
+      typeLabel: TYPE_LABEL[p.type || ""] || "Untyped",
       status: p.status || "exploratory",
       ...splitBody(p.rawBody),
       appliesWhen: p.derived?.appliesWhen || [],
@@ -63,24 +86,24 @@ function resolve(slugs: string[], expectedType: string) {
   });
 }
 
-const withProvisions = (list: any[], expectedType: string) =>
+const withProvisions = (list: Wcag3StricterItem[], expectedType: string): StricterItemWithProvisions[] =>
   list.map((item) => {
     const provisions = resolve(item.provisions || [], expectedType);
-    const needsReview = provisions.some((p: any) => p.missing || p.drifted);
+    const needsReview = provisions.some((p) => p.missing || p.drifted);
     return { ...item, provisions, needsReview };
   });
 
-const core = withProvisions(curated.core, "foundational");
-const supplemental = withProvisions(curated.supplemental, "supplemental");
-const notRuledOut = curated.notRuledOut.map((item: any) => ({
+const core: StricterItemWithProvisions[] = withProvisions(curated.core, "foundational");
+const supplemental: StricterItemWithProvisions[] = withProvisions(curated.supplemental, "supplemental");
+const notRuledOut: StricterItemWithProvisions[] = curated.notRuledOut.map((item) => ({
   ...item,
   provisions: resolve(item.provisions || [], "foundational"),
 }));
 
-const categories = curated.categories.filter((c: any) => core.some((i: any) => i.category === c.id));
-const coreProvisionCount = new Set(core.flatMap((i: any) => i.provisions.map((p: any) => p.slug))).size;
-const reviewCount = [...core, ...supplemental].filter((i: any) => i.needsReview).length;
-const statusesInUse = [...new Set(core.flatMap((i: any) => i.provisions.map((p: any) => p.status)))];
+const categories: Wcag3StricterCategory[] = curated.categories.filter((c) => core.some((i) => i.category === c.id));
+const coreProvisionCount = new Set(core.flatMap((i) => i.provisions.map((p) => p.slug))).size;
+const reviewCount = [...core, ...supplemental].filter((i) => i.needsReview).length;
+const statusesInUse = [...new Set(core.flatMap((i) => i.provisions.map((p) => p.status)))];
 const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s === "exploratory");
 
 // AA is the baseline most laws and policies point to, so it's the fair
@@ -88,9 +111,9 @@ const noneBeyondDeveloping = statusesInUse.every((s) => s === "developing" || s 
 // ground from AAA criteria that WCAG 3 promotes into the baseline.
 const aaaResults = curated.aaaResults || {};
 const AAA_ORDER = ["passes", "depends", "fails"];
-const aaaCount = (r: string) => core.filter((i: any) => i.aaa?.result === r).length;
+const aaaCount = (r: string) => core.filter((i) => i.aaa?.result === r).length;
 const scList = (list: any[]) => (list || []).map((sc: any) => sc.num).join(", ");
-const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing).map((p: any) => p.title).join(" · ");
+const firstTitle = (item: StricterItemWithProvisions) => item.provisions.filter((p) => !p.missing).map((p) => p.title).join(" · ");
 ---
 
 <PlainEnglishLayout title="Passes WCAG 2.2, Fails the WCAG 3 Draft" activeTab="stricter">
@@ -173,7 +196,7 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
           </tr>
         </thead>
         <tbody role="rowgroup">
-          {core.map((item: any) => (
+          {core.map((item) => (
             <tr role="row">
               <th role="rowheader" scope="row"><a href={`#${item.id}`}>{item.practice}</a></th>
               <td role="cell"><span class="st-verdict st-verdict-passes">Passes</span></td>
@@ -191,7 +214,7 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
 
   <nav class="st-toc" aria-label="Categories on this page">
     <ul>
-      {categories.map((c: any) => (
+      {categories.map((c) => (
         <li><a href={`#cat-${c.id}`}><span aria-hidden="true">{c.icon}</span> {c.label}</a></li>
       ))}
       <li><a href="#supplemental"><span aria-hidden="true">➕</span> Stricter, but not required</a></li>
@@ -199,11 +222,11 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
     </ul>
   </nav>
 
-  {categories.map((c: any) => (
+  {categories.map((c) => (
     <section class="st-category" aria-labelledby={`cat-${c.id}`}>
       <h2 id={`cat-${c.id}`}><span aria-hidden="true">{c.icon}</span> {c.label}</h2>
       <div class="st-list">
-        {core.filter((i: any) => i.category === c.id).map((item: any) => (
+        {core.filter((i) => i.category === c.id).map((item) => (
           <article class="st-card" id={item.id}>
             <h3>{item.practice}</h3>
             {item.example && <p class="st-example"><span>Example:</span> {item.example}</p>}
@@ -213,7 +236,7 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
                 <h4>WCAG 2.2 AA (baseline) <span class="st-verdict st-verdict-passes">Passes</span></h4>
                 {item.aa.criteria.length > 0 && (
                   <ul class="st-sc">
-                    {item.aa.criteria.map((sc: any) => (
+                    {item.aa.criteria.map((sc) => (
                       <li><span class="st-mono">{sc.num}</span> {sc.name} <span class="st-level">{sc.level}</span></li>
                     ))}
                   </ul>
@@ -223,7 +246,7 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
                 <h4 class="st-aaa-head">WCAG 2.2 AAA <span class={`st-verdict st-verdict-${item.aaa.result}`}>{aaaResults[item.aaa.result]?.label}</span></h4>
                 {item.aaa.criteria.length > 0 && (
                   <ul class="st-sc">
-                    {item.aaa.criteria.map((sc: any) => (
+                    {item.aaa.criteria.map((sc) => (
                       <li><span class="st-mono">{sc.num}</span> {sc.name} <span class="st-level">{sc.level}</span></li>
                     ))}
                   </ul>
@@ -233,7 +256,7 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
 
               <div class="st-col st-col-3">
                 <h4>What the WCAG 3 draft says</h4>
-                {item.provisions.map((p: any) => p.missing ? (
+                {item.provisions.map((p) => p.missing ? (
                   <div class="st-req st-req-missing">
                     <p><code>{p.slug}</code> is no longer in the draft. This entry needs review.</p>
                   </div>
@@ -255,7 +278,7 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
                       <div class="st-cond"><span class="st-cond-label">Draft note</span><div class="upstream" set:html={p.notes.join("")} /></div>
                     )}
                     {p.drifted && (
-                      <p class="st-drift-note">⚠️ This is now a {p.typeLabel.toLowerCase()}, not a core requirement, so this entry needs review.</p>
+                      <p class="st-drift-note">⚠️ This is now a {(p.typeLabel || '').toLowerCase()}, not a core requirement, so this entry needs review.</p>
                     )}
                   </div>
                 ))}
@@ -280,20 +303,20 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
       but you can conform to WCAG 3 without meeting them.
     </p>
     <div class="st-list">
-      {supplemental.map((item: any) => (
+      {supplemental.map((item) => (
         <article class="st-card st-card-compact" id={item.id}>
           <h3>{item.practice}</h3>
           <p class="st-why">
             <span class="st-verdict st-verdict-passes">AA: Passes</span>
-            {item.aa.criteria.map((sc: any) => <> <span class="st-mono">{sc.num}</span> {sc.name} ({sc.level}).</>)}
+            {item.aa.criteria.map((sc) => <> <span class="st-mono">{sc.num}</span> {sc.name} ({sc.level}).</>)}
             {" "}{item.aa.explanation}
           </p>
           <p class="st-why">
             <span class={`st-verdict st-verdict-${item.aaa.result}`}>AAA: {aaaResults[item.aaa.result]?.short}</span>
-            {item.aaa.criteria.map((sc: any) => <> <span class="st-mono">{sc.num}</span> {sc.name} ({sc.level}).</>)}
+            {item.aaa.criteria.map((sc) => <> <span class="st-mono">{sc.num}</span> {sc.name} ({sc.level}).</>)}
             {" "}{item.aaa.explanation}
           </p>
-          {item.provisions.map((p: any) => p.missing ? (
+          {item.provisions.map((p) => p.missing ? (
             <p class="st-req-missing"><code>{p.slug}</code> is no longer in the draft. This entry needs review.</p>
           ) : (
             <div class="st-req">
@@ -302,11 +325,11 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
                 <span class="st-badge st-badge-other">{p.typeLabel}</span>
                 <span class="st-badge st-badge-status">{p.status}</span>
               </p>
-              <blockquote>{p.text}{p.bullets.length > 0 && <ul>{p.bullets.map((b: string) => <li>{b}</li>)}</ul>}</blockquote>
-              {p.exceptWhen.length > 0 && (
+              <blockquote>{p.text}{p.bullets && p.bullets.length > 0 && <ul>{p.bullets.map((b: string) => <li>{b}</li>)}</ul>}</blockquote>
+              {p.exceptWhen && p.exceptWhen.length > 0 && (
                 <div class="st-cond"><span class="st-cond-label">Except when</span><div class="upstream" set:html={p.exceptWhen.join("")} /></div>
               )}
-              {p.drifted && <p class="st-drift-note">⚠️ This is now a {p.typeLabel.toLowerCase()}. This entry needs review.</p>}
+              {p.drifted && <p class="st-drift-note">⚠️ This is now a {p.typeLabel?.toLowerCase()}. This entry needs review.</p>}
             </div>
           ))}
           {item.note && <p class="st-note"><strong>Note:</strong> {item.note}</p>}
@@ -318,10 +341,10 @@ const firstTitle = (item: any) => item.provisions.filter((p: any) => !p.missing)
   <section class="st-category" aria-labelledby="not-ruled-out">
     <h2 id="not-ruled-out"><span aria-hidden="true">✅</span> Practices that aren't ruled out (yet)</h2>
     <ul class="st-plain-list">
-      {notRuledOut.map((item: any) => (
+      {notRuledOut.map((item) => (
         <li>
           <strong>{item.practice}.</strong> {item.explanation}
-          {" "}See {item.provisions.filter((p: any) => !p.missing).map((p: any, i: number, arr: any[]) => (
+          {" "}See {item.provisions.filter((p) => !p.missing).map((p, i, arr) => (
             <><a href={link(`/plain-english/provision/${p.slug}/`)}>{p.title}</a>{i < arr.length - 1 ? ", " : "."}</>
           ))}
         </li>

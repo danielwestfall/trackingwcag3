@@ -1,10 +1,11 @@
 ---
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import type { Wcag22CatalogItem, Wcag3CatalogItem, Wcag22NormativeItem, Wcag22GuidanceItem } from "@/lib/catalog-types";
 import fs from "fs";
 import path from "path";
 
 const wcag22Path = path.join(process.cwd(), "public", "data", "wcag22-catalog.json");
-let wcag22List: any[] = [];
+let wcag22List: Wcag22CatalogItem[] = [];
 if (fs.existsSync(wcag22Path)) {
   wcag22List = JSON.parse(fs.readFileSync(wcag22Path, "utf8"));
 }
@@ -17,12 +18,12 @@ const readData = (f: string) => {
 };
 const normative = readData("normative-text.json");
 const guidance = readData("three-tier-guidance.json");
-const normBy = new Map<string, any>((normative?.criteria || []).map((c: any) => [c.num, c]));
-const tiersBy = new Map<string, any>((guidance?.criteria || []).map((c: any) => [c.num, c]));
-const isObsolete = (sc: any) => !!normBy.get(sc.num)?.obsolete;
+const normBy = new Map<string, Wcag22NormativeItem>((normative?.criteria || []).map((c: Wcag22NormativeItem) => [c.num, c]));
+const tiersBy = new Map<string, Wcag22GuidanceItem>((guidance?.criteria || []).map((c: Wcag22GuidanceItem) => [c.num, c]));
+const isObsolete = (sc: Wcag22CatalogItem) => !!normBy.get(sc.num)?.obsolete;
 const wcag3Path = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
 const wcag3Titles: Record<string, string> = fs.existsSync(wcag3Path)
-  ? Object.fromEntries(JSON.parse(fs.readFileSync(wcag3Path, "utf8")).map((p: any) => [p.slug, p.title]))
+  ? Object.fromEntries((JSON.parse(fs.readFileSync(wcag3Path, "utf8")) as Wcag3CatalogItem[]).map((p) => [p.slug, p.title]))
   : {};
 
 const levelACount = wcag22List.filter(item => item.level === "A" && !isObsolete(item)).length;
@@ -131,10 +132,10 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       <div class="filter-group">
         <span class="filter-label">Filter Level:</span>
         <div class="level-pills" id="level-pills" role="radiogroup" aria-label="Filter by conformance level">
-          <button type="button" class="pill active" data-level="all" role="radio" aria-checked="true">All Levels</button>
-          <button type="button" class="pill pill-a" data-level="A" role="radio" aria-checked="false">Level A</button>
-          <button type="button" class="pill pill-aa" data-level="AA" role="radio" aria-checked="false">Level AA</button>
-          <button type="button" class="pill pill-aaa" data-level="AAA" role="radio" aria-checked="false">Level AAA</button>
+          <button type="button" class="pill active" data-level="all" role="radio" aria-checked="true" tabindex="0">All Levels</button>
+          <button type="button" class="pill pill-a" data-level="A" role="radio" aria-checked="false" tabindex="-1">Level A</button>
+          <button type="button" class="pill pill-aa" data-level="AA" role="radio" aria-checked="false" tabindex="-1">Level AA</button>
+          <button type="button" class="pill pill-aaa" data-level="AAA" role="radio" aria-checked="false" tabindex="-1">Level AAA</button>
         </div>
       </div>
 
@@ -158,42 +159,44 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
     </div>
 
     <div class="criteria-grid" id="criteria-grid">
-      {wcag22List.map((sc) => (
-        <article 
-          class="criterion-card"
-          data-id={sc.id}
-          data-num={sc.num}
-          data-name={sc.name.toLowerCase()}
-          data-level={sc.level}
-          data-principle={sc.principle}
-          data-summary={(tiersBy.get(sc.num)?.floor || sc.plainEnglish?.summary || "").toLowerCase()}
-          data-why={(tiersBy.get(sc.num)?.gap || "").toLowerCase()}
-          data-example={(tiersBy.get(sc.num)?.bestPractice || "").toLowerCase()}
-          data-mapped={(sc.wcag3Mapping?.provisions || []).join(" ").toLowerCase()}
-        >
-          <div class="card-header">
-            <div class="header-badges">
-              <span class="num-badge">SC {sc.num}</span>
-              {isObsolete(sc)
-                ? <span class="level-badge level-obsolete">Obsolete</span>
-                : <span class={`level-badge level-${sc.level}`}>Level {sc.level}</span>}
-              <span class="principle-badge">{sc.principle}</span>
+      {wcag22List.map((sc) => {
+        const t = tiersBy.get(sc.num);
+        return (
+          <article 
+            class="criterion-card"
+            data-id={sc.id}
+            data-num={sc.num}
+            data-name={sc.name.toLowerCase()}
+            data-level={sc.level}
+            data-principle={sc.principle}
+            data-summary={(t?.floor || sc.plainEnglish?.summary || "").toLowerCase()}
+            data-why={(t?.gap || "").toLowerCase()}
+            data-example={(t?.bestPractice || "").toLowerCase()}
+            data-mapped={(sc.wcag3Mapping?.provisions || []).join(" ").toLowerCase()}
+          >
+            <div class="card-header">
+              <div class="header-badges">
+                <span class="num-badge">SC {sc.num}</span>
+                {isObsolete(sc)
+                  ? <span class="level-badge level-obsolete">Obsolete</span>
+                  : <span class={`level-badge level-${sc.level}`}>Level {sc.level}</span>}
+                <span class="principle-badge">{sc.principle}</span>
+              </div>
             </div>
-          </div>
 
-          <h3 class="card-title">
-            <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)}>{sc.name}</a>
-          </h3>
+            <h3 class="card-title">
+              <a href={link(`/plain-english/wcag22/${sc.id.replace(/\./g, '-')}/`)}>{sc.name}</a>
+            </h3>
 
-          <div class="floor-summary">
-            <strong>Bare minimum:</strong>
-            <p class="summary-text">{tiersBy.get(sc.num)?.floor || sc.plainEnglish?.summary}</p>
-          </div>
-          {tiersBy.get(sc.num)?.notRequired?.length > 0 && (
-            <p class="not-required-count">
-              Clears up {tiersBy.get(sc.num).notRequired.length} common {tiersBy.get(sc.num).notRequired.length === 1 ? "misconception" : "misconceptions"} about what it requires
-            </p>
-          )}
+            <div class="floor-summary">
+              <strong>Bare minimum:</strong>
+              <p class="summary-text">{t?.floor || sc.plainEnglish?.summary}</p>
+            </div>
+            {t && t.notRequired && t.notRequired.length > 0 && (
+              <p class="not-required-count">
+                Clears up {t.notRequired.length} common {t.notRequired.length === 1 ? "misconception" : "misconceptions"} about what it requires
+              </p>
+            )}
 
           <div class="card-footer">
             <div class="wcag3-evolution">
@@ -213,7 +216,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             </a>
           </div>
         </article>
-      ))}
+      );
+    })}
     </div>
   </section>
 </PlainEnglishLayout>
@@ -235,22 +239,34 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
       searchInput.value = initialQuery;
     }
 
-    levelPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        levelPills.forEach(p => {
-          p.classList.remove('active');
-          p.setAttribute('aria-checked', 'false');
-        });
-        pill.classList.add('active');
-        pill.setAttribute('aria-checked', 'true');
-        selectedLevel = pill.getAttribute('data-level');
-        filterCards();
+    const levelPillsArr = Array.from(levelPills);
+    function activateLevelPill(pill, focusIt = false) {
+      levelPillsArr.forEach(p => {
+        const isMatch = p === pill;
+        p.classList.toggle('active', isMatch);
+        p.setAttribute('aria-checked', String(isMatch));
+        p.setAttribute('tabindex', isMatch ? '0' : '-1');
+      });
+      selectedLevel = pill.getAttribute('data-level');
+      if (focusIt) pill.focus();
+      filterCards();
+    }
+    levelPillsArr.forEach((pill, idx) => {
+      pill.addEventListener('click', () => activateLevelPill(pill, false));
+      pill.addEventListener('keydown', (e) => {
+        let next = idx;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % levelPillsArr.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + levelPillsArr.length) % levelPillsArr.length;
+        if (next !== idx) {
+          e.preventDefault();
+          activateLevelPill(levelPillsArr[next], true);
+        }
       });
     });
 
     function filterCards() {
-      const query = searchInput.value.toLowerCase().trim();
-      const selectedPrinciple = principleSelect.value;
+      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      const selectedPrinciple = principleSelect ? principleSelect.value : 'all';
 
       let visible = 0;
 
@@ -283,11 +299,11 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
         }
       });
 
-      resultCount.textContent = `Showing ${visible} of ${cards.length} Success Criteria`;
+      if (resultCount) resultCount.textContent = `Showing ${visible} of ${cards.length} Success Criteria`;
     }
 
-    searchInput.addEventListener('input', filterCards);
-    principleSelect.addEventListener('change', filterCards);
+    if (searchInput) searchInput.addEventListener('input', filterCards);
+    if (principleSelect) principleSelect.addEventListener('change', filterCards);
 
     // Initial filter execution to process ?q=
     filterCards();
@@ -463,7 +479,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   .search-box input:focus {
     border-color: var(--accent-emerald);
     box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2);
-    outline: none;
+    outline: 2px solid var(--accent-emerald);
+    outline-offset: 2px;
   }
 
   .filter-bar {
@@ -540,7 +557,8 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   }
   .filter-select:focus {
     border-color: var(--accent-emerald);
-    outline: none;
+    outline: 2px solid var(--accent-emerald);
+    outline-offset: 2px;
   }
 
   .criteria-section {

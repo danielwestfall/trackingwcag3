@@ -1,5 +1,6 @@
 ---
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import type { Wcag22CatalogItem, Wcag22NormativeItem, Wcag22GuidanceItem, Wcag22Definition, Wcag22NormativeBlock, Wcag22NormativeDlItem, Wcag3CatalogItem } from "@/lib/catalog-types";
 import fs from "fs";
 import path from "path";
 
@@ -17,14 +18,14 @@ export async function getStaticPaths() {
     const f = path.join(process.cwd(), ...p);
     return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : null;
   };
-  const list = read("public", "data", "wcag22-catalog.json") || [];
+  const list: Wcag22CatalogItem[] = read("public", "data", "wcag22-catalog.json") || [];
   const normative = read("wcag22-data", "normative-text.json");
   const guidance = read("wcag22-data", "three-tier-guidance.json");
-  const wcag3 = read("public", "data", "wcag3-catalog.json") || [];
-  const normBy = new Map((normative?.criteria || []).map((c: any) => [c.num, c]));
-  const guideBy = new Map((guidance?.criteria || []).map((c: any) => [c.num, c]));
-  const wcag3Titles = Object.fromEntries(wcag3.map((p: any) => [p.slug, p.title]));
-  return list.map((item: any) => ({
+  const wcag3: Wcag3CatalogItem[] = read("public", "data", "wcag3-catalog.json") || [];
+  const normBy = new Map<string, Wcag22NormativeItem>((normative?.criteria || []).map((c: Wcag22NormativeItem) => [c.num, c]));
+  const guideBy = new Map<string, Wcag22GuidanceItem>((guidance?.criteria || []).map((c: Wcag22GuidanceItem) => [c.num, c]));
+  const wcag3Titles: Record<string, string> = Object.fromEntries(wcag3.map((p) => [p.slug, p.title]));
+  return list.map((item) => ({
     params: { id: item.id.replace(/\./g, "-") },
     props: {
       item,
@@ -37,13 +38,22 @@ export async function getStaticPaths() {
   }));
 }
 
-const { item, norm, tiers, recommendation, normativeStatement, wcag3Titles } = Astro.props as any;
+interface Props {
+  item: Wcag22CatalogItem;
+  norm: Wcag22NormativeItem | null;
+  tiers: Wcag22GuidanceItem | null;
+  recommendation: string;
+  normativeStatement: string;
+  wcag3Titles: Record<string, string>;
+}
+
+const { item, norm, tiers, recommendation, normativeStatement, wcag3Titles } = Astro.props as Props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
 
 // Term references become links to the definitions listed on this page; a term
 // whose definition isn't listed here stays plain text.
-const defIds = new Set((norm?.definitions || []).map((d: any) => d.id));
+const defIds = new Set((norm?.definitions || []).map((d: Wcag22Definition) => d.id));
 const linkTerms = (html: string) =>
   (html || "").replace(/<span class="term-ref"(?: data-dfn="([^"]*)")?>(.*?)<\/span>/g, (_m: string, id: string, text: string) =>
     id && defIds.has(id) ? `<a class="term-link" href="#${id}">${text}</a>` : text);
@@ -116,21 +126,21 @@ const scLabel = `SC ${item.num}`;
         <h3>Normative text</h3>
         <p class="source-line">Verbatim from {recommendation}. Underlined terms are defined below.</p>
         <div class="normative-text">
-          {norm.normative.map((b: any) =>
-            b.type === "p" ? <p set:html={linkTerms(b.html)} />
+          {norm.normative.map((b: Wcag22NormativeBlock) =>
+            b.type === "p" ? <p set:html={linkTerms(b.html || "")} />
             : b.type === "dl" ? (
               <dl>
-                {b.items.map((i: any) => (<><dt>{i.term}</dt><dd set:html={linkTerms(i.html)} /></>))}
+                {(b.items || []).map((i: Wcag22NormativeDlItem) => (<><dt>{i.term}</dt><dd set:html={linkTerms(i.html)} /></>))}
               </dl>
             )
-            : b.type === "ol" ? <ol>{b.items.map((i: string) => <li set:html={linkTerms(i)} />)}</ol>
-            : <ul>{b.items.map((i: string) => <li set:html={linkTerms(i)} />)}</ul>
+            : b.type === "ol" ? <ol>{(b.items || []).map((i: string) => <li set:html={linkTerms(i)} />)}</ol>
+            : <ul>{(b.items || []).map((i: string) => <li set:html={linkTerms(i)} />)}</ul>
           )}
         </div>
       </div>
     )}
 
-    {tiers?.failsExamples?.length > 0 && (
+    {tiers && tiers.failsExamples && tiers.failsExamples.length > 0 && (
       <div class="fails-box">
         <h3>Known failures</h3>
         <p class="source-line">These fail this criterion or a related one named in the text. Log them as WCAG failures.</p>
@@ -140,7 +150,7 @@ const scLabel = `SC ${item.num}`;
       </div>
     )}
 
-    {tiers?.notRequired?.length > 0 && (
+    {tiers && tiers.notRequired && tiers.notRequired.length > 0 && (
       <div class="not-required-box">
         <h3>Not required by the normative text</h3>
         <p class="source-line">Common claims that this criterion does not support. Don't log these as WCAG failures.</p>
@@ -150,19 +160,19 @@ const scLabel = `SC ${item.num}`;
       </div>
     )}
 
-    {norm?.definitions?.length > 0 && (
+    {norm && norm.definitions && norm.definitions.length > 0 && (
       <details class="defs-box" open>
         <summary><h3>Definitions used ({norm.definitions.length})</h3></summary>
         <p class="source-line">Glossary definitions are normative. Their notes are informative.</p>
         <dl class="defs-list">
-          {norm.definitions.map((d: any) => (
+          {norm.definitions.map((d: Wcag22Definition) => (
             <>
               <dt id={d.id}>{d.term}</dt>
               <dd>
-                {d.definition.map((b: any) =>
-                  b.type === "p" ? <p set:html={linkTerms(b.html)} />
-                  : b.type === "dl" ? <dl>{b.items.map((i: any) => (<><dt>{i.term}</dt><dd set:html={linkTerms(i.html)} /></>))}</dl>
-                  : <ul>{b.items.map((i: string) => <li set:html={linkTerms(i)} />)}</ul>
+                {d.definition.map((b: Wcag22NormativeBlock) =>
+                  b.type === "p" ? <p set:html={linkTerms(b.html || "")} />
+                  : b.type === "dl" ? <dl>{(b.items || []).map((i: Wcag22NormativeDlItem) => (<><dt>{i.term}</dt><dd set:html={linkTerms(i.html)} /></>))}</dl>
+                  : <ul>{(b.items || []).map((i: string) => <li set:html={linkTerms(i)} />)}</ul>
                 )}
                 {d.informativeNotes.length > 0 && (
                   <details class="def-notes">
@@ -177,7 +187,7 @@ const scLabel = `SC ${item.num}`;
       </details>
     )}
 
-    {norm?.informativeNotes?.length > 0 && (
+    {norm && norm.informativeNotes && norm.informativeNotes.length > 0 && (
       <div class="informative-box">
         <h3>Notes in the criterion <span class="nn-badge">Informative</span></h3>
         <p class="source-line">WCAG 2.2 lists notes among its informative material, which "does not create requirements that impact a conformance claim." They help interpret the criterion but are not part of the floor.</p>
@@ -213,7 +223,7 @@ const scLabel = `SC ${item.num}`;
     <h2 id="wcag3">How {scLabel} maps to the WCAG 3 draft</h2>
     <p class="tier-framing">From this site's reviewed map to the WCAG 3 editor's draft. It's an interpretation: W3C has not published a mapping.</p>
     {item.wcag3Mapping?.note && <p class="tier-body">{item.wcag3Mapping.note}</p>}
-    {item.wcag3Mapping?.provisions?.length > 0 ? (
+    {item.wcag3Mapping?.provisions && item.wcag3Mapping.provisions.length > 0 ? (
       <>
         <h3 class="map-subhead">Successor provisions</h3>
         <div class="provision-links-grid">
@@ -229,7 +239,7 @@ const scLabel = `SC ${item.num}`;
     ) : (
       !item.wcag3Mapping?.note && <p class="missing-note">No successor provision in the current draft.</p>
     )}
-    {item.wcag3Mapping?.related?.length > 0 && (
+    {item.wcag3Mapping?.related && item.wcag3Mapping.related.length > 0 && (
       <>
         <h3 class="map-subhead">Related, not a successor</h3>
         <div class="provision-links-grid">
@@ -403,7 +413,7 @@ const scLabel = `SC ${item.num}`;
   }
 
   .provision-card-link {
-    background: rgba(7, 11, 20, 0.65);
+    background: var(--surface-subtle);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 16px;

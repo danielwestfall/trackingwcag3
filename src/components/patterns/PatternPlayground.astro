@@ -1,0 +1,2823 @@
+---
+import type { Pattern } from "@/lib/patterns";
+
+interface Props {
+  pattern: Pattern;
+}
+
+const { pattern } = Astro.props;
+---
+
+<!-- Sandbox Toolbar -->
+<div class="sandbox-toolbar">
+  <span class="sandbox-title">⚡ Interactive Sandbox &amp; Live AT Inspector</span>
+  <button type="button" class="sandbox-toggle-btn" data-target-pane={`playground-${pattern.id}`}>
+    <span class="toggle-icon">🎨</span>
+    <span class="toggle-text">Toggle Styled vs Raw Default</span>
+  </button>
+</div>
+
+<!-- Side-by-Side Interactive Playground -->
+<div class="playground-wrapper" id={`playground-${pattern.id}`}>
+  <div class="playground-grid">
+    <!-- Left: W3C APG ARIA Pattern Demo -->
+    <div class="demo-pane demo-apg" aria-label={`W3C APG ARIA ${pattern.name} Demo`}>
+      <div class="pane-header">
+        <span class="pane-badge badge-apg">🟣 W3C APG (ARIA)</span>
+        <span class="pane-sub">Role, states &amp; keyboard JS</span>
+      </div>
+      <div class="pane-content" data-demo-role="apg" data-pattern-id={pattern.id}>
+        <!-- Interactive APG Demos -->
+        {pattern.id === "accordion" && (
+          <div class="apg-accordion-widget" id="demo-apg-accordion">
+            <div class="acc-item">
+              <h3>
+                <button type="button" class="apg-acc-btn" aria-expanded="true" aria-controls="demo-apg-panel-1" id="demo-apg-btn-1">
+                  <span>Personal Details</span>
+                  <span class="acc-arrow" aria-hidden="true">▼</span>
+                </button>
+              </h3>
+              <div id="demo-apg-panel-1" role="region" aria-labelledby="demo-apg-btn-1" class="apg-acc-panel">
+                <p>Name: Alex Rivera</p>
+                <p>Email: alex@example.com</p>
+              </div>
+            </div>
+            <div class="acc-item">
+              <h3>
+                <button type="button" class="apg-acc-btn" aria-expanded="false" aria-controls="demo-apg-panel-2" id="demo-apg-btn-2">
+                  <span>Billing Information</span>
+                  <span class="acc-arrow" aria-hidden="true">▼</span>
+                </button>
+              </h3>
+              <div id="demo-apg-panel-2" role="region" aria-labelledby="demo-apg-btn-2" class="apg-acc-panel" hidden>
+                <p>Payment: Invoiced Net 30</p>
+                <p>Billing Address: 100 Main St</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "dialog-modal" && (
+          <div class="apg-dialog-demo">
+            <button type="button" class="demo-btn btn-open-apg-modal" id="btn-open-apg-dialog">
+              Open APG Modal Dialog
+            </button>
+            <!-- Simulated Modal in container -->
+            <div id="apg-modal-overlay" class="apg-modal-overlay" hidden>
+              <div role="dialog" aria-modal="true" aria-labelledby="apg-dlg-title" class="apg-modal-window">
+                <h3 id="apg-dlg-title">Confirm Deletion</h3>
+                <p>Are you sure you want to permanently delete this item?</p>
+                <div class="modal-actions">
+                  <button type="button" class="demo-btn btn-danger" id="apg-dlg-delete">Delete</button>
+                  <button type="button" class="demo-btn" id="apg-dlg-cancel">Cancel (Esc)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "switch" && (
+          <div class="apg-switch-demo">
+            <button type="button" role="switch" aria-checked="false" class="apg-switch-btn" id="apg-switch-widget">
+              <span class="switch-label">High Contrast Mode</span>
+              <span class="switch-track" aria-hidden="true">
+                <span class="switch-thumb"></span>
+              </span>
+            </button>
+          </div>
+        )}
+
+        {pattern.id === "slider" && (
+          <div class="apg-slider-demo">
+            <label id="apg-slider-lbl">Volume Level: <strong class="slider-readout" id="apg-slider-val">50</strong>%</label>
+            <div class="apg-slider-rail" id="apg-slider-track">
+              <div
+                role="slider"
+                tabindex="0"
+                aria-labelledby="apg-slider-lbl"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="50"
+                id="apg-slider-handle"
+                class="apg-slider-handle"
+                style="left: 50%;"
+              ></div>
+            </div>
+            <span class="slider-hint">Use ← → Arrow keys or Home/End</span>
+          </div>
+        )}
+
+        {pattern.id === "meter" && (
+          <div class="apg-meter-demo">
+            <div class="meter-info">
+              <span id="apg-meter-lbl">Storage Usage:</span>
+              <strong id="apg-meter-val">72%</strong>
+            </div>
+            <div role="meter" aria-labelledby="apg-meter-lbl" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" class="apg-meter-rail">
+              <div class="apg-meter-fill" id="apg-meter-bar" style="width: 72%;"></div>
+            </div>
+            <div class="demo-mini-actions">
+              <button type="button" class="demo-btn-sm" id="btn-apg-meter-dec">-10%</button>
+              <button type="button" class="demo-btn-sm" id="btn-apg-meter-inc">+10%</button>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "spinbutton" && (
+          <div class="apg-spinbutton-demo">
+            <label id="apg-spin-lbl">Quantity (1-10):</label>
+            <div class="apg-spinner-box">
+              <div role="spinbutton" tabindex="0" aria-labelledby="apg-spin-lbl" aria-valuenow="3" aria-valuemin="1" aria-valuemax="10" class="apg-spin-display" id="apg-spin-val">
+                3
+              </div>
+              <div class="spinner-btns">
+                <button type="button" class="spin-btn" id="apg-spin-up" aria-label="Increase quantity">▲</button>
+                <button type="button" class="spin-btn" id="apg-spin-down" aria-label="Decrease quantity">▼</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "radio" && (
+          <div class="apg-radiogroup-demo">
+            <div role="radiogroup" aria-labelledby="apg-rg-lbl" class="apg-radiogroup">
+              <span id="apg-rg-lbl" class="group-title">Shipping Speed:</span>
+              <div role="radio" tabindex="0" aria-checked="true" class="apg-radio-opt" data-val="standard">
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>Standard (3-5 days)</span>
+              </div>
+              <div role="radio" tabindex="-1" aria-checked="false" class="apg-radio-opt" data-val="express">
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>Express (1-2 days)</span>
+              </div>
+              <div role="radio" tabindex="-1" aria-checked="false" class="apg-radio-opt" data-val="overnight">
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>Next Day Overnight</span>
+              </div>
+            </div>
+            <span class="slider-hint">Navigate with ↑ ↓ or ← → keys</span>
+          </div>
+        )}
+
+        {pattern.id === "checkbox" && (
+          <div class="apg-checkbox-demo">
+            <div role="checkbox" tabindex="0" aria-checked="mixed" class="apg-check-item" id="apg-tri-check">
+              <span class="custom-chk-box" aria-hidden="true">
+                <span class="check-icon">−</span>
+              </span>
+              <span>All Organization Permissions (Mixed)</span>
+            </div>
+            <span class="slider-hint">Press Space to toggle checked / unchecked / mixed</span>
+          </div>
+        )}
+
+        {pattern.id === "button" && (
+          <div class="apg-button-demo">
+            <div role="button" tabindex="0" class="apg-fake-btn" id="apg-fake-button">
+              Custom &lt;div role="button"&gt;
+            </div>
+            <div class="event-counter" id="apg-btn-status">Activated: 0 times</div>
+            <span class="slider-hint">Requires manual Space &amp; Enter keydown JS</span>
+          </div>
+        )}
+
+        {pattern.id === "link" && (
+          <div class="apg-link-demo">
+            <span role="link" tabindex="0" class="apg-fake-link" id="apg-fake-link">
+              Custom &lt;span role="link"&gt;
+            </span>
+            <div class="event-counter" id="apg-link-status">Click / Enter to simulate navigate</div>
+            <span class="slider-hint">Lacks right-click, middle-click, and SEO crawling</span>
+          </div>
+        )}
+
+        {pattern.id === "breadcrumb" && (
+          <div class="apg-breadcrumb-demo">
+            <nav aria-label="APG Breadcrumbs" class="apg-breadcrumbs">
+              <ol>
+                <li><a href="#pattern-breadcrumb">Dashboard</a></li>
+                <li><a href="#pattern-breadcrumb">Reports</a></li>
+                <li><a href="#pattern-breadcrumb" aria-current="page">WCAG Audit</a></li>
+              </ol>
+            </nav>
+          </div>
+        )}
+
+        {pattern.id === "combobox" && (
+          <div class="apg-combobox-demo">
+            <label id="apg-cb-lbl">Select Framework:</label>
+            <div class="apg-combobox-wrap">
+              <input
+                type="text"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-controls="apg-cb-options"
+                id="apg-cb-input"
+                placeholder="Type to filter..."
+                autocomplete="off"
+              />
+              <ul role="listbox" id="apg-cb-options" class="apg-cb-list" hidden>
+                <li role="option" id="cb-opt-1" tabindex="-1">Astro</li>
+                <li role="option" id="cb-opt-2" tabindex="-1">React</li>
+                <li role="option" id="cb-opt-3" tabindex="-1">Vue</li>
+                <li role="option" id="cb-opt-4" tabindex="-1">Svelte</li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "menu-button" && (
+          <div class="apg-menubtn-demo">
+            <button type="button" aria-haspopup="menu" aria-expanded="false" id="apg-menu-trigger" class="demo-btn">
+              Application Menu ▼
+            </button>
+            <ul role="menu" id="apg-menu-list" class="apg-menu-popup" hidden aria-labelledby="apg-menu-trigger">
+              <li role="menuitem" tabindex="-1">📄 Export Audit (PDF)</li>
+              <li role="menuitem" tabindex="-1">📋 Copy JSON Results</li>
+              <li role="menuitem" tabindex="-1" class="menu-danger">🗑️ Clear Findings</li>
+            </ul>
+          </div>
+        )}
+
+        {pattern.id === "tooltip" && (
+          <div class="apg-tooltip-demo">
+            <button type="button" aria-describedby="apg-tt-box" id="apg-tt-btn" class="demo-btn">
+              Hover or Focus for ARIA Tooltip
+            </button>
+            <div role="tooltip" id="apg-tt-box" class="apg-tooltip-popup" hidden>
+              Accessible contextual hint via aria-describedby
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "landmarks" && (
+          <div class="apg-landmarks-demo">
+            <div class="wireframe-box role-banner">role="banner"</div>
+            <div class="wireframe-row">
+              <div class="wireframe-box role-nav">role="navigation"</div>
+              <div class="wireframe-box role-main">role="main"</div>
+            </div>
+            <div class="wireframe-box role-footer">role="contentinfo"</div>
+          </div>
+        )}
+
+        {pattern.id === "tabs" && (
+          <div class="apg-tabs-demo" id="demo-apg-tabs">
+            <div role="tablist" aria-label="Testing Methods" class="apg-tablist">
+              <button role="tab" aria-selected="true" aria-controls="apg-tpanel-1" id="apg-tab-1" tabindex="0" class="apg-tab active">
+                Automated
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="apg-tpanel-2" id="apg-tab-2" tabindex="-1" class="apg-tab">
+                Keyboard
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="apg-tpanel-3" id="apg-tab-3" tabindex="-1" class="apg-tab">
+                Screen Reader
+              </button>
+            </div>
+            <div role="tabpanel" id="apg-tpanel-1" aria-labelledby="apg-tab-1" tabindex="0" class="apg-tabpanel">
+              <p>Run axe-core and Lighthouse against static DOM nodes.</p>
+            </div>
+            <div role="tabpanel" id="apg-tpanel-2" aria-labelledby="apg-tab-2" tabindex="0" class="apg-tabpanel" hidden>
+              <p>Verify Tab, Shift+Tab, and roving arrow key focus visibility.</p>
+            </div>
+            <div role="tabpanel" id="apg-tpanel-3" aria-labelledby="apg-tab-3" tabindex="0" class="apg-tabpanel" hidden>
+              <p>Audit with NVDA, JAWS, or VoiceOver for virtual reading order.</p>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "table" && (
+          <div class="apg-table-demo">
+            <div role="table" aria-label="WCAG Tiers" class="apg-aria-table">
+              <div role="rowgroup" class="table-header-group">
+                <div role="row" class="table-row">
+                  <div role="columnheader" class="table-cell th-cell">WCAG 3 Tier</div>
+                  <div role="columnheader" class="table-cell th-cell">Requirement</div>
+                </div>
+              </div>
+              <div role="rowgroup">
+                <div role="row" class="table-row">
+                  <div role="cell" class="table-cell">Bronze</div>
+                  <div role="cell" class="table-cell">Core Conformance</div>
+                </div>
+                <div role="row" class="table-row">
+                  <div role="cell" class="table-cell">Silver</div>
+                  <div role="cell" class="table-cell">Exceeds Minimum</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "disclosure" && (
+          <div class="apg-disclosure-demo">
+            <button type="button" aria-expanded="false" aria-controls="apg-disc-box" id="apg-disc-btn" class="demo-btn">
+              Show Details (ARIA Disclosure)
+            </button>
+            <div id="apg-disc-box" class="disclosure-content" hidden>
+              <p>Disclosed content revealed via aria-expanded and hidden attribute.</p>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "treeview" && (
+          <div class="apg-tree-demo">
+            <ul role="tree" aria-label="Component Directory" class="apg-treeview" id="apg-tree-demo">
+              <li role="treeitem" aria-expanded="true" tabindex="0" class="tree-node">
+                <span>📂 src/</span>
+                <ul role="group">
+                  <li role="treeitem" tabindex="-1" class="tree-leaf">📄 index.astro</li>
+                  <li role="treeitem" tabindex="-1" class="tree-leaf">📄 layout.astro</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        )}
+
+        {pattern.id === "carousel" && (
+          <div class="apg-carousel-demo">
+            <div role="region" aria-roledescription="carousel" aria-label="Featured News" class="apg-carousel-box">
+              <div class="carousel-slide-view">
+                <div role="group" aria-roledescription="slide" aria-label="1 of 3" class="apg-slide" id="apg-slide-active">
+                  Slide 1: WCAG 3 Draft Released
+                </div>
+              </div>
+              <div class="carousel-toolbar">
+                <button type="button" class="demo-btn-sm" id="apg-carousel-prev" aria-label="‹ Prev - Previous slide">‹ Prev</button>
+                <button type="button" class="demo-btn-sm" id="apg-carousel-pause">⏸ Pause</button>
+                <button type="button" class="demo-btn-sm" id="apg-carousel-next" aria-label="Next › - Next slide">Next ›</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "alert" && (
+          <div class="apg-alert-demo">
+            <button type="button" class="demo-btn btn-danger" id="btn-trigger-apg-alert">
+              Trigger role="alert"
+            </button>
+            <div id="apg-alert-box" role="alert" class="live-alert-container"></div>
+          </div>
+        )}
+
+        {pattern.id === "toolbar" && (
+          <div class="apg-toolbar-demo">
+            <div role="toolbar" aria-label="Editor Tools" class="apg-toolbar-widget" id="apg-toolbar-demo">
+              <button type="button" tabindex="0" aria-label="Bold"><strong>B</strong></button>
+              <button type="button" tabindex="-1" aria-label="Italic"><em>I</em></button>
+              <button type="button" tabindex="-1" aria-label="Underline"><u>U</u></button>
+            </div>
+            <span class="slider-hint">Single Tab stop; use ← → arrow keys</span>
+          </div>
+        )}
+
+        {pattern.id === "grid" && (
+          <div class="apg-grid-demo">
+            <div role="grid" aria-label="WCAG Issue Tracker" class="apg-data-grid" id="apg-data-grid-demo">
+              <div role="rowgroup" class="grid-head">
+                <div role="row" class="grid-row head-row">
+                  <span role="columnheader" class="grid-cell th-cell">ID</span>
+                  <span role="columnheader" class="grid-cell th-cell">Criterion</span>
+                  <span role="columnheader" class="grid-cell th-cell">Severity</span>
+                  <span role="columnheader" class="grid-cell th-cell">Status</span>
+                </div>
+              </div>
+              <div role="rowgroup" class="grid-body">
+                <div role="row" class="grid-row">
+                  <span role="gridcell" tabindex="0" class="grid-cell">ISS-101</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell">1.4.3 Contrast</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell cell-badge badge-high">High</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell cell-editable" contenteditable="plaintext-only">Open</span>
+                </div>
+                <div role="row" class="grid-row">
+                  <span role="gridcell" tabindex="-1" class="grid-cell">ISS-102</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell">2.1.1 Keyboard</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell cell-badge badge-crit">Critical</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell cell-editable" contenteditable="plaintext-only">In Review</span>
+                </div>
+                <div role="row" class="grid-row">
+                  <span role="gridcell" tabindex="-1" class="grid-cell">ISS-103</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell">4.1.2 Name/Role</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell cell-badge badge-med">Medium</span>
+                  <span role="gridcell" tabindex="-1" class="grid-cell cell-editable" contenteditable="plaintext-only">Resolved</span>
+                </div>
+              </div>
+            </div>
+            <span class="slider-hint">Use ↑ ↓ ← → arrow keys to navigate 2D cells; click/edit Status</span>
+          </div>
+        )}
+
+        {pattern.id === "listbox" && (
+          <div class="apg-listbox-demo">
+            <label id="apg-lb-label">WCAG Conformance Target:</label>
+            <ul role="listbox" aria-labelledby="apg-lb-label" tabindex="0" class="apg-listbox-widget" id="apg-listbox-widget">
+              <li role="option" id="lb-opt-1" aria-selected="true" class="lb-option selected">
+                <span class="lb-check" aria-hidden="true">✓</span>
+                <span>WCAG 2.1 Level AA</span>
+              </li>
+              <li role="option" id="lb-opt-2" aria-selected="false" class="lb-option">
+                <span class="lb-check" aria-hidden="true">✓</span>
+                <span>WCAG 2.2 Level AA (Current Standard)</span>
+              </li>
+              <li role="option" id="lb-opt-3" aria-selected="false" class="lb-option">
+                <span class="lb-check" aria-hidden="true">✓</span>
+                <span>WCAG 2.2 Level AAA</span>
+              </li>
+              <li role="option" id="lb-opt-4" aria-selected="false" class="lb-option">
+                <span class="lb-check" aria-hidden="true">✓</span>
+                <span>WCAG 3.0 Bronze Draft</span>
+              </li>
+            </ul>
+            <span class="slider-hint">Navigate with ↑ ↓ arrow keys; Space to select</span>
+          </div>
+        )}
+
+        {pattern.id === "menubar" && (
+          <div class="apg-menubar-demo">
+            <div role="menubar" aria-label="Editor Menubar" class="apg-menubar-widget" id="apg-menubar-widget">
+              <div class="menubar-item-wrap">
+                <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" class="apg-menubar-item" id="apg-menuitem-file">
+                  File ▾
+                </button>
+                <ul role="menu" id="apg-file-menu" class="apg-menubar-dropdown" aria-labelledby="apg-menuitem-file" hidden>
+                  <li role="menuitem" tabindex="-1">New Audit</li>
+                  <li role="menuitem" tabindex="-1">Open Report...</li>
+                  <li role="menuitem" tabindex="-1">Export PDF</li>
+                </ul>
+              </div>
+              <div class="menubar-item-wrap">
+                <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="apg-menubar-item" id="apg-menuitem-edit">
+                  Edit ▾
+                </button>
+                <ul role="menu" id="apg-edit-menu" class="apg-menubar-dropdown" aria-labelledby="apg-menuitem-edit" hidden>
+                  <li role="menuitem" tabindex="-1">Undo</li>
+                  <li role="menuitem" tabindex="-1">Redo</li>
+                  <li role="menuitem" tabindex="-1">Preferences</li>
+                </ul>
+              </div>
+              <div class="menubar-item-wrap">
+                <button type="button" role="menuitem" tabindex="-1" class="apg-menubar-item">
+                  Help
+                </button>
+              </div>
+            </div>
+            <span class="slider-hint">Use ← → between menus; ↓ opens dropdown; Esc closes</span>
+          </div>
+        )}
+
+        {pattern.id === "alertdialog" && (
+          <div class="apg-alertdialog-demo">
+            <button type="button" class="demo-btn btn-danger" id="btn-open-apg-alertdialog">
+              Trigger Alert Dialog (APG)
+            </button>
+            <div id="apg-alertdialog-overlay" class="apg-modal-overlay" hidden>
+              <div
+                role="alertdialog"
+                aria-modal="true"
+                aria-labelledby="apg-adlg-title"
+                aria-describedby="apg-adlg-desc"
+                class="apg-modal-window apg-alertdialog-window"
+              >
+                <div class="adlg-header">
+                  <span class="adlg-icon" aria-hidden="true">⚠️</span>
+                  <h3 id="apg-adlg-title">Discard Unsaved Changes?</h3>
+                </div>
+                <p id="apg-adlg-desc">
+                  You have 3 unsaved WCAG rule overrides. Leaving this view will permanently discard your work.
+                </p>
+                <div class="modal-actions">
+                  <button type="button" class="demo-btn" id="apg-adlg-cancel">Cancel (Keep Editing)</button>
+                  <button type="button" class="demo-btn btn-danger" id="apg-adlg-discard">Discard Changes</button>
+                </div>
+              </div>
+            </div>
+            <span class="slider-hint">Focus placed on least destructive "Cancel" button; Esc closes</span>
+          </div>
+        )}
+
+        {pattern.id === "feed" && (
+          <div class="apg-feed-demo">
+            <div role="feed" aria-label="W3C Accessibility News Feed" class="apg-feed-widget" id="apg-feed-widget" aria-busy="false">
+              <article role="article" tabindex="0" aria-posinset="1" aria-setsize="3" class="feed-article" aria-labelledby="feed-h-1">
+                <h3 id="feed-h-1">WCAG 2.2 Reaches REC Status</h3>
+                <time datetime="2023-10-05">Oct 5, 2023</time>
+                <p>Focus appearance, dragging movements, and accessible authentication are now formal recommendations.</p>
+              </article>
+              <article role="article" tabindex="-1" aria-posinset="2" aria-setsize="3" class="feed-article" aria-labelledby="feed-h-2">
+                <h3 id="feed-h-2">WCAG 3 Working Draft Updated</h3>
+                <time datetime="2024-04-18">Apr 18, 2024</time>
+                <p>Explorations into scoring models, task-based outcomes, and equity metrics continue.</p>
+              </article>
+            </div>
+            <div class="feed-controls">
+              <button type="button" class="demo-btn-sm" id="btn-feed-add">Add Update to Feed</button>
+              <span class="slider-hint">Use Page Up / Page Down to jump between articles</span>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "slider-multithumb" && (
+          <div class="apg-multislider-demo">
+            <div class="multislider-header">
+              <span>Budget Range:</span>
+              <strong class="slider-readout">$<span id="apg-ms-min-val">25</span> - $<span id="apg-ms-max-val">75</span></strong>
+            </div>
+            <div class="apg-multi-rail" id="apg-multi-rail">
+              <div class="multi-highlight" id="apg-multi-fill" style="left: 25%; width: 50%;"></div>
+              <div
+                role="slider"
+                tabindex="0"
+                aria-label="Minimum Budget"
+                aria-valuemin="0"
+                aria-valuemax="75"
+                aria-valuenow="25"
+                id="apg-ms-thumb-min"
+                class="apg-slider-handle multi-thumb min-thumb"
+                style="left: 25%;"
+              ></div>
+              <div
+                role="slider"
+                tabindex="0"
+                aria-label="Maximum Budget"
+                aria-valuemin="25"
+                aria-valuemax="100"
+                aria-valuenow="75"
+                id="apg-ms-thumb-max"
+                class="apg-slider-handle multi-thumb max-thumb"
+                style="left: 75%;"
+              ></div>
+            </div>
+            <span class="slider-hint">Tab to select thumb; ← → arrows adjust without crossing</span>
+          </div>
+        )}
+
+        {pattern.id === "treegrid" && (
+          <div class="apg-treegrid-demo">
+            <div role="treegrid" aria-label="Project Structure Treegrid" class="apg-treegrid-widget" id="apg-treegrid-widget">
+              <div role="rowgroup" class="tg-head">
+                <div role="row" class="tg-row tg-head-row">
+                  <span role="columnheader" class="tg-cell">Name</span>
+                  <span role="columnheader" class="tg-cell">Size</span>
+                  <span role="columnheader" class="tg-cell">Kind</span>
+                </div>
+              </div>
+              <div role="rowgroup" class="tg-body">
+                <div role="row" aria-level="1" aria-expanded="true" class="tg-row tg-branch" tabindex="0">
+                  <span role="gridcell" class="tg-cell tg-cell-name">
+                    <button type="button" class="tg-toggle" aria-label="Toggle src folder">▾</button> 📂 src/
+                  </span>
+                  <span role="gridcell" class="tg-cell">--</span>
+                  <span role="gridcell" class="tg-cell">Folder</span>
+                </div>
+                <div role="row" aria-level="2" class="tg-row tg-leaf tg-child-src" tabindex="-1">
+                  <span role="gridcell" class="tg-cell tg-cell-name tg-indent-1">📄 index.astro</span>
+                  <span role="gridcell" class="tg-cell">124 KB</span>
+                  <span role="gridcell" class="tg-cell">Astro Template</span>
+                </div>
+                <div role="row" aria-level="2" class="tg-row tg-leaf tg-child-src" tabindex="-1">
+                  <span role="gridcell" class="tg-cell tg-cell-name tg-indent-1">📄 patterns.ts</span>
+                  <span role="gridcell" class="tg-cell">152 KB</span>
+                  <span role="gridcell" class="tg-cell">TypeScript</span>
+                </div>
+                <div role="row" aria-level="1" aria-expanded="false" class="tg-row tg-branch" tabindex="-1">
+                  <span role="gridcell" class="tg-cell tg-cell-name">
+                    <button type="button" class="tg-toggle" aria-label="Toggle public folder">▸</button> 📂 public/
+                  </span>
+                  <span role="gridcell" class="tg-cell">--</span>
+                  <span role="gridcell" class="tg-cell">Folder</span>
+                </div>
+              </div>
+            </div>
+            <span class="slider-hint">↑ ↓ moves rows; ← collapses/parents; → expands/children</span>
+          </div>
+        )}
+
+        {pattern.id === "windowsplitter" && (
+          <div class="apg-splitter-demo">
+            <div class="apg-split-box" id="apg-split-box">
+              <div class="split-pane left-pane" id="apg-pane-left" style="width: 50%;">
+                <div class="pane-tag">Auditor View</div>
+                <p class="pane-text">Contrast: 7.2:1 (Pass AAA)</p>
+              </div>
+              <div
+                role="separator"
+                tabindex="0"
+                aria-label="Code and Preview Splitter"
+                aria-valuenow="50"
+                aria-valuemin="15"
+                aria-valuemax="85"
+                aria-orientation="vertical"
+                class="apg-splitter-handle"
+                id="apg-splitter-handle"
+              >
+                <span class="splitter-grip" aria-hidden="true">⋮</span>
+              </div>
+              <div class="split-pane right-pane" id="apg-pane-right" style="width: 50%;">
+                <div class="pane-tag">Component Code</div>
+                <code class="pane-text">&lt;button role="switch"&gt;</code>
+              </div>
+            </div>
+            <span class="slider-hint">Use ← → arrow keys to resize panes; Home/End for extremes</span>
+          </div>
+        )}
+      </div>
+
+      <!-- Live AT State Inspector Bar -->
+      <div class="at-inspector-bar">
+        <span class="at-badge">Live AT State:</span>
+        <code class="at-code" id={`at-state-apg-${pattern.id}`}>Loading state...</code>
+      </div>
+    </div>
+
+    <!-- Right: Modern Semantic HTML Equivalent Demo -->
+    <div class="demo-pane demo-semantic" aria-label={`Modern Semantic HTML ${pattern.name} Demo`}>
+      <div class="pane-header">
+        <span class="pane-badge badge-semantic">🟢 Semantic HTML</span>
+        <span class="pane-sub">Native browser engine features</span>
+      </div>
+      <div class="pane-content" data-demo-role="semantic" data-pattern-id={pattern.id}>
+        <!-- Interactive Semantic Demos -->
+        {pattern.id === "accordion" && (
+          <div class="semantic-accordion-widget">
+            <details name="demo-semantic-acc" open class="sem-details">
+              <summary>Personal Details</summary>
+              <div class="details-body">
+                <p>Name: Alex Rivera</p>
+                <p>Email: alex@example.com</p>
+              </div>
+            </details>
+            <details name="demo-semantic-acc" class="sem-details">
+              <summary>Billing Information</summary>
+              <div class="details-body">
+                <p>Payment: Invoiced Net 30</p>
+                <p>Billing Address: 100 Main St</p>
+              </div>
+            </details>
+            <span class="slider-hint">Native exclusive group: name="demo-semantic-acc" (0 JS!)</span>
+          </div>
+        )}
+
+        {pattern.id === "dialog-modal" && (
+          <div class="semantic-dialog-demo">
+            <button type="button" class="demo-btn btn-success" id="btn-open-sem-dialog">
+              Open Native &lt;dialog&gt;
+            </button>
+            <!-- Native Dialog Element -->
+            <dialog id="native-dialog-el" class="semantic-modal-dialog">
+              <form method="dialog" class="dialog-form">
+                <h3>Confirm Deletion (Native)</h3>
+                <p>Rendered in browser Top Layer with native backdrop &amp; focus trap.</p>
+                <div class="modal-actions">
+                  <button value="delete" class="demo-btn btn-danger" id="sem-dlg-delete">Delete</button>
+                  <button value="cancel" class="demo-btn" id="sem-dlg-cancel">Cancel (Esc)</button>
+                </div>
+              </form>
+            </dialog>
+          </div>
+        )}
+
+        {pattern.id === "switch" && (
+          <div class="semantic-switch-demo">
+            <label class="sem-switch-label">
+              <input type="checkbox" role="switch" class="sem-switch-input" name="semantic-contrast" id="sem-switch-widget">
+              <span class="sem-switch-track" aria-hidden="true">
+                <span class="sem-switch-thumb"></span>
+              </span>
+              <span>High Contrast Mode</span>
+            </label>
+          </div>
+        )}
+
+        {pattern.id === "slider" && (
+          <div class="semantic-slider-demo">
+            <label for={`sem-range-${pattern.id}`}>
+              Volume Level: <output id="sem-range-out" for={`sem-range-${pattern.id}`}>50</output>%
+            </label>
+            <input
+              type="range"
+              id={`sem-range-${pattern.id}`}
+              min="0"
+              max="100"
+              value="50"
+              class="sem-range-input"
+            />
+            <span class="slider-hint">Native keyboard, mouse, touch &amp; form integration</span>
+          </div>
+        )}
+
+        {pattern.id === "meter" && (
+          <div class="semantic-meter-demo">
+            <div class="meter-info">
+              <label for="sem-meter-el">Storage Usage:</label>
+              <strong id="sem-meter-out">72%</strong>
+            </div>
+            <meter id="sem-meter-el" min="0" max="100" low="33" high="66" optimum="25" value="72" class="sem-meter-el">
+              72%
+            </meter>
+            <div class="demo-mini-actions">
+              <button type="button" class="demo-btn-sm" id="btn-sem-meter-dec">-10%</button>
+              <button type="button" class="demo-btn-sm" id="btn-sem-meter-inc">+10%</button>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "spinbutton" && (
+          <div class="semantic-spinbutton-demo">
+            <label for="sem-spin-input">Quantity (1-10):</label>
+            <input type="number" id="sem-spin-input" min="1" max="10" step="1" value="3" class="sem-number-input" />
+            <span class="slider-hint">Native stepper controls &amp; mobile numeric keypad</span>
+          </div>
+        )}
+
+        {pattern.id === "radio" && (
+          <div class="semantic-radiogroup-demo">
+            <fieldset class="sem-fieldset">
+              <legend class="group-title">Shipping Speed:</legend>
+              <label class="sem-radio-label">
+                <input type="radio" name="sem-ship-speed" value="standard" checked />
+                <span>Standard (3-5 days)</span>
+              </label>
+              <label class="sem-radio-label">
+                <input type="radio" name="sem-ship-speed" value="express" />
+                <span>Express (1-2 days)</span>
+              </label>
+              <label class="sem-radio-label">
+                <input type="radio" name="sem-ship-speed" value="overnight" />
+                <span>Next Day Overnight</span>
+              </label>
+            </fieldset>
+            <span class="slider-hint">Arrow navigation &amp; roving focus built-in</span>
+          </div>
+        )}
+
+        {pattern.id === "checkbox" && (
+          <div class="semantic-checkbox-demo">
+            <label class="sem-check-label">
+              <input type="checkbox" id="sem-indeterminate-check" />
+              <span>All Organization Permissions</span>
+            </label>
+            <button type="button" class="demo-btn-sm" id="btn-toggle-indeterminate">
+              Toggle .indeterminate = true
+            </button>
+            <span class="slider-hint">Native Space toggle &amp; native indeterminate property</span>
+          </div>
+        )}
+
+        {pattern.id === "button" && (
+          <div class="semantic-button-demo">
+            <button type="button" class="demo-btn btn-primary" id="sem-native-button">
+              Native &lt;button type="button"&gt;
+            </button>
+            <div class="event-counter" id="sem-btn-status">Activated: 0 times</div>
+            <span class="slider-hint">Native Space &amp; Enter click, disabled state, form submit</span>
+          </div>
+        )}
+
+        {pattern.id === "link" && (
+          <div class="semantic-link-demo">
+            <a href="#pattern-link" class="sem-native-link">
+              Native &lt;a href="..."&gt;
+            </a>
+            <div class="event-counter">Right-click &amp; middle-click fully functional</div>
+            <span class="slider-hint">Supports new tabs, bookmarks, hover preview, and SEO</span>
+          </div>
+        )}
+
+        {pattern.id === "breadcrumb" && (
+          <div class="semantic-breadcrumb-demo">
+            <nav aria-label="Semantic Breadcrumbs" class="sem-breadcrumbs">
+              <ol>
+                <li><a href="#pattern-breadcrumb">Dashboard</a></li>
+                <li><a href="#pattern-breadcrumb">Reports</a></li>
+                <li><span aria-current="page">WCAG Audit</span></li>
+              </ol>
+            </nav>
+            <span class="slider-hint">Using &lt;span&gt; for current page prevents dead links</span>
+          </div>
+        )}
+
+        {pattern.id === "combobox" && (
+          <div class="semantic-combobox-demo">
+            <label for="sem-cb-input">Select Framework:</label>
+            <input type="text" id="sem-cb-input" list="framework-list" placeholder="Type or click arrow..." />
+            <datalist id="framework-list">
+              <option value="Astro" />
+              <option value="React" />
+              <option value="Vue" />
+              <option value="Svelte" />
+              <option value="Angular" />
+            </datalist>
+            <span class="slider-hint">Native &lt;datalist&gt; autocomplete with 0 JavaScript</span>
+          </div>
+        )}
+
+        {pattern.id === "menu-button" && (
+          <div class="semantic-menubtn-demo">
+            <button type="button" popovertarget="sem-popover-menu" class="demo-btn btn-success" id="btn-sem-popover-menu">
+              Popover API Menu ▼
+            </button>
+            <div id="sem-popover-menu" popover class="sem-popover-box">
+              <nav aria-label="Document Actions" class="popover-nav">
+                <a href="#pattern-menu-button" id="sem-popover-export">📄 Export Audit (PDF)</a>
+                <a href="#pattern-menu-button" id="sem-popover-copy">📋 Copy JSON Results</a>
+                <button type="button" class="btn-danger-link" id="sem-popover-clear">🗑️ Clear Findings</button>
+              </nav>
+            </div>
+            <span class="slider-hint">Native Top Layer, light-dismiss &amp; Esc key support</span>
+          </div>
+        )}
+
+        {pattern.id === "tooltip" && (
+          <div class="semantic-tooltip-demo">
+            <button type="button" title="Native browser tooltip (via title attribute)" class="demo-btn" id="sem-tt-btn">
+              Hover for Native Tooltip (title)
+            </button>
+            <span class="slider-hint">Note: title has mobile and contrast limitations</span>
+          </div>
+        )}
+
+        {pattern.id === "landmarks" && (
+          <div class="semantic-landmarks-demo">
+            <div class="wireframe-box sem-header">&lt;header&gt;</div>
+            <div class="wireframe-row">
+              <nav class="wireframe-box sem-nav" aria-label="Demo nav">&lt;nav&gt;</nav>
+              <div class="wireframe-box sem-main" role="region" aria-label="Demo main landmark">&lt;main&gt;</div>
+            </div>
+            <div class="wireframe-box sem-footer">&lt;footer&gt;</div>
+          </div>
+        )}
+
+        {pattern.id === "tabs" && (
+          <div class="semantic-tabs-demo">
+            <div class="spec-status-alert">
+              <span class="alert-icon" aria-hidden="true">⚠️</span>
+              <div class="alert-text">
+                <strong>HTML Specification Notice:</strong>
+                <p>No native <code>&lt;tabs&gt;</code> element exists in HTML yet. The W3C APG ARIA Tabs pattern shown on the left is the required standard for accessible tabbed interfaces.</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {pattern.id === "table" && (
+          <div class="semantic-table-demo">
+            <table class="sem-data-table">
+              <caption class="sr-only">WCAG 3 Tiers</caption>
+              <thead>
+                <tr>
+                  <th scope="col">WCAG 3 Tier</th>
+                  <th scope="col">Requirement</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Bronze</th>
+                  <td>Core Conformance</td>
+                </tr>
+                <tr>
+                  <th scope="row">Silver</th>
+                  <td>Exceeds Minimum</td>
+                </tr>
+              </tbody>
+            </table>
+            <span class="slider-hint">Native screen reader table navigation shortcuts (Ctrl+Alt+Arrows)</span>
+          </div>
+        )}
+
+        {pattern.id === "disclosure" && (
+          <div class="semantic-disclosure-demo">
+            <details class="sem-details">
+              <summary>Show Details (Semantic &lt;details&gt;)</summary>
+              <div class="details-body">
+                <p>Disclosed content revealed natively with built-in browser Find (Ctrl+F) expansion.</p>
+              </div>
+            </details>
+          </div>
+        )}
+
+        {pattern.id === "treeview" && (
+          <div class="semantic-tree-demo">
+            <div class="nested-details-tree">
+              <details open class="sem-tree-details">
+                <summary>📂 src/</summary>
+                <div class="tree-sub">
+                  <p>📄 index.astro</p>
+                  <p>📄 layout.astro</p>
+                </div>
+              </details>
+            </div>
+            <span class="slider-hint">Nested details works without JS, but lacks single-tab roving focus</span>
+          </div>
+        )}
+
+        {pattern.id === "carousel" && (
+          <div class="semantic-carousel-demo">
+            <div class="css-scroll-snap-carousel" id="sem-carousel-container" tabindex="0" aria-label="Featured slides">
+              <div class="snap-slide">Slide 1: WCAG 3 Draft</div>
+              <div class="snap-slide">Slide 2: Conformance Tiers</div>
+              <div class="snap-slide">Slide 3: Contrast Lab</div>
+            </div>
+            <span class="slider-hint">CSS Scroll Snap: touch swipe + keyboard arrow scrolling</span>
+          </div>
+        )}
+
+        {pattern.id === "alert" && (
+          <div class="semantic-alert-demo">
+            <button type="button" class="demo-btn btn-success" id="btn-trigger-sem-output">
+              Update Semantic &lt;output&gt;
+            </button>
+            <output id="sem-output-box" class="live-status-container" for="btn-trigger-sem-output">
+              Status: Idle
+            </output>
+            <span class="slider-hint">&lt;output&gt; maps natively to role="status" &amp; aria-live="polite"</span>
+          </div>
+        )}
+
+        {pattern.id === "toolbar" && (
+          <div class="semantic-toolbar-demo">
+            <fieldset class="sem-toolbar-fieldset">
+              <legend class="sr-only">Editor Tools</legend>
+              <button type="button" aria-label="Bold"><strong>B</strong></button>
+              <button type="button" aria-label="Italic"><em>I</em></button>
+              <button type="button" aria-label="Underline"><u>U</u></button>
+            </fieldset>
+            <span class="slider-hint">Standard Tab sequence across individual buttons</span>
+          </div>
+        )}
+
+        {pattern.id === "grid" && (
+          <div class="semantic-grid-demo">
+            <table class="sem-data-table">
+              <caption class="sr-only">WCAG Issue Tracker (Native HTML Table)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Criterion</th>
+                  <th scope="col">Severity</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">ISS-101</th>
+                  <td>1.4.3 Contrast</td>
+                  <td><span class="sem-badge sem-badge-high">High</span></td>
+                  <td><input type="text" value="Open" aria-label="Status for ISS-101" class="sem-cell-input" /></td>
+                </tr>
+                <tr>
+                  <th scope="row">ISS-102</th>
+                  <td>2.1.1 Keyboard</td>
+                  <td><span class="sem-badge sem-badge-crit">Critical</span></td>
+                  <td><input type="text" value="In Review" aria-label="Status for ISS-102" class="sem-cell-input" /></td>
+                </tr>
+              </tbody>
+            </table>
+            <span class="slider-hint">Standard Tab jumps between inputs; screen readers use native table keys</span>
+          </div>
+        )}
+
+        {pattern.id === "listbox" && (
+          <div class="semantic-listbox-demo">
+            <label for="sem-native-select">WCAG Conformance Target:</label>
+            <select id="sem-native-select" size="4" class="sem-native-listbox">
+              <option value="2.1-aa" selected>WCAG 2.1 Level AA</option>
+              <option value="2.2-aa">WCAG 2.2 Level AA (Current Standard)</option>
+              <option value="2.2-aaa">WCAG 2.2 Level AAA</option>
+              <option value="3.0-bronze">WCAG 3.0 Bronze Draft</option>
+            </select>
+            <span class="slider-hint">Native &lt;select size="4"&gt; provides zero-JS listbox with typeahead</span>
+          </div>
+        )}
+
+        {pattern.id === "menubar" && (
+          <div class="semantic-menubar-demo">
+            <nav aria-label="Main Site Navigation" class="sem-nav-bar">
+              <ul class="sem-nav-list">
+                <li class="sem-nav-item">
+                  <a href="#pattern-menubar" class="sem-nav-link" aria-current="page">Dashboard</a>
+                </li>
+                <li class="sem-nav-item">
+                  <a href="#pattern-menubar" class="sem-nav-link">Reports</a>
+                </li>
+                <li class="sem-nav-item">
+                  <a href="#pattern-menubar" class="sem-nav-link">Settings</a>
+                </li>
+                <li class="sem-nav-item">
+                  <a href="#pattern-menubar" class="sem-nav-link">Docs</a>
+                </li>
+              </ul>
+            </nav>
+            <span class="slider-hint">W3C APG advice: Websites should use &lt;nav&gt; + links, not ARIA menubar</span>
+          </div>
+        )}
+
+        {pattern.id === "alertdialog" && (
+          <div class="semantic-alertdialog-demo">
+            <button type="button" class="demo-btn btn-success" id="btn-open-sem-alertdialog">
+              Open Native &lt;dialog&gt; Alert Prompt
+            </button>
+            <dialog id="native-alertdialog-el" class="semantic-modal-dialog">
+              <form method="dialog" class="dialog-form">
+                <div class="adlg-header">
+                  <span class="adlg-icon" aria-hidden="true">⚠️</span>
+                  <h3>Discard Unsaved Changes? (Native)</h3>
+                </div>
+                <p>You have 3 unsaved WCAG rule overrides. Leaving will discard them.</p>
+                <div class="modal-actions">
+                  <button type="submit" value="cancel" autofocus class="demo-btn" id="sem-adlg-cancel">Cancel (Autofocus)</button>
+                  <button type="submit" value="discard" class="demo-btn btn-danger" id="sem-adlg-discard">Discard</button>
+                </div>
+              </form>
+            </dialog>
+            <span class="slider-hint">Native &lt;dialog&gt; traps focus, Esc cancels, autofocus targets safe button</span>
+          </div>
+        )}
+
+        {pattern.id === "feed" && (
+          <div class="semantic-feed-demo">
+            <section aria-label="W3C Accessibility Updates" class="sem-feed-stream">
+              <article class="sem-feed-article">
+                <h3>WCAG 2.2 Recommendation</h3>
+                <time datetime="2023-10-05">Oct 5, 2023</time>
+                <p>Standardized accessible authentication, focus appearance, and dragging.</p>
+              </article>
+              <article class="sem-feed-article">
+                <h3>WCAG 3 Working Draft</h3>
+                <time datetime="2024-04-18">Apr 18, 2024</time>
+                <p>Evaluating holistic accessibility outcomes and disability equity.</p>
+              </article>
+            </section>
+            <span class="slider-hint">Clean semantic HTML without complex feed roving focus JS</span>
+          </div>
+        )}
+
+        {pattern.id === "slider-multithumb" && (
+          <div class="semantic-multislider-demo">
+            <fieldset class="sem-multirange-fieldset">
+              <legend>Budget Range ($)</legend>
+              <div class="sem-range-row">
+                <label for="sem-range-min">Min:</label>
+                <input type="range" id="sem-range-min" min="0" max="50" value="25" />
+                <output for="sem-range-min" id="sem-range-min-out">$25</output>
+              </div>
+              <div class="sem-range-row">
+                <label for="sem-range-max">Max:</label>
+                <input type="range" id="sem-range-max" min="50" max="100" value="75" />
+                <output for="sem-range-max" id="sem-range-max-out">$75</output>
+              </div>
+            </fieldset>
+            <span class="slider-hint">Paired native &lt;input type="range"&gt; controls; full form and touch support</span>
+          </div>
+        )}
+
+        {pattern.id === "treegrid" && (
+          <div class="semantic-treegrid-demo">
+            <table class="sem-data-table sem-tree-table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Size</th>
+                  <th scope="col">Kind</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="tree-row-parent">
+                  <th scope="row">📂 src/</th>
+                  <td>--</td>
+                  <td>Folder</td>
+                </tr>
+                <tr class="tree-row-child">
+                  <td>&emsp;📄 index.astro</td>
+                  <td>124 KB</td>
+                  <td>Astro Template</td>
+                </tr>
+                <tr class="tree-row-child">
+                  <td>&emsp;📄 patterns.ts</td>
+                  <td>152 KB</td>
+                  <td>TypeScript</td>
+                </tr>
+              </tbody>
+            </table>
+            <span class="slider-hint">HTML lacks native treegrid; ARIA treegrid is required for 2D roving keys</span>
+          </div>
+        )}
+
+        {pattern.id === "windowsplitter" && (
+          <div class="semantic-splitter-demo">
+            <div class="sem-resizable-container">
+              <div class="sem-resize-box">
+                <div class="pane-tag">Resizable Box (CSS resize: horizontal)</div>
+                <p class="pane-text">Drag bottom-right handle or use arrow keys if focused.</p>
+              </div>
+            </div>
+            <span class="slider-hint">Native CSS resize property requires 0 JavaScript to resize</span>
+          </div>
+        )}
+      </div>
+
+      <!-- Live AT State Inspector Bar -->
+      <div class="at-inspector-bar">
+        <span class="at-badge">Live AT State:</span>
+        <code class="at-code" id={`at-state-sem-${pattern.id}`}>Loading state...</code>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* Sandbox Toolbar */
+  .sandbox-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background: var(--surface-elevated);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+  }
+  .sandbox-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .sandbox-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .sandbox-toggle-btn:hover {
+    border-color: var(--accent-blue);
+  }
+  .sandbox-toggle-btn:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35);
+  }
+
+  /* Playground Split View */
+  .playground-wrapper {
+    margin-bottom: 24px;
+    transition: filter 0.2s ease;
+  }
+  .playground-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 860px) {
+    .playground-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .demo-pane {
+    background: var(--surface-base);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    min-width: 0;
+    max-width: 100%;
+  }
+  .demo-apg {
+    border: 1px solid rgba(168, 85, 247, 0.3);
+  }
+  .demo-semantic {
+    border: 1px solid rgba(52, 211, 153, 0.3);
+  }
+
+  .pane-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--surface-elevated);
+  }
+  .pane-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .badge-apg { color: var(--accent-purple); }
+  .badge-semantic { color: var(--accent-emerald); }
+  .pane-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  .pane-content {
+    padding: 20px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* Raw Default Toggle Mode */
+  .raw-browser-default .demo-pane {
+    border: 2px dashed var(--border-default) !important;
+    background: var(--surface-base) !important;
+  }
+  .raw-browser-default button,
+  .raw-browser-default details,
+  .raw-browser-default input,
+  .raw-browser-default select,
+  .raw-browser-default meter {
+    all: revert !important;
+  }
+
+  /* AT Live Readout Bar */
+  .at-inspector-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--code-surface);
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+  }
+  .at-badge {
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .at-code {
+    color: var(--text-accent);
+    word-break: break-all;
+  }
+
+  /* Interactive Demo Widgets General */
+  .demo-btn {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-default);
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .demo-btn:hover {
+    background: var(--surface-card-hover);
+    border-color: var(--accent-blue);
+  }
+  .demo-btn:focus-visible,
+  .demo-btn-sm:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+  }
+  .demo-btn.btn-primary:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.6);
+  }
+  .demo-semantic .demo-btn:focus-visible,
+  .demo-semantic .demo-btn-sm:focus-visible,
+  .demo-semantic .demo-btn.btn-primary:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.45);
+  }
+  .demo-apg .demo-btn:focus-visible,
+  .demo-apg .demo-btn-sm:focus-visible,
+  .demo-apg .demo-btn.btn-primary:focus-visible {
+    outline: 3px solid var(--accent-purple);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.45);
+  }
+  .demo-btn.btn-primary {
+    background: var(--accent-blue);
+    color: var(--on-accent);
+    border-color: var(--accent-blue);
+  }
+  .demo-btn.btn-success {
+    background: #047857;
+    color: #fff;
+    border-color: #047857;
+  }
+  .demo-btn.btn-danger {
+    background: #dc2626;
+    color: #fff;
+    border-color: #dc2626;
+  }
+  .demo-btn-sm {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .demo-btn-sm:hover {
+    border-color: var(--accent-blue);
+  }
+
+  .slider-hint {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+  .event-counter {
+    margin-top: 8px;
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  /* Accordion Demo */
+  .apg-accordion-widget,
+  .semantic-accordion-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  .apg-acc-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
+  .apg-acc-btn:hover {
+    border-color: var(--accent-purple);
+  }
+  .acc-arrow {
+    transition: transform 0.2s ease;
+    font-size: 0.75rem;
+  }
+  .apg-acc-btn[aria-expanded="true"] .acc-arrow {
+    transform: rotate(180deg);
+  }
+  .apg-acc-panel {
+    padding: 12px 14px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-top: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    font-size: 0.85rem;
+  }
+  .sem-details {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .sem-details summary {
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    list-style: disclosure-closed;
+    transition: var(--transition-fast);
+  }
+  .sem-details summary:hover {
+    background: rgba(52, 211, 153, 0.08);
+  }
+  .sem-details summary:focus-visible,
+  .sem-tree-details summary:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: -3px;
+    border-radius: var(--radius-sm);
+    background: rgba(52, 211, 153, 0.15);
+  }
+  .sem-details[open] summary {
+    list-style: disclosure-open;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .details-body {
+    padding: 12px 14px;
+    background: var(--surface-card);
+    font-size: 0.85rem;
+  }
+
+  /* Modal Dialog Demo */
+  .apg-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .apg-modal-overlay[hidden] {
+    display: none !important;
+  }
+  .apg-modal-window {
+    background: var(--surface-card);
+    border: 2px solid var(--accent-purple);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    max-width: 440px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+  }
+  .semantic-modal-dialog {
+    background: var(--surface-card);
+    color: var(--text-primary);
+    border: 2px solid var(--accent-emerald);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    max-width: 440px;
+    box-shadow: var(--shadow-lg);
+  }
+  .semantic-modal-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 18px;
+  }
+
+  /* Switch Demo */
+  .apg-switch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .switch-track {
+    width: 44px;
+    height: 24px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+    position: relative;
+    transition: background-color 0.2s ease;
+  }
+  .switch-thumb {
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s ease;
+  }
+  .apg-switch-btn[aria-checked="true"] .switch-track {
+    background: #a855f7;
+    border-color: #a855f7;
+  }
+  .apg-switch-btn[aria-checked="true"] .switch-thumb {
+    transform: translateX(20px);
+  }
+
+  .sem-switch-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .sem-switch-input {
+    width: 44px;
+    height: 24px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .sem-switch-input:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
+  }
+  .sem-switch-input::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    background: #fff;
+    transition: transform 0.2s;
+  }
+  .sem-switch-input:checked {
+    background: #047857;
+    border-color: #047857;
+  }
+  .sem-switch-input:checked::before {
+    transform: translateX(20px);
+  }
+
+  /* Slider Demo */
+  .apg-slider-rail {
+    position: relative;
+    height: 8px;
+    background: var(--surface-elevated);
+    border-radius: 4px;
+    margin: 18px 0;
+    border: 1px solid var(--border-default);
+  }
+  .apg-slider-handle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    background: #a855f7;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: grab;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+  .apg-slider-handle:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 3px;
+  }
+  .sem-range-input {
+    width: 100%;
+    margin: 16px 0;
+    accent-color: #047857;
+  }
+  .sem-range-input:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Meter Demo */
+  .meter-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.88rem;
+  }
+  .apg-meter-rail {
+    height: 14px;
+    background: var(--surface-elevated);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+  }
+  .apg-meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8, #a855f7);
+    transition: width 0.2s ease;
+  }
+  .sem-meter-el {
+    width: 100%;
+    height: 18px;
+  }
+  .demo-mini-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  /* Spinbutton Demo */
+  .apg-spinner-box {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    background: var(--surface-card);
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .apg-spin-display {
+    padding: 8px 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    min-width: 44px;
+    text-align: center;
+    outline: none;
+  }
+  .apg-spin-display:focus-visible {
+    background: rgba(168, 85, 247, 0.15);
+  }
+  .spinner-btns {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--border-default);
+  }
+  .spin-btn {
+    background: var(--surface-elevated);
+    border: none;
+    color: var(--text-primary);
+    padding: 4px 10px;
+    min-width: 32px;
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    cursor: pointer;
+  }
+  .spin-btn:hover {
+    background: var(--surface-card-hover);
+  }
+  .sem-number-input {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    margin-top: 6px;
+    width: 80px;
+    transition: var(--transition-fast);
+  }
+  .sem-number-input:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 1px;
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
+  }
+
+  /* Radio Group Demo */
+  .apg-radiogroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .apg-radio-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.88rem;
+  }
+  .apg-radio-opt:hover {
+    background: var(--surface-elevated);
+  }
+  .apg-radio-opt:focus-visible {
+    outline: 2px solid var(--accent-purple);
+  }
+  .radio-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--border-default);
+    position: relative;
+  }
+  .apg-radio-opt[aria-checked="true"] .radio-dot {
+    border-color: var(--accent-purple);
+  }
+  .apg-radio-opt[aria-checked="true"] .radio-dot::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--accent-purple);
+  }
+  .sem-fieldset {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sem-fieldset legend {
+    padding: 0 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .sem-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
+  .sem-fieldset input[type="radio"]:focus-visible,
+  .sem-check-label input[type="checkbox"]:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Tri-State Checkbox Demo */
+  .apg-check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+  .custom-chk-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accent-purple);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: #fff;
+    background: var(--surface-elevated);
+  }
+  .apg-check-item[aria-checked="true"] .custom-chk-box {
+    background: #7c3aed;
+  }
+  .apg-check-item[aria-checked="true"] .check-icon::before {
+    content: '✓';
+  }
+  .apg-check-item[aria-checked="mixed"] .custom-chk-box {
+    background: #7c3aed;
+  }
+  .sem-check-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+
+  /* Combobox Demo */
+  .apg-combobox-wrap {
+    position: relative;
+    margin-top: 6px;
+  }
+  .apg-combobox-wrap input {
+    width: 100%;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+  }
+  .semantic-combobox-demo input {
+    width: 100%;
+    margin-top: 6px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+  }
+  .semantic-combobox-demo input:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 1px;
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
+  }
+  .apg-cb-list {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    list-style: none;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+    max-height: 140px;
+    overflow-y: auto;
+  }
+  .apg-cb-list li {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+  .apg-cb-list li:hover,
+  .apg-cb-list li.focused {
+    background: rgba(168, 85, 247, 0.2);
+  }
+
+  /* Popover Menu Demo */
+  .apg-menu-popup {
+    background: var(--surface-elevated);
+    border: 1px solid var(--accent-purple);
+    border-radius: var(--radius-sm);
+    list-style: none;
+    padding: 6px 0;
+    margin-top: 6px;
+    box-shadow: var(--shadow-md);
+  }
+  .apg-menu-popup li {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .apg-menu-popup li:hover,
+  .apg-menu-popup li:focus {
+    background: rgba(168, 85, 247, 0.25);
+    outline: none;
+  }
+  .sem-popover-box {
+    background: var(--surface-card);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-emerald);
+    border-radius: var(--radius-sm);
+    padding: 8px 0;
+    box-shadow: var(--shadow-lg);
+  }
+  .popover-nav a,
+  .btn-danger-link {
+    display: block;
+    padding: 8px 14px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  .popover-nav a:hover,
+  .btn-danger-link:hover {
+    background: rgba(52, 211, 153, 0.15);
+  }
+  .popover-nav a:focus,
+  .popover-nav a:focus-visible,
+  .btn-danger-link:focus,
+  .btn-danger-link:focus-visible {
+    background: rgba(52, 211, 153, 0.25);
+    outline: 2px solid var(--accent-emerald);
+    outline-offset: -2px;
+  }
+  .btn-danger-link { color: var(--accent-rose); }
+
+  /* Tooltip Demo */
+  .apg-tooltip-popup {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    margin-top: 8px;
+    display: inline-block;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Landmarks Wireframe */
+  .apg-landmarks-demo,
+  .semantic-landmarks-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    text-align: center;
+  }
+  .wireframe-box {
+    padding: 8px;
+    border-radius: 4px;
+    background: var(--surface-elevated);
+    border: 1px dashed var(--border-default);
+  }
+  .wireframe-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4px;
+  }
+
+  /* Tabs Demo */
+  .apg-tablist {
+    display: flex;
+    border-bottom: 1px solid var(--border-default);
+  }
+  .apg-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .apg-tab.active {
+    color: var(--accent-purple);
+    border-bottom-color: var(--accent-purple);
+  }
+  .apg-tabpanel {
+    padding: 14px;
+    font-size: 0.85rem;
+    background: var(--surface-card);
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  }
+  .spec-status-alert {
+    display: flex;
+    gap: 12px;
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+  }
+
+  /* Table Demo */
+  .apg-aria-table,
+  .sem-data-table {
+    width: 100%;
+    font-size: 0.82rem;
+    border-collapse: collapse;
+  }
+  .table-row,
+  .sem-data-table tr {
+    display: flex;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .sem-data-table {
+    display: table;
+  }
+  .sem-data-table tr {
+    display: table-row;
+  }
+  .table-cell,
+  .sem-data-table th,
+  .sem-data-table td {
+    flex: 1;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .th-cell,
+  .sem-data-table th {
+    font-weight: 700;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  /* Breadcrumb Demo */
+  .apg-breadcrumbs ol,
+  .sem-breadcrumbs ol {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+  }
+  .apg-breadcrumbs li+li::before,
+  .sem-breadcrumbs li+li::before {
+    content: '/';
+    color: var(--text-muted);
+    margin-right: 6px;
+  }
+  .apg-breadcrumbs a,
+  .sem-breadcrumbs a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+  .sem-breadcrumbs a {
+    color: var(--accent-emerald);
+  }
+  .sem-breadcrumbs a:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 2px;
+    background: rgba(52, 211, 153, 0.15);
+  }
+  .apg-breadcrumbs a:focus-visible {
+    outline: 3px solid var(--accent-purple);
+    outline-offset: 2px;
+    background: rgba(168, 85, 247, 0.15);
+  }
+  .apg-breadcrumbs a[aria-current="page"],
+  .sem-breadcrumbs span[aria-current="page"] {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  /* Link Demo */
+  .sem-native-link {
+    color: var(--accent-emerald);
+    font-weight: 700;
+    text-decoration: underline;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .sem-native-link:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 3px;
+    background: rgba(52, 211, 153, 0.15);
+  }
+
+  /* Alert Live Region Demo */
+  .live-alert-container,
+  .live-status-container {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+  }
+  .live-alert-container:not(:empty) {
+    background: rgba(220, 38, 38, 0.15);
+    border: 1px solid #dc2626;
+    color: #fca5a5;
+  }
+  .live-status-container {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* Carousel Snap Demo */
+  .css-scroll-snap-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    padding: 10px 0;
+    border-radius: var(--radius-sm);
+  }
+  .css-scroll-snap-carousel:focus,
+  .css-scroll-snap-carousel:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
+  }
+  .snap-slide {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    padding: 24px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  /* Toolbar Demo */
+  .apg-toolbar-widget,
+  .sem-toolbar-fieldset {
+    display: inline-flex;
+    gap: 4px;
+    background: var(--surface-elevated);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+  }
+  .apg-toolbar-widget button,
+  .sem-toolbar-fieldset button {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .apg-toolbar-widget button:focus-visible {
+    background: rgba(168, 85, 247, 0.25);
+    outline: 2px solid var(--accent-purple);
+    outline-offset: 1px;
+  }
+  .sem-toolbar-fieldset button:focus-visible {
+    background: rgba(52, 211, 153, 0.25);
+    outline: 2px solid var(--accent-emerald);
+    outline-offset: 1px;
+  }
+
+  /* Grid Demo */
+  .apg-data-grid {
+    width: 100%;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--surface-card);
+  }
+  .grid-row {
+    display: flex;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .head-row {
+    background: var(--surface-elevated);
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .grid-cell {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    outline: none;
+    border-right: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+  }
+  .grid-cell:last-child {
+    border-right: none;
+  }
+  .grid-cell:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: -2px;
+    background: rgba(56, 189, 248, 0.12);
+  }
+  .cell-badge,
+  .sem-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .badge-high,
+  .sem-badge-high {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+  }
+  .badge-crit,
+  .sem-badge-crit {
+    background: rgba(220, 38, 38, 0.25);
+    color: #f87171;
+    border: 1px solid rgba(220, 38, 38, 0.5);
+  }
+  .badge-med {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fcd34d;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+  }
+  .cell-editable {
+    cursor: text;
+    background: var(--surface-base);
+  }
+  .sem-cell-input {
+    width: 100%;
+    padding: 4px 6px;
+    font-size: 0.8rem;
+    background: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    border-radius: 4px;
+    transition: var(--transition-fast);
+  }
+  .sem-cell-input:focus-visible {
+    outline: 2px solid var(--accent-emerald);
+    outline-offset: -1px;
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.35);
+  }
+
+  /* Listbox Demo */
+  .apg-listbox-widget {
+    list-style: none;
+    padding: 4px;
+    margin-top: 8px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    outline: none;
+  }
+  .apg-listbox-widget:focus-visible {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+  }
+  .lb-option {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    transition: background 0.15s;
+  }
+  .lb-option:hover {
+    background: var(--surface-elevated);
+  }
+  .lb-option.selected {
+    background: rgba(168, 85, 247, 0.2);
+    font-weight: 700;
+    color: var(--accent-purple);
+  }
+  .lb-check {
+    visibility: hidden;
+    font-weight: 800;
+  }
+  .lb-option.selected .lb-check {
+    visibility: visible;
+  }
+  .sem-native-listbox {
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 0.85rem;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    transition: var(--transition-fast);
+  }
+  .sem-native-listbox:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 1px;
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.35);
+  }
+
+  /* Menubar Demo */
+  .apg-menubar-widget {
+    display: flex;
+    gap: 6px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+  }
+  .menubar-item-wrap {
+    position: relative;
+  }
+  .apg-menubar-item {
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .apg-menubar-item:focus,
+  .apg-menubar-item:hover {
+    background: rgba(168, 85, 247, 0.2);
+    outline: 2px solid var(--accent-blue);
+  }
+  .apg-menubar-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 140px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    list-style: none;
+    padding: 4px;
+    z-index: 20;
+    box-shadow: var(--shadow-md);
+    margin-top: 4px;
+  }
+  .apg-menubar-dropdown li {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .apg-menubar-dropdown li:hover,
+  .apg-menubar-dropdown li:focus {
+    background: rgba(168, 85, 247, 0.25);
+    outline: none;
+  }
+  .sem-nav-bar {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+  }
+  .sem-nav-list {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .sem-nav-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: var(--transition-fast);
+  }
+  .sem-nav-link:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 2px;
+    background: rgba(52, 211, 153, 0.2);
+    color: var(--text-primary);
+  }
+  .sem-nav-link[aria-current="page"] {
+    color: var(--text-primary);
+    font-weight: 800;
+    background: rgba(56, 189, 248, 0.15);
+  }
+
+  /* Alert Dialog Demo */
+  .apg-alertdialog-window {
+    border-color: #ef4444;
+    border-left: 6px solid #ef4444;
+  }
+  .adlg-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .adlg-icon {
+    font-size: 1.5rem;
+  }
+
+  /* Feed Demo */
+  .apg-feed-widget,
+  .sem-feed-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 8px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+  }
+  .feed-article,
+  .sem-feed-article {
+    padding: 10px 14px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    font-size: 0.82rem;
+    outline: none;
+  }
+  .feed-article:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+  }
+  .feed-article h3,
+  .sem-feed-article h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 4px;
+  }
+  .feed-article time,
+  .sem-feed-article time {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .feed-article p,
+  .sem-feed-article p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .feed-controls {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Slider Multi-Thumb Demo */
+  .multislider-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+  .apg-multi-rail {
+    position: relative;
+    height: 10px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+    margin: 16px 8px;
+  }
+  .multi-highlight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: #a855f7;
+    border-radius: 999px;
+  }
+  .multi-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #c084fc;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+  }
+  .multi-thumb:focus-visible {
+    outline: 3px solid var(--accent-purple);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.4);
+  }
+  .sem-multirange-fieldset {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    background: var(--surface-card);
+  }
+  .sem-multirange-fieldset legend {
+    padding: 0 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .sem-range-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    margin: 6px 0;
+    color: var(--text-primary);
+  }
+  .sem-range-row input[type="range"] {
+    flex: 1;
+    accent-color: var(--accent-emerald);
+  }
+  .sem-range-row input[type="range"]:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Treegrid Demo */
+  .apg-treegrid-widget {
+    width: 100%;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--surface-card);
+    font-size: 0.82rem;
+  }
+  .tg-head-row {
+    background: var(--surface-elevated);
+    font-weight: 700;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .tg-row {
+    display: flex;
+    border-bottom: 1px solid var(--border-subtle);
+    outline: none;
+    color: var(--text-primary);
+  }
+  .tg-row:focus {
+    background: rgba(56, 189, 248, 0.12);
+    outline: 2px solid var(--accent-blue);
+    outline-offset: -2px;
+  }
+  .tg-cell {
+    padding: 6px 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .tg-cell-name {
+    flex: 2;
+  }
+  .tg-indent-1 {
+    padding-left: 24px;
+  }
+  .tg-toggle {
+    background: transparent;
+    border: none;
+    color: var(--accent-blue);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 2px 4px;
+    margin-right: 4px;
+  }
+
+  /* Window Splitter Demo */
+  .apg-split-box {
+    display: flex;
+    height: 110px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--surface-card);
+  }
+  .split-pane {
+    padding: 10px;
+    overflow: hidden;
+    font-size: 0.8rem;
+  }
+  .left-pane {
+    background: var(--surface-elevated);
+    border-right: 1px solid var(--border-subtle);
+  }
+  .right-pane {
+    background: var(--surface-card);
+  }
+  .pane-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pane-text {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 0.8rem;
+  }
+  .apg-splitter-handle {
+    width: 10px;
+    background: var(--surface-base);
+    cursor: col-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border-left: 1px solid var(--border-default);
+    border-right: 1px solid var(--border-default);
+    user-select: none;
+  }
+  .apg-splitter-handle:focus-visible {
+    background: var(--accent-purple);
+    color: #fff;
+    outline: 3px solid var(--accent-purple);
+    outline-offset: 2px;
+  }
+  .splitter-grip {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  .sem-resizable-container {
+    display: flex;
+    width: 100%;
+  }
+  .sem-resize-box {
+    resize: horizontal;
+    overflow: auto;
+    min-width: 120px;
+    max-width: 100%;
+    width: 60%;
+    height: 110px;
+    padding: 10px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+  }
+  .sem-resize-box:focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 2px;
+  }
+
+  /* Light Mode Overrides for Playground */
+  :root[data-theme="light"] .demo-apg { border-color: rgba(109, 40, 217, 0.35); }
+  :root[data-theme="light"] .demo-semantic { border-color: rgba(4, 120, 87, 0.35); }
+  :root[data-theme="light"] .switch-track,
+  :root[data-theme="light"] .sem-switch-input {
+    background: #e2e8f0;
+    border-color: var(--border-default);
+  }
+  :root[data-theme="light"] .switch-thumb,
+  :root[data-theme="light"] .sem-switch-input::before {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  :root[data-theme="light"] .apg-switch-btn[aria-checked="true"] .switch-track {
+    background: var(--accent-purple);
+    border-color: var(--accent-purple);
+  }
+  :root[data-theme="light"] .sem-switch-input:checked {
+    background: var(--accent-emerald);
+    border-color: var(--accent-emerald);
+  }
+  :root[data-theme="light"] .apg-slider-handle {
+    background: var(--accent-purple);
+  }
+  :root[data-theme="light"] .apg-check-item[aria-checked="true"] .custom-chk-box {
+    background: var(--accent-purple);
+  }
+  :root[data-theme="light"] .apg-check-item[aria-checked="mixed"] .custom-chk-box {
+    background: #581c87;
+  }
+  :root[data-theme="light"] .live-alert-container:not(:empty) {
+    background: #ffe4e6;
+    border-color: #dc2626;
+    color: #991b1b;
+  }
+  :root[data-theme="light"] .badge-high,
+  :root[data-theme="light"] .sem-badge-high {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #f87171;
+  }
+  :root[data-theme="light"] .badge-crit,
+  :root[data-theme="light"] .sem-badge-crit {
+    background: #fef2f2;
+    color: #7f1d1d;
+    border-color: #ef4444;
+  }
+  :root[data-theme="light"] .badge-med {
+    background: #fef3c7;
+    color: #78350f;
+    border-color: #f59e0b;
+  }
+  :root[data-theme="light"] .lb-option.selected {
+    background: rgba(109, 40, 217, 0.12);
+    color: #5b21b6;
+  }
+  :root[data-theme="light"] .multi-highlight {
+    background: var(--accent-purple);
+  }
+  :root[data-theme="light"] .multi-thumb {
+    background: var(--accent-purple);
+    border-color: #fff;
+  }
+  :root[data-theme="light"] .apg-menubar-dropdown {
+    border-color: var(--accent-purple);
+  }
+  :root[data-theme="light"] .sem-nav-link {
+    color: #0369a1;
+  }
+  :root[data-theme="light"] .sem-nav-link[aria-current="page"] {
+    color: #0f172a;
+    background: rgba(14, 165, 233, 0.15);
+  }
+
+  :root[data-theme="light"] .demo-btn:focus-visible,
+  :root[data-theme="light"] .demo-btn-sm:focus-visible {
+    outline-color: #0369a1;
+    box-shadow: 0 0 0 4px rgba(3, 105, 161, 0.25);
+  }
+  :root[data-theme="light"] .demo-semantic .demo-btn:focus-visible,
+  :root[data-theme="light"] .demo-semantic .demo-btn-sm:focus-visible,
+  :root[data-theme="light"] .demo-semantic .demo-btn.btn-primary:focus-visible {
+    outline-color: var(--accent-emerald);
+    box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.25);
+  }
+  :root[data-theme="light"] .demo-apg .demo-btn:focus-visible,
+  :root[data-theme="light"] .demo-apg .demo-btn-sm:focus-visible,
+  :root[data-theme="light"] .demo-apg .demo-btn.btn-primary:focus-visible {
+    outline-color: var(--accent-purple);
+    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.25);
+  }
+  :root[data-theme="light"] .sem-details summary:focus-visible,
+  :root[data-theme="light"] .sem-tree-details summary:focus-visible {
+    outline-color: var(--accent-emerald);
+    background: rgba(4, 120, 87, 0.12);
+  }
+  :root[data-theme="light"] .sem-switch-input:focus-visible {
+    outline-color: var(--accent-emerald);
+    box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.25);
+  }
+  :root[data-theme="light"] .sem-number-input:focus-visible,
+  :root[data-theme="light"] .semantic-combobox-demo input:focus-visible,
+  :root[data-theme="light"] .sem-cell-input:focus-visible,
+  :root[data-theme="light"] .sem-native-listbox:focus-visible {
+    outline-color: var(--accent-emerald);
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.25);
+  }
+  :root[data-theme="light"] .popover-nav a:focus,
+  :root[data-theme="light"] .popover-nav a:focus-visible,
+  :root[data-theme="light"] .btn-danger-link:focus,
+  :root[data-theme="light"] .btn-danger-link:focus-visible {
+    outline-color: var(--accent-emerald);
+    background: rgba(4, 120, 87, 0.15);
+  }
+  :root[data-theme="light"] .css-scroll-snap-carousel:focus,
+  :root[data-theme="light"] .css-scroll-snap-carousel:focus-visible {
+    outline-color: var(--accent-emerald);
+    box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.25);
+  }
+  :root[data-theme="light"] .sem-toolbar-fieldset button:focus-visible {
+    outline-color: var(--accent-emerald);
+    background: rgba(4, 120, 87, 0.15);
+  }
+  :root[data-theme="light"] .sem-nav-link:focus-visible {
+    outline-color: var(--accent-emerald);
+    background: rgba(4, 120, 87, 0.15);
+  }
+  :root[data-theme="light"] .sem-native-link:focus-visible {
+    outline-color: var(--accent-emerald);
+    background: rgba(4, 120, 87, 0.12);
+  }
+  :root[data-theme="light"] .multi-thumb:focus-visible,
+  :root[data-theme="light"] .apg-splitter-handle:focus-visible {
+    outline-color: var(--accent-purple);
+    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.25);
+  }
+
+  /* Scoped Catch-All Focus Indicators for Total WCAG 2.2 Compliance */
+  .demo-semantic :is(button, input, select, textarea, a, summary, [tabindex="0"]):focus-visible {
+    outline: 3px solid var(--accent-emerald);
+    outline-offset: 2px;
+  }
+  .demo-apg :is(button, input, select, textarea, a, summary, [tabindex="0"]):focus-visible {
+    outline: 3px solid var(--accent-purple);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .pane-content {
+      padding: 12px;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .switch-track,
+    .sem-switch-input,
+    .apg-slider-rail,
+    .apg-multi-rail,
+    .apg-meter-rail,
+    .radio-dot,
+    .custom-chk-box {
+      border: 1px solid ButtonText;
+    }
+    .switch-thumb,
+    .sem-switch-input::before,
+    .apg-slider-handle,
+    .multi-thumb {
+      background: ButtonText;
+      border: 2px solid Canvas;
+      forced-color-adjust: none;
+    }
+    .apg-switch-btn[aria-checked="true"] .switch-track,
+    .sem-switch-input:checked,
+    .apg-meter-fill,
+    .multi-highlight,
+    .apg-radio-opt[aria-checked="true"] .radio-dot::after,
+    .apg-check-item[aria-checked="true"] .custom-chk-box,
+    .apg-check-item[aria-checked="mixed"] .custom-chk-box,
+    .lb-option.selected {
+      background: Highlight;
+      color: HighlightText;
+      border-color: Highlight;
+      forced-color-adjust: none;
+    }
+    .apg-switch-btn[aria-checked="true"] .switch-thumb,
+    .sem-switch-input:checked::before {
+      background: HighlightText;
+      border-color: Highlight;
+    }
+    .apg-tab.active {
+      border-bottom: 3px solid Highlight;
+      color: Highlight;
+    }
+  }
+</style>

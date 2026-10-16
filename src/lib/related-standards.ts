@@ -1,8 +1,9 @@
 // Shared loader for the Related Standards section (public/data/related-standards.json).
 import fs from "fs";
 import path from "path";
+import type { RelatedStandardsData, Wcag3CatalogItem } from "./catalog-types";
 
-export function loadRelated() {
+export function loadRelated(): RelatedStandardsData {
   const d = JSON.parse(
     fs.readFileSync(path.join(process.cwd(), "public", "data", "related-standards.json"), "utf8"),
   );
@@ -16,13 +17,13 @@ export function loadRelated() {
     Array.isArray(v) ? v.map(walk) : v && typeof v === "object"
       ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x)]))
       : fill(v);
-  return walk(d);
+  return walk(d) as RelatedStandardsData;
 }
 
-export function loadCatalogBySlug(): Record<string, any> {
+export function loadCatalogBySlug(): Record<string, Wcag3CatalogItem> {
   const p = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
   if (!fs.existsSync(p)) return {};
-  return Object.fromEntries(JSON.parse(fs.readFileSync(p, "utf8")).map((i: any) => [i.slug, i]));
+  return Object.fromEntries((JSON.parse(fs.readFileSync(p, "utf8")) as Wcag3CatalogItem[]).map((i) => [i.slug, i]));
 }
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

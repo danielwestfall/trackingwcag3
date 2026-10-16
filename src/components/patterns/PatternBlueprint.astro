@@ -1,0 +1,290 @@
+---
+import type { Pattern } from "@/lib/patterns";
+
+interface Props {
+  pattern: Pattern;
+}
+
+const { pattern } = Astro.props;
+---
+
+<!-- Implementation Blueprint & Effort Breakdown -->
+<div class="blueprint-section" aria-label="Implementation requirements and effort comparison">
+  <h3 class="blueprint-section-title">🛠️ Implementation Blueprint: What's Required to Make It Work</h3>
+  <div class="blueprint-grid">
+    <!-- ARIA Blueprint Card -->
+    <div class="blueprint-card blueprint-aria">
+      <div class="bp-header">
+        <span class="bp-title">🟣 W3C APG ARIA Pattern</span>
+        <span class={`effort-pill effort-${pattern.ariaEffort.rating.toLowerCase()}`}>
+          {pattern.ariaEffort.rating} Effort ({pattern.ariaEffort.linesOfCode})
+        </span>
+      </div>
+      <p class="effort-summary">{pattern.ariaEffort.summary}</p>
+      
+      <div class="bp-block">
+        <h4>Wiring &amp; Implementation Requirements:</h4>
+        <ul class="bp-list">
+          {pattern.ariaRequirements.map((req) => (
+            <li>{req}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bp-block">
+        <h4>Keyboard Functionality:</h4>
+        <ul class="bp-list">
+          {pattern.ariaKeyboardAndAt.keyboard.map((k) => (
+            <li>{k}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bp-block">
+        <h4>Screen Reader (AT) Announcement:</h4>
+        <div class="at-speech-bubble">
+          <span class="bubble-speaker">🗣️ Screen Reader:</span>
+          <p>{pattern.ariaKeyboardAndAt.screenReader}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic HTML Blueprint Card -->
+    <div class="blueprint-card blueprint-semantic">
+      <div class="bp-header">
+        <span class="bp-title">🟢 Semantic HTML Equivalent</span>
+        <span class="effort-pill effort-minimal">
+          {pattern.semanticEffort.rating} ({pattern.semanticEffort.linesOfCode})
+        </span>
+      </div>
+      <p class="effort-summary">{pattern.semanticEffort.summary}</p>
+
+      <div class="bp-block">
+        <h4>Wiring &amp; Implementation Requirements:</h4>
+        <ul class="bp-list">
+          {pattern.semanticRequirements.map((req) => (
+            <li>{req}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bp-block">
+        <h4>Keyboard Functionality:</h4>
+        <ul class="bp-list">
+          {pattern.semanticKeyboardAndAt.keyboard.map((k) => (
+            <li>{k}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bp-block">
+        <h4>Screen Reader (AT) Announcement:</h4>
+        <div class="at-speech-bubble bubble-semantic">
+          <span class="bubble-speaker">🗣️ Screen Reader:</span>
+          <p>{pattern.semanticKeyboardAndAt.screenReader}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Real-World Limitations of Semantic HTML -->
+<div class="limitations-banner" aria-label="Limitations of Semantic HTML">
+  <div class="limitations-header">
+    <span class="lim-icon" aria-hidden="true">⚠️</span>
+    <h4>Real-World Limitations of Native Semantic HTML ({pattern.name}):</h4>
+  </div>
+  <ul class="limitations-list">
+    {pattern.semanticLimitations.map((lim) => (
+      <li>{lim}</li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  /* Blueprint Requirements Section */
+  .blueprint-section {
+    margin: 24px 0 16px;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 20px;
+  }
+  .blueprint-section-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+  .blueprint-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 860px) {
+    .blueprint-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .blueprint-card {
+    background: var(--surface-base);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .blueprint-aria {
+    border-top: 4px solid var(--accent-purple);
+    border-left: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .blueprint-semantic {
+    border-top: 4px solid var(--accent-emerald);
+    border-left: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .bp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .bp-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+  .effort-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .effort-high, .effort-extreme {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--accent-rose);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+  .effort-medium {
+    background: rgba(251, 191, 36, 0.15);
+    color: var(--accent-amber);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+  .effort-minimal, .effort-low {
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+  }
+  :global(:root[data-theme="light"]) .effort-high,
+  :global(:root[data-theme="light"]) .effort-extreme {
+    background: #ffe4e6;
+    color: #be123c;
+    border-color: rgba(190, 18, 60, 0.35);
+  }
+  :global(:root[data-theme="light"]) .effort-medium {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: rgba(146, 64, 14, 0.35);
+  }
+  :global(:root[data-theme="light"]) .effort-minimal,
+  :global(:root[data-theme="light"]) .effort-low {
+    background: #d1fae5;
+    color: #047857;
+    border-color: rgba(4, 120, 87, 0.35);
+  }
+
+  .effort-summary {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .bp-block h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .bp-list {
+    margin-left: 18px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .at-speech-bubble {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-left: 4px solid var(--accent-purple);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+  }
+  .bubble-semantic {
+    border-left-color: var(--accent-emerald);
+  }
+  .bubble-speaker {
+    display: block;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  /* Limitations Callout */
+  .limitations-banner {
+    margin: 16px 0 20px;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-left: 5px solid var(--accent-amber);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+  }
+  .limitations-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .lim-icon { font-size: 1.1rem; }
+  .limitations-header h4 {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #fde68a;
+  }
+  :global(:root[data-theme="light"]) .limitations-header h4 {
+    color: #92400e;
+  }
+  .limitations-list {
+    margin-left: 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .blueprint-card {
+      padding: 12px;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .effort-pill {
+      border: 1px solid ButtonText;
+    }
+  }
+</style>

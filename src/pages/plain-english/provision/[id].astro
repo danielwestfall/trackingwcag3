@@ -3,6 +3,7 @@ import { readFileSync as __readState } from "node:fs";
 // Link W3C sources at the commit the site tracks, not the moving main branch.
 const trackedCommit: string = JSON.parse(__readState(`${process.cwd()}/tracking/state.json`, "utf8")).lastTrackedCommit || "main";
 import { provisionTypeLabel } from "@/lib/provision-labels";
+import type { Wcag3CatalogItem, Wcag3DiscussionItem, Wcag3DiscussionPosition, Wcag3DiscussionThread, Wcag22InboundRef } from "@/lib/catalog-types";
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
 import fs from "fs";
 import path from "path";
@@ -10,7 +11,7 @@ import path from "path";
 export async function getStaticPaths() {
   const catalogPath = path.join(process.cwd(), "public", "data", "wcag3-catalog.json");
   if (!fs.existsSync(catalogPath)) return [];
-  const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+  const catalog: Wcag3CatalogItem[] = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 
   // Real W3C threads, fetched from the GitHub API by
   // scripts/fetch-provision-discussions.mjs, with the 36 hand-researched
@@ -23,15 +24,15 @@ export async function getStaticPaths() {
     ? JSON.parse(fs.readFileSync(discussionsPath, "utf8")).provisions || {}
     : {};
 
-  return catalog.map((item: any) => ({
+  return catalog.map((item) => ({
     params: { id: item.slug },
     props: { item, discussion: discussions[item.slug] || null },
   }));
 }
 
 interface Props {
-  item: any;
-  discussion: any;
+  item: Wcag3CatalogItem;
+  discussion: Wcag3DiscussionItem | null;
 }
 
 const { item, discussion } = Astro.props as Props;
@@ -63,8 +64,8 @@ const status = item?.status || "exploratory";
 // test procedure. It is the draft's own wording, so it can be shown on a
 // provision nobody has annotated - as long as the page says where it came from
 // and never dresses it up as this site's analysis.
-const derived = item?.derived || {};
-const srcUrl = (rel: string) => `https://github.com/w3c/wcag3/blob/${trackedCommit}/${rel}`;
+const derived = item.derived;
+const srcUrl = (rel: string | null | undefined) => `https://github.com/w3c/wcag3/blob/${trackedCommit}/${rel || ''}`;
 const hasScope = (derived.appliesWhen?.length || derived.exceptWhen?.length || derived.notes?.length);
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -117,19 +118,19 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
   <!-- Tabbed Interface -->
   <section class="tabs-container">
     <div class="tab-list" role="tablist" aria-label="Provision detailed analysis">
-      <button role="tab" aria-selected="true" aria-controls="panel-plain" id="tab-plain" class="tab-btn active">
+      <button role="tab" aria-selected="true" tabindex="0" aria-controls="panel-plain" id="tab-plain" class="tab-btn active">
         💬 Plain English & Scope
       </button>
-      <button role="tab" aria-selected="false" aria-controls="panel-test" id="tab-test" class="tab-btn">
+      <button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-test" id="tab-test" class="tab-btn">
         🧪 Testing & Methods
       </button>
-      <button role="tab" aria-selected="false" aria-controls="panel-estimation" id="tab-estimation" class="tab-btn">
+      <button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-estimation" id="tab-estimation" class="tab-btn">
         📊 W3C Status & Draft Notes
       </button>
-      <button role="tab" aria-selected="false" aria-controls="panel-wcag22" id="tab-wcag22" class="tab-btn">
+      <button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-wcag22" id="tab-wcag22" class="tab-btn">
         ⚖️ WCAG 2.2 Comparison
       </button>
-      <button role="tab" aria-selected="false" aria-controls="panel-w3c" id="tab-w3c" class="tab-btn">
+      <button role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-w3c" id="tab-w3c" class="tab-btn">
         📜 W3C Official Text
       </button>
     </div>
@@ -286,7 +287,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
       <div class="panel-section">
         <h2>W3C Threads on This Provision</h2>
-        {threads.length > 0 ? (
+        {threads.length > 0 && discussion ? (
           <>
             <p class="derived-note">
               {discussion.threadCount} GitHub {discussion.threadCount === 1 ? "thread" : "threads"}
@@ -309,7 +310,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
                   <div class="positions-block">
                     <h4>Positions taken in the thread</h4>
                     <div class="positions-grid">
-                      {summary.positions.map((pos: any) => (
+                      {summary.positions.map((pos: Wcag3DiscussionPosition) => (
                         <div class="position-card">
                           <span class="position-label">{pos.label}</span>
                           <span class="position-who">{pos.who}</span>
@@ -350,7 +351,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             )}
 
             <ul class="thread-list">
-              {threads.map((t: any) => (
+              {threads.map((t: Wcag3DiscussionThread) => (
                 <li>
                   <a href={t.url} target="_blank" rel="noopener noreferrer" class="thread-link-item">
                     <span class="thread-title">#{t.number} {t.title}</span>
@@ -383,7 +384,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
         {inbound.direct.length > 0 ? (
           <ul class="matching-list">
-            {inbound.direct.map((sc: any) => (
+            {inbound.direct.map((sc: Wcag22InboundRef) => (
               <li>
                 <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
                   <span>📘</span>
@@ -403,7 +404,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
               than at the provision itself, so the match is broader than one-to-one:
             </p>
             <ul class="matching-list">
-              {coarse.map((sc: any) => (
+              {coarse.map((sc: Wcag22InboundRef) => (
                 <li>
                   <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
                     <span>📘</span>
@@ -429,7 +430,7 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
             <h3>Related WCAG 2.2 criteria</h3>
             <p class="derived-note">On a neighbouring subject, but this provision doesn't replace them.</p>
             <ul class="matching-list">
-              {inbound.related.map((sc: any) => (
+              {inbound.related.map((sc: Wcag22InboundRef) => (
                 <li>
                   <a href={link(`/plain-english/wcag22/${sc.num.replace(/\./g, '-')}/`)} class="sc-link">
                     <span>📘</span>
@@ -469,24 +470,37 @@ const link = (path: string) => `${base}${path.startsWith('/') ? path : '/' + pat
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelectorAll('.tab-btn');
+    const tabs = Array.from(document.querySelectorAll('.tab-btn'));
     const panels = document.querySelectorAll('.tab-panel');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        panels.forEach(p => p.classList.add('hidden'));
+    function activateTab(tab, focusIt = false) {
+      tabs.forEach(t => {
+        const isMatch = t === tab;
+        t.classList.toggle('active', isMatch);
+        t.setAttribute('aria-selected', String(isMatch));
+        t.setAttribute('tabindex', isMatch ? '0' : '-1');
+      });
+      panels.forEach(p => p.classList.add('hidden'));
 
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
+      const targetPanelId = tab.getAttribute('aria-controls');
+      const targetPanel = document.getElementById(targetPanelId);
+      if (targetPanel) {
+        targetPanel.classList.remove('hidden');
+      }
+      if (focusIt) tab.focus();
+    }
 
-        const targetPanelId = tab.getAttribute('aria-controls');
-        const targetPanel = document.getElementById(targetPanelId);
-        if (targetPanel) {
-          targetPanel.classList.remove('hidden');
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener('click', () => activateTab(tab, false));
+      tab.addEventListener('keydown', (e) => {
+        let next = idx;
+        if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') next = (idx - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        if (next !== idx) {
+          e.preventDefault();
+          activateTab(tabs[next], true);
         }
       });
     });

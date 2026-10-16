@@ -1,0 +1,389 @@
+---
+import type { Pattern } from "@/lib/patterns";
+
+interface Props {
+  pattern: Pattern;
+}
+
+const { pattern } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
+---
+
+<!-- Code & Visual CSS Customization Inspector Tabs -->
+<div class="inspector-section">
+  <details class="inspector-details">
+    <summary class="inspector-summary">
+      <span class="summary-arrow" aria-hidden="true">▶</span>
+      <span>🎨 Inspect CSS Customization Recipes, Code &amp; Specifications</span>
+    </summary>
+    
+    <div class="inspector-body">
+      <div class="inspector-tabs" role="tablist" aria-label={`Code and specs for ${pattern.name}`}>
+        <button role="tab" aria-selected="true" tabindex="0" class="insp-tab active" data-tab="css-recipe" id={`tab-css-${pattern.id}`}>
+          🎨 CSS Customization
+        </button>
+        <button role="tab" aria-selected="false" tabindex="-1" class="insp-tab" data-tab="sem-code" id={`tab-sem-${pattern.id}`}>
+          Semantic HTML5 Code
+        </button>
+        <button role="tab" aria-selected="false" tabindex="-1" class="insp-tab" data-tab="apg-code" id={`tab-apg-${pattern.id}`}>
+          W3C APG (ARIA) Code
+        </button>
+        <button role="tab" aria-selected="false" tabindex="-1" class="insp-tab" data-tab="keyboard" id={`tab-kbd-${pattern.id}`}>
+          Keyboard Support Matrix
+        </button>
+        <button role="tab" aria-selected="false" tabindex="-1" class="insp-tab" data-tab="compliance" id={`tab-wcag-${pattern.id}`}>
+          WCAG Mapping
+        </button>
+      </div>
+
+      <!-- Tab Panel 1: CSS Customization -->
+      <div class="insp-panel active" data-panel="css-recipe">
+        <div class="css-recipes-grid">
+          <div class="css-recipe-col">
+            <div class="code-block-header">
+              <span>Modern CSS for Semantic HTML ({pattern.semanticElement})</span>
+              <button type="button" class="copy-code-btn" data-copy-target={`code-css-sem-${pattern.id}`}>Copy CSS</button>
+            </div>
+            <pre class="code-display" id={`code-css-sem-${pattern.id}`}><code>{pattern.cssCustomization.semanticRecipe}</code></pre>
+          </div>
+          <div class="css-recipe-col">
+            <div class="code-block-header">
+              <span>State Attribute CSS for ARIA</span>
+              <button type="button" class="copy-code-btn" data-copy-target={`code-css-aria-${pattern.id}`}>Copy CSS</button>
+            </div>
+            <pre class="code-display" id={`code-css-aria-${pattern.id}`}><code>{pattern.cssCustomization.ariaRecipe}</code></pre>
+          </div>
+        </div>
+        <div class="css-tips-box">
+          <strong>💡 Pro Styling Tips:</strong>
+          <ul>
+            {pattern.cssCustomization.tips.map((tip) => (
+              <li>{tip}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tab Panel 2: Semantic HTML5 Code -->
+      <div class="insp-panel" data-panel="sem-code" hidden>
+        <div class="code-block-header">
+          <span>Modern Semantic HTML5 Markup</span>
+          <button type="button" class="copy-code-btn" data-copy-target={`code-sem-${pattern.id}`}>Copy Code</button>
+        </div>
+        <pre class="code-display" id={`code-sem-${pattern.id}`}><code>{pattern.semanticCode.html}{pattern.semanticCode.js ? `\n\n// --- Optional JavaScript ---\n${pattern.semanticCode.js}` : ''}{pattern.semanticCode.notes ? `\n\n/* Note:\n${pattern.semanticCode.notes}\n*/` : ''}</code></pre>
+      </div>
+
+      <!-- Tab Panel 3: APG Code -->
+      <div class="insp-panel" data-panel="apg-code" hidden>
+        <div class="code-block-header">
+          <span>W3C APG ARIA Pattern Markup &amp; JavaScript</span>
+          <button type="button" class="copy-code-btn" data-copy-target={`code-apg-${pattern.id}`}>Copy Code</button>
+        </div>
+        <pre class="code-display" id={`code-apg-${pattern.id}`}><code>{pattern.apgCode.html}{pattern.apgCode.js ? `\n\n// --- JavaScript Implementation ---\n${pattern.apgCode.js}` : ''}</code></pre>
+      </div>
+
+      <!-- Tab Panel 4: Keyboard Support Matrix -->
+      <div class="insp-panel" data-panel="keyboard" hidden>
+        <table class="kbd-matrix-table">
+          <thead>
+            <tr>
+              <th scope="col">Key / Trigger</th>
+              <th scope="col">W3C APG ARIA Behavior</th>
+              <th scope="col">Semantic HTML5 Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pattern.keyboardMatrix.map((k) => (
+              <tr>
+                <th scope="row"><kbd class="key-cap">{k.key}</kbd></th>
+                <td>{k.apgAction}</td>
+                <td>{k.semanticAction}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tab Panel 5: WCAG Mapping -->
+      <div class="insp-panel" data-panel="compliance" hidden>
+        <div class="wcag-mapping-content">
+          <div class="mapping-group">
+            <h4>WCAG 2.2 Success Criteria:</h4>
+            <div class="criteria-badge-list">
+              {pattern.wcagCriteria.map((c) => (
+                <a href={link(`/plain-english/wcag22/#sc-${c.num.replace(/\./g, '-')}`)} class="sc-badge">
+                  <span class="sc-num">{c.num}</span>
+                  <span class="sc-name">{c.name}</span>
+                  <span class="sc-level">Level {c.level}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+          <div class="mapping-group">
+            <h4>WCAG 3.0 Outcomes:</h4>
+            <div class="outcome-tag-list">
+              {pattern.wcag3Outcomes.map((o) => (
+                <span class="outcome-tag">🎯 {o}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+</div>
+
+<style>
+  [hidden] {
+    display: none !important;
+  }
+
+  /* Inspector Tabs Section */
+  .inspector-section {
+    margin-top: 20px;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 14px;
+  }
+  .inspector-summary {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+  }
+  .inspector-summary:hover {
+    color: var(--text-primary);
+  }
+  .inspector-summary:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  .summary-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+  }
+  .inspector-details[open] .summary-arrow {
+    transform: rotate(90deg);
+  }
+  .inspector-body {
+    margin-top: 14px;
+  }
+
+  .inspector-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--border-default);
+    flex-wrap: wrap;
+  }
+  .insp-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .insp-tab:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: -2px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+  .insp-tab.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+  }
+
+  .insp-panel {
+    display: none;
+    padding-top: 14px;
+    overflow-x: auto;
+  }
+  .insp-panel.active {
+    display: block;
+  }
+
+  .css-recipes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .css-recipe-col {
+    min-width: 0;
+    max-width: 100%;
+  }
+  @media (min-width: 860px) {
+    .css-recipes-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .css-tips-box {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: var(--surface-elevated);
+    border-left: 4px solid var(--accent-emerald);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .css-tips-box strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--accent-emerald);
+  }
+  .css-tips-box ul {
+    margin-left: 18px;
+    color: var(--text-secondary);
+  }
+
+  .code-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: var(--surface-elevated);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    border: 1px solid var(--code-border);
+    border-bottom: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .copy-code-btn {
+    background: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .copy-code-btn:hover {
+    border-color: var(--accent-blue);
+  }
+  .copy-code-btn:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 1px;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.35);
+  }
+  .code-display {
+    background: var(--code-surface);
+    color: var(--code-text);
+    padding: 16px;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    border: 1px solid var(--code-border);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    overflow-x: auto;
+  }
+
+  /* Keyboard Support Matrix Table */
+  .kbd-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+  .kbd-matrix-table th,
+  .kbd-matrix-table td {
+    padding: 10px 12px;
+    border: 1px solid var(--border-subtle);
+    text-align: left;
+  }
+  .kbd-matrix-table th {
+    background: var(--surface-elevated);
+    font-weight: 700;
+  }
+  .key-cap {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* WCAG Mapping Badges */
+  .wcag-mapping-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mapping-group h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .criteria-badge-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.78rem;
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+  }
+  .sc-badge:hover {
+    border-color: var(--accent-blue);
+  }
+  .sc-num {
+    font-weight: 800;
+    color: var(--accent-blue);
+    font-family: var(--font-mono);
+  }
+  .sc-level {
+    font-size: 0.68rem;
+    font-weight: 700;
+    background: var(--surface-card);
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: var(--text-muted);
+  }
+  .outcome-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .outcome-tag {
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--accent-blue);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  @media (forced-colors: active) {
+    .sc-badge,
+    .outcome-tag {
+      border: 1px solid ButtonText;
+    }
+    .insp-tab.active {
+      border-bottom: 3px solid Highlight;
+      color: Highlight;
+    }
+  }
+</style>

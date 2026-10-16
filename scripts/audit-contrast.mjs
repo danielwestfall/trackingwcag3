@@ -201,8 +201,8 @@ const AUDIT_FUNCTION = (themeMode) => {
       continue;
     }
 
-    // Skip decorative icons hidden from assistive technology
-    if (el.closest('[aria-hidden="true"]') && el.closest('.thumb-icon, .brand-logo-icon, .sparkle, .tab-icon, .calc-icon, .caveat-icon, .ready-icon, .portal-icon-wrap')) {
+    // Skip decorative icons and intentional low-contrast swatches hidden from assistive technology
+    if (el.closest('[aria-hidden="true"]') && el.closest('.thumb-icon, .brand-logo-icon, .sparkle, .tab-icon, .calc-icon, .caveat-icon, .ready-icon, .portal-icon-wrap, .cl-swatch')) {
       totalNodes++;
       continue;
     }

@@ -2,22 +2,23 @@
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
 import "@/styles/related-banner.css";
 import { loadRelated, formatDate } from "@/lib/related-standards";
+import type { RelatedStandardGroup, RelatedTrackedDoc } from "@/lib/catalog-types";
 
 const d = loadRelated();
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
 
 // Most recent dated publication for each group, from what the page lists.
-const latest = (g: any) =>
-  (g.trackedDocs || []).map((t: any) => ({ ...t, date: t.publishedDate }))
-    .filter((x: any) => x.date)
-    .sort((a: any, b: any) => b.date.localeCompare(a.date))[0];
+const latest = (g: RelatedStandardGroup) =>
+  (g.trackedDocs || []).map((t: RelatedTrackedDoc) => ({ ...t, date: t.publishedDate }))
+    .filter((x) => x.date)
+    .sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
 
 // Every planned or proposed item, across groups, in one list.
-const upcoming = d.groups.flatMap((g: any) =>
+const upcoming = d.groups.flatMap((g) =>
   g.future
-    .filter((f: any) => f.certainty === "planned" || f.certainty === "proposed")
-    .map((f: any) => ({ ...f, group: g })),
+    .filter((f) => f.certainty === "planned" || f.certainty === "proposed")
+    .map((f) => ({ ...f, group: g })),
 );
 ---
 
@@ -43,7 +44,7 @@ const upcoming = d.groups.flatMap((g: any) =>
           <span class="stat-label">Groups tracked</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value">{d.groups.reduce((n: number, g: any) => n + g.inDevelopment.length, 0)}</span>
+          <span class="stat-value">{d.groups.reduce((n: number, g) => n + g.inDevelopment.length, 0)}</span>
           <span class="stat-label">Work items in development</span>
         </div>
         <div class="stat-card">
@@ -57,7 +58,7 @@ const upcoming = d.groups.flatMap((g: any) =>
   <section aria-labelledby="groups-h">
     <h2 id="groups-h">The four groups</h2>
     <ul class="group-grid" role="list">
-      {d.groups.map((g: any) => {
+      {d.groups.map((g) => {
         const l = latest(g);
         return (
           <li class="group-card">
@@ -87,7 +88,7 @@ const upcoming = d.groups.flatMap((g: any) =>
       readings, are on each group's page.
     </p>
     <ul class="upcoming-list" role="list">
-      {upcoming.map((u: any) => (
+      {upcoming.map((u) => (
         <li class="upcoming-item">
           <span class="when">{u.when}</span>
           <div>

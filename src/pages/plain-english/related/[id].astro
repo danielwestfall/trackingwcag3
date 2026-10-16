@@ -3,30 +3,37 @@ import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
 import "@/styles/related-banner.css";
 import { loadRelated, loadCatalogBySlug, formatDate } from "@/lib/related-standards";
 import { provisionTypeLabel } from "@/lib/provision-labels";
+import type { RelatedStandardGroup, RelatedActionItem, Wcag3CatalogItem } from "@/lib/catalog-types";
 
 export async function getStaticPaths() {
   const d = loadRelated();
-  return d.groups.map((g: any, i: number) => ({
+  return d.groups.map((g, i) => ({
     params: { id: g.id },
     props: { g, prev: d.groups[i - 1] ?? null, next: d.groups[i + 1] ?? null },
   }));
 }
 
-const { g, prev, next } = Astro.props as any;
+interface Props {
+  g: RelatedStandardGroup;
+  prev: RelatedStandardGroup | null;
+  next: RelatedStandardGroup | null;
+}
+
+const { g, prev, next } = Astro.props as Props;
 const d = loadRelated();
 const catalog = loadCatalogBySlug();
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
 
-const provisions = (g.connection.provisions || []).map((slug: string) => {
+const provisions: Wcag3CatalogItem[] = (g.connection.provisions || []).map((slug: string) => {
   const item = catalog[slug];
   if (!item) throw new Error(`related-standards.json (${g.id}): provision "${slug}" is not in wcag3-catalog.json`);
   return item;
 });
 const columns = [
-  { key: "doNow", icon: "✅", title: "Start now", sub: "Useful whatever happens next", cls: "ready-now" },
-  { key: "hedge", icon: "🔜", title: "Cheap hedges", sub: "Low cost, likely to pay off", cls: "ready-next" },
-  { key: "wait", icon: "⏸️", title: "Wait", sub: "Too early to build for", cls: "ready-wait" },
+  { key: "doNow" as const, icon: "✅", title: "Start now", sub: "Useful whatever happens next", cls: "ready-now" },
+  { key: "hedge" as const, icon: "🔜", title: "Cheap hedges", sub: "Low cost, likely to pay off", cls: "ready-next" },
+  { key: "wait" as const, icon: "⏸️", title: "Wait", sub: "Too early to build for", cls: "ready-wait" },
 ];
 ---
 
@@ -49,7 +56,7 @@ const columns = [
         <p>{g.tagline}</p>
       </div>
       <div class="stats-grid">
-        {g.stats.map((s: any) => (
+        {g.stats.map((s) => (
           <div class="stat-card">
             <span class="stat-value">{s.value}</span>
             <span class="stat-label">{s.label}</span>
@@ -61,7 +68,7 @@ const columns = [
 
   <p class="review-strip">
     Reviewed {formatDate(d.lastReviewed)}. Publication dates are checked against the W3C
-    documents themselves every week{g.id === "act" ? `, and rule counts against the WAI rules data (${formatDate(d.act.checked)})` : ""}.
+    documents themselves every week{g.id === "act" && d.act ? `, and rule counts against the WAI rules data` : ""}.
     Every fact links to a source at the bottom of the page.
   </p>
 
@@ -84,7 +91,7 @@ const columns = [
           </tr>
         </thead>
         <tbody>
-          {g.current.map((c: any) => (
+          {g.current.map((c) => (
             <tr>
               <th scope="row"><a href={c.url}>{c.title}</a></th>
               <td><span class="status-chip">{c.status}</span></td>
@@ -100,14 +107,14 @@ const columns = [
   <section aria-labelledby="dev-h">
     <h2 id="dev-h">In development</h2>
     <div class="dev-grid">
-      {g.inDevelopment.map((x: any) => (
+      {g.inDevelopment.map((x) => (
         <article class="dev-card">
           <div class="dev-top">
             <h3><a href={x.url}>{x.title}</a></h3>
             <span class="status-chip">{x.status}{x.date ? `, ${formatDate(x.date)}` : ""}</span>
           </div>
           <p>{x.summary}</p>
-          {x.changes.length > 0 && (
+          {x.changes && x.changes.length > 0 && (
             <ul class="change-list">
               {x.changes.map((c: string) => <li>{c}</li>)}
             </ul>
@@ -129,7 +136,7 @@ const columns = [
         <p>{g.connection.wcag3}</p>
         {provisions.length > 0 && (
           <ul class="prov-list">
-            {provisions.map((p: any) => (
+            {provisions.map((p) => (
               <li>
                 <a href={link(`/plain-english/provision/${p.slug}/`)}>{p.title}</a>
                 <span class="prov-meta">{provisionTypeLabel(p.type)}, {p.status}</span>
@@ -148,7 +155,7 @@ const columns = [
       a proposal not yet agreed, or this site's own reading of where things are heading.
     </p>
     <ol class="timeline">
-      {g.future.map((f: any) => (
+      {g.future.map((f) => (
         <li class={`tl-item tl-${f.certainty}`}>
           <span class="when">{f.when}</span>
           <div class="tl-body">
@@ -171,7 +178,7 @@ const columns = [
             <p class="ready-sub">{col.sub}</p>
           </div>
           <ol class="ready-list">
-            {g[col.key].map((r: any) => (
+            {g[col.key].map((r: RelatedActionItem) => (
               <li>
                 <strong>{r.action}</strong>
                 <p>{r.why}</p>
@@ -193,7 +200,7 @@ const columns = [
   <section aria-labelledby="src-h" class="sources">
     <h2 id="src-h">Sources</h2>
     <ul>
-      {g.sources.map((s: any) => <li><a href={s.url}>{s.title}</a></li>)}
+      {g.sources.map((s) => <li><a href={s.url}>{s.title}</a></li>)}
     </ul>
   </section>
 

@@ -1,0 +1,495 @@
+---
+interface Props {
+  totalPatterns: number;
+  nativeCount: number;
+  hybridCount: number;
+  ariaCount: number;
+  categories: string[];
+}
+
+const { totalPatterns, nativeCount, hybridCount, ariaCount, categories } = Astro.props;
+---
+
+<!-- Hero Dashboard Banner -->
+<section class="dashboard-banner">
+  <div class="banner-content">
+    <div class="banner-title-group">
+      <div class="banner-badge">
+        <span class="sparkle" aria-hidden="true">🧩</span>
+        <span>W3C APG vs Semantic Web Platform</span>
+      </div>
+      <h1>W3C APG Patterns vs. Semantic HTML</h1>
+      <p>
+        Compare official W3C ARIA Authoring Practices Guide (APG) custom patterns directly with native HTML5 semantic equivalents.
+        Test live interactive widgets, explore keyboard accessibility matrices, inspect implementation effort, and operationalize the <strong>First Rule of ARIA</strong>.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">{totalPatterns}</span>
+        <span class="stat-label">Patterns Analyzed</span>
+      </div>
+      <div class="stat-card stat-native">
+        <span class="stat-value highlight-native">{nativeCount}</span>
+        <span class="stat-label">Native Preferred</span>
+      </div>
+      <div class="stat-card stat-hybrid">
+        <span class="stat-value highlight-hybrid">{hybridCount}</span>
+        <span class="stat-label">Hybrid Enhancement</span>
+      </div>
+      <div class="stat-card stat-aria">
+        <span class="stat-value highlight-aria">{ariaCount}</span>
+        <span class="stat-label">ARIA Required</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- First Rule of ARIA Educational Banner -->
+<section class="first-rule-banner" aria-label="First Rule of ARIA Guide">
+  <div class="first-rule-icon" aria-hidden="true">📜</div>
+  <div class="first-rule-content">
+    <h2>The First Rule of ARIA</h2>
+    <blockquote>
+      "If you can use a native HTML element or attribute with the semantics and behavior you require already built in, then do so."
+      <cite>— W3C ARIA Authoring Practices Guide &amp; Using ARIA in HTML</cite>
+    </blockquote>
+    <div class="rule-verdict-chips">
+      <div class="verdict-chip chip-native">
+        <span class="chip-dot" aria-hidden="true"></span>
+        <strong>Native Preferred:</strong>
+        <span>HTML provides a built-in element (e.g. <code>&lt;dialog&gt;</code>, <code>&lt;details&gt;</code>, <code>&lt;meter&gt;</code>, <code>&lt;input type="range"&gt;</code>). Use native HTML first.</span>
+      </div>
+      <div class="verdict-chip chip-hybrid">
+        <span class="chip-dot" aria-hidden="true"></span>
+        <strong>Hybrid Enhancement:</strong>
+        <span>Semantic HTML structure combined with targeted ARIA (e.g. <code>&lt;nav&gt;</code> + <code>aria-current="page"</code>, Popover API, indeterminate checkboxes).</span>
+      </div>
+      <div class="verdict-chip chip-aria">
+        <span class="chip-dot" aria-hidden="true"></span>
+        <strong>ARIA Required:</strong>
+        <span>No native HTML element exists yet (e.g. <code>tabs</code>, <code>treeview</code>, <code>toolbar</code>). The APG pattern is required for full accessibility.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Controls: Filter & Search -->
+<section class="controls-section" aria-label="Filter pattern demos">
+  <div class="search-box">
+    <span class="search-icon" aria-hidden="true">🔍</span>
+    <input
+      type="search"
+      id="pattern-search"
+      placeholder="Filter by pattern name (e.g. Accordion, Dialog, Slider), HTML tag, or keyword..."
+      aria-label="Filter patterns by name, element, or keyword"
+      autocomplete="off"
+    />
+    <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Clear search" hidden>✕</button>
+  </div>
+
+  <div class="filter-toolbar">
+    <!-- Category Filter -->
+    <div class="filter-group">
+      <span class="filter-label">Category:</span>
+      <div class="filter-pills" id="category-pills" role="radiogroup" aria-label="Filter by pattern category">
+        {categories.map((cat, i) => (
+          <button
+            type="button"
+            class={`filter-pill ${i === 0 ? "active" : ""}`}
+            data-category={cat}
+            role="radio"
+            aria-checked={i === 0 ? "true" : "false"}
+            tabindex={i === 0 ? "0" : "-1"}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Verdict Filter -->
+    <div class="filter-group">
+      <span class="filter-label">Verdict:</span>
+      <div class="filter-pills" id="verdict-pills" role="radiogroup" aria-label="Filter by First Rule verdict">
+        <button type="button" class="filter-pill active" data-verdict="all" role="radio" aria-checked="true" tabindex="0">All Verdicts</button>
+        <button type="button" class="filter-pill pill-native" data-verdict="native-preferred" role="radio" aria-checked="false" tabindex="-1">🟢 Native Preferred ({nativeCount})</button>
+        <button type="button" class="filter-pill pill-hybrid" data-verdict="hybrid-enhancement" role="radio" aria-checked="false" tabindex="-1">🟡 Hybrid ({hybridCount})</button>
+        <button type="button" class="filter-pill pill-aria" data-verdict="aria-required" role="radio" aria-checked="false" tabindex="-1">🟣 ARIA Required ({ariaCount})</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-bar">
+    <div class="results-count" id="results-count" aria-live="polite">
+      Showing <strong id="visible-count">{totalPatterns}</strong> of <strong>{totalPatterns}</strong> patterns
+    </div>
+    <div class="keyboard-hint">
+      <kbd>Ctrl+K</kbd> to focus search • <kbd>Tab</kbd> to explore demos
+    </div>
+  </div>
+</section>
+
+<style>
+  [hidden] {
+    display: none !important;
+  }
+
+  .dashboard-banner {
+    background: linear-gradient(135deg, rgba(20, 19, 22, 0.95), rgba(28, 27, 31, 0.95));
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 40px 24px 32px;
+  }
+  :global(:root[data-theme="light"]) .dashboard-banner {
+    background: linear-gradient(135deg, #f8fafc, #edf2f7);
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .banner-content {
+    max-width: 1360px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .banner-title-group {
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+    gap: 8px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--accent-blue);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+
+  .banner-title-group h1 {
+    font-size: 2.3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .banner-title-group p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 720px;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr));
+    gap: 12px;
+    min-width: 0;
+    width: 100%;
+  }
+  @media (min-width: 900px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+      width: auto;
+    }
+  }
+
+  .stat-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    min-width: 0;
+  }
+
+  .stat-value {
+    font-size: 1.9rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .highlight-native { color: var(--accent-emerald); }
+  .highlight-hybrid { color: var(--accent-amber); }
+  .highlight-aria { color: var(--accent-purple); }
+
+  /* First Rule of ARIA Banner */
+  .first-rule-banner {
+    max-width: 1360px;
+    margin: 28px auto 0;
+    padding: 24px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .first-rule-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .first-rule-content {
+    flex: 1 1 200px;
+    min-width: 0;
+  }
+  .first-rule-content h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+  .first-rule-content blockquote {
+    font-size: 1.02rem;
+    font-style: italic;
+    color: var(--text-primary);
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 14px;
+    margin: 8px 0 16px;
+    line-height: 1.5;
+  }
+  .first-rule-content cite {
+    display: block;
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .rule-verdict-chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .verdict-chip {
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+    min-width: 0;
+  }
+  .verdict-chip strong {
+    display: inline-block;
+    margin-right: 4px;
+  }
+  .chip-native { border-left: 4px solid var(--accent-emerald); }
+  .chip-hybrid { border-left: 4px solid var(--accent-amber); }
+  .chip-aria { border-left: 4px solid var(--accent-purple); }
+
+  /* Controls Section */
+  .controls-section {
+    max-width: 1360px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+
+  .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 0 16px;
+    transition: var(--transition-normal);
+  }
+  .search-box:focus-within {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+  }
+  .search-icon {
+    font-size: 1.1rem;
+    margin-right: 12px;
+    color: var(--text-muted);
+  }
+  .search-box input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    padding: 14px 0;
+    outline: none;
+    font-family: inherit;
+  }
+  .search-box input:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .search-box input::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  .search-clear-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  .search-clear-btn:hover {
+    color: var(--text-primary);
+  }
+
+  /* Filter Toolbar */
+  .filter-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 16px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    align-items: center;
+  }
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .filter-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .filter-pill {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .filter-pill:hover {
+    color: var(--text-primary);
+    border-color: var(--border-default);
+  }
+  .filter-pill:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35);
+  }
+  .filter-pill.active {
+    background: var(--accent-blue);
+    color: var(--on-accent);
+    border-color: var(--accent-blue);
+  }
+  .filter-pill.pill-native.active {
+    background: #047857;
+    border-color: #047857;
+    color: #fff;
+  }
+  .filter-pill.pill-hybrid.active {
+    background: #b45309;
+    border-color: #b45309;
+    color: #fff;
+  }
+  .filter-pill.pill-aria.active {
+    background: #7c3aed;
+    border-color: #7c3aed;
+    color: #fff;
+  }
+
+  .results-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding: 0 4px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .keyboard-hint kbd {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 600px) {
+    .dashboard-banner {
+      padding: 24px 12px 20px;
+    }
+    .banner-title-group h1 {
+      font-size: 1.65rem;
+    }
+    .first-rule-banner {
+      padding: 16px 12px;
+    }
+    .controls-section {
+      padding: 0 8px;
+    }
+    .filter-toolbar {
+      padding: 12px;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .filter-pill {
+      border: 1px solid ButtonText;
+    }
+    .filter-pill.active {
+      background: Highlight;
+      color: HighlightText;
+      border-color: Highlight;
+      forced-color-adjust: none;
+    }
+  }
+</style>

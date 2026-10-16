@@ -1,10 +1,11 @@
 ---
 import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import type { Wcag3RemovalItem, Wcag3RemovalLink } from "@/lib/catalog-types";
 import fs from "fs";
 import path from "path";
 
 const removalsPath = path.join(process.cwd(), "public", "data", "wcag3-removals.json");
-let removalsList: any[] = [];
+let removalsList: Wcag3RemovalItem[] = [];
 if (fs.existsSync(removalsPath)) {
   removalsList = JSON.parse(fs.readFileSync(removalsPath, "utf8"));
 }
@@ -13,7 +14,7 @@ const discussionsPath = path.join(process.cwd(), "public", "data", "wcag3-discus
 let discussionsSummarizedCount = 0;
 if (fs.existsSync(discussionsPath)) {
   const d = JSON.parse(fs.readFileSync(discussionsPath, "utf8"));
-  discussionsSummarizedCount = Object.values(d.provisions || {}).filter((p: any) => p.summary).length;
+  discussionsSummarizedCount = Object.values(d.provisions || {}).filter((p: any) => p?.summary).length;
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -82,7 +83,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
               <div class="debate-links-subgroup">
                 <span class="subgroup-title">💬 GitHub Issues & Working Group Discussion Threads:</span>
                 <ul class="debate-links-list">
-                  {item.debateLinks.map((dLink: any) => (
+                  {item.debateLinks.map((dLink: Wcag3RemovalLink) => (
                     <li>
                       <a href={dLink.url} target="_blank" rel="noopener noreferrer" class="debate-link-item">
                         <span class="d-icon" aria-hidden="true">💬</span>
@@ -118,7 +119,7 @@ const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
             <div class="supporting-links-section">
               <h3>🔗 Supporting W3C Specifications & Documentation</h3>
               <div class="links-list">
-                {item.supportingLinks.map((link: any) => (
+                {item.supportingLinks.map((link: Wcag3RemovalLink) => (
                   <a href={link.url} target="_blank" rel="noopener noreferrer" class="support-link-card">
                     <span class="link-icon" aria-hidden="true">📄</span>
                     <span class="link-title">{link.title}</span>

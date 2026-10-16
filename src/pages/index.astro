@@ -677,12 +677,18 @@ const alsoMoved = recent ? [...recent.closedIssues.map((i: any) => ({ ...i, why:
 
   .hero-search-form input {
     flex: 1;
+    min-width: 0;
     background: transparent;
     border: none;
     outline: none;
     color: var(--text-primary);
     font-size: 1.05rem;
     font-family: var(--font-sans);
+  }
+  .hero-search-form input:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   .hero-search-form input::placeholder {
