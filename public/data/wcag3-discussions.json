@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-10-16T03:49:30.640Z",
+  "generatedAt": "2026-10-22T03:03:44.403Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 500,
-    "issuesWithProvisionLabel": 246,
-    "provisionsWithDiscussion": 158,
-    "generalIssues": 254,
+    "issuesTotal": 511,
+    "issuesWithProvisionLabel": 255,
+    "provisionsWithDiscussion": 164,
+    "generalIssues": 256,
     "summarized": 36,
     "staleSummaries": 5,
-    "awaitingSummary": 122
+    "awaitingSummary": 128
   },
   "provisions": {
     "audio-shifting-adjustable": {
@@ -1095,11 +1095,11 @@
       "guideline": "feedback",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "383@2026-05-02T13:21:51Z",
+      "openCount": 2,
+      "fingerprint": "383@2026-05-02T13:21:51Z,922@2026-10-16T21:26:11Z",
       "threads": [
         {
           "number": 383,
@@ -1111,6 +1111,18 @@
           "comments": 0,
           "labels": [
             "Path: Errors⹁ task completion and help"
+          ]
+        },
+        {
+          "number": 922,
+          "title": "“Feedback mechanism available” needs to be expanded",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/922",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 0,
+          "labels": [
+            "coga"
           ]
         }
       ]
@@ -1136,12 +1148,25 @@
       "guideline": "help-available",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "919@2026-10-16T21:29:23Z",
+      "threads": [
+        {
+          "number": 919,
+          "title": "“Contextual help available” needs to factor in close proximity",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/919",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "conversational-support-available": {
       "slug": "conversational-support-available",
@@ -1202,11 +1227,11 @@
       "guideline": "help-available",
       "status": "exploratory",
       "type": null,
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "434@2026-03-29T22:50:00Z",
+      "openCount": 2,
+      "fingerprint": "434@2026-03-29T22:50:00Z,920@2026-10-16T21:27:07Z",
       "threads": [
         {
           "number": 434,
@@ -1218,6 +1243,18 @@
           "comments": 0,
           "labels": [
             "Path: Errors⹁ task completion and help"
+          ]
+        },
+        {
+          "number": 920,
+          "title": "More info needed on the “Data visualizations” provision related to cognitive disabilities",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/920",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 0,
+          "labels": [
+            "coga"
           ]
         }
       ]
@@ -1426,12 +1463,25 @@
       "guideline": "help-available",
       "status": "exploratory",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "921@2026-10-16T21:22:11Z",
+      "threads": [
+        {
+          "number": 921,
+          "title": "The “Support available” provision is critical and the definition of “support” needs to factor in cognitive disabilities",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/921",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "supported-decision-making-review": {
       "slug": "supported-decision-making-review",
@@ -1665,12 +1715,23 @@
       "guideline": "audio-descriptions",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "925@2026-10-19T14:45:32Z",
+      "threads": [
+        {
+          "number": 925,
+          "title": "\"Media alternatives controllable\" is redundant",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/925",
+          "created": "2026-10-19",
+          "updated": "2026-10-19",
+          "comments": 0,
+          "labels": []
+        }
+      ]
     },
     "audio-descriptions-equivalent-prerecorded": {
       "slug": "audio-descriptions-equivalent-prerecorded",
@@ -2372,11 +2433,11 @@
       "guideline": "captions",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 3,
+      "threadCount": 4,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 3,
-      "fingerprint": "233@2026-05-01T23:54:23Z,234@2026-05-01T23:55:58Z,298@2026-05-02T13:14:19Z",
+      "openCount": 4,
+      "fingerprint": "233@2026-05-01T23:54:23Z,234@2026-05-01T23:55:58Z,298@2026-05-02T13:14:19Z,925@2026-10-19T14:45:32Z",
       "threads": [
         {
           "number": 233,
@@ -2413,6 +2474,16 @@
           "labels": [
             "Path: Image and media alternatives"
           ]
+        },
+        {
+          "number": 925,
+          "title": "\"Media alternatives controllable\" is redundant",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/925",
+          "created": "2026-10-19",
+          "updated": "2026-10-19",
+          "comments": 0,
+          "labels": []
         }
       ]
     },
@@ -4136,9 +4207,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 2,
+      "commentCount": 3,
       "openCount": 1,
-      "fingerprint": "572@2026-09-29T19:19:11Z",
+      "fingerprint": "572@2026-10-21T17:43:19Z",
       "threads": [
         {
           "number": 572,
@@ -4146,8 +4217,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/572",
           "created": "2026-02-16",
-          "updated": "2026-09-29",
-          "comments": 2,
+          "updated": "2026-10-21",
+          "comments": 3,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4163,9 +4234,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 2,
+      "commentCount": 3,
       "openCount": 1,
-      "fingerprint": "572@2026-09-29T19:19:11Z",
+      "fingerprint": "572@2026-10-21T17:43:19Z",
       "threads": [
         {
           "number": 572,
@@ -4173,8 +4244,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/572",
           "created": "2026-02-16",
-          "updated": "2026-09-29",
-          "comments": 2,
+          "updated": "2026-10-21",
+          "comments": 3,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4190,9 +4261,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 2,
+      "commentCount": 3,
       "openCount": 1,
-      "fingerprint": "572@2026-09-29T19:19:11Z",
+      "fingerprint": "572@2026-10-21T17:43:19Z",
       "threads": [
         {
           "number": 572,
@@ -4200,8 +4271,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/572",
           "created": "2026-02-16",
-          "updated": "2026-09-29",
-          "comments": 2,
+          "updated": "2026-10-21",
+          "comments": 3,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4309,9 +4380,9 @@
       "type": "supplemental",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 4,
       "openCount": 2,
-      "fingerprint": "76@2026-04-16T03:04:01Z,820@2026-08-21T13:30:18Z",
+      "fingerprint": "76@2026-10-18T19:39:39Z,820@2026-10-21T17:58:58Z",
       "threads": [
         {
           "number": 76,
@@ -4319,8 +4390,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/76",
           "created": "2024-05-17",
-          "updated": "2026-04-16",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 2,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4331,8 +4402,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/820",
           "created": "2026-08-21",
-          "updated": "2026-08-21",
-          "comments": 0,
+          "updated": "2026-10-21",
+          "comments": 2,
           "labels": [
             "Path: Input and focus⹁ interactive components",
             "Other: Definitions & Terminology"
@@ -4377,9 +4448,9 @@
       "type": "foundational",
       "threadCount": 3,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 14,
       "openCount": 2,
-      "fingerprint": "267@2026-07-06T12:14:11Z,505@2026-05-08T19:09:58Z,539@2026-03-27T22:56:37Z",
+      "fingerprint": "267@2026-07-06T12:14:11Z,505@2026-10-18T23:51:31Z,539@2026-10-18T23:50:57Z",
       "threads": [
         {
           "number": 267,
@@ -4400,8 +4471,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/505",
           "created": "2026-01-13",
-          "updated": "2026-05-08",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 13,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4412,8 +4483,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/539",
           "created": "2026-01-15",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 1,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4470,9 +4541,9 @@
       "type": "supplemental",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "616@2026-03-27T18:48:30Z",
+      "fingerprint": "616@2026-10-18T19:52:18Z",
       "threads": [
         {
           "number": 616,
@@ -4480,8 +4551,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/616",
           "created": "2026-03-13",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 2,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4525,9 +4596,9 @@
       "type": "foundational",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 12,
       "openCount": 1,
-      "fingerprint": "186@2026-09-13T19:57:51Z,267@2026-07-06T12:14:11Z",
+      "fingerprint": "186@2026-10-18T19:58:53Z,267@2026-07-06T12:14:11Z",
       "threads": [
         {
           "number": 186,
@@ -4535,8 +4606,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/186",
           "created": "2019-09-01",
-          "updated": "2026-09-13",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 12,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4579,9 +4650,9 @@
       "type": "foundational",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "157@2026-04-02T23:33:37Z,267@2026-07-06T12:14:11Z",
+      "fingerprint": "157@2026-10-18T19:35:16Z,267@2026-07-06T12:14:11Z",
       "threads": [
         {
           "number": 157,
@@ -4589,8 +4660,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/157",
           "created": "2024-11-11",
-          "updated": "2026-04-02",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 2,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4759,9 +4830,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 3,
       "openCount": 1,
-      "fingerprint": "540@2026-03-27T22:55:26Z",
+      "fingerprint": "540@2026-10-18T23:48:18Z",
       "threads": [
         {
           "number": 540,
@@ -4769,8 +4840,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/540",
           "created": "2026-01-15",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 3,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -5194,12 +5265,37 @@
       "guideline": "expected-behavior",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 2,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 2,
+      "fingerprint": "916@2026-10-16T21:33:45Z,918@2026-10-16T21:29:59Z",
+      "threads": [
+        {
+          "number": 916,
+          "title": "Why aren’t there any core requirements in “Expected Behavior”?",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/916",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        },
+        {
+          "number": 918,
+          "title": "Three concerns about “Consistent control location”",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/918",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "consistent-interactions": {
       "slug": "consistent-interactions",
@@ -5208,11 +5304,11 @@
       "guideline": "expected-behavior",
       "status": "developing",
       "type": "assertion",
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "188@2026-05-29T10:16:28Z",
+      "openCount": 1,
+      "fingerprint": "188@2026-05-29T10:16:28Z,916@2026-10-16T21:33:45Z",
       "threads": [
         {
           "number": 188,
@@ -5225,6 +5321,18 @@
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
+        },
+        {
+          "number": 916,
+          "title": "Why aren’t there any core requirements in “Expected Behavior”?",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/916",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
         }
       ]
     },
@@ -5235,12 +5343,25 @@
       "guideline": "expected-behavior",
       "status": "developing",
       "type": "assertion",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "916@2026-10-16T21:33:45Z",
+      "threads": [
+        {
+          "number": 916,
+          "title": "Why aren’t there any core requirements in “Expected Behavior”?",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/916",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "default-focus-indicator-used": {
       "slug": "default-focus-indicator-used",
@@ -5416,9 +5537,9 @@
       "type": "foundational",
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 15,
       "openCount": 1,
-      "fingerprint": "172@2026-05-02T12:59:47Z",
+      "fingerprint": "172@2026-10-18T19:50:54Z",
       "threads": [
         {
           "number": 172,
@@ -5426,8 +5547,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/172",
           "created": "2021-05-05",
-          "updated": "2026-05-02",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 15,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -5443,9 +5564,9 @@
       "type": "foundational",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 1,
       "openCount": 2,
-      "fingerprint": "92@2026-04-16T02:13:17Z,622@2026-03-27T18:42:39Z",
+      "fingerprint": "92@2026-04-16T02:13:17Z,622@2026-10-18T19:50:10Z",
       "threads": [
         {
           "number": 92,
@@ -5465,8 +5586,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/622",
           "created": "2026-03-23",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 1,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -5480,11 +5601,11 @@
       "guideline": "navigating-content",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "616@2026-03-27T18:48:30Z",
+      "commentCount": 3,
+      "openCount": 2,
+      "fingerprint": "616@2026-10-18T19:52:18Z,915@2026-10-16T21:34:45Z",
       "threads": [
         {
           "number": 616,
@@ -5492,10 +5613,22 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/616",
           "created": "2026-03-13",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 2,
           "labels": [
             "Path: Input and focus⹁ interactive components"
+          ]
+        },
+        {
+          "number": 915,
+          "title": "“Focus retained” needs to cover more than just keyboard tabbing",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/915",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 1,
+          "labels": [
+            "coga"
           ]
         }
       ]
@@ -5613,11 +5746,11 @@
       "guideline": "pointer-focus-appearance",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "185@2026-05-02T15:09:13Z",
+      "commentCount": 7,
+      "openCount": 2,
+      "fingerprint": "185@2026-10-18T19:58:22Z,917@2026-10-16T21:31:52Z",
       "threads": [
         {
           "number": 185,
@@ -5625,10 +5758,22 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/185",
           "created": "2019-09-12",
-          "updated": "2026-05-02",
-          "comments": 0,
+          "updated": "2026-10-18",
+          "comments": 6,
           "labels": [
             "Path: Input and focus⹁ interactive components"
+          ]
+        },
+        {
+          "number": 917,
+          "title": "Concerns about the exceptions in “Pointer focus indicated”",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/917",
+          "created": "2026-10-16",
+          "updated": "2026-10-16",
+          "comments": 1,
+          "labels": [
+            "coga"
           ]
         }
       ]
@@ -7173,9 +7318,9 @@
       "type": "supplemental",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 9,
       "openCount": 2,
-      "fingerprint": "425@2026-03-29T23:07:50Z,533@2026-03-27T23:04:06Z",
+      "fingerprint": "425@2026-03-29T23:07:50Z,533@2026-10-21T13:18:34Z",
       "threads": [
         {
           "number": 425,
@@ -7195,9 +7340,10 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/533",
           "created": "2026-01-15",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-21",
+          "comments": 9,
           "labels": [
+            "i18n",
             "Path: Text and wording",
             "Other: Definitions & Terminology"
           ]
@@ -7213,9 +7359,9 @@
       "type": "foundational",
       "threadCount": 3,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
-      "openCount": 3,
-      "fingerprint": "151@2026-04-02T23:29:55Z,490@2026-03-29T22:31:01Z,533@2026-03-27T23:04:06Z",
+      "commentCount": 10,
+      "openCount": 2,
+      "fingerprint": "151@2026-04-02T23:29:55Z,490@2026-10-16T15:17:55Z,533@2026-10-21T13:18:34Z",
       "threads": [
         {
           "number": 151,
@@ -7232,11 +7378,11 @@
         {
           "number": 490,
           "title": "Clarify if the diacritics requirement only applies to Hebrew and Arabic",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/490",
           "created": "2026-01-05",
-          "updated": "2026-03-29",
-          "comments": 0,
+          "updated": "2026-10-16",
+          "comments": 1,
           "labels": [
             "Path: Text and wording",
             "Other: Internationalization"
@@ -7248,9 +7394,10 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/533",
           "created": "2026-01-15",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-21",
+          "comments": 9,
           "labels": [
+            "i18n",
             "Path: Text and wording",
             "Other: Definitions & Terminology"
           ]
@@ -8456,9 +8603,9 @@
       "type": "foundational",
       "threadCount": 3,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 9,
       "openCount": 3,
-      "fingerprint": "486@2026-04-01T07:58:32Z,533@2026-03-27T23:04:06Z,658@2026-07-06T12:22:24Z",
+      "fingerprint": "486@2026-04-01T07:58:32Z,533@2026-10-21T13:18:34Z,658@2026-07-06T12:22:24Z",
       "threads": [
         {
           "number": 486,
@@ -8478,9 +8625,10 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/533",
           "created": "2026-01-15",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-10-21",
+          "comments": 9,
           "labels": [
+            "i18n",
             "Path: Text and wording",
             "Other: Definitions & Terminology"
           ]
@@ -9143,12 +9291,23 @@
       "guideline": "media-control",
       "status": "developing",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "925@2026-10-19T14:45:32Z",
+      "threads": [
+        {
+          "number": 925,
+          "title": "\"Media alternatives controllable\" is redundant",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/925",
+          "created": "2026-10-19",
+          "updated": "2026-10-19",
+          "comments": 0,
+          "labels": []
+        }
+      ]
     },
     "media-alternatives-searchable": {
       "slug": "media-alternatives-searchable",

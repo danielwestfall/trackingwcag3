@@ -611,12 +611,23 @@
       ],
       "user": "KevinP-NZ",
       "created": "2024-05-17T00:17:09Z",
-      "updated": "2026-04-16T03:04:01Z",
+      "updated": "2026-10-18T19:39:39Z",
       "closed": null,
       "commentCount": 2,
       "body": "Input controlEXPLORATORY\r\nInteractive components are available to all navigation and input methods.\r\n\r\nSuggest \r\n\r\nInput controlEXPLORATORY\r\nThe underlying function of interactive components are available to all navigation and input methods. e.g. If the control itself is not accessible it is a clearly labelled alternative for a control that is.",
       "url": "https://github.com/w3c/wcag3/issues/76",
-      "comments": []
+      "comments": [
+        {
+          "user": "medeaoblongata",
+          "created": "2024-08-28T12:00:01Z",
+          "body": "I fully expect that voice interfaces (for general users) will be more common in future, possibly replacing touch screens, keyboards and pointing devices entirely, and I wonder what kinds of accessible alternatives might come into play in such cases. WCAG 3 must certainly cover this."
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2024-08-28T14:16:37Z",
+          "body": "multimodal access / alternatives will need to be available for services/products/sites that rely (primarily) on voice interactions..."
+        }
+      ]
     },
     "78": {
       "number": 78,
@@ -1304,12 +1315,23 @@
       ],
       "user": "njeleniauskas",
       "created": "2024-11-11T15:41:05Z",
-      "updated": "2026-04-02T23:33:37Z",
+      "updated": "2026-10-18T19:35:16Z",
       "closed": null,
       "commentCount": 2,
       "body": "I was recently reviewing text formatting experiences from a keyboard user's perspective, and how they might get trapped when indentation is enabled — for example what users can experience in Google Docs or code editors. And this exploration sparked some questions about the language found in [Success Criterion 2.1.2 No Keyboard Trap](https://www.w3.org/TR/WCAG22/#no-keyboard-trap) that I hoped to get some clarification on.\r\n\r\nSpecifically, I realized that SC 2.1.2 lacks a testable definition for what a \"**standard exit method**\" is. And this also affects our understanding of what situations require \"**advising the user**\", and even, what techniques constitute \"advising.\"\r\n\r\nMy assumption is that a **standard exit method** is a key that has a consistent function (cross app/OSes), and thus would include `Tab`, arrow keys, and `Escape`? But would this also include OS keys as well (Win/Cmd/Super)? At present, its not clear what keys are considered \"standard\" and whether standard is intended to be locally or globally scoped (would OS keys or `F6` apply (if `F6` was consistent of course), or even screen reader navigational keys for those situations?).\r\n\r\nRelated to this is understanding what constitutes \"**advising the user**.\" My guess is that intent here is the following: if a non-standard method is used that the user is **immediately** and **directly** informed of the exit method at least once within their entire experience. But again, this both depends on what a non-standard method is, and what is considered an acceptable advising technique. The guideline and supplementary docs are a little opaque about this.\r\n\r\nAs an example, are indirect advising methods considered acceptable? As in, the way keyboard shortcuts are communicated to users in Google Docs? Or is the word advising supposed to also mean \"directly?\"\r\n\r\nThanks for clarifying these questions and the intent of the guideline.",
       "url": "https://github.com/w3c/wcag3/issues/157",
-      "comments": []
+      "comments": [
+        {
+          "user": "philljenkins",
+          "created": "2025-08-27T20:27:06Z",
+          "body": "Shouldn't this issue be opened against the [Understanding 2.1.2  document](https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html#:~:text=Success%20Criterion%20(SC),method%20for%20moving%20focus%20away.), not wcag3?\nor in this repo: https://github.com/w3c/wcag/issues"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2025-08-27T21:16:16Z",
+          "body": "Good to put in WCAG2 understanding  - but we can't add details that were not in place when SC was formalized. \n\nbut we CERTAINLY need to address this in WCAG3.   Which we are doing by defining what standard keyboard navigation methods are.       and the WCAG3 language also states where/when the user needs to be informed of non-standard methods."
+        }
+      ]
     },
     "158": {
       "number": 158,
@@ -1700,12 +1722,88 @@
       ],
       "user": "erikkroes",
       "created": "2021-05-05T10:22:24Z",
-      "updated": "2026-05-02T12:59:47Z",
+      "updated": "2026-10-18T19:50:54Z",
       "closed": null,
       "commentCount": 15,
       "body": "A user tries to buy a subscription that has 3 levels of features and accordingly, price. The different subscriptions can be selected through a radiogroup. The user navigates the page using the tab-key and tabs to te radiogroup\r\nIf the user focusses the radiogroup and a new window opens to advertise the subscriptions, that's a failure of 3.2.1. No level A for you!\r\nhttps://www.w3.org/WAI/WCAG21/Understanding/on-focus.html\r\n\r\nThe webpage has an extraordinary developer working. They've read WCAG. Instead of showing the window on receiving focus, they change the code slightly so the window shows when the user tabs away from the radiogroup. Not \"onFocus\" but \"onBlur\". That's also a failure, but not for 3.2.1. It's a failure for 3.2.5. Suddenly you can get AA where you couldn't even hit A before.\r\nhttps://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/F9\r\n\r\nIs this intentional? Is there such a big difference between \"onBlur\" and \"onFocus\"?\r\n\r\nMy suggestion would be to **change 3.2.1 to cover all changes in focus**.\r\n",
       "url": "https://github.com/w3c/wcag3/issues/172",
-      "comments": []
+      "comments": [
+        {
+          "user": "patrickhlauke",
+          "created": "2021-05-05T10:31:37Z",
+          "body": "Arguably already a more general failure of 2.4.3 Focus Order https://www.w3.org/TR/WCAG/#focus-order"
+        },
+        {
+          "user": "alastc",
+          "created": "2021-05-05T10:34:34Z",
+          "body": "It's from before my time, but I suspect that either:\r\n- There are some valid use-cases for changing context onBlur, and/or\r\n- onBlur wasn't seen as a common issue, and/or\r\n- It could be covered by focus-order, as it is not following the order of the page.\r\n\r\nIf there were a good argument to cover onblur (i.e. it happens in the wild and doesn't have valid use-cases) we'd need to add a new SC to cover that in a post WCAG 2.2 version."
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2021-05-05T10:41:06Z",
+          "body": "Casting my mind back, I believe the reason for the SC covering the `onfocus` type scenario specifically was an abundance of \"solutions\" around at the time to prevent unsightly focus outlines on things by immediately blurring them. See for instance https://www.w3.org/WAI/WCAG21/Techniques/failures/F55"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2021-05-05T10:43:02Z",
+          "body": "And yes, arguably again (with my take on 2.4.3) failures of 3.2.1 could also be seen as special cases of 2.4.3, so there's definitely some overlap. Maybe post 2.2 this overlap could be resolved by deprecating 3.2.1 and expanding the understanding/purpose of 2.4.3 ..."
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2021-05-05T11:48:39Z",
+          "body": ">  3.2.1 could also be seen as special cases of 2.4.3,\r\n\r\nI think that would not be correct, because 2.4.3 is only about focus order, but 3.2.1 is about context changes. Context changes, by their [definition](https://www.w3.org/TR/WCAG21/#dfn-change-of-context), do not have to be focus changes. If we remove 3.2.1 (and 3.2.2 right along with it?), then all context changes are allowed that do not affect focus order\r\n\r\n> Changes in context include changes of:\r\n> 1.    user agent;\r\n>  2. viewport;\r\n>  3. focus;\r\n>  4. content that changes the meaning of the Web page\r\n"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2021-05-05T15:46:41Z",
+          "body": "fair enough (though out of those 4 listed, only the last one isn't a change of focus per, as changing user agent and viewport also result in moving focus - to the new user agent or viewport)"
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2021-05-06T03:11:31Z",
+          "body": "> as changing user agent and viewport also result in moving focus - to the new user agent or viewport\r\n\r\n@patrickhlauke In my opinion, viewport means the visible page area. This can change without changing the focus. So the page can be scrolled, but the focus remains. This would be a violation of 3.2.1, but not a violation of 2.4.3."
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2021-05-06T03:18:28Z",
+          "body": "@erikkroes In my opinion, onBlur is also covered by 3.2.1. Because the SC says nothing about the technical implementation, but only about the fact that something happens at focus. An onBlur means nothing else than that an element loses the focus because a new one gets the focus. Thus, an onBlur is identical to the onFocus of another element. 3.2.1 can also be violated without onBlur and onFocus, e.g. with an onKeyup event. This is triggered as soon as the tab key is released, with which the element receives the focus."
+        },
+        {
+          "user": "mraccess77",
+          "created": "2021-05-06T13:16:29Z",
+          "body": "Changing context onblur has been seen as acceptable by many.  For example, say you make a choice with radio buttons using the arrows and then tab away from the group.   Based on your select onblur could be used to change the contents of the page below the radio button group.  This is historically been seen as ok by many as long as the content change comes after in the focus order.  When a control issues onblur it doesn't mean anything is automatically focused although maybe the document itself."
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2021-05-06T16:01:00Z",
+          "body": ">  Based on your select onblur could be used to change the contents of the page below the radio button group. \r\n\r\nI think that is also allowed with onfocus and oninput (3.2.2) because it is not a context change by the definition. "
+        },
+        {
+          "user": "erikkroes",
+          "created": "2021-05-06T20:11:41Z",
+          "body": "@JAWS-test How do you reason that 3.2.1 covers onBlur? It very explicitly states \"receives focus\"\r\n\r\n@mraccess77 Your story feels like an exception on an exception (radio group and a change further in the DOM) and quite anecdotal. I'm not sure how it helps clarify the difference."
+        },
+        {
+          "user": "mraccess77",
+          "created": "2021-05-06T20:41:42Z",
+          "body": "My point was that a change on focus is very different than most changes on blur.  Changes onFocus are more likely to be problematic and prevent access than use of  onBlur.  OnBlur could be used to break something but it would likely also fail another criteria as well such as focus order."
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2021-05-07T01:52:10Z",
+          "body": "@erikkroes \r\n\r\nWCAG is technology neutral. As I wrote earlier, it doesn't matter what technology is used to create an onfocus event. With JavaScript there are the following possibilities:\r\n\r\n```\r\n<input aria-label=1>\r\n<input aria-label=2 onfocus>\r\n\r\n\r\n<input aria-label=1 onblur>\r\n<input aria-label=2>\r\n\r\n\r\n<input aria-label=1 onkeydown>\r\n<input aria-label=2>\r\n\r\n\r\n<input aria-label=1>\r\n<input aria-label=2 onkeyup>\r\n\r\n\r\n<input aria-label=1>\r\n<input aria-label=2 onmousedown>\r\n\r\n\r\n<input aria-label=1>\r\n<input aria-label=2 onmouseup>\r\n\r\n\r\n<input aria-label=1>\r\n<input aria-label=2 onclick>\r\n```\r\n\r\nAll these examples cause an onfocus violation against SC 3.2.1 to occur at the second field when navigating from the first to the second input field. "
+        },
+        {
+          "user": "alastc",
+          "created": "2021-05-11T23:11:35Z",
+          "body": "> My point was that a change on focus is very different than most changes on blur.\r\n\r\nI think this is key. To progress, someone would need to do some due-diligence and gather examples of where onblur is used negatively, and non-negatively.\r\n\r\nIf there are positive uses-cases for changing things onblur, or even just neutral ones, it wouldn't be suitable to include as a guideline."
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2021-05-12T00:10:38Z",
+          "body": "off the top of my head, purely for a negative example: a form control that, when blurred, is checked for validity, and if found invalid focus is forcibly placed back on the control (creating a temporary focus trap, in essence, until the control is valid). not super common, but i do recall stumbling across these sorts of things on rare occasions."
+        }
+      ]
     },
     "173": {
       "number": 173,
@@ -2082,12 +2180,43 @@
       ],
       "user": "JAWS-test",
       "created": "2019-09-12T20:39:54Z",
-      "updated": "2026-05-02T15:09:13Z",
+      "updated": "2026-10-18T19:58:22Z",
       "closed": null,
       "commentCount": 6,
       "body": "### SC\r\nWhen operating with a pointing device, a hover effect should be displayed on interactive elements that meets the following conditions:\r\n* the click area of the interactive element should be visible,\r\n* the cursor should be adequate and\r\n* the contrast of the hover effect should be sufficient - either to the background or to the state without hover (at least 3:1).\r\n\r\n### Purpose of hover visibility\r\n\r\n* where the mouse cursor is located (hover effect is better visible than mouse cursor)\r\n* interactive elements are recognizable as interactive\r\n* type and operating options of the interactive elements are recognizable (via CSS styles for cursors: https://developer.mozilla.org/en-US/docs/Web/CSS/cursor)\r\n* status of interactive elements is recognizable (e.g. <code>cursor:not-allowed</code> for deactivated and read-only form fields)\r\n* click area of the interactive elements is recognizable\r\n* distinction between interactive elements is recognizable (e.g. in a tree: elements close to each other for fading in and out and for selecting treeitems)\r\n\r\n### Benefits\r\n* primarily cognitively impaired users\r\n* visually impaired users (because the hover effect could be badly visible or interactive elements are badly recognizable as such, e.g. buttons have border with too little contrast, which is not a violation of 1.4.11, because buttons do not need a border)\r\n* motorically impaired users using assistive technology that simulates pointer devices\r\n* users who adjust the colors (High Contrast Mode, User Styles, color adjustment in the browser, etc.) because for them the interactive elements, their click area and their status are often difficult or impossible to recognize\r\n\r\n### Level\r\nAA or AAA\r\n\r\n### Reason\r\nThe visibility of the hover is currently only partially covered by 1.4.11 (see https://github.com/w3c/wcag/issues/896). At 1.4.1 hover is only mentioned at https://www.w3.org/WAI/WCAG21/Techniques/general/G183. However, there is no criterion which requires a hover effect. ",
       "url": "https://github.com/w3c/wcag3/issues/185",
-      "comments": []
+      "comments": [
+        {
+          "user": "jhausler1266",
+          "created": "2019-09-13T18:18:22Z",
+          "body": "Is this referring to hover panels themselves, or hovering with a mouse to reveal buttons and other stuff? I can't tell.\r\n\r\nI would love to see a SC that bans hiding actionable content under mouse hover states. Example: listview with actions that only show when mouse is hovering over a given row.\r\n\r\nI'd be happy to help on such a SC if that's something the community wants. "
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2019-09-14T03:10:25Z",
+          "body": "I'm interested in a criterion that ensures that the cursor and the visual presentation of the element change when the mouse is over it. And that already implemented hover states are clearly visible for all, e.g. have sufficient contrasts.\r\n\r\nShowing interactive elements only with mouseover - I'm not sure if it's an accessibility problem as long as it works when using the keyboard. It is in any case a bad usability for all users and certainly difficult to use on mobile devices."
+        },
+        {
+          "user": "jhausler1266",
+          "created": "2019-09-17T19:52:22Z",
+          "body": "Showing interactive elements only with mouseover can be a COGA based issue or a mobility one, if folks are relying on speech input. You'd have to know what to click on without seeing your options. "
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2019-09-17T20:32:47Z",
+          "body": "I agree. But this is a different issue from the SC I have proposed. That's why you should propose a new SC on the subject."
+        },
+        {
+          "user": "alastc",
+          "created": "2019-09-30T10:10:55Z",
+          "body": "So taking a random link in this page, e.g. [example.com](http://example.com), what would it need to do to pass?\r\n\r\n- Does it require a border or background to show the click area?\r\n- Does the default browser cursor pass?\r\n- If it has a background color by default, with contrasting text (at 4.5:1), what are the options for the hover effect?"
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2019-10-01T02:01:09Z",
+          "body": ">   Does it require a border or background to show the click area?\r\n\r\nYes, to show the click area\r\n\r\n>    Does the default browser cursor pass?\r\n\r\nWith links in all cases, because with these the default cursor changes. However, it would be recommended to adjust the default cursor if this describes the function better.\r\n\r\n>    If it has a background color by default, with contrasting text (at 4.5:1), what are the options for the hover effect?\r\n\r\n* Change colors so that text to background continues to contrast 4.5:1 and hover color to non-hover color with contrast 3:1 (e.g. invert foreground and background color)\r\n* other visual means (add a border or change border-width, border-style, font-style, add a icon etc.)\r\n* Remove background color, because click area was already clearly visible in non hover state (only applicable if there is a minimum contrast of 3:1 between original background color and the new background color after removing the background)\r\n\r\nThe requirements would be the same as for keyboard focus visibility with the following differences:\r\n* The click area should be visible in hover or non-hover state (and best in both).\r\n* The cursor should not transmit incorrect information (if adapted by the author).\r\n* Recommendation would be to always check whether a custom cursor describes the function better."
+        }
+      ]
     },
     "186": {
       "number": 186,
@@ -2099,12 +2228,73 @@
       ],
       "user": "JAWS-test",
       "created": "2019-09-01T03:59:59Z",
-      "updated": "2026-09-13T19:57:51Z",
+      "updated": "2026-10-18T19:58:53Z",
       "closed": null,
       "commentCount": 12,
       "body": "If the keyboard operation is possible with a keyboard interface and without further assistive technology, but not with the keyboard and with assistive technology: Is this a violation of SC 2.1.1 or 4.1.2 (\"states, properties, and values that can be set by the user can be programmatically set\" - but the activation of a link is not the setting of a status, value or property ...)?  \r\n\r\nAn example: Key event handlers are converted from assistive technology to click event handlers. If a page implements only the key event handler, the page is operable with the keyboard, but not if a screen reader is used additionally. \r\n\r\nIf other people think that this question is not sufficiently explained in the Understanding documents, the answer to this question should possibly be added to 2.1.1 and 4.1.2.\r\n\r\nSee: https://github.com/w3c/aria-practices/issues/1159",
       "url": "https://github.com/w3c/wcag3/issues/186",
-      "comments": []
+      "comments": [
+        {
+          "user": "mraccess77",
+          "created": "2019-09-01T18:51:07Z",
+          "body": "I would fail under 4.1.2."
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2019-09-01T19:07:44Z",
+          "body": "admittedly though, that's not all that clear from the normative wording of 4.1.2 (the fact that a \"value\" can be \"programmatically set\" is not really a strong indication of \"a button can be activated to trigger some functionality\" or similar). while the understanding doc then mentions \"activate\", it's a bit vague nonetheless...\r\n\r\nadmittedly, i've been known to fail this sort of thing under 2.1.1 in the past. and in certain situations i'd argue there's still a bit of a loophole here in WCAG 2.1 in this respect."
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2019-09-01T20:35:25Z",
+          "body": "Shall we close the loophole? Any ideas?"
+        },
+        {
+          "user": "detlevhfischer",
+          "created": "2019-09-03T09:33:58Z",
+          "body": "We would also tend to fail such behaviour (works with kb, but stops working when Screenreader is turned on) under 2.1.1 although it gets tricky when it works in some UA/AT combos, giving us head-aches. In terms of the principles buckets, it seems more a robustness issue (aka \"implementation not robust enough to work with kb when SR on\"), but it seems somewhat ill-placed under 4.1.2."
+        },
+        {
+          "user": "alastc",
+          "created": "2019-09-30T09:21:02Z",
+          "body": "Are there examples where something is coded to use keyboard events in a way we'd assume is reasonable but then doesn't work with AT? (Apart from touch-screen usage.)\r\n\r\nThe only examples I can think of are using very specific keyboard events that we'd generally fail under on-input, on-focus, and will often fail pointer-gestures or something else.\r\n\r\nIs there a non-theoretical gap?"
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2019-09-30T09:32:16Z",
+          "body": "This is not a theoretical question, but a problem that occurs very frequently in accessibility tests:\r\n\r\n> An example: Key event handlers are converted from assistive technology to click event handlers. If a page implements only the key event handler, the page is operable with the keyboard, but not if a screen reader is used additionally.\r\n\r\nThis concerns e.g. the screenreader JAWS and the activation of pseudo-buttons, links etc.. \r\nThe click event handler for mouse users is sometimes not located at the element which the screen reader user focuses with the tab key and is therefore not triggered. If desired, I can create an example for such behavior at Codepen."
+        },
+        {
+          "user": "alastc",
+          "created": "2019-09-30T09:40:35Z",
+          "body": "> The click event handler for mouse users is sometimes not located at the element which the screen reader user focuses with the tab key\r\n\r\nIn a way that affects people using Jaws but not affecting people using the keyboard without Jaws? If so, please do point to an example please."
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2019-09-30T10:39:25Z",
+          "body": "> In a way that affects people using Jaws but not affecting people using the keyboard without Jaws? \r\n\r\nYes. I will create an example"
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2019-09-30T11:50:03Z",
+          "body": "> If so, please do point to an example please.\r\n\r\nhttps://codepen.io/jaws-test/pen/OJLeJGP\r\n\r\nI would like to emphasize that the behavior shown in the example is not uncommon. \r\n\r\nI tested with JAWS 2019 + IE 11, Chrome and Firefox and with Talkback + Chrome.\r\n\r\nIn JAWS, one can set whether key events should be converted to click events. The default setting is to convert key events to click events.\r\n\r\nWith NVDA I can activate both buttons in this example"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2019-09-30T20:04:45Z",
+          "body": "@alastc \r\n\r\n> Are there examples where something is coded to use keyboard events in a way we'd assume is reasonable but then doesn't work with AT? (Apart from touch-screen usage.)\r\n\r\nthere's no \"reasonableness\" clause anywhere though, so define \"reasonable\"...\r\n\r\na site could do something odd like\r\n\r\n```\r\n<div role=\"button\" tabindex=\"0\" onkeypress=\"if(event.keyCode == 32) { ... }\">button</div>\r\n```\r\n\r\n(say it's a \"keyboard alternative\" to some mouse behavior defined elsewhere). this nominally passes 2.1.1, and i don't see how this could be flagged as failing on-input, on-focus, or pointer gesture...and still, it won't work with AT running as they'll consume the SPACE press.\r\n\r\nthe \"reasonable\" thing feels like the usual \"yeah but devs wouldn't do that, so don't need an SC to cover that\" wiggle.\r\n\r\nsimilarly, the same can happen with things that nominally work for mouse and keyboard, but not with touch+AT - there's no real SC you can file that against as a real failure (we've, in the past, filed those still under 2.1.1 under the rationale that touch+AT is a sort of linear/keyboard-like way of navigating, but that's always been a hack)"
+        },
+        {
+          "user": "adampage",
+          "created": "2026-09-13T16:42:27Z",
+          "body": "In WCAG 3, our [working definition of “_accessibility supported_”](https://www.w3.org/TR/wcag-3.0/#dfn-accessibility-supported) is:\n\n> available and working in the user agents and assistive technology in the [accessibility support set](https://www.w3.org/TR/wcag-3.0/#dfn-accessibility-support-set)\n\nIn the conformance section, we assert:\n\n> The methods you use to satisfy WCAG 3 MUST be [accessibility supported](https://www.w3.org/TR/wcag-3.0/#dfn-accessibility-supported)\n\nDoes that resolve this issue?\n"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-09-13T19:57:51Z",
+          "body": "incidentally, the \"keyboard operation with screen readers\" bit I worked on recently for the 2.1.4 character key shortcuts understanding *may* be of interest here in terms of the differences/unique aspects of what happens with SRs ... which varies depending on platform/specific SR (and obviously there's further browser/SR bugs that may cause problems). https://github.com/w3c/wcag/pull/5336\n\nso just leaning on \"accessibility supported\" may be a bit vague and variable ..."
+        }
+      ]
     },
     "187": {
       "number": 187,
@@ -3090,12 +3280,78 @@
       ],
       "user": "Seirdy",
       "created": "2022-04-22T23:09:19Z",
-      "updated": "2026-05-01T23:45:48Z",
+      "updated": "2026-10-19T14:59:18Z",
       "closed": null,
-      "commentCount": 10,
+      "commentCount": 13,
       "body": "An APCA-based color contrast guideline looks like a great improvement over existing guidelines. However, sufficient contrast alone does not guarantee accessible colors. I worry that the APCA's recommendations for dark themes may incentivize the adoption of palettes with different accessibility issues.\r\n\r\nPure white-on-black palettes can cause halation. Human eyes adjust to average brightness; lightening up the background just a little can provide enough of a \"glow\" to eliminate the halos. Backlash against an earlier version of GitHub's dark theme was due to having a background that was too dark. Themes with extreme contrast should be reserved for a `prefers-contrast: more` media query.\r\n\r\nColors like yellow fare well against dark backgrounds according to the APCA. However, yellow and red are [autism-unfriendly colors](https://www.experia.co.uk/blog/ultimate-guide-to-autism-friendly-colours/) that can [trigger overstimulation](https://www.tpgi.com/beyond-wcag-losing-spoons-online/). The latter link also shows how extreme contrast can overstimulate. I understand that cognitive accessibility is gaining more attention in the WAI, so the cognitive accessibility of color palettes might be a good area of focus.\r\n\r\nThe impacts of yellow and red can be mitigated the same way that people mitigate blue/purple's poor contrast against dark backgrounds: lightening. Pink and very pale yellow are less overstimulating than pure red and yellow.\r\n\r\nRight now, the APCA signals to designers that they need to lighten their blue/purple or switch to yellow/orange, when picking light backgrounds or foregrounds. It does not signal the need to also lighten yellow and orange colors. Furthermore, it doesn't acknowledge the fact that lightening the foreground + darkening the background can be taken too far and trigger halation.\r\n\r\nI see multiple possible solutions that are not mutually exclusive:\r\n\r\n1. Supplement the APCA with guidelines against harsh yellows and reds, except for warnings.\r\n2. Revise the APCA so that it penalizes having \"too much\" contrast\r\n3. Supplement the APCA with guidelines against pure-black backgrounds, encouraging a threshold for \"minimum brightness\"",
       "url": "https://github.com/w3c/wcag3/issues/221",
-      "comments": []
+      "comments": [
+        {
+          "user": "Myndex",
+          "created": "2022-04-24T00:35:41Z",
+          "body": "HI Rohan @Seirdy \r\n\r\nThank you for commenting.\r\n\r\nFirst, let me mention that the latest APCA guidelines have not migrated into WCAG 3 as yet. APCA has its own repo and discussion area, which you are free to post in at https://github.com/Myndex/SAPC-APCA/discussions\r\n\r\nAlso, the most _current_ guidelines are usually listed on the APCA demo tool at https://www.myndex.com/APCA/\r\n\r\nUnder the current APCA guidelines, red against black is essentially prohibited. Also, current APCA _**does**_ have a guideline against too much contrast. And as far as \"pure black backgrounds\" there is more to that issue — halation and glare is caused by excess luminance relative to the eye's adaptation state, inclusive of local, peripheral, and global light/dark adaptation.\r\n\r\nI'm on my way to a meeting right now, but I would like to discuss with you further, either here or in the APCA main repo.\r\n\r\nFirst though, can you tell me which APCA tools and lookup tables you are using or referring to please?\r\n\r\nThank you,\r\n\r\nAndy\r\n"
+        },
+        {
+          "user": "Myndex",
+          "created": "2022-05-15T20:30:53Z",
+          "body": "HI Rohan @Seirdy\r\n\r\nFollowing up, again if I can ask, can you tell me which APCA tools and lookup tables you are using or referring to in the OP please?  Either here, or at the [APCA repo](https://github.com/Myndex/SAPC-APCA/discussions) so it can be tracked?\r\n\r\nThe current _most correct release candidate_ version is posted on the APCA demo tool at [www.myndex.com/APCA/](https://www.myndex.com/APCA/ ) and also in the [` documentation ` folder](https://github.com/Myndex/SAPC-APCA/tree/master/documentation) at the main [APCA repo](https://github.com/Myndex/SAPC-APCA/).\r\n\r\n\r\nThank you!\r\n\r\nAndy\r\n\r\n"
+        },
+        {
+          "user": "Seirdy",
+          "created": "2022-05-16T00:50:28Z",
+          "body": "I was misinformed; I was using the one built into Chromium's DevTools, which\ndoesn't flag excessive contrast. I've since used the online version to much\nbetter results. Great work!\n\nI do think that it's worth remembering that yellow is a \"harsh\" color, and can\ncause overstimulation if it isn't de-saturated. It doesn't help that it's\nassociated with warnings and errors. Blue in dark themes needs to be lightened\nto have enough perceptual contrast; I think yellow should be lightened to\nreduce overstimulation. On light backgrounds, yellow and red can be darkened\nto brown or brick-red.\n\nThese sorts of plain-language instructions--de-saturate vibrant colors to\nimprove contrast and reduce over-stimulation--could pair well with the APCA,\nor the APCA could penalize excessive over-saturation in a way similar to how\nit penalizes excessive contrast. I'm not sure the latter is a good strategy,\nso I'm leaning towards the former now.\n\n-- \nSeirdy\n"
+        },
+        {
+          "user": "Seirdy",
+          "created": "2022-05-16T00:55:16Z",
+          "body": "In a nutshell: I think the APCA does a good job flagging low/high contrast, but in isolation this could incentivise autism-unfriendly over-saturated yellows in dark backgrounds. Companion documentation describing how \"contrast isn't all their is to accessible colors\" or a revision to APCA could work.\n\nI filed the issue here, since I think that explicit guidance on autism- and overstimulation-friendly colors could belong in the WCAG.\n\n-- \nSeirdy\n"
+        },
+        {
+          "user": "Myndex",
+          "created": "2022-05-18T16:45:30Z",
+          "body": "Hi Rohan @Seirdy thank you for the additional information.\r\n\r\n> _I was misinformed; I was using the one built into Chromium's DevTools, which doesn't flag excessive contrast._ \r\n\r\nIndeed, the early beta versions in Chrome and Edge are not at the latest version of APCA. The latest, and canonical version for the W3 licensed version is the npm published package, ` npm i apca-w3 ` \r\n\r\n> _I've since used the online version to much better results. Great work!_\r\n\r\nThank you, and let me mention a few of the other AGWG members involved, Bruce Bailey, Chris Loiselle, Alastair Campbell, Chuck Adams, Cybele Sack, Sam Waller, and the dozens of beta testers and early adopters, all whose contributions helped shape the current APCA guidelines.\r\n\r\n\r\n> _I do think that it's worth remembering that yellow is a \"harsh\" color, and can cause overstimulation if it isn't de-saturated. It doesn't help that it's associated with warnings and errors._\r\n\r\nIn the summer of 2019 Visual Contrast sessions with Cybele & Chuck, we had discussed and developed guidelines targeting overstim, however some of what was done was deleted from the WCAG 3 working drafts and/or didn't make it into the draft. \r\n\r\nAlso, this points to a problem we are working to develop guidance for: what is helpful for one particular group may be harmful for another. Yellows are yellow because they is less, or no, blue. Blue is a problem as it is not particularly useful for readability, and blue can be detrimental in some cases as a major component of glare.\r\n\r\nAll this is demonstrative of the very nuanced and complicated nature of human visual perception, and the very real need for a robust and seamless user personalization paradigm.\r\n\r\n> _Blue in dark themes needs to be lightened to have enough perceptual contrast;_ \r\n\r\nPure blues and pure reds should be the darkest of a color pair. To use a blue or red as the lightest color, substantial green needs to be added. This is because green is the primary majority component of luminance, and ample luminance contrast is what is required for readability.\r\n\r\n**_For readability, achromatic luminance contrast is the best practice._**\r\n\r\n> _I think yellow should be lightened to reduce overstimulation. On light backgrounds, yellow and red can be darkened to brown or brick-red. These sorts of plain-language instructions--de-saturate vibrant colors to improve contrast and reduce over-stimulation--could pair well with the APCA, or the APCA could penalize excessive over-saturation in a way similar to how it penalizes excessive contrast. I'm not sure the latter is a good strategy, so I'm leaning towards the former now._\r\n\r\nThe reality is more complicated than a mere consideration of saturations, and this is an under-researched area, and one under consideration for future research. \r\n\r\n\r\n> _In a nutshell: I think the APCA does a good job flagging low/high contrast, but in isolation this could incentivise autism-unfriendly over-saturated yellows in dark backgrounds. Companion documentation describing how \"contrast isn't all their is to accessible colors\" or a revision to APCA could work._\r\n\r\nThere is more going on over at APCA than I can discuss publicly, but I'll mention that I personally am neurodivergent, in addition to my low vision issues, so these are topics that garner significant priority in my research focus.\r\n\r\nThe first goal however is to cure the serious problems in readability, and readability is a matter of spatial frequency of stimuli driving the need for adequate achromatic luminance contrast. \r\n\r\nI do have some preliminary research demonstrating that high saturations create issues for fluent readability, though the editors of WCAG 3 do not want any of the new research I am creating to be placed into WCAG 3. This is one reason that I suggest that these comments be tracked at the APCA repo. The scope of APCA is larger than WCAG, and the corporate sector research interest is gaining momentum—you can expect to see a lot of exciting work in the coming years emerging from the independent research group. \r\n\r\n> _I filed the issue here, since I think that explicit guidance on autism- and overstimulation-friendly colors could belong in the WCAG._\r\n\r\nYou might also want to be involved with the COGA group's supplementary guidance, they are more focused on the kind of issues you mention, and the supplementary guidance from the subgroups is usually a more appropriate place for exploring some of these nuanced aspects of accessibility.\r\n\r\nThank you again for your comments and feedback."
+        },
+        {
+          "user": "Seirdy",
+          "created": "2022-10-11T08:01:47Z",
+          "body": "I was misinformed; I was using the one built into Chromium's DevTools, \nwhich doesn't flag excessive contrast. I've since used the online \nversion to much better results. Great work!\n\nI do think that it's worth remembering that yellow is a \"harsh\" color, \nand can cause overstimulation if it isn't de-saturated. It doesn't help \nthat it's associated with warnings and errors. Blue in dark themes needs \nto be lightened to have enough perceptual contrast; I think yellow \nshould be lightened to reduce overstimulation. On light backgrounds, \nyellow and red can be darkened to brown or brick-red.\n\nThese sorts of plain-language instructions--de-saturate vibrant colors \nto improve contrast and reduce over-stimulation--could pair well with \nthe APCA, or the APCA could penalize excessive over-saturation in a way \nsimilar to how it penalizes excessive contrast. I'm not sure the latter \nis a good strategy, so I'm leaning towards the former now.\n\n-- \nSeirdy\n"
+        },
+        {
+          "user": "Seirdy",
+          "created": "2022-10-11T08:05:38Z",
+          "body": "In a nutshell: I think the APCA does a good job flagging low/high contrast, but in isolation this could incentivise autism-unfriendly over-saturated yellows in dark backgrounds. Companion documentation describing how \"contrast isn't all their is to accessible colors\" or a revision to APCA could work.\n\nI filed the issue here, since I think that explicit guidance on autism- and overstimulation-friendly colors could belong in the WCAG.\n\n-- \nSeirdy\n"
+        },
+        {
+          "user": "Myndex",
+          "created": "2022-10-11T14:27:51Z",
+          "body": "Hi @Seirdy \r\n\r\nAs you know I do agree with much of this, it was presented in the text the Visual Contrast group developed for WCAG 3, and it _is_ mentioned at least tangentially in the [WCAG3 FPWD](https://www.w3.org/WAI/GL/WCAG3/2021/how-tos/visual-contrast-of-text/#get-started-button) though some of the topic was deleted or reduced by the editors before publication in the interest of brevity.\r\n\r\nNevertheless, as you can see on the SAPC research tool, the use cases and contrast maximums are part of the current active research.\r\n\r\nYellow is tricky, as it is essentially white with the blue removed, and blue is a significant component of disability glare, so for many, removing blue is a good thing.\r\n\r\nNext, we need to clarify if we are talking about the aspects of _highly chromatic_ (high colorfulness) colors resulting in over-stim, vs the component that stems from very high luminances.\r\n\r\nVery often what is perceived as \"too much contrast\" is actually \"too bright of a display\" and this certainly translates to yellow as in ` #ffff00 ` which is really too high in luminance for elements in direct view (i.e. text or a text background).\r\n\r\nAnd this really transits into the significant need for real user personalization, and the technology to support user personalization is quite lacking today.\r\n\r\n"
+        },
+        {
+          "user": "Seirdy",
+          "created": "2022-10-11T20:12:41Z",
+          "body": "Weird, I sent these responses months ago but they only just showed up.\n\nBasically, for dark themes, blue and yellow have very different problems but very similar solutions:\n\nBlue is too dark for dark-theme foregrounds/light-theme backgrounds, hurting perceptual contrast. If you use blue in these situations, you should de-saturate it by increasing the proportion of other channels (red and green) without exceeding your maximum lightness contrast threshold.\n\nYellow is too harsh for dark-theme foregrounds/light-theme backgrounds, triggering overstimulation across a range of neurodivergencies (notable some forms of autism and ADHD). If you use yellow, you should de-saturate it by increasing the proportion of other channels (blue) without exceeding your maximum lightness contrast threshold.\n\nDespite having the opposite challenges, they both need to be \"whitened\". I was just hoping for some sort of non-normative guidelines to push designers in that direction, rather than the status quo of \"make the contrast calculator spit out the right number, and you're done with color accessibility\". That kind of simplistic thinking is what we should try to move away from in WCAG 3, especially given the new focus on COGA, and APCA is just a (truly excellent!) piece of that larger picture.\n\nSo yeah. Feel free to close this issue if it's already been decided.\n\n-- \nSeirdy (https://seirdy.one)\n"
+        },
+        {
+          "user": "Seirdy",
+          "created": "2022-10-11T20:40:33Z",
+          "body": "Also, regarding personalization: although I agree, I also think it's really important to make defaults maximally inclusive. Fingerprinting-averse users, people borrowing another device, and people under overly-strict enterprise policies are unable to fully leverage personalization. Tor Browser users come to mind.\n\nIf you use assistive technologies, you're probably already a bit fingerprintable; small low-entropy hints make all the difference when you've already been determined to be part of a small corpus. Personalization is important and useful; however, in the spirit of progressive enhancement, we should only fully rely on it if we absolutely must.\n\nSlight tangent regarding the Tor Browser:\n\nWhen optimizing for Tor users (e.g. on a hidden service), I'd rather stick to the smallest set of mutually-exclusive personalizations possible and instead support adaptations that can't be fingerprinted without JavaScript. For instance, my default color scheme uses user-agent-supplied default colors; I'm not aware of a way to detect non-default UA colors on the Tor Browser's \"safest\" mode (feel free to correct me; I just asked on the Tor IRC channel).\n\nSorry for veering off topic; I have a negative gut-reaction whenever personalization comes up. I think it's unfair that disabled users who rely on personalization can't be anonymous online due to their disabilities, and the prevalence of fingerprinting libraries that use their disabilities and personalizations as de-anonymization vectors.\n\n-- \nSeirdy (https://seirdy.one)\n"
+        },
+        {
+          "user": "sbustelo",
+          "created": "2026-10-19T04:04:39Z",
+          "body": "I've been working on the \"too much contrast\" problem from the design-tool side, and I have a modest suggestion: a numeric, non-monotonic scoring system, while making sure contrast is not confused with a score.\n\nThe problem, as I see it, is a mismatch between what the guidelines say and what the visible score shows.\n\nWhile APCA includes guidance against excessive contrast, in practice, all the complexity has to be distilled into one indicator a designer can look at and answer a single question: is this optimal or not? \n\nToday, using apcacontrast.com, that indicator is the Lc value. So a designer would see a high Lc and call it a day. If they happen to notice the 'small text only' label, it can be read as a use case, not as a warning. So, already wanting to move forward and with a label that sounds permissive, the designer would conclude the pair is good for small text... not that it is unsuitable for sustained reading.\n\nA non-monotonic score rises to an optimal range and decreases beyond it, so excessive contrast is penalized in the number itself. I developed such a system, IPAX, as a working prototype. The pairs discussed in this thread are reproducible in the public sampler, each with a real reading sample and the WCAG contrast, APCA Lc, and non-monotonic scores side by side:\n\n-   [White on black (halation)](https://ipax.bustelo.com.ar/sandbox.php?m=sample&bg=000000&txt=FFFFFF)\n-   [Yellow on black (overstimulation)](https://ipax.bustelo.com.ar/sandbox.php?m=sample&bg=000000&txt=FFFF00)\n-   [Black on yellow](https://ipax.bustelo.com.ar/sandbox.php?m=sample&bg=FFFF00&txt=000000) — passes WCAG AAA and APCA Gold, yet causes chromatic fatigue over sustained reading\n\nThis kind of scoring model can be adapted for light sensitivity. A gain multiplier of 3x-5x on effective luminance would move the discomfort threshold down. Experimental data would be needed to set the multiplier range, but the model would be ready for it.\n\nI'm not proposing that WCAG 3 adopt a specific algorithm or coefficient set, but that the scoring model be structurally capable of expressing a ceiling, and that context-dependent evaluation (light sensitivity, sustained reading) have a place as a supplemental requirement or assertion. Happy to share the method if it's useful for the working group."
+        },
+        {
+          "user": "charleshalldesign",
+          "created": "2026-10-19T13:30:57Z",
+          "body": "prior to APCA, there has been an abundance of external research that indicates an upper threshold using the original luminance formula.\nthe collective gist across everything i have seen for nearly 20 years is:\n\n- below 3:1 is invisible to many people – especially over 60 years old\n- between 4.5:1 and 7:1 is sufficient for some\n- between 7:1 and 15:1 is ideal for most\n- between 15:1 and 21:1 is too harsh for some – especially in large or in alternating blocks\n\ni don’t have links to research handy to include.\n\n> …in practice, all the complexity has to be distilled into one indicator a designer can look at and answer a single question: is this optimal or not?\n\ni don’t think optimal is the question. i think the question should be “is it harmful?”\n\nuntil we have a screen brightness API coupled with an ambient light API, the web is not ready to author styles based on more than CSS color modules. we cannot know or anticipate the user settings and environment. but we do know that the user should be in control.\n\nregardless of the precise formula and model, we need a threshold for too much contrast coupled with a threshold for the area of that content. and i believe it should be supplemental guidance like “any content with a contrast of {n} or more within a contiguous area of {z} or more must be adjustable.”"
+        },
+        {
+          "user": "mraccess77",
+          "created": "2026-10-19T14:59:17Z",
+          "body": "Alternating blocks of polarity are an issue.  it also seems for me the density of information can also make a big difference as well as the ambient light.  So, there are multiple spatial and environmental factors at play.  However, if we now say the default black text on white webpages fails that will lead to some challenges as well."
+        }
+      ]
     },
     "222": {
       "number": 222,
@@ -6845,7 +7101,7 @@
     "490": {
       "number": 490,
       "title": "Clarify if the diacritics requirement only applies to Hebrew and Arabic",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: Text and wording",
         "P - Diacritics available",
@@ -6853,12 +7109,18 @@
       ],
       "user": "julierawe",
       "created": "2026-01-05T06:48:07Z",
-      "updated": "2026-03-29T22:31:01Z",
-      "closed": null,
-      "commentCount": 0,
+      "updated": "2026-10-16T15:17:55Z",
+      "closed": "2026-10-16T15:17:54Z",
+      "commentCount": 1,
       "body": "We need to explain more clearly where this needs to be done and where it doesn't need to be done.\n- Does this requirement apply only to Hebrew and Arabic? \n- If the requirement isn't calling for all diacritics to be included, how can testers tell which diacritics are needed to determine the correct pronunciation?\n\nWe also need to add a definition of diacritic.",
       "url": "https://github.com/w3c/wcag3/issues/490",
-      "comments": []
+      "comments": [
+        {
+          "user": "lbeaze",
+          "created": "2026-10-16T15:17:54Z",
+          "body": "We have expanded the provision to 'phonetic annotations' to be more inclusive with more languages. In addition to Hebrew and Arabic, this shift will better support Japanese and Devanagari among others. \n\nA definition is in the works in our google docs and could be ready for review in Q4 '26. "
+        }
+      ]
     },
     "491": {
       "number": 491,
@@ -7106,12 +7368,78 @@
       ],
       "user": "fstrr",
       "created": "2026-01-13T21:34:35Z",
-      "updated": "2026-05-08T19:09:58Z",
+      "updated": "2026-10-18T23:51:31Z",
       "closed": null,
       "commentCount": 13,
       "body": "The subgroup is considering making this require that the navigation be symmetrical (i.e., if you navigate forward and then backward you always end up back in the same place). We are interested in comments on this.",
       "url": "https://github.com/w3c/wcag3/issues/505",
-      "comments": []
+      "comments": [
+        {
+          "user": "patrickhlauke",
+          "created": "2026-01-13T22:40:08Z",
+          "body": "are there good examples where this isn't the case, and is proving problematic?\n\nI imagine something like a menu-like panel that opens up visually when a control receives focus, `Tab`bing forward moves through the items in that panel, and on the last item moving forward closes the panel and focus moves to whatever the next focusable element in the underlying page is. then, when `Tab`bing back, the panel doesn't open and focus goes to that last item, but your focus lands back on that one control which then opens the panel. If this is the sort of scenario, I'd add that it will make it inordinately harder to implement it another way (so that the panel somehow \"remembers\" that the user navigated forward out of it, and that they've now come back in reverse and to therefore move focus to the last item."
+        },
+        {
+          "user": "detlevhfischer",
+          "created": "2026-01-14T08:14:43Z",
+          "body": ">  I'd add that it will make it inordinately harder to implement it another way (so that the panel somehow \"remembers\" that the user navigated forward out of it, and that they've now come back in reverse and to therefore move focus to the last item.\n\nI'd add that to reverse-trundle through a submenu would most likely be less useful than just moving back to the previous top-level menu item. Going forward would then immediately re-open the submenu. So IMO this is not a useful (or a too strict) requirement to mandate symmetrical navigation."
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-01-14T08:19:54Z",
+          "body": "unless you start with \"make it symmetrical, EXCEPT when...\" and then start compiling a list of scenarios (like menu/dropdown panels above) where it's better NOT to be strictly symmetrical - and potentially risk missing out a particular scenario, leading to confusion ... or you have to handwave it with \"examples include, but aren't limited to\" and it's back down to author/auditor judgement call"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-01-14T15:23:06Z",
+          "body": "@patrickhlauke  I  think you are misinterpreting symmetrical.   What is intended is that  if you start at A and navigate to B  (but do not activate anything -- you are only navigating)  then you must be able to simply navigate back to A.\n\n- it does not cover symmetry if you activate anything\n- it does not say that whatever you did to move from A to B should be the same action to move from B to A\n\nit simply means that if you move forward - you need to also be able to move backward.\n\nWith that in mind -- can you cite some examples of exceptions you think would need to be made?    \n\n(asking because our group is responsible for this provision and want to know if we are missing something)"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-01-14T16:33:06Z",
+          "body": "in my scenario, the \"activation\" was automatic - once focus lands on A (the dropdown/menu panel trigger), it visually opens it. no explicit activation was made, the user was just `Tab`bing.\n\ni am aware of what the high-level \"if you go forward, you must be able to go back\" ask here is. just pointing out that there will be scenarios where that is an oversimplification that will cause pain once it hits more complex interfaces where things change while navigating."
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-01-14T16:44:57Z",
+          "body": "@patrickhlauke     OK   and you are saying that once they tab to a menu they should not be allowed using any technique to go back to where they were before? \n\nplease give a full description of the exceptions you are talking about -- where when a person moves to an item they should not be allowed to go back?    thanks\n"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-01-14T16:50:24Z",
+          "body": "it's all explained here in detail https://github.com/w3c/wcag3/issues/505#issuecomment-3746889656"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-01-16T06:59:46Z",
+          "body": "That example does not fail the requirement.   It is only necessary that you can back up when you go forward.  The fact that when you fall out of a dropdown and then go back you end up at the top --does not mean that you can't navigate backward.  You can stil back up -- and you can still get back where you were.     We don't say that you need to be able to go back to the exact same spot -- though that would be possible and would be better.      \n\nAlso - We don't say that something is not possible because someone implemented it in a way that doesnt work anyway.   And it is possible to make it go back to that bottom element if desired with scripting  (though it would not be required).     The main purpose of the requirement is to prevent a situation where you cannot go back at all.    \n\nif you think there is better wording or a note to make that clearer-- please post.  always looking for suggestions. "
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-01-16T08:35:19Z",
+          "body": "to start then, \"symmetrical\" does strongly suggest that the order must be *exactly* the same, but in reverse. if there's more leeway here (that it's more generally \"you must be able to also navigate backwards and end up in the same place you were before you navigated forward\"), then suggest a better choice of words"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-01-16T16:06:24Z",
+          "body": "Good point - \n\nWill take this up in INPUTS to see if we can come up with clearer language to express exactly what is required. \n  \n"
+        },
+        {
+          "user": "fstrr",
+          "created": "2026-01-21T21:50:35Z",
+          "body": "The Inputs subgroup added the following to the Bidirectional Navigation requirement ([available at the temporary deploy preview URL](https://deploy-preview-414--wcag3.netlify.app/guidelines/#bidirectional-navigation)). Comments welcome:\n\n> Note:\n> Although keyboard navigation is required to be bidirectional, it is not required that it be symmetrical, even though this is usually best practice.\n\n> Example:\n> Tabbing through menus, hitting space to open a menu, tabbing off the end of the menu lands you on the next menu. A shift+tab may go back to the last item in the previous menu (symmetrical) or to the last menu (not symmetrical but also does not fail this requirement)."
+        },
+        {
+          "user": "JAWS-test",
+          "created": "2026-05-08T06:45:21Z",
+          "body": "What about two-dimensional elements, like grids, where I can navigate using all four arrow keys—up, down, right, and left? In that case, the phrasing “forward to the next” and “back to the previous” doesn't quite work, does it?"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-05-08T19:09:57Z",
+          "body": "I  would think it does.    forward down the page and forward across the page.     in both case they should be reversible.\n\nG"
+        }
+      ]
     },
     "506": {
       "number": 506,
@@ -7616,6 +7944,7 @@
       "title": "why say human languages?",
       "state": "open",
       "labels": [
+        "i18n",
         "Path: Text and wording",
         "Other: Definitions & Terminology",
         "P - Common words used",
@@ -7624,12 +7953,58 @@
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-01-15T21:56:40Z",
-      "updated": "2026-03-27T23:04:06Z",
+      "updated": "2026-10-21T13:18:34Z",
       "closed": null,
-      "commentCount": 8,
+      "commentCount": 9,
       "body": "Do we need the \"human\" here? We just refer to languages elsewhere in the section.\n",
       "url": "https://github.com/w3c/wcag3/issues/533",
-      "comments": []
+      "comments": [
+        {
+          "user": "fstrr",
+          "created": "2026-01-15T22:26:22Z",
+          "body": "Hi! Can you please link to or quote the content you're referring to so we know where \"here\" is? That would be really useful for this and other issues :)\n\nThanks!"
+        },
+        {
+          "user": "sydneycolemanfromgoogle",
+          "created": "2026-01-15T22:31:31Z",
+          "body": "Truly anywhere in WCAG where it says \"human languages\" feels odd. Can we ctrl + f the entirety? thx"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-01-15T22:50:18Z",
+          "body": "there's been a lot of debate (started by internationalisation TF) recently for WCAG 2.x about this. the short version of it is: \"language\" is too broad, as some people may interpret it to also cover things like programming languages/code"
+        },
+        {
+          "user": "mraccess77",
+          "created": "2026-01-16T00:00:57Z",
+          "body": "Saying human language sets it apart from programming languages, animal languages or other forms of communication."
+        },
+        {
+          "user": "hidde",
+          "created": "2026-01-16T12:04:57Z",
+          "body": "We could consider 'natural languages' instead? that's the more common term."
+        },
+        {
+          "user": "LJWatson",
+          "created": "2026-01-16T12:10:47Z",
+          "body": "@hidde, \"natural languages\" is the more established term, but I've never found it very clear. \"Human languages\" as opposed to \"machine languages\" seems like it might be easier to understand?"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-01-16T13:53:17Z",
+          "body": "interestingly, internationalisation are actually considering changing their use of \"natural language\" to \"human language\", FWIW\n\nsee the related/lengthy thread here https://github.com/w3c/wcag/issues/2639 and the PR https://github.com/w3c/wcag/pull/4787"
+        },
+        {
+          "user": "hidde",
+          "created": "2026-01-21T10:45:45Z",
+          "body": "Given the lengthy thread @patrickhlauke linked, and @LJWatson's point about understandablity, I'm convinced human languages (if not natural languages) is the phrase we want to use.\n\nTo go back to @sydneycolemanfromgoogle's original question, “do we need the \"human\" here?” I would say yes, as we want to disambiguate from formal languages."
+        },
+        {
+          "user": "murata2makoto",
+          "created": "2026-10-21T13:16:23Z",
+          "body": "I think we need to clarify the relationship between languages and scripts before settling on terminology.\n\nFor example, accessibility requirements identified for the Devanagari script may not be sufficient for a particular language written in that script, such as Hindi. Conversely, a language may be written in multiple scripts, and its accessibility requirements may differ depending on which script is used.\n\nIn other words, accessibility requirements may depend on the language, the script, or a particular combination of the two.\n\nHow does WCAG 3 intend to distinguish these cases and ensure that none of them is overlooked?"
+        }
+      ]
     },
     "534": {
       "number": 534,
@@ -7759,12 +8134,18 @@
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-01-15T22:37:34Z",
-      "updated": "2026-03-27T22:56:37Z",
+      "updated": "2026-10-18T23:50:57Z",
       "closed": null,
       "commentCount": 1,
       "body": "(This feedback is in response to W3C 's Editor's note: \"We are considering making this require that the navigation be symmetrical (ie., if you navigate forward and then backward you always end up back in the same place) but are interested in comments on this.\") There are enough competing pros and cons here that this likely shouldn't be a requirement unless there is real research to back it up. Consider the case of collapsibles. There are reasons someone who was in a collapsible, then navigated back, then forward again, may want to end up back in the collapsible instead of needing to open it again, for example if they have navigated backwards to refer to a reference but had not been done reading the content in the collapsible. On the other hand, this requirement could make closing the collapsible difficult depending on the implementation. ",
       "url": "https://github.com/w3c/wcag3/issues/539",
-      "comments": []
+      "comments": [
+        {
+          "user": "fstrr",
+          "created": "2026-01-21T21:51:53Z",
+          "body": "The Inputs subgroup has updated the requirement text with a note and an example—[details can be found in a prior issue thread](https://github.com/w3c/wcag3/issues/505#issuecomment-3781324912)."
+        }
+      ]
     },
     "540": {
       "number": 540,
@@ -7776,12 +8157,28 @@
       ],
       "user": "sydneycolemanfromgoogle",
       "created": "2026-01-15T22:38:12Z",
-      "updated": "2026-03-27T22:55:26Z",
+      "updated": "2026-10-18T23:48:18Z",
       "closed": null,
       "commentCount": 3,
       "body": "Is this meant to imply RTT must be available wherever there is real-time bidirectional voice communication? For example, in a video call, the chat feature may be widely preferred so you have the freedom to backspace (ie change your mind about what you want to say) without the characters already being transmitted. A typing indicator alone would solve the issue of all users not knowing someone wanted to contribute via chat. If RTT itself would become required, this would be a heavy lift and the need for RTT over chat should be research based. If this is not meant to imply RTT is required, it should be reworded.",
       "url": "https://github.com/w3c/wcag3/issues/540",
-      "comments": []
+      "comments": [
+        {
+          "user": "mraccess77",
+          "created": "2026-01-16T00:54:16Z",
+          "body": "I believe this is aligned with EN301549\n6.2.1.1 RTT communication\nWhere ICT is in a mode that provides a means for two-way voice communication, the ICT shall provide a means for two-way RTT communication, except where this would require design changes to add input or output hardware to the\nICT.\n\nThe goal isn't to change how chat works - but to allow an equivalent to how voice works."
+        },
+        {
+          "user": "sydneycolemanfromgoogle",
+          "created": "2026-01-21T23:42:19Z",
+          "body": "The EAA has a set scope -- it does not apply to ALL products with two way bidirectional voice communication. WCAG’s scope is much broader, and would require additional products to implement RTT. RTT being an EN 301549 requirement does not mean it fits WCAG. \n\nDoes the W3C intend to add all software-related parts of EN 301549 into WCAG? If so, this must be done in tandem with thoughtfully considering research-backed user needs. \n\nRTT’s intended use case was and is for emergency services. We do not believe there is a strong desire from the d/Deaf community for RTT in, say, video conferencing products where chat is available. If someone wanted to transmit their written characters in real time to other video conference members, they could present a document through which they type. \n\nImplementing RTT is a massive technical lift. Those resources could be better used to advance accessibility in ways users are asking for (fixing existing bugs, etc). \n"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-01-22T01:54:51Z",
+          "body": "RTT's use case is NOT for emergency services.\\\nIt is true that emergency is one (important) use -- but it is not the primary - -and (like all of us) it is the least likely way it will be used.  (Hopefully never for most people.)     \n\nThe primary application for RTT is to replace TTY on digital networks - So that they can be usable and used by people who are deaf, hard-of-hearing and who have speech disabilities.    It there to be used for their everyday communication -  in all the places that real-time bidirectional voice is used and usable for people who can speak.    And that would include bidirectional voice communication on the web and with AIs and all the other places it is showing up.    Think of it as being  \"voice\" communication for those without speech or hearing. "
+        }
+      ]
     },
     "541": {
       "number": 541,
@@ -8073,9 +8470,9 @@
       ],
       "user": "alastc",
       "created": "2026-02-16T15:34:52Z",
-      "updated": "2026-09-29T19:19:11Z",
+      "updated": "2026-10-21T17:43:19Z",
       "closed": null,
-      "commentCount": 2,
+      "commentCount": 3,
       "body": "In the pre-publication work (/rush), the chairs noticed that there's significant overlap between:\n- Biometrics not relied on\n- Multiple biometrics available\n- Voice identification not relied on\n\nWhich are all down as core. We get the different intents, but:\n- If you pass the first, you pass the second (at least according to the test written).\n- Voice is a form of biometrics, why is that separate?\n\nFor the purpose of this draft we'll put the 2nd and 3rd as exploratory, but worth discussion soon.",
       "url": "https://github.com/w3c/wcag3/issues/572",
       "comments": [
@@ -8088,6 +8485,11 @@
           "user": "GreggVan",
           "created": "2026-09-29T19:18:07Z",
           "body": "voice identification should be listed in biometrics.     Recognizing voice intonation is also kind of a biometric  but  .....   \n\nHmmm biometric includes voice, body size, gate, facial recog,  movement recog (including all gestures if you think about it) etc.\n\nBiometrics is used for identification\nBiometrics are also used for speaker identification \nBiometrics are also used for automatic dress or shirt size determination\nBiometrics are also used for emotion recognition\nBiometrics are also used for diagnosis\nBiometrics are also used for many other things.\n\noften we equate Biometrics just with identification/verification of identity\nbut it is really anything that has to do with measurement of our biology in any way\n\nI  think we should have \n> \"biometrics are not relied on as the only way to achieve some functionality\"\n>   [or whatever we are using as the format for these \"not only way\" provisions\\\n\nalong with notes like: \n\n>  NOTE 1:  Biometrics includes fingerprints, voice, face, body shape, gate, and the measurement of anything else to do with our biology.\n> NOTE 2:  Some uses of biometrics includes identification, verification of identity, speaker identification, dress or shirt size determination, emotion recognition, and diagnosis to name a few.\n"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-10-20T19:49:15Z",
+          "body": "Suggest pull requests that achieve the following \n\n1)  collapse the following three provisions \n\n- Biometrics not relied on\n- Multiple biometrics available\n- Voice identification not relied on\n\ndown into one provision\n\n> *Biometrics not relied on*\n> \"biometrics are not relied on as the only way to achieve any functionality except when a biometric is essential to the functionality\"\n> [or whatever we are using as the final format for these \"not only way\" provisions\\\n> \n> NOTE 1: Biometrics includes measurements related to fingerprints, voice, face, body shape, gait, DNA, and the measurement of anything else to do with our biology or physical movements.\n> NOTE 2: Some uses of biometrics includes verification of identity, speaker identification, dress or shirt size determination, emotion recognition, and diagnosis to name a few.\n> NOTE 3: There are multiple ways to establish verification of identity that do not rely on biometrics so biometrics are useful but not essential for identity verification.\n> NOTE 4: High security applications may be exempt from this accessibility requirement but that would be policy decision - and the application would remain non- conformant to WCAG.  "
         }
       ]
     },
@@ -8439,12 +8841,23 @@
       ],
       "user": "ajsaucier",
       "created": "2026-03-13T21:57:49Z",
-      "updated": "2026-03-27T18:48:30Z",
+      "updated": "2026-10-18T19:52:18Z",
       "closed": null,
       "commentCount": 2,
       "body": "\"Focus placed\" and \"Focus retained\" seem to be very similar, and both are currently a supplemental requirement. I think it is worth discussing whether they should be a core requirement. I have spoken with screen reader users who have seen it as a barrier when they are in the middle of completing a form and using a date picker, for example, only to have their focus lost when the date picker is closed and sent back to the `<body>` element. Is part of the reason for it being a supplemental requirement that browsers try to return focus to a logical place on their own?",
       "url": "https://github.com/w3c/wcag3/issues/616",
-      "comments": []
+      "comments": [
+        {
+          "user": "detlevhfischer",
+          "created": "2026-03-17T08:32:08Z",
+          "body": "The files under wacag3/code are currently:\n* focus order meaningful\n* focus relevant\n* focus retained\n\n...where \"focus relevant\" would check whether any hidden content gets focus (so focus is invisible to sighted users) wherease \"focus retained\" would check for correct focus management (restoring focus to trigger etc.) when additional content (like dialogs) appears or things are removed from the DOM. Both seem different enough to warrant different requirements (if we want requirements to be more granular).\n\nI am not sure where you found \"focus placed\" - I guess it just shows the friction when working in several environments simultaneously. (I wish we could do all the work in GitHub.) It is always helpful to include links to the documents you are referring to."
+        },
+        {
+          "user": "ajsaucier",
+          "created": "2026-03-17T15:07:19Z",
+          "body": "@detlevhfischer Sorry about that, I definitely should have linked to this section of the document. [Focus placed](https://www.w3.org/TR/wcag-3.0/#focus-placed) is found under [2.4 Input / operation](https://www.w3.org/TR/wcag-3.0/#input-operation)"
+        }
+      ]
     },
     "618": {
       "number": 618,
@@ -8490,12 +8903,18 @@
       ],
       "user": "DaleenRabe",
       "created": "2026-03-23T06:58:03Z",
-      "updated": "2026-03-27T18:42:39Z",
+      "updated": "2026-10-18T19:50:10Z",
       "closed": null,
       "commentCount": 1,
       "body": "### Problem / User Need\nKeyboard-only users — including people with motor disabilities, and screen reader users — rely on the Tab key to navigate interactive and readable content. When a page contains a scrollable region (for example, a `<div>` with `overflow: scroll` or `overflow: auto`), that region may contain critical content that cannot be accessed without a mouse scroll.\n\nSafari on macOS does not automatically include scrollable regions in the Tab order, unlike Chrome and Firefox. Firefox makes any block-level element with an appropriate CSS overflow property keyboard-focusable automatically; Chrome, Edge, and Safari historically have not done this on their own - tabindex=\"0\" must be added explicitly. This creates an inconsistent and unreliable experience across browsers that the current WCAG 3.0 draft does not explicitly address.\n\n**### Proposed New Requirement**\nSection 2.3.3 (Navigating content) or 2.4.1 (Keyboard interface input)\n\n**Scrollable regions keyboard reachable**\nAny element that has scrollable content must be reachable using keyboard navigation, unless:\n- The scrollable content is purely decorative, or\n- The content inside the region already contains keyboard-focusable elements that allow the user to scroll it\n\n### Personal Note\nI believe this addition would do more than just close a technical gap. Explicit language in WCAG 3.0 would create pressure on browser vendors - including Apple/Safari - to adopt consistent behaviour, rather than leaving the burden entirely on content authors. Standards like WCAG have historically influenced browser and platform behaviour. This is an opportunity to use that influence to push for a more consistent accessibility experience across products and browsers, benefiting all keyboard users regardless of which browser they use. Please feel free to contest if you believe this already exist in some form or another. ",
       "url": "https://github.com/w3c/wcag3/issues/622",
-      "comments": []
+      "comments": [
+        {
+          "user": "mraccess77",
+          "created": "2026-03-23T13:14:01Z",
+          "body": "I would consider this already a failure under WCAG 2.x unless accessibility support is proven.\nI agree that encouraging user agents/platforms in WCAG 3 to solve and not require authors to always  solve this would be beneficial."
+        }
+      ]
     },
     "626": {
       "number": 626,
@@ -10208,12 +10627,23 @@
       ],
       "user": "adampage",
       "created": "2026-08-21T13:30:18Z",
-      "updated": "2026-08-21T13:30:18Z",
+      "updated": "2026-10-21T17:58:58Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 2,
       "body": "The term “[_method_](https://www.w3.org/TR/wcag-3.0/#dfn-method)” carries a specific meaning in the guidelines:\n\n> detailed information, either technology-specific or technology-agnostic, on ways to satisfy the [requirement](https://www.w3.org/TR/wcag-3.0/#dfn-requirement)\n\nThe current “[Input method flexible](https://www.w3.org/TR/wcag-3.0/#input-method-flexible)” provision uses “_method_” more generally. Perhaps “_modality_” would be more accurate and avoid confusion?\n\nRelates back to [a change in PR #812](https://github.com/w3c/wcag3/pull/812#discussion_r3817334129).",
       "url": "https://github.com/w3c/wcag3/issues/820",
-      "comments": []
+      "comments": [
+        {
+          "user": "GreggVan",
+          "created": "2026-10-20T19:27:49Z",
+          "body": "Agree.\nwe should change   \"method\" to \"Modality\"     here and anywhere else like this in input\n\nplease add to next PR \n"
+        },
+        {
+          "user": "fstrr",
+          "created": "2026-10-21T17:58:57Z",
+          "body": "Subgroup comment on 2026-10-21: we would prefer to use Input Method and define that term as it's more common. We'll get this on an upcoming AGWG agenda."
+        }
+      ]
     },
     "822": {
       "number": 822,
@@ -10374,12 +10804,18 @@
       ],
       "user": "mcking65",
       "created": "2026-09-16T19:42:10Z",
-      "updated": "2026-09-16T19:42:10Z",
+      "updated": "2026-10-19T12:38:51Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "As a screen reader user, I find definition lists very problematic. they are extremely easy to misunderstand and very difficult to navigate efficiently. The glossary is an extreme case with 119 entries that are very complex in nature.\n\nPlease consider eliminating `dl` from the glossary and replacing `dt` with `h3` and replacing `dd` with `div`.\n\nI don't think this is necessary, but it is worth considering an additional usability feature that adds a section for each letter of the alphabet that has terms. For example, `h3` elements could serve as letter of the alphabet titles and then `h4` elements could serve as terms.",
       "url": "https://github.com/w3c/wcag3/issues/870",
-      "comments": []
+      "comments": [
+        {
+          "user": "iadawn",
+          "created": "2026-10-19T12:37:41Z",
+          "body": "Ideally this would be best solved in ReSpec proper. Ken and I can have a chat about it\n\nP.s. sorry for the accidental closure... misclick!"
+        }
+      ]
     },
     "873": {
       "number": 873,
@@ -10929,9 +11365,9 @@
       "labels": [],
       "user": "GreggVan",
       "created": "2026-10-15T16:29:29Z",
-      "updated": "2026-10-15T17:14:08Z",
+      "updated": "2026-10-16T07:04:52Z",
       "closed": null,
-      "commentCount": 2,
+      "commentCount": 3,
       "body": "In looking at the latest  draft   we currently call focus  “keyboard focus” in most places but not all - which is confusing.  \n\nChecking carefully - I can't find any instance in the requirements where focus means anything other than keyboard focus.\n\n- there is no \"pointer focus\" other than the pointer   and  \"hover effects\" are based on pointer position - not focus. \n- if you click with the pointer - it moves the keyboard focus to that point  (or it should)]\n- if you talk (speech) about something it would either be \"where I am pointing\" or  \"where I am looking\"   or  \"where the keyboard focus is\"\nit is never  \"where I am focusing \n\nAnd it is confusing to call the same thing (keyboard focus) by two different names in the same technical document.    \n\n>SUGGEST\n>we change all occurrences of \"focus\" to  \"keyboard focus\" \n\n",
       "url": "https://github.com/w3c/wcag3/issues/908",
       "comments": [
@@ -10944,6 +11380,11 @@
           "user": "hidde",
           "created": "2026-10-15T17:13:48Z",
           "body": "I think we should do the opposite and call it focus everywhere rather than keyboard focus.\n\nSure, most people move their system's focus using their keyboard, but a website could also move it via script (and many do), and on kiosks or tv interfaces people move focus with affordances that aren't keyboards, like switch-type controls and remote controls. "
+        },
+        {
+          "user": "TanyaVanWorkum",
+          "created": "2026-10-16T07:04:51Z",
+          "body": "+1 to the suggestion of @hidde.\n\nWhat about screen reader focus?\n\nIn MATF, we struggled with mapping screen reader focus, the screen reader interface, etc., because WCAG 2.2 refers specifically to “keyboard focus” and “keyboard interface”. On mobile operating systems, screen readers operate through the accessibility interface, which does not fit the WCAG definition of a keyboard interface (and thus related criteria).  "
         }
       ]
     },
@@ -11010,13 +11451,236 @@
       "labels": [],
       "user": "GreggVan",
       "created": "2026-10-16T00:40:00Z",
-      "updated": "2026-10-16T00:40:00Z",
+      "updated": "2026-10-19T09:32:33Z",
+      "closed": null,
+      "commentCount": 1,
+      "body": "it currently reads \n\n> No flashing over threshold\n> Developing\n> Core requirement\n> \n> Flashes are below the general flash and red flash thresholds.\n> \n> Applies when content includes flashes.\n> \n> Except when the flashing is essential.\n\nthat feels like == it is safe to hit people hard over the head with glass bottle if it is essential.\n\nThere may indeed be times when the right thing to do is to hit someone hard over the head with a glass bottle -- but it should not be labelled as \"safe\"\n\nAnd for Web content -- you should not be able to declare something as \"Passing WCAG's requirements for minimum accessibility\"  if it flashes more than 3 times per seconds  and is large and bright enough to cross the threshold.  \n\nWhy would we want to declare the page as \"Passing WCAG\"?    \n\nit clearly is not accessible to anyone with a seizure disorder\n\nThose pages wil exist - but \n1) they should we warned about in advance  for sure \n2) but the content itself should not be labeled as accessible or safe if it is not just because you warned the person.     \n\nYes they were warned.  but the person still cannot view the content.\n\n*Should we say that any web site meets WCAG for Blind or Cognitive access if we just warn users in advance that they cannot use the pages? *\n\nWarnings are good but adding a warning does not make a page accessible that is not accessible. ",
+      "url": "https://github.com/w3c/wcag3/issues/913",
+      "comments": [
+        {
+          "user": "hidde",
+          "created": "2026-10-19T09:32:33Z",
+          "body": "I would support removing the essential exception for the reasons @GreggVan mentions."
+        }
+      ]
+    },
+    "914": {
+      "number": 914,
+      "title": "WCAG 3: Functional Performance Statements",
+      "state": "open",
+      "labels": [],
+      "user": "maryjom",
+      "created": "2026-10-16T15:47:50Z",
+      "updated": "2026-10-19T16:17:45Z",
+      "closed": null,
+      "commentCount": 4,
+      "body": "The FPS included in WCAG 3 do not map well to the EN 301 549 (where these are Functional Performance Criteria in [V4.1.1](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.01_60/en_301549v040101p.pdf)) or US Revised 508 Functional Performance Criteria. \n\nSome concerns:\n- How does one draw the line between \"very limited\" and \"limited\" in each of the FPS categories? The descriptions for the pairs of FPS are exactly the same so there could be wide interpretation of what they mean in practice. The FPS would benefit from better descriptions so readers can understand the differences, general information about user needs, etc. The EN 301 549 is a good start for those. For vision, it could potentially be a difference between someone who would need to use AT like a screen reader and/or screen magnifier and possibly also high contrast color schemes compared to someone who might need to modify font sizes, use user agent zoom, and/or adjust the contrast. If those things were incorporated into the descriptions, the FPS would be more understandable. The differences between the \"very limited\" vs \"limited\" manipulation or strength may be difficult to describe. How strong is a grip that is limited vs. very limited? What would constitute limited vs. very limited fine motor control or range of motion.\n- The FPS is missing a category for photosensitive seizures, like \"Use without triggering photosensitive seizures\" or maybe a broader category of \"Use without triggering physical harm\". The EN 301 549 does have a category for photosensitive seizures, and I think it is important to have that user need represented in the FPS - even if that category represents few requirements.\n- If WCAG 3 has no requirements that fit into a particular FPS category, will it be removed? \n- Intersectional disabilities will be difficult to categorize requirements into because the requirements are individual aspects of the ICT and essentially everything would wind up in this category which would provide no real benefit. IMO, if we want to cover specifically deaf-blind it would be good to have a look at all requirements with that lens. Because in some cases content would have to satisfy combinations of requirements or to use specific implementation methods to meet their needs.",
+      "url": "https://github.com/w3c/wcag3/issues/914",
+      "comments": [
+        {
+          "user": "GreggVan",
+          "created": "2026-10-16T19:29:03Z",
+          "body": "the FPS have an interesting history. They were never requirements. They were just meant to be general categories and fallback positions when people used the \"achieved an alternate fashion\" excuse for not doing something.   It was stated that as long as you met the functional performance category, that would be OK if you didn't do some technical thing below. Many of the things below would map to one of the functional performance criteria, but others would map to multiple functional performance criteria, and some did not map to any at all. Over time, these catch all categories seem to take on a life of their own a bit. Eventually, they started changing from catchalls to being requirements by calling them criteria, but they never really could qualify as requirements because they were either untestable, so they shouldn't be required, or they were specific enough that they should've been listed as technical requirements and not as functional performance requirements.\n\nThis is still true today. Those that are specific should've been just listed as technical requirements. The other ones are vague enough that they talk about \"such as\" which is not definitive, just examples.\n\nI would not spend a lot of time trying to map one organization's use of these functional performance categories with another. In one case, there were additional FPCs that were removed because there didn't seem to be a technical requirement to support them. But to my knowledge, there's never been a technical requirement removed because it didn't match an FPC because many won't match a specific one."
+        },
+        {
+          "user": "maryjom",
+          "created": "2026-10-19T14:21:09Z",
+          "body": "@GreggVan I understand the history of the FPS and their use. My comment was not about testability of each FPS, but the use of these FPS for noting the applicable FPS for each provision in WCAG 3 as the Editor's note states. The descriptions are insufficient to do that.\n\nThe stated intent for the FPS in WCAG 3 was to tag requirements and assertions with their related FPS categories. If these are to be used, they need to be described in a way that one could understand them enough to properly categorize the requirements related to each of the FPS. This is especially difficult when the descriptions between the \"very limited\" and \"limited\" list items for several categories are exactly the same. For example, \n<dl>\n<dt>Use with very limited or no hearing</dt>\n<dd> — relating to hearing and cognitive processing of auditory information.</dd>\n<dt>Use with limited hearing</dt>\n<dd> — relating to hearing and cognitive processing of auditory information.</dd>\n</dl>\n \nI brought up the EN 301 549 because it has now made FPC required using the mapping of the requirements into the various FPC. If WCAG 3 introduces new and more granular categories, I can imagine that the version of the EN 301 549 (or various country-specific versions in India and Kenya) that adopts WCAG 3 may try to adopt these new categories and expand their mapping to accommodate reporting on them. Maybe that's looking forward too much, but the concern is there.\n"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-10-19T15:56:48Z",
+          "body": "thanks MJ   \n\nI  am not sure of the value of the FPC and  en 301549 only requires them because the new EU legislation required us to.   Otherwise we would not have made them requirements.  they are not useful as requirements and should not be required since they are either too specific (and should be technical requirements themselves because they to NOT cover the broad spectrum they need to as FPS or they are not testable and should not be required. "
+        },
+        {
+          "user": "maryjom",
+          "created": "2026-10-19T16:17:45Z",
+          "body": "No argument there Gregg. I didn't want them to be requirements in the EN 301 549 as they aren't useful. Similar to WCAG, one bug on one requirement will mean you cannot say \"Supports\"  or \"Conforms\" for the particular FPC. Not sure how that will be helpful for the EU legislation at all."
+        }
+      ]
+    },
+    "915": {
+      "number": 915,
+      "title": "“Focus retained” needs to cover more than just keyboard tabbing",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Focus retained"
+      ],
+      "user": "lbeaze",
+      "created": "2026-10-16T20:30:06Z",
+      "updated": "2026-10-16T21:34:45Z",
+      "closed": null,
+      "commentCount": 1,
+      "body": "[Focus retained](https://w3c.github.io/wcag3/guidelines/#focus-retained) currently says “A user can focus on a [content](https://w3c.github.io/wcag3/guidelines/#dfn-content) “area”, such as a modal or popup, then resume their view of all content using a limited number of steps.”\n\nThe current draft test only mentions keyboard focus. Are you planning to add test procedures for using a mouse, touchscreen, etc?\n\nInstead of focusing narrowly on keyboard focus order, consider building out this provision so that it helps meet the needs of non-screen reader users as well as screen-reader users. \nFor example, if a modal takes up all or most of the user’s view, the user might get disoriented because they think they are in a new space. This can happen with users with cognitive impairments and/or low vision. Another possible source of disorientation could be when a user dismisses a modal but is no longer sure where they are anymore.\n\nThis kind of broadening could help the “Navigating content” subsection live up to its guideline description, which is tool-agnostic: \"Users can determine where they are and move through content (including interactive elements) in a systematic and meaningful way regardless of input or movement method.\"\n\nNote: it can be a separate provision.\n\nWe also need a provision that addresses distractions such as popups or things that cover the screen that you may need to close to get back to what you were doing. \n\nCOGA user need missing or not adequately addressed: \n- I need to recognize where I am in the architecture of the web site, application, or multi-step process, even after I get distracted. ([Making Content Usable 3.1.2](https://www.w3.org/TR/coga-usable/#clear-operation-user-story), bullet 3)\n \n- I need to turn distractions off easily, if there are distractions. ([Making Content Usable 3.5.1](https://www.w3.org/TR/coga-usable/#distractions-user-story), bullet 2)\n\nWith thanks,\nThe COGA Task Force",
+      "url": "https://github.com/w3c/wcag3/issues/915",
+      "comments": [
+        {
+          "user": "GreggVan",
+          "created": "2026-10-16T20:48:49Z",
+          "body": "\n\nThere is no actual \"mouse input focus\" that exists .  \nThere is mouse position - but that is not a focus, and it changes as you move around  and doesnt exist on most touch screens (unless they have proximity detection separate from that used for touch). \n\nThere really isnt any other focus except the \"keyboard focus\"   or  \"Keyboard input focus\".\n\nScreen readers use both the keyboard focus  ( and their own reading focus -- but that one has nothing to with the author and the author has no control over that  and that one can also be used for actions/input by a screen reader. )\n\nSo everywhere where we say focus - we should be changing it to \"keyboard focus\"  -- because keyboards are the only thing that use that exclusively for input.   Other things may use it but also can act (or input) to other places besides that focus.  Places where they random access but do not have any focus that they move there first  (though they often move the keyboard focus to that point afterwards)   \n\nSo labeling it  'input focus'  would only be accurate for keyboards - hence the proper name for that focus even though it is sometimes  one of the input mechanism used by other inputs methods. \n"
+        }
+      ]
+    },
+    "916": {
+      "number": 916,
+      "title": "Why aren’t there any core requirements in “Expected Behavior”?",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Consistent control location",
+        "P - Consistent interactions",
+        "P - Conventional pattern used"
+      ],
+      "user": "lbeaze",
+      "created": "2026-10-16T20:36:23Z",
+      "updated": "2026-10-16T21:33:45Z",
       "closed": null,
       "commentCount": 0,
-      "body": "it currently reads \n\n> No flashing over threshold\n> Developing\n> Core requirement\n> \n> Flashes are below the general flash and red flash thresholds.\n> \n> Applies when content includes flashes.\n> \n> Except when the flashing is essential.\n\nthat feels like == do not hit people over the head with glass bottle unless it is essential\n\nWhat requires flashing more than 3 times per seconds bright enough to cross the threshold?\n\nand when it does -- why would we want to declare the page as accessible?    \n\nit clearly is not accessible to anyone with a seizure disorder\n\nThose pages wil exist - but they should we warned about in advance and they should not be labeled as accessible.   \n\nyes?",
-      "url": "https://github.com/w3c/wcag3/issues/913",
+      "body": "The [“Expected behavior” guideline](https://w3c.github.io/wcag3/guidelines/#expected-behavior) has an outcome that is very important, especially for COGA users: “Users can interact with [interactive elements](https://w3c.github.io/wcag3/guidelines/#dfn-interactive-element) that behave as expected.”\n\nBut the guideline currently consists of two assertions and a supplemental requirement. We are concerned that this guideline is all nice-to-haves, which means few organizations are likely to do any of it.\n\nHow can WCAG 3 help ensure that interactive components will behave as expected? Can any of the assertions be at the core level? And/or can any of the assertions be turned into testable requirements? We could also add a core requirement with reduced scope.\n\nFor example, with the [“Consistent interactions” assertion](https://w3c.github.io/wcag3/guidelines/#consistent-interactions), could the 3rd bullet be turned into a requirement called \"Standard user interface design used\"? Here is the current draft of that 3rd bullet: \n“Standard user interface designs for the platform are used when applicable.”\n\nConsider this user example: In a map, the indicator is changing from a pointer to crosshairs, etc. If the author makes changes that add more complexity, the user may not know how to use it.\n\nCOGA user needs missing or not adequately addressed:\n- As a user with a memory impairment, a learning disability, or a communication disability who uses symbols, or executive function impairment, I find it hard to learn new interface design patterns. I need to know which controls are available and how to use them so that the site is usable for me. ([Making Content Usable 3.1.2](https://www.w3.org/TR/coga-usable/#clear-operation-user-story), intro)\n \n- I need to find the design and user interface elements familiar. Menus, buttons, design components, and common elements such as help and search are easy to recognize and where I expect them to be. ([Making Content Usable 3.2.1](https://www.w3.org/TR/coga-usable/#findable-user-story), bullet 6)\n\nIn addition to the above user needs, we are also sharing the intro text for Objective 1 from [“Making Content Usable for People with Cognitive and Learning Disabilities”](https://www.w3.org/TR/coga-usable/):\n\n- Objective 1: Help users understand what things are and how to use them. Help users understand what things are and how to use them. Use things that are familiar to the user so that they do not have to learn new icons, symbols, terms, or design patterns. People with cognitive and learning disabilities often need common behavior and design patterns. For example, they may know the standard convention for links (underlined and blue for unvisited; purple for visited). ([Making Content Usable, A.1](https://www.w3.org/TR/coga-usable/#objective-1-help-users-understand-what-things-are-and-how-to-use-them-1))\n\nWith thanks,\nThe COGA Task Force ",
+      "url": "https://github.com/w3c/wcag3/issues/916",
+      "comments": []
+    },
+    "917": {
+      "number": 917,
+      "title": "Concerns about the exceptions in “Pointer focus indicated”",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Pointer focus indicated"
+      ],
+      "user": "lbeaze",
+      "created": "2026-10-16T20:38:08Z",
+      "updated": "2026-10-16T21:31:52Z",
+      "closed": null,
+      "commentCount": 1,
+      "body": "The first exception is too broad. How can the provision ensure that the mechanism to un-hide the pointer indicator is not hard to use, or find, or remember, etc? \n\nWe recommend explicitly stating that the indicator can be ‘un-hidden’ using a single, standard pointer movement or equivalent basic interaction requiring no memory or multi-step command.  \n\nHere is a fail example: press control p and d together to get the pointer back \n- This should fail as a complex multi-button command.\n- It should also fail because it is hard to remember, which can be a blocker for people with memory problems.\n- This should also fail because it is a non-standard input. \n\nThe second exception is hard to understand. We recommend clarifying the description or adding a note so it’s clearer what the reason is for that exception. \n\nWith thanks,\nThe COGA Task Force",
+      "url": "https://github.com/w3c/wcag3/issues/917",
+      "comments": [
+        {
+          "user": "GreggVan",
+          "created": "2026-10-16T21:05:10Z",
+          "body": "This is an excellent comment -- and needs to be applied across the board in WCAG3 "
+        }
+      ]
+    },
+    "918": {
+      "number": 918,
+      "title": "Three concerns about “Consistent control location”",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Consistent control location"
+      ],
+      "user": "lbeaze",
+      "created": "2026-10-16T20:42:30Z",
+      "updated": "2026-10-16T21:29:59Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "1. Consider defining “control.” \n2. Consider rewording this provision so it doesn’t apply to all kinds of “interactive elements.” (The WCAG 3 glossary for “[interactive element](https://w3c.github.io/wcag3/guidelines/#dfn-interactive-element)” lists as examples “buttons, controls, and input fields.”) \n3. Consider adding a requirement or best practice to follow current platform standards for control location.\n\nWith thanks,\nThe COGA Task Force",
+      "url": "https://github.com/w3c/wcag3/issues/918",
+      "comments": []
+    },
+    "919": {
+      "number": 919,
+      "title": "“Contextual help available” needs to factor in close proximity",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Contextual help available"
+      ],
+      "user": "lbeaze",
+      "created": "2026-10-16T20:57:05Z",
+      "updated": "2026-10-16T21:29:23Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "The current [“contextual help available” provision](https://w3c.github.io/wcag3/guidelines/#contextual-help-available) says “[Context-sensitive help](https://w3c.github.io/wcag3/guidelines/#dfn-context-sensitive-help) is available.” This provision needs to be expanded to include visual co-location or “close proximity” of the contextual help so it’s clear to users how to proceed. This could be done by expanding the definition of “context sensitive help.” \n\nFor example: On a long, scrolling data-entry page or a complex multi-step process, a user may become confused or encounter an error in the middle of the task. If the contextual help is far away or has been scrolled out of view, the user must expend significant cognitive effort (and working memory) to locate the help, losing their place in the task.\n\n**User need missing or not adequately addressed**\nThe following user needs are not adequately addressed by this requirement:\n- Placement (Partly Met): \"I need to find the design and user interface elements familiar. Menus, buttons, design components, and common elements such as help and search are easy to recognize and where I expect them to be.\" (Section: MCU 3.2.1, bullet 6)\n- Proximity to Barrier: \"As a user who finds some web sites hard to use, I need to get help and give feedback easily from every place where I get stuck. This ensures I am not excluded and the site is aware of my needs.\" (Section: MCU 3.7.1, intro)\n\n**More details**\nUsers with attention impairments (like the Yuki persona) or memory loss (like the Maria persona) find it difficult to re-orient themselves after navigating away from a specific point of failure. For these users, help is only \"available\" if it is reachable with minimal steps from the context of the struggle. \"Logical proximity\" is very important.\n\nRecommendations\nWe recommend that the provision be updated to clarify that:\n\n- Help should be reachable and in “logical proximity” to where it’s needed where possible, especially if the situation requires high cognitive load. \n-- See details on visual colocation, which relates to “logical proximity,” in [Error handling](https://w3c.github.io/wcag3/guidelines/#error-handling). \n- Consider also adding a definition for “logical proximity” or adjusting the definition of [“visually collocated with](https://w3c.github.io/wcag3/guidelines/#dfn-visually-collocated-with)” so it is not limited to error messages.\n- The help needs to be:\n--  understandable and plain language, \n-- with images if helpful, \n-- Use step-by-step instructions when appropriate.\n\nWe know we have plain language provisions elsewhere but some of them are supplemental and many people will not do them. This help provision is useless for people with disabilities if that help is not understandable by these user groups.\n\nWith thanks,\nThe COGA Task Force",
+      "url": "https://github.com/w3c/wcag3/issues/919",
+      "comments": []
+    },
+    "920": {
+      "number": 920,
+      "title": "More info needed on the “Data visualizations” provision related to cognitive disabilities",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Data visualizations"
+      ],
+      "user": "lbeaze",
+      "created": "2026-10-16T21:05:35Z",
+      "updated": "2026-10-16T21:27:07Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "The current editor’s draft of [Data visualizations](https://w3c.github.io/wcag3/guidelines/#data-visualizations) states that “Help is available to understand and use [data visualizations](https://w3c.github.io/wcag3/guidelines/#data-visualizations).” The provision is at the exploratory level, and an editor’s note says “Editors are considering removing this requirement.”\n\nWe think it’s important to include this provision to ensure users with cognitive disabilities are offered alternatives for complex numerical and mathematical concepts, but we need a better understanding of whether this provision is aimed at these users or just blind and low vision users.  \n\nLet us know if you’d like to brainstorm with COGA on how to build out this provision, or if you have research questions that you need us to look into.\n\n**User needs from Making Content Usable**\n- \"I need content that provides alternatives like a non-math textual explanation.\" (section 3.3.3, bullet 2)\n- \"As a user who does not understand numerical concepts, I need content to be usable without understanding math concepts.\" (section 3.3.3, intro)\n\nWith thanks, \nThe COGA Task Force",
+      "url": "https://github.com/w3c/wcag3/issues/920",
+      "comments": []
+    },
+    "921": {
+      "number": 921,
+      "title": "The “Support available” provision is critical and the definition of “support” needs to factor in cognitive disabilities",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Support available"
+      ],
+      "user": "lbeaze",
+      "created": "2026-10-16T21:22:11Z",
+      "updated": "2026-10-16T21:22:11Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "COGA is glad to see the exploratory [“Support available” provision](https://w3c.github.io/wcag3/guidelines/#support-available) and is happy to help the WCAG 3 subgroup work on defining “support” to ensure this provision helps meet the needs of users with cognitive impairments. \n\nAt a high level, users need to be able to:\n- find the support\n- understand how to use the support \nuse the support (for example, have enough working memory to process a voice menu whilst remembering a digit) \n\nFor example, the following are very helpful supports for COGA users:\n- the built-in features and system compatibility required to assist users in understanding content and successfully completing tasks. \n- unrestricted use of personal assistive extensions, \n- offering multi-modal help options when possible, and\n- providing in-context cognitive aids such as reminders.\n\nNote that if the additional support is via a complex voice system, then to many people, the support is not functionally available. Support must be functionally available to people with disabilities. \n\nUser need missing or not adequately addressed:\n- \"I need to get human help, without going through a complex menu system (VoiceXML [voicexml21]) or a complex voice recognition menu system that relies on memory and executive function, so that I can set an appointment or find out some information.\" (Making Content Usable 3.6.3, intro)\n- \"I need to easily find a human by pressing a reserved digit that I know (typically the number 0).\" (Making Content Usable 3.6.3, bullet 1)\n- \"I need to easily find a process to select simple help, and not multi-step help.\" (Voice Systems Research Module, 3.1, bullet 6)\n\nScenarios when the user needs will not be met by the provision\n- Data entry support: Support is technically \"available\" during data entry, but it is provided in a 200-page jargon-filled manual with no index, or a voice menu with no easy option to talk to a person.\n- Conversational support: If a chatbot doesn't understand natural phrasing or requires specific keywords, help is effectively unavailable. \n- Human support that is buried behind a complex phone menu, it is practically inaccessible.\n\nWith thanks,\nThe COGA Task Force",
+      "url": "https://github.com/w3c/wcag3/issues/921",
+      "comments": []
+    },
+    "922": {
+      "number": 922,
+      "title": "“Feedback mechanism available” needs to be expanded",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Feedback mechanism available"
+      ],
+      "user": "lbeaze",
+      "created": "2026-10-16T21:26:11Z",
+      "updated": "2026-10-16T21:26:11Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Can the [“Feedback mechanism available” provision](https://w3c.github.io/wcag3/guidelines/#feedback-mechanism-available) be clearer about different ways users, including users with cognitive and learning disabilities, may want to provide feedback?\n- Anonymous feedback — this is an important option to meet privacy concerns, but it’s not the only way users may to give feedback\n- Feedback loops where the user may want or expect to receive a response\n- At any point in the process where they struggle or have positive feedback to share (not just at the end)\nAlso, this provision should require that the feedback mechanism is easy for all users to find, understand, and use. For example if users from coga can not give feedback then they become even more marginalized. So it is hugely important that feedback mechanisms are usable and even easy to use, by all groups and subgroups of people with disabilities. \n\nUser need missing or not adequately addressed:\n- \"I need to know how to get human help and can manage the process easily.\" (Making Content Usable 3.7.1, bullet 5)\n- \"I need to give feedback, ask questions, and get feedback in a similar timeframe to everyone else.\" (Making Content Usable 3.7.1, bullet 2)\n\nScenarios when the user needs will not be met by the provision\nA feedback mechanism exists in a buried menu, and users with cognitive disabilities are forced to wait days for a response while other channels provide instant support.\n\nRelated user needs from making content useable\nMaking it easy to get human help (Making Content Usable, A.7). \nFeedback from any point in the process (Making Content Usable 3.7.1, bullet 1)\n\nWith thanks, \nThe COGA Task Force",
+      "url": "https://github.com/w3c/wcag3/issues/922",
+      "comments": []
+    },
+    "924": {
+      "number": 924,
+      "title": "Reference implementation portability and test vectors for the contrast algorithm",
+      "state": "open",
+      "labels": [],
+      "user": "sbustelo",
+      "created": "2026-10-19T04:26:17Z",
+      "updated": "2026-10-19T04:26:17Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "The current contrast algorithm has a reference implementation in JavaScript (apca-w3), but no language-independent test vectors. If the algorithm becomes normative in WCAG 3, implementers in other languages (Python, PHP, C#, etc.) will port it manually, and there is no mechanism to verify that the ports produce identical results.\n\nThis is not a new problem: #225 raised it for constant naming, and #226 for the luminance calculation. But neither addresses the broader question of how a port is verified.\n\nA possible approach: specify the algorithm in a language-independent form with a set of executable test vectors, so any implementation can be checked against the reference without reading the JavaScript.\n\nI've built a working prototype of this approach using a small language ( [JSOL](https://jsol.bustelo.com.ar/) ) that currently compiles to JS, Python, PHP and TypeScript, with 70+ executable examples (including some from Rosetta Code) that pass identically on every target. That's one approach, not a proposal to adopt a specific language; the point is that the test vectors should exist independently of any implementation.\n\nI have not included the APCA algorithm in the prototype for licensing reasons. With authorization, I would be willing to verify that JSOL supports it, and to build the test suite.\n\nQuestion for the working group: is there a plan for language-independent test vectors for the contrast algorithm, and if not, would this be a useful contribution?",
+      "url": "https://github.com/w3c/wcag3/issues/924",
+      "comments": []
+    },
+    "925": {
+      "number": 925,
+      "title": "\"Media alternatives controllable\" is redundant",
+      "state": "open",
+      "labels": [
+        "P - Captions controllable",
+        "P - Media alternatives controllable",
+        "P - Audio descriptions controllable"
+      ],
+      "user": "mitchellevan",
+      "created": "2026-10-19T14:45:32Z",
+      "updated": "2026-10-19T14:45:32Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "### Currently\n\n\"Media alternatives controllable\" is redundant to \"Captions controllable\" and \"Audio descriptions controllable\".\n\n[Captions controllable](https://w3c.github.io/wcag3/guidelines/#captions-controllable):\n\n> A mechanism is available to turn captions on and off.\n> \n> Except when captions are hard-coded into the video content.\n\n[Audio descriptions controllable](https://w3c.github.io/wcag3/guidelines/#audio-descriptions-controllable):\n\n> A mechanism is available to turn audio descriptions on and off.\n> \n> Except when audio descriptions are hard-coded into the audio or video content.\n\n[Media alternatives controllable](https://w3c.github.io/wcag3/guidelines/#media-alternatives-controllable):\n\n> Closed captions and audio descriptions can be turned on and off.\n\n### Proposed\n\nDelete \"Media alternatives controllable\".",
+      "url": "https://github.com/w3c/wcag3/issues/925",
       "comments": []
     }
   },
-  "fetchedAt": "2026-10-16T03:49:30.640Z"
+  "fetchedAt": "2026-10-22T03:03:44.403Z"
 }
