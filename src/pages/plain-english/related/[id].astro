@@ -77,6 +77,17 @@ const columns = [
     {g.overview.map((p: string) => <p class="prose">{p}</p>)}
   </section>
 
+  {g.id === "coga" && (
+    <div class="coga-guide-banner">
+      <div class="coga-banner-icon" aria-hidden="true">📘</div>
+      <div class="coga-banner-body">
+        <h3>Looking for the complete COGA Design Breakdown?</h3>
+        <p>Explore our comprehensive guide to COGA’s 8 Core Objectives, practical UI patterns, user barriers, and actionable Do’s and Don’ts for designers and engineers.</p>
+        <a href={link("/plain-english/coga/")} class="coga-guide-btn">Open COGA: Making Content Usable Guide &rarr;</a>
+      </div>
+    </div>
+  )}
+
   <section aria-labelledby="current-h">
     <h2 id="current-h">What is published today</h2>
     <div class="table-wrap" tabindex="0" role="region" aria-labelledby="current-h">
@@ -229,6 +240,22 @@ const columns = [
       padding: 0.85rem 1.1rem; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;
       margin: 0 0 2rem;
     }
+
+    .coga-guide-banner {
+      display: flex; gap: 1.25rem; align-items: center;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(56, 189, 248, 0.1) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 14px;
+      padding: 1.5rem 1.75rem; margin: 0 0 2rem;
+    }
+    .coga-banner-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .coga-banner-body h3 { margin: 0 0 0.4rem; font-size: 1.25rem; color: var(--text-primary); }
+    .coga-banner-body p { margin: 0 0 1rem; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.55; }
+    .coga-guide-btn {
+      display: inline-block; background: #a855f7; color: #ffffff;
+      padding: 0.55rem 1.15rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; transition: var(--transition-fast);
+    }
+    .coga-guide-btn:hover { background: #9333ea; transform: translateY(-1px); }
 
     .status-chip {
       display: inline-block; font-size: 0.78rem; font-weight: 600; padding: 0.2rem 0.6rem;

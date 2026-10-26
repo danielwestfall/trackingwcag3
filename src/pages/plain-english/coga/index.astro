@@ -1,0 +1,1060 @@
+---
+import PlainEnglishLayout from "@/layouts/PlainEnglishLayout.astro";
+import "@/styles/related-banner.css";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => `${base}${p.startsWith("/") ? p : "/" + p}`;
+
+const objectives = [
+  {
+    num: 1,
+    id: "obj-find",
+    title: "Help users find what they need",
+    icon: "🧭",
+    challenge: "Memory loss, executive functioning challenges, or tunnel vision can make it difficult or impossible to maintain mental maps of deep or shifting navigation structures.",
+    patterns: [
+      {
+        name: "Consistent visual layout & navigation",
+        desc: "Keep headers, main navigation bars, search bars, and footer utilities in the exact same location across all pages.",
+        good: "Persistent top-level navigation with active state clearly marked.",
+        bad: "Navigation menus that shift order, collapse unexpectedly, or disappear on certain sub-pages."
+      },
+      {
+        name: "Visible, persistent search on every screen",
+        desc: "Provide an always-visible search input with auto-complete and spell-check tolerance for common misspellings.",
+        good: "Standard search box with visible magnifying glass and clear submit button.",
+        bad: "Hiding search behind an unmarked hamburger or generic icon on desktop layouts."
+      },
+      {
+        name: "Clear hierarchical headings & landmarks",
+        desc: "Use logical H1–H6 hierarchy and HTML5 landmark regions (<header>, <nav>, <main>, <aside>, <footer>) so users and assistive tools can easily skim.",
+        good: "Descriptive headings that clearly preview the section content below them.",
+        bad: "Vague headings like 'More Information' or skipping heading levels (e.g., H1 directly to H4)."
+      }
+    ],
+    wcagMapping: "Maps to WCAG 2.2: 2.4.5 Multiple Ways, 2.4.6 Headings & Labels, 3.2.3 Consistent Navigation"
+  },
+  {
+    num: 2,
+    id: "obj-understand",
+    title: "Use clear and understandable content",
+    icon: "📖",
+    challenge: "Individuals with language processing challenges, dyslexia, or non-native fluency struggle with complex vocabulary, double negatives, idioms, and cryptic symbols.",
+    patterns: [
+      {
+        name: "Plain language & high-frequency vocabulary",
+        desc: "Write in short, direct sentences (< 25 words) using the 1,500 most common words corpus. Avoid double negatives and passive voice.",
+        good: "'Submit your expense claim.'",
+        bad: "'Submit remuneration documentation pursuant to statutory bylaws.'"
+      },
+      {
+        name: "Explain jargon, acronyms & non-literal language",
+        desc: "Provide clear definitions or expandable glossaries for industry terms, acronyms, metaphors, and idioms.",
+        good: "'Log in with your SSN (Social Security Number, a 9-digit number issued by the US government).'",
+        bad: "Using idioms like 'hit the ground running' or unexplained acronyms in instructions."
+      },
+      {
+        name: "Pair icons with visible text labels",
+        desc: "Never rely on standalone, ambiguous icons for critical actions. Always pair icons with visible, persistent text.",
+        good: "A floppy disk or checkmark accompanied by the visible text 'Save'.",
+        bad: "A toolbar of 12 icon-only buttons with no visible labels until hovered."
+      }
+    ],
+    wcagMapping: "Maps to WCAG 2.2: 3.1.1 Language of Page, 3.1.2 Language of Parts, 3.1.4 Abbreviations; WCAG 3: clear-language"
+  },
+  {
+    num: 3,
+    id: "obj-errors",
+    title: "Help users avoid errors and recover easily",
+    icon: "🛡️",
+    challenge: "Users with dyscalculia, anxiety, or attention impairments make frequent input errors and can become overwhelmed if an entire form is cleared or error feedback is vague.",
+    patterns: [
+      {
+        name: "Visible inline instructions & formatting cues",
+        desc: "Provide explicit format examples (e.g. MM/DD/YYYY) directly above or below the input, never relying solely on disappearing placeholder text.",
+        good: "An input with an explicit helper text: 'Date format: MM/DD/YYYY (e.g. 05/14/1990)'.",
+        bad: "A light grey placeholder that vanishes as soon as the user starts typing."
+      },
+      {
+        name: "Actionable, human error messages",
+        desc: "Tell the user specifically what went wrong and exactly how to fix it in plain language. Link the error summary directly to the field.",
+        good: "'Please enter your 10-digit phone number without dashes or spaces.'",
+        bad: "'Error: Invalid string format (code 0x482)'."
+      },
+      {
+        name: "Reversible actions & undo mechanisms",
+        desc: "Allow users to undo actions, review orders before confirmation, and easily recover from accidental clicks.",
+        good: "A 10-second 'Undo Delete' banner or a pre-submission review step.",
+        bad: "Immediate permanent deletion with no confirmation or undo option."
+      }
+    ],
+    wcagMapping: "Maps to WCAG 2.2: 3.3.1 Error Identification, 3.3.2 Labels or Instructions, 3.3.3 Error Suggestion, 3.3.4 Error Prevention"
+  },
+  {
+    num: 4,
+    id: "obj-focus",
+    title: "Help users focus and maintain attention",
+    icon: "🎯",
+    challenge: "Users with ADHD, autism, or post-concussion syndrome lose focus easily when pages flash, animate automatically, pop up modal interruptions, or crowd content.",
+    patterns: [
+      {
+        name: "Chunk content into manageable steps",
+        desc: "Break long multi-field processes into small, logical steps with a visual progress indicator that shows current position.",
+        good: "A 4-step wizard: 'Step 2 of 4: Shipping Address' with previous/next controls.",
+        bad: "A single scrolling page with 45 form fields and no visual landmarks."
+      },
+      {
+        name: "No unsolicited pop-ups or distractions mid-task",
+        desc: "Do not trigger survey pop-ups, newsletter overlays, or promotional modal dialogs while a user is actively engaged in a workflow.",
+        good: "Suppress promotional banners and feedback prompts during checkout or form completion.",
+        bad: "Displaying a modal 'Join our newsletter for 10% off' right as the user types their credit card number."
+      },
+      {
+        name: "Pause, stop, or hide moving content",
+        desc: "Provide obvious pause/stop controls for any carousel, ticker, or background video, and respect CSS prefers-reduced-motion.",
+        good: "A prominent 'Pause animations' button and honoring system reduced-motion preferences.",
+        bad: "An auto-advancing carousel that cannot be paused and loops every 3 seconds."
+      }
+    ],
+    wcagMapping: "Maps to WCAG 2.2: 2.2.2 Pause, Stop, Hide, 2.3.3 Animation from Interactions"
+  },
+  {
+    num: 5,
+    id: "obj-memory",
+    title: "Do not rely on memory or mental calculations",
+    icon: "🧠",
+    challenge: "Users with short-term memory deficits, executive dysfunction, or dyscalculia cannot memorize codes across tabs, solve math puzzles, or transcribe distorted text.",
+    patterns: [
+      {
+        name: "Accessible authentication (No cognitive tests)",
+        desc: "Allow password managers, copy-paste into password and 2FA fields, WebAuthn/Passkeys, or email magic links instead of CAPTCHAs or memory puzzles.",
+        good: "One-click passkey login or pasting a 6-digit verification code from clipboard.",
+        bad: "Blocking paste into the password input or requiring users to solve a math problem to log in."
+      },
+      {
+        name: "Autofill & eliminate redundant entry",
+        desc: "Automatically populate information previously entered in the same session (e.g. shipping address matching billing address).",
+        good: "Checkbox: 'Billing address matches shipping address' that pre-fills all data.",
+        bad: "Requiring users to type the exact same street address three times in the same checkout."
+      },
+      {
+        name: "Persistent summaries of active context",
+        desc: "Keep key details (items in cart, selected flight times, current balance) visible throughout multi-screen flows.",
+        good: "A sticky or persistent sidebar showing the chosen date and price during reservation steps.",
+        bad: "Forcing users to click 'Back' three times just to verify what date they selected."
+      }
+    ],
+    wcagMapping: "Maps to WCAG 2.2: 3.3.7 Redundant Entry (New in 2.2), 3.3.8 Accessible Authentication (New in 2.2)"
+  },
+  {
+    num: 6,
+    id: "obj-help",
+    title: "Provide support and help when needed",
+    icon: "🤝",
+    challenge: "When users get stuck, confused, or frustrated, finding help must be instant, predictable, and stress-free.",
+    patterns: [
+      {
+        name: "Consistent help in the same location",
+        desc: "Place contact details, live chat, or help links in the exact same visual and DOM location across every view in a set of web pages.",
+        good: "A 'Help & Support' button anchored in the top-right header across every single page.",
+        bad: "Moving the help button to the footer on page 1, the sidebar on page 2, and omitting it on page 3."
+      },
+      {
+        name: "Multiple ways to get assistance",
+        desc: "Provide a variety of support mechanisms: human phone number, email, real-time chat, FAQ, and contextual tooltips.",
+        good: "Offering both self-serve FAQs and a human contact phone/chat option.",
+        bad: "An automated chatbot loop with no way to speak to a real human or file a written ticket."
+      },
+      {
+        name: "Contextual inline help that preserves state",
+        desc: "Allow users to open contextual tips or definitions without navigating away or losing their input in an active form.",
+        good: "An expandable details accordion or non-modal popover that leaves form entries intact.",
+        bad: "A help link that navigates the browser away to a new page, discarding all form entries."
+      }
+    ],
+    wcagMapping: "Maps to WCAG 2.2: 3.2.6 Consistent Help (New in 2.2); WCAG 3: consistent-help-available, conversational-support-available"
+  },
+  {
+    num: 7,
+    id: "obj-preferences",
+    title: "Adapt to user preferences and technologies",
+    icon: "⚙️",
+    challenge: "Many users with cognitive disabilities rely on personal assistive software—reading rulers, text-to-speech readers, custom fonts, high-contrast colors, or zoom.",
+    patterns: [
+      {
+        name: "Support zoom up to 400% without loss of content",
+        desc: "Ensure content reflows into a single column at high zoom levels without horizontal scrolling or overlapping text boxes.",
+        good: "Responsive flexbox/grid layout that stacks gracefully at 400% zoom.",
+        bad: "Fixed width containers with overflow: hidden that clip sentences in half."
+      },
+      {
+        name: "Allow custom typography & user stylesheets",
+        desc: "Do not block user-installed fonts (such as OpenDyslexic or Lexend) or disable text selection.",
+        good: "Clean semantic HTML allowing reader modes and custom font extensions to operate.",
+        bad: "Setting user-select: none on article text or overriding user font settings with !important."
+      },
+      {
+        name: "Respect OS preferences (Motion & Color)",
+        desc: "Support prefers-reduced-motion, prefers-color-scheme (dark/light), and forced-colors mode.",
+        good: "Honoring the user's high-contrast theme and disabling smooth scrolls when reduced motion is on.",
+        bad: "Hardcoding white backgrounds with unchangeable low-contrast grey text."
+      }
+    ],
+    wcagMapping: "Maps to WCAG 2.2: 1.4.4 Resize Text, 1.4.10 Reflow, 1.4.12 Text Spacing; WCAG 3: user-preferences-respected"
+  },
+  {
+    num: 8,
+    id: "obj-test",
+    title: "Test with real users with cognitive disabilities",
+    icon: "🧪",
+    challenge: "Automated accessibility scanners (like Axe or Lighthouse) can only test technical syntax (e.g. alt text or ARIA roles). They cannot evaluate clarity, confusion, or cognitive fatigue.",
+    patterns: [
+      {
+        name: "Include neurodivergent participants in user testing",
+        desc: "Conduct moderated and unmoderated usability sessions with individuals who have ADHD, autism, dyslexia, aphasia, or memory conditions.",
+        good: "Testing core checkout and onboarding flows with diverse participants as part of each major release.",
+        bad: "Declaring a site '100% accessible' solely based on automated CI/CD test passes."
+      },
+      {
+        name: "Evaluate cognitive load & task completion time",
+        desc: "Measure not just whether a task is technically possible, but how much time, mental effort, and confusion it causes.",
+        good: "Recording user friction points and measuring ease-of-use scores alongside pass/fail stats.",
+        bad: "Treating a user who spent 20 minutes struggling with a captcha as a 'successful completion'."
+      },
+      {
+        name: "Document usability findings into assertions",
+        desc: "Keep records of test findings, feedback, and remediation actions. This directly matches WCAG 3's emerging assertion framework.",
+        good: "Maintaining an ongoing accessibility support record detailing user testing cohorts and outcomes.",
+        bad: "Discarding user test feedback as 'subjective preferences' rather than accessibility requirements."
+      }
+    ],
+    wcagMapping: "Directly drives WCAG 3.0 Assertions (User Testing with People with Disabilities)"
+  }
+];
+
+const researchModules = [
+  {
+    title: "Voice Systems & Conversational Interfaces",
+    date: "Feb 2026",
+    status: "Draft Note",
+    url: "https://www.w3.org/TR/coga-research-modules/",
+    summary: "Explores cognitive barriers with voice assistants (Siri, Alexa, interactive voice response). Focuses on giving users enough time to respond, handling pauses without timing out, providing multi-modal visual fallbacks, and supporting plain-language verbal commands."
+  },
+  {
+    title: "Technology-Assisted Indoor Navigation & Wayfinding",
+    date: "Feb 2026",
+    status: "Draft Note",
+    url: "https://www.w3.org/TR/coga-research-modules/",
+    summary: "Addresses sensory overload, disorientation, and memory challenges in indoor spaces (airports, hospitals, transit hubs). Recommends landmark-based turn-by-turn guidance, visual step previews, and simple decision points."
+  },
+  {
+    title: "Online Safety & Wellbeing (Algorithms & Data)",
+    date: "Feb 2026",
+    status: "Draft Note",
+    url: "https://www.w3.org/TR/coga-research-modules/",
+    summary: "Focuses on manipulative UX design (dark patterns), algorithmic rabbit holes, and financial/privacy exploitation. Recommends default safety guards, clear cooling-off periods for transactions, and transparent algorithm explanations."
+  },
+  {
+    title: "Supported Decision-Making Online",
+    date: "Feb 2026",
+    status: "Draft Note",
+    url: "https://www.w3.org/TR/coga-research-modules/",
+    summary: "Enables individuals with cognitive disabilities to grant trusted supporters (advocates, family members) co-browsing, approval, or review permissions without surrendering their passwords or personal autonomy."
+  },
+  {
+    title: "Upcoming 2026 Modules: Trigger Warnings, AI Safety, User Testing",
+    date: "In Drafting",
+    status: "Task Force Priority",
+    url: "https://www.w3.org/2026/09/14-coga-minutes.html",
+    summary: "Three high-priority modules scheduled for 2026: clear content warnings for traumatic/triggering material, safety guidelines for AI agents, and a standardized methodology for cognitive usability testing."
+  }
+];
+---
+
+<PlainEnglishLayout title="COGA: Making Content Usable for Cognitive Accessibility" activeTab="related">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href={link("/")}>Home</a></li>
+      <li><a href={link("/plain-english/related/")}>Related Standards</a></li>
+      <li><a href={link("/plain-english/related/coga/")}>COGA Overview</a></li>
+      <li><span aria-current="page">Making Content Usable Breakdown</span></li>
+    </ol>
+  </nav>
+
+  <!-- Banner -->
+  <section class="dashboard-banner">
+    <div class="banner-content">
+      <div class="banner-title-group">
+        <div class="banner-badge">
+          <span class="sparkle" aria-hidden="true">🧠</span>
+          <span>W3C COGA Task Force Guide</span>
+        </div>
+        <h1>COGA: Making Content Usable</h1>
+        <p>
+          A comprehensive plain-English breakdown of the W3C Cognitive and Learning Disabilities
+          Accessibility Task Force (COGA) guidance: the 8 core design objectives, actionable UI patterns,
+          and how cognitive needs bridge the gap between WCAG 2.2 and WCAG 3.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">8</span>
+          <span class="stat-label">Core Objectives</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">24+</span>
+          <span class="stat-label">UI Design Patterns</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">5</span>
+          <span class="stat-label">Research Modules</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value highlight-shift">WCAG 3</span>
+          <span class="stat-label">Assertion Driver</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Summary -->
+  <section class="coga-intro-section" aria-labelledby="why-coga-heading">
+    <div class="intro-grid">
+      <div class="intro-main">
+        <h2 id="why-coga-heading">Why WCAG 2.2 Conformance Leaves a Cognitive Usability Gap</h2>
+        <p>
+          WCAG 2.x was constructed around <strong>mechanically testable, binary pass/fail success criteria</strong>.
+          This model works well for sensory and motor accommodations—measuring contrast ratios (4.5:1), ensuring
+          every button has an accessible name, or verifying full keyboard operability.
+        </p>
+        <p>
+          However, <strong>cognitive and learning disabilities</strong>—including ADHD, autism, dyslexia, dyscalculia,
+          traumatic brain injury, memory loss, and early dementia—cannot be fully evaluated by automated scanners.
+          A web page can achieve <strong>100% on automated accessibility audits and pass WCAG 2.2 AA</strong>, yet
+          remain completely unusable if:
+        </p>
+        <ul class="gap-list">
+          <li>It bombards users with sudden pop-ups and auto-advancing banners mid-task.</li>
+          <li>It hides critical navigation behind cryptic, unlabeled icons.</li>
+          <li>It clears an entire 15-field form because one field had an invalid phone format.</li>
+          <li>It forces users to solve math puzzles or transcribe distorted text to authenticate.</li>
+          <li>It uses dense corporate jargon, double negatives, and ambiguous metaphors.</li>
+        </ul>
+        <p>
+          The W3C published <strong>"Making Content Usable for People with Cognitive and Learning Disabilities"</strong>
+          (a formal W3C Group Note) to bridge this exact gap. It provides 8 overarching design objectives with
+          practical, tested user experience patterns.
+        </p>
+      </div>
+
+      <div class="intro-callout">
+        <div class="callout-badge">💡 Quick Summary</div>
+        <h3>The 8 Objectives at a Glance</h3>
+        <ol class="obj-mini-list">
+          <li><a href="#obj-find">1. Help users find what they need</a></li>
+          <li><a href="#obj-understand">2. Use clear &amp; understandable content</a></li>
+          <li><a href="#obj-errors">3. Help users avoid errors &amp; recover</a></li>
+          <li><a href="#obj-focus">4. Help users focus &amp; maintain attention</a></li>
+          <li><a href="#obj-memory">5. Eliminate memory &amp; calculation demands</a></li>
+          <li><a href="#obj-help">6. Provide support &amp; contextual help</a></li>
+          <li><a href="#obj-preferences">7. Adapt to user preferences &amp; tools</a></li>
+          <li><a href="#obj-test">8. Test with real neurodivergent users</a></li>
+        </ol>
+        <div class="callout-footer">
+          <a href="https://www.w3.org/TR/coga-usable/" target="_blank" rel="noopener noreferrer">
+            Read Official W3C Group Note ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The 8 Objectives Detailed -->
+  <section class="objectives-catalog" aria-labelledby="catalog-heading">
+    <div class="section-title-wrap">
+      <h2 id="catalog-heading">The 8 Core Objectives Broken Down</h2>
+      <p class="section-desc">Practical UI patterns, common pitfalls, and WCAG mapping for each cognitive objective.</p>
+    </div>
+
+    <div class="objectives-list">
+      {objectives.map((obj) => (
+        <article class="objective-card" id={obj.id}>
+          <header class="objective-header">
+            <div class="obj-badge-row">
+              <span class="obj-number">Objective {obj.num}</span>
+              <span class="obj-icon" aria-hidden="true">{obj.icon}</span>
+            </div>
+            <h3>{obj.title}</h3>
+            <p class="obj-challenge">
+              <strong>User Barrier:</strong> {obj.challenge}
+            </p>
+          </header>
+
+          <div class="patterns-grid">
+            {obj.patterns.map((pat) => (
+              <div class="pattern-item">
+                <h4>{pat.name}</h4>
+                <p class="pattern-desc">{pat.desc}</p>
+                <div class="dos-donts">
+                  <div class="do-box">
+                    <span class="box-icon" aria-hidden="true">✅</span>
+                    <div>
+                      <strong>Do:</strong>
+                      <p>{pat.good}</p>
+                    </div>
+                  </div>
+                  <div class="dont-box">
+                    <span class="box-icon" aria-hidden="true">❌</span>
+                    <div>
+                      <strong>Don't:</strong>
+                      <p>{pat.bad}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <footer class="objective-footer">
+            <span class="mapping-label">Standard Alignment:</span>
+            <code>{obj.wcagMapping}</code>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- WCAG 2.2 vs WCAG 3 Connection -->
+  <section class="evolution-bridge" aria-labelledby="evolution-heading">
+    <h2 id="evolution-heading">How COGA Bridges WCAG 2.2 into WCAG 3.0</h2>
+    <div class="bridge-grid">
+      <div class="bridge-card card-wcag22">
+        <div class="bridge-card-header">
+          <span class="bridge-icon">📘</span>
+          <h3>What Made It into WCAG 2.2</h3>
+        </div>
+        <p>
+          After years of advocacy from COGA, WCAG 2.2 introduced three breakthrough Success Criteria directly addressing
+          cognitive friction:
+        </p>
+        <ul class="bridge-items">
+          <li>
+            <strong>3.2.6 Consistent Help (Level A):</strong> Requires help features (chat, contact details, FAQs) to appear
+            in the exact same relative order and location across all pages.
+          </li>
+          <li>
+            <strong>3.3.7 Redundant Entry (Level A):</strong> Forbids forcing users to re-enter information previously provided
+            in the same session (e.g. shipping address matching billing).
+          </li>
+          <li>
+            <strong>3.3.8 Accessible Authentication (Level AA):</strong> Prohibits relying on cognitive function tests
+            (solving math equations, memorizing passwords across tabs, or transcribing CAPTCHAs) without an accessible alternative.
+          </li>
+        </ul>
+      </div>
+
+      <div class="bridge-card card-wcag3">
+        <div class="bridge-card-header">
+          <span class="bridge-icon">✨</span>
+          <h3>How COGA Shapes WCAG 3.0</h3>
+        </div>
+        <p>
+          WCAG 3 replaces binary A/AA/AAA levels with a flexible architecture that accommodates cognitive needs far better:
+        </p>
+        <ul class="bridge-items">
+          <li>
+            <strong>Assertions over pure automation:</strong> WCAG 3 introduces formal "Assertions"—documented organizational
+            proof that teams conducted usability testing with neurodivergent users and adhered to plain language guidelines.
+          </li>
+          <li>
+            <strong>Expanded Core Provisions:</strong> Provisions like <code>consistent-help-available</code>,
+            <code>cognitive-test-alternatives-available</code>, and <code>trigger-warning-available</code> elevate COGA patterns
+            directly into the normative baseline.
+          </li>
+          <li>
+            <strong>Harm &amp; Risk Tagging:</strong> WCAG 3 tags failures by their real-world user impact (e.g., stopping a user
+            from completing a critical task or causing financial/privacy risk).
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2026 Research Modules -->
+  <section class="research-modules-section" aria-labelledby="research-heading">
+    <div class="section-title-wrap">
+      <div class="section-badge">
+        <span aria-hidden="true">🔬</span>
+        <span>Cutting Edge</span>
+      </div>
+      <h2 id="research-heading">2026 Cognitive Accessibility Research Modules</h2>
+      <p class="section-desc">
+        Published by W3C in February 2026, these five modules preview where web accessibility is heading beyond traditional websites.
+      </p>
+    </div>
+
+    <div class="modules-grid">
+      {researchModules.map((m) => (
+        <div class="module-card">
+          <div class="module-top">
+            <span class="module-status">{m.status}</span>
+            <span class="module-date">{m.date}</span>
+          </div>
+          <h3><a href={m.url} target="_blank" rel="noopener noreferrer">{m.title} ↗</a></h3>
+          <p>{m.summary}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Practical Action Checklist by Role -->
+  <section class="action-checklist-section" aria-labelledby="checklist-heading">
+    <h2 id="checklist-heading">Team Action Checklist: Building for Cognitive Accessibility</h2>
+    <div class="checklist-grid">
+      <div class="checklist-col">
+        <h3>🎨 Designers</h3>
+        <ul>
+          <li>Keep persistent, visible navigation and search bars in consistent layout coordinates.</li>
+          <li>Pair all icon buttons with visible text labels; do not rely on hover tooltips alone.</li>
+          <li>Provide generous whitespace, clear margins, and chunk multi-field forms into sequential steps.</li>
+          <li>Avoid auto-advancing carousels and background video loops; design clear pause controls.</li>
+        </ul>
+      </div>
+
+      <div class="checklist-col">
+        <h3>💻 Developers</h3>
+        <ul>
+          <li>Allow clipboard paste on all password, PIN, and two-factor authentication inputs.</li>
+          <li>Support browser autocomplete tokens (<code>autocomplete="email"</code>, <code>"tel"</code>, etc.).</li>
+          <li>Ensure inline error messages are tied programmatically to fields using <code>aria-describedby</code>.</li>
+          <li>Never clear form state on validation errors; preserve all valid user inputs.</li>
+        </ul>
+      </div>
+
+      <div class="checklist-col">
+        <h3>✍️ Content Writers</h3>
+        <ul>
+          <li>Keep sentences under 25 words and write in active voice using familiar, common words.</li>
+          <li>Avoid double negatives (use "Allow notifications" instead of "Don't prevent notifications").</li>
+          <li>Explain acronyms and technical jargon on first mention with an inline definition.</li>
+          <li>Provide step-by-step instructions with clear bullet points rather than dense paragraphs.</li>
+        </ul>
+      </div>
+
+      <div class="checklist-col">
+        <h3>🧪 QA &amp; Researchers</h3>
+        <ul>
+          <li>Test forms without typing: verify that paste, password managers, and autofill work smoothly.</li>
+          <li>Test with simulated cognitive fatigue: verify recovery steps and clarity of error messages.</li>
+          <li>Conduct usability sessions with participants who have ADHD, dyslexia, and memory impairments.</li>
+          <li>Document cognitive usability findings to prepare for WCAG 3 user testing assertions.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Navigation / Related links -->
+  <nav class="pager" aria-label="Related Pages">
+    <a href={link("/plain-english/related/coga/")}>&larr; COGA Standards &amp; Minutes Tracker</a>
+    <a href={link("/plain-english/patterns/")}>APG vs. Semantic HTML Demos &rarr;</a>
+  </nav>
+</PlainEnglishLayout>
+
+<style>
+  .crumbs {
+    margin-bottom: 24px;
+    font-size: 0.88rem;
+  }
+  .crumbs ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    color: var(--text-muted);
+  }
+  .crumbs li+li::before {
+    content: "›";
+    margin-right: 8px;
+    color: var(--text-muted);
+  }
+  .crumbs a {
+    color: var(--text-accent);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    text-decoration: underline;
+  }
+
+  /* Intro Section */
+  .coga-intro-section {
+    max-width: 1200px;
+    margin: 0 auto 56px;
+  }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .intro-main h2 {
+    font-size: 1.8rem;
+    color: var(--text-pure);
+    margin-top: 0;
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+  .intro-main p {
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 1.02rem;
+    margin-bottom: 16px;
+  }
+  .gap-list {
+    margin: 16px 0 20px;
+    padding-left: 20px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .gap-list li {
+    margin-bottom: 8px;
+  }
+
+  .intro-callout {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-sm);
+  }
+  .callout-badge {
+    display: inline-block;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a78bfa;
+    background: rgba(167, 139, 250, 0.15);
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+  .intro-callout h3 {
+    margin: 0 0 16px;
+    font-size: 1.2rem;
+    color: var(--text-pure);
+  }
+  .obj-mini-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: grid;
+    gap: 10px;
+  }
+  .obj-mini-list a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.92rem;
+    display: block;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    transition: var(--transition-fast);
+  }
+  .obj-mini-list a:hover {
+    color: var(--text-accent);
+    border-color: var(--accent-blue);
+    transform: translateX(3px);
+  }
+  .callout-footer a {
+    color: var(--text-accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Section Title Wrap */
+  .section-title-wrap {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .section-title-wrap h2 {
+    font-size: 2rem;
+    color: var(--text-pure);
+    margin: 0 0 8px;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(168, 85, 247, 0.15);
+    color: #d8b4fe;
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+
+  /* Objectives Catalog */
+  .objectives-catalog {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+  }
+  .objectives-list {
+    display: grid;
+    gap: 36px;
+  }
+  .objective-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: 32px 36px;
+    box-shadow: var(--shadow-sm);
+  }
+  .objective-header {
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
+  .obj-badge-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .obj-number {
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-accent);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+  }
+  .obj-icon {
+    font-size: 1.5rem;
+  }
+  .objective-header h3 {
+    font-size: 1.6rem;
+    color: var(--text-pure);
+    margin: 6px 0 10px;
+  }
+  .obj-challenge {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .obj-challenge strong {
+    color: var(--text-pure);
+  }
+
+  .patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .pattern-item {
+    background: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .pattern-item h4 {
+    margin: 0 0 8px;
+    font-size: 1.12rem;
+    color: var(--text-pure);
+  }
+  .pattern-desc {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0 0 16px;
+    flex: 1;
+  }
+  .dos-donts {
+    display: grid;
+    gap: 10px;
+  }
+  .do-box, .dont-box {
+    display: flex;
+    gap: 10px;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+  }
+  .do-box {
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    color: #86efac;
+  }
+  .do-box p, .dont-box p {
+    margin: 2px 0 0;
+    color: var(--text-primary);
+  }
+  .dont-box {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+  }
+  .box-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .objective-footer {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+  .mapping-label {
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .objective-footer code {
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    color: var(--text-accent);
+    font-size: 0.84rem;
+    font-family: var(--font-mono);
+  }
+
+  /* Evolution Bridge Section */
+  .evolution-bridge {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+  }
+  .evolution-bridge h2 {
+    font-size: 1.9rem;
+    text-align: center;
+    color: var(--text-pure);
+    margin-bottom: 32px;
+  }
+  .bridge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(450px, 100%), 1fr));
+    gap: 24px;
+  }
+  .bridge-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: 28px 32px;
+  }
+  .card-wcag22 {
+    border-left: 4px solid var(--accent-blue);
+  }
+  .card-wcag3 {
+    border-left: 4px solid #a855f7;
+  }
+  .bridge-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .bridge-icon {
+    font-size: 1.5rem;
+  }
+  .bridge-card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--text-pure);
+  }
+  .bridge-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-size: 0.98rem;
+  }
+  .bridge-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .bridge-items li {
+    background: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .bridge-items strong {
+    color: var(--text-pure);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .bridge-items code {
+    color: var(--text-accent);
+    font-family: var(--font-mono);
+  }
+
+  /* Research Modules */
+  .research-modules-section {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+  }
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: 20px;
+  }
+  .module-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .module-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.78rem;
+  }
+  .module-status {
+    background: rgba(168, 85, 247, 0.15);
+    color: #d8b4fe;
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .module-date {
+    color: var(--text-muted);
+  }
+  .module-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+  }
+  .module-card h3 a {
+    color: var(--text-pure);
+    text-decoration: none;
+  }
+  .module-card h3 a:hover {
+    color: var(--text-accent);
+    text-decoration: underline;
+  }
+  .module-card p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+  }
+
+  /* Action Checklist Section */
+  .action-checklist-section {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+    padding: 36px 32px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+  }
+  .action-checklist-section h2 {
+    font-size: 1.8rem;
+    color: var(--text-pure);
+    text-align: center;
+    margin: 0 0 32px;
+  }
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 24px;
+  }
+  .checklist-col {
+    background: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+  .checklist-col h3 {
+    margin: 0 0 14px;
+    font-size: 1.15rem;
+    color: var(--text-pure);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 8px;
+  }
+  .checklist-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .checklist-col li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .checklist-col li::before {
+    content: "▫";
+    position: absolute;
+    left: 0;
+    color: var(--text-accent);
+    font-size: 1.1rem;
+    top: -2px;
+  }
+
+  /* Pager */
+  .pager {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 24px;
+    font-weight: 600;
+  }
+  .pager a {
+    color: var(--text-accent);
+    text-decoration: none;
+  }
+  .pager a:hover {
+    text-decoration: underline;
+  }
+</style>

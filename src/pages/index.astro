@@ -342,6 +342,113 @@ const alsoMoved = recent ? [...recent.closedIssues.map((i: any) => ({ ...i, why:
     </div>
   </section>
 
+  <!-- W3C Guidance Decision Guide / Cheat Sheet -->
+  <section class="cheat-sheet-section" aria-labelledby="cheat-sheet-heading">
+    <div class="section-header">
+      <div class="section-badge">
+        <span aria-hidden="true">🧭</span>
+        <span>Decision Matrix</span>
+      </div>
+      <h2 id="cheat-sheet-heading">Which W3C Resource Should You Use?</h2>
+      <p>A quick-reference cheat sheet to find the exact official W3C specification, design tutorial, or conformance test rule for your current task.</p>
+    </div>
+
+    <div class="table-wrap" tabindex="0" role="region" aria-label="W3C Guidance Cheat Sheet">
+      <table class="cheat-table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 25%;">When You Need To...</th>
+            <th scope="col" style="width: 26%;">Reach For (W3C Standard)</th>
+            <th scope="col" style="width: 29%;">What It Delivers</th>
+            <th scope="col" style="width: 20%;">On This Site</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <strong>Build native layouts, forms &amp; navigation</strong>
+              <span class="row-subtext">Semantic page structure, menus, tables, responsive forms, and carousels</span>
+            </th>
+            <td>
+              <a href="https://www.w3.org/WAI/tutorials/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <strong>WAI Web Accessibility Tutorials</strong> ↗
+              </a>
+              <span class="status-chip chip-official">Official W3C / WAI</span>
+            </td>
+            <td>Semantic HTML-first implementation guides, accessible layouts, and clear code patterns.</td>
+            <td>
+              <a href={link("/plain-english/patterns/")} class="site-link">Semantic vs APG Patterns &rarr;</a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <strong>Build complex interactive app widgets</strong>
+              <span class="row-subtext">Modal dialogs, tabs, comboboxes, accordions, tree views, sliders</span>
+            </th>
+            <td>
+              <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <strong>ARIA Authoring Practices (APG)</strong> ↗
+              </a>
+              <span class="status-chip chip-official">W3C Group Note</span>
+            </td>
+            <td>Widget keyboard interaction contracts, focus management specs, and ARIA roles/states.</td>
+            <td>
+              <a href={link("/plain-english/patterns/")} class="site-link">30 Interactive Patterns &rarr;</a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <strong>Audit HTML/CSS compliance &amp; fix issues</strong>
+              <span class="row-subtext">Verifying whether specific markup satisfies WCAG success criteria</span>
+            </th>
+            <td>
+              <a href="https://www.w3.org/WAI/WCAG22/Techniques/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <strong>WCAG Techniques &amp; Failures</strong> ↗
+              </a>
+              <span class="status-chip chip-standard">Informative Companion</span>
+            </td>
+            <td>Sufficient techniques (HTML, CSS, Scripting, ARIA) and common anti-patterns that guarantee failure.</td>
+            <td>
+              <a href={link("/plain-english/wcag22/")} class="site-link">WCAG 2.2 Reference &rarr;</a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <strong>Settle audit disputes &amp; tool mismatches</strong>
+              <span class="row-subtext">Explaining why automated scanners disagree or testing ambiguous requirements</span>
+            </th>
+            <td>
+              <a href="https://www.w3.org/TR/act-rules-format-1.1/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <strong>ACT Rules Format 1.1</strong> ↗
+              </a>
+              <span class="status-chip chip-rec">W3C Recommendation</span>
+            </td>
+            <td>Strict, objective rule definitions with formal test cases (passed/failed/cantTell) and assumptions.</td>
+            <td>
+              <a href={link("/plain-english/related/act/")} class="site-link">ACT Plain-English Guide &rarr;</a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <strong>Design for memory, attention &amp; cognition</strong>
+              <span class="row-subtext">Workflows, error prevention, clear wording, authentication, and mental fatigue</span>
+            </th>
+            <td>
+              <a href="https://www.w3.org/TR/coga-usable/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                <strong>COGA: Making Content Usable</strong> ↗
+              </a>
+              <span class="status-chip chip-official">W3C Group Note</span>
+            </td>
+            <td>8 core design objectives, user personas, cognitive barrier patterns, and 2026 research modules.</td>
+            <td>
+              <a href={link("/plain-english/coga/")} class="site-link">COGA Deep Dive &rarr;</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <!-- Explore by Role Section -->
   <section class="role-launch-section">
     <div class="section-header">
@@ -1050,6 +1157,109 @@ const alsoMoved = recent ? [...recent.closedIssues.map((i: any) => ({ ...i, why:
     .search-submit-btn {
       width: 100%;
     }
+  }
+
+  /* Cheat Sheet / Decision Matrix */
+  .cheat-sheet-section {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+    padding: 36px 32px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--text-accent);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+  }
+  .cheat-sheet-section .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--surface-base);
+  }
+  .cheat-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 48rem;
+    text-align: left;
+  }
+  .cheat-table th, .cheat-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  .cheat-table thead th {
+    background: var(--surface-subtle);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+  }
+  .cheat-table tbody th {
+    font-weight: 600;
+    color: var(--text-pure);
+  }
+  .cheat-table tbody tr:last-child > * {
+    border-bottom: none;
+  }
+  .cheat-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .row-subtext {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+  .resource-link {
+    display: inline-block;
+    color: var(--text-pure);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 700;
+  }
+  .resource-link:hover {
+    color: var(--text-accent);
+  }
+  .status-chip {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    margin-top: 6px;
+    border: 1px solid var(--border-default);
+  }
+  .chip-official { background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); color: #7dd3fc; }
+  .chip-rec { background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.3); color: #86efac; }
+  .chip-standard { background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.3); color: #d8b4fe; }
+  .site-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-accent);
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-decoration: none;
+  }
+  .site-link:hover {
+    text-decoration: underline;
   }
 
   /* Light Theme Overrides */
