@@ -611,9 +611,9 @@
       ],
       "user": "KevinP-NZ",
       "created": "2024-05-17T00:17:09Z",
-      "updated": "2026-10-18T19:39:39Z",
+      "updated": "2026-10-26T09:59:41Z",
       "closed": null,
-      "commentCount": 2,
+      "commentCount": 3,
       "body": "Input controlEXPLORATORY\r\nInteractive components are available to all navigation and input methods.\r\n\r\nSuggest \r\n\r\nInput controlEXPLORATORY\r\nThe underlying function of interactive components are available to all navigation and input methods. e.g. If the control itself is not accessible it is a clearly labelled alternative for a control that is.",
       "url": "https://github.com/w3c/wcag3/issues/76",
       "comments": [
@@ -626,6 +626,11 @@
           "user": "patrickhlauke",
           "created": "2024-08-28T14:16:37Z",
           "body": "multimodal access / alternatives will need to be available for services/products/sites that rely (primarily) on voice interactions..."
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-10-26T09:59:41Z",
+          "body": "Recommend we not add this item \n\nSome interactive elements do not lend themselves to multiple input methods.  For example text entry fields.  It is only reasonable for these to be accessible using a keyboard interface.  That allows input from any keyboard or alternate keyboard supported by the platform including speech, braille keyboard, sign-to-text, drawing letters, morse etc.   \n\nIf we added this requirement - the author themselves would need to provide a speech recognition button and the ability to handwrite on the page in order to allow users to have these alternate forms of input for user agents/platforms that do not have them.\n\nAll platform have some form of ability to generate text but not all input mechanisms - and those that do (allow speech or gesture or braille or sign ) have options for text entry options for- do so through the keyboard interface for text entry.  "
         }
       ]
     },
@@ -2554,9 +2559,9 @@
       ],
       "user": "detlevhfischer",
       "created": "2019-03-26T10:17:39Z",
-      "updated": "2026-05-02T16:31:49Z",
+      "updated": "2026-10-26T12:06:19Z",
       "closed": null,
-      "commentCount": 33,
+      "commentCount": 34,
       "body": "This WCAG 2.2 proposal \"Label Gaps\" relates to the broader LVTF SC proposal \"Proximity of Related Information: Users know about and can find related information\". It takes a narrower approach, focussing on label-labelled element pairs. I hope this way it may meet the testability criterion.\r\nThis is a draft text for the proposed SC \"Label Gaps\":\r\n\r\n> Label gaps\r\n> When one element acts as a label of another element, the gap between the two is no larger than twice the width or height of the element labelled (whichever is smaller).\r\n\r\nI.e., the simple formula is MIN(e.width;e.height)*2. This may be measured with an online ruler  (e.g. Web Developer Toolbar / Miscallaneous / Display Ruler), possibly also automatically by a script processing the absolute positions and dimensions of two elements to work out the pixel offset.\r\nHere are two illustrations of the concept:\r\n\r\n![name-label](https://user-images.githubusercontent.com/9989439/55013743-079a3900-4fea-11e9-9d43-b218f141283f.png)\r\n\r\n_Alternative text:_ The first image shows a label (\"First name\") followed by an input field. \r\nThe top half shows the pass condition: The label gap is 16 mm, the hight of the text field is also 16 px. Even a label gap of 32 px (twice the field height) would still meet the SC. \r\nThe bottom half shows the FAIL condition: the horizontal gap is 33 px so it is just above the allowed maximum label gap of twice the element's width of 16 px.\r\n\r\n----\r\n\r\n![search-label](https://user-images.githubusercontent.com/9989439/55013761-1385fb00-4fea-11e9-9f79-245e11ba79ca.png)\r\n\r\n_Alternative text:_ The second image shows a label (\"Search\") above and slightly to the left of a search input field. (This is not uncommon when a heading, search, doubles as a visual label for the field). The hight of the text field is again 16 px.  \r\n\r\nThe top half shows a pass condition: The vertical label gap is 30 px while the horizontal label gap is only 10 px. Even a label gap of 32 px (twice the field height) would still meet the SC.\r\nThe bottom half shows the FAIL condition: the vertical gap is 33 px so it is just above the allowed maximum label gap of twice the element's width of 16 px.\r\n\r\nObviously, the formula for measuring this is up for discussion, this is a first approximation. Possible exceptions where exceeding the distance is OK might be:\r\n\r\n- Field is redundantly labelled by placeholder or a (conventional) icon (think: loupe)\r\n- Left-aligned group of labels where indvidual label fails because its text is shorter\r\n- There are guiding lines from label to labelled elements (independently, these will need meet contrast requirements of 3:1 according  to SC 1.4.11)\r\n\r\n",
       "url": "https://github.com/w3c/wcag3/issues/194",
       "comments": [
@@ -2724,6 +2729,11 @@
           "user": "patrickhlauke",
           "created": "2026-05-02T16:31:49Z",
           "body": "once you try and define explicitly how to visually represent something \"clearly\", you get into making arbitrary-ish graphic/visual design statements"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-10-26T12:06:18Z",
+          "body": "Note that if you are using a magnifier  -- or even have unsteady head or eyes -- if the label is left justified and the control is right justified it can be difficult or impossible to figure out which label goes with which control if they are far apart.  Esp if farther apart horizontally than the vertical spacing between control lines.  (eg   close vertical but far horizontal). \n\nIt may be standard practice to double justify but it is an accessibility barrier if the gap horiz is more than 2x the vertical spacing.  (the 2x can be adjusted but not unrestricted) "
         }
       ]
     },
@@ -2768,9 +2778,9 @@
       ],
       "user": "DavidMacDonald",
       "created": "2019-03-13T15:00:03Z",
-      "updated": "2026-05-02T16:19:45Z",
+      "updated": "2026-10-26T13:51:12Z",
       "closed": null,
-      "commentCount": 4,
+      "commentCount": 5,
       "body": "I know one thing that doesn't work well for people with low vision is disabled interface elements. We've exempted them from 1.4.3 contrast, but maybe a better way is to provide an icon for a disabled UI element. \r\n\r\nSo it would have to have at least 3:1 contrast OR add an icon to indicate it is disabled,",
       "url": "https://github.com/w3c/wcag3/issues/197",
       "comments": [
@@ -2793,6 +2803,11 @@
           "user": "adampage",
           "created": "2026-05-02T16:19:45Z",
           "body": "This is certainly in the neighborhood of the “[Interactive elements distinguishable](https://w3c.github.io/wcag3/guidelines/#interactive-elements-distinguishable)” provision:\n\n> [Interactive elements](https://w3c.github.io/wcag3/guidelines/#dfn-interactive-element) are visually distinguishable without interaction from static [content](https://w3c.github.io/wcag3/guidelines/#dfn-content) and include visual cues on how to use them.\n\nHowever, disabled elements seem to be excluded by the current definition of “[_interactive element_](https://w3c.github.io/wcag3/guidelines/#dfn-interactive-element)”:\n\n> element that responds to user input and has a distinct [programmatically determinable](https://w3c.github.io/wcag3/guidelines/#dfn-programmatically-determinable) name\n\nPerhaps we could broaden that — or introduce a new term — to cover elements that generally exist _to be interactive_, even if they may conditionally take on a disabled or read-only state?\n\nDisabled elements _do_ seem to be covered by the definition of “[_non-interactive element_](https://w3c.github.io/wcag3/guidelines/#dfn-non-interactive-element)”:\n\n> element that does not respond to user input and does not include sub-parts\n\n...but because they’re not mentioned [in the surrounding example and notes](https://w3c.github.io/wcag3/guidelines/#dfn-non-interactive-element:~:text=include%20sub%2Dparts-,EXAMPLE,Letters%20within%20text%20do%20not%20constitute%20a%20%E2%80%9Csmaller%20part%E2%80%9D.,-non%2Dliteral%20language), I wonder what we intend.\n\nThe “[Disabled controls explained](https://w3c.github.io/wcag3/guidelines/#disabled-controls-explained)” provision is also applicable here.\n\nRelated: w3c/wcag#5053"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-10-26T13:51:11Z",
+          "body": "Think the disabled icon is a great idea - -but not something we should require.    \n\nAdd it as a good practice (or whatever we are calling them today)?\n\n"
         }
       ]
     },
@@ -3280,9 +3295,9 @@
       ],
       "user": "Seirdy",
       "created": "2022-04-22T23:09:19Z",
-      "updated": "2026-10-19T14:59:18Z",
+      "updated": "2026-10-24T06:47:48Z",
       "closed": null,
-      "commentCount": 13,
+      "commentCount": 14,
       "body": "An APCA-based color contrast guideline looks like a great improvement over existing guidelines. However, sufficient contrast alone does not guarantee accessible colors. I worry that the APCA's recommendations for dark themes may incentivize the adoption of palettes with different accessibility issues.\r\n\r\nPure white-on-black palettes can cause halation. Human eyes adjust to average brightness; lightening up the background just a little can provide enough of a \"glow\" to eliminate the halos. Backlash against an earlier version of GitHub's dark theme was due to having a background that was too dark. Themes with extreme contrast should be reserved for a `prefers-contrast: more` media query.\r\n\r\nColors like yellow fare well against dark backgrounds according to the APCA. However, yellow and red are [autism-unfriendly colors](https://www.experia.co.uk/blog/ultimate-guide-to-autism-friendly-colours/) that can [trigger overstimulation](https://www.tpgi.com/beyond-wcag-losing-spoons-online/). The latter link also shows how extreme contrast can overstimulate. I understand that cognitive accessibility is gaining more attention in the WAI, so the cognitive accessibility of color palettes might be a good area of focus.\r\n\r\nThe impacts of yellow and red can be mitigated the same way that people mitigate blue/purple's poor contrast against dark backgrounds: lightening. Pink and very pale yellow are less overstimulating than pure red and yellow.\r\n\r\nRight now, the APCA signals to designers that they need to lighten their blue/purple or switch to yellow/orange, when picking light backgrounds or foregrounds. It does not signal the need to also lighten yellow and orange colors. Furthermore, it doesn't acknowledge the fact that lightening the foreground + darkening the background can be taken too far and trigger halation.\r\n\r\nI see multiple possible solutions that are not mutually exclusive:\r\n\r\n1. Supplement the APCA with guidelines against harsh yellows and reds, except for warnings.\r\n2. Revise the APCA so that it penalizes having \"too much\" contrast\r\n3. Supplement the APCA with guidelines against pure-black backgrounds, encouraging a threshold for \"minimum brightness\"",
       "url": "https://github.com/w3c/wcag3/issues/221",
       "comments": [
@@ -3350,6 +3365,11 @@
           "user": "mraccess77",
           "created": "2026-10-19T14:59:17Z",
           "body": "Alternating blocks of polarity are an issue.  it also seems for me the density of information can also make a big difference as well as the ambient light.  So, there are multiple spatial and environmental factors at play.  However, if we now say the default black text on white webpages fails that will lead to some challenges as well."
+        },
+        {
+          "user": "sbustelo",
+          "created": "2026-10-24T06:47:48Z",
+          "body": "@charleshalldesign Regarding research links for upper thresholds: I ended up anchoring those bounds (10:1 for optimal legibility and 15:1 for discomfort limits) to the **FAA Human Factors Design Standard (HF-STD-001B, Chapter 8)**.\n\nRegarding your point of high contrast on contiguous area: I completely agree. In my experimental core scoring, my approach is to discourage high contrast by degrading the rating (e.g., Level 6 is reserved for sustained reading, while Level 5 signals restricted or short-text usage). However, for an auditing framework, evaluating the spatial extent of aggressive areas as supplemental guidance would be wise.\n\nTo explore how individual optical and chromatic penalties can interact, I put together an interactive map decomposition tool:\n\n[Experiment: Score Decomposition / Ergonomy Inspector](https://ipax.bustelo.com.ar/?m=map-decomposition)\n\nAll underlying formulas and physiological parameters are fully documented and open for calibration (source code available in the `ipax-scoring` GitHub repo).\n\n***\n\n@mraccess77 Absolutely; also, while many factors can be considered, my proposal is to put into a score what's possible in just a number (or letter, as in A / B / C… F ).\n\nThe goal of a score that doesn’t just go up with contrast would not be to \"fail\" classic black-on-white, but to avoid *rewarding* it by omission, ensuring raw contrast ratio isn't confused with a complete legibility score. This would allow the model to reduce harm by accounting for reducible physiological factors without flagging standard UI defaults as non-compliant.\n\nTo illustrate the point, I built this interactive graphic:\n\n[Contrast vs Score](https://ipax.bustelo.com.ar/?m=map-contrast) (source code available in the `ipax-scoring` GitHub repo).\n"
         }
       ]
     },
@@ -3971,12 +3991,18 @@
       ],
       "user": "maryjom",
       "created": "2022-02-07T23:05:59Z",
-      "updated": "2025-01-16T22:11:43Z",
+      "updated": "2026-10-23T09:36:14Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "### Introduction question 3\r\nWhat do you see as the possible tradeoffs in using a flexible conformance approach? Would you want to see multiple conformance models?\r\n- **Positives:**\r\n    - Flexible conformance could help teams focus on the most important workflows for full conformance.\r\n    - It recognizes that 100% conformance for large or complex websites or web applications of 100% of content is difficult – even if you strive to do everything.\r\n    - It could help with rating content even when differences in interpretation occur.\r\n    - Reducing the overwhelming nature of “everything must be fully conformant or it’s not conformant” – where issues for one criterion or in one area of a web page undoes all of the good of doing most of the accessibility work correctly. It discourages trying at all.\r\n- **Negatives:**\r\n    - Could be perceived as a method to “cop out” of making websites and web applications as fully accessible as possible.\r\n    - May be more difficult for someone assessing/scoring the content for accessibility if the conformance scoring is too complicated or not able to be automated. For example, counting instances of a particular element to ensure most are accessible. \r\n    - May be difficult to determine and document the workflows verified for conformance in very complicated web applications that support multiple workflows for different roles of users. (As an example, an employ schedule tracking application may have the following users: Human Resources, employee, manager OR another example is an issue tracking system application: application admin., developer, project manager, product service representative). Each role could have several workflows that are not used by other roles of user. \r\n    - There may be difficulty in identifying and engaging persons with disabilities to involve for user testing. \r\n    - For aspects of accessibility conformance testing that are manual, it may be difficult to know if you've tested enough samples to claim conformance. For example, non-text content. It’s easy to automate the existence of an alt attribute and count those instances. However it is difficult to know how many text alternatives one **should** check to verify the alternative text is actually meaningful. \r\n\r\nMultiple conformance models could be helpful. For smaller, constrained scope of testing, like one or two web pages, a more thorough test could be done. For larger scale conformance checks, workflow conformance would be easier to apply. Perhaps by having a test protocol to identify the top priority workflows as well as important repeated content or information (e.g. headers, footers, navigation, search, find help, report issues) be required for conformance. This could go a long way to improve usability and accessibility. ",
       "url": "https://github.com/w3c/wcag3/issues/249",
-      "comments": []
+      "comments": [
+        {
+          "user": "alastc",
+          "created": "2026-10-23T09:36:13Z",
+          "body": "Hi Mary-Jo,\n\nWith the [recent update](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/), I think most of this has changed... \n\nOverall the current approach is to keep conformance simple, and also include:\n- Informative documents (probably notes) on testing, reporting and policy. These are both \"how to use WCAG 3 effectively\", and \"here are things to avoid\". \n- Reporting tiers, both under the \"conformance\" level, and above.\n\nObviously the notes are still very much at the early stages, but is it worth closing this comment on conformance?"
+        }
+      ]
     },
     "250": {
       "number": 250,
@@ -8224,12 +8250,28 @@
       ],
       "user": "mraccess77",
       "created": "2026-01-16T00:52:14Z",
-      "updated": "2026-03-27T22:53:33Z",
+      "updated": "2026-10-22T14:53:14Z",
       "closed": null,
-      "commentCount": 2,
+      "commentCount": 3,
       "body": "Blurred content such as images or background give me an instant headache.  This is likely du to me not having binocular vision.  It would be nice to have a requirement for this with an essential or mode of adjustment exception.\n",
       "url": "https://github.com/w3c/wcag3/issues/543",
-      "comments": []
+      "comments": [
+        {
+          "user": "DaleenRabe",
+          "created": "2026-02-04T05:28:44Z",
+          "body": "Thank you for sharing this, that is a very helpful insight. I want to make sure I understand how to best implement this in a design.\n\n### To help me visualize the requirement, could you clarify a few things?\n\n1. Threshold: Is there a specific level of blur that triggers the headache, or is any amount of blur problematic? (I’ve included three examples https://drive.google.com/drive/folders/19xsizgej2neX3xLj4y7uJixSLYKgD7kE?usp=drive_link with increasing levels of blur for reference).\n2. Context: Does the headache occur primarily when the background is blurred but the foreground remains sharp, or is it the lack of clear edges overall?\n3. Alternatives: Would a non-blurred alternative—such as a solid dark 'scrim' (overlay) or a high-contrast border around the widget—be a better solution for your vision needs?\""
+        },
+        {
+          "user": "mraccess77",
+          "created": "2026-02-05T02:08:38Z",
+          "body": "Those are good questions.  From what I can tell:\n* the more blur and the larger blur area the worse the impact - although once something becomes completely blurred into solid patches it starts to get better.\n* The issue occurs regardless of whether it's a focused foreground object e.g. person in front of a blurred background or just a blurred image.\n* for situations where something like the past is being conveyed - something like fading out the edges works for me rather than blurring\n* Use of virtual backgrounds in online meetings is much preferred than blurring a person's real background\n\nOne other situation which may be related causes me issues as well - that' when looking at a light object in a dark environment.  The object can go in and out of focus causing a headache because it seems like my eyes are not able to determine the focus point and are trying to focus.\n\nI have a high level of correction in my contact lenses - not sure if that has anything to do with this."
+        },
+        {
+          "user": "mraccess77",
+          "created": "2026-10-22T14:53:13Z",
+          "body": "How do I get this issue over to the appropriate task force working on this?"
+        }
+      ]
     },
     "544": {
       "number": 544,
@@ -8684,12 +8726,18 @@
       ],
       "user": "adampage",
       "created": "2026-03-02T21:52:59Z",
-      "updated": "2026-03-27T18:55:08Z",
+      "updated": "2026-10-26T11:59:49Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "The current [WCAG 3 working draft](https://w3c.github.io/wcag3/guidelines/) doesn’t seem to have an equivalent for the [Character Key Shortcuts](https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html) success criterion added back in WCAG 2.1. Should it?\n\nAlthough the original SC is mainly positioned around voice control, it does describe [barriers for other people](https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html#:~:text=Keyboard%2Donly%20users,across%20different%20applications.) as well.\n\nI put together [a quick experiment](https://cdpn.io/pen/debug/jEMPwvL/06f138a6e48b1f8bd3fc93b6fc341160) to see how today’s voice control solutions behave in this regard.\n\nCould there be a way to address this issue while not putting a burden on authors to create custom UI for disabling or re-mapping shortcuts? Some example conditions that crossed my mind:\n\n- Character key shortcuts must not be executed while the user is inputting text\n- Character key shortcuts must not be provided for ‘consequential’ or irreversible operations",
       "url": "https://github.com/w3c/wcag3/issues/603",
-      "comments": []
+      "comments": [
+        {
+          "user": "GreggVan",
+          "created": "2026-10-26T11:59:49Z",
+          "body": "I believe it should.   it should at least be possible to turn it off.  Great as option but not as something that is forced on user.  Can be very confusing.  "
+        }
+      ]
     },
     "605": {
       "number": 605,
@@ -10142,11 +10190,12 @@
       "labels": [
         "Path: Text and wording",
         "Other: Definitions & Terminology",
-        "P - Text contrast sufficient (minimum)"
+        "P - Text contrast sufficient (minimum)",
+        "P - Text detectable"
       ],
       "user": "alastc",
       "created": "2026-07-01T14:44:08Z",
-      "updated": "2026-09-22T02:13:49Z",
+      "updated": "2026-10-23T20:28:28Z",
       "closed": null,
       "commentCount": 9,
       "body": "The [current definition](https://www.w3.org/TR/wcag-3.0/#dfn-text) is:\n> sequence of characters that can be [programmatically determined](https://www.w3.org/TR/wcag-3.0/#dfn-programmatically-determinable), where the sequence is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)\n\nWe also have a requirement that visually available text is programmatically:\n> **Requirement**: All visible [text](https://www.w3.org/TR/wcag-3.0/#dfn-text) has a [programmatically determinable](https://www.w3.org/TR/wcag-3.0/#dfn-programmatically-determinable) equivalent.\n> **Applies when**: Content includes contains text that is informative to the user, including text embedded in image formats.\n> **Except when**:\n> - making visible text programmatically determinable would lead to duplication within the page/view.\n> - text is [decorative](https://www.w3.org/TR/wcag3/#dfn-decorative), is used only for visual formatting, or is not presented to users.\n\nThe definition of text itself doesn't make a requirement, so that is needed, but clashes with the definition.\n\nAlso, in WCAG 3 we've had conversations about steering clear of the format aspect, so whether text is added with unicode, images, or something else, it is still text. If an icon is implemented with unicode, i.e. not something in human language, it is not text.\n\nI propose that we simplify the definition to:\n> sequence of characters that is expressing something in [human language](https://www.w3.org/TR/wcag-3.0/#dfn-human-language)",
@@ -10627,9 +10676,9 @@
       ],
       "user": "adampage",
       "created": "2026-08-21T13:30:18Z",
-      "updated": "2026-10-21T17:58:58Z",
+      "updated": "2026-10-26T11:25:26Z",
       "closed": null,
-      "commentCount": 2,
+      "commentCount": 3,
       "body": "The term “[_method_](https://www.w3.org/TR/wcag-3.0/#dfn-method)” carries a specific meaning in the guidelines:\n\n> detailed information, either technology-specific or technology-agnostic, on ways to satisfy the [requirement](https://www.w3.org/TR/wcag-3.0/#dfn-requirement)\n\nThe current “[Input method flexible](https://www.w3.org/TR/wcag-3.0/#input-method-flexible)” provision uses “_method_” more generally. Perhaps “_modality_” would be more accurate and avoid confusion?\n\nRelates back to [a change in PR #812](https://github.com/w3c/wcag3/pull/812#discussion_r3817334129).",
       "url": "https://github.com/w3c/wcag3/issues/820",
       "comments": [
@@ -10642,6 +10691,11 @@
           "user": "fstrr",
           "created": "2026-10-21T17:58:57Z",
           "body": "Subgroup comment on 2026-10-21: we would prefer to use Input Method and define that term as it's more common. We'll get this on an upcoming AGWG agenda."
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-10-26T10:13:18Z",
+          "body": "I think the outcome of the subgroup was not that we would just use Method -- but that we liked that word but also recognized that we can't have two different meanings for METHOD in the document.   \n\nThe suggestion at the end of the meeting was that we change the other use of Method  to \"**techniques**\" \\\n a) to avoid the METHOD  word conflict, \\\n b) for continuity and consistency because that is what we called the same thing in  WCAG2 and \\\n c) it is much clearer that they are ONE way of doing things and not THE way of doing them. \n\nTHEN (and only then) we would be free to keep the word \"method\" here  -- to match with other uses of the word or phrase \"input methods\" in other venues.   Which is what we would prefer.   But we need to change the other use of the word first to 'techniques'. "
         }
       ]
     },
@@ -10772,12 +10826,18 @@
       ],
       "user": "mcking65",
       "created": "2026-09-16T19:08:29Z",
-      "updated": "2026-09-16T19:08:29Z",
+      "updated": "2026-10-22T18:53:21Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "In the Guidelines doc, sometimes the permalink is after a heading and sometimes it is before. This makes it more difficult for screen reader users to understand and navigate the document.\n\nPlease consistently place the permalinks after the headings.\n\n#### Good example H2\n\n```\n<div class=\"header-wrapper\">\n  <h2 id=\"x2-guidelines\">\n    <bdi class=\"secno\">2. </bdi>\n    Guidelines<span class=\"status-marker\">Developing</span>\n  </h2>\n  <a class=\"self-link\" href=\"#guidelines\" aria-label=\"Permalink for Section 2. Guidelines\"></a>\n</div>\n```\n\n#### Bad example H4\n\n```\n<div class=\"header-wrapper\">\n  <a class=\"self-link\" href=\"#pointer-input\" aria-label=\"Permalink for Guideline 2.4.3  Pointer input\"></a>\n  <h4 id=\"x2-4-3-pointer-input\">\n    <bdi class=\"secno\">Guideline 2.4.3 </bdi>\n    <a href=\"/wcag3/informative/input-operation/pointer-input/\">Pointer input</a>\n  </h4>\n</div>\n```",
       "url": "https://github.com/w3c/wcag3/issues/868",
-      "comments": []
+      "comments": [
+        {
+          "user": "philorien",
+          "created": "2026-10-22T18:53:21Z",
+          "body": "I'll tackle this one"
+        }
+      ]
     },
     "869": {
       "number": 869,
@@ -11509,7 +11569,7 @@
       ],
       "user": "lbeaze",
       "created": "2026-10-16T20:30:06Z",
-      "updated": "2026-10-16T21:34:45Z",
+      "updated": "2026-10-26T09:32:35Z",
       "closed": null,
       "commentCount": 1,
       "body": "[Focus retained](https://w3c.github.io/wcag3/guidelines/#focus-retained) currently says “A user can focus on a [content](https://w3c.github.io/wcag3/guidelines/#dfn-content) “area”, such as a modal or popup, then resume their view of all content using a limited number of steps.”\n\nThe current draft test only mentions keyboard focus. Are you planning to add test procedures for using a mouse, touchscreen, etc?\n\nInstead of focusing narrowly on keyboard focus order, consider building out this provision so that it helps meet the needs of non-screen reader users as well as screen-reader users. \nFor example, if a modal takes up all or most of the user’s view, the user might get disoriented because they think they are in a new space. This can happen with users with cognitive impairments and/or low vision. Another possible source of disorientation could be when a user dismisses a modal but is no longer sure where they are anymore.\n\nThis kind of broadening could help the “Navigating content” subsection live up to its guideline description, which is tool-agnostic: \"Users can determine where they are and move through content (including interactive elements) in a systematic and meaningful way regardless of input or movement method.\"\n\nNote: it can be a separate provision.\n\nWe also need a provision that addresses distractions such as popups or things that cover the screen that you may need to close to get back to what you were doing. \n\nCOGA user need missing or not adequately addressed: \n- I need to recognize where I am in the architecture of the web site, application, or multi-step process, even after I get distracted. ([Making Content Usable 3.1.2](https://www.w3.org/TR/coga-usable/#clear-operation-user-story), bullet 3)\n \n- I need to turn distractions off easily, if there are distractions. ([Making Content Usable 3.5.1](https://www.w3.org/TR/coga-usable/#distractions-user-story), bullet 2)\n\nWith thanks,\nThe COGA Task Force",
@@ -11680,7 +11740,293 @@
       "body": "### Currently\n\n\"Media alternatives controllable\" is redundant to \"Captions controllable\" and \"Audio descriptions controllable\".\n\n[Captions controllable](https://w3c.github.io/wcag3/guidelines/#captions-controllable):\n\n> A mechanism is available to turn captions on and off.\n> \n> Except when captions are hard-coded into the video content.\n\n[Audio descriptions controllable](https://w3c.github.io/wcag3/guidelines/#audio-descriptions-controllable):\n\n> A mechanism is available to turn audio descriptions on and off.\n> \n> Except when audio descriptions are hard-coded into the audio or video content.\n\n[Media alternatives controllable](https://w3c.github.io/wcag3/guidelines/#media-alternatives-controllable):\n\n> Closed captions and audio descriptions can be turned on and off.\n\n### Proposed\n\nDelete \"Media alternatives controllable\".",
       "url": "https://github.com/w3c/wcag3/issues/925",
       "comments": []
+    },
+    "927": {
+      "number": 927,
+      "title": "COGA support for \"Non-verbal cues identified in audio descriptions\"",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Non-verbal cues identified in audio desc"
+      ],
+      "user": "julierawe",
+      "created": "2026-10-22T14:34:13Z",
+      "updated": "2026-10-22T14:34:13Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Hi,\n\nWe really like the exploratory provision \"[Non-verbal cues identified in audio descriptions](https://w3c.github.io/wcag3/guidelines/#non-verbal-cues-identified-in-audio-descriptions)\" and would like to see it move forward. \n\nPlease let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise.\n\nAll the best,\nThe COGA task force \n",
+      "url": "https://github.com/w3c/wcag3/issues/927",
+      "comments": []
+    },
+    "928": {
+      "number": 928,
+      "title": "COGA support for non-verbal cues identified in captions",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Non-verbal cues identified in captions"
+      ],
+      "user": "lseeman",
+      "created": "2026-10-22T14:36:34Z",
+      "updated": "2026-10-22T14:36:34Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "We really like this exploratory provision  for non-verbal cues identified in captions and would like to see it move forward. Please let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise. We could also try to do a literary review or see what research is out there if that is more helpful. \nAll the best,\nThe COGA task force ",
+      "url": "https://github.com/w3c/wcag3/issues/928",
+      "comments": []
+    },
+    "929": {
+      "number": 929,
+      "title": "COGA support for numerical alternatives available",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Numerical alternatives available"
+      ],
+      "user": "lseeman",
+      "created": "2026-10-22T14:43:10Z",
+      "updated": "2026-10-22T14:43:10Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "We really need something like this  exploratory provision on numerical alternatives available and would like to see it move forward (assuming other issues are addressed). Please let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise. We could also try to do a literary review or see what research is out there if that is more helpful. \nAll the best,\nThe COGA task force ",
+      "url": "https://github.com/w3c/wcag3/issues/929",
+      "comments": []
+    },
+    "930": {
+      "number": 930,
+      "title": "COGA support for \"Captions consistent\"",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Captions consistent"
+      ],
+      "user": "julierawe",
+      "created": "2026-10-22T14:43:51Z",
+      "updated": "2026-10-22T14:43:51Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Hi,\n\nWe really like this exploratory provision (\"[Captions consistent](https://w3c.github.io/wcag3/guidelines/#captions-consistent)\") and would like to see it move forward.\n\nPlease let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise.\n\nAll the best,\nThe COGA task force",
+      "url": "https://github.com/w3c/wcag3/issues/930",
+      "comments": []
+    },
+    "931": {
+      "number": 931,
+      "title": "COGA support for interactive element importance indicated",
+      "state": "open",
+      "labels": [
+        "coga",
+        "Path: Input and focus⹁ interactive components",
+        "P - Interactive element importance indicated"
+      ],
+      "user": "lseeman",
+      "created": "2026-10-22T14:46:04Z",
+      "updated": "2026-10-22T15:21:22Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "We like this  exploratory provision and would like to see it move forward. Please let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise. We could also try to do a literary review or see what research is out there if that is more helpful. \nAll the best,\nThe COGA task force ",
+      "url": "https://github.com/w3c/wcag3/issues/931",
+      "comments": []
+    },
+    "932": {
+      "number": 932,
+      "title": "COGA support for \"Figure captions persistent\"",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Figure captions persistent"
+      ],
+      "user": "julierawe",
+      "created": "2026-10-22T14:46:29Z",
+      "updated": "2026-10-22T14:46:29Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Hi,\n\nWe really like this exploratory provision (\"[Figure captions persistent](https://w3c.github.io/wcag3/guidelines/#figure-captions-persistent)\") and would like to see it move forward.\n\nPlease let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise.\n\nAll the best,\nThe COGA task force",
+      "url": "https://github.com/w3c/wcag3/issues/932",
+      "comments": []
+    },
+    "933": {
+      "number": 933,
+      "title": "COGA support for interactive elements distinguishable",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Interactive elements distinguishable"
+      ],
+      "user": "lseeman",
+      "created": "2026-10-22T14:48:16Z",
+      "updated": "2026-10-22T14:48:16Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "We really like this exploratory provision on  interactive elements distinguishable. It is very important and would like to see it move forward. Please let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise. We could also try to do a literary review or see what research is out there if that is more helpful. \nAll the best,\nThe COGA task force ",
+      "url": "https://github.com/w3c/wcag3/issues/933",
+      "comments": []
+    },
+    "934": {
+      "number": 934,
+      "title": "COGA support for \"Non-verbal cues identified in transcripts\"",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Non-verbal cues identified in transcripts"
+      ],
+      "user": "julierawe",
+      "created": "2026-10-22T14:48:29Z",
+      "updated": "2026-10-22T14:48:29Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Hi,\n\nWe really like this exploratory provision (\"[Non-verbal cues identified in transcripts](https://w3c.github.io/wcag3/guidelines/#non-verbal-cues-identified-in-transcripts)\") and would like to see it move forward.\n\nPlease let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise.\n\nAll the best,\nThe COGA task force",
+      "url": "https://github.com/w3c/wcag3/issues/934",
+      "comments": []
+    },
+    "935": {
+      "number": 935,
+      "title": "COGA support for \"Single flash\"",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Single flash"
+      ],
+      "user": "julierawe",
+      "created": "2026-10-22T14:50:13Z",
+      "updated": "2026-10-22T14:50:13Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Hi,\n\nWe really like this exploratory provision (\"[Single flash](https://w3c.github.io/wcag3/guidelines/#single-flash)\") and would like to see it move forward.\n\nPlease let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise.\n\nAll the best,\nThe COGA task force",
+      "url": "https://github.com/w3c/wcag3/issues/935",
+      "comments": []
+    },
+    "936": {
+      "number": 936,
+      "title": "COGA support for no artificial time limits",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - No artificial time limits"
+      ],
+      "user": "lseeman",
+      "created": "2026-10-22T14:50:29Z",
+      "updated": "2026-10-22T14:50:29Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "We really like this exploratory provision and would like to see it move forward. Please let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise. We could also try to do a literary review or see what research is out there if that is more helpful. \nAll the best,\nThe COGA task force ",
+      "url": "https://github.com/w3c/wcag3/issues/936",
+      "comments": []
+    },
+    "937": {
+      "number": 937,
+      "title": "COGA support for copying supported",
+      "state": "open",
+      "labels": [
+        "coga",
+        "P - Copying supported"
+      ],
+      "user": "lseeman",
+      "created": "2026-10-22T14:53:58Z",
+      "updated": "2026-10-22T14:53:58Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "We really like this exploratory provision and would like to see it move forward. Please let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise. We could also try to do a literary review or see what research is out there if that is more helpful. \nAll the best,\nThe COGA task force \n",
+      "url": "https://github.com/w3c/wcag3/issues/937",
+      "comments": []
+    },
+    "940": {
+      "number": 940,
+      "title": "Explore the notion of accurate and important for the core requirement of Non-text content not relied on",
+      "state": "open",
+      "labels": [],
+      "user": "mbgower",
+      "created": "2026-10-24T15:31:40Z",
+      "updated": "2026-10-24T15:34:00Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "If there is any part of WCAG 2 that has been a demonstrable failure, it is the lack of improvement on 1.1.1 Non-Text Content.\nThe web is full of articles on how people should write text equivalents, yet in the situations where alternative text _exists_, it is incredibly non-uniform, and often not as useful as it could be.\n\nI have an existing proposal I respectfully request the people involved in Non-text alternatives to consider.\n\n[Outcome: Meaningful images have a text alternative](https://docs.google.com/document/d/1jEfxiu38FM2lh5arNxy-lKZL0HXYFBGpWEcd5boq6a4/edit?usp=sharing)\n\nAlthough the terminology of WCAG 3 may have slightly changed since this was first written (i.e., in regard to \"Outcomes\" and methods), I have reread the proposal and believe it is still of high relevancy.\n\nI was motivated to resubmit this because I am in the process of tuning an LLM for alt text generation in a specific use case. Accuracy and succinctness have proven to be the overriding imperatives in the process, so far.\n\n",
+      "url": "https://github.com/w3c/wcag3/issues/940",
+      "comments": []
+    },
+    "941": {
+      "number": 941,
+      "title": "WCAG 3 WD (Sept 2026) - experience report: rendering the draft's outcomes over real WCAG 2.2 findings",
+      "state": "open",
+      "labels": [],
+      "user": "kinti",
+      "created": "2026-10-25T03:09:56Z",
+      "updated": "2026-10-25T03:09:56Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Hello,\n\nI maintain an open-source WCAG 2.2 auditing engine (a11y-toolkit, MIT, 32 MCP tools) that also powers a small production accessibility service.\nAfter the September 2026 Working Draft, we shipped a preview tool that takes a regular WCAG 2.2 audit report from a real site and re-groups its findings under the draft's 46 outcomes, with the draft's exact outcome names. It deliberately produces no score, tier or conformance claim - and that constraint itself taught us things relevant to your open review questions.\n\nOn \"does the single conformance level plus tags/tiers improve on earlier drafts\": re-grouping real findings under outcomes turned out to be the most legible artifact we have ever handed to non-specialist stakeholders - teams can finally see where their 2.2 findings would land. But the value hinges on a WCAG 2 → 3 mapping that does not exist yet. We had to curate our own (49 signal-reachable 2.2 criteria onto the 46 outcomes, n:m). Our concern: without even a non-normative mapping annex, every third party will invent a different bridge, and the ecosystem will fragment before the standard lands. An informative mapping annex, even marked \"expected to\nchange\", would anchor tools and trainers alike.\n\nOn \"tags-based approach vs the alternative scoring approach\": we chose not to emit numbers precisely because scoring is still an open question here - publishing a score would pre-adopt a position the Group has not decided. \nPractice says the pull toward numbers is enormous: every stakeholder asks for \"the WCAG 3 score\" anyway. If the Group wants to avoid a score-comparison culture forming around tiers, the final reporting model will need tiers that carry meaning without numeric totals.\n\nOne operational note: at the current ~6-month draft cadence, tooling re-baselines twice a year (we pin outcomes by number + exact name).\nStable outcome identifiers across drafts would reduce that cost for everyone implementing early.\n\nWe are happy to share the curated mapping and anonymized outcome distributions from real sites if useful. The preview tool is open source:\nhttps://github.com/kinti/a11y-toolkit (a11y_wcag3_preview).\n\nDisclosure: I drafted this message with AI assistance for structure and\nEnglish phrasing.\n\nJesús Quintana\nAccessibility practitioner since 2003\nhttps://jquin.net",
+      "url": "https://github.com/w3c/wcag3/issues/941",
+      "comments": []
+    },
+    "942": {
+      "number": 942,
+      "title": "Proposed requirement: Speech distinguishable from background sound (auditory contrast)",
+      "state": "open",
+      "labels": [],
+      "user": "hohguy",
+      "created": "2026-10-26T02:15:10Z",
+      "updated": "2026-10-26T02:38:18Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "The [September 10, 2026 Working Draft](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/) has several visual contrast requirements but nothing on hearing speech over other sounds. WCAG 2 covers this only in SC 1.4.7 (Level AAA, prerecorded audio-only content). Until the Candidate Recommendation stage of WCAG 2.0, that criterion covered all audio with foreground speech, including synchronized media.\n\n**User need:** People need to hear speech clearly when other sounds are present.\n\n**Requirement (draft):** Speech in prerecorded audio content, including synchronized media, is distinguishable from background sound.\n\n**Applies when:** prerecorded audio content, including the audio of synchronized media, contains foreground speech and background sound at the same time.\n\n**Except when:** the audio is an audio CAPTCHA or audio logo, or the vocals are primarily musical expression such as singing or rapping (carried over from SC 1.4.7).\n\n**Proposed classification:** core requirement, exploratory.\n\n**User needs [ISO/IEC 29138-1:2018](https://www.iso.org/standard/71953.html):** 5-4-1 c, to perceive foreground audio information in the presence of background information (beside its visual counterpart, 5-4-1 a); 5-2-5 e, to have audio information of sufficient clarity.\n\n**Functional needs:**\n- Functional Performance: Usage with limited hearing\n- Functional Performance: Usage with limited cognition, language or learning\n- DAF: Attention\n- DAF: Auditory perception (includes auditory triggers)\n\n**Responsibility:** content author.\n\n**Methods (any one):**\n- background sound is at least 20 dB below speech, apart from brief occasional sounds, using a measurement procedure to be defined in the methods; [ITU-R BS.1770](https://www.itu.int/rec/R-REC-BS.1770) loudness measurement is a candidate approach\n- background sound can be turned off\n- a version that meets either of these is available\n\nThe 20 dB figure is a starting point carried over from WCAG 2, and the Working Group may want to vary it by type of background (competing speech, music, ambience).\n\n**Testing:** with separate speech and background tracks, measure each with free BS.1770 loudness tools and compare. With only a mix, measurement is harder, and it remains an open question whether dialogue-separation tools are reliable enough for conformance testing.\n\n**Open question:** whether, and at what level, live audio should be covered.\n\nIs the Working Group willing to consider this as a core requirement, with measurement details developed separately?\n\nRelated: concurrent audio control proposal #943, mono and spatial audio proposal #944, terminology discussion #899\n\nFor more discussion, see [Auditory Contrast and Audio Control in WCAG 3: Proposed Requirements and Evidence](https://doi.org/10.5281/zenodo.23652988) (DOI 10.5281/zenodo.23652988).",
+      "url": "https://github.com/w3c/wcag3/issues/942",
+      "comments": []
+    },
+    "943": {
+      "number": 943,
+      "title": "Proposed requirement: Speech level adjustable relative to other audio",
+      "state": "open",
+      "labels": [],
+      "user": "hohguy",
+      "created": "2026-10-26T02:23:26Z",
+      "updated": "2026-10-26T02:38:51Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "No single mix suits every listener. Listening research finds that preferences for the balance between speech and background vary widely between people ([Torcoli et al., 2019](https://salford-repository.worktribe.com/OutputFile/1488623)). [ETSI TS 101 154](https://www.etsi.org/deliver/etsi_ts/101100_101199/101154/02.10.01_60/ts_101154v021001p.pdf) (Annex E) specifies Clean Audio and Advanced Clean Audio services that support dialogue enhancement and user adjustment of the speech/background balance, and ISO 9241-171:2025 calls for separate control of individual audio streams (9.5.1.6). The [September 10, 2026 Working Draft](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/) already makes user control of text color a core requirement. This is the audio counterpart.\n\n**User need:** People need to adjust speech relative to other sounds.\n\n**Requirement (draft):** A mechanism is available that allows users to change the balance between speech and other audio playing at the same time, independently of overall volume, either by adjusting their relative levels or by selecting an alternative mix that improves speech intelligibility.\n\n**Applies when:** prerecorded or live audio content or synchronized media is provided with speech and other audio as separate streams, or with alternative mixes.\n\n**Proposed classification:** core requirement, exploratory.\n\nThis requirement applies only where separate streams or alternative mixes exist. Content delivered as a single finished mix is still covered by #942, which requires speech to be distinguishable in the default mix. That proposal sets an accessible default. This proposal adds personal control beyond it.\n\n**User needs ([ISO/IEC 29138-1:2018](https://www.iso.org/standard/71953.html)):** 5-2-6, to select/deselect different audio streams; 5-2-5 b, to adjust the audio characteristics; 5-4-1 c, to perceive foreground audio information in the presence of background information.\n\n**Functional needs:**\n- Functional Performance: Usage with limited hearing\n- Functional Performance: Usage with limited cognition, language or learning\n- DAF: Attention\n- DAF: Auditory perception (includes auditory triggers)\n\n**Responsibility:** shared. The author provides the streams separately, or an alternative mix; the player or user agent provides the control.\n\n**Methods:**\n- *Continuous adjustment:* speech and other audio are delivered as separate streams or objects, and a player control sets the balance.\n- *Alternative mixes:* a choice of mixes in the audio menu, at least one of which improves the separation of speech from other audio. This gives a smaller benefit than continuous control, much as a high-contrast alternative differs from a contrast control.\n\nMethods should say whether a \"stream\" means a track, a channel or an audio object, since that decides what control is possible. Dialogue enhancement built into devices and players can help users, but it is outside the author's control and supports the user agent's side of this requirement.\n\n**Testing:** for continuous adjustment, confirm a control changes speech level relative to other audio; for alternative mixes, confirm at least one mix improves the separation of speech from other audio.\n\n**Examples:**\n- Broadcast: DVB Clean Audio and Advanced Clean Audio, which change the speech/background balance through channel processing or dialogue-enhancement metadata (ETSI TS 101 154, Annex E).\n- Next-generation audio: AC-4 and MPEG-H carry dialogue as a separate object with a dialogue enhancement control, for live and prerecorded content.\n- Streaming: services that offer a dialogue-enhanced audio track in the audio menu alongside the original mix.\n- Audio description: receiver-mixed description, where the description and the program are separate streams with an independent level control.\n- Dialogue-only track: offered as one choice among several, since on its own it also removes non-speech information.\n\nControlling audio description volume is one case of this requirement.\n\nRelated: auditory contrast proposal #942, mono and spatial audio proposal #944, terminology discussion #899\n\nFor more discussion, see [Auditory Contrast and Audio Control in WCAG 3: Proposed Requirements and Evidence](https://doi.org/10.5281/zenodo.23652988) (DOI 10.5281/zenodo.23652988).",
+      "url": "https://github.com/w3c/wcag3/issues/943",
+      "comments": []
+    },
+    "944": {
+      "number": 944,
+      "title": "Proposed requirement: Stereo and spatial audio usable in mono",
+      "state": "open",
+      "labels": [],
+      "user": "hohguy",
+      "created": "2026-10-26T02:36:52Z",
+      "updated": "2026-10-26T02:36:52Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "The [September 10, 2026 Working Draft](https://www.w3.org/TR/2026/WD-wcag-3.0-20260910/) has \"Spatial audio not relied on\" and \"Direction indicated (immersive)\", but both can be met with a visual indicator alone. That leaves two barriers for people who hear with one ear, or with strongly uneven hearing: speech that is lost or weakened when stereo is combined into mono, and direction that is only available visually.\n\nThe second barrier matters most for people with limited binaural hearing and who also have low vision or are blind. A visual indicator alone does not give them the direction. They may still rely on audio, but cannot reliably locate sounds by ear.\n\nThis proposal does not repeat the existing requirements. Rather, it adds to them:\n- mono compatibility for essential audio (A), and\n- an audio route to essential directional information that does not depend on hearing with both ears (B).\n\n**User need:** People who hear with one ear, or with strongly uneven hearing, including those who also have low vision or are blind, need speech to remain intelligible and need information conveyed by sound direction in another form.\n\n### Requirement A: Mono compatibility\n \n**Requirement (draft):** Essential audio in content that uses stereo, multichannel or spatial audio remains intelligible when played in mono.\n \n**Applies when:** prerecorded or live audio content or synchronized media uses more than one audio channel.\n \n**Proposed classification:** core requirement, exploratory.\n \n**Method:** speech and other essential audio remain intelligible when the channels are combined into mono, or a mono version is available.\n \n**Testing:** combine the channels into a mono downmix, using the method the format or playback platform specifies (not a single left or right channel), and confirm essential audio is present and intelligible, since combining channels can cancel or weaken some sounds.\n \n### Requirement B: Direction available in audio\n \n**Requirement (draft):** Information conveyed by the direction of a sound is also available through non-spatial audio.\n \n**Applies when:** content conveys information through the position or direction of a sound.\n \n**Proposed classification:** core requirement, exploratory.\n \n**Method:** information carried by the position or direction of a sound is also available in a form that doesn't depend on spatial hearing or on captions, such as dialogue or a distinct audio cue, alongside any visual indicator.\n \n**Testing:** identify information carried by direction and confirm it is available in audio without spatial cues.\n \nRequirement B could instead be added to \"Spatial audio not relied on\" and \"Direction indicated (immersive)\", as a condition that at least one alternative is not visual only.\n \n### Shared\n \n**User needs ([ISO/IEC 29138-1:2018](https://www.iso.org/standard/71953.html)):** 5-2-5 d, to have multi-channel auditory information available in monaural form; 5-2-5 j, to have directional information presented via monaural audio; and its visual counterpart, 5-2-4, three-dimensional visual information presented in two dimensions.\n\n**Functional needs:**\n- Functional Performance: Usage with limited hearing\n- Functional Performance: Usage without binaural hearing (proposed, alongside its visual counterpart, usage without stereo vision, which \"Visual depth not relied on\" already depends on)\n- DAF: Binaural hearing (proposed; locating and separating sounds using both ears), alongside Stereo vision\n- Functional Performance: Usage with limited vision\n- Functional Performance: Usage without vision\n- DAF: Auditory perception (includes auditory triggers)\n\n**Responsibility:** content author. A platform mono setting helps, but a mono downmix of content that was never checked in mono can still lose or weaken speech.\n\n**Methods:**\n- *Mono compatibility:* speech and other essential audio remain intelligible when the channels are combined into mono, or a mono version is available.\n- *Non-spatial direction:* information carried by the position or direction of a sound is also available in a form that doesn't depend on spatial hearing or on captions, such as dialogue or a distinct audio cue, alongside any visual indicator.\n\n**Testing:** combine the channels into a mono downmix, using the method the format or playback platform specifies (not a single left or right channel), and confirm essential audio is present and intelligible, since combining channels can cancel or weaken some sounds; identify information carried by direction and confirm it is available in audio without spatial cues.\n\n**Examples:**\n- Operating systems offer a mono audio setting, which only works well when the content survives a mono downmix.\n- Broadcast and music production check mixes for mono compatibility as routine practice.\n- A game or XR scene that signals an approaching hazard with a distinct sound or a spoken cue, not only with its position in the sound field.\n\nRelated: auditory contrast proposal #942, concurrent audio control proposal #943, terminology discussion #899\n\nFor more discussion, see [Auditory Contrast and Audio Control in WCAG 3: Proposed Requirements and Evidence](https://doi.org/10.5281/zenodo.23652988) (DOI 10.5281/zenodo.23652988).",
+      "url": "https://github.com/w3c/wcag3/issues/944",
+      "comments": []
+    },
+    "945": {
+      "number": 945,
+      "title": "Vide player assertions in WCAG 3 should be moved to content provisions",
+      "state": "open",
+      "labels": [],
+      "user": "mraccess77",
+      "created": "2026-10-26T14:44:33Z",
+      "updated": "2026-10-26T14:44:33Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "The presence of video player controls for alternative media seems like a content provision and is such as in standards such as EN301549 and thus should be considered to be moved to requirements (likely core) and not assertions.\n\nThere could be some additional assertions around processes for acquiring video players if there is still situation for that need.",
+      "url": "https://github.com/w3c/wcag3/issues/945",
+      "comments": []
+    },
+    "946": {
+      "number": 946,
+      "title": "Need process to address non-deterministic dynamically generated UI accessibility",
+      "state": "open",
+      "labels": [],
+      "user": "mraccess77",
+      "created": "2026-10-26T18:15:35Z",
+      "updated": "2026-10-26T18:15:35Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Some UI is non-deterministically generated dynamically at run-time.  While sample output can be tested - it would likely be beneficial to have some assertions around this topic or reporting guidance.",
+      "url": "https://github.com/w3c/wcag3/issues/946",
+      "comments": []
     }
   },
-  "fetchedAt": "2026-10-22T03:03:44.403Z"
+  "fetchedAt": "2026-10-26T19:00:27.321Z"
 }

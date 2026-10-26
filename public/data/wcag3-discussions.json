@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-10-22T03:03:44.403Z",
+  "generatedAt": "2026-10-26T19:00:27.321Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 511,
-    "issuesWithProvisionLabel": 255,
-    "provisionsWithDiscussion": 164,
-    "generalIssues": 256,
+    "issuesTotal": 529,
+    "issuesWithProvisionLabel": 266,
+    "provisionsWithDiscussion": 171,
+    "generalIssues": 263,
     "summarized": 36,
-    "staleSummaries": 5,
-    "awaitingSummary": 128
+    "staleSummaries": 12,
+    "awaitingSummary": 135
   },
   "provisions": {
     "audio-shifting-adjustable": {
@@ -463,12 +463,25 @@
       "guideline": "avoid-physical-harm",
       "status": "exploratory",
       "type": "foundational",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "935@2026-10-22T14:50:13Z",
+      "threads": [
+        {
+          "number": 935,
+          "title": "COGA support for \"Single flash\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/935",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "trigger-warning-available": {
       "slug": "trigger-warning-available",
@@ -1268,9 +1281,9 @@
       "type": "supplemental",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 4,
+      "commentCount": 5,
       "openCount": 2,
-      "fingerprint": "197@2026-05-02T16:19:45Z,783@2026-08-02T16:33:10Z",
+      "fingerprint": "197@2026-10-26T13:51:12Z,783@2026-08-02T16:33:10Z",
       "threads": [
         {
           "number": 197,
@@ -1278,8 +1291,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/197",
           "created": "2019-03-13",
-          "updated": "2026-05-02",
-          "comments": 4,
+          "updated": "2026-10-26",
+          "comments": 5,
           "labels": [
             "Path: Input and focus⹁ interactive components",
             "Path: Errors⹁ task completion and help"
@@ -1891,12 +1904,25 @@
       "guideline": "audio-descriptions",
       "status": "exploratory",
       "type": "foundational",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "927@2026-10-22T14:34:13Z",
+      "threads": [
+        {
+          "number": 927,
+          "title": "COGA support for \"Non-verbal cues identified in audio descriptions\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/927",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "sounds-identified-in-audio-descriptions": {
       "slug": "sounds-identified-in-audio-descriptions",
@@ -2393,11 +2419,11 @@
       "guideline": "captions",
       "status": "exploratory",
       "type": "supplemental",
-      "threadCount": 2,
+      "threadCount": 3,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 2,
-      "fingerprint": "119@2026-04-02T23:47:01Z,464@2026-03-29T22:40:31Z",
+      "openCount": 3,
+      "fingerprint": "119@2026-04-02T23:47:01Z,464@2026-03-29T22:40:31Z,930@2026-10-22T14:43:51Z",
       "threads": [
         {
           "number": 119,
@@ -2422,6 +2448,18 @@
           "labels": [
             "Path: Image and media alternatives",
             "Other: Definitions & Terminology"
+          ]
+        },
+        {
+          "number": 930,
+          "title": "COGA support for \"Captions consistent\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/930",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
           ]
         }
       ]
@@ -2670,12 +2708,25 @@
       "guideline": "captions",
       "status": "exploratory",
       "type": "foundational",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "928@2026-10-22T14:36:34Z",
+      "threads": [
+        {
+          "number": 928,
+          "title": "COGA support for non-verbal cues identified in captions",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/928",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "sounds-identified-in-captions": {
       "slug": "sounds-identified-in-captions",
@@ -2822,11 +2873,11 @@
       "guideline": "figure-captions",
       "status": "exploratory",
       "type": null,
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 1,
-      "fingerprint": "584@2026-03-27T19:07:23Z",
+      "openCount": 2,
+      "fingerprint": "584@2026-03-27T19:07:23Z,932@2026-10-22T14:46:29Z",
       "threads": [
         {
           "number": 584,
@@ -2839,6 +2890,18 @@
           "labels": [
             "Path: Image and media alternatives",
             "Other: Definitions & Terminology"
+          ]
+        },
+        {
+          "number": 932,
+          "title": "COGA support for \"Figure captions persistent\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/932",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
           ]
         }
       ]
@@ -3915,12 +3978,25 @@
       "guideline": "transcripts",
       "status": "exploratory",
       "type": "foundational",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "934@2026-10-22T14:48:29Z",
+      "threads": [
+        {
+          "number": 934,
+          "title": "COGA support for \"Non-verbal cues identified in transcripts\"",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/934",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "sounds-identified-in-transcripts": {
       "slug": "sounds-identified-in-transcripts",
@@ -4380,9 +4456,9 @@
       "type": "supplemental",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 4,
+      "commentCount": 6,
       "openCount": 2,
-      "fingerprint": "76@2026-10-18T19:39:39Z,820@2026-10-21T17:58:58Z",
+      "fingerprint": "76@2026-10-26T09:59:41Z,820@2026-10-26T11:25:26Z",
       "threads": [
         {
           "number": 76,
@@ -4390,8 +4466,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/76",
           "created": "2024-05-17",
-          "updated": "2026-10-18",
-          "comments": 2,
+          "updated": "2026-10-26",
+          "comments": 3,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -4402,8 +4478,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/820",
           "created": "2026-08-21",
-          "updated": "2026-10-21",
-          "comments": 2,
+          "updated": "2026-10-26",
+          "comments": 3,
           "labels": [
             "Path: Input and focus⹁ interactive components",
             "Other: Definitions & Terminology"
@@ -4924,9 +5000,9 @@
       "type": "foundational",
       "threadCount": 4,
       "noRecordedDiscussion": false,
-      "commentCount": 12,
+      "commentCount": 13,
       "openCount": 4,
-      "fingerprint": "193@2026-05-02T15:30:26Z,197@2026-05-02T16:19:45Z,207@2026-05-01T23:23:27Z,270@2026-04-02T23:03:09Z",
+      "fingerprint": "193@2026-05-02T15:30:26Z,197@2026-10-26T13:51:12Z,207@2026-05-01T23:23:27Z,270@2026-04-02T23:03:09Z",
       "threads": [
         {
           "number": 193,
@@ -4946,8 +5022,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/197",
           "created": "2019-03-13",
-          "updated": "2026-05-02",
-          "comments": 4,
+          "updated": "2026-10-26",
+          "comments": 5,
           "labels": [
             "Path: Input and focus⹁ interactive components",
             "Path: Errors⹁ task completion and help"
@@ -5039,12 +5115,26 @@
       "guideline": "control-information",
       "status": "exploratory",
       "type": null,
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "931@2026-10-22T15:21:22Z",
+      "threads": [
+        {
+          "number": 931,
+          "title": "COGA support for interactive element importance indicated",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/931",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga",
+            "Path: Input and focus⹁ interactive components"
+          ]
+        }
+      ]
     },
     "interactive-element-names-available": {
       "slug": "interactive-element-names-available",
@@ -5055,9 +5145,9 @@
       "type": "foundational",
       "threadCount": 4,
       "noRecordedDiscussion": false,
-      "commentCount": 34,
+      "commentCount": 35,
       "openCount": 4,
-      "fingerprint": "93@2026-04-16T01:59:03Z,184@2026-05-02T15:07:00Z,194@2026-05-02T16:31:49Z,890@2026-10-03T21:58:55Z",
+      "fingerprint": "93@2026-04-16T01:59:03Z,184@2026-05-02T15:07:00Z,194@2026-10-26T12:06:19Z,890@2026-10-03T21:58:55Z",
       "threads": [
         {
           "number": 93,
@@ -5089,8 +5179,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/194",
           "created": "2019-03-26",
-          "updated": "2026-05-02",
-          "comments": 33,
+          "updated": "2026-10-26",
+          "comments": 34,
           "labels": [
             "Path: User orientation⹁ layout and structure",
             "Path: Input and focus⹁ interactive components"
@@ -5173,11 +5263,11 @@
       "guideline": "control-information",
       "status": "exploratory",
       "type": "supplemental",
-      "threadCount": 1,
+      "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 4,
-      "openCount": 1,
-      "fingerprint": "197@2026-05-02T16:19:45Z",
+      "commentCount": 5,
+      "openCount": 2,
+      "fingerprint": "197@2026-10-26T13:51:12Z,933@2026-10-22T14:48:16Z",
       "threads": [
         {
           "number": 197,
@@ -5185,11 +5275,23 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/197",
           "created": "2019-03-13",
-          "updated": "2026-05-02",
-          "comments": 4,
+          "updated": "2026-10-26",
+          "comments": 5,
           "labels": [
             "Path: Input and focus⹁ interactive components",
             "Path: Errors⹁ task completion and help"
+          ]
+        },
+        {
+          "number": 933,
+          "title": "COGA support for interactive elements distinguishable",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/933",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
           ]
         }
       ],
@@ -5605,7 +5707,7 @@
       "noRecordedDiscussion": false,
       "commentCount": 3,
       "openCount": 2,
-      "fingerprint": "616@2026-10-18T19:52:18Z,915@2026-10-16T21:34:45Z",
+      "fingerprint": "616@2026-10-18T19:52:18Z,915@2026-10-26T09:32:35Z",
       "threads": [
         {
           "number": 616,
@@ -5625,7 +5727,7 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/915",
           "created": "2026-10-16",
-          "updated": "2026-10-16",
+          "updated": "2026-10-26",
           "comments": 1,
           "labels": [
             "coga"
@@ -6184,9 +6286,9 @@
       "type": "supplemental",
       "threadCount": 4,
       "noRecordedDiscussion": false,
-      "commentCount": 49,
+      "commentCount": 50,
       "openCount": 4,
-      "fingerprint": "166@2026-05-01T23:36:57Z,194@2026-05-02T16:31:49Z,271@2026-04-02T23:01:19Z,451@2026-03-29T22:44:02Z",
+      "fingerprint": "166@2026-05-01T23:36:57Z,194@2026-10-26T12:06:19Z,271@2026-04-02T23:01:19Z,451@2026-03-29T22:44:02Z",
       "threads": [
         {
           "number": 166,
@@ -6206,8 +6308,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/194",
           "created": "2019-03-26",
-          "updated": "2026-05-02",
-          "comments": 33,
+          "updated": "2026-10-26",
+          "comments": 34,
           "labels": [
             "Path: User orientation⹁ layout and structure",
             "Path: Input and focus⹁ interactive components"
@@ -6964,12 +7066,25 @@
       "guideline": "avoid-deception",
       "status": "exploratory",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "936@2026-10-22T14:50:29Z",
+      "threads": [
+        {
+          "number": 936,
+          "title": "COGA support for no artificial time limits",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/936",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "preselections-visible": {
       "slug": "preselections-visible",
@@ -7046,12 +7161,25 @@
       "guideline": "avoid-exclusionary-cognitive-tasks",
       "status": "exploratory",
       "type": "supplemental",
-      "threadCount": 0,
-      "noRecordedDiscussion": true,
+      "threadCount": 1,
+      "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 0,
-      "fingerprint": "",
-      "threads": []
+      "openCount": 1,
+      "fingerprint": "937@2026-10-22T14:53:58Z",
+      "threads": [
+        {
+          "number": 937,
+          "title": "COGA support for copying supported",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/937",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        }
+      ]
     },
     "no-memorization": {
       "slug": "no-memorization",
@@ -7589,11 +7717,11 @@
       "guideline": "clear-language",
       "status": "exploratory",
       "type": "supplemental",
-      "threadCount": 2,
+      "threadCount": 3,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 2,
-      "fingerprint": "491@2026-03-29T22:30:46Z,522@2026-03-27T23:13:48Z",
+      "openCount": 3,
+      "fingerprint": "491@2026-03-29T22:30:46Z,522@2026-03-27T23:13:48Z,929@2026-10-22T14:43:10Z",
       "threads": [
         {
           "number": 491,
@@ -7617,6 +7745,18 @@
           "comments": 0,
           "labels": [
             "Path: Text and wording"
+          ]
+        },
+        {
+          "number": 929,
+          "title": "COGA support for numerical alternatives available",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/929",
+          "created": "2026-10-22",
+          "updated": "2026-10-22",
+          "comments": 0,
+          "labels": [
+            "coga"
           ]
         }
       ]
@@ -8018,7 +8158,7 @@
       "noRecordedDiscussion": false,
       "commentCount": 41,
       "openCount": 5,
-      "fingerprint": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z,744@2026-09-22T02:13:49Z",
+      "fingerprint": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z,744@2026-10-23T20:28:28Z",
       "threads": [
         {
           "number": 29,
@@ -8077,7 +8217,7 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/744",
           "created": "2026-07-01",
-          "updated": "2026-09-22",
+          "updated": "2026-10-23",
           "comments": 9,
           "labels": [
             "Path: Text and wording",
@@ -8696,11 +8836,11 @@
       "guideline": "text-to-speech",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 3,
+      "threadCount": 4,
       "noRecordedDiscussion": false,
-      "commentCount": 6,
-      "openCount": 3,
-      "fingerprint": "190@2026-05-02T15:25:02Z,202@2026-05-02T16:38:19Z,537@2026-03-27T22:56:58Z",
+      "commentCount": 15,
+      "openCount": 4,
+      "fingerprint": "190@2026-05-02T15:25:02Z,202@2026-05-02T16:38:19Z,537@2026-03-27T22:56:58Z,744@2026-10-23T20:28:28Z",
       "threads": [
         {
           "number": 190,
@@ -8737,6 +8877,19 @@
           "comments": 0,
           "labels": [
             "Path: Text and wording"
+          ]
+        },
+        {
+          "number": 744,
+          "title": "Update the definition of text",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/744",
+          "created": "2026-07-01",
+          "updated": "2026-10-23",
+          "comments": 9,
+          "labels": [
+            "Path: Text and wording",
+            "Other: Definitions & Terminology"
           ]
         }
       ],
