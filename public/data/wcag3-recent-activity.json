@@ -1,64 +1,27 @@
 {
-  "generatedAt": "2026-10-26T19:00:27.321Z",
+  "generatedAt": "2026-11-02T22:05:57.220Z",
   "window": {
-    "from": "2026-10-19",
-    "to": "2026-10-26",
+    "from": "2026-10-26",
+    "to": "2026-11-02",
     "days": 7
   },
   "repo": "https://github.com/w3c/wcag3",
   "note": "Pull requests are proposals until merged into the editor’s draft; merged changes still need working-group consensus and a published Working Draft before they are official.",
   "counts": {
     "adopted": 0,
-    "proposals": 10,
-    "newProposals": 3,
+    "proposals": 3,
+    "newProposals": 2,
     "declined": 0,
-    "newIssues": 18,
+    "newIssues": 1,
     "closedIssues": 0,
-    "activeThreads": 11
+    "activeThreads": 3
   },
   "topics": {
-    "definitions": 4,
-    "other": 16,
     "scope": 1,
-    "conformance": 3,
-    "provision": 15
+    "other": 5,
+    "provision": 1
   },
   "provisionsInFocus": [
-    {
-      "slug": "interactive-elements-distinguishable",
-      "title": "Interactive Elements Distinguishable",
-      "items": 2
-    },
-    {
-      "slug": "input-method-flexible",
-      "title": "Input Method Flexible",
-      "items": 2
-    },
-    {
-      "slug": "copying-supported",
-      "title": "Copying Supported",
-      "items": 1
-    },
-    {
-      "slug": "no-artificial-time-limits",
-      "title": "No Artificial Time Limits",
-      "items": 1
-    },
-    {
-      "slug": "single-flash",
-      "title": "Single Flash",
-      "items": 1
-    },
-    {
-      "slug": "non-verbal-cues-identified-in-transcripts",
-      "title": "Non Verbal Cues Identified In Transcripts",
-      "items": 1
-    },
-    {
-      "slug": "figure-captions-persistent",
-      "title": "Figure Captions Persistent",
-      "items": 1
-    },
     {
       "slug": "interactive-element-importance-indicated",
       "title": "Interactive Element Importance Indicated",
@@ -68,40 +31,12 @@
   "adopted": [],
   "proposals": [
     {
-      "number": 702,
-      "title": "update definition of Interactive Element",
-      "url": "https://github.com/w3c/wcag3/pull/702",
-      "state": "open",
-      "created": "2026-06-09",
-      "updated": "2026-10-19",
-      "comments": 6,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "definitions"
-    },
-    {
-      "number": 799,
-      "title": "chore: use built-in cSpell HTML regex",
-      "url": "https://github.com/w3c/wcag3/pull/799",
-      "state": "open",
-      "created": "2026-08-08",
-      "updated": "2026-10-19",
-      "comments": 4,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
       "number": 880,
       "title": "Scoping statement update",
       "url": "https://github.com/w3c/wcag3/pull/880",
       "state": "open",
       "created": "2026-09-30",
-      "updated": "2026-10-26",
+      "updated": "2026-10-29",
       "comments": 3,
       "weekComments": 0,
       "labels": [
@@ -112,68 +47,12 @@
       "topic": "scope"
     },
     {
-      "number": 902,
-      "title": "Move accessibility supported to a new testing section and recast it as user agent supported",
-      "url": "https://github.com/w3c/wcag3/pull/902",
+      "number": 949,
+      "title": "Adding bypass blocks requirement",
+      "url": "https://github.com/w3c/wcag3/pull/949",
       "state": "open",
-      "created": "2026-10-06",
-      "updated": "2026-10-23",
-      "comments": 3,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "other"
-    },
-    {
-      "number": 864,
-      "title": "Update conformance section in Explainer",
-      "url": "https://github.com/w3c/wcag3/pull/864",
-      "state": "open",
-      "created": "2026-09-14",
-      "updated": "2026-10-21",
-      "comments": 3,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "conformance"
-    },
-    {
-      "number": 923,
-      "title": "Refactors glossary to use headings instead of definition list",
-      "url": "https://github.com/w3c/wcag3/pull/923",
-      "state": "open",
-      "created": "2026-10-18",
-      "updated": "2026-10-20",
-      "comments": 2,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
-      "topic": "definitions"
-    },
-    {
-      "number": 939,
-      "title": "Update reporting tier definitions and structure",
-      "url": "https://github.com/w3c/wcag3/pull/939",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-26",
-      "comments": 1,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "conformance"
-    },
-    {
-      "number": 938,
-      "title": "Place permalinks after headings (fixes #868)",
-      "url": "https://github.com/w3c/wcag3/pull/938",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
+      "created": "2026-10-29",
+      "updated": "2026-10-29",
       "comments": 1,
       "weekComments": 0,
       "labels": [],
@@ -182,259 +61,69 @@
       "topic": "other"
     },
     {
-      "number": 926,
-      "title": "Update biometrics provisions",
-      "url": "https://github.com/w3c/wcag3/pull/926",
+      "number": 948,
+      "title": "initial commit of set of pages or views glosssary item",
+      "url": "https://github.com/w3c/wcag3/pull/948",
       "state": "open",
-      "created": "2026-10-21",
-      "updated": "2026-10-21",
+      "created": "2026-10-29",
+      "updated": "2026-10-29",
       "comments": 1,
       "weekComments": 0,
       "labels": [],
       "provisions": [],
       "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 907,
-      "title": "Add three exploratory sign language provisions",
-      "url": "https://github.com/w3c/wcag3/pull/907",
-      "state": "open",
-      "created": "2026-10-14",
-      "updated": "2026-10-20",
-      "comments": 1,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": false,
       "topic": "other"
     }
   ],
   "declined": [],
   "newIssues": [
     {
-      "number": 946,
-      "title": "Need process to address non-deterministic dynamically generated UI accessibility",
-      "url": "https://github.com/w3c/wcag3/issues/946",
+      "number": 947,
+      "title": "Do we need Navigating Content and Physical Or Cognitive Effort When Using A Keyboard guidelines?",
+      "url": "https://github.com/w3c/wcag3/issues/947",
       "state": "open",
-      "created": "2026-10-26",
-      "updated": "2026-10-26",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 945,
-      "title": "Vide player assertions in WCAG 3 should be moved to content provisions",
-      "url": "https://github.com/w3c/wcag3/issues/945",
-      "state": "open",
-      "created": "2026-10-26",
-      "updated": "2026-10-26",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 944,
-      "title": "Proposed requirement: Stereo and spatial audio usable in mono",
-      "url": "https://github.com/w3c/wcag3/issues/944",
-      "state": "open",
-      "created": "2026-10-26",
-      "updated": "2026-10-26",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 943,
-      "title": "Proposed requirement: Speech level adjustable relative to other audio",
-      "url": "https://github.com/w3c/wcag3/issues/943",
-      "state": "open",
-      "created": "2026-10-26",
-      "updated": "2026-10-26",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 942,
-      "title": "Proposed requirement: Speech distinguishable from background sound (auditory contrast)",
-      "url": "https://github.com/w3c/wcag3/issues/942",
-      "state": "open",
-      "created": "2026-10-26",
-      "updated": "2026-10-26",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 941,
-      "title": "WCAG 3 WD (Sept 2026) - experience report: rendering the draft's outcomes over real WCAG 2.2 findings",
-      "url": "https://github.com/w3c/wcag3/issues/941",
-      "state": "open",
-      "created": "2026-10-25",
-      "updated": "2026-10-25",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 940,
-      "title": "Explore the notion of accurate and important for the core requirement of Non-text content not relied on",
-      "url": "https://github.com/w3c/wcag3/issues/940",
-      "state": "open",
-      "created": "2026-10-24",
-      "updated": "2026-10-24",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "other"
-    },
-    {
-      "number": 937,
-      "title": "COGA support for copying supported",
-      "url": "https://github.com/w3c/wcag3/issues/937",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
+      "created": "2026-10-29",
+      "updated": "2026-10-29",
+      "comments": 1,
       "weekComments": 0,
       "labels": [
-        "coga"
+        "Path: Input and focus⹁ interactive components"
       ],
-      "provisions": [
-        {
-          "slug": "copying-supported",
-          "title": "Copying Supported"
-        }
-      ],
+      "provisions": [],
       "isNew": true,
-      "topic": "provision"
+      "topic": "other"
+    }
+  ],
+  "closedIssues": [],
+  "active": [
+    {
+      "number": 914,
+      "title": "WCAG 3: Functional Performance Statements",
+      "url": "https://github.com/w3c/wcag3/issues/914",
+      "state": "open",
+      "created": "2026-10-16",
+      "updated": "2026-10-30",
+      "comments": 5,
+      "weekComments": 1,
+      "labels": [],
+      "provisions": [],
+      "topic": "other"
     },
     {
-      "number": 936,
-      "title": "COGA support for no artificial time limits",
-      "url": "https://github.com/w3c/wcag3/issues/936",
+      "number": 218,
+      "title": "Simplified Contrast Guidelines (an alternative to APCA): Introducing DPS Contrast",
+      "url": "https://github.com/w3c/wcag3/issues/218",
       "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
+      "created": "2022-12-31",
+      "updated": "2026-10-30",
+      "comments": 1,
+      "weekComments": 1,
       "labels": [
-        "coga"
+        "Type: research",
+        "Path: Single sense and contrast"
       ],
-      "provisions": [
-        {
-          "slug": "no-artificial-time-limits",
-          "title": "No Artificial Time Limits"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    },
-    {
-      "number": 935,
-      "title": "COGA support for \"Single flash\"",
-      "url": "https://github.com/w3c/wcag3/issues/935",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "single-flash",
-          "title": "Single Flash"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    },
-    {
-      "number": 934,
-      "title": "COGA support for \"Non-verbal cues identified in transcripts\"",
-      "url": "https://github.com/w3c/wcag3/issues/934",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "non-verbal-cues-identified-in-transcripts",
-          "title": "Non Verbal Cues Identified In Transcripts"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    },
-    {
-      "number": 933,
-      "title": "COGA support for interactive elements distinguishable",
-      "url": "https://github.com/w3c/wcag3/issues/933",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "interactive-elements-distinguishable",
-          "title": "Interactive Elements Distinguishable"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    },
-    {
-      "number": 932,
-      "title": "COGA support for \"Figure captions persistent\"",
-      "url": "https://github.com/w3c/wcag3/issues/932",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "figure-captions-persistent",
-          "title": "Figure Captions Persistent"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
+      "provisions": [],
+      "topic": "other"
     },
     {
       "number": 931,
@@ -442,9 +131,9 @@
       "url": "https://github.com/w3c/wcag3/issues/931",
       "state": "open",
       "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
+      "updated": "2026-11-02",
+      "comments": 1,
+      "weekComments": 1,
       "labels": [
         "coga",
         "Path: Input and focus⹁ interactive components"
@@ -455,309 +144,7 @@
           "title": "Interactive Element Importance Indicated"
         }
       ],
-      "isNew": true,
       "topic": "provision"
-    },
-    {
-      "number": 930,
-      "title": "COGA support for \"Captions consistent\"",
-      "url": "https://github.com/w3c/wcag3/issues/930",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "captions-consistent",
-          "title": "Captions Consistent"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    },
-    {
-      "number": 929,
-      "title": "COGA support for numerical alternatives available",
-      "url": "https://github.com/w3c/wcag3/issues/929",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "numerical-alternatives-available",
-          "title": "Numerical Alternatives Available"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    },
-    {
-      "number": 928,
-      "title": "COGA support for non-verbal cues identified in captions",
-      "url": "https://github.com/w3c/wcag3/issues/928",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "non-verbal-cues-identified-in-captions",
-          "title": "Non Verbal Cues Identified In Captions"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    },
-    {
-      "number": 927,
-      "title": "COGA support for \"Non-verbal cues identified in audio descriptions\"",
-      "url": "https://github.com/w3c/wcag3/issues/927",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-10-22",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "non-verbal-cues-identified-in-audio-descriptions",
-          "title": "Non Verbal Cues Identified In Audio Descriptions"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
-    }
-  ],
-  "closedIssues": [],
-  "active": [
-    {
-      "number": 820,
-      "title": "Input method versus input modality",
-      "url": "https://github.com/w3c/wcag3/issues/820",
-      "state": "open",
-      "created": "2026-08-21",
-      "updated": "2026-10-26",
-      "comments": 3,
-      "weekComments": 3,
-      "labels": [
-        "Path: Input and focus⹁ interactive components",
-        "Other: Definitions & Terminology"
-      ],
-      "provisions": [
-        {
-          "slug": "input-method-flexible",
-          "title": "Input Method Flexible"
-        }
-      ],
-      "topic": "definitions"
-    },
-    {
-      "number": 194,
-      "title": "Draft SC \"Label gaps\"",
-      "url": "https://github.com/w3c/wcag3/issues/194",
-      "state": "open",
-      "created": "2019-03-26",
-      "updated": "2026-10-26",
-      "comments": 34,
-      "weekComments": 1,
-      "labels": [
-        "Path: User orientation⹁ layout and structure",
-        "Path: Input and focus⹁ interactive components"
-      ],
-      "provisions": [
-        {
-          "slug": "interactive-element-names-available",
-          "title": "Interactive Element Names Available"
-        },
-        {
-          "slug": "relationships-detectable",
-          "title": "Relationships Detectable"
-        }
-      ],
-      "topic": "provision"
-    },
-    {
-      "number": 221,
-      "title": "Too much contrast: halation, overstimulation, and the APCA",
-      "url": "https://github.com/w3c/wcag3/issues/221",
-      "state": "open",
-      "created": "2022-04-22",
-      "updated": "2026-10-24",
-      "comments": 14,
-      "weekComments": 1,
-      "labels": [
-        "Type: research",
-        "Path: Single sense and contrast"
-      ],
-      "provisions": [],
-      "topic": "other"
-    },
-    {
-      "number": 533,
-      "title": "why say human languages?",
-      "url": "https://github.com/w3c/wcag3/issues/533",
-      "state": "open",
-      "created": "2026-01-15",
-      "updated": "2026-10-21",
-      "comments": 9,
-      "weekComments": 1,
-      "labels": [
-        "i18n",
-        "Path: Text and wording",
-        "Other: Definitions & Terminology"
-      ],
-      "provisions": [
-        {
-          "slug": "common-words-used",
-          "title": "Common Words Used"
-        },
-        {
-          "slug": "diacritics-available",
-          "title": "Diacritics Available"
-        },
-        {
-          "slug": "human-language-detectable",
-          "title": "Human Language Detectable"
-        }
-      ],
-      "topic": "definitions"
-    },
-    {
-      "number": 197,
-      "title": "Future Success Criteria: Require disabled icon for disabled UI interface elements",
-      "url": "https://github.com/w3c/wcag3/issues/197",
-      "state": "open",
-      "created": "2019-03-13",
-      "updated": "2026-10-26",
-      "comments": 5,
-      "weekComments": 1,
-      "labels": [
-        "Path: Input and focus⹁ interactive components",
-        "Path: Errors⹁ task completion and help"
-      ],
-      "provisions": [
-        {
-          "slug": "disabled-controls-explained",
-          "title": "Disabled Controls Explained"
-        },
-        {
-          "slug": "interactive-element-contrast-sufficient",
-          "title": "Interactive Element Contrast Sufficient"
-        },
-        {
-          "slug": "interactive-elements-distinguishable",
-          "title": "Interactive Elements Distinguishable"
-        }
-      ],
-      "topic": "provision"
-    },
-    {
-      "number": 76,
-      "title": "Input control - needs clarification",
-      "url": "https://github.com/w3c/wcag3/issues/76",
-      "state": "open",
-      "created": "2024-05-17",
-      "updated": "2026-10-26",
-      "comments": 3,
-      "weekComments": 1,
-      "labels": [
-        "Path: Input and focus⹁ interactive components"
-      ],
-      "provisions": [
-        {
-          "slug": "input-method-flexible",
-          "title": "Input Method Flexible"
-        }
-      ],
-      "topic": "provision"
-    },
-    {
-      "number": 543,
-      "title": "Consider adding blurred content to Guideline 2.6.1 Avoid physical harm",
-      "url": "https://github.com/w3c/wcag3/issues/543",
-      "state": "open",
-      "created": "2026-01-16",
-      "updated": "2026-10-22",
-      "comments": 3,
-      "weekComments": 1,
-      "labels": [
-        "Path: User control and prevent harm"
-      ],
-      "provisions": [],
-      "topic": "other"
-    },
-    {
-      "number": 572,
-      "title": "Biometrics overlap",
-      "url": "https://github.com/w3c/wcag3/issues/572",
-      "state": "open",
-      "created": "2026-02-16",
-      "updated": "2026-10-21",
-      "comments": 3,
-      "weekComments": 1,
-      "labels": [
-        "Path: Input and focus⹁ interactive components"
-      ],
-      "provisions": [
-        {
-          "slug": "biometrics-not-relied-on",
-          "title": "Biometrics Not Relied On"
-        },
-        {
-          "slug": "multiple-biometrics-available",
-          "title": "Multiple Biometrics Available"
-        },
-        {
-          "slug": "voice-identification-not-relied-on",
-          "title": "Voice Identification Not Relied On"
-        }
-      ],
-      "topic": "provision"
-    },
-    {
-      "number": 249,
-      "title": "WCAG 3.0 Draft Review: Tradeoffs using flexible conformance",
-      "url": "https://github.com/w3c/wcag3/issues/249",
-      "state": "open",
-      "created": "2022-02-07",
-      "updated": "2026-10-23",
-      "comments": 1,
-      "weekComments": 1,
-      "labels": [
-        "Conformance"
-      ],
-      "provisions": [],
-      "topic": "conformance"
-    },
-    {
-      "number": 603,
-      "title": "Equivalent for 2.1.4 Character Key Shortcuts?",
-      "url": "https://github.com/w3c/wcag3/issues/603",
-      "state": "open",
-      "created": "2026-03-02",
-      "updated": "2026-10-26",
-      "comments": 1,
-      "weekComments": 1,
-      "labels": [
-        "Path: Input and focus⹁ interactive components"
-      ],
-      "provisions": [],
-      "topic": "other"
     }
   ]
 }

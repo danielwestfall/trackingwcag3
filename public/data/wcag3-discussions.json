@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-26T19:00:27.321Z",
+  "generatedAt": "2026-11-02T22:05:57.220Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 529,
+    "issuesTotal": 530,
     "issuesWithProvisionLabel": 266,
     "provisionsWithDiscussion": 171,
-    "generalIssues": 263,
+    "generalIssues": 264,
     "summarized": 36,
     "staleSummaries": 12,
     "awaitingSummary": 135
@@ -5117,9 +5117,9 @@
       "type": null,
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 1,
       "openCount": 1,
-      "fingerprint": "931@2026-10-22T15:21:22Z",
+      "fingerprint": "931@2026-11-02T21:44:30Z",
       "threads": [
         {
           "number": 931,
@@ -5127,8 +5127,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/931",
           "created": "2026-10-22",
-          "updated": "2026-10-22",
-          "comments": 0,
+          "updated": "2026-11-02",
+          "comments": 1,
           "labels": [
             "coga",
             "Path: Input and focus⹁ interactive components"

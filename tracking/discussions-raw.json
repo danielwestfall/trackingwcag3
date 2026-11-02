@@ -3245,12 +3245,18 @@
       ],
       "user": "Myndex",
       "created": "2022-12-31T16:32:21Z",
-      "updated": "2026-05-01T23:27:30Z",
+      "updated": "2026-10-30T19:33:55Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "# A Simplified Method And Guideline For Visual Contrast\r\nThe method I am presenting below is a substantial simplification from the previous guidelines I have presented, which some have indicated are too complicated.\r\n\r\n## 𝜟𝜱✴︎ *Introducing Delta Phi Star Contrast*\r\nDPS Contrast is an extremely simplified math, in fact it's a single line of code, that then relies on common CIE color transformations that are already a part of most color libraries, frameworks, and including CSS.\r\n\r\n### I consider this the *irreducible minimum* for an effective, usable, meaningful guideline for text and non-text contrast.\r\n\r\n---\r\n## *DPS Contrast in a Nutshell*\r\n**TUTORIAL:** create Lstar from the piecewise $sRGB$ &rarr; $Y$ and then $L^*$ per the standard D65 CIE math (see the [See Stars](https://github.com/Myndex/seestars) microlibrary), then:\r\n\r\n```js\r\n    deltaPhiStar = (Math.abs(bgLstar ** 1.618 - txLstar ** 1.618) ** 0.618) * 1.414 - 40 ;\r\n    \r\n    // ** is equiv to Math.pow\r\n```\r\n\r\nThis mainly works for \"Light Mode\" and does not track dark mode as well as APCA, but the actual result is that dark mode will then end up with higher actual contrast. To emulate polarity sensitivity it's possible to add about $L^c\\ 5$ to the results of negative polarity color pairs. \r\n\r\nAlso, while this is close to parity with light-mode APCA for $Lc\\ +45$ thru $Lc\\ +75$, The accuracy diminishes significantly outside of that range. For a functional guideline that shouldn't be important, as the **_critical range_** in terms of minimum thresholds for primary content text is $Lc\\ +45$ thru $Lc\\ +75$.\r\n\r\n\r\n\r\n## *BASIC DPS READABILITY GUIDELINES:*\r\n- Delta Phi Star Readability Guidelines are set as simple thresholds similar to WCAG 2.x \r\n    - Linear interpolation is permitted intra-level.\r\n    - These values are based on reference fonts such as Helvetica or Arial.\r\n    - To use a 300 weight font, add $L^c\\ 10$ to the contrast threshold needed for normal weight.\r\n        - in other words, if 16px normal requires $L^c\\ 75$, then 16px 300 requires $L^c\\ 85$.\r\n    - CSS `font-smoothing: antialiased` is prohibited for 300 weight fonts smaller than 36px and for normal weight fonts which are smaller than 24px.\r\n        - `font-smoothing: auto` (i.e. default) should be used for small and thin fonts.\r\n\r\n- **_FOR PRIMARY CONTENT TEXT_**\r\n    - $L^c\\ 75$ permits a minimum font size of:\r\n        - 16px normal or 12px bold\r\n    - $L^c\\ 60$ permits a minimum font size of:\r\n        - 24px normal or 16px bold\r\n    - $L^c\\ 45$ permits a minimum font size of:\r\n        - 42px normal or 24px bold\r\n\r\n- **_FOR SECONDARY CONTENT, \"SPOT\" READABLE TEXT_**\r\n    - _subtract_ $L^c\\ 15$ from the above values.\r\n    - at $L^c\\ 90$ (which calculates as $L^c\\ 75$ _after_ subtracting $L^c\\ 15$)\r\n        - minimum font size is 11px for secondary content only.\r\n    - secondary content includes things like \"copyright\" or \"placeholder text\" or other textual elements that are not directly related to the **_primary_** content of the page or primary navigation.\r\n\r\n- **_FOR SEMANTIC NON-TEXT (icons and pictograms)_**\r\n    - $L^c\\ 60$ for thin outline icons or thin line drawings\r\n    - $L^c\\ 45$ for solid icons or bolder line drawings\r\n- **_FOR NON-SEMANTIC NON-TEXT (chart elements or button shapes)_**\r\n    - $L^c\\ 45$ for button outlines, thin chart lines, small pie pieces\r\n    - $L^c\\ 30$ for solid buttons, bar charts, large pie pieces\r\n\r\n### Also for APCA\r\nIt might be obvious, the above guidelines could in theory be used with the APCA math as well for more accuracy, and with this same simplified concept.\r\n\r\n\r\n## *Additional Information And The Repo*\r\n\r\nA link to the repo and the FAQ is [**DELTA PHI STAR CONTRAST FAQ**](https://github.com/Myndex/deltaphistar#deltaphistar-contrast-logo)\r\n\r\nI haven't built a tool for this yet, however, at [LeaVerou](https://github.com/LeaVerou)'s [color.js](https://github.com/LeaVerou/color.js) demo site, DeltaPhiStar's part of the demo for when to flip from black to white. In this demo you can compare a number of different contrast algorithms, including WCAG2, APCA, DeltaPhiStar, and others.\r\n\r\n[**_Black or White?_**](https://colorjs.io/apps/blackwhite/) at color.js\r\n\r\nHere's a screenshot comparing DeltaPhiStar to APCA, the boxes with a dashed border around them indicate where DeltaPhiStar is different than APCA, with DPS showing black text instead of white. \r\n\r\nThis is largely attributable to the the following:\r\n- The difference in how sRGB colors are processed between APCA & DeltaPhiStar\r\n    - DeltaPhiStar using the IEC _piecewise_ linearization and CIE conversion to $L^*$.\r\n    - APCA uses an optimized conversion that compensates for gamma gain.\r\n- APCA is polarity sensitive, DeltaPhiStar is not.\r\n    - as a result, near the flip point for black and white, DeltaPhiStar is slightly under reporting the actual contrast of negative polarity (White text).\r\n\r\n<sub>_click to enlarge_</sub>\r\n<img width=\"705\" alt=\"Colors.js sample black and white flip test comparing APCA and delta phi star\" src=\"https://user-images.githubusercontent.com/42009457/210149363-3b75406c-9738-4bc2-80d1-baa28c26d8e4.png\">\r\n\r\nAs you can see, is not as accurate around the Extreme flip point, but otherwise in relatively decent agreement, and probably well suited for a simplified guideline.\r\n\r\n\r\n\r\nThank you for reading,\r\n\r\nAndy\r\n\r\n\r\n_Andrew Somers_      \r\n_Color Scientist @ Myndex Research_      \r\n_Creator of APCA and DeltaPhiStar_      \r\n_W3C Invited Expert & WCAG 3.0 Co-Author_      \r\n",
       "url": "https://github.com/w3c/wcag3/issues/218",
-      "comments": []
+      "comments": [
+        {
+          "user": "ItsBexy",
+          "created": "2026-10-30T19:33:55Z",
+          "body": "I came upon this model in my efforts to procedurally construct color palettes that enable easier conformance to APCA recommendations, and I'm grateful I found it!\n\nMost contrast compliance tools focus on after-the-fact validation (comparing already-chosen colors, analyzing already-rendered pages, etc). APCA adoption would likely skew that balance even further towards a validation-focused approach; its algorithm is technical enough that it essentially mandates dedicated evaluation tools/plugins. \n\nConversely, the type of tool I find most practical as a designer is one that makes compliant color selection easier in the first place. Namely, palettes and interfaces where contrast outcomes are predictable in advance. But I've found that reversing APCA to procedurally \"solve for\" contrasting colors is fairly tricky (outside very simple cases like choosing between black or white text).\n\nTo that end, I was working on generating palettes with uniform contrast intervals; swatches ranging from light to dark, wherein moving a given number of steps gives a reliable contrast outcome. This type of scale is mathematically not possible in APCA, which led to a lot of compromises and curve-fitting. But it IS trivially attainable with DPS, as shown:\n\n<img width=\"963\" height=\"737\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3b599140-fe7e-4613-a368-1f55eacc8b9e\" />\n\nIn this example, we have a light-to-dark palette (top) generated from a base color. All of the demo pairings (bottom) are the same interval apart on the palette, and all report identical DPS contrast (63.1). This holds true for any size of interval.\n\n---\nTo explain why I think the uniformity of the DPS model matters for compliance and adoption: it makes it easier to _proactively design toward_ accessible contrast, rather than relying solely on validation tools and making reactive corrections after the fact.\n\n1. Web development platforms currently structure their color systems around modular palettes with reusable color variables.\n2. If a means is provided to calibrate palettes for predictable contrast relationships in advance, it becomes much easier for designers to select appropriate color schemes from those palettes.\n3. The DPS formula is mathematically better-suited for this use case, while still broadly agreeing with APCA.\n\nEven if DPS does not pick up steam as an evaluation criteria, I think it nonetheless has a place as a design utility. It gives an easily-implemented scale for predicting contrast outcomes from the earliest design stages (even if validating the results by other means is still a required step)."
+        }
+      ]
     },
     "219": {
       "number": 219,
@@ -11531,9 +11537,9 @@
       "labels": [],
       "user": "maryjom",
       "created": "2026-10-16T15:47:50Z",
-      "updated": "2026-10-19T16:17:45Z",
+      "updated": "2026-10-30T14:17:51Z",
       "closed": null,
-      "commentCount": 4,
+      "commentCount": 5,
       "body": "The FPS included in WCAG 3 do not map well to the EN 301 549 (where these are Functional Performance Criteria in [V4.1.1](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.01_60/en_301549v040101p.pdf)) or US Revised 508 Functional Performance Criteria. \n\nSome concerns:\n- How does one draw the line between \"very limited\" and \"limited\" in each of the FPS categories? The descriptions for the pairs of FPS are exactly the same so there could be wide interpretation of what they mean in practice. The FPS would benefit from better descriptions so readers can understand the differences, general information about user needs, etc. The EN 301 549 is a good start for those. For vision, it could potentially be a difference between someone who would need to use AT like a screen reader and/or screen magnifier and possibly also high contrast color schemes compared to someone who might need to modify font sizes, use user agent zoom, and/or adjust the contrast. If those things were incorporated into the descriptions, the FPS would be more understandable. The differences between the \"very limited\" vs \"limited\" manipulation or strength may be difficult to describe. How strong is a grip that is limited vs. very limited? What would constitute limited vs. very limited fine motor control or range of motion.\n- The FPS is missing a category for photosensitive seizures, like \"Use without triggering photosensitive seizures\" or maybe a broader category of \"Use without triggering physical harm\". The EN 301 549 does have a category for photosensitive seizures, and I think it is important to have that user need represented in the FPS - even if that category represents few requirements.\n- If WCAG 3 has no requirements that fit into a particular FPS category, will it be removed? \n- Intersectional disabilities will be difficult to categorize requirements into because the requirements are individual aspects of the ICT and essentially everything would wind up in this category which would provide no real benefit. IMO, if we want to cover specifically deaf-blind it would be good to have a look at all requirements with that lens. Because in some cases content would have to satisfy combinations of requirements or to use specific implementation methods to meet their needs.",
       "url": "https://github.com/w3c/wcag3/issues/914",
       "comments": [
@@ -11556,6 +11562,11 @@
           "user": "maryjom",
           "created": "2026-10-19T16:17:45Z",
           "body": "No argument there Gregg. I didn't want them to be requirements in the EN 301 549 as they aren't useful. Similar to WCAG, one bug on one requirement will mean you cannot say \"Supports\"  or \"Conforms\" for the particular FPC. Not sure how that will be helpful for the EU legislation at all."
+        },
+        {
+          "user": "charleshalldesign",
+          "created": "2026-10-30T14:17:51Z",
+          "body": "> The FPS included in WCAG 3 do not map well to the EN 301 549\n\nI was the primary author of the list of Functional Needs that became the [FAST](https://w3c.github.io/fast/#functional-needs) (Framework for Accessible Specification of Technologies) and used in WCAG3.\nThe idea was **not** to map them but extend them, as they (the FPS of EN 301 549) were insufficient.\nIn fact, the FPS in the EN standard was simply 1 of 8 such resources that combined were still insufficient.\n\nThe Functional Needs Subgroup does have a Google Sheet that [mapped User Needs versus Functional Needs](https://docs.google.com/spreadsheets/d/1POhgI_xHZtSoNbHFp3r5HYIkl6ePaP8DC5d90SZ1tF4/edit?usp=sharing), but not specifically mapped back to EN 301 549."
         }
       ]
     },
@@ -11820,12 +11831,18 @@
       ],
       "user": "lseeman",
       "created": "2026-10-22T14:46:04Z",
-      "updated": "2026-10-22T15:21:22Z",
+      "updated": "2026-11-02T21:44:30Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "We like this  exploratory provision and would like to see it move forward. Please let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise. We could also try to do a literary review or see what research is out there if that is more helpful. \nAll the best,\nThe COGA task force ",
       "url": "https://github.com/w3c/wcag3/issues/931",
-      "comments": []
+      "comments": [
+        {
+          "user": "GouldenJen",
+          "created": "2026-11-02T21:44:29Z",
+          "body": "Hey Francis,\r\n\r\nThanks for these emails. I have gone to check things out on GitHub and will be more productive once I’m back from my work travels next week.\r\n\r\nHope you enjoyed your time in Dublin.\r\n\r\nThanks,\r\nJen\r\n\r\nJEN GOULDEN, M.A., EDP, UEB Technical\r\nPrincipal Accessibility & Alternative Formats Specialist\r\nChair, Braille Authority of North America\r\nVice-President, International Council on English Braille\r\n613-552-4191 (Cell)\r\n343-804-0333 (Office)\r\n***@***.******@***.***>\r\nCrawford Technologies Inc.\r\n20 Bay Street, Suite 1105\r\nToronto, ON M5J 2N8\r\nwww.crawfordtech.com<http://www.crawfordtech.com/>\r\nThis e-mail may be privileged and/or confidential, and the sender does not waive any related rights and obligations. Any distribution, use or copying of this e-mail or the information it contains by other than an intended recipient is unauthorized. If you received this e-mail in error, please advise me (by return e-mail or otherwise) immediately.\r\nCe courrier électronique est confidentiel et protégé. L'expéditeur ne renonce pas aux droits et obligations qui s'y rapportent. Toute diffusion, utilisation ou copie de ce message ou des renseignements qu'il contient par une personne autre que le (les) destinataire(s) désigné(s) est interdite. Si vous recevez ce courrier électronique par erreur, veuillez m'en aviser immédiatement, par retour de courrier électronique ou par un autre moyen.\r\n\r\nFrom: Francis Storr ***@***.***>\r\nSent: October 22, 2026 11:20 AM\r\nTo: w3c/wcag3 ***@***.***>\r\nCc: Jen Goulden ***@***.***>; Assign ***@***.***>\r\nSubject: Re: [w3c/wcag3] COGA support for interactive element importance indicated (Issue #931)\r\n\r\nAssigned #931<https://github.com/w3c/wcag3/issues/931> to @GouldenJen<https://github.com/GouldenJen>.\r\n\r\n—\r\nReply to this email directly, view it on GitHub<https://github.com/w3c/wcag3/issues/931?email_source=notifications&email_token=A3HUAHTMENLM2CCMB5PJCFL5VIQRZA5CNFSNUABQM5UWIORPF5TWS5BNNB2WEL2JONZXKZKFOZSW45CON52GSZTJMNQXI2LPNYXTGMZZGY2DMMZZHE3DTJTSMVQXG33OUZQXG43JM5XKKZLWMVXHJLDGN5XXIZLSL5RWY2LDNM#event-33964639969>, or unsubscribe<https://github.com/notifications/unsubscribe-auth/A3HUAHSDRPNVQ3WGY5B7FCL5VIQRZAVCNFSNUABFKJSXA33TNF2G64TZHM3DMMZUHE2TKMJQHNEXG43VMU5TKOJYGE3DANJVGYZ2C5QC>.\r\nTriage notifications, keep track of coding agent tasks and review pull requests on the go with GitHub Mobile for iOS<https://github.com/notifications/mobile/ios/A3HUAHVXQXRBBGRGMYOHDUL5VIQRZA5CNFSNUABQM5UWIORPF5TWS5BNNB2WEL2JONZXKZKFOZSW45CON52GSZTJMNQXI2LPNYXTGMZZGY2DMMZZHE3DTJTSMVQXG33OUZQXG43JM5XKKZLWMVXHJKTGN5XXIZLSL5UW64Y> and Android<https://github.com/notifications/mobile/android/A3HUAHW6LRWXHNTARHTF5YL5VIQRZA5CNFSNUABQM5UWIORPF5TWS5BNNB2WEL2JONZXKZKFOZSW45CON52GSZTJMNQXI2LPNYXTGMZZGY2DMMZZHE3DTJTSMVQXG33OUZQXG43JM5XKKZLWMVXHJLTGN5XXIZLSL5QW4ZDSN5UWI>. Download it today!\r\nYou are receiving this because you were assigned.Message ID: ***@***.***>\r\n"
+        }
+      ]
     },
     "932": {
       "number": 932,
@@ -12026,7 +12043,29 @@
       "body": "Some UI is non-deterministically generated dynamically at run-time.  While sample output can be tested - it would likely be beneficial to have some assertions around this topic or reporting guidance.",
       "url": "https://github.com/w3c/wcag3/issues/946",
       "comments": []
+    },
+    "947": {
+      "number": 947,
+      "title": "Do we need Navigating Content and Physical Or Cognitive Effort When Using A Keyboard guidelines?",
+      "state": "open",
+      "labels": [
+        "Path: Input and focus⹁ interactive components"
+      ],
+      "user": "fstrr",
+      "created": "2026-10-29T12:03:34Z",
+      "updated": "2026-10-29T16:48:16Z",
+      "closed": null,
+      "commentCount": 1,
+      "body": "There seems to be quite a lot of overlap between the [Navigating Content](https://w3c.github.io/wcag3/guidelines/#navigating-content) and [Physical or cognitive effort when using keyboard](https://w3c.github.io/wcag3/guidelines/#physical-or-cognitive-effort-when-using-keyboard) guidelines. Do we need both or can they be combined?\n\nNavigating content has these provisions:\n\n- Focus Relevant\n- Focus Retained\n- Focus Order Meaningful\n\nPhysical or cognitive effort when using keyboard has these provisions:\n\n- Navigation Keys Described\n- No Repetitive Repeated Interactive Elements\n- Keyboard Effort Comparible",
+      "url": "https://github.com/w3c/wcag3/issues/947",
+      "comments": [
+        {
+          "user": "GreggVan",
+          "created": "2026-10-29T16:48:15Z",
+          "body": "I  don't see the overlap.  they all deal with keyboard access- but different aspects.    Can you explain what you see as the overlap?"
+        }
+      ]
     }
   },
-  "fetchedAt": "2026-10-26T19:00:27.321Z"
+  "fetchedAt": "2026-11-02T22:05:57.220Z"
 }
