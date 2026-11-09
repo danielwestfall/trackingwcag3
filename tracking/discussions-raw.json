@@ -8895,9 +8895,9 @@
       ],
       "user": "ajsaucier",
       "created": "2026-03-13T21:57:49Z",
-      "updated": "2026-10-18T19:52:18Z",
+      "updated": "2026-11-06T03:47:25Z",
       "closed": null,
-      "commentCount": 2,
+      "commentCount": 3,
       "body": "\"Focus placed\" and \"Focus retained\" seem to be very similar, and both are currently a supplemental requirement. I think it is worth discussing whether they should be a core requirement. I have spoken with screen reader users who have seen it as a barrier when they are in the middle of completing a form and using a date picker, for example, only to have their focus lost when the date picker is closed and sent back to the `<body>` element. Is part of the reason for it being a supplemental requirement that browsers try to return focus to a logical place on their own?",
       "url": "https://github.com/w3c/wcag3/issues/616",
       "comments": [
@@ -8910,6 +8910,11 @@
           "user": "ajsaucier",
           "created": "2026-03-17T15:07:19Z",
           "body": "@detlevhfischer Sorry about that, I definitely should have linked to this section of the document. [Focus placed](https://www.w3.org/TR/wcag-3.0/#focus-placed) is found under [2.4 Input / operation](https://www.w3.org/TR/wcag-3.0/#input-operation)"
+        },
+        {
+          "user": "DaleenRabe",
+          "created": "2026-11-06T03:47:25Z",
+          "body": "I agree with this should be addressed. \n\nAdding a another scenario in support of making Focus placed core: \nIn a drag-and-drop or \"move between lists\" component, the focused item leaves its list when the user moves it. Focus can also act inconsistently, and different implementations place focus differently (back to the list, or onto the drop target), sometimes within the same component. For keyboard and screen reader users this is the same barrier described above with the date picker.\n\nThe draft Focus placed text already covers removal (the deleted tag example) and asks for focus to move to \"a meaningful location\", but that term is not defined, so the provision can't be tested consistently. I've filed that as a separate issue (#954) so it doesn't get mixed into the core vs supplemental question here."
         }
       ]
     },
@@ -11888,12 +11893,18 @@
       ],
       "user": "julierawe",
       "created": "2026-10-22T14:48:29Z",
-      "updated": "2026-10-22T14:48:29Z",
+      "updated": "2026-11-07T11:58:40Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "Hi,\n\nWe really like this exploratory provision (\"[Non-verbal cues identified in transcripts](https://w3c.github.io/wcag3/guidelines/#non-verbal-cues-identified-in-transcripts)\") and would like to see it move forward.\n\nPlease let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise.\n\nAll the best,\nThe COGA task force",
       "url": "https://github.com/w3c/wcag3/issues/934",
-      "comments": []
+      "comments": [
+        {
+          "user": "lauracarlson",
+          "created": "2026-11-07T11:58:40Z",
+          "body": "Thank you, Julie, and thanks to the COGA Task Force for the support!\n\nAs we prepare this provision for the upcoming publication milestone, all open repository issues need to be formally resolved. We want to ensure we capture COGA's perspective while keeping the draft on track for publication.\n\nSpecifically, any existing studies, task force papers, or lived-experience findings in the following areas would be extremely helpful to inform our final disposition:\n\n* **Comprehension and Understanding:** Evidence showing which specific non-verbal cues (for example, gestures, facial expressions, vocal delivery, or body language) help users understand content, reduce ambiguity, or improve comprehension.\n* **Cognitive Load and Text Processing:** Findings on the balance between providing helpful non-verbal context and introducing additional reading complexity or information overload within a single-stream transcript.\n* **Real-World Usage and Benefits:** Research, case studies, or user feedback demonstrating how non-verbal cues in transcripts support accessibility and usability.\n\nIf the Task Force has existing research, findings, guidance, or references ready to share, please feel free to add them here.\n\nIf there are no specific concerns with the current direction, that feedback would also be helpful. We can incorporate any available references, document future research needs as informative notes or backlog items, and work toward closing this issue as part of publication readiness.\n\nThank you again for offering your expertise and support!"
+        }
+      ]
     },
     "935": {
       "number": 935,
@@ -11922,12 +11933,18 @@
       ],
       "user": "lseeman",
       "created": "2026-10-22T14:50:29Z",
-      "updated": "2026-10-22T14:50:29Z",
+      "updated": "2026-11-06T06:17:17Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 1,
       "body": "We really like this exploratory provision and would like to see it move forward. Please let us know if we can help. For example, if you have a specific research question, we can ask our members for life experience or subject matter expertise. We could also try to do a literary review or see what research is out there if that is more helpful. \nAll the best,\nThe COGA task force ",
       "url": "https://github.com/w3c/wcag3/issues/936",
-      "comments": []
+      "comments": [
+        {
+          "user": "daleen-rabe-lrn",
+          "created": "2026-11-06T06:17:17Z",
+          "body": "I truly appreciate this direction of WCAG, from a product design perspective - having clarity on what to look for and improve in this space would help immensely. Thank you for offering to help with this! I’ve filed #955 proposing a definition of “artificial” and a longer test.\n\n**Some questions that come to mind:**\n1. Do time limits that restart, or that never actually expire, increase abandonment, errors or stress for people with limited focus, memory or executive function, compared with limits that really expire?\n2. Which kinds of time limit cause the most difficulty (checkout holds, offer countdowns, session timeouts), and does knowing in advance that a limit is real change that?\n"
+        }
+      ]
     },
     "937": {
       "number": 937,
@@ -12065,7 +12082,257 @@
           "body": "I  don't see the overlap.  they all deal with keyboard access- but different aspects.    Can you explain what you see as the overlap?"
         }
       ]
+    },
+    "954": {
+      "number": 954,
+      "title": "Define \"meaningful location\" and require consistent focus placement when an action moves or removes the focused item",
+      "state": "open",
+      "labels": [],
+      "user": "DaleenRabe",
+      "created": "2026-11-06T03:31:11Z",
+      "updated": "2026-11-06T03:31:11Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "These are related but doesn't cover this issue completely: \n- #616 \n- #915  \n- #172  \n\n### Problem / user need\nWhen a user moves an item from a source list to a drop target using a keyboard or assistive technology, the focused item leaves the source list and focus is lost, usually to `<body>`. Keyboard and screen reader users must then re-find their place. If focus moves to different places after different moves (back to the list after one move, to the target after the next), the user cannot predict where they are. See scenario below.\n\nThe draft Focus placed text says focus must move to \"a meaningful location\" after a tag is deleted, but \"meaningful\" is undefined, and nothing requires consistency across repeated actions.\n\n### Scenario\n10 draggable items, 2 drop zones. The user selects item 1, moves it to zone 1, and the item leaves the list. Then the user moves another item to zone 2. Where should focus go after each drop, and should it be the same both times?\n\n### Gap in WCAG 2.2\n- 2.4.3 Focus Order (A) governs sequence, not placement after removal.\n- 2.5.7 Dragging Movements (AA) and 2.1.1 Keyboard (A) require alternatives, not focus placement.\n- 3.2.3/3.2.4 (AA) cover consistency of navigation and identification, not focus behavior.\n- 4.1.3 Status Messages (AA) allows announcing results but does not address focus.\n\n### Proposal\n1. Define \"meaningful location\" in the glossary (e.g. the element where the user's next likely action in the task can begin).\n2. Add to Focus placed: when an action removes or relocates the focused element, focus is placed on the next item in the same set (or the previous if none), or on the container if the set is empty.\n3. Add a consistency requirement: the same type of action in the same component places focus in the same way each time.\n4. Recommend (informative) a status message announcing the result without moving focus.\n\n### Suggested test\nFor each action that removes or moves the focused element, perform it at least twice. Check that focus is on an element in the user's task flow, not `<body>`, and that placement is the same each time.\n\n### Questions for the group\n- Should this be core, given the loss of focus to <body> (see #616)?\n- Where is the line between prescribing UX and defining a testable outcome?",
+      "url": "https://github.com/w3c/wcag3/issues/954",
+      "comments": []
+    },
+    "955": {
+      "number": 955,
+      "title": "No artificial time limits: define \"artificial\" and extend the test beyond reset checks",
+      "state": "open",
+      "labels": [],
+      "user": "daleen-rabe-lrn",
+      "created": "2026-11-06T06:03:19Z",
+      "updated": "2026-11-06T06:27:49Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "For the \"No artificial time limits (2.9.3.2, supplemental, exploratory)\" https://w3c.github.io/wcag3/informative/process-and-task-completion/avoid-deception/no-artificial-time-limits/ and related #936  \n\n### Problem\nThe provision has one test: check that each time limit \"does not restart or reset immediately\". That catches a timer that visibly loops, but not these cases:\n- a countdown that never resets but whose stated consequence never happens (the offer is still available after it reaches zero)\n- a limit that restarts when the person leaves and returns\n- a limit with no real constraint behind it\n\n\"Artificial\" is not defined in the draft. The exception also leans on the glossary entry \"essential to outcome\", which lists \"purchasing items in limited supply\" and \"operations which cannot be undone, such as purchasing things in an auction\". A seller could cite either to call a marketing countdown essential. The page lists \"ticket sales\" as essential, yet a ticket checkout timer that pushes people to decide quickly is the kind of pressure the provision targets, so the line between a held seat and pressure is unclear.\n\n### Proposal\n1. Define \"artificial time limit\" by outcome, without reference to intent: a time limit whose stated consequence does not occur when it expires.\n2. Extend the test. For each time limit in the process:\n   1. Check that it does not restart or reset immediately (existing).\n   2. Let it expire. Check that the stated consequence occurs (the offer ends, the hold is released, the session ends).\n   3. Return to the process. Check that the same limit and offer are not offered again unchanged.\n3. Write out the exceptions so testers do not have to interpret “essential” (see Proposed exceptions below).\n\n### Proposed exceptions\n1. The limit is tied to a live event with a fixed start or end, such as a webinar, an auction or a timed exam.\n2. The limit is a hold the system enforces: a seat, reservation or price held for a stated time that is actually released or changed when the time runs out.\n3. The limit protects security or safety, such as a session timeout that ends access to private information.\n4. The limit comes from a legal or regulatory deadline, such as a proposal due date.\n\nEach exception applies only if the limit is stated to the user and the stated consequence happens when it expires. That keeps the exceptions from covering marketing timers.\n\n### Practical note\nLetting a long timer expire takes time. Testers could shorten it in a test environment, or use the stated duration plus an observed expiry.\n\n### Evidence\n- Examples from the Safety & Deception subgroup's working document: a countdown app whose admin setting restarts the timer at zero, a 15 minute ticket checkout timer, and an alleged class action over fake limited-time offers in games.\n- The European Commission’s 2022 behavioural study (https://data.europa.eu/doi/10.2838/859030) found countdown timers and limited-time messages quite prevalent on e-commerce platforms.\n- COGA has offered research support on this provision (#936).\n\n### Questions for the group\n- Is false scarcity messaging (\"only 2 left\") in scope, or a separate provision?\n- Should step 2 stay in the test, given the time cost, or become a recommended practice?\n- Given the financial and privacy risk, should this be core rather than supplemental?\n- Should the exceptions sit in the provision, or should the glossary entry “essential to outcome” be narrowed instead?",
+      "url": "https://github.com/w3c/wcag3/issues/955",
+      "comments": []
+    },
+    "956": {
+      "number": 956,
+      "title": "Unnecessary steps: ending a commitment should take no more effort than starting it",
+      "state": "open",
+      "labels": [],
+      "user": "DaleenRabe",
+      "created": "2026-11-06T07:25:15Z",
+      "updated": "2026-11-06T07:25:15Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Related: Avoid deception (2.9.3); the Safety & Deception subgroup working document\n\nI propose comparing the effort to end a commitment with the effort to start it, instead of setting a fixed number of steps. A fixed baseline (one reviewer in the working document suggested about three: reach the page, activate, acknowledge) has to be defended for every kind of product, becomes a target services can design up to, and lets a product that joins in one tap and leaves in three pass. Parity measures the gap between joining and leaving, which is where the harm is.\n\n### Problem\nEnding a commitment could be a clear case. Cancelling a subscription, closing an account or leaving a mailing list often takes far more effort than joining, or is hard to find. The subgroup's working document names unsubscribing and cancelling as examples, and the European Commission's 2022 study https://data.europa.eu/doi/10.2838/859030 lists difficult cancellation among the five most prevalent dark patterns it found. Extra effort is likely to cost more for people using keyboards, switches or screen readers, and for people with cognitive disabilities.\n\n### Proposal\nAvoid judging whether a step is \"necessary\". Compare the effort to leave with the effort to join, which a tester can count, and check that leaving can be found.\n\nWhen a user can start a commitment in a product without contacting sales or support (for example a subscription, account, trial or mailing list), ending it takes no more interactions than starting it, can be started from where the commitment is shown or communicated, and can be completed without contacting support.\n\n### For each such commitment:\n1. Find where the commitment is shown or communicated (an account or billing page, app settings, or a link in a message). Check that ending can be started from there and is labelled in plain words.\n2. Count the interactions to start it, from the entry a new user takes, and to end it, from the same area. An interaction is a control the user activates or a field the user completes. Check that ending takes no more.\n3. Check that ending can be completed without contacting support. For a link in a message, check that it does not require logging in or retyping an address.\n4. Check that any retention offer, survey or confirmation can be declined or skipped in one action, with equal prominence to continuing, and that at most one confirmation is used.\n\nCounting interactions, not screens, avoids penalising designs that split a long form into short steps for cognitive benefits.\n\n### Except when\nProposed exceptions (suggestions for the group): \nThese are offered to start the discussion. We would welcome real examples before the group adds more.\n\nExcept when\n1. Identity verification is needed to end the commitment, and it is no stricter than the verification used to start it.\n2. The commitment is managed outside the product (an administrator, a sales contract, an app store), and the product links directly to where it can be ended.\n\n### Scope note\nTarget size and contrast of an unsubscribe link are covered by existing provisions and are not restated here. This issue covers the effort to leave and whether leaving can be found. It applies to ending billing, a membership, an account or messages. Deleting stored data is a separate step and may include one safeguard, such as an export or a grace period.\n\n### Practical note\nTesters need an account or test mailing list that can be started and ended. A test account avoids charging a real payment method.\n\n### Evidence\n- Cases reported in the subgroup's working document: a newspaper flow that required contacting customer care during limited hours to cancel, a four-step account cancellation, extra steps to deactivate a social media account. The document's own example of unnecessary steps includes having to contact support to unsubscribe from a newsletter.\n- CPRC, “Let Me Out” (August 2024): (https://cprc.org.au/wp-content/uploads/2024/08/CPRC_LetMeOut_SubsTraps_Report_FINAL.pdf)\n- arXiv 2024, dark patterns in the CCPA opt-out process: https://arxiv.org/pdf/2409.09222\n- Luguri and Strahilevitz (2021), Journal of Legal Analysis: https://papers.ssrn.com/abstract=3431205\n- European Commission 2022 behavioural study on dark patterns: https://data.europa.eu/doi/10.2838/859030\n\n### Relationship to other provisions\nThe usability testing assertion stays useful for steps that cannot be counted. A count can be gamed by padding the join flow or crowding the leave flow onto one screen, so this works best alongside the assertion and the misdirection work in Avoid deception.\n\n### Questions for the group\n1. Parity, a fixed baseline such as three interactions, or both?\n2. Should the comparison use the shortest path to start, or the typical one?\n3. Should this be a new supplemental provision under 2.9.6, or should the assertion be changed?\n4. Is the message that contains an unsubscribe link in scope for WCAG 3, or only the page it opens?\n5. If starting a commitment requires contacting sales, should ending it be held to the same route, or does the \"without contacting support\" rule still apply?\n6. The harm is that a person cannot leave. What evidence would the group need to consider this core rather than supplemental?",
+      "url": "https://github.com/w3c/wcag3/issues/956",
+      "comments": []
+    },
+    "957": {
+      "number": 957,
+      "title": "Clarify step identification, numbering, and structure in multi-step processes",
+      "state": "open",
+      "labels": [
+        "Path: User orientation⹁ layout and structure",
+        "P - All steps listed"
+      ],
+      "user": "giacomo-petri",
+      "created": "2026-11-06T10:53:18Z",
+      "updated": "2026-11-06T10:56:30Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "From @GreggVan in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> Steps in a multi-step process are identified and convey their number or structure.\n> Problem - this says that the STEPS must convey their number. it should be the PAGE or CONTENT or something that conveys the number or structure.\n> Problem - what does \"the structure\" of steps mean? This needs to be clearly defined in an objective way to be part of the requirement.\n> Problem - is it OR or is it AND/OR ?\n> Problem - definition of step is ambiguous and unusable. A step is defined as \"distinct part of a process\". If I have a 3 pages with 4 questions each and some questions are multiple selections and this is followed by a confirmation and submission pages. Is this 5 steps (pages) or 12+2 steps? or is each question and interaction a step in the process?",
+      "url": "https://github.com/w3c/wcag3/issues/957",
+      "comments": []
+    },
+    "958": {
+      "number": 958,
+      "title": "Clarify current step indication when the total number of steps is dynamic or unknown",
+      "state": "open",
+      "labels": [
+        "Path: User orientation⹁ layout and structure",
+        "P - Current step indicated"
+      ],
+      "user": "giacomo-petri",
+      "created": "2026-11-06T10:56:05Z",
+      "updated": "2026-11-06T11:01:45Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "From @GreggVan in Ovt 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> Within a multi-step process, there is a visual and programmatic indication of which step is current.\n> Problem: what if number of steps is not known? or changes depending on user input? Perhaps one could say you have carried out 6 of unknown number of steps but.. and if you go back I presume you would just subtract a number but if input changes the number then if you go back, change something, and go forward, what used to be step 6 may no longer be step 6. confusing?",
+      "url": "https://github.com/w3c/wcag3/issues/958",
+      "comments": []
+    },
+    "959": {
+      "number": 959,
+      "title": "Clarify what constitutes the position of the current step",
+      "state": "open",
+      "labels": [
+        "Path: User orientation⹁ layout and structure",
+        "P - All steps listed"
+      ],
+      "user": "giacomo-petri",
+      "created": "2026-11-06T10:57:49Z",
+      "updated": "2026-11-06T10:57:49Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "From @GreggVan in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> The position of the current step within the multi-step process is visually and programmatically available.\n> Problem: this is not about what step -- but the position within a step. What does that mean? \"Position within a step\" is not defined. And not clear at all. Does that mean where you are on a page? What if they page length changes depending on user input?\n> Problem: what does this require that is not required already for every other page/view? What does it add?",
+      "url": "https://github.com/w3c/wcag3/issues/959",
+      "comments": []
+    },
+    "960": {
+      "number": 960,
+      "title": "[EDITORIAL] Create/edit labels for new multi-step process provisions",
+      "state": "open",
+      "labels": [
+        "Path: User orientation⹁ layout and structure"
+      ],
+      "user": "giacomo-petri",
+      "created": "2026-11-06T10:59:22Z",
+      "updated": "2026-11-06T11:20:15Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "Update and create labels for new multi-step process provisions",
+      "url": "https://github.com/w3c/wcag3/issues/960",
+      "comments": []
+    },
+    "961": {
+      "number": 961,
+      "title": "Clarify what constitutes a complete and equivalent representation of a multi-step process",
+      "state": "open",
+      "labels": [
+        "Path: User orientation⹁ layout and structure",
+        "P - All steps listed"
+      ],
+      "user": "giacomo-petri",
+      "created": "2026-11-06T11:01:08Z",
+      "updated": "2026-11-06T11:01:08Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "From @GreggVan in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> A complete list of steps in a multi-step process, or another representation that provides equivalent understanding of the process structure, is provided when appropriate to support user understanding and orientation within the process.\n> Problem: \"complete\" is not defined.\n> Problem: What if number of steps is not known?\n> Problem: Steps are not clearly defined\n> Problem: what is an \"equivalent understanding\"\n> Problem: how does one objectively determine when it is \"appropriate to support user understanding and orientation \" or not?",
+      "url": "https://github.com/w3c/wcag3/issues/961",
+      "comments": []
+    },
+    "962": {
+      "number": 962,
+      "title": "Consider merging the \"Current step indicated\" and \"Current step position indicated\" provisions",
+      "state": "open",
+      "labels": [
+        "Path: User orientation⹁ layout and structure",
+        "P - All steps listed",
+        "P - Current step indicated"
+      ],
+      "user": "giacomo-petri",
+      "created": "2026-11-06T11:04:44Z",
+      "updated": "2026-11-06T11:20:36Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "From @Finnberrys and @andrewhick in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n@Finnberrys:\n> I don't see the value of having 'Current step indicated' and 'Current step position indicated'. I think these would be better merged into one.\n\n@andrewhick:\n> We support the provisions and think they're valuable from a government service point of view. However, we suggest merging \"Current step indicated\" and \"Current step position indicated\", as they cover similar ground.",
+      "url": "https://github.com/w3c/wcag3/issues/962",
+      "comments": []
+    },
+    "963": {
+      "number": 963,
+      "title": "Clarify whether completion pages presented as steps are included in the definition of \"step\"",
+      "state": "open",
+      "labels": [
+        "Path: User orientation⹁ layout and structure",
+        "P - All steps listed"
+      ],
+      "user": "giacomo-petri",
+      "created": "2026-11-06T11:06:05Z",
+      "updated": "2026-11-06T11:20:29Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "From @murata2makoto in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> Definition of “step”: inconsistency between the definition and Note 2\n> The revised definition defines a step as a part of the process “that the user interface presents as a distinct stage,” but Note 2 excludes completion pages. These conflict when a completion page is presented as a stage. This is common in Japan, where multi-step forms typically show a step indicator such as “1. Input – 2. Confirm – 3. Complete,” and the completion page is labeled as the final step (“3/3”). Under the definition it is a step; under Note 2 it is not. As a result, it is unclear whether “Step 2 of 3” in such a process satisfies “Steps indicated” and “Current step position indicated.”\n> Suggest resolving this inconsistency, for example by clarifying in Note 2 how completion stages that the UI presents as steps should be treated.",
+      "url": "https://github.com/w3c/wcag3/issues/963",
+      "comments": []
+    },
+    "964": {
+      "number": 964,
+      "title": "Summaries available exception approach",
+      "state": "open",
+      "labels": [
+        "Type: editorial",
+        "P - Summaries available"
+      ],
+      "user": "alastc",
+      "created": "2026-11-06T12:12:52Z",
+      "updated": "2026-11-06T12:12:52Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "The current exception is:\n> **Except when** long-form text content continues on multiple pages/views, only the first page/view requires a summary.\n\nI'm not sure that it works to have an exception that is an \"if/then\" statement. (@GreggVan can that be a problem for standards, in general?)\n\nHow about:\n> **Except when** the long-form text content continues from a previous page/view",
+      "url": "https://github.com/w3c/wcag3/issues/964",
+      "comments": []
+    },
+    "965": {
+      "number": 965,
+      "title": "Order detectable scoping",
+      "state": "open",
+      "labels": [
+        "P - Order detectable"
+      ],
+      "user": "alastc",
+      "created": "2026-11-06T12:20:42Z",
+      "updated": "2026-11-06T12:20:42Z",
+      "closed": null,
+      "commentCount": 0,
+      "body": "The current text is:\n> Ordered content includes [programmatically determinable](https://w3c.github.io/wcag3/guidelines/#dfn-programmatically-determinable) markers that indicate the position of each item.\n\nI think this is generally a good update to Meaningful sequence, but is \"ordered content\" the best scoping term?\n\nThe most common fail I come across for Meaningful Sequence is when there are multiple \"cards\" setup with heading, image, text, link arranged into vertical boxes. BUT, the order goes across each heading at the top of each box, then each image, etc.\n\nI.e. it's visually arranged vertically, but horizontally in the code.\n\nHow about:\n> **Content where the order matters to understanding** includes [programmatically determinable](https://w3c.github.io/wcag3/guidelines/#dfn-programmatically-determinable) markers that indicate the **order** of each item.\n\n(Also, position implies layout, I think it's order that's key here?)",
+      "url": "https://github.com/w3c/wcag3/issues/965",
+      "comments": []
+    },
+    "966": {
+      "number": 966,
+      "title": "Progress saved exception",
+      "state": "open",
+      "labels": [
+        "Type: editorial",
+        "P - Progress saved"
+      ],
+      "user": "alastc",
+      "created": "2026-11-06T14:00:16Z",
+      "updated": "2026-11-06T15:34:55Z",
+      "closed": null,
+      "commentCount": 1,
+      "body": "The current exception is:\n> Except when the task completion is part of a real-time event, and no alternative to the time limit is possible.\n\nThat was confusing to me, would it make more sense as:\n\n> Except when no alternative to the time limit is possible, and the task completion is part of a real-time event.\n\n",
+      "url": "https://github.com/w3c/wcag3/issues/966",
+      "comments": [
+        {
+          "user": "GreggVan",
+          "created": "2026-11-06T15:34:55Z",
+          "body": "Sorry -- but the first sounds more logical to me.     The primary exception is for real time event -which makes sense.   Then the second is a catchup for those occasions where it is real time but there is a work around. "
+        }
+      ]
+    },
+    "968": {
+      "number": 968,
+      "title": "Pointer accessible name",
+      "state": "open",
+      "labels": [
+        "Path: Input and focus⹁ interactive components",
+        "P - Pointer accessible"
+      ],
+      "user": "alastc",
+      "created": "2026-11-06T16:49:24Z",
+      "updated": "2026-11-09T21:32:51Z",
+      "closed": null,
+      "commentCount": 3,
+      "body": "The name \"Pointer accessible\" indicates to me that an interface should work with pointing devices.\n\nThat wouldn't be a bad requirement, but it isn't this one, which is:\n> Pointer selection of elements moves the [keyboard focus](https://w3c.github.io/wcag3/guidelines/#dfn-keyboard-focus) to that element, even if the user selects an [interactive element](https://w3c.github.io/wcag3/guidelines/#dfn-interactive-element) and drags away from the element without activation.\n\nCould the name be updated to match the intent, e.g.:\n> Focus from pointer",
+      "url": "https://github.com/w3c/wcag3/issues/968",
+      "comments": [
+        {
+          "user": "patrickhlauke",
+          "created": "2026-11-06T19:07:47Z",
+          "body": "wouldn't this be a user agent, or platform, requirement? uaag, not wcag?"
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-11-06T19:24:45Z",
+          "body": "@patrickhlauke  -- Agree.     I  think that this should only be \"do not interfere with user agent\" \n\nSomething like    \"The content does not prevent a user agent from moving the keyboard focus indicator based on pointer action locations.\"   \n\n or some such"
+        },
+        {
+          "user": "patrickhlauke",
+          "created": "2026-11-06T19:40:20Z",
+          "body": "note that in safari at least, last time i checked, activating a buttin element with mouse or touch does NOT move focus. apple have even closed bug reports about this as wontfix"
+        }
+      ]
     }
   },
-  "fetchedAt": "2026-11-02T22:05:57.220Z"
+  "fetchedAt": "2026-11-09T22:51:34.149Z"
 }
