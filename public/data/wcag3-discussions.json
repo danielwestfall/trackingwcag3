@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-11-09T22:51:34.149Z",
+  "generatedAt": "2026-11-16T22:43:16.589Z",
   "repo": "https://github.com/w3c/wcag3",
   "totals": {
     "provisions": 245,
-    "issuesTotal": 544,
-    "issuesWithProvisionLabel": 276,
+    "issuesTotal": 547,
+    "issuesWithProvisionLabel": 277,
     "provisionsWithDiscussion": 172,
-    "generalIssues": 268,
+    "generalIssues": 270,
     "summarized": 36,
-    "staleSummaries": 12,
+    "staleSummaries": 14,
     "awaitingSummary": 136
   },
   "provisions": {
@@ -1009,11 +1009,11 @@
       "guideline": "prevent-errors",
       "status": "developing",
       "type": "foundational",
-      "threadCount": 2,
+      "threadCount": 3,
       "noRecordedDiscussion": false,
       "commentCount": 0,
-      "openCount": 2,
-      "fingerprint": "637@2026-04-15T00:53:23Z,791@2026-08-02T18:18:14Z",
+      "openCount": 3,
+      "fingerprint": "637@2026-04-15T00:53:23Z,791@2026-08-02T18:18:14Z,976@2026-11-16T15:52:36Z",
       "threads": [
         {
           "number": 637,
@@ -1034,6 +1034,18 @@
           "url": "https://github.com/w3c/wcag3/issues/791",
           "created": "2026-08-02",
           "updated": "2026-08-02",
+          "comments": 0,
+          "labels": [
+            "coga"
+          ]
+        },
+        {
+          "number": 976,
+          "title": "why are these in the assertion and not requirements?",
+          "state": "open",
+          "url": "https://github.com/w3c/wcag3/issues/976",
+          "created": "2026-11-16",
+          "updated": "2026-11-16",
           "comments": 0,
           "labels": [
             "coga"
@@ -2421,9 +2433,9 @@
       "type": "supplemental",
       "threadCount": 3,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 3,
       "openCount": 3,
-      "fingerprint": "119@2026-04-02T23:47:01Z,464@2026-03-29T22:40:31Z,930@2026-10-22T14:43:51Z",
+      "fingerprint": "119@2026-04-02T23:47:01Z,464@2026-11-10T10:06:23Z,930@2026-11-10T09:46:29Z",
       "threads": [
         {
           "number": 119,
@@ -2443,8 +2455,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/464",
           "created": "2025-12-25",
-          "updated": "2026-03-29",
-          "comments": 0,
+          "updated": "2026-11-10",
+          "comments": 2,
           "labels": [
             "Path: Image and media alternatives",
             "Other: Definitions & Terminology"
@@ -2456,8 +2468,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/930",
           "created": "2026-10-22",
-          "updated": "2026-10-22",
-          "comments": 0,
+          "updated": "2026-11-10",
+          "comments": 1,
           "labels": [
             "coga"
           ]
@@ -3453,9 +3465,9 @@
       "type": "foundational",
       "threadCount": 6,
       "noRecordedDiscussion": false,
-      "commentCount": 6,
+      "commentCount": 15,
       "openCount": 5,
-      "fingerprint": "272@2026-04-02T22:58:14Z,357@2026-04-01T23:27:16Z,467@2026-03-29T22:37:50Z,494@2026-03-29T22:29:15Z,605@2026-03-27T18:54:41Z,606@2026-03-27T18:54:20Z",
+      "fingerprint": "272@2026-04-02T22:58:14Z,357@2026-04-01T23:27:16Z,467@2026-03-29T22:37:50Z,494@2026-11-16T19:36:51Z,605@2026-11-16T18:09:45Z,606@2026-03-27T18:54:20Z",
       "threads": [
         {
           "number": 272,
@@ -3500,8 +3512,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/494",
           "created": "2026-01-06",
-          "updated": "2026-03-29",
-          "comments": 0,
+          "updated": "2026-11-16",
+          "comments": 5,
           "labels": [
             "Path: Image and media alternatives",
             "Other: Definitions & Terminology"
@@ -3513,8 +3525,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/605",
           "created": "2026-03-03",
-          "updated": "2026-03-27",
-          "comments": 0,
+          "updated": "2026-11-16",
+          "comments": 4,
           "labels": [
             "Path: Image and media alternatives"
           ]
@@ -4456,18 +4468,18 @@
       "type": "supplemental",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 6,
-      "openCount": 2,
-      "fingerprint": "76@2026-10-26T09:59:41Z,820@2026-10-26T11:25:26Z",
+      "commentCount": 7,
+      "openCount": 1,
+      "fingerprint": "76@2026-11-11T19:01:19Z,820@2026-10-26T11:25:26Z",
       "threads": [
         {
           "number": 76,
           "title": "Input control - needs clarification",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/76",
           "created": "2024-05-17",
-          "updated": "2026-10-26",
-          "comments": 3,
+          "updated": "2026-11-11",
+          "comments": 4,
           "labels": [
             "Path: Input and focus⹁ interactive components"
           ]
@@ -5130,9 +5142,9 @@
       "type": null,
       "threadCount": 1,
       "noRecordedDiscussion": false,
-      "commentCount": 1,
+      "commentCount": 2,
       "openCount": 1,
-      "fingerprint": "931@2026-11-02T21:44:30Z",
+      "fingerprint": "931@2026-11-12T17:28:27Z",
       "threads": [
         {
           "number": 931,
@@ -5140,8 +5152,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/931",
           "created": "2026-10-22",
-          "updated": "2026-11-02",
-          "comments": 1,
+          "updated": "2026-11-12",
+          "comments": 2,
           "labels": [
             "coga",
             "Path: Input and focus⹁ interactive components"
@@ -5718,9 +5730,9 @@
       "type": "supplemental",
       "threadCount": 2,
       "noRecordedDiscussion": false,
-      "commentCount": 4,
+      "commentCount": 5,
       "openCount": 2,
-      "fingerprint": "616@2026-11-06T03:47:25Z,915@2026-10-26T09:32:35Z",
+      "fingerprint": "616@2026-11-06T03:47:25Z,915@2026-11-11T19:14:28Z",
       "threads": [
         {
           "number": 616,
@@ -5740,10 +5752,11 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/915",
           "created": "2026-10-16",
-          "updated": "2026-10-26",
-          "comments": 1,
+          "updated": "2026-11-11",
+          "comments": 2,
           "labels": [
-            "coga"
+            "coga",
+            "Path: User orientation⹁ layout and structure"
           ]
         }
       ]
@@ -6540,9 +6553,9 @@
       "type": "foundational",
       "threadCount": 7,
       "noRecordedDiscussion": false,
-      "commentCount": 1,
+      "commentCount": 8,
       "openCount": 7,
-      "fingerprint": "446@2026-03-29T22:46:22Z,892@2026-10-04T03:43:57Z,957@2026-11-06T10:56:30Z,959@2026-11-06T10:57:49Z,961@2026-11-06T11:01:08Z,962@2026-11-06T11:20:36Z,963@2026-11-06T11:20:29Z",
+      "fingerprint": "446@2026-03-29T22:46:22Z,892@2026-10-04T03:43:57Z,957@2026-11-11T15:18:25Z,959@2026-11-11T14:38:09Z,961@2026-11-11T14:46:29Z,962@2026-11-11T14:58:42Z,963@2026-11-11T15:17:01Z",
       "threads": [
         {
           "number": 446,
@@ -6572,8 +6585,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/957",
           "created": "2026-11-06",
-          "updated": "2026-11-06",
-          "comments": 0,
+          "updated": "2026-11-11",
+          "comments": 3,
           "labels": [
             "Path: User orientation⹁ layout and structure"
           ]
@@ -6584,8 +6597,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/959",
           "created": "2026-11-06",
-          "updated": "2026-11-06",
-          "comments": 0,
+          "updated": "2026-11-11",
+          "comments": 1,
           "labels": [
             "Path: User orientation⹁ layout and structure"
           ]
@@ -6596,8 +6609,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/961",
           "created": "2026-11-06",
-          "updated": "2026-11-06",
-          "comments": 0,
+          "updated": "2026-11-11",
+          "comments": 1,
           "labels": [
             "Path: User orientation⹁ layout and structure"
           ]
@@ -6608,8 +6621,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/962",
           "created": "2026-11-06",
-          "updated": "2026-11-06",
-          "comments": 0,
+          "updated": "2026-11-11",
+          "comments": 1,
           "labels": [
             "Path: User orientation⹁ layout and structure"
           ]
@@ -6620,8 +6633,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/963",
           "created": "2026-11-06",
-          "updated": "2026-11-06",
-          "comments": 0,
+          "updated": "2026-11-11",
+          "comments": 1,
           "labels": [
             "Path: User orientation⹁ layout and structure"
           ]
@@ -6637,9 +6650,9 @@
       "type": "foundational",
       "threadCount": 3,
       "noRecordedDiscussion": false,
-      "commentCount": 0,
+      "commentCount": 2,
       "openCount": 3,
-      "fingerprint": "445@2026-03-29T22:47:15Z,958@2026-11-06T11:01:45Z,962@2026-11-06T11:20:36Z",
+      "fingerprint": "445@2026-03-29T22:47:15Z,958@2026-11-11T13:35:46Z,962@2026-11-11T14:58:42Z",
       "threads": [
         {
           "number": 445,
@@ -6659,8 +6672,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/958",
           "created": "2026-11-06",
-          "updated": "2026-11-06",
-          "comments": 0,
+          "updated": "2026-11-11",
+          "comments": 1,
           "labels": [
             "Path: User orientation⹁ layout and structure"
           ]
@@ -6671,8 +6684,8 @@
           "state": "open",
           "url": "https://github.com/w3c/wcag3/issues/962",
           "created": "2026-11-06",
-          "updated": "2026-11-06",
-          "comments": 0,
+          "updated": "2026-11-11",
+          "comments": 1,
           "labels": [
             "Path: User orientation⹁ layout and structure"
           ]
@@ -8182,8 +8195,8 @@
       "threadCount": 3,
       "noRecordedDiscussion": false,
       "commentCount": 32,
-      "openCount": 3,
-      "fingerprint": "207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z",
+      "openCount": 2,
+      "fingerprint": "207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-11-10T06:53:38Z",
       "threads": [
         {
           "number": 207,
@@ -8214,10 +8227,10 @@
         {
           "number": 590,
           "title": "Rendering‑aware contrast model proposal for WCAG 3",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/590",
           "created": "2026-02-25",
-          "updated": "2026-04-11",
+          "updated": "2026-11-10",
           "comments": 5,
           "labels": [
             "Path: Single sense and contrast"
@@ -8288,8 +8301,8 @@
       "threadCount": 5,
       "noRecordedDiscussion": false,
       "commentCount": 41,
-      "openCount": 5,
-      "fingerprint": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-04-11T03:30:20Z,744@2026-10-23T20:28:28Z",
+      "openCount": 4,
+      "fingerprint": "29@2026-04-16T12:21:27Z,207@2026-05-01T23:23:27Z,266@2026-09-02T01:31:20Z,590@2026-11-10T06:53:38Z,744@2026-10-23T20:28:28Z",
       "threads": [
         {
           "number": 29,
@@ -8333,10 +8346,10 @@
         {
           "number": 590,
           "title": "Rendering‑aware contrast model proposal for WCAG 3",
-          "state": "open",
+          "state": "closed",
           "url": "https://github.com/w3c/wcag3/issues/590",
           "created": "2026-02-25",
-          "updated": "2026-04-11",
+          "updated": "2026-11-10",
           "comments": 5,
           "labels": [
             "Path: Single sense and contrast"
