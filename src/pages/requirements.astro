@@ -1,12 +1,15 @@
 ---
 import Acknowledgements from "@/components/guidelines/Acknowledgements.astro";
 import RequirementsRespec from "@/components/respec/RequirementsRespec.astro";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://codea11y.dev");
 ---
 
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="canonical" href={canonicalURL.href} />
 		<title>Requirements for WCAG 3.0</title>
 		<meta name="color-scheme" content="light dark">
 		<RequirementsRespec />

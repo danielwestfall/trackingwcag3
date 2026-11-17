@@ -1,6 +1,8 @@
 ---
 import Acknowledgements from "@/components/guidelines/Acknowledgements.astro";
 import ExplainerRespec from "@/components/respec/ExplainerRespec.astro";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://codea11y.dev");
 ---
 
 <!DOCTYPE html>
@@ -8,6 +10,7 @@ import ExplainerRespec from "@/components/respec/ExplainerRespec.astro";
 
 <head>
     <meta charset='utf-8'>
+    <link rel="canonical" href={canonicalURL.href}>
     <title>Explainer for W3C Accessibility Guidelines (WCAG) 3.0</title>
     <meta name="color-scheme" content="light dark">
     <ExplainerRespec />

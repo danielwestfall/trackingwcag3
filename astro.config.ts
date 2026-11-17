@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
+import sitemap from "@astrojs/sitemap";
 import { parseFrontmatter } from "@astrojs/markdown-remark";
 import { load } from "cheerio";
 import { glob } from "tinyglobby";
@@ -25,6 +26,7 @@ function generateBase() {
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://codea11y.dev",
   adapter: node({
     mode: "standalone",
   }),
@@ -47,6 +49,9 @@ export default defineConfig({
     preserveScriptOrder: true,
   },
   integrations: [
+    sitemap({
+      filter: (page) => !page.includes("/dev/"),
+    }),
     {
       /** Checks sync of children array vs. subdirectory contents and normative vs. informative */
       name: "children-check",

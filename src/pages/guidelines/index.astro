@@ -3,12 +3,15 @@ import Acknowledgements from "@/components/guidelines/Acknowledgements.astro";
 import GlossaryDefinitionList from "@/components/guidelines/GlossaryDefinitionList.astro";
 import Guidelines from "@/components/guidelines/Guidelines.astro";
 import GuidelinesRespec from "@/components/respec/GuidelinesRespec.astro";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://codea11y.dev");
 ---
 
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="canonical" href={canonicalURL.href} />
 		<title>W3C Accessibility Guidelines (WCAG) 3.0</title>
 		<meta name="color-scheme" content="light dark">
 		<GuidelinesRespec />

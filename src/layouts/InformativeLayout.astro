@@ -18,12 +18,15 @@ interface Props {
 }
 
 const { breadcrumbSegments, entry, title, withNav = true } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://codea11y.dev");
 ---
 
 <!doctype html>
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
+    <link rel="canonical" href={canonicalURL.href} />
+    <meta property="og:url" content={canonicalURL.href} />
     <title>[Draft] {`${title ? `${title} - ` : ""}${informativeTitle} | WAI | W3C`}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://w3.org/WAI/assets/css/style.css" />

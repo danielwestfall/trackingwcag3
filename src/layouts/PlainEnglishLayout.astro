@@ -19,6 +19,8 @@ const MONTHS = ["January", "February", "March", "April", "May", "June", "July", 
 const publishedLabel = published
   ? (([y, m, d]) => `${d} ${MONTHS[m - 1]} ${y}`)(published.date.split("-").map(Number))
   : null;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://codea11y.dev");
 ---
 
 <!doctype html>
@@ -26,6 +28,8 @@ const publishedLabel = published
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonicalURL.href} />
+    <meta property="og:url" content={canonicalURL.href} />
     <title>{title} | WCAG 3 & 2.2 Plain English Hub</title>
     <meta name="description" content="Translating W3C WCAG 3.0 draft guidelines and WCAG 2.2 accessibility standards into plain, actionable English for designers, developers, QA, and PMs." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
