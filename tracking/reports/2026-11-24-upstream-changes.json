@@ -1,0 +1,239 @@
+{
+  "wcag22Impact": {
+    "brokenMappings": [],
+    "coarseMappings": [],
+    "newToUs": [],
+    "goneFromUpstream": [],
+    "upstreamProvisionCount": 245
+  },
+  "draftShape": {
+    "taggedCount": 0,
+    "needsResearchCount": 13,
+    "statusTally": {
+      "developing": 216,
+      "exploratory": 29
+    },
+    "typeTally": {
+      "foundational": 114,
+      "supplemental": 86,
+      "assertion": 36,
+      "none": 8,
+      "recommended practice": 1
+    }
+  },
+  "generatedAt": "2026-11-24T00:33:34.844Z",
+  "range": {
+    "from": "c110b49",
+    "fromDate": "2026-10-07",
+    "to": "2f611d4",
+    "toDate": "2026-11-20"
+  },
+  "upstream": "https://github.com/w3c/wcag3",
+  "commitCount": 2,
+  "commits": [
+    {
+      "hash": "7c30ba9",
+      "date": "2026-11-17",
+      "subject": "Remove unusedDefinition where it is no longer needed (#974)"
+    },
+    {
+      "hash": "2f611d4",
+      "date": "2026-11-20",
+      "subject": "Extend maturity status levels to ACT rules (#978)"
+    }
+  ],
+  "summary": {
+    "term": {
+      "added": 0,
+      "removed": 0,
+      "renamed": 0,
+      "modified": 9
+    },
+    "act-rule": {
+      "added": 0,
+      "removed": 0,
+      "renamed": 0,
+      "modified": 1
+    }
+  },
+  "changes": [
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/complex-numerical-information.md",
+      "newPath": "guidelines/terms/complex-numerical-information.md",
+      "slug": "complex-numerical-information",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "numbers, statistics, or quantitative data that require interpretation, comparison, or multiple steps to understand.\n\n:::note\nThis includes mental calculation, proportional reasoning, or comparison against an unstated whole.\n:::",
+      "afterText": "numbers, statistics, or quantitative data that require interpretation, comparison, or multiple steps to understand.\n\n:::note\nThis includes mental calculation, proportional reasoning, or comparison against an unstated whole.\n:::",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/conversational-support.md",
+      "newPath": "guidelines/terms/conversational-support.md",
+      "slug": "conversational-support",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "support that is provided in the form of interactive, bi-directional, context-sensitive conversations",
+      "afterText": "support that is provided in the form of interactive, bi-directional, context-sensitive conversations",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/default-visual-presentation.md",
+      "newPath": "guidelines/terms/default-visual-presentation.md",
+      "slug": "default-visual-presentation",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "formatting of content defined by the author without any modifications or customizations by the end user",
+      "afterText": "formatting of content defined by the author without any modifications or customizations by the end user",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/high-frequency-corpus.md",
+      "newPath": "guidelines/terms/high-frequency-corpus.md",
+      "slug": "high-frequency-corpus",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "large collections of :term[text] (corpora) used in linguistics to identify and analyze words and phrases that appear most often in a language\n\n:::example\n* English: British National Corpus, Corpus of Canadian English, Corpus of Contemporary American English \n* Mandarin: A Frequency Dictionary of Mandarin Chinese\n* Russian: Russian National Corpus\n:::",
+      "afterText": "large collections of :term[text] (corpora) used in linguistics to identify and analyze words and phrases that appear most often in a language\n\n:::example\n* English: British National Corpus, Corpus of Canadian English, Corpus of Contemporary American English \n* Mandarin: A Frequency Dictionary of Mandarin Chinese\n* Russian: Russian National Corpus\n:::",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/image-type.md",
+      "newPath": "guidelines/terms/image-type.md",
+      "slug": "image-type",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "",
+      "afterText": "",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/image.md",
+      "newPath": "guidelines/terms/image.md",
+      "slug": "image",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "",
+      "afterText": "",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/infinite-scrolling.md",
+      "newPath": "guidelines/terms/infinite-scrolling.md",
+      "slug": "infinite-scrolling",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "",
+      "afterText": "",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/long-form-text-content.md",
+      "newPath": "guidelines/terms/long-form-text-content.md",
+      "slug": "long-form-text-content",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "written material made up of multiple :term[blocks of text], along with structural elements such as headings and lists, that work together to explain, inform, or convey a narrative\n\n:::note\nLong-form text content is meant to be read as a continuous piece of text, such as an article, report, essay, or guide, rather than as separate or standalone items like product listings on a shopping page.\n:::",
+      "afterText": "written material made up of multiple :term[blocks of text], along with structural elements such as headings and lists, that work together to explain, inform, or convey a narrative\n\n:::note\nLong-form text content is meant to be read as a continuous piece of text, such as an article, report, essay, or guide, rather than as separate or standalone items like product listings on a shopping page.\n:::",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "term",
+      "oldPath": "guidelines/terms/support.md",
+      "newPath": "guidelines/terms/support.md",
+      "slug": "support",
+      "commits": [
+        {
+          "hash": "7c30ba9",
+          "date": "2026-11-17",
+          "subject": "Remove unusedDefinition where it is no longer needed (#974)",
+          "pr": "[#974](https://github.com/w3c/wcag3/pull/974)"
+        }
+      ],
+      "beforeText": "",
+      "afterText": "",
+      "substantive": false
+    },
+    {
+      "op": "modified",
+      "kind": "act-rule",
+      "oldPath": "informative/act-rules/web/custom-keys-documented.md",
+      "newPath": "informative/act-rules/web/custom-keys-documented.md",
+      "id": "web/custom-keys-documented.md",
+      "commits": [
+        {
+          "hash": "2f611d4",
+          "date": "2026-11-20",
+          "subject": "Extend maturity status levels to ACT rules (#978)",
+          "pr": "[#978](https://github.com/w3c/wcag3/pull/978)"
+        }
+      ],
+      "substantive": true
+    }
+  ]
+}

@@ -7233,9 +7233,9 @@
       ],
       "user": "WilcoFiers",
       "created": "2026-01-06T09:50:20Z",
-      "updated": "2026-11-16T19:36:51Z",
+      "updated": "2026-11-17T04:33:32Z",
       "closed": null,
-      "commentCount": 5,
+      "commentCount": 8,
       "body": "\nhttps://deploy-preview-414--wcag3.netlify.app/guidelines/#detectable-image\n\n> **Detectable image** Non-decorative images are detectable\n\nPlease explain / define \"detectable\". This is painfully vague. To who should an image be detectable? What counts as \"detectable\"? Like, should screen users need to know that an image of text is an image? Does this (also?) need to be programmatic, if so, what part? The role, the accessible name, both? Those seem covered by other requirements, so presumably not. But if not, what then?\n\n**Recommendation**: Drop this requirement, it makes very little sense.",
       "url": "https://github.com/w3c/wcag3/issues/494",
       "comments": [
@@ -7263,6 +7263,21 @@
           "user": "sidnc86",
           "created": "2026-11-16T19:36:51Z",
           "body": "Trying to answer inline\n\n\n To who should an image be detectable?\nAns: to AT and to AT users\n\n\nWhat counts as \"detectable\"? Like, should screen users need to know that an image of text is an image?\nAns: yes - if no alternative provided, the text can still be attempted to be retrieved using OCR\n\nDoes this (also?) need to be programmatic, if so, what part? The role, the accessible name, both?\nAns: Just the role and not the name.\n\n Those seem covered by other requirements, so presumably not. \nAns: Yes requirement like image alternatives available do provide mechanisms of identifying the image by its alternatives.\n\nBut if not, what then?\nAns: In that case, detectable and alternatives can be clubbed but we may lose out on the explicit bridge mechanism that may exist without depending on authors.\n\n"
+        },
+        {
+          "user": "scottaohara",
+          "created": "2026-11-16T22:55:29Z",
+          "body": "i'd submit the counter point here is that when you have requirements to mark decorative images as hidden, and requirements to make sure that image alternatives are available _and_ provide an equivalent purpose for the image - having this in-between requirement seems like it could easily be abused so that developers don't need to do one or the other.\n\nseems like someone could also very well come along and fail an image that an author thought should be decorative as not being detectable.\n\nneither of these make for a very trustworthy requirement."
+        },
+        {
+          "user": "scottaohara",
+          "created": "2026-11-16T23:12:58Z",
+          "body": "originally i would have thought this requirement would have been more around making sure that non-text content, regardless of how it was marked up (so ascii art, font icons, whatever) AND was meaningful, would need to be programmatically exposed as a image / graphic / graphic-document, etc. by an author.\n\nbut the way i'm reading the responses seems to be more in-line with making sure content that is already marked up as images can be detected.  and that's confusing."
+        },
+        {
+          "user": "sidnc86",
+          "created": "2026-11-17T04:33:32Z",
+          "body": "Ah, I get it now. I understand **what this requirement is asking the author to do**.\n\nThe WCAG 3 introduction talks about encompassing some aspects of UAAG and ATAG. With that at the back of my mind, my interpretation had shifted towards the UA/AT user need I described above.\n\nThat need still seems valid to me, but I now see the author-side requirement more clearly. For example, something like `<span class=\"search-icon\"></span>` that visually represents an image/icon should be programmatically exposed with appropriate semantics such as `role=\"img\"` where applicable.\n\nSimilarly, if ♥️ is being used functionally for “Favorite” or “Like,” the relevant control semantics, such as a button, need to be provided rather than relying on its visual appearance.\n\nSo I agree that a clear definition of **“detectable”** is still needed.\n\n"
         }
       ]
     },
@@ -10421,12 +10436,28 @@
       ],
       "user": "julierawe",
       "created": "2026-07-24T17:21:16Z",
-      "updated": "2026-07-24T17:21:16Z",
+      "updated": "2026-11-23T20:36:38Z",
       "closed": null,
-      "commentCount": 0,
+      "commentCount": 3,
       "body": "[Pointer contrast sufficient](https://w3c.github.io/wcag3/guidelines/#pointer-contrast-sufficient) currently covers two things—contrast and size: “The default pointer meets the @@[non-text-contrast] requirement, and is at least as large as the platform default.”\n\nConsider unbundling these two aspects so each gets its own provision. This would make the [“Pointer Focus Appearance” subsection](https://w3c.github.io/wcag3/guidelines/#pointer-focus-appearance) more consistent with the [“Keyboard Focus Appearance” subsection](https://w3c.github.io/wcag3/guidelines/#keyboard-focus-appearance), which has separate provisions for contrast and size. \n\nOr, if there’s a reason for bundling these pointer aspects together, consider renaming the provision so it’s clear from the short name that this provision covers size as well as contrast.\n\nAlso, as you build out the tests and methods involving pointer size, please clarify which aspects of size are important, such as:\n* Area \n* Thickness of the outline\n\nThanks for considering!",
       "url": "https://github.com/w3c/wcag3/issues/775",
-      "comments": []
+      "comments": [
+        {
+          "user": "mraccess77",
+          "created": "2026-11-20T23:23:10Z",
+          "body": "Using the word \"default\" in the text is also confusing \"The default pointer meets the @@[non-text-contrast] requirement, and is at least as large as the platform default.\".  Does default mean (when multiple options are provided by the author but that is not the platform pointer??\n\nDo different platforms have different default sizes and colors - when measuring size - which platforms do we need to check?\n\nI'm ok splitting or not splitting the contrast and size requirements out - but I think more clarity needs to be provided on the requirement."
+        },
+        {
+          "user": "sdw32",
+          "created": "2026-11-23T15:35:17Z",
+          "body": "Splitting out size and Contrast into separate provisions assumes an overly simplistic view of the possible styling options which is not fit for purpose. The pointer could have a key line or a drop shadow which wouldn't be appropriately represented by separate size and contrast provisions. One single \"Pointer distinguishable\" provision is much more appropriate, and can holistically cover all the aspects of styling that make the pointer visible. The same argument is true for every other provision where size and contrast are handled separately. For text am proposing a single provision titled 'default text style readable' to cover size, contrast and all aspects of styling.\n\nThe same argument is true for keyboard focus indicator, There are many ways of achieving this, it could be underlined text, it could be a change of font weight, it could be changing foreground or background colour, it could be a dotted outline, It could be multiple combinations of these things.  These should be covered by a single provision titled \"focus indicator distinguishable\"."
+        },
+        {
+          "user": "mraccess77",
+          "created": "2026-11-23T20:36:37Z",
+          "body": "I agree stroke width etc. are tightly coupled to contrast - overall size I'm not sure about - but I'd be ok keeping them together which they are now.  So, it seems like since they are now one and we have time to decide - let's proceed as one and then we can see if they have to be split later."
+        }
+      ]
     },
     "782": {
       "number": 782,
@@ -12219,16 +12250,16 @@
     "957": {
       "number": 957,
       "title": "Clarify step identification, numbering, and structure in multi-step processes",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: User orientation⹁ layout and structure",
         "P - All steps listed"
       ],
       "user": "giacomo-petri",
       "created": "2026-11-06T10:53:18Z",
-      "updated": "2026-11-11T15:18:25Z",
-      "closed": null,
-      "commentCount": 3,
+      "updated": "2026-11-23T15:03:21Z",
+      "closed": "2026-11-23T15:03:21Z",
+      "commentCount": 4,
       "body": "From @GreggVan in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> Steps in a multi-step process are identified and convey their number or structure.\n> Problem - this says that the STEPS must convey their number. it should be the PAGE or CONTENT or something that conveys the number or structure.\n> Problem - what does \"the structure\" of steps mean? This needs to be clearly defined in an objective way to be part of the requirement.\n> Problem - is it OR or is it AND/OR ?\n> Problem - definition of step is ambiguous and unusable. A step is defined as \"distinct part of a process\". If I have a 3 pages with 4 questions each and some questions are multiple selections and this is followed by a confirmation and submission pages. Is this 5 steps (pages) or 12+2 steps? or is each question and interaction a step in the process?",
       "url": "https://github.com/w3c/wcag3/issues/957",
       "comments": [
@@ -12246,22 +12277,27 @@
           "user": "giacomo-petri",
           "created": "2026-11-11T15:18:25Z",
           "body": "Yes, exactly! The exception has been completely removed"
+        },
+        {
+          "user": "giacomo-petri",
+          "created": "2026-11-23T15:03:21Z",
+          "body": "Issue addressed in [PR #701](https://github.com/w3c/wcag3/pull/701/changes#diff-3ee27ec8c95173cbe4ba86416507b9666856ca7837da0b4438a749586a0fb926) through the following commits:\n- [41ae448](https://github.com/w3c/wcag3/pull/701/commits/41ae4481caee60a2714858e0c9d6d3da57c14b5e)\n- [d9b003c](https://github.com/w3c/wcag3/pull/701/commits/d9b003c67280d704762960c6bc5c1b4fed83ce62)\n\nClosing this issue as resolved. If you believe it has not been addressed please feel free to reopen it."
         }
       ]
     },
     "958": {
       "number": 958,
       "title": "Clarify current step indication when the total number of steps is dynamic or unknown",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: User orientation⹁ layout and structure",
         "P - Current step indicated"
       ],
       "user": "giacomo-petri",
       "created": "2026-11-06T10:56:05Z",
-      "updated": "2026-11-11T13:35:46Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-11-23T15:04:57Z",
+      "closed": "2026-11-23T15:04:57Z",
+      "commentCount": 2,
       "body": "From @GreggVan in Ovt 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> Within a multi-step process, there is a visual and programmatic indication of which step is current.\n> Problem: what if number of steps is not known? or changes depending on user input? Perhaps one could say you have carried out 6 of unknown number of steps but.. and if you go back I presume you would just subtract a number but if input changes the number then if you go back, change something, and go forward, what used to be step 6 may no longer be step 6. confusing?",
       "url": "https://github.com/w3c/wcag3/issues/958",
       "comments": [
@@ -12269,22 +12305,27 @@
           "user": "giacomo-petri",
           "created": "2026-11-11T13:35:46Z",
           "body": "[Subgroup Response-only]\n\nThe multi-step provisions are based on the assumption that multi-step processes where the total number of steps is unknown or the sequence depends on user input are excluded, as explicitly stated in the exception:\n\n> Except when:\n> The total number of steps is unknown or the sequence of steps depends on user input.\n\n@GreggVan, this exception has been in place from the beginning, so I'm not sure if you're referring to something else.\nIf this addresses your concern, please close the ticket or confirm that you're happy with this approach so I can close it.\n\nThanks!"
+        },
+        {
+          "user": "giacomo-petri",
+          "created": "2026-11-23T15:04:57Z",
+          "body": "Closing this issue two weeks after providing a response. If you believe your concern has not been addressed please feel free to reopen it."
         }
       ]
     },
     "959": {
       "number": 959,
       "title": "Clarify what constitutes the position of the current step",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: User orientation⹁ layout and structure",
         "P - All steps listed"
       ],
       "user": "giacomo-petri",
       "created": "2026-11-06T10:57:49Z",
-      "updated": "2026-11-11T14:38:09Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-11-23T15:05:26Z",
+      "closed": "2026-11-23T15:05:26Z",
+      "commentCount": 2,
       "body": "From @GreggVan in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> The position of the current step within the multi-step process is visually and programmatically available.\n> Problem: this is not about what step -- but the position within a step. What does that mean? \"Position within a step\" is not defined. And not clear at all. Does that mean where you are on a page? What if they page length changes depending on user input?\n> Problem: what does this require that is not required already for every other page/view? What does it add?",
       "url": "https://github.com/w3c/wcag3/issues/959",
       "comments": [
@@ -12292,6 +12333,11 @@
           "user": "giacomo-petri",
           "created": "2026-11-11T14:06:51Z",
           "body": "[Subgroup Response-only]\n\nWe don't think any changes are needed here. To be honest, we didn't quite understand your point, @GreggVan.\nYou raised the following concern:\n> Problem: this is not about what step -- but the position within a step. What does that mean? \"Position within a step\" is not defined.\n\nHowever, it seems that you've interpreted the requirement as referring to the user's position within an individual step, whereas the requirement is actually about the user's position within the overall multi-step process.\n\nOur wording is:\n> The position of the current [step](https://docs.google.com/document/d/1vus0UUaU9zzRvR2RjIVv-K3bzTs8jAV7wttjc_Z6Hcg/edit?tab=t.6gd60lwqq933#bookmark=id.lvkcyfdx8z9v) within the [multi-step process](https://docs.google.com/document/d/1vus0UUaU9zzRvR2RjIVv-K3bzTs8jAV7wttjc_Z6Hcg/edit?tab=t.6gd60lwqq933#bookmark=id.c8ovtxbx14vy) is visually and [programmatically](https://www.w3.org/TR/wcag-3.0/#dfn-programmatically-determinable) available.\n\nThese are two different concepts, and we don't see any ambiguity in the current wording.\n\nNote: The requirement adds information about progress through the overall process, which is different from the user's position within an individual page or view. The methods (and the understanding material are - and will) provide additional guidance on how to interpret and test this requirement.\n\n@GreggVan, if this addresses your concern, please close the ticket or confirm that you're happy with this approach so I can close it.\n\nThanks!"
+        },
+        {
+          "user": "giacomo-petri",
+          "created": "2026-11-23T15:05:26Z",
+          "body": "Closing this issue two weeks after providing a response. If you believe your concern has not been addressed please feel free to reopen it."
         }
       ]
     },
@@ -12314,16 +12360,16 @@
     "961": {
       "number": 961,
       "title": "Clarify what constitutes a complete and equivalent representation of a multi-step process",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: User orientation⹁ layout and structure",
         "P - All steps listed"
       ],
       "user": "giacomo-petri",
       "created": "2026-11-06T11:01:08Z",
-      "updated": "2026-11-11T14:46:29Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-11-23T15:05:54Z",
+      "closed": "2026-11-23T15:05:54Z",
+      "commentCount": 2,
       "body": "From @GreggVan in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> A complete list of steps in a multi-step process, or another representation that provides equivalent understanding of the process structure, is provided when appropriate to support user understanding and orientation within the process.\n> Problem: \"complete\" is not defined.\n> Problem: What if number of steps is not known?\n> Problem: Steps are not clearly defined\n> Problem: what is an \"equivalent understanding\"\n> Problem: how does one objectively determine when it is \"appropriate to support user understanding and orientation \" or not?",
       "url": "https://github.com/w3c/wcag3/issues/961",
       "comments": [
@@ -12331,13 +12377,18 @@
           "user": "giacomo-petri",
           "created": "2026-11-11T14:46:29Z",
           "body": "[Subgroup Response-only]\n\nWe think these concerns are already largely addressed by the nature of the assertion.\n\nOriginally, there was a single CORE provision for multi-step processes: All steps listed\n_A list of all steps in a multi-step process is visually and programmatically available at each step._\n\nWe recognize that requiring a complete list of all steps in every situation is not always feasible. However, we also recognize the user need to understand the steps involved in completing a multi-step process.\n\nFor this reason, we've decided to reword this requirement and move it into an assertion, which is intentionally conditional. Whether a complete list of steps, or an equivalent representation, is needed depends on the context and on what is necessary to support users' understanding and orientation throughout the process.\n\nThe intention is neither to require a complete list in every situation nor to prescribe a single way of representing the process. Instead, the assertion allows for alternative representations that provide an equivalent understanding of the process structure. Their effectiveness is evaluated by experts, who determine whether they adequately support users in understanding and navigating the process.\n\n@GreggVan, if this addresses your concern, please close the ticket or confirm that you're happy with this approach so I can close it.\n\nThanks!"
+        },
+        {
+          "user": "giacomo-petri",
+          "created": "2026-11-23T15:05:54Z",
+          "body": "Closing this issue two weeks after providing a response. If you believe your concern has not been addressed please feel free to reopen it."
         }
       ]
     },
     "962": {
       "number": 962,
       "title": "Consider merging the \"Current step indicated\" and \"Current step position indicated\" provisions",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: User orientation⹁ layout and structure",
         "P - All steps listed",
@@ -12345,9 +12396,9 @@
       ],
       "user": "giacomo-petri",
       "created": "2026-11-06T11:04:44Z",
-      "updated": "2026-11-11T14:58:42Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-11-23T15:14:26Z",
+      "closed": "2026-11-23T15:14:26Z",
+      "commentCount": 5,
       "body": "From @Finnberrys and @andrewhick in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n@Finnberrys:\n> I don't see the value of having 'Current step indicated' and 'Current step position indicated'. I think these would be better merged into one.\n\n@andrewhick:\n> We support the provisions and think they're valuable from a government service point of view. However, we suggest merging \"Current step indicated\" and \"Current step position indicated\", as they cover similar ground.",
       "url": "https://github.com/w3c/wcag3/issues/962",
       "comments": [
@@ -12355,22 +12406,42 @@
           "user": "giacomo-petri",
           "created": "2026-11-11T14:58:42Z",
           "body": "[Subgroup Response-only]\n\nWe understand why these two provisions might seem similar, as they can often be addressed through the same UI component. But we believe they address two distinct user needs and should therefore remain separate.\n\nThe distinction is between identifying the current step and communicating the current step's position within the overall process. These answer two different questions:\n- Current step indicated: Which step am I currently on? Users need to be able to identify the current step and understand that it is part of a multi-step process\n- Current step position indicated: Where am I in the overall process? Users need to understand their position relative to the beginning and end of the process, including how much progress they have made\n\nFor example, a heading such as \"Payment\" identifies the current step, but does not necessarily communicate how far the user is through the process. Conversely, an indicator such as \"Step 2 of 4\" communicates the user's position, but does not necessarily identify the current step.\nOf course, a single UI component, such as \"Payment – Step 2 of 4\", can satisfy both provisions.\nWe intentionally keep these provisions separate because they represent independently valuable aspects of the user experience. This also allows us to recognize implementations that satisfy one user need but not necessarily the other, rather than making both aspects dependent on a single, combined requirement.\n\nWe therefore believe keeping them separate provides a more meaningful and granular assessment of accessibility.\n\n@Finnberrys, @andrewhick, if this addresses your concern, please confirm that you're happy with this approach so I can close it.\n\nThanks!"
+        },
+        {
+          "user": "Finnberrys",
+          "created": "2026-11-20T06:04:31Z",
+          "body": "That explanation helps a lot but I don't think most people will realise the difference. Is there a better way of phrasing \"Current step indicated\"? I read this to mean step 1 or step 2, but what I think it is really asking for is a meaningful/descriptive name for the steps, rather than only the number or position. It is about the purpose of the step. Would it make them easier to differentiate if we had:\n\n- current step name indicated\n- current step position indicated?"
+        },
+        {
+          "user": "giacomo-petri",
+          "created": "2026-11-20T09:13:12Z",
+          "body": "The user need we originally addressed was to understand where they currently are in the process.\nI think we should leave some flexibility and room for design choices, as different approaches might work very well depending on the context, like the one shown in the screenshot.\n\n<img width=\"538\" height=\"678\" alt=\"step indicator, where step 1 is completed, 2 is current, 3 and 4 are inert\" src=\"https://github.com/user-attachments/assets/bc43548b-a9b2-4040-9779-93fed9ef951e\" />\n\nFor example, in this mobile interface, a progress indicator like the one highlighted in the image, which conveys the information both visually and programmatically, could be sufficient.  For example, it could use the following structure:\n\n```\n<nav aria-label=\"Checkout progress\">\n    <ul>\n        <li class=\"completed\"><span class=\"sr-only\">Step 1 (completed)</span></li>\n        <li class=\"current\" aria-current=\"step\"><span class=\"sr-only\">Step 2</span></li>\n        <li class=\"inactive\"><span class=\"sr-only\">Step 3</span></li>\n        <li class=\"inactive\"><span class=\"sr-only\">Step 4</span></li>\n    </ul>\n</nav>\n```\n\nThis would be sufficient to communicate the user's current position, without necessarily having to provide meaningful or descriptive names for each individual step.\nWhether the step label itself is meaningful and appropriate is a separate concern, which should be addressed by the requirements for headings and labels / page titles.\nBased on the user need we originally set out to address, I think we should distinguish between identifying the user's current position in a process and ensuring that the content of the step is appropriately named. These are two different user needs.\n\nFinally, the supporting informative material will provide the additional context, rationale, and examples needed to clarify even more the intent and illustrate how the requirement applies in different situations."
+        },
+        {
+          "user": "andrewhick",
+          "created": "2026-11-23T09:01:57Z",
+          "body": "Thank you @giacomo-petri for your detailed responses and sorry for the delay. I understand the argument about meeting two different needs and it fits the pattern of WCAG 3 being much more granular than WCAG 2.\n\nWhile my own preference would still be to merge them because they're so closely related, I don't feel strongly enough about that to insist on keeping it open. Ultimately I'm happy to go with the group consensus and any editorial decisions."
+        },
+        {
+          "user": "giacomo-petri",
+          "created": "2026-11-23T15:14:26Z",
+          "body": "Thank you both for your comments and feedback.\n\nI think the current proposal is significantly stronger than the original one, which included just one assertion and one requirement. I'd suggest closing this issue for now and seeing how the proposal works in practice alongside the informative material. If the concerns raised are not sufficiently addressed, we can always reopen the discussion and revisit them.\n\nThat said, if you feel these concerns need to be addressed before moving forward, please feel free to reopen the issue and we can discuss them further."
         }
       ]
     },
     "963": {
       "number": 963,
       "title": "Clarify whether completion pages presented as steps are included in the definition of \"step\"",
-      "state": "open",
+      "state": "closed",
       "labels": [
         "Path: User orientation⹁ layout and structure",
         "P - All steps listed"
       ],
       "user": "giacomo-petri",
       "created": "2026-11-06T11:06:05Z",
-      "updated": "2026-11-11T15:17:01Z",
-      "closed": null,
-      "commentCount": 1,
+      "updated": "2026-11-23T15:21:26Z",
+      "closed": "2026-11-23T15:21:26Z",
+      "commentCount": 2,
       "body": "From @murata2makoto in Oct 26 survey (https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/):\n\n> Definition of “step”: inconsistency between the definition and Note 2\n> The revised definition defines a step as a part of the process “that the user interface presents as a distinct stage,” but Note 2 excludes completion pages. These conflict when a completion page is presented as a stage. This is common in Japan, where multi-step forms typically show a step indicator such as “1. Input – 2. Confirm – 3. Complete,” and the completion page is labeled as the final step (“3/3”). Under the definition it is a step; under Note 2 it is not. As a result, it is unclear whether “Step 2 of 3” in such a process satisfies “Steps indicated” and “Current step position indicated.”\n> Suggest resolving this inconsistency, for example by clarifying in Note 2 how completion stages that the UI presents as steps should be treated.",
       "url": "https://github.com/w3c/wcag3/issues/963",
       "comments": [
@@ -12378,6 +12449,11 @@
           "user": "giacomo-petri",
           "created": "2026-11-11T15:17:01Z",
           "body": "Hi @murata2makoto,\n\nwe agree with your concern and acknowledge that the current wording could be interpreted as inconsistent.\nWe think the solution should allow authors some flexibility in defining the scope of their multi-step processes.\nAs in your example, a process may consist of several steps followed by a completion page that simply communicates that the process has been successfully completed. Alternatively, the author may choose to include the completion stage as part of the multi-step process. We don't think the latter should automatically be considered incorrect.\nWhat matters is that the process is represented consistently throughout the experience. If a completion stage is included as a step, it should be treated as such when communicating the process structure and the user's current position within it.\nWe have therefore clarified in Note 2 that these stages are \"generally not considered steps\", but may be included when the author explicitly identifies them as part of the multi-step process. We've also added two paragraphs to further clarify how this applies.\n\nThis is our proposal:\n\n> The following are generally not considered steps:\n> - success pages or messages presented after completion;\n> - confirmation receipts;\n> - thank-you pages or messages;\n> - completion summaries presented after submission;\n> - opening a tooltip;\n> - expanding an accordion when the expanded content does not require action to continue the process;\n> - displaying contextual help. \n> \n> However, stages such as success pages, confirmation receipts, thank-you pages, and completion summaries may be considered steps when the author explicitly identifies them as part of the multi-step process (e.g., a thank-you page identified as \"Step 3 of 3\"). In such cases, they are considered part of the process and must be treated consistently across the process.\n> \n> Other interactions, such as opening a tooltip, expanding an accordion, or displaying contextual help, are not considered steps unless they require a meaningful action to achieve the intended outcome of the process.\n\n@murata2makoto, if this addresses your concern, please close the ticket or confirm that you're happy with this approach so I can close it.\n\nThanks!"
+        },
+        {
+          "user": "giacomo-petri",
+          "created": "2026-11-23T15:21:26Z",
+          "body": "Issue addressed in [PR #701](https://github.com/w3c/wcag3/pull/701/changes#diff-3ee27ec8c95173cbe4ba86416507b9666856ca7837da0b4438a749586a0fb926) through the following commits:\n- [8d5740b](https://github.com/w3c/wcag3/pull/701/commits/8d5740b3197b990dd8a5f3b0d2daab68c12bd0e2)\n\nClosing this issue as resolved. If you believe it has not been addressed please feel free to reopen it."
         }
       ]
     },
@@ -12479,9 +12555,9 @@
       ],
       "user": "mcking65",
       "created": "2026-11-11T20:15:02Z",
-      "updated": "2026-11-12T22:45:58Z",
+      "updated": "2026-11-17T22:44:18Z",
       "closed": null,
-      "commentCount": 4,
+      "commentCount": 5,
       "body": "### Problem\n\nThe term \"method\" introduces several problems:\n1. There is agreement, although I don't know where it is documented, that WCAG will avoid giving special meaning to common words. The word \"method\" is a common word, and WCAG has given it a special meaning, introducing a pervasive violation of this editorial principle, working against our goals to improve the clarity and understandability of WCAG.\n2. The editor's draft currently includes 69 instances of the word \"method\", many of which are not aligned with the definition of the term \"method\".\n3. There are specific situations where using the word \"method\" in a way that does not align with the term \"method\" would aid the clarity and understandability of a provision. One example is described in issue #820.\n\n\n### Solution Options\n\nHere are some pros and cons for a couple of solution options.\n\nOption A: Replace the term \"method\" with \"implementation technique\":\n* Pro: This option would accurately represent the current concept of the term \"method\" without redefining a common word.\n* Pro: This option would enable current uses of the word \"method\" that are not aligned with the term \"method\" to remain unchanged and strengthen the clarity of the content that contains those instances of the word \"method\".\n* Pro: This option would make it easier for people to migrate from WCAG 2 to WCAG 3.\n* Con: This option could create confusion for readers when they encounter uses of the word \"technique\" that are not aligned with the term \"implementation technique\" and not otherwise sufficiently modified by their context. There are 24 instances of technique; it appears that fewer than 5 would fall into this bucket.\n\nOption B: Replace the term \"method\" with \"implementation method\":\n* Pro: This option would accurately represent the current concept of the term \"method\" without redefining a common word.\n* con: This option introduces a new vector for confusion and errors as people migrate from WCAG 2 to WCAG 3.\n* Con: This option could create confusion for readers when they encounter uses of the word \"method\" that are not aligned with the term \"implementation method\" and not otherwise sufficiently modified by their context. Further analysis is needed to size the level of editing necessary to mitigate this risk; a quick analysis seems to reveal the volume of edits would be greater than that needed to clarify uses of the word \"technique\".\n\nNote: replacing \"method\" with \"technique\" was not considered an option because \"technique\" is also a common word.",
       "url": "https://github.com/w3c/wcag3/issues/971",
       "comments": [
@@ -12504,6 +12580,11 @@
           "user": "hidde",
           "created": "2026-11-12T22:45:58Z",
           "body": "> I think that we have a problem with method when used as a section title in WCAG 3\n> At the minimum we need to change the sections titled Method to \"Example Method(s)\"\n> or better yet \"Technique(s) for meeting\" or \"Implementation Technique(s)\"\n\nCould you elaborate on why? What's problematic about it?\n\n> OR something that does not make it sound, to anyone, like it is THE way to do this. These are just examples of how to meet.\n\nI don't think it does, it will be marked non-normative. Sometimes people don't know there's a difference between normative / informativ or get that difference wrong, but I don't think that's a problem we need to solve in our specification.\n\n> PS changing it from Method to something else also solves the input groups problem in that it would like to continue to use the word \"method\" in the phrase \"input method\" because this is the standard term in the field. However the word \"method\" as defined in the current draft would not allow it. Just deleting the definition also doesn't solve the problem cited above.\n\nI think it's fine for the inputs provisions to talk about 'input methods' while we continue to use 'method' as we are today. It's clearly different a context. "
+        },
+        {
+          "user": "GreggVan",
+          "created": "2026-11-17T22:44:18Z",
+          "body": "@hidde \n> Could you elaborate on why? What's problematic about it?\n1. we called these (one, but not the only way, to meet a requirement) techniques before -- if not using the same term now -- it implies that we mean something else.   But we don't - do we?\n2. method   is singular   and therefore sounds like THE way. \n3. we use method to mean other things in other places \n4. if we called them  \"example methods\" or  \"optional methods\"  or something else -- \n\nmarking something as non-normative does not make it clear to most people. \n"
         }
       ]
     },
@@ -12543,7 +12624,75 @@
       "body": "A lot of these assertions could be reworked to be requirements and conventionally testable. At least part of them could be reworked as a requirement, even if some have a slightly reduced scope. \n\nFor example:\n\n- Make the user enter as little information as possible. Maybe we could add some qualifier such as: the user is not required to provide information that is not necessary for the process that the user intends to complete. (In other words, collecting information for marketing and statistics is not a good enough reason.)\n- Clearly indicate required fields - this seems clear and testable. If you can submit the form without it, it is not required. (Also add the word “visually,” as in “visually indicate.”) \n- For long numbers, divide input fields into chunks (supporting autocomplete across fields). Consider specifying four digits as a maximum per chunk. It is clear and testable.\n- Use an interface where only valid input can be selected. This could be turned into a testable requirement for specific items that should not be selectable. Such as: an earlier or later date, a lower or higher amount then can be supplied, sold items, unavailable items, and other known invalid items. (We can try and think of more cases to make a list.) We could keep the assertion for when it is not in the requirement list. \n- Use autocomplete and personalization of form controls - we could include the work of the ADAPT task force and auto complete for minimum requirement.\n- Use common words and metrics or units that users are likely to be familiar with - we may need to add some qualifier, this could be clearly identified such as “common for the location.”\n- Automatically correct input errors when possible and reliable. We can make a list of common cases for the minimum requirement and the wording can encourage additional cases. We have many of the easy one listed at https://github.com/w3c/wcag21/issues/13.\n",
       "url": "https://github.com/w3c/wcag3/issues/976",
       "comments": []
+    },
+    "977": {
+      "number": 977,
+      "title": "Captions unobstructed appears to be a misnomer",
+      "state": "open",
+      "labels": [
+        "Path: Image and media alternatives",
+        "P - Captions unobstructed"
+      ],
+      "user": "scottaohara",
+      "created": "2026-11-16T23:30:11Z",
+      "updated": "2026-11-17T00:44:47Z",
+      "closed": null,
+      "commentCount": 1,
+      "body": "At face value, I would have anticipated the supplemental requirement \"captions unobstructed\" to mean that the captions were not obstructed.\n\nBut, [per the requirement's text](https://www.w3.org/TR/wcag-3.0/#captions-unobstructed) - it's not the caption that needs to be unobstructed - but that the captions themselves are not to obstruct other information.\n\nSeems that should instead be \"Captions are nonobstructive\"?",
+      "url": "https://github.com/w3c/wcag3/issues/977",
+      "comments": [
+        {
+          "user": "ashleemfisher",
+          "created": "2026-11-17T00:44:47Z",
+          "body": "We discussed this in the sign language subgroup last week (Wed, Nov 11, 2026) and came to a similar conclusion.\n\nIt came up while we were going over feedback from the [WCAG 3 Provisions Review Oct '26 survey](https://www.w3.org/wbs/35422/wcag3-provision-survey-05/) (internal link). In particular, the question titled, [Review: Content not obscured (sign language)](https://www.w3.org/wbs/35422/wcag3-provision-survey-05/results/#xQ6) (internal link).\n\nThis provision isn't in the [WCAG 3.0 Editor's Draft](https://w3c.github.io/wcag3/guidelines/) yet (at time of writing, the draft is dated 07 October 2026). It's still pending further actions from the sign language subgroup—see [Actions section under \"Content not obscured\"](https://docs.google.com/document/d/1h0xN00V5jQMVD5vvmybXlFGIx1pYPkDnYOpn-390fh4/edit?pli=1&tab=t.mo964nir444#heading=h.ca4jyot4pp98) in our main working doc. The associated PR is https://github.com/w3c/wcag3/pull/859 and there is a preview: [Content not obscured (sign language)](https://deploy-preview-859--wcag3.netlify.app/guidelines/#content-not-obscured-sign-language).\n\nFor quicker reference, here is the current text of the \"Content not obscured (sign language)\" provision:\n> The default position of [sign language interpretation](https://deploy-preview-859--wcag3.netlify.app/guidelines/#dfn-sign-language-interpretation) does not hide visual information needed to understand the content.\n\nThe sign language subgroup came to two conclusions during last week's discussion (@iadawn, please correct me if I'm wrong):\n1. The title, \"Captions unobstructed,\" does not go with the provision text (in agreement with _this_ issue created by @scottaohara).\n2. The provision could potentially be made more flexible by referencing the \"default position\" of captions, similar to the language we use in the \"Content not obscured (sign language)\" provision (I don't think _this_ issue is the right place to discuss, but wanted to share for full context).\n\n---\n\nNow speaking just for myself—I think a provision called \"Captions unobstructed\" that requires captions not to be obstructed is great and I think it'd be good to have one for sign language as well, such as \"Sign language unobstructed\". I'm also curious how these would overlap/interact with [Guideline 2.7.4 No obstruction](https://w3c.github.io/wcag3/guidelines/#no-obstruction) and the two provisions currently listed there ([Overlay content dismissible](https://w3c.github.io/wcag3/guidelines/#overlay-content-dismissible) (Core); [Infinite scrolling controllable](https://w3c.github.io/wcag3/guidelines/#infinite-scrolling-controllable) (Supplemental))."
+        }
+      ]
+    },
+    "984": {
+      "number": 984,
+      "title": "Keyboard focus appearance: removing the focus indicator without a replacement meets every core requirement. Is that intended?",
+      "state": "open",
+      "labels": [],
+      "user": "kinti",
+      "created": "2026-11-23T22:25:19Z",
+      "updated": "2026-11-23T23:45:46Z",
+      "closed": null,
+      "commentCount": 1,
+      "body": "Hi. While reading [Keyboard focus appearance](https://www.w3.org/TR/wcag-3.0/#x2-3-1-keyboard-focus-appearance) in the 10 September 2026 Working Draft, we got stuck on three of its provisions.\n\n- [Default focus indicator used](https://www.w3.org/TR/wcag-3.0/#x2-3-1-1-default-focus-indicator-used) is supplemental: \"The focusable item uses the user agent default focus indicator.\"\n- [Focus indicator contrast sufficient](https://www.w3.org/TR/wcag-3.0/#x2-3-1-2-focus-indicator-contrast-sufficient) is core: \"If a custom focus indicator is used, it has sufficient adjacent contrast and change of contrast.\" It applies when \"the user agent's default focus indicator is replaced by a custom focus indicator\".\n- [Focus indicator size sufficient](https://www.w3.org/TR/wcag-3.0/#x2-3-1-3-focus-indicator-size-sufficient) is supplemental and has the same condition.\n\nRead together, a page that removes the browser's focus indicator and adds nothing meets every core requirement in the guideline. The first provision is not required, and the other two only come into play when there is a custom indicator. The guideline is about users being able to see which element has keyboard focus, and WCAG 2.2 asks for that in [2.4.7 Focus Visible](https://www.w3.org/TR/WCAG22/#focus-visible) at level AA (the [user need is documented](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html) there).\n\nIt's easy to see. A page with two buttons:\n\n```html\n<style>\n  button { display: block; margin: 40px 0; width: 260px; }\n  #b2:focus { outline: none; }\n</style>\n<button>Default indicator</button>\n<button id=\"b2\">Outline removed, nothing added</button>\n```\n\nWith Tab, the first button changes as it gets focus and the second one doesn't change at all. We checked this in Chromium 147 with screenshots before and after focus. As a control, giving the second button its outline back makes its image change again.\n\nIs the gap intentional? If not, two ways out come to mind:\n\n1. Have the condition of \"Focus indicator contrast sufficient\" cover the browser's indicator being removed, not only replaced.\n2. A new core requirement: when an interactive element receives keyboard focus, there is a visible focus indicator.\n\nThe first is a one-line change. Linking [#269](https://github.com/w3c/wcag3/issues/269), the existing thread for this guideline.\n\nScope: this is a reading of the published text. We only checked that something visible changes, not its contrast or size, which the other two provisions already cover.",
+      "url": "https://github.com/w3c/wcag3/issues/984",
+      "comments": [
+        {
+          "user": "mraccess77",
+          "created": "2026-11-23T23:45:46Z",
+          "body": "I guess it depends on whether you consider hiding the default focus indicator a \"custom indicator\" - but I agree that may not be apparent or how people interpret it."
+        }
+      ]
+    },
+    "985": {
+      "number": 985,
+      "title": "Focus relevant: Rationale for excluding static/read-only content from the focus order",
+      "state": "open",
+      "labels": [],
+      "user": "ryan-moukhaiber",
+      "created": "2026-11-23T22:25:47Z",
+      "updated": "2026-11-23T23:33:38Z",
+      "closed": null,
+      "commentCount": 2,
+      "body": "Hi all! First time posting here. I'm a UX/UI Designer and Accessibility SME at my organization.\n\nWe've had some interesting internal discussions around making read-only content keyboard focusable, which led me to review the proposed \"Focus relevant\" requirement in WCAG 3.\n\nI noticed what appears to be a departure from the guidance in the Understanding document for WCAG 2.2 SC 2.4.3 (Focus Order), which acknowledges that static/non-interactive elements can receive focus, provided they don't impede operation or result in a confusing or illogical focus order.\n\nHowever, WCAG 3 proposes: \n\n> The focus order does not include hidden, static, or groups of repeated interactive elements.\n\nI'm curious about the underlying rationale for this change.\n\nFor context, our current implementation presents read-only values visually as static text, but programmatically exposes them as read-only textboxes using ARIA and includes them in the sequential Tab order.\n\nThe design intent was to facilitate direct access to potentially important information (e.g., application numbers) for keyboard-only users and screen reader users navigating in focus mode. Another potential benefit of making these values focusable is facilitating keyboard-based text selection and copying.\n\nHowever, this introduces a potential usability trade-off. On summary pages, where previously entered form values are presented as read-only text, every value becomes an additional Tab stop. While this pattern may facilitate direct access to individual values, it may also increase the navigation effort required to reach actionable elements. To my knowledge, we haven't received any specific feedback indicating that our current pattern introduces accessibility or usability barriers, though this doesn't necessarily mean those barriers don't exist.\n\nI'm interested in understanding a few things:\n\n- What informed this apparent departure from the more permissive approach in WCAG 2.2? \n- Does the proposed requirement distinguish between static content and read-only controls (e.g., read-only textboxes)? If so, is that distinction based on the programmatically determined role or the actual functionality available to the user?\n- Is the intent to exclude static content from the sequential Tab order entirely, or were exceptions considered where introducing focus may provide a meaningful accessibility/usability benefit (e.g., for screen reader users navigating in focus mode)?\n- My goal is to better understand the rationale behind this proposed requirement and evaluate our existing design pattern against these potentially competing user needs, rather than simply designing for conformance.\n\nI appreciate that WCAG 3 is still in development and that some of these details may not have been fully explored yet. I wanted to bring this particular use case forward for consideration as the requirement continues to evolve.\n\nI'd welcome any insight into the discussions.\n\nThanks!",
+      "url": "https://github.com/w3c/wcag3/issues/985",
+      "comments": [
+        {
+          "user": "patrickhlauke",
+          "created": "2026-11-23T22:47:06Z",
+          "body": "in particular cross-referencing https://github.com/w3c/wcag/pull/1643 and https://github.com/w3c/wcag/issues/3029#issuecomment-5983645242"
+        },
+        {
+          "user": "mraccess77",
+          "created": "2026-11-23T23:33:38Z",
+          "body": "WCAG 3 is still early draft and no final decision has been made. Including read-only content so that it can be copied etc. would seem to be allowed and necessary.  Personally, I'd say the actual functionality available to the user is what should be considered but this may be informed by the element and it's properties."
+        }
+      ]
     }
   },
-  "fetchedAt": "2026-11-16T22:43:16.589Z"
+  "fetchedAt": "2026-11-24T00:33:43.734Z"
 }

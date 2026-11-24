@@ -1,7 +1,14 @@
 {
-  "lastTrackedCommit": "c110b49",
-  "lastTrackedDate": "2026-10-07",
+  "lastTrackedCommit": "2f611d4",
+  "lastTrackedDate": "2026-11-20",
   "history": [
+    {
+      "date": "2026-11-24",
+      "from": "c110b49",
+      "to": "2f611d4",
+      "commits": 2,
+      "report": "tracking/reports/2026-11-24-upstream-changes.md"
+    },
     {
       "date": "2026-10-12",
       "from": "18c12bf",
@@ -38,5 +45,5 @@
       "report": "tracking/reports/2026-09-14-upstream-changes.md"
     }
   ],
-  "lastRunAt": "2026-10-12T21:31:56.826Z"
+  "lastRunAt": "2026-11-24T00:33:34.844Z"
 }

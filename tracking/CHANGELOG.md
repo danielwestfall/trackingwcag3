@@ -2,6 +2,7 @@
 
 Each entry is one run of `npm run track:upstream`.
 
+- **2026-11-24** — `c110b49`…`2f611d4` (2 commits): 0 provisions added, 0 removed, 0 renamed, 0 substantively edited. [report](reports/2026-11-24-upstream-changes.md)
 - **2026-10-12** — `18c12bf`…`c110b49` (0 commits): 0 provisions added, 0 removed, 0 renamed, 0 substantively edited. [report](reports/2026-10-12-upstream-changes.md)
 - **2026-10-05** — `091d074`…`18c12bf` (1 commits): 0 provisions added, 0 removed, 0 renamed, 0 substantively edited. [report](reports/2026-10-05-upstream-changes.md)
 - **2026-09-21** — `2230e0f`…`091d074` (0 commits): 0 provisions added, 0 removed, 0 renamed, 0 substantively edited. [report](reports/2026-09-21-upstream-changes.md)

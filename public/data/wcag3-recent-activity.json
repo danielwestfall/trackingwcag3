@@ -1,73 +1,109 @@
 {
-  "generatedAt": "2026-11-16T22:43:16.589Z",
+  "generatedAt": "2026-11-24T00:33:43.734Z",
   "window": {
-    "from": "2026-11-09",
-    "to": "2026-11-16",
+    "from": "2026-11-17",
+    "to": "2026-11-24",
     "days": 7
   },
   "repo": "https://github.com/w3c/wcag3",
   "note": "Pull requests are proposals until merged into the editor’s draft; merged changes still need working-group consensus and a published Working Draft before they are official.",
   "counts": {
-    "adopted": 0,
-    "proposals": 6,
-    "newProposals": 2,
+    "adopted": 3,
+    "proposals": 8,
+    "newProposals": 3,
     "declined": 1,
-    "newIssues": 3,
-    "closedIssues": 2,
-    "activeThreads": 13
+    "newIssues": 2,
+    "closedIssues": 6,
+    "activeThreads": 4
   },
   "topics": {
-    "other": 4,
-    "definitions": 7,
-    "conformance": 2,
-    "provision": 9
+    "definitions": 4,
+    "other": 11,
+    "provision": 2
   },
   "provisionsInFocus": [
     {
-      "slug": "all-steps-listed",
-      "title": "All Steps Listed",
-      "items": 5
+      "slug": "pointer-contrast-sufficient",
+      "title": "Pointer Contrast Sufficient",
+      "items": 1
     },
     {
       "slug": "images-detectable",
       "title": "Images Detectable",
-      "items": 2
-    },
-    {
-      "slug": "captions-consistent",
-      "title": "Captions Consistent",
-      "items": 2
-    },
-    {
-      "slug": "current-step-indicated",
-      "title": "Current Step Indicated",
-      "items": 2
-    },
-    {
-      "slug": "errors-preventable",
-      "title": "Errors Preventable",
       "items": 1
     },
     {
-      "slug": "interactive-element-importance-indicated",
-      "title": "Interactive Element Importance Indicated",
-      "items": 1
-    },
-    {
-      "slug": "focus-retained",
-      "title": "Focus Retained",
+      "slug": "captions-unobstructed",
+      "title": "Captions Unobstructed",
       "items": 1
     }
   ],
-  "adopted": [],
+  "adopted": [
+    {
+      "number": 978,
+      "title": "Extend maturity status levels to ACT rules",
+      "url": "https://github.com/w3c/wcag3/pull/978",
+      "state": "closed",
+      "created": "2026-11-17",
+      "updated": "2026-11-20",
+      "comments": 3,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "mergedAt": "2026-11-20",
+      "topic": "other"
+    },
+    {
+      "number": 982,
+      "title": "Suggestions for modern version of bypass blocks",
+      "url": "https://github.com/w3c/wcag3/pull/982",
+      "state": "closed",
+      "created": "2026-11-18",
+      "updated": "2026-11-18",
+      "comments": 1,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "mergedAt": "2026-11-18",
+      "topic": "other"
+    },
+    {
+      "number": 974,
+      "title": "Remove unusedDefinition where it is no longer needed",
+      "url": "https://github.com/w3c/wcag3/pull/974",
+      "state": "closed",
+      "created": "2026-11-13",
+      "updated": "2026-11-17",
+      "comments": 1,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "mergedAt": "2026-11-17",
+      "topic": "definitions"
+    }
+  ],
   "proposals": [
     {
-      "number": 950,
-      "title": "conforming alternative version",
-      "url": "https://github.com/w3c/wcag3/pull/950",
+      "number": 923,
+      "title": "Refactors glossary to use headings instead of definition list",
+      "url": "https://github.com/w3c/wcag3/pull/923",
       "state": "open",
-      "created": "2026-11-03",
-      "updated": "2026-11-16",
+      "created": "2026-10-18",
+      "updated": "2026-11-22",
+      "comments": 5,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "isNew": false,
+      "topic": "definitions"
+    },
+    {
+      "number": 949,
+      "title": "Adding bypass blocks requirement",
+      "url": "https://github.com/w3c/wcag3/pull/949",
+      "state": "open",
+      "created": "2026-10-29",
+      "updated": "2026-11-19",
       "comments": 3,
       "weekComments": 0,
       "labels": [],
@@ -76,17 +112,31 @@
       "topic": "other"
     },
     {
-      "number": 902,
-      "title": "Move accessibility supported to a new testing section and recast it as user agent supported",
-      "url": "https://github.com/w3c/wcag3/pull/902",
+      "number": 950,
+      "title": "conforming alternative version",
+      "url": "https://github.com/w3c/wcag3/pull/950",
       "state": "open",
-      "created": "2026-10-06",
-      "updated": "2026-11-11",
+      "created": "2026-11-03",
+      "updated": "2026-11-17",
       "comments": 3,
       "weekComments": 0,
       "labels": [],
       "provisions": [],
       "isNew": false,
+      "topic": "other"
+    },
+    {
+      "number": 983,
+      "title": "Suggested edits criteria",
+      "url": "https://github.com/w3c/wcag3/pull/983",
+      "state": "open",
+      "created": "2026-11-23",
+      "updated": "2026-11-23",
+      "comments": 1,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "isNew": true,
       "topic": "other"
     },
     {
@@ -95,27 +145,13 @@
       "url": "https://github.com/w3c/wcag3/pull/975",
       "state": "open",
       "created": "2026-11-16",
-      "updated": "2026-11-16",
+      "updated": "2026-11-23",
       "comments": 1,
       "weekComments": 0,
       "labels": [],
       "provisions": [],
-      "isNew": true,
+      "isNew": false,
       "topic": "other"
-    },
-    {
-      "number": 974,
-      "title": "Remove unusedDefinition where it is no longer needed",
-      "url": "https://github.com/w3c/wcag3/pull/974",
-      "state": "open",
-      "created": "2026-11-13",
-      "updated": "2026-11-13",
-      "comments": 1,
-      "weekComments": 0,
-      "labels": [],
-      "provisions": [],
-      "isNew": true,
-      "topic": "definitions"
     },
     {
       "number": 701,
@@ -123,7 +159,7 @@
       "url": "https://github.com/w3c/wcag3/pull/701",
       "state": "open",
       "created": "2026-06-09",
-      "updated": "2026-11-13",
+      "updated": "2026-11-23",
       "comments": 1,
       "weekComments": 0,
       "labels": [],
@@ -132,29 +168,43 @@
       "topic": "other"
     },
     {
-      "number": 939,
-      "title": "Update reporting tier definitions and structure",
-      "url": "https://github.com/w3c/wcag3/pull/939",
+      "number": 979,
+      "title": "no or low background audio",
+      "url": "https://github.com/w3c/wcag3/pull/979",
       "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-11-11",
+      "created": "2026-11-17",
+      "updated": "2026-11-22",
       "comments": 1,
       "weekComments": 0,
       "labels": [],
       "provisions": [],
-      "isNew": false,
-      "topic": "conformance"
+      "isNew": true,
+      "topic": "other"
+    },
+    {
+      "number": 980,
+      "title": "Adding the criteria for requirements",
+      "url": "https://github.com/w3c/wcag3/pull/980",
+      "state": "open",
+      "created": "2026-11-17",
+      "updated": "2026-11-17",
+      "comments": 1,
+      "weekComments": 0,
+      "labels": [],
+      "provisions": [],
+      "isNew": true,
+      "topic": "other"
     }
   ],
   "declined": [
     {
-      "number": 973,
-      "title": "Add term status check script",
-      "url": "https://github.com/w3c/wcag3/pull/973",
+      "number": 981,
+      "title": "[WIP] suggestions for new bypass blocks",
+      "url": "https://github.com/w3c/wcag3/pull/981",
       "state": "closed",
-      "created": "2026-11-12",
-      "updated": "2026-11-13",
-      "comments": 4,
+      "created": "2026-11-18",
+      "updated": "2026-11-18",
+      "comments": 1,
       "weekComments": 0,
       "labels": [],
       "provisions": [],
@@ -163,156 +213,44 @@
   ],
   "newIssues": [
     {
-      "number": 971,
-      "title": "Change term \"method\" to facilitate other ways of using the common word \"method\"",
-      "url": "https://github.com/w3c/wcag3/issues/971",
+      "number": 985,
+      "title": "Focus relevant: Rationale for excluding static/read-only content from the focus order",
+      "url": "https://github.com/w3c/wcag3/issues/985",
       "state": "open",
-      "created": "2026-11-11",
-      "updated": "2026-11-12",
-      "comments": 4,
+      "created": "2026-11-23",
+      "updated": "2026-11-23",
+      "comments": 2,
       "weekComments": 0,
-      "labels": [
-        "Other: Definitions & Terminology"
-      ],
+      "labels": [],
       "provisions": [],
       "isNew": true,
-      "topic": "definitions"
+      "topic": "other"
     },
     {
-      "number": 972,
-      "title": "Some developing terms and provisions depend on glossary entries that are still placeholders",
-      "url": "https://github.com/w3c/wcag3/issues/972",
+      "number": 984,
+      "title": "Keyboard focus appearance: removing the focus indicator without a replacement meets every core requirement. Is that intended?",
+      "url": "https://github.com/w3c/wcag3/issues/984",
       "state": "open",
-      "created": "2026-11-12",
-      "updated": "2026-11-12",
+      "created": "2026-11-23",
+      "updated": "2026-11-23",
       "comments": 1,
       "weekComments": 0,
       "labels": [],
       "provisions": [],
       "isNew": true,
-      "topic": "definitions"
-    },
-    {
-      "number": 976,
-      "title": "why are these in the assertion and not requirements?",
-      "url": "https://github.com/w3c/wcag3/issues/976",
-      "state": "open",
-      "created": "2026-11-16",
-      "updated": "2026-11-16",
-      "comments": 0,
-      "weekComments": 0,
-      "labels": [
-        "coga"
-      ],
-      "provisions": [
-        {
-          "slug": "errors-preventable",
-          "title": "Errors Preventable"
-        }
-      ],
-      "isNew": true,
-      "topic": "provision"
+      "topic": "other"
     }
   ],
   "closedIssues": [
     {
-      "number": 76,
-      "title": "Input control - needs clarification",
-      "url": "https://github.com/w3c/wcag3/issues/76",
+      "number": 963,
+      "title": "Clarify whether completion pages presented as steps are included in the definition of \"step\"",
+      "url": "https://github.com/w3c/wcag3/issues/963",
       "state": "closed",
-      "created": "2024-05-17",
-      "updated": "2026-11-11",
-      "comments": 4,
-      "weekComments": 0,
-      "labels": [
-        "Path: Input and focus⹁ interactive components"
-      ],
-      "provisions": [
-        {
-          "slug": "input-method-flexible",
-          "title": "Input Method Flexible"
-        }
-      ],
-      "closedAt": "2026-11-11",
-      "topic": "provision"
-    },
-    {
-      "number": 590,
-      "title": "Rendering‑aware contrast model proposal for WCAG 3",
-      "url": "https://github.com/w3c/wcag3/issues/590",
-      "state": "closed",
-      "created": "2026-02-25",
-      "updated": "2026-11-10",
-      "comments": 5,
-      "weekComments": 0,
-      "labels": [
-        "Path: Single sense and contrast"
-      ],
-      "provisions": [
-        {
-          "slug": "text-contrast-sufficient-enhanced",
-          "title": "Text Contrast Sufficient Enhanced"
-        },
-        {
-          "slug": "text-contrast-sufficient-minimum",
-          "title": "Text Contrast Sufficient Minimum"
-        }
-      ],
-      "closedAt": "2026-11-10",
-      "topic": "provision"
-    }
-  ],
-  "active": [
-    {
-      "number": 494,
-      "title": "What does \"detectable\" mean in \"Non-decorative images are detectable\"",
-      "url": "https://github.com/w3c/wcag3/issues/494",
-      "state": "open",
-      "created": "2026-01-06",
-      "updated": "2026-11-16",
-      "comments": 5,
-      "weekComments": 5,
-      "labels": [
-        "Path: Image and media alternatives",
-        "Other: Definitions & Terminology"
-      ],
-      "provisions": [
-        {
-          "slug": "images-detectable",
-          "title": "Images Detectable"
-        }
-      ],
-      "topic": "definitions"
-    },
-    {
-      "number": 605,
-      "title": "2.1.1 - Core requirement: Images detectable: \"Detectable\" is ambiguous and requires a definition.",
-      "url": "https://github.com/w3c/wcag3/issues/605",
-      "state": "open",
-      "created": "2026-03-03",
-      "updated": "2026-11-16",
-      "comments": 4,
-      "weekComments": 4,
-      "labels": [
-        "Path: Image and media alternatives"
-      ],
-      "provisions": [
-        {
-          "slug": "images-detectable",
-          "title": "Images Detectable"
-        }
-      ],
-      "topic": "definitions"
-    },
-    {
-      "number": 957,
-      "title": "Clarify step identification, numbering, and structure in multi-step processes",
-      "url": "https://github.com/w3c/wcag3/issues/957",
-      "state": "open",
       "created": "2026-11-06",
-      "updated": "2026-11-11",
-      "comments": 3,
-      "weekComments": 3,
+      "updated": "2026-11-23",
+      "comments": 2,
+      "weekComments": 0,
       "labels": [
         "Path: User orientation⹁ layout and structure"
       ],
@@ -322,115 +260,85 @@
           "title": "All Steps Listed"
         }
       ],
-      "topic": "provision"
-    },
-    {
-      "number": 931,
-      "title": "COGA support for interactive element importance indicated",
-      "url": "https://github.com/w3c/wcag3/issues/931",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-11-12",
-      "comments": 2,
-      "weekComments": 2,
-      "labels": [
-        "coga",
-        "Path: Input and focus⹁ interactive components"
-      ],
-      "provisions": [
-        {
-          "slug": "interactive-element-importance-indicated",
-          "title": "Interactive Element Importance Indicated"
-        }
-      ],
-      "topic": "provision"
-    },
-    {
-      "number": 464,
-      "title": "Need to define and clarify - Consistent captions (Foundational)",
-      "url": "https://github.com/w3c/wcag3/issues/464",
-      "state": "open",
-      "created": "2025-12-25",
-      "updated": "2026-11-10",
-      "comments": 2,
-      "weekComments": 1,
-      "labels": [
-        "Path: Image and media alternatives",
-        "Other: Definitions & Terminology"
-      ],
-      "provisions": [
-        {
-          "slug": "captions-consistent",
-          "title": "Captions Consistent"
-        }
-      ],
+      "closedAt": "2026-11-23",
       "topic": "definitions"
     },
     {
-      "number": 816,
-      "title": "AFixt Comments on the WCAG 3 Conformance Model",
-      "url": "https://github.com/w3c/wcag3/issues/816",
-      "state": "open",
-      "created": "2026-08-19",
-      "updated": "2026-11-15",
-      "comments": 2,
-      "weekComments": 1,
+      "number": 962,
+      "title": "Consider merging the \"Current step indicated\" and \"Current step position indicated\" provisions",
+      "url": "https://github.com/w3c/wcag3/issues/962",
+      "state": "closed",
+      "created": "2026-11-06",
+      "updated": "2026-11-23",
+      "comments": 5,
+      "weekComments": 0,
       "labels": [
-        "Conformance"
-      ],
-      "provisions": [],
-      "topic": "conformance"
-    },
-    {
-      "number": 915,
-      "title": "“Focus retained” needs to cover more than just keyboard tabbing",
-      "url": "https://github.com/w3c/wcag3/issues/915",
-      "state": "open",
-      "created": "2026-10-16",
-      "updated": "2026-11-11",
-      "comments": 2,
-      "weekComments": 1,
-      "labels": [
-        "coga",
         "Path: User orientation⹁ layout and structure"
       ],
       "provisions": [
         {
-          "slug": "focus-retained",
-          "title": "Focus Retained"
+          "slug": "all-steps-listed",
+          "title": "All Steps Listed"
+        },
+        {
+          "slug": "current-step-indicated",
+          "title": "Current Step Indicated"
         }
       ],
+      "closedAt": "2026-11-23",
       "topic": "provision"
     },
     {
-      "number": 930,
-      "title": "COGA support for \"Captions consistent\"",
-      "url": "https://github.com/w3c/wcag3/issues/930",
-      "state": "open",
-      "created": "2026-10-22",
-      "updated": "2026-11-10",
-      "comments": 1,
-      "weekComments": 1,
+      "number": 961,
+      "title": "Clarify what constitutes a complete and equivalent representation of a multi-step process",
+      "url": "https://github.com/w3c/wcag3/issues/961",
+      "state": "closed",
+      "created": "2026-11-06",
+      "updated": "2026-11-23",
+      "comments": 2,
+      "weekComments": 0,
       "labels": [
-        "coga"
+        "Path: User orientation⹁ layout and structure"
       ],
       "provisions": [
         {
-          "slug": "captions-consistent",
-          "title": "Captions Consistent"
+          "slug": "all-steps-listed",
+          "title": "All Steps Listed"
         }
       ],
+      "closedAt": "2026-11-23",
+      "topic": "provision"
+    },
+    {
+      "number": 959,
+      "title": "Clarify what constitutes the position of the current step",
+      "url": "https://github.com/w3c/wcag3/issues/959",
+      "state": "closed",
+      "created": "2026-11-06",
+      "updated": "2026-11-23",
+      "comments": 2,
+      "weekComments": 0,
+      "labels": [
+        "Path: User orientation⹁ layout and structure"
+      ],
+      "provisions": [
+        {
+          "slug": "all-steps-listed",
+          "title": "All Steps Listed"
+        }
+      ],
+      "closedAt": "2026-11-23",
       "topic": "provision"
     },
     {
       "number": 958,
       "title": "Clarify current step indication when the total number of steps is dynamic or unknown",
       "url": "https://github.com/w3c/wcag3/issues/958",
-      "state": "open",
+      "state": "closed",
       "created": "2026-11-06",
-      "updated": "2026-11-11",
-      "comments": 1,
-      "weekComments": 1,
+      "updated": "2026-11-23",
+      "comments": 2,
+      "weekComments": 0,
       "labels": [
         "Path: User orientation⹁ layout and structure"
       ],
@@ -440,17 +348,18 @@
           "title": "Current Step Indicated"
         }
       ],
+      "closedAt": "2026-11-23",
       "topic": "provision"
     },
     {
-      "number": 959,
-      "title": "Clarify what constitutes the position of the current step",
-      "url": "https://github.com/w3c/wcag3/issues/959",
-      "state": "open",
+      "number": 957,
+      "title": "Clarify step identification, numbering, and structure in multi-step processes",
+      "url": "https://github.com/w3c/wcag3/issues/957",
+      "state": "closed",
       "created": "2026-11-06",
-      "updated": "2026-11-11",
-      "comments": 1,
-      "weekComments": 1,
+      "updated": "2026-11-23",
+      "comments": 4,
+      "weekComments": 0,
       "labels": [
         "Path: User orientation⹁ layout and structure"
       ],
@@ -458,6 +367,83 @@
         {
           "slug": "all-steps-listed",
           "title": "All Steps Listed"
+        }
+      ],
+      "closedAt": "2026-11-23",
+      "topic": "provision"
+    }
+  ],
+  "active": [
+    {
+      "number": 775,
+      "title": "Consider unbundling “Pointer contrast sufficient” so pointer size gets its own provision",
+      "url": "https://github.com/w3c/wcag3/issues/775",
+      "state": "open",
+      "created": "2026-07-24",
+      "updated": "2026-11-23",
+      "comments": 3,
+      "weekComments": 3,
+      "labels": [],
+      "provisions": [
+        {
+          "slug": "pointer-contrast-sufficient",
+          "title": "Pointer Contrast Sufficient"
+        }
+      ],
+      "topic": "provision"
+    },
+    {
+      "number": 494,
+      "title": "What does \"detectable\" mean in \"Non-decorative images are detectable\"",
+      "url": "https://github.com/w3c/wcag3/issues/494",
+      "state": "open",
+      "created": "2026-01-06",
+      "updated": "2026-11-17",
+      "comments": 8,
+      "weekComments": 1,
+      "labels": [
+        "Path: Image and media alternatives",
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [
+        {
+          "slug": "images-detectable",
+          "title": "Images Detectable"
+        }
+      ],
+      "topic": "definitions"
+    },
+    {
+      "number": 971,
+      "title": "Change term \"method\" to facilitate other ways of using the common word \"method\"",
+      "url": "https://github.com/w3c/wcag3/issues/971",
+      "state": "open",
+      "created": "2026-11-11",
+      "updated": "2026-11-17",
+      "comments": 5,
+      "weekComments": 1,
+      "labels": [
+        "Other: Definitions & Terminology"
+      ],
+      "provisions": [],
+      "topic": "definitions"
+    },
+    {
+      "number": 977,
+      "title": "Captions unobstructed appears to be a misnomer",
+      "url": "https://github.com/w3c/wcag3/issues/977",
+      "state": "open",
+      "created": "2026-11-16",
+      "updated": "2026-11-17",
+      "comments": 1,
+      "weekComments": 1,
+      "labels": [
+        "Path: Image and media alternatives"
+      ],
+      "provisions": [
+        {
+          "slug": "captions-unobstructed",
+          "title": "Captions Unobstructed"
         }
       ],
       "topic": "provision"
